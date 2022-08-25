@@ -1,7 +1,7 @@
 import * as ts from "../../_namespaces/ts";
-import { createServerHost, File, libFile, Tsc_WatchDirectory } from "../virtualFileSystemWithWatch";
+import { createServerHost, File, libFile, serializeMultiMap, Tsc_WatchDirectory } from "../virtualFileSystemWithWatch";
 import { commonFile1, commonFile2 } from "../tscWatch/helpers";
-import { createSession, createLoggerWithInMemoryLogs, openFilesForSession, protocolFileLocationFromSubstring, baselineTsserverLogs, Logger, TestSession, toExternalFiles, createProjectService } from "./helpers";
+import { createSession, createLoggerWithInMemoryLogs, openFilesForSession, protocolFileLocationFromSubstring, baselineTsserverLogs, Logger, TestSession, toExternalFiles, createProjectService, TestSessionOptions } from "./helpers";
 
 describe("unittests:: tsserver:: watchEnvironment:: tsserverProjectSystem watchDirectories implementation", () => {
     function verifyCompletionListWithNewFileInSubFolder(scenario: string, tscWatchDirectory: Tsc_WatchDirectory) {
@@ -478,5 +478,104 @@ describe("unittests:: tsserver:: watchEnvironment:: watchFile is single watcher 
         const session = createSession(host, { logger: createLoggerWithInMemoryLogs(host) });
         openFilesForSession([index], session);
         baselineTsserverLogs("watchEnvironment", "when watchFile is single watcher per file", session);
+    });
+
+    describe("unittests:: tsserver:: watchEnvironment:: watchFactory", () => {
+        it("plugin overriding watch", () => {
+            const { host, session, plugin, aTs, bTs, } = createHostForPlugins({ globalPlugins: ["myplugin"] });
+            const existingWatchFile = host.watchFile;
+            const existingWatchDirectory = host.watchDirectory;
+            host.require = (initialPath, moduleName) => {
+                session.logger.logs.push(`CustomRequire:: Resolving ${moduleName} from ${initialPath}`);
+                return {
+                    module: (): ts.server.PluginModule => ({
+                        create: info => {
+                            info.serverHost.watchFile = plugin.watchFile;
+                            info.serverHost.watchDirectory = plugin.watchDirectory;
+                            return info.languageService;
+                        }
+                    }),
+                    error: undefined
+                };
+            };
+            openFilesForSession([aTs], session);
+            session.logger.info(`Host watchFile expected to be patched. Actual: ${host.watchFile !== existingWatchFile}`);
+            session.logger.info(`Host watchDirectory expected to be patched. Actual: ${host.watchDirectory !== existingWatchDirectory}`);
+
+            // Change b.ts
+            session.logger.info("Change file");
+            host.writeFile(bTs.path, aTs.content);
+            // Since we have overriden watch, this shouldnt do anything
+            host.checkTimeoutQueueLength(0);
+
+            // Actually invoke watches
+            session.logger.info("Invoke plugin watches");
+            plugin.watchedFiles.get(bTs.path)!.forEach(({ callback }) => callback(bTs.path, ts.FileWatcherEventKind.Changed));
+            // Host should have updates queued
+            host.runQueuedTimeoutCallbacks();
+
+            baselineTsserverLogs("watchEnvironment", "plugin overriding watch", session);
+        });
+
+        function createHostForPlugins(opts?: Partial<TestSessionOptions>, watchOptions?: ts.WatchOptions) {
+            const configFile: File = {
+                path: `/user/username/projects/myproject/tsconfig.json`,
+                content: JSON.stringify({ watchOptions })
+            };
+            const aTs: File = {
+                path: `/user/username/projects/myproject/a.ts`,
+                content: `export class a { prop = "hello"; foo() { return this.prop; } }`
+            };
+            const bTs: File = {
+                path: `/user/username/projects/myproject/b.ts`,
+                content: `export class b { prop = "hello"; foo() { return this.prop; } }`
+            };
+            const host = createServerHost([aTs, bTs, configFile, libFile]);
+            const session = createSession(host, {
+                ...opts,
+                logger: createLoggerWithInMemoryLogs(host),
+                pluginProbeLocations: ["/a/pluginprobe1", "/a/pluginprobe2"],
+            });
+            return { host, session, aTs, bTs, plugin: createFactoryFunctions(session) };
+        }
+
+        function createFactoryFunctions(session: TestSession, pluginName?: string) {
+            interface WatchedFileCallback {
+                callback: ts.FileWatcherCallback;
+                pollingInterval: number | undefined;
+                options: ts.WatchOptions | undefined;
+            }
+            interface WatchedDirectoryCallback {
+                callback: ts.DirectoryWatcherCallback;
+                options: ts.WatchOptions | undefined;
+            }
+            const watchedFiles = ts.createMultiMap<string, WatchedFileCallback>();
+            const watchedDirectories = ts.createMultiMap<string, WatchedDirectoryCallback>();
+            const watchedDirectoriesRecursive = ts.createMultiMap<string, WatchedDirectoryCallback>();
+            const baselineHost = session.testhost.baselineHost;
+            session.testhost.baselineHost = log;
+            return { watchFile, watchDirectory, watchedFiles, watchedDirectories, watchedDirectoriesRecursive };
+            function watchFile(path: string, callback: ts.FileWatcherCallback, pollingInterval?: ts.PollingInterval, options?: ts.WatchOptions) {
+                session.logger.logs.push(`Custom ${pluginName || ""}watchFile: ${path} ${pollingInterval} ${JSON.stringify(options)}`);
+                const watchedFileCallback: WatchedFileCallback = { callback, pollingInterval, options };
+                watchedFiles.add(path, watchedFileCallback);
+                return { close: () => watchedFiles.remove(path, watchedFileCallback) };
+            }
+
+            function watchDirectory(path: string, callback: ts.DirectoryWatcherCallback, recursive?: boolean, options?: ts.WatchOptions) {
+                session.logger.logs.push(`Custom ${pluginName || ""}watchDirectory: ${path} ${recursive} ${JSON.stringify(options)}`);
+                const watchedDirectoryCallback: WatchedDirectoryCallback = { callback, options };
+                (recursive ? watchedDirectoriesRecursive : watchedDirectories).add(path, watchedDirectoryCallback);
+                return { close: () => (recursive ? watchedDirectoriesRecursive : watchedDirectories).remove(path, watchedDirectoryCallback) };
+            }
+
+            function log(title: string) {
+                baselineHost.call(session.testhost, title);
+                session.logger.logs.push("", `${pluginName || ""}Plugin Watches::`);
+                serializeMultiMap(session.logger.logs, "WatchedFiles", watchedFiles);
+                serializeMultiMap(session.logger.logs, "WatchedDirectories:Recursive", watchedDirectoriesRecursive);
+                serializeMultiMap(session.logger.logs, "WatchedDirectories", watchedDirectories);
+            }
+        }
     });
 });

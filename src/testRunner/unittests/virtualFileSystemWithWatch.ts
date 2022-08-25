@@ -1143,7 +1143,7 @@ function diffFsEntry(baseline: string[], oldFsEntry: FSEntry | undefined, newFsE
     }
 }
 
-function serializeMultiMap<T>(baseline: string[], caption: string, multiMap: MultiMap<string, T>) {
+export function serializeMultiMap<T>(baseline: string[], caption: string, multiMap: MultiMap<string, T>) {
     baseline.push(`${caption}::`);
     multiMap.forEach((values, key) => {
         baseline.push(`${key}:`);
