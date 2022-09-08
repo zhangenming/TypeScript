@@ -1,11 +1,13 @@
+import * as ts from "./_namespaces/ts";
 import {
     AssertionLevel, closeFileWatcher, closeFileWatcherOf, combinePaths, Comparison, contains, containsPath,
     createGetCanonicalFileName, createMultiMap, Debug, directorySeparator, emptyArray, emptyFileSystemEntries, endsWith,
-    enumerateInsertsAndDeletes, FileSystemEntries, getDirectoryPath, getFallbackOptions,
+    enumerateInsertsAndDeletes, FileSystemEntries, forEach, getDirectoryPath, getFallbackOptions,
     getNormalizedAbsolutePath, getRelativePathToDirectoryOrUrl, getRootLength, getStringComparer, isArray, isNodeLikeSystem, isString,
     mapDefined, matchesExclude, matchFiles, memoize, ModuleImportResult, noop, normalizePath, normalizeSlashes, orderedRemoveItem,
-    Path, perfLogger, PluginImport, PollingWatchKind, resolveJSModule, some, startsWith, stringContains, timestamp,
-    unorderedRemoveItem, WatchDirectoryKind, WatchFileKind, WatchOptions, writeFileEnsuringDirectories,
+    parsePackageName,
+    Path, perfLogger, PluginImport, PollingWatchKind, resolveJSModule, returnUndefined, some, startsWith, stringContains, timestamp,
+    unorderedRemoveItem, UserWatchFactory, UserWatchFactoryModule, WatchDirectoryKind, WatchFileKind, WatchOptions, writeFileEnsuringDirectories,
 } from "./_namespaces/ts";
 
 declare function setTimeout(handler: (...args: any[]) => void, timeout: number): any;
@@ -429,7 +431,7 @@ function createFixedChunkSizePollingWatchFile(host: {
     }
 }
 
-interface SingleFileWatcher<T extends FileWatcherCallback | FsWatchCallback>{
+interface SingleFileWatcher<T extends FileWatcherCallback | FsWatchCallback> {
     watcher: FileWatcher;
     callbacks: T[];
 }
@@ -787,6 +789,11 @@ export const enum FileSystemEntryKind {
     Directory,
 }
 
+/** @internal */
+export function setWatchOptionInternalProperty<K extends keyof WatchOptions>(options: WatchOptions, key: K, value: WatchOptions[K]) {
+    Object.defineProperty(options, key, { configurable: false, enumerable: false, value });
+}
+
 function createFileWatcherCallback(callback: FsWatchCallback): FileWatcherCallback {
     return (_fileName, eventKind, modifiedTime) => callback(eventKind === FileWatcherEventKind.Changed ? "change" : "rename", "", modifiedTime);
 }
@@ -897,6 +904,7 @@ export interface CreateSystemWatchFunctions {
     tscWatchDirectory: string | undefined;
     inodeWatching: boolean;
     sysLog: (s: string) => void;
+    getSystem: () => System;
 }
 
 /** @internal */
@@ -917,6 +925,7 @@ export function createSystemWatchFunctions({
     tscWatchDirectory,
     inodeWatching,
     sysLog,
+    getSystem,
 }: CreateSystemWatchFunctions): { watchFile: HostWatchFile; watchDirectory: HostWatchDirectory; } {
     const pollingWatches = new Map<string, SingleFileWatcher<FileWatcherCallback>>();
     const fsWatches = new Map<string, SingleFileWatcher<FsWatchCallback>>();
@@ -926,12 +935,59 @@ export function createSystemWatchFunctions({
     let nonPollingWatchFile: HostWatchFile | undefined;
     let hostRecursiveDirectoryWatcher: HostWatchDirectory | undefined;
     let hitSystemWatcherLimit = false;
+    let reportErrorOnMissingRequire = true;
+
     return {
         watchFile,
-        watchDirectory
+        watchDirectory,
     };
 
+    function getUserWatchFactory(options: WatchOptions | undefined): UserWatchFactory | undefined {
+        if (!options?.watchFactory) return undefined;
+        // Look if we alaready have this factory resolved
+        if (options.getResolvedWatchFactory) return options.getResolvedWatchFactory();
+        const system = getSystem();
+        if (!system.require) {
+            if (reportErrorOnMissingRequire) sysLog(`Custom watchFactory is ignored because of not running in environment that supports 'require'. Watches will defualt to builtin.`);
+            reportErrorOnMissingRequire = false;
+            return setUserWatchFactory(options, /*userWatchFactory*/ undefined);
+        }
+        const factoryName = isString(options.watchFactory) ? options.watchFactory : options.watchFactory.name;
+        if (!factoryName || parsePackageName(factoryName).rest) {
+            sysLog(`Skipped loading watchFactory ${isString(options.watchFactory) ? options.watchFactory : JSON.stringify(options.watchFactory)} because it can be named with only package name`);
+            return setUserWatchFactory(options, /*userWatchFactory*/ undefined);
+        }
+        const searchPaths = [
+            combinePaths(system.getExecutingFilePath(), "../../..")
+        ];
+        sysLog(`Enabling watchFactory ${isString(options.watchFactory) ? options.watchFactory : JSON.stringify(options.watchFactory)} from candidate paths: ${searchPaths.join(",")}`);
+        const { resolvedModule, errorLogs, pluginConfigEntry } = resolveModule<UserWatchFactoryModule>(
+            isString(options.watchFactory) ? { name: options.watchFactory } : options.watchFactory,
+            searchPaths,
+            getSystem(),
+            sysLog
+        );
+        if (typeof resolvedModule === "function") {
+            return setUserWatchFactory(options, resolvedModule({ typescript: ts, options, config: pluginConfigEntry }));
+        }
+        else if (!resolvedModule) {
+            forEach(errorLogs, sysLog);
+            sysLog(`Couldn't find ${pluginConfigEntry.name}`);
+        }
+        else {
+            sysLog(`Skipped loading plugin ${pluginConfigEntry.name} because it did not expose a proper factory function`);
+        }
+        return setUserWatchFactory(options, /*userWatchFactory*/ undefined);
+    }
+
+    function setUserWatchFactory(options: WatchOptions, userWatchFactory: UserWatchFactory | undefined) {
+        setWatchOptionInternalProperty(options, "getResolvedWatchFactory", userWatchFactory ? () => userWatchFactory : returnUndefined);
+        return userWatchFactory;
+    }
+
     function watchFile(fileName: string, callback: FileWatcherCallback, pollingInterval: PollingInterval, options: WatchOptions | undefined): FileWatcher {
+        const userWatchFactory = getUserWatchFactory(options);
+        if (typeof userWatchFactory?.watchFile === "function") return userWatchFactory.watchFile(fileName, callback, pollingInterval, options);
         options = updateOptionsForWatchFile(options, useNonPollingWatchers);
         const watchFileKind = Debug.checkDefined(options.watchFile);
         switch (watchFileKind) {
@@ -1012,6 +1068,8 @@ export function createSystemWatchFunctions({
     }
 
     function watchDirectory(directoryName: string, callback: DirectoryWatcherCallback, recursive: boolean, options: WatchOptions | undefined): FileWatcher {
+        const userWatchFactory = getUserWatchFactory(options);
+        if (typeof userWatchFactory?.watchDirectory === "function") return userWatchFactory.watchDirectory(directoryName, callback, recursive, options);
         if (fsSupportsRecursiveFsWatch) {
             return fsWatch(
                 directoryName,
@@ -1481,7 +1539,7 @@ export let sys: System = (() => {
         let profilePath = "./profile.cpuprofile";
 
         const Buffer: {
-            new (input: string, encoding?: string): any;
+            new(input: string, encoding?: string): any;
             from?(input: string, encoding?: string): any;
         } = require("buffer").Buffer;
 
@@ -1521,6 +1579,7 @@ export let sys: System = (() => {
             tscWatchDirectory: process.env.TSC_WATCHDIRECTORY,
             inodeWatching: isLinuxOrMacOs,
             sysLog,
+            getSystem: () => nodeSystem,
         });
         const nodeSystem: System = {
             args: process.argv.slice(2),
@@ -1529,7 +1588,7 @@ export let sys: System = (() => {
             write(s: string): void {
                 process.stdout.write(s);
             },
-            getWidthOfTerminal(){
+            getWidthOfTerminal() {
                 return process.stdout.columns;
             },
             writeOutputIsTTY() {

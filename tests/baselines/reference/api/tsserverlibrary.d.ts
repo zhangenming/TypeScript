@@ -3327,6 +3327,7 @@ declare namespace ts {
             excludedFiles: readonly NormalizedPath[];
             updateGraph(): boolean;
             getExcludedFiles(): readonly ts.server.NormalizedPath[];
+            close(): void;
         }
         function convertFormatOptions(protocolOptions: protocol.FormatCodeSettings): FormatCodeSettings;
         function convertCompilerOptions(protocolOptions: protocol.ExternalProjectCompilerOptions): CompilerOptions & protocol.CompileOnSaveMixin;
@@ -7127,7 +7128,7 @@ declare namespace ts {
         excludeDirectories?: string[];
         excludeFiles?: string[];
         watchFactory?: string | PluginImport;
-        [option: string]: CompilerOptionsValue | undefined;
+        [option: string]: CompilerOptionsValue | Function | undefined;
     }
     interface TypeAcquisition {
         /**
