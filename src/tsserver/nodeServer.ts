@@ -5,7 +5,7 @@ import {
     createInstallTypingsRequest, EndInstallTypes, EventBeginInstallTypes, EventEndInstallTypes,
     EventInitializationFailed, EventTypesRegistry, findArgument, formatMessage, getLogLevel, hasArgument, indent,
     InitializationFailedResponse, InstallPackageOptionsWithProject, InstallPackageRequest, InvalidateCachedTypings,
-    ITypingsInstaller, Logger, LogLevel, ModuleImportResult, Msg, nullCancellationToken, nullTypingsInstaller,
+    ITypingsInstaller, Logger, LogLevel, Msg, nullCancellationToken, nullTypingsInstaller,
     PackageInstalledResponse, Project, ProjectService, protocol, ServerCancellationToken, ServerHost, Session,
     SetTypings, StartInput, StartSessionOptions, stringifyIndented, toEvent, TypesRegistryResponse,
     TypingInstallerRequestUnion,
@@ -13,8 +13,7 @@ import {
 import {
     ApplyCodeActionCommandResult, assertType, CharacterCodes, combinePaths, createQueue, Debug, directorySeparator,
     DirectoryWatcherCallback, FileWatcher, getDirectoryPath, getEntries, getNodeMajorVersion, getRootLength,
-    JsTyping, LanguageServiceMode, MapLike, noop, noopFileWatcher, normalizePath, normalizeSlashes, resolveJSModule,
-    SortedReadonlyArray, startTracing, stripQuotes, sys, toFileNameLowerCase, tracing, TypeAcquisition,
+    JsTyping, LanguageServiceMode, MapLike, noop, noopFileWatcher, normalizePath, normalizeSlashes, SortedReadonlyArray, startTracing, stripQuotes, sys, toFileNameLowerCase, tracing, TypeAcquisition,
     validateLocaleAndSetLanguage, versionMajorMinor, WatchOptions,
 } from "./_namespaces/ts";
 
@@ -279,15 +278,6 @@ export function initializeNodeSystem(): StartInput {
     if (typeof global !== "undefined" && global.gc) {
         sys.gc = () => global.gc?.();
     }
-
-    sys.require = (initialDir: string, moduleName: string): ModuleImportResult => {
-        try {
-            return { module: require(resolveJSModule(moduleName, initialDir, sys)), error: undefined };
-        }
-        catch (error) {
-            return { module: undefined, error };
-        }
-    };
 
     let cancellationToken: ServerCancellationToken;
     try {
