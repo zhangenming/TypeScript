@@ -137,7 +137,6 @@ export type PluginModuleFactory = (mod: { typescript: typeof ts }) => PluginModu
 /** @internal */
 export interface BeginEnablePluginResult {
     pluginConfigEntry: PluginImport;
-    pluginConfigOverrides: Map<string, any> | undefined;
     resolvedModule: PluginModuleFactory | undefined;
     errorLogs: string[] | undefined;
 }
@@ -1646,7 +1645,7 @@ export abstract class Project implements LanguageServiceHost, ModuleResolutionHo
         ];
     }
 
-    protected enableGlobalPlugins(options: CompilerOptions, pluginConfigOverrides: Map<string, any> | undefined): void {
+    protected enableGlobalPlugins(options: CompilerOptions): void {
         if (!this.projectService.globalPlugins.length) return;
         const host = this.projectService.host;
 
@@ -1667,7 +1666,7 @@ export abstract class Project implements LanguageServiceHost, ModuleResolutionHo
             // Provide global: true so plugins can detect why they can't find their config
             this.projectService.logger.info(`Loading global plugin ${globalPluginName}`);
 
-            this.enablePlugin({ name: globalPluginName, global: true } as PluginImport, searchPaths, pluginConfigOverrides);
+            this.enablePlugin({ name: globalPluginName, global: true } as PluginImport, searchPaths);
         }
     }
 
@@ -1676,7 +1675,7 @@ export abstract class Project implements LanguageServiceHost, ModuleResolutionHo
      *
      * @internal
      */
-    beginEnablePluginSync(pluginConfigEntry: PluginImport, searchPaths: string[], pluginConfigOverrides: Map<string, any> | undefined): BeginEnablePluginResult {
+    beginEnablePluginSync(pluginConfigEntry: PluginImport, searchPaths: string[]): BeginEnablePluginResult {
         Debug.assertIsDefined(this.projectService.host.require);
 
         let errorLogs: string[] | undefined;
@@ -1686,7 +1685,7 @@ export abstract class Project implements LanguageServiceHost, ModuleResolutionHo
         };
         const resolvedModule = firstDefined(searchPaths, searchPath =>
             Project.resolveModule(pluginConfigEntry.name, searchPath, this.projectService.host, log, logError) as PluginModuleFactory | undefined);
-        return { pluginConfigEntry, pluginConfigOverrides, resolvedModule, errorLogs };
+        return { pluginConfigEntry, resolvedModule, errorLogs };
     }
 
     /**
@@ -1694,7 +1693,7 @@ export abstract class Project implements LanguageServiceHost, ModuleResolutionHo
      *
      * @internal
      */
-    async beginEnablePluginAsync(pluginConfigEntry: PluginImport, searchPaths: string[], pluginConfigOverrides: Map<string, any> | undefined): Promise<BeginEnablePluginResult> {
+    async beginEnablePluginAsync(pluginConfigEntry: PluginImport, searchPaths: string[]): Promise<BeginEnablePluginResult> {
         Debug.assertIsDefined(this.projectService.host.importPlugin);
 
         let errorLogs: string[] | undefined;
@@ -1710,7 +1709,7 @@ export abstract class Project implements LanguageServiceHost, ModuleResolutionHo
                 break;
             }
         }
-        return { pluginConfigEntry, pluginConfigOverrides, resolvedModule, errorLogs };
+        return { pluginConfigEntry, resolvedModule, errorLogs };
     }
 
     /**
@@ -1718,9 +1717,9 @@ export abstract class Project implements LanguageServiceHost, ModuleResolutionHo
      *
      * @internal
      */
-    endEnablePlugin({ pluginConfigEntry, pluginConfigOverrides, resolvedModule, errorLogs }: BeginEnablePluginResult) {
+    endEnablePlugin({ pluginConfigEntry, resolvedModule, errorLogs }: BeginEnablePluginResult) {
         if (resolvedModule) {
-            const configurationOverride = pluginConfigOverrides && pluginConfigOverrides.get(pluginConfigEntry.name);
+            const configurationOverride = this.projectService.currentPluginConfigOverrides?.get(pluginConfigEntry.name);
             if (configurationOverride) {
                 // Preserve the name property since it's immutable
                 const pluginName = pluginConfigEntry.name;
@@ -1736,8 +1735,8 @@ export abstract class Project implements LanguageServiceHost, ModuleResolutionHo
         }
     }
 
-    protected enablePlugin(pluginConfigEntry: PluginImport, searchPaths: string[], pluginConfigOverrides: Map<string, any> | undefined): void {
-        this.projectService.requestEnablePlugin(this, pluginConfigEntry, searchPaths, pluginConfigOverrides);
+    protected enablePlugin(pluginConfigEntry: PluginImport, searchPaths: string[]): void {
+        this.projectService.requestEnablePlugin(this, pluginConfigEntry, searchPaths);
     }
 
     private enableProxy(pluginModuleFactory: PluginModuleFactory, configEntry: PluginImport) {
@@ -2027,7 +2026,6 @@ export class InferredProject extends Project {
         watchOptions: WatchOptions | undefined,
         projectRootPath: NormalizedPath | undefined,
         currentDirectory: string | undefined,
-        pluginConfigOverrides: Map<string, any> | undefined,
         typeAcquisition: TypeAcquisition | undefined) {
         super(projectService.newInferredProjectName(),
             ProjectKind.Inferred,
@@ -2046,7 +2044,7 @@ export class InferredProject extends Project {
         if (!projectRootPath && !projectService.useSingleInferredProject) {
             this.canonicalCurrentDirectory = projectService.toCanonicalFileName(this.currentDirectory);
         }
-        this.enableGlobalPlugins(this.getCompilerOptions(), pluginConfigOverrides);
+        this.enableGlobalPlugins(this.getCompilerOptions());
     }
 
     addRoot(info: ScriptInfo) {
@@ -2564,7 +2562,7 @@ export class ConfiguredProject extends Project {
     }
 
     /** @internal */
-    enablePluginsWithOptions(options: CompilerOptions, pluginConfigOverrides: Map<string, any> | undefined): void {
+    enablePluginsWithOptions(options: CompilerOptions): void {
         this.plugins.length = 0;
         if (!options.plugins?.length && !this.projectService.globalPlugins.length) return;
         const host = this.projectService.host;
@@ -2583,11 +2581,11 @@ export class ConfiguredProject extends Project {
         // Enable tsconfig-specified plugins
         if (options.plugins) {
             for (const pluginConfigEntry of options.plugins) {
-                this.enablePlugin(pluginConfigEntry, searchPaths, pluginConfigOverrides);
+                this.enablePlugin(pluginConfigEntry, searchPaths);
             }
         }
 
-        return this.enableGlobalPlugins(options, pluginConfigOverrides);
+        return this.enableGlobalPlugins(options);
     }
 
     /**
@@ -2719,7 +2717,6 @@ export class ExternalProject extends Project {
         lastFileExceededProgramSize: string | undefined,
         public compileOnSaveEnabled: boolean,
         projectFilePath?: string,
-        pluginConfigOverrides?: Map<string, any>,
         watchOptions?: WatchOptions) {
         super(externalProjectName,
             ProjectKind.External,
@@ -2732,7 +2729,7 @@ export class ExternalProject extends Project {
             watchOptions,
             projectService.host,
             getDirectoryPath(projectFilePath || normalizeSlashes(externalProjectName)));
-        this.enableGlobalPlugins(this.getCompilerOptions(), pluginConfigOverrides);
+        this.enableGlobalPlugins(this.getCompilerOptions());
     }
 
     updateGraph() {
