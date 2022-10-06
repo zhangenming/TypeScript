@@ -6790,6 +6790,7 @@ export interface UserWatchFactory {
 /**@internal*/
 export interface WatchOptionsFactoryHost {
     searchPaths: readonly string[];
+    getPluginWithConfigOverride(plugin: PluginImport): PluginImport;
 }
 export interface WatchOptions {
     watchFile?: WatchFileKind;
