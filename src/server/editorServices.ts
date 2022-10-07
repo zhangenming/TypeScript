@@ -24,12 +24,12 @@ import {
     getWatchFactory, hasExtension, hasProperty, hasTSFileExtension, HostCancellationToken, identity,
     IncompleteCompletionsCache, IndentStyle, isArray, isIgnoredFileFromWildCardWatching, isInsideNodeModules,
     isJsonEqual, isNodeModulesDirectory, isRootedDiskPath, isString, LanguageServiceMode, length, map,
-    mapDefinedEntries, mapDefinedIterator, missingFileModifiedTime, MultiMap, noop, normalizePath, normalizeSlashes,
+    mapDefinedEntries, mapDefinedIterator, memoize, missingFileModifiedTime, MultiMap, noop, normalizePath, normalizeSlashes,
     optionDeclarations, optionsForWatch, PackageJsonAutoImportPreference, ParsedCommandLine,
     parseJsonSourceFileConfigFileContent, parseJsonText, parsePackageName, Path, PerformanceEvent, PluginImport,
     PollingInterval, ProjectPackageJsonInfo, ProjectReference, ReadMapFile, ReadonlyCollection, removeFileExtension,
     removeIgnoredPath, removeMinAndVersionNumbers, ResolvedProjectReference, resolveModule, resolveProjectReferencePath,
-    returnNoopFileWatcher, returnTrue, ScriptKind, SharedExtendedConfigFileWatcher, some, SourceFile, SourceFileLike, startsWith,
+    returnNoopFileWatcher, returnTrue, ScriptKind, setWatchOptionInternalProperty, SharedExtendedConfigFileWatcher, some, SourceFile, SourceFileLike, startsWith,
     Ternary, TextChange, toFileNameLowerCase, toPath, tracing, tryAddToSet, tryReadFile, TsConfigSourceFile,
     TypeAcquisition, typeAcquisitionDeclarations, unorderedRemoveItem, updateSharedExtendedConfigFileWatcher,
     updateWatchingWildcardDirectories, UserPreferences, version, WatchDirectoryFlags, WatchFactory, WatchLogLevel,
@@ -1360,7 +1360,7 @@ export class ProjectService {
      *
      * @internal
      */
-    private watchWildcardDirectory(directory: Path, flags: WatchDirectoryFlags, configFileName: NormalizedPath, config: ParsedConfig) {
+    private watchWildcardDirectory(directory: Path, flags: WatchDirectoryFlags, configFileName: NormalizedPath, canonicalConfigFilePath: NormalizedPath, config: ParsedConfig) {
         return this.watchFactory.watchDirectory(
             directory,
             fileOrDirectory => {
@@ -1419,7 +1419,7 @@ export class ProjectService {
                 });
             },
             flags,
-            this.getWatchOptionsFromProjectWatchOptions(config.parsedCommandLine!.watchOptions),
+            this.getWatchOptionsFromProjectWatchOptions(config.parsedCommandLine!.watchOptions, canonicalConfigFilePath),
             WatchType.WildcardDirectory,
             configFileName
         );
@@ -1733,7 +1733,7 @@ export class ProjectService {
                 configFileName,
                 (_fileName, eventKind) => this.onConfigFileChanged(canonicalConfigFilePath, eventKind),
                 PollingInterval.High,
-                this.getWatchOptionsFromProjectWatchOptions(configFileExistenceInfo?.config?.parsedCommandLine?.watchOptions),
+                this.getWatchOptionsFromProjectWatchOptions(configFileExistenceInfo?.config?.parsedCommandLine?.watchOptions, canonicalConfigFilePath),
                 WatchType.ConfigFile,
                 forProject
             );
@@ -2289,9 +2289,9 @@ export class ProjectService {
         // If watch options different than older options when setting for the first time, update the config file watcher
         if (!oldCommandLine && !isJsonEqual(
             // Old options
-            this.getWatchOptionsFromProjectWatchOptions(/*projectOptions*/ undefined),
+            this.getWatchOptionsFromProjectWatchOptions(/*projectOptions*/ undefined, canonicalConfigFilePath),
             // New options
-            this.getWatchOptionsFromProjectWatchOptions(parsedCommandLine.watchOptions)
+            this.getWatchOptionsFromProjectWatchOptions(parsedCommandLine.watchOptions, canonicalConfigFilePath)
         )) {
             // Reset the config file watcher
             configFileExistenceInfo.watcher?.close();
@@ -2337,7 +2337,7 @@ export class ProjectService {
                 config!.watchedDirectories ||= new Map(),
                 new Map(getEntries(config!.parsedCommandLine!.wildcardDirectories!)),
                 // Create new directory watcher
-                (directory, flags) => this.watchWildcardDirectory(directory as Path, flags, configFileName, config!),
+                (directory, flags) => this.watchWildcardDirectory(directory as Path, flags, configFileName, forProject.canonicalConfigFilePath, config!),
             );
         }
         else {
@@ -3100,6 +3100,9 @@ export class ProjectService {
             if (args.watchOptions) {
                 const result = convertWatchOptions(args.watchOptions);
                 this.hostConfiguration.watchOptions = result?.watchOptions;
+                if (this.hostConfiguration.watchOptions?.watchFactory) {
+                    this.setWatchOptionsFactoryHost(this.hostConfiguration.watchOptions, /*canonicalConfigFilePath*/ undefined);
+                }
                 this.projectWatchOptions.clear();
                 this.logger.info(`Host watch options changed to ${JSON.stringify(this.hostConfiguration.watchOptions)}, it will be take effect for next watches.`);
                 if (result?.errors?.length) {
@@ -3115,12 +3118,12 @@ export class ProjectService {
     }
 
     /** @internal */
-    getWatchOptions(project: Project) {
-        return this.getWatchOptionsFromProjectWatchOptions(project.getWatchOptions());
+    getWatchOptions(project: Project): WatchOptions | undefined {
+        return this.getWatchOptionsFromProjectWatchOptions(project.getWatchOptions(), isConfiguredProject(project) ? project.canonicalConfigFilePath : undefined);
     }
 
     /** @internal */
-    private getWatchOptionsFromProjectWatchOptions(projectOptions: WatchOptions | undefined) {
+    private getWatchOptionsFromProjectWatchOptions(projectOptions: WatchOptions | undefined, canonicalConfigFilePath: NormalizedPath | undefined) {
         if (!projectOptions) return this.hostConfiguration.watchOptions;
         let options = this.projectWatchOptions.get(projectOptions);
         if (options) return options;
@@ -3128,7 +3131,15 @@ export class ProjectService {
             { ...this.hostConfiguration.watchOptions, ...projectOptions } :
             projectOptions
         );
+        this.setWatchOptionsFactoryHost(options, canonicalConfigFilePath);
         return options;
+    }
+
+    /** @internal */
+    private setWatchOptionsFactoryHost(options: WatchOptions, canonicalConfigFilePath: NormalizedPath | undefined) {
+        setWatchOptionInternalProperty(options, "getHost", memoize(() => ({
+            searchPaths: this.getProjectPluginSearchPaths(canonicalConfigFilePath)
+        })));
     }
 
     /** @internal */
@@ -4151,6 +4162,27 @@ export class ProjectService {
         }
 
         return false;
+    }
+
+    /** @internal */
+    getGlobalPluginSearchPaths() {
+        // Search any globally-specified probe paths, then our peer node_modules
+        return [
+            ...this.pluginProbeLocations,
+            // ../../.. to walk from X/node_modules/typescript/lib/tsserver.js to X/node_modules/
+            combinePaths(this.getExecutingFilePath(), "../../.."),
+        ];
+    }
+
+    /** @internal */
+    getProjectPluginSearchPaths(canonicalConfigFilePath: string | undefined) {
+        const searchPaths = this.getGlobalPluginSearchPaths();
+        if (canonicalConfigFilePath && this.allowLocalPluginLoads) {
+            const local = getDirectoryPath(canonicalConfigFilePath);
+            this.logger.info(`Local plugin loading enabled; adding ${local} to search paths`);
+            searchPaths.unshift(local);
+        }
+        return searchPaths;
     }
 
     /** @internal */
