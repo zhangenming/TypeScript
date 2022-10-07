@@ -299,6 +299,7 @@ function generateOptionOutput(sys: System, option: CommandLineOption, rightAlign
                 case "string":
                 case "number":
                 case "boolean":
+                case "string | object":
                     return getDiagnosticText(Diagnostics.type_Colon);
                 case "list":
                     return getDiagnosticText(Diagnostics.one_or_more_Colon);
@@ -318,6 +319,9 @@ function generateOptionOutput(sys: System, option: CommandLineOption, rightAlign
                 case "list":
                     // TODO: check infinite loop
                     possibleValues = getPossibleValues(option.element);
+                    break;
+                case "string | object":
+                    possibleValues = "string";
                     break;
                 case "object":
                     possibleValues = "";
