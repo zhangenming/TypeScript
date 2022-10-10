@@ -27,7 +27,7 @@ import {
     optionDeclarations, optionsForWatch, PackageJsonAutoImportPreference, ParsedCommandLine,
     parseJsonSourceFileConfigFileContent, parseJsonText, parsePackageName, Path, PerformanceEvent, PluginImport,
     PollingInterval, ProjectPackageJsonInfo, ProjectReference, ReadMapFile, ReadonlyCollection, removeFileExtension,
-    removeIgnoredPath, removeMinAndVersionNumbers, ResolvedProjectReference, resolveProjectReferencePath,
+    removeIgnoredPath, removeMinAndVersionNumbers, ResolvedProjectReference, resolveModule, resolveProjectReferencePath,
     returnNoopFileWatcher, returnTrue, ScriptKind, SharedExtendedConfigFileWatcher, some, SourceFile, SourceFileLike, startsWith,
     Ternary, TextChange, toFileNameLowerCase, toPath, tracing, tryAddToSet, tryReadFile, TsConfigSourceFile,
     TypeAcquisition, typeAcquisitionDeclarations, unorderedRemoveItem, updateSharedExtendedConfigFileWatcher,
@@ -4138,7 +4138,12 @@ export class ProjectService {
 
         // If the host supports dynamic import, begin enabling the plugin asynchronously.
         if (this.host.importPlugin) {
-            const importPromise = project.beginEnablePluginAsync(pluginConfigEntry, searchPaths);
+            const importPromise: Promise<BeginEnablePluginResult> = Project.importServicePluginAsync(
+                pluginConfigEntry,
+                searchPaths,
+                this.host,
+                s => this.logger.info(s),
+            );
             this.pendingPluginEnablements ??= new Map();
             let promises = this.pendingPluginEnablements.get(project);
             if (!promises) this.pendingPluginEnablements.set(project, promises = []);
@@ -4147,7 +4152,12 @@ export class ProjectService {
         }
 
         // Otherwise, load the plugin using `require`
-        project.endEnablePlugin(project.beginEnablePluginSync(pluginConfigEntry, searchPaths));
+        project.endEnablePlugin(resolveModule(
+            pluginConfigEntry,
+            searchPaths,
+            this.host,
+            s => this.logger.info(s),
+        ));
     }
 
     /** @internal */
