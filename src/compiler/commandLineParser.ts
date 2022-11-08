@@ -15,7 +15,7 @@ import {
     isString, isStringDoubleQuoted, isStringLiteral, JsonSourceFile, JsxEmit, length, map, mapDefined, mapIterator,
     MapLike, ModuleDetectionKind, ModuleKind, ModuleResolutionKind, NewLineKind, Node, NodeArray,
     nodeModuleNameResolver, normalizePath, normalizeSlashes, NumericLiteral, ObjectLiteralExpression, ParseConfigHost,
-    ParsedCommandLine, parseJsonText, Path, PollingWatchKind, PrefixUnaryExpression, ProjectReference, PropertyName,
+    ParsedCommandLine, parseJsonText, parsePackageName, Path, PollingWatchKind, PrefixUnaryExpression, ProjectReference, PropertyName,
     Push, removeTrailingDirectorySeparator, returnTrue, ScriptTarget, startsWith, StringLiteral, SyntaxKind, sys,
     toFileNameLowerCase, toPath, tracing, trimString, TsConfigOnlyOption, TsConfigSourceFile, TypeAcquisition,
     unescapeLeadingUnderscores, WatchDirectoryFlags, WatchDirectoryKind, WatchFileKind, WatchOptions,
@@ -207,7 +207,20 @@ export const optionsForWatch: CommandLineOption[] = [
         category: Diagnostics.Watch_and_Build_Modes,
         description: Diagnostics.Remove_a_list_of_files_from_the_watch_mode_s_processing,
     },
+    {
+        name: "watchFactory",
+        type: "string",
+        category: Diagnostics.Watch_and_Build_Modes,
+        description: Diagnostics.Specify_which_factory_to_invoke_watchFile_and_watchDirectory_on,
+        extraValidation: watchFactoryToDiagnostic
+    },
 ];
+
+function watchFactoryToDiagnostic(watchFactory: string): [DiagnosticMessage] | undefined {
+    return parsePackageName(watchFactory).rest ?
+        [Diagnostics.watchFactory_name_can_only_be_a_package_name] :
+        undefined;
+}
 
 /** @internal */
 export const commonOptionsWithBuild: CommandLineOption[] = [
