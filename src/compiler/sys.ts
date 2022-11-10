@@ -3,8 +3,8 @@ import {
     createGetCanonicalFileName, createMultiMap, Debug, directorySeparator, emptyArray, emptyFileSystemEntries, endsWith,
     enumerateInsertsAndDeletes, FileSystemEntries, getDirectoryPath, getFallbackOptions,
     getNormalizedAbsolutePath, getRelativePathToDirectoryOrUrl, getRootLength, getStringComparer, isArray, isNodeLikeSystem, isString,
-    mapDefined, matchesExclude, matchFiles, memoize, noop, normalizePath, normalizeSlashes, orderedRemoveItem,
-    Path, perfLogger, PollingWatchKind, RequireResult, resolveJSModule, some, startsWith, stringContains, timestamp,
+    mapDefined, matchesExclude, matchFiles, memoize, ModuleImportResult, noop, normalizePath, normalizeSlashes, orderedRemoveItem,
+    Path, perfLogger, PollingWatchKind, resolveJSModule, some, startsWith, stringContains, timestamp,
     unorderedRemoveItem, WatchDirectoryKind, WatchFileKind, WatchOptions, writeFileEnsuringDirectories,
 } from "./_namespaces/ts";
 
@@ -843,6 +843,19 @@ function createFsWatchCallbackForDirectoryWatcherCallback(
 }
 
 /** @internal */
+export function resolveModule(moduleName: string, initialDir: string, host: Pick<System, "require" | "resolvePath">, log: (message: string) => void, logErrors?: (message: string) => void): {} | undefined {
+    const resolvedPath = normalizeSlashes(host.resolvePath(combinePaths(initialDir, "node_modules")));
+    log(`Loading ${moduleName} from ${initialDir} (resolved to ${resolvedPath})`);
+    const result = host.require!(resolvedPath, moduleName); // TODO: GH#18217
+    if (result.error) {
+        const err = result.error.stack || result.error.message || JSON.stringify(result.error);
+        (logErrors || log)(`Failed to load module '${moduleName}' from ${resolvedPath}: ${err}`);
+        return undefined;
+    }
+    return result.module;
+}
+
+/** @internal */
 export type FileSystemEntryExists = (fileorDirectrory: string, entryKind: FileSystemEntryKind) => boolean;
 
 /** @internal */
@@ -1389,7 +1402,7 @@ export interface System {
     base64decode?(input: string): string;
     base64encode?(input: string): string;
     /** @internal */ bufferFrom?(input: string, encoding?: string): Buffer;
-    /** @internal */ require?(baseDir: string, moduleName: string): RequireResult;
+    /** @internal */ require?(baseDir: string, moduleName: string): ModuleImportResult;
 
     // For testing
     /** @internal */ now?(): Date;

@@ -5,8 +5,8 @@ import {
     FileWatcherCallback, FileWatcherEventKind, filterMutate, forEach, FormatDiagnosticsHost, FsWatchCallback,
     FsWatchWorkerWatcher, generateDjb2Hash, getBaseFileName, getDirectoryPath, getNormalizedAbsolutePath,
     getRelativePathToDirectoryOrUrl, hasProperty, HostWatchDirectory, HostWatchFile, identity, insertSorted, isArray,
-    isNumber, isString, mapDefined, matchFiles, ModuleResolutionHost, MultiMap, noop,
-    patchWriteFileEnsuringDirectory, Path, PollingInterval, RequireResult, server, SortedArray, sys, toPath,
+    isNumber, isString, mapDefined, matchFiles, ModuleImportResult, ModuleResolutionHost, MultiMap, noop,
+    patchWriteFileEnsuringDirectory, Path, PollingInterval, server, SortedArray, sys, toPath,
 } from "../_namespaces/ts";
 import { timeIncrements } from "../_namespaces/vfs";
 
@@ -339,7 +339,7 @@ export class TestServerHost implements server.ServerHost, FormatDiagnosticsHost,
     private readonly environmentVariables?: Map<string, string>;
     private readonly executingFilePath: string;
     private readonly currentDirectory: string;
-    public require: ((initialPath: string, moduleName: string) => RequireResult) | undefined;
+    public require: ((initialPath: string, moduleName: string) => ModuleImportResult) | undefined;
     public storeFilesChangingSignatureDuringEmit = true;
     watchFile: HostWatchFile;
     private inodeWatching: boolean | undefined;
