@@ -1,8 +1,23 @@
 import * as ts from "./_namespaces/ts";
 import {
-    BaseNodeFactory, CreateSourceFileOptions, DirectoryWatcherCallback, EmitHelperFactory, FileWatcher, FileWatcherCallback, MapLike, ModeAwareCache,
-    ModuleResolutionCache, MultiMap, NodeFactoryFlags, OptionsNameMap, PackageJsonInfo, PackageJsonInfoCache, Pattern,
-    ProgramBuildInfo, Push, SymlinkCache,
+    BaseNodeFactory,
+    CreateSourceFileOptions,
+    DirectoryWatcherCallback,
+    EmitHelperFactory,
+    FileWatcher,
+    FileWatcherCallback,
+    MapLike,
+    ModeAwareCache,
+    ModuleResolutionCache,
+    MultiMap,
+    NodeFactoryFlags,
+    OptionsNameMap,
+    PackageJsonInfo,
+    PackageJsonInfoCache,
+    Pattern,
+    ProgramBuildInfo,
+    Push,
+    SymlinkCache,
 } from "./_namespaces/ts";
 
 // branded string type used to store absolute, normalized and canonicalized paths
@@ -3589,7 +3604,7 @@ export interface ExportAssignment extends DeclarationStatement, JSDocContainer {
 
 export interface FileReference extends TextRange {
     fileName: string;
-    resolutionMode?: SourceFile["impliedNodeFormat"];
+    resolutionMode?: ResolutionMode;
 }
 
 export interface CheckJsDirective extends TextRange {
@@ -3969,6 +3984,8 @@ export interface RedirectInfo {
     readonly unredirected: SourceFile;
 }
 
+export type ResolutionMode = ModuleKind.ESNext | ModuleKind.CommonJS | undefined;
+
 // Source files are declarations when they are external modules.
 export interface SourceFile extends Declaration {
     readonly kind: SyntaxKind.SourceFile;
@@ -4045,7 +4062,7 @@ export interface SourceFile extends Declaration {
      * of `node`). If so, this field will be unset and source files will be considered to be
      * CommonJS-output-format by the node module transformer and type checker, regardless of extension or context.
      */
-    impliedNodeFormat?: ModuleKind.ESNext | ModuleKind.CommonJS;
+    impliedNodeFormat?: ResolutionMode;
     /** @internal */ packageJsonLocations?: readonly string[];
     /** @internal */ packageJsonScope?: PackageJsonInfo;
 
@@ -4507,7 +4524,7 @@ export interface Program extends ScriptReferenceHost {
     /** @internal */ getFileIncludeReasons(): MultiMap<Path, FileIncludeReason>;
     /** @internal */ useCaseSensitiveFileNames(): boolean;
 
-    /** @internal */ getResolvedModuleWithFailedLookupLocationsFromCache(moduleName: string, containingFile: string, mode?: ModuleKind.CommonJS | ModuleKind.ESNext): ResolvedModuleWithFailedLookupLocations | undefined;
+    /** @internal */ getResolvedModuleWithFailedLookupLocationsFromCache(moduleName: string, containingFile: string, mode?: ResolutionMode): ResolvedModuleWithFailedLookupLocations | undefined;
 
     getProjectReferences(): readonly ProjectReference[] | undefined;
     getResolvedProjectReferences(): readonly (ResolvedProjectReference | undefined)[] | undefined;
@@ -5329,8 +5346,8 @@ export interface EmitResolver {
     moduleExportsSomeValue(moduleReferenceExpression: Expression): boolean;
     isArgumentsLocalBinding(node: Identifier): boolean;
     getExternalModuleFileFromDeclaration(declaration: ImportEqualsDeclaration | ImportDeclaration | ExportDeclaration | ModuleDeclaration | ImportTypeNode | ImportCall): SourceFile | undefined;
-    getTypeReferenceDirectivesForEntityName(name: EntityNameOrEntityNameExpression): [specifier: string, mode: SourceFile["impliedNodeFormat"] | undefined][] | undefined;
-    getTypeReferenceDirectivesForSymbol(symbol: Symbol, meaning?: SymbolFlags): [specifier: string, mode: SourceFile["impliedNodeFormat"] | undefined][] | undefined;
+    getTypeReferenceDirectivesForEntityName(name: EntityNameOrEntityNameExpression): [specifier: string, mode: ResolutionMode | undefined][] | undefined;
+    getTypeReferenceDirectivesForSymbol(symbol: Symbol, meaning?: SymbolFlags): [specifier: string, mode: ResolutionMode | undefined][] | undefined;
     isLiteralConstDeclaration(node: VariableDeclaration | PropertyDeclaration | PropertySignature | ParameterDeclaration): boolean;
     getJsxFactoryEntity(location?: Node): EntityName | undefined;
     getJsxFragmentFactoryEntity(location?: Node): EntityName | undefined;
@@ -5513,6 +5530,7 @@ export const enum EnumKind {
 
 /** @internal */
 export const enum CheckFlags {
+    None              = 0,
     Instantiated      = 1 << 0,         // Instantiated symbol
     SyntheticProperty = 1 << 1,         // Property in union or intersection type
     SyntheticMethod   = 1 << 2,         // Method in union or intersection type
@@ -5610,31 +5628,32 @@ export interface PatternAmbientModule {
 
 /** @internal */
 export const enum NodeCheckFlags {
-    TypeChecked                              = 0x00000001,  // Node has been type checked
-    LexicalThis                              = 0x00000002,  // Lexical 'this' reference
-    CaptureThis                              = 0x00000004,  // Lexical 'this' used in body
-    CaptureNewTarget                         = 0x00000008,  // Lexical 'new.target' used in body
-    SuperInstance                            = 0x00000100,  // Instance 'super' reference
-    SuperStatic                              = 0x00000200,  // Static 'super' reference
-    ContextChecked                           = 0x00000400,  // Contextual types have been assigned
-    MethodWithSuperPropertyAccessInAsync     = 0x00000800,  // A method that contains a SuperProperty access in an async context.
-    MethodWithSuperPropertyAssignmentInAsync = 0x00001000,  // A method that contains a SuperProperty assignment in an async context.
-    CaptureArguments                         = 0x00002000,  // Lexical 'arguments' used in body
-    EnumValuesComputed                       = 0x00004000,  // Values for enum members have been computed, and any errors have been reported for them.
-    LexicalModuleMergesWithClass             = 0x00008000,  // Instantiated lexical module declaration is merged with a previous class declaration.
-    LoopWithCapturedBlockScopedBinding       = 0x00010000,  // Loop that contains block scoped variable captured in closure
-    ContainsCapturedBlockScopeBinding        = 0x00020000,  // Part of a loop that contains block scoped variable captured in closure
-    CapturedBlockScopedBinding               = 0x00040000,  // Block-scoped binding that is captured in some function
-    BlockScopedBindingInLoop                 = 0x00080000,  // Block-scoped binding with declaration nested inside iteration statement
-    ClassWithBodyScopedClassBinding          = 0x00100000,  // Decorated class that contains a binding to itself inside of the class body.
-    BodyScopedClassBinding                   = 0x00200000,  // Binding to a decorated class inside of the class's body.
-    NeedsLoopOutParameter                    = 0x00400000,  // Block scoped binding whose value should be explicitly copied outside of the converted loop
-    AssignmentsMarked                        = 0x00800000,  // Parameter assignments have been marked
-    ClassWithConstructorReference            = 0x01000000,  // Class that contains a binding to its constructor inside of the class body.
-    ConstructorReferenceInClass              = 0x02000000,  // Binding to a class constructor inside of the class's body.
-    ContainsClassWithPrivateIdentifiers      = 0x04000000,  // Marked on all block-scoped containers containing a class with private identifiers.
-    ContainsSuperPropertyInStaticInitializer = 0x08000000,  // Marked on all block-scoped containers containing a static initializer with 'super.x' or 'super[x]'.
-    InCheckIdentifier                        = 0x10000000,
+    None                                     = 0,
+    TypeChecked                              = 1 << 0,   // Node has been type checked
+    LexicalThis                              = 1 << 1,   // Lexical 'this' reference
+    CaptureThis                              = 1 << 2,   // Lexical 'this' used in body
+    CaptureNewTarget                         = 1 << 3,   // Lexical 'new.target' used in body
+    SuperInstance                            = 1 << 4,   // Instance 'super' reference
+    SuperStatic                              = 1 << 5,   // Static 'super' reference
+    ContextChecked                           = 1 << 6,   // Contextual types have been assigned
+    MethodWithSuperPropertyAccessInAsync     = 1 << 7,   // A method that contains a SuperProperty access in an async context.
+    MethodWithSuperPropertyAssignmentInAsync = 1 << 8,   // A method that contains a SuperProperty assignment in an async context.
+    CaptureArguments                         = 1 << 9,   // Lexical 'arguments' used in body
+    EnumValuesComputed                       = 1 << 10,  // Values for enum members have been computed, and any errors have been reported for them.
+    LexicalModuleMergesWithClass             = 1 << 11,  // Instantiated lexical module declaration is merged with a previous class declaration.
+    LoopWithCapturedBlockScopedBinding       = 1 << 12,  // Loop that contains block scoped variable captured in closure
+    ContainsCapturedBlockScopeBinding        = 1 << 13,  // Part of a loop that contains block scoped variable captured in closure
+    CapturedBlockScopedBinding               = 1 << 14,  // Block-scoped binding that is captured in some function
+    BlockScopedBindingInLoop                 = 1 << 15,  // Block-scoped binding with declaration nested inside iteration statement
+    ClassWithBodyScopedClassBinding          = 1 << 16,  // Decorated class that contains a binding to itself inside of the class body.
+    BodyScopedClassBinding                   = 1 << 17,  // Binding to a decorated class inside of the class's body.
+    NeedsLoopOutParameter                    = 1 << 18,  // Block scoped binding whose value should be explicitly copied outside of the converted loop
+    AssignmentsMarked                        = 1 << 19,  // Parameter assignments have been marked
+    ClassWithConstructorReference            = 1 << 20,  // Class that contains a binding to its constructor inside of the class body.
+    ConstructorReferenceInClass              = 1 << 21,  // Binding to a class constructor inside of the class's body.
+    ContainsClassWithPrivateIdentifiers      = 1 << 22,  // Marked on all block-scoped containers containing a class with private identifiers.
+    ContainsSuperPropertyInStaticInitializer = 1 << 23,  // Marked on all block-scoped containers containing a static initializer with 'super.x' or 'super[x]'.
+    InCheckIdentifier                        = 1 << 24,
 }
 
 /** @internal */
@@ -5841,6 +5860,7 @@ export interface EnumType extends Type {
 // are specific to certain types and reuse the same bit position. Those ObjectFlags require a check
 // for a certain TypeFlags value to determine their meaning.
 export const enum ObjectFlags {
+    None             = 0,
     Class            = 1 << 0,  // Class
     Interface        = 1 << 1,  // Interface
     Reference        = 1 << 2,  // Generic type reference
@@ -6383,6 +6403,7 @@ export type TypeMapper =
     | { kind: TypeMapKind.Composite | TypeMapKind.Merged, mapper1: TypeMapper, mapper2: TypeMapper };
 
 export const enum InferencePriority {
+    None                         = 0,
     NakedTypeVariable            = 1 << 0,  // Naked type variable in union or intersection type
     SpeculativeTuple             = 1 << 1,  // Speculative tuple inference
     SubstituteSource             = 1 << 2,  // Source of inference originated within a substitution type's substitute
@@ -7349,7 +7370,7 @@ export interface CompilerHost extends ModuleResolutionHost {
     /**
      * This method is a companion for 'resolveModuleNames' and is used to resolve 'types' references to actual type declaration files
      */
-    resolveTypeReferenceDirectives?(typeReferenceDirectiveNames: string[] | readonly FileReference[], containingFile: string, redirectedReference: ResolvedProjectReference | undefined, options: CompilerOptions, containingFileMode?: SourceFile["impliedNodeFormat"] | undefined, resolutionInfo?: TypeReferenceDirectiveResolutionInfo): (ResolvedTypeReferenceDirective | undefined)[];
+    resolveTypeReferenceDirectives?(typeReferenceDirectiveNames: string[] | readonly FileReference[], containingFile: string, redirectedReference: ResolvedProjectReference | undefined, options: CompilerOptions, containingFileMode?: ResolutionMode | undefined, resolutionInfo?: TypeReferenceDirectiveResolutionInfo): (ResolvedTypeReferenceDirective | undefined)[];
     getEnvironmentVariable?(name: string): string | undefined;
     /** @internal */ onReleaseOldSourceFile?(oldSourceFile: SourceFile, oldOptions: CompilerOptions, hasSourceFileByPath: boolean): void;
     /** @internal */ onReleaseParsedCommandLine?(configFileName: string, oldResolvedRef: ResolvedProjectReference | undefined, optionOptions: CompilerOptions): void;
@@ -9097,7 +9118,7 @@ export interface ResolvedModuleSpecifierInfo {
 
 /** @internal */
 export interface ModuleSpecifierOptions {
-    overrideImportMode?: SourceFile["impliedNodeFormat"];
+    overrideImportMode?: ResolutionMode;
 }
 
 /** @internal */
