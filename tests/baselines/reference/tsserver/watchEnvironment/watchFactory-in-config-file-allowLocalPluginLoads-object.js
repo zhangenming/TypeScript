@@ -1,12 +1,12 @@
 Info 0    [00:00:23.000] Provided types map file "/a/lib/typesMap.json" doesn't exist
 Info 1    [00:00:24.000] request:
     {
-      "seq": 0,
-      "type": "request",
       "command": "open",
       "arguments": {
         "file": "/user/username/projects/myproject/a.ts"
-      }
+      },
+      "seq": 1,
+      "type": "request"
     }
 Before request
 //// [/user/username/projects/myproject/a.ts]
@@ -255,7 +255,7 @@ Info 38   [00:01:21.000] request:
           "extraData": "myData"
         }
       },
-      "seq": 1,
+      "seq": 2,
       "type": "request"
     }
 Before request
@@ -284,7 +284,7 @@ WatchedDirectories:Recursive::
   {"options":{"watchFactory":{"name":"myplugin","myconfig":"somethingelse"}}}
 WatchedDirectories::
 Info 39   [00:01:22.000] response:
-    {"seq":0,"type":"response","command":"configurePlugin","request_seq":1,"success":true,"performanceData":{"updateGraphDurationMs":*}}
+    {"seq":0,"type":"response","command":"configurePlugin","request_seq":2,"success":true,"performanceData":{"updateGraphDurationMs":*}}
 After request
 
 PolledWatches::
@@ -323,7 +323,7 @@ Info 41   [00:01:24.000] request:
           "extraData": "myData"
         }
       },
-      "seq": 2,
+      "seq": 3,
       "type": "request"
     }
 Before request
@@ -352,7 +352,7 @@ WatchedDirectories:Recursive::
   {"options":{"watchFactory":{"name":"myplugin","myconfig":"somethingelse"}}}
 WatchedDirectories::
 Info 42   [00:01:25.000] response:
-    {"seq":0,"type":"response","command":"configurePlugin","request_seq":2,"success":true,"performanceData":{"updateGraphDurationMs":*}}
+    {"seq":0,"type":"response","command":"configurePlugin","request_seq":3,"success":true,"performanceData":{"updateGraphDurationMs":*}}
 After request
 
 PolledWatches::

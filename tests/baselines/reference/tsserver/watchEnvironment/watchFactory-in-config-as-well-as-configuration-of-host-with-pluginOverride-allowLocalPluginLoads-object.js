@@ -188,12 +188,12 @@ Info 10   [00:00:33.000] response:
     }
 Info 11   [00:00:34.000] request:
     {
-      "seq": 0,
-      "type": "request",
       "command": "open",
       "arguments": {
         "file": "/user/username/projects/myproject/a.ts"
-      }
+      },
+      "seq": 4,
+      "type": "request"
     }
 Before request
 
@@ -571,7 +571,7 @@ Info 61   [00:01:59.000] request:
           "extraData": "myData"
         }
       },
-      "seq": 4,
+      "seq": 5,
       "type": "request"
     }
 Before request
@@ -605,7 +605,7 @@ WatchedFiles::
 WatchedDirectories:Recursive::
 WatchedDirectories::
 Info 62   [00:02:00.000] response:
-    {"seq":0,"type":"response","command":"configurePlugin","request_seq":4,"success":true,"performanceData":{"updateGraphDurationMs":*}}
+    {"seq":0,"type":"response","command":"configurePlugin","request_seq":5,"success":true,"performanceData":{"updateGraphDurationMs":*}}
 After request
 
 PolledWatches::
@@ -649,7 +649,7 @@ Info 64   [00:02:02.000] request:
           "extraData": "myData"
         }
       },
-      "seq": 5,
+      "seq": 6,
       "type": "request"
     }
 Before request
@@ -683,7 +683,7 @@ WatchedFiles::
 WatchedDirectories:Recursive::
 WatchedDirectories::
 Info 65   [00:02:03.000] response:
-    {"seq":0,"type":"response","command":"configurePlugin","request_seq":5,"success":true,"performanceData":{"updateGraphDurationMs":*}}
+    {"seq":0,"type":"response","command":"configurePlugin","request_seq":6,"success":true,"performanceData":{"updateGraphDurationMs":*}}
 After request
 
 PolledWatches::
@@ -727,7 +727,7 @@ Info 67   [00:02:05.000] request:
           "extraData": "myData"
         }
       },
-      "seq": 6,
+      "seq": 7,
       "type": "request"
     }
 Before request
@@ -761,7 +761,7 @@ WatchedFiles::
 WatchedDirectories:Recursive::
 WatchedDirectories::
 Info 68   [00:02:06.000] response:
-    {"seq":0,"type":"response","command":"configurePlugin","request_seq":6,"success":true,"performanceData":{"updateGraphDurationMs":*}}
+    {"seq":0,"type":"response","command":"configurePlugin","request_seq":7,"success":true,"performanceData":{"updateGraphDurationMs":*}}
 After request
 
 PolledWatches::

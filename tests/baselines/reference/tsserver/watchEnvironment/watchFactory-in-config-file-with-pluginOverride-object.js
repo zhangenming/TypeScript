@@ -67,12 +67,12 @@ Info 3    [00:00:26.000] response:
     }
 Info 4    [00:00:27.000] request:
     {
-      "seq": 0,
-      "type": "request",
       "command": "open",
       "arguments": {
         "file": "/user/username/projects/myproject/a.ts"
-      }
+      },
+      "seq": 2,
+      "type": "request"
     }
 Before request
 
@@ -298,7 +298,7 @@ Info 40   [00:01:23.000] request:
           "extraData": "myData"
         }
       },
-      "seq": 2,
+      "seq": 3,
       "type": "request"
     }
 Before request
@@ -327,7 +327,7 @@ WatchedDirectories:Recursive::
   {"options":{"watchFactory":{"name":"myplugin","myconfig":"somethingelse"}}}
 WatchedDirectories::
 Info 41   [00:01:24.000] response:
-    {"seq":0,"type":"response","command":"configurePlugin","request_seq":2,"success":true,"performanceData":{"updateGraphDurationMs":*}}
+    {"seq":0,"type":"response","command":"configurePlugin","request_seq":3,"success":true,"performanceData":{"updateGraphDurationMs":*}}
 After request
 
 PolledWatches::
@@ -366,7 +366,7 @@ Info 43   [00:01:26.000] request:
           "extraData": "myData"
         }
       },
-      "seq": 3,
+      "seq": 4,
       "type": "request"
     }
 Before request
@@ -395,7 +395,7 @@ WatchedDirectories:Recursive::
   {"options":{"watchFactory":{"name":"myplugin","myconfig":"somethingelse"}}}
 WatchedDirectories::
 Info 44   [00:01:27.000] response:
-    {"seq":0,"type":"response","command":"configurePlugin","request_seq":3,"success":true,"performanceData":{"updateGraphDurationMs":*}}
+    {"seq":0,"type":"response","command":"configurePlugin","request_seq":4,"success":true,"performanceData":{"updateGraphDurationMs":*}}
 After request
 
 PolledWatches::

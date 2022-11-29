@@ -73,12 +73,12 @@ Info 6    [00:00:29.000] response:
     }
 Info 7    [00:00:30.000] request:
     {
-      "seq": 0,
-      "type": "request",
       "command": "open",
       "arguments": {
         "file": "/user/username/projects/myproject/a.ts"
-      }
+      },
+      "seq": 2,
+      "type": "request"
     }
 Before request
 
