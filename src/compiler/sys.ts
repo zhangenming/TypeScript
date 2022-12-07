@@ -1534,7 +1534,6 @@ export interface System {
 
     // For testing
     /** @internal */ now?(): Date;
-    /** @internal */ disableUseFileVersionAsSignature?: boolean;
     /** @internal */ storeFilesChangingSignatureDuringEmit?: boolean;
 }
 
