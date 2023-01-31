@@ -1,5 +1,6 @@
 /// <reference path="../fourslash.ts" />
 
+//@BaselineFile: getRenameInfo-pp.baseline.jsonc
 ///////<reference path="./Bar.ts" />
 
 ////[|function [|{| "contextRangeIndex": 0 |}Bar|]() {
@@ -7,4 +8,4 @@
 ////    "this is a reference to Bar in a string"
 ////}|]
 
-verify.rangesWithSameTextAreRenameLocations("Bar");
+verify.baselineRename(test.rangesByText().get("Bar"));

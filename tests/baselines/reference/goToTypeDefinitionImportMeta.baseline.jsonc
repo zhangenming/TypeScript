@@ -1,0 +1,39 @@
+// === /tests/cases/fourslash/bar.d.ts ===
+// interface [|ImportMeta|] {
+// }
+
+// === /tests/cases/fourslash/foo.ts ===
+// /// <reference no-default-lib="true"/>
+// /// <reference path='./bar.d.ts' />
+// import.me/*GOTO TYPE*/ta;
+
+=== 0 ===
+// === /tests/cases/fourslash/bar.d.ts ===
+// interface [|ImportMeta|] {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/bar.d.ts ===
+  // [|interface ImportMeta {
+  // }|]
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/bar.d.ts",
+    "textSpan": {
+      "start": 10,
+      "length": 10
+    },
+    "kind": "interface",
+    "name": "ImportMeta",
+    "containerName": "",
+    "contextSpan": {
+      "start": 0,
+      "length": 24
+    },
+    "isLocal": false,
+    "isAmbient": true,
+    "unverified": false,
+    "failedAliasResolution": false
+  }
+]

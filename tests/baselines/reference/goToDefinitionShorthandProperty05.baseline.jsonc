@@ -1,0 +1,101 @@
+// === /tests/cases/fourslash/goToDefinitionShorthandProperty05.ts ===
+// interface Foo {
+//     [|foo|](): void
+// }
+// const [|foo|] = 1;
+// let x: Foo = {
+//     f/*GOTO DEF*/oo
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionShorthandProperty05.ts ===
+    // interface Foo {
+    //     foo(): void
+    // }
+    // const [|foo|] = 1;
+    // let x: Foo = {
+    //     foo
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionShorthandProperty05.ts ===
+      // interface Foo {
+      //     foo(): void
+      // }
+      // [|const foo = 1;|]
+      // let x: Foo = {
+      //     foo
+      // }
+    === 1 ===
+    // === /tests/cases/fourslash/goToDefinitionShorthandProperty05.ts ===
+    // interface Foo {
+    //     [|foo|](): void
+    // }
+    // const foo = 1;
+    // let x: Foo = {
+    //     foo
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionShorthandProperty05.ts ===
+      // interface Foo {
+      //     [|foo(): void|]
+      // }
+      // const foo = 1;
+      // let x: Foo = {
+      //     foo
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionShorthandProperty05.ts ===
+    // interface Foo {
+    //     foo(): void
+    // }
+    // const foo = 1;
+    // let x: Foo = {
+    //     [|foo|]
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionShorthandProperty05.ts",
+      "textSpan": {
+        "start": 40,
+        "length": 3
+      },
+      "kind": "const",
+      "name": "foo",
+      "containerName": "",
+      "contextSpan": {
+        "start": 34,
+        "length": 14
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    },
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionShorthandProperty05.ts",
+      "textSpan": {
+        "start": 20,
+        "length": 3
+      },
+      "kind": "method",
+      "name": "foo",
+      "containerName": "Foo",
+      "contextSpan": {
+        "start": 20,
+        "length": 11
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 68,
+    "length": 3
+  }
+}

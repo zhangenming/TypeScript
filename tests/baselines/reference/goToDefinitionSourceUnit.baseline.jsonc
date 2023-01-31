@@ -1,0 +1,69 @@
+// === /tests/cases/fourslash/a.ts ===
+// //MyFile Comments
+// //more comments
+// /// <reference path="so/*GOTO DEF*/mePath.ts" />
+// /// <reference path="b.ts" />
+// 
+// class clsInOverload {
+//     static fnOverload();
+//     static fnOverload(foo: string);
+//     static fnOverload(foo: any) { }
+// }
+// 
+
+undefined
+
+// === /tests/cases/fourslash/b.ts ===
+// [||]
+
+// === /tests/cases/fourslash/a.ts ===
+// //MyFile Comments
+// //more comments
+// /// <reference path="somePath.ts" />
+// /// <reference path="b/*GOTO DEF*/.ts" />
+// 
+// class clsInOverload {
+//     static fnOverload();
+//     static fnOverload(foo: string);
+//     static fnOverload(foo: any) { }
+// }
+// 
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/b.ts ===
+    // [||]
+  === TextSpan ===
+    // === /tests/cases/fourslash/a.ts ===
+    // //MyFile Comments
+    // //more comments
+    // /// <reference path="somePath.ts" />
+    // /// <reference path="[|b.ts|]" />
+    // 
+    // class clsInOverload {
+    //     static fnOverload();
+    //     static fnOverload(foo: string);
+    //     static fnOverload(foo: any) { }
+    // }
+    // 
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/b.ts",
+      "textSpan": {
+        "start": 0,
+        "length": 0
+      },
+      "kind": "script",
+      "name": "b.ts",
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 92,
+    "length": 4
+  }
+}

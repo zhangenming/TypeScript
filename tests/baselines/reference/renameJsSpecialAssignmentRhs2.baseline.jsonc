@@ -1,0 +1,111 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+const foo = {
+    set: function (x) {
+        this._x = x;
+    },
+    copy: function ([|RENAME|]) {
+        this._x = RENAME.prop;
+    }
+};
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// const foo = {
+//     set: function (x) {
+//         this._x = x;
+//     },
+//     copy: function ([|x|]) {
+//         this._x = x.prop;
+//     }
+// };
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// const foo = {
+//     set: function (x) {
+//         this._x = x;
+//     },
+//     copy: function (x) {
+//         this._x = [|x|].prop;
+//     }
+// };
+
+
+[
+  {
+    "textSpan": {
+      "start": 86,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 109,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+const foo = {
+    set: function (x) {
+        this._x = x;
+    },
+    copy: function (RENAME) {
+        this._x = [|RENAME|].prop;
+    }
+};
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// const foo = {
+//     set: function (x) {
+//         this._x = x;
+//     },
+//     copy: function ([|x|]) {
+//         this._x = x.prop;
+//     }
+// };
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// const foo = {
+//     set: function (x) {
+//         this._x = x;
+//     },
+//     copy: function (x) {
+//         this._x = [|x|].prop;
+//     }
+// };
+
+
+[
+  {
+    "textSpan": {
+      "start": 86,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 109,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]

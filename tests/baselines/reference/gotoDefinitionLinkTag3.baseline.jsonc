@@ -1,0 +1,49 @@
+// === /a.ts ===
+// enum E {
+//     /** {@link /*GOTO DEF POS*/Foo} */
+//     Foo
+// }
+// interface [|Foo|] {
+//     foo: E.Foo;
+// }
+
+=== 0 ===
+// === /a.ts ===
+// enum E {
+//     /** {@link Foo} */
+//     Foo
+// }
+// interface [|Foo|] {
+//     foo: E.Foo;
+// }
+=== ContextSpan ===
+  // === /a.ts ===
+  // enum E {
+  //     /** {@link Foo} */
+  //     Foo
+  // }
+  // [|interface Foo {
+  //     foo: E.Foo;
+  // }|]
+
+
+[
+  {
+    "fileName": "/a.ts",
+    "textSpan": {
+      "start": 52,
+      "length": 3
+    },
+    "kind": "interface",
+    "name": "Foo",
+    "containerName": "",
+    "contextSpan": {
+      "start": 42,
+      "length": 33
+    },
+    "isLocal": false,
+    "isAmbient": false,
+    "unverified": false,
+    "failedAliasResolution": false
+  }
+]

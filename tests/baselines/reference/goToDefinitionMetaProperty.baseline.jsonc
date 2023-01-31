@@ -1,0 +1,123 @@
+// === /a.ts ===
+// im/*GOTO DEF*/port.meta;
+// function f() { new.target; }
+
+undefined
+
+// === /a.ts ===
+// import.met/*GOTO DEF*/a;
+// function f() { new.target; }
+
+undefined
+
+// === /a.ts ===
+// import.meta;
+// function f() { n/*GOTO DEF*/ew.target; }
+
+undefined
+
+// === /a.ts ===
+// import.meta;
+// function [|f|]() { new.t/*GOTO DEF*/arget; }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /a.ts ===
+    // import.meta;
+    // function [|f|]() { new.target; }
+    === ContextSpan ===
+      // === /a.ts ===
+      // import.meta;
+      // [|function f() { new.target; }|]
+  === TextSpan ===
+    // === /a.ts ===
+    // import.meta;
+    // function f() { new.[|target|]; }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/a.ts",
+      "textSpan": {
+        "start": 22,
+        "length": 1
+      },
+      "kind": "function",
+      "name": "f",
+      "containerName": "",
+      "contextSpan": {
+        "start": 13,
+        "length": 28
+      },
+      "isLocal": true,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 32,
+    "length": 6
+  }
+}
+
+// === /b.ts ===
+// im/*GOTO DEF*/port.m;
+// class c { constructor() { new.target; } }
+
+undefined
+
+// === /b.ts ===
+// import.m;
+// class c { constructor() { n/*GOTO DEF*/ew.target; } }
+
+undefined
+
+// === /b.ts ===
+// import.m;
+// class [|c|] { constructor() { new.t/*GOTO DEF*/arget; } }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /b.ts ===
+    // import.m;
+    // class [|c|] { constructor() { new.target; } }
+    === ContextSpan ===
+      // === /b.ts ===
+      // import.m;
+      // [|class c { constructor() { new.target; } }|]
+  === TextSpan ===
+    // === /b.ts ===
+    // import.m;
+    // class c { constructor() { new.[|target|]; } }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/b.ts",
+      "textSpan": {
+        "start": 16,
+        "length": 1
+      },
+      "kind": "class",
+      "name": "c",
+      "containerName": "",
+      "contextSpan": {
+        "start": 10,
+        "length": 41
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 40,
+    "length": 6
+  }
+}

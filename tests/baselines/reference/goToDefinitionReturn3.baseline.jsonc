@@ -1,0 +1,57 @@
+// === /tests/cases/fourslash/goToDefinitionReturn3.ts ===
+// class C {
+//     [|m|]() {
+//         /*GOTO DEF*/return 1;
+//     }
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionReturn3.ts ===
+    // class C {
+    //     [|m|]() {
+    //         return 1;
+    //     }
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionReturn3.ts ===
+      // class C {
+      //     [|m() {
+      //         return 1;
+      //     }|]
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionReturn3.ts ===
+    // class C {
+    //     m() {
+    //         [|return|] 1;
+    //     }
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionReturn3.ts",
+      "textSpan": {
+        "start": 14,
+        "length": 1
+      },
+      "kind": "method",
+      "name": "m",
+      "containerName": "C",
+      "contextSpan": {
+        "start": 14,
+        "length": 29
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 28,
+    "length": 6
+  }
+}

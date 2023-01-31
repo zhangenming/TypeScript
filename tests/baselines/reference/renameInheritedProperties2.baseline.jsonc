@@ -1,0 +1,123 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameInheritedProperties2.ts ======*/
+
+class class1 extends class1 {
+   [|RENAME|]() { }
+}
+
+var v: class1;
+v.RENAME();
+
+=== 0 ===
+// === /tests/cases/fourslash/renameInheritedProperties2.ts ===
+// class class1 extends class1 {
+//    [|doStuff|]() { }
+// }
+// 
+// var v: class1;
+// v.doStuff();
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameInheritedProperties2.ts ===
+  // class class1 extends class1 {
+  //    [|doStuff() { }|]
+  // }
+  // 
+  // var v: class1;
+  // v.doStuff();
+=== 1 ===
+// === /tests/cases/fourslash/renameInheritedProperties2.ts ===
+// class class1 extends class1 {
+//    doStuff() { }
+// }
+// 
+// var v: class1;
+// v.[|doStuff|]();
+
+
+[
+  {
+    "textSpan": {
+      "start": 33,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/renameInheritedProperties2.ts",
+    "contextSpan": {
+      "start": 33,
+      "length": 13
+    }
+  },
+  {
+    "textSpan": {
+      "start": 67,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/renameInheritedProperties2.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameInheritedProperties2.ts ======*/
+
+class class1 extends class1 {
+   RENAME() { }
+}
+
+var v: class1;
+v.[|RENAME|]();
+
+=== 0 ===
+// === /tests/cases/fourslash/renameInheritedProperties2.ts ===
+// class class1 extends class1 {
+//    [|doStuff|]() { }
+// }
+// 
+// var v: class1;
+// v.doStuff();
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameInheritedProperties2.ts ===
+  // class class1 extends class1 {
+  //    [|doStuff() { }|]
+  // }
+  // 
+  // var v: class1;
+  // v.doStuff();
+=== 1 ===
+// === /tests/cases/fourslash/renameInheritedProperties2.ts ===
+// class class1 extends class1 {
+//    doStuff() { }
+// }
+// 
+// var v: class1;
+// v.[|doStuff|]();
+
+
+[
+  {
+    "textSpan": {
+      "start": 33,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/renameInheritedProperties2.ts",
+    "contextSpan": {
+      "start": 33,
+      "length": 13
+    }
+  },
+  {
+    "textSpan": {
+      "start": 67,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/renameInheritedProperties2.ts"
+  }
+]

@@ -1,0 +1,1949 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+    }
+    interface ElementAttributesProperty { props; }
+}
+interface OptionPropBag {
+    propx: number
+    propString: string
+    optional?: boolean
+}
+declare function [|RENAME|](attributes: OptionPropBag): JSX.Element;
+let opt = <RENAME />;
+let opt1 = <RENAME propx={100} propString />;
+let opt2 = <RENAME propx={100} optional/>;
+let opt3 = <RENAME wrong />;
+let opt4 = <RENAME propx={100} propString="hi" />;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function [|Opt|](attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // [|declare function Opt(attributes: OptionPropBag): JSX.Element;|]
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <[|Opt|] />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = [|<Opt />|];
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 2 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <[|Opt|] propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = [|<Opt propx={100} propString />|];
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 3 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <[|Opt|] propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = [|<Opt propx={100} optional/>|];
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 4 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <[|Opt|] wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = [|<Opt wrong />|];
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 5 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <[|Opt|] propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = [|<Opt propx={100} propString="hi" />|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 249,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 232,
+      "length": 61
+    }
+  },
+  {
+    "textSpan": {
+      "start": 305,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 304,
+      "length": 7
+    }
+  },
+  {
+    "textSpan": {
+      "start": 325,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 324,
+      "length": 30
+    }
+  },
+  {
+    "textSpan": {
+      "start": 368,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 367,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 408,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 407,
+      "length": 13
+    }
+  },
+  {
+    "textSpan": {
+      "start": 434,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 433,
+      "length": 35
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+    }
+    interface ElementAttributesProperty { props; }
+}
+interface OptionPropBag {
+    propx: number
+    propString: string
+    optional?: boolean
+}
+declare function RENAME(attributes: OptionPropBag): JSX.Element;
+let opt = <[|RENAME|] />;
+let opt1 = <RENAME propx={100} propString />;
+let opt2 = <RENAME propx={100} optional/>;
+let opt3 = <RENAME wrong />;
+let opt4 = <RENAME propx={100} propString="hi" />;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function [|Opt|](attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // [|declare function Opt(attributes: OptionPropBag): JSX.Element;|]
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <[|Opt|] />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = [|<Opt />|];
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 2 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <[|Opt|] propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = [|<Opt propx={100} propString />|];
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 3 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <[|Opt|] propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = [|<Opt propx={100} optional/>|];
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 4 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <[|Opt|] wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = [|<Opt wrong />|];
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 5 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <[|Opt|] propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = [|<Opt propx={100} propString="hi" />|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 249,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 232,
+      "length": 61
+    }
+  },
+  {
+    "textSpan": {
+      "start": 305,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 304,
+      "length": 7
+    }
+  },
+  {
+    "textSpan": {
+      "start": 325,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 324,
+      "length": 30
+    }
+  },
+  {
+    "textSpan": {
+      "start": 368,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 367,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 408,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 407,
+      "length": 13
+    }
+  },
+  {
+    "textSpan": {
+      "start": 434,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 433,
+      "length": 35
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+    }
+    interface ElementAttributesProperty { props; }
+}
+interface OptionPropBag {
+    propx: number
+    propString: string
+    optional?: boolean
+}
+declare function RENAME(attributes: OptionPropBag): JSX.Element;
+let opt = <RENAME />;
+let opt1 = <[|RENAME|] propx={100} propString />;
+let opt2 = <RENAME propx={100} optional/>;
+let opt3 = <RENAME wrong />;
+let opt4 = <RENAME propx={100} propString="hi" />;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function [|Opt|](attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // [|declare function Opt(attributes: OptionPropBag): JSX.Element;|]
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <[|Opt|] />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = [|<Opt />|];
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 2 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <[|Opt|] propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = [|<Opt propx={100} propString />|];
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 3 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <[|Opt|] propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = [|<Opt propx={100} optional/>|];
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 4 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <[|Opt|] wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = [|<Opt wrong />|];
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 5 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <[|Opt|] propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = [|<Opt propx={100} propString="hi" />|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 249,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 232,
+      "length": 61
+    }
+  },
+  {
+    "textSpan": {
+      "start": 305,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 304,
+      "length": 7
+    }
+  },
+  {
+    "textSpan": {
+      "start": 325,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 324,
+      "length": 30
+    }
+  },
+  {
+    "textSpan": {
+      "start": 368,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 367,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 408,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 407,
+      "length": 13
+    }
+  },
+  {
+    "textSpan": {
+      "start": 434,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 433,
+      "length": 35
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+    }
+    interface ElementAttributesProperty { props; }
+}
+interface OptionPropBag {
+    propx: number
+    propString: string
+    optional?: boolean
+}
+declare function RENAME(attributes: OptionPropBag): JSX.Element;
+let opt = <RENAME />;
+let opt1 = <RENAME propx={100} propString />;
+let opt2 = <[|RENAME|] propx={100} optional/>;
+let opt3 = <RENAME wrong />;
+let opt4 = <RENAME propx={100} propString="hi" />;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function [|Opt|](attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // [|declare function Opt(attributes: OptionPropBag): JSX.Element;|]
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <[|Opt|] />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = [|<Opt />|];
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 2 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <[|Opt|] propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = [|<Opt propx={100} propString />|];
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 3 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <[|Opt|] propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = [|<Opt propx={100} optional/>|];
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 4 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <[|Opt|] wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = [|<Opt wrong />|];
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 5 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <[|Opt|] propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = [|<Opt propx={100} propString="hi" />|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 249,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 232,
+      "length": 61
+    }
+  },
+  {
+    "textSpan": {
+      "start": 305,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 304,
+      "length": 7
+    }
+  },
+  {
+    "textSpan": {
+      "start": 325,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 324,
+      "length": 30
+    }
+  },
+  {
+    "textSpan": {
+      "start": 368,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 367,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 408,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 407,
+      "length": 13
+    }
+  },
+  {
+    "textSpan": {
+      "start": 434,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 433,
+      "length": 35
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+    }
+    interface ElementAttributesProperty { props; }
+}
+interface OptionPropBag {
+    propx: number
+    propString: string
+    optional?: boolean
+}
+declare function RENAME(attributes: OptionPropBag): JSX.Element;
+let opt = <RENAME />;
+let opt1 = <RENAME propx={100} propString />;
+let opt2 = <RENAME propx={100} optional/>;
+let opt3 = <[|RENAME|] wrong />;
+let opt4 = <RENAME propx={100} propString="hi" />;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function [|Opt|](attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // [|declare function Opt(attributes: OptionPropBag): JSX.Element;|]
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <[|Opt|] />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = [|<Opt />|];
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 2 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <[|Opt|] propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = [|<Opt propx={100} propString />|];
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 3 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <[|Opt|] propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = [|<Opt propx={100} optional/>|];
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 4 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <[|Opt|] wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = [|<Opt wrong />|];
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 5 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <[|Opt|] propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = [|<Opt propx={100} propString="hi" />|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 249,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 232,
+      "length": 61
+    }
+  },
+  {
+    "textSpan": {
+      "start": 305,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 304,
+      "length": 7
+    }
+  },
+  {
+    "textSpan": {
+      "start": 325,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 324,
+      "length": 30
+    }
+  },
+  {
+    "textSpan": {
+      "start": 368,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 367,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 408,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 407,
+      "length": 13
+    }
+  },
+  {
+    "textSpan": {
+      "start": 434,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 433,
+      "length": 35
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+    }
+    interface ElementAttributesProperty { props; }
+}
+interface OptionPropBag {
+    propx: number
+    propString: string
+    optional?: boolean
+}
+declare function RENAME(attributes: OptionPropBag): JSX.Element;
+let opt = <RENAME />;
+let opt1 = <RENAME propx={100} propString />;
+let opt2 = <RENAME propx={100} optional/>;
+let opt3 = <RENAME wrong />;
+let opt4 = <[|RENAME|] propx={100} propString="hi" />;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function [|Opt|](attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // [|declare function Opt(attributes: OptionPropBag): JSX.Element;|]
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <[|Opt|] />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = [|<Opt />|];
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 2 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <[|Opt|] propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = [|<Opt propx={100} propString />|];
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 3 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <[|Opt|] propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = [|<Opt propx={100} optional/>|];
+  // let opt3 = <Opt wrong />;
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 4 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <[|Opt|] wrong />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = [|<Opt wrong />|];
+  // let opt4 = <Opt propx={100} propString="hi" />;
+=== 5 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
+// let opt4 = <[|Opt|] propx={100} propString="hi" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props; }
+  // }
+  // interface OptionPropBag {
+  //     propx: number
+  //     propString: string
+  //     optional?: boolean
+  // }
+  // declare function Opt(attributes: OptionPropBag): JSX.Element;
+  // let opt = <Opt />;
+  // let opt1 = <Opt propx={100} propString />;
+  // let opt2 = <Opt propx={100} optional/>;
+  // let opt3 = <Opt wrong />;
+  // let opt4 = [|<Opt propx={100} propString="hi" />|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 249,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 232,
+      "length": 61
+    }
+  },
+  {
+    "textSpan": {
+      "start": 305,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 304,
+      "length": 7
+    }
+  },
+  {
+    "textSpan": {
+      "start": 325,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 324,
+      "length": 30
+    }
+  },
+  {
+    "textSpan": {
+      "start": 368,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 367,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 408,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 407,
+      "length": 13
+    }
+  },
+  {
+    "textSpan": {
+      "start": 434,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 433,
+      "length": 35
+    }
+  }
+]

@@ -1,0 +1,60 @@
+// === /bar.ts ===
+// import {Foo} from './foo'
+// 
+// class [|A|] implements Foo {
+//     func() {}
+// }
+// 
+// class [|B|] implements Foo {
+//     func() {}
+// }
+
+// === /foo.ts ===
+// export interface /*GOTO IMPL*/Foo {
+//     func();
+// }
+
+=== 0 ===
+// === /bar.ts ===
+// import {Foo} from './foo'
+// 
+// class [|A|] implements Foo {
+//     func() {}
+// }
+// 
+// class B implements Foo {
+//     func() {}
+// }
+=== 1 ===
+// === /bar.ts ===
+// import {Foo} from './foo'
+// 
+// class A implements Foo {
+//     func() {}
+// }
+// 
+// class [|B|] implements Foo {
+//     func() {}
+// }
+
+
+[
+  {
+    "fileName": "/bar.ts",
+    "textSpan": {
+      "start": 33,
+      "length": 1
+    },
+    "kind": "",
+    "displayParts": []
+  },
+  {
+    "fileName": "/bar.ts",
+    "textSpan": {
+      "start": 75,
+      "length": 1
+    },
+    "kind": "",
+    "displayParts": []
+  }
+]

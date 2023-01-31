@@ -20,6 +20,7 @@
 /////*bar2*/[|bar|](); /*baz1*/[|baz|](); /*bang1*/[|bang|](); /*boom1*/[|boom|]();
 
 verify.noErrors();
+const rangesForBaseline: FourSlashInterface.Range[] = [];
 test.rangesByText().forEach((ranges, text) => {
     if (text.indexOf("export") === 0 || text.indexOf("import") === 0) return;
     switch (text) {
@@ -29,21 +30,23 @@ test.rangesByText().forEach((ranges, text) => {
                 verify.renameInfoFailed();
             }
             break;
-        case "bar": {
-            const [r0, r1, ...tail] = ranges;
-            verify.renameLocations(r0, ranges);
-            verify.renameLocations([r1, ...tail], [{ range: r1, prefixText: "bar as " }, ...tail]);
-            break;
-        }
         default:
-            verify.rangesAreRenameLocations(ranges);
+            rangesForBaseline.push(...ranges);
             break;
     }
 });
-verify.baselineFindAllReferences(
-    'foo0', 'foo1', 'foo2',
-    'bar0', 'bar1', 'bar2',
-    'defaultC', 'defaultE', 'defaultD',
-    'baz0', 'baz1',
-    'bang0', 'bang1',
-    'boom0', 'boom1')
+
+verify.baselineCommands(
+    {
+        type: "findAllReferences",
+        markerOrRange: [
+            'foo0', 'foo1', 'foo2',
+            'bar0', 'bar1', 'bar2',
+            'defaultC', 'defaultE', 'defaultD',
+            'baz0', 'baz1',
+            'bang0', 'bang1',
+            'boom0', 'boom1'
+        ]
+    },
+    { type: "findRenameLocations", markerOrRange: rangesForBaseline },
+);

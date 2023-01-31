@@ -8,4 +8,4 @@
 //// declare const ff: Foo
 //// ff.f = '[|foo|]'
 
-verify.rangesWithSameTextAreRenameLocations("foo");
+verify.baselineRename(test.rangesByText().get("foo"));

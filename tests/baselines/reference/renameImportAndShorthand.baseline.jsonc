@@ -1,0 +1,93 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameImportAndShorthand.ts ======*/
+
+import [|RENAME|] from 'bar';
+const bar = { /*START PREFIX*/foo: RENAME };
+
+=== 0 ===
+// === /tests/cases/fourslash/renameImportAndShorthand.ts ===
+// import [|foo|] from 'bar';
+// const bar = { foo };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameImportAndShorthand.ts ===
+  // [|import foo from 'bar';|]
+  // const bar = { foo };
+=== 1 ===
+// === /tests/cases/fourslash/renameImportAndShorthand.ts ===
+// import foo from 'bar';
+// const bar = { [|foo|] };
+
+
+[
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameImportAndShorthand.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 22
+    }
+  },
+  {
+    "textSpan": {
+      "start": 37,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameImportAndShorthand.ts",
+    "prefixText": "foo: "
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameImportAndShorthand.ts ======*/
+
+import RENAME from 'bar';
+const bar = { /*START PREFIX*/foo: [|RENAME|] };
+
+=== 0 ===
+// === /tests/cases/fourslash/renameImportAndShorthand.ts ===
+// import [|foo|] from 'bar';
+// const bar = { foo };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameImportAndShorthand.ts ===
+  // [|import foo from 'bar';|]
+  // const bar = { foo };
+=== 1 ===
+// === /tests/cases/fourslash/renameImportAndShorthand.ts ===
+// import foo from 'bar';
+// const bar = { [|foo|] };
+
+
+[
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameImportAndShorthand.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 22
+    }
+  },
+  {
+    "textSpan": {
+      "start": 37,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameImportAndShorthand.ts",
+    "prefixText": "foo: "
+  }
+]

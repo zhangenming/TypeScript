@@ -1,0 +1,82 @@
+=== goToType ===
+// === /tests/cases/fourslash/bar.ts ===
+// import { T } from "./foo";
+// let x: /*GOTO TYPE*/T;
+
+undefined
+
+=== goToDefinition ===
+// === /tests/cases/fourslash/foo.ts ===
+// export type [|T|] = string;
+// export const [|T|] = "";
+
+// === /tests/cases/fourslash/bar.ts ===
+// import { T } from "./foo";
+// let x: /*GOTO DEF*/T;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/foo.ts ===
+    // export type [|T|] = string;
+    // export const T = "";
+    === ContextSpan ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // [|export type T = string;|]
+      // export const T = "";
+    === 1 ===
+    // === /tests/cases/fourslash/foo.ts ===
+    // export type T = string;
+    // export const [|T|] = "";
+    === ContextSpan ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export type T = string;
+      // [|export const T = "";|]
+  === TextSpan ===
+    // === /tests/cases/fourslash/bar.ts ===
+    // import { T } from "./foo";
+    // let x: [|T|];
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/foo.ts",
+      "textSpan": {
+        "start": 12,
+        "length": 1
+      },
+      "kind": "const",
+      "name": "T",
+      "containerName": "\"/tests/cases/fourslash/foo\"",
+      "contextSpan": {
+        "start": 0,
+        "length": 23
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    },
+    {
+      "fileName": "/tests/cases/fourslash/foo.ts",
+      "textSpan": {
+        "start": 37,
+        "length": 1
+      },
+      "kind": "const",
+      "name": "T",
+      "containerName": "\"/tests/cases/fourslash/foo\"",
+      "contextSpan": {
+        "start": 24,
+        "length": 20
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 34,
+    "length": 1
+  }
+}

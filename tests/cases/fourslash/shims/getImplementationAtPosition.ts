@@ -1,5 +1,7 @@
 /// <reference path='../fourslash.ts' />
 
+// @BaselineFile: goToImplementationAtPosition-shims.baseline.jsonc
+
 // @Filename: goToImplementationDifferentFile_Implementation.ts
 //// class /*fooClassImplementation*/FooImpl implements Foo {}
 ////
@@ -21,8 +23,4 @@
 ////     }
 //// }
 
-for (const marker of ["fooClass", "barClass", "barHelloFunction", "this"]) {
-    goTo.marker(marker + 'Reference');
-    goTo.implementation();
-    verify.caretAtMarker(marker + 'Implementation');
-};
+verify.baselineGoToImplementation("fooClassReference", "barClassReference", "barHelloFunctionReference", "thisReference");

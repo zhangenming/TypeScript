@@ -13,5 +13,4 @@
 // @Filename: /c.ts
 ////import { x } from "foo";
 
-const [r0, r1] = test.ranges();
-verify.rangesAreDocumentHighlights(test.ranges(), { filesToSearch: ["/a.ts", "/b.ts"] });
+verify.baselineDocumentHighlights(test.ranges(), { filesToSearch: ["/a.ts", "/b.ts"] });

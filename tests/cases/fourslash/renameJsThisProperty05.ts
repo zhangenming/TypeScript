@@ -11,4 +11,4 @@
 ////var t = new C(12);
 ////[|t.[|{| "contextRangeIndex": 2 |}z|] = 11;|]
 
-verify.rangesWithSameTextAreRenameLocations("z");
+verify.baselineRename(test.rangesByText().get("z"));

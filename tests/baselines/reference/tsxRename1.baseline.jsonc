@@ -1,0 +1,197 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+        [|RENAME|]: {
+            name?: string;
+            isOpen?: boolean;
+        };
+        span: { n: string; };
+    }
+}
+var x = <RENAME />;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//         [|div|]: {
+//             name?: string;
+//             isOpen?: boolean;
+//         };
+//         span: { n: string; };
+//     }
+// }
+// var x = <div />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //         [|div: {
+  //             name?: string;
+  //             isOpen?: boolean;
+  //         };|]
+  //         span: { n: string; };
+  //     }
+  // }
+  // var x = <div />;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//         div: {
+//             name?: string;
+//             isOpen?: boolean;
+//         };
+//         span: { n: string; };
+//     }
+// }
+// var x = <[|div|] />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //         div: {
+  //             name?: string;
+  //             isOpen?: boolean;
+  //         };
+  //         span: { n: string; };
+  //     }
+  // }
+  // var x = [|<div />|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 89,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 89,
+      "length": 74
+    }
+  },
+  {
+    "textSpan": {
+      "start": 211,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 210,
+      "length": 7
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+        RENAME: {
+            name?: string;
+            isOpen?: boolean;
+        };
+        span: { n: string; };
+    }
+}
+var x = <[|RENAME|] />;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//         [|div|]: {
+//             name?: string;
+//             isOpen?: boolean;
+//         };
+//         span: { n: string; };
+//     }
+// }
+// var x = <div />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //         [|div: {
+  //             name?: string;
+  //             isOpen?: boolean;
+  //         };|]
+  //         span: { n: string; };
+  //     }
+  // }
+  // var x = <div />;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//         div: {
+//             name?: string;
+//             isOpen?: boolean;
+//         };
+//         span: { n: string; };
+//     }
+// }
+// var x = <[|div|] />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //         div: {
+  //             name?: string;
+  //             isOpen?: boolean;
+  //         };
+  //         span: { n: string; };
+  //     }
+  // }
+  // var x = [|<div />|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 89,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 89,
+      "length": 74
+    }
+  },
+  {
+    "textSpan": {
+      "start": 211,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 210,
+      "length": 7
+    }
+  }
+]

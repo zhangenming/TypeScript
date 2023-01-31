@@ -21,6 +21,117 @@
 
 [
   {
+    === Definition ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function [|FA|]();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         [|export function FA();|]
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+    === References ===
+      === 0 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function [|FA|]();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         [|export function FA();|]
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 1 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.[|FA|],
+      //     FC() { },
+      // };
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -157,6 +268,367 @@
 // }
 // 
 // const ic: [|I|] = { FC() {} };
+
+[
+  {
+    === Definition ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface [|I|] {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // export namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // [|export interface I {
+        //     FC();
+        // }|]
+        // 
+        // const ic: I = { FC() {} };
+    === References ===
+      === 0 ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface [|I|] {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // export namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // [|export interface I {
+        //     FC();
+        // }|]
+        // 
+        // const ic: I = { FC() {} };
+      === 1 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface [|I|] {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     [|export interface I {
+        //         FA();
+        //     }|]
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 2 ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: [|I|] = { FC() {} };
+      === 3 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface [|I|] {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     [|export interface I {
+        //         FA();
+        //     }|]
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+  },
+  {
+    === Definition ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+    === References ===
+      === 0 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 1 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: [|I|] = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+  },
+  {
+    === Definition ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+    === References ===
+      === 0 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 1 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: [|I|] = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+  }
+]
 
 [
   {
@@ -436,6 +908,138 @@
 //     [|FA|]: NS.FA,
 //     FC() { },
 // };
+
+[
+  {
+    === Definition ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         [|FA|]();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         [|FA();|]
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+    === References ===
+      === 0 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         [|FA|]();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         [|FA();|]
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 1 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     [|FA|]: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     [|FA: NS.FA|],
+        //     FC() { },
+        // };
+  }
+]
 
 [
   {
@@ -558,6 +1162,117 @@
 
 [
   {
+    === Definition ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function [|FA|]();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         [|export function FA();|]
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+    === References ===
+      === 0 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function [|FA|]();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         [|export function FA();|]
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 1 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.[|FA|],
+      //     FC() { },
+      // };
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -694,6 +1409,367 @@
 // }
 // 
 // const ic: [|I|] = { FC() {} };
+
+[
+  {
+    === Definition ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface [|I|] {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // export namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // [|export interface I {
+        //     FC();
+        // }|]
+        // 
+        // const ic: I = { FC() {} };
+    === References ===
+      === 0 ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface [|I|] {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // export namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // [|export interface I {
+        //     FC();
+        // }|]
+        // 
+        // const ic: I = { FC() {} };
+      === 1 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface [|I|] {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     [|export interface I {
+        //         FA();
+        //     }|]
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 2 ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: [|I|] = { FC() {} };
+      === 3 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface [|I|] {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     [|export interface I {
+        //         FA();
+        //     }|]
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+  },
+  {
+    === Definition ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+    === References ===
+      === 0 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 1 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: [|I|] = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+  },
+  {
+    === Definition ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+    === References ===
+      === 0 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 1 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: [|I|] = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+  }
+]
 
 [
   {
@@ -976,6 +2052,138 @@
 
 [
   {
+    === Definition ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         [|FA|]();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         [|FA();|]
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+    === References ===
+      === 0 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         [|FA|]();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         [|FA();|]
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 1 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     [|FA|]: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     [|FA: NS.FA|],
+        //     FC() { },
+        // };
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -1085,6 +2293,56 @@
 
 [
   {
+    === Definition ===
+      // === /b/index.ts ===
+      // export namespace NS {
+      //     export function [|FB|]() {}
+      // }
+      // 
+      // export interface I {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // export namespace NS {
+        //     [|export function FB() {}|]
+        // }
+        // 
+        // export interface I {
+        //     FB();
+        // }
+        // 
+        // const ib: I = { FB() {} };
+    === References ===
+      === 0 ===
+      // === /b/index.ts ===
+      // export namespace NS {
+      //     export function [|FB|]() {}
+      // }
+      // 
+      // export interface I {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // export namespace NS {
+        //     [|export function FB() {}|]
+        // }
+        // 
+        // export interface I {
+        //     FB();
+        // }
+        // 
+        // const ib: I = { FB() {} };
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -1173,6 +2431,67 @@
 
 [
   {
+    === Definition ===
+      // === /b/index.ts ===
+      // export namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // export interface [|I|] {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // export namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // [|export interface I {
+        //     FB();
+        // }|]
+        // 
+        // const ib: I = { FB() {} };
+    === References ===
+      === 0 ===
+      // === /b/index.ts ===
+      // export namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // export interface [|I|] {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // export namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // [|export interface I {
+        //     FB();
+        // }|]
+        // 
+        // const ib: I = { FB() {} };
+      === 1 ===
+      // === /b/index.ts ===
+      // export namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // export interface I {
+      //     FB();
+      // }
+      // 
+      // const ib: [|I|] = { FB() {} };
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -1239,6 +2558,78 @@
 // }
 // 
 // const ib: I = { [|FB|]() {} };
+
+[
+  {
+    === Definition ===
+      // === /b/index.ts ===
+      // export namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // export interface I {
+      //     [|FB|]();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // export namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // export interface I {
+        //     [|FB();|]
+        // }
+        // 
+        // const ib: I = { FB() {} };
+    === References ===
+      === 0 ===
+      // === /b/index.ts ===
+      // export namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // export interface I {
+      //     [|FB|]();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // export namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // export interface I {
+        //     [|FB();|]
+        // }
+        // 
+        // const ib: I = { FB() {} };
+      === 1 ===
+      // === /b/index.ts ===
+      // export namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // export interface I {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { [|FB|]() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // export namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // export interface I {
+        //     FB();
+        // }
+        // 
+        // const ib: I = { [|FB() {}|] };
+  }
+]
 
 [
   {
@@ -1348,6 +2739,56 @@
 // }
 // 
 // const ic: I = { FC() {} };
+
+[
+  {
+    === Definition ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function [|FC|]() {}
+      // }
+      // 
+      // export interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // export namespace NS {
+        //     [|export function FC() {}|]
+        // }
+        // 
+        // export interface I {
+        //     FC();
+        // }
+        // 
+        // const ic: I = { FC() {} };
+    === References ===
+      === 0 ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function [|FC|]() {}
+      // }
+      // 
+      // export interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // export namespace NS {
+        //     [|export function FC() {}|]
+        // }
+        // 
+        // export interface I {
+        //     FC();
+        // }
+        // 
+        // const ic: I = { FC() {} };
+  }
+]
 
 [
   {
@@ -1478,6 +2919,367 @@
 // }
 // 
 // const ic: [|I|] = { FC() {} };
+
+[
+  {
+    === Definition ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface [|I|] {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // export namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // [|export interface I {
+        //     FC();
+        // }|]
+        // 
+        // const ic: I = { FC() {} };
+    === References ===
+      === 0 ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface [|I|] {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // export namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // [|export interface I {
+        //     FC();
+        // }|]
+        // 
+        // const ic: I = { FC() {} };
+      === 1 ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: [|I|] = { FC() {} };
+      === 2 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface [|I|] {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     [|export interface I {
+        //         FA();
+        //     }|]
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 3 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface [|I|] {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     [|export interface I {
+        //         FA();
+        //     }|]
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+  },
+  {
+    === Definition ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+    === References ===
+      === 0 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 1 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: [|I|] = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+  },
+  {
+    === Definition ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+    === References ===
+      === 0 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { [|I|] } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // [|import { I } from "../c";|]
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     FC() { },
+        // };
+      === 1 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: [|I|] = {
+      //     FA: NS.FA,
+      //     FC() { },
+      // };
+  }
+]
 
 [
   {
@@ -1789,6 +3591,162 @@
 //     FA: NS.FA,
 //     [|FC|]() { },
 // };
+
+[
+  {
+    === Definition ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface I {
+      //     [|FC|]();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // export namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // export interface I {
+        //     [|FC();|]
+        // }
+        // 
+        // const ic: I = { FC() {} };
+    === References ===
+      === 0 ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface I {
+      //     [|FC|]();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // export namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // export interface I {
+        //     [|FC();|]
+        // }
+        // 
+        // const ic: I = { FC() {} };
+      === 1 ===
+      // === /c/index.ts ===
+      // export namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // export interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { [|FC|]() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // export namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // export interface I {
+        //     FC();
+        // }
+        // 
+        // const ic: I = { [|FC() {}|] };
+      === 2 ===
+      // === /a/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     [|FC|]() { },
+      // };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     [|FC() { }|],
+        // };
+      === 3 ===
+      // === /a2/index.ts ===
+      // import { NS } from "../b";
+      // import { I } from "../c";
+      // 
+      // declare module "../b" {
+      //     export namespace NS {
+      //         export function FA();
+      //     }
+      // }
+      // 
+      // declare module "../c" {
+      //     export interface I {
+      //         FA();
+      //     }
+      // }
+      // 
+      // const ia: I = {
+      //     FA: NS.FA,
+      //     [|FC|]() { },
+      // };
+      === ContextSpan ===
+        // === /a2/index.ts ===
+        // import { NS } from "../b";
+        // import { I } from "../c";
+        // 
+        // declare module "../b" {
+        //     export namespace NS {
+        //         export function FA();
+        //     }
+        // }
+        // 
+        // declare module "../c" {
+        //     export interface I {
+        //         FA();
+        //     }
+        // }
+        // 
+        // const ia: I = {
+        //     FA: NS.FA,
+        //     [|FC() { }|],
+        // };
+  }
+]
 
 [
   {

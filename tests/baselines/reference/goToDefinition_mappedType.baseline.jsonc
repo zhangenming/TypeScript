@@ -1,0 +1,50 @@
+// === /tests/cases/fourslash/goToDefinition_mappedType.ts ===
+// interface I { [|m|](): void; };
+// declare const i: { [K in "m"]: I[K] };
+// i./*GOTO DEF*/m();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinition_mappedType.ts ===
+    // interface I { [|m|](): void; };
+    // declare const i: { [K in "m"]: I[K] };
+    // i.m();
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinition_mappedType.ts ===
+      // interface I { [|m(): void;|] };
+      // declare const i: { [K in "m"]: I[K] };
+      // i.m();
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinition_mappedType.ts ===
+    // interface I { m(): void; };
+    // declare const i: { [K in "m"]: I[K] };
+    // i.[|m|]();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinition_mappedType.ts",
+      "textSpan": {
+        "start": 14,
+        "length": 1
+      },
+      "kind": "method",
+      "name": "m",
+      "containerName": "I",
+      "contextSpan": {
+        "start": 14,
+        "length": 10
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 69,
+    "length": 1
+  }
+}

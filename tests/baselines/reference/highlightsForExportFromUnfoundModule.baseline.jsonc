@@ -1,0 +1,38 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/b.js ======*/
+
+export {
+   /*START PREFIX*/foo as [|RENAME|]
+} from './a';
+
+=== 0 ===
+// === /tests/cases/fourslash/b.js ===
+// export {
+//    [|foo|]
+// } from './a';
+=== ContextSpan ===
+  // === /tests/cases/fourslash/b.js ===
+  // [|export {
+  //    foo
+  // } from './a';|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js",
+    "contextSpan": {
+      "start": 0,
+      "length": 29
+    },
+    "prefixText": "foo as "
+  }
+]

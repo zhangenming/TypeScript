@@ -1,0 +1,113 @@
+// === /b.ts ===
+// import { [|x|] } from "foo";
+
+// === /a.ts ===
+// import * as foo from "foo";
+// foo./*HIGHLIGHTS*/[|x|];
+
+[
+  {
+    === /b.ts ===
+      === 0 ===
+      // === /b.ts ===
+      // import { [|x|] } from "foo";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x } from "foo";|]
+  },
+  {
+    === /a.ts ===
+      === 0 ===
+      // === /a.ts ===
+      // import * as foo from "foo";
+      // foo.[|x|];
+  }
+]
+
+[
+  {
+    "fileName": "/b.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 9,
+          "length": 1
+        },
+        "kind": "writtenReference",
+        "contextSpan": {
+          "start": 0,
+          "length": 24
+        }
+      }
+    ]
+  },
+  {
+    "fileName": "/a.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 32,
+          "length": 1
+        },
+        "kind": "reference"
+      }
+    ]
+  }
+]
+
+// === /b.ts ===
+// import { /*HIGHLIGHTS*/[|x|] } from "foo";
+
+// === /a.ts ===
+// import * as foo from "foo";
+// foo.[|x|];
+
+[
+  {
+    === /b.ts ===
+      === 0 ===
+      // === /b.ts ===
+      // import { [|x|] } from "foo";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x } from "foo";|]
+  },
+  {
+    === /a.ts ===
+      === 0 ===
+      // === /a.ts ===
+      // import * as foo from "foo";
+      // foo.[|x|];
+  }
+]
+
+[
+  {
+    "fileName": "/b.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 9,
+          "length": 1
+        },
+        "kind": "writtenReference",
+        "contextSpan": {
+          "start": 0,
+          "length": 24
+        }
+      }
+    ]
+  },
+  {
+    "fileName": "/a.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 32,
+          "length": 1
+        },
+        "kind": "reference"
+      }
+    ]
+  }
+]

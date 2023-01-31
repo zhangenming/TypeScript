@@ -1,0 +1,123 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renamePrivateMethod.ts ======*/
+
+class Foo {
+   [|RENAME|]() { }
+   callFoo() {
+       return this.RENAME();
+   }
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renamePrivateMethod.ts ===
+// class Foo {
+//    [|#foo|]() { }
+//    callFoo() {
+//        return this.#foo();
+//    }
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renamePrivateMethod.ts ===
+  // class Foo {
+  //    [|#foo() { }|]
+  //    callFoo() {
+  //        return this.#foo();
+  //    }
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renamePrivateMethod.ts ===
+// class Foo {
+//    #foo() { }
+//    callFoo() {
+//        return this.[|#foo|]();
+//    }
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 15,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateMethod.ts",
+    "contextSpan": {
+      "start": 15,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 60,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateMethod.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renamePrivateMethod.ts ======*/
+
+class Foo {
+   RENAME() { }
+   callFoo() {
+       return this.[|RENAME|]();
+   }
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renamePrivateMethod.ts ===
+// class Foo {
+//    [|#foo|]() { }
+//    callFoo() {
+//        return this.#foo();
+//    }
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renamePrivateMethod.ts ===
+  // class Foo {
+  //    [|#foo() { }|]
+  //    callFoo() {
+  //        return this.#foo();
+  //    }
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renamePrivateMethod.ts ===
+// class Foo {
+//    #foo() { }
+//    callFoo() {
+//        return this.[|#foo|]();
+//    }
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 15,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateMethod.ts",
+    "contextSpan": {
+      "start": 15,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 60,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateMethod.ts"
+  }
+]

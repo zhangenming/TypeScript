@@ -1,8 +1,39 @@
+=== findAllReferences ===
 // === /a.ts ===
 // export /*FIND ALL REFS*/[|default|] function() {}
 
 // === /b.ts ===
 // import [|f|] from "./a";
+
+[
+  {
+    === Definition ===
+      // === /a.ts ===
+      // [|export default function() {}|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export [|default|] function() {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export default function() {}|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // import [|f|] from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import f from "./a";|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import [|f|] from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import f from "./a";|]
+  }
+]
 
 [
   {
@@ -123,6 +154,36 @@
 
 [
   {
+    === Definition ===
+      // === /b.ts ===
+      // import [|f|] from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import f from "./a";|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import [|f|] from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import f from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /a.ts ===
+      // [|export default function() {}|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export [|default|] function() {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export default function() {}|]
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -229,5 +290,38 @@
         "isDefinition": false
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /b.ts ======*/
+
+import [|RENAME|] from "./a";
+
+=== 0 ===
+// === /b.ts ===
+// import [|f|] from "./a";
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|import f from "./a";|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 20
+    }
   }
 ]

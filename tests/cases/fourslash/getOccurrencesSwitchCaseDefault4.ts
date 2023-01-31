@@ -10,5 +10,4 @@
 ////        contin/*2*/ue foo;
 ////}
 
-verify.rangesAreOccurrences(false);
-goTo.eachMarker(() => verify.occurrencesAtPositionCount(0));
+verify.baselineOccurences(...test.ranges(), ...test.markers());

@@ -1,0 +1,1229 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": true,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameForDefaultExport03.ts ======*/
+
+function [|RENAME|]() {
+    return 100;
+}
+
+export default RENAME;
+
+var x: typeof RENAME;
+
+var y = RENAME();
+
+/**
+ *  Commenting RENAME
+ */
+namespace RENAME {
+    var local = 100;
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function [|f|]() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // [|function f() {
+  //     return 100;
+  // }|]
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default [|f|];
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // [|export default f;|]
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof [|f|];
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== 3 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = [|f|]();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== 4 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace [|f|] {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // [|namespace f {
+  //     var local = 100;
+  // }|]
+=== 5 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting [|f|]
+//  */
+// namespace f {
+//     var local = 100;
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 32
+    }
+  },
+  {
+    "textSpan": {
+      "start": 49,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 34,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 67,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  },
+  {
+    "textSpan": {
+      "start": 79,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  },
+  {
+    "textSpan": {
+      "start": 120,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 110,
+      "length": 36
+    }
+  },
+  {
+    "textSpan": {
+      "start": 104,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": true,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameForDefaultExport03.ts ======*/
+
+function RENAME() {
+    return 100;
+}
+
+export default [|RENAME|];
+
+var x: typeof RENAME;
+
+var y = RENAME();
+
+/**
+ *  Commenting RENAME
+ */
+namespace RENAME {
+    var local = 100;
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function [|f|]() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // [|function f() {
+  //     return 100;
+  // }|]
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default [|f|];
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // [|export default f;|]
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof [|f|];
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== 3 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = [|f|]();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== 4 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace [|f|] {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // [|namespace f {
+  //     var local = 100;
+  // }|]
+=== 5 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting [|f|]
+//  */
+// namespace f {
+//     var local = 100;
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 32
+    }
+  },
+  {
+    "textSpan": {
+      "start": 49,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 34,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 67,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  },
+  {
+    "textSpan": {
+      "start": 79,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  },
+  {
+    "textSpan": {
+      "start": 120,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 110,
+      "length": 36
+    }
+  },
+  {
+    "textSpan": {
+      "start": 104,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": true,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameForDefaultExport03.ts ======*/
+
+function RENAME() {
+    return 100;
+}
+
+export default RENAME;
+
+var x: typeof [|RENAME|];
+
+var y = RENAME();
+
+/**
+ *  Commenting RENAME
+ */
+namespace RENAME {
+    var local = 100;
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function [|f|]() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // [|function f() {
+  //     return 100;
+  // }|]
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default [|f|];
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // [|export default f;|]
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof [|f|];
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== 3 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = [|f|]();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== 4 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace [|f|] {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // [|namespace f {
+  //     var local = 100;
+  // }|]
+=== 5 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting [|f|]
+//  */
+// namespace f {
+//     var local = 100;
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 32
+    }
+  },
+  {
+    "textSpan": {
+      "start": 49,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 34,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 67,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  },
+  {
+    "textSpan": {
+      "start": 79,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  },
+  {
+    "textSpan": {
+      "start": 120,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 110,
+      "length": 36
+    }
+  },
+  {
+    "textSpan": {
+      "start": 104,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": true,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameForDefaultExport03.ts ======*/
+
+function RENAME() {
+    return 100;
+}
+
+export default RENAME;
+
+var x: typeof RENAME;
+
+var y = [|RENAME|]();
+
+/**
+ *  Commenting RENAME
+ */
+namespace RENAME {
+    var local = 100;
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function [|f|]() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // [|function f() {
+  //     return 100;
+  // }|]
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default [|f|];
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // [|export default f;|]
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof [|f|];
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== 3 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = [|f|]();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== 4 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace [|f|] {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // [|namespace f {
+  //     var local = 100;
+  // }|]
+=== 5 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting [|f|]
+//  */
+// namespace f {
+//     var local = 100;
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 32
+    }
+  },
+  {
+    "textSpan": {
+      "start": 49,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 34,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 67,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  },
+  {
+    "textSpan": {
+      "start": 79,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  },
+  {
+    "textSpan": {
+      "start": 120,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 110,
+      "length": 36
+    }
+  },
+  {
+    "textSpan": {
+      "start": 104,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": true,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameForDefaultExport03.ts ======*/
+
+function RENAME() {
+    return 100;
+}
+
+export default RENAME;
+
+var x: typeof RENAME;
+
+var y = RENAME();
+
+/**
+ *  Commenting RENAME
+ */
+namespace [|RENAME|] {
+    var local = 100;
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function [|f|]() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // [|function f() {
+  //     return 100;
+  // }|]
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default [|f|];
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // [|export default f;|]
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof [|f|];
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== 3 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = [|f|]();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace f {
+//     var local = 100;
+// }
+=== 4 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting f
+//  */
+// namespace [|f|] {
+//     var local = 100;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // [|namespace f {
+  //     var local = 100;
+  // }|]
+=== 5 ===
+// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+// function f() {
+//     return 100;
+// }
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /**
+//  *  Commenting [|f|]
+//  */
+// namespace f {
+//     var local = 100;
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 32
+    }
+  },
+  {
+    "textSpan": {
+      "start": 49,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 34,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 67,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  },
+  {
+    "textSpan": {
+      "start": 79,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  },
+  {
+    "textSpan": {
+      "start": 120,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts",
+    "contextSpan": {
+      "start": 110,
+      "length": 36
+    }
+  },
+  {
+    "textSpan": {
+      "start": 104,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/renameForDefaultExport03.ts"
+  }
+]

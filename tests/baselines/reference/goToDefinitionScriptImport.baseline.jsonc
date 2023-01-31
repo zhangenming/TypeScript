@@ -1,0 +1,77 @@
+// === /tests/cases/fourslash/scriptThing.ts ===
+// [||]console.log("woooo side effects")
+
+// === /tests/cases/fourslash/moduleThing.ts ===
+// import /*GOTO DEF*/"./scriptThing";
+// import "./stylez.css";
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/scriptThing.ts ===
+    // [||]console.log("woooo side effects")
+  === TextSpan ===
+    // === /tests/cases/fourslash/moduleThing.ts ===
+    // import [|"./scriptThing"|];
+    // import "./stylez.css";
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/scriptThing.ts",
+      "textSpan": {
+        "start": 0,
+        "length": 0
+      },
+      "kind": "script",
+      "name": "./scriptThing",
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 7,
+    "length": 15
+  }
+}
+
+// === /tests/cases/fourslash/stylez.css ===
+// [||]div {
+//   color: magenta;
+// }
+
+// === /tests/cases/fourslash/moduleThing.ts ===
+// import "./scriptThing";
+// import /*GOTO DEF*/"./stylez.css";
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/stylez.css ===
+    // [||]div {
+    //   color: magenta;
+    // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/moduleThing.ts ===
+    // import "./scriptThing";
+    // import [|"./stylez.css"|];
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/stylez.css",
+      "textSpan": {
+        "start": 0,
+        "length": 0
+      },
+      "kind": "script",
+      "name": "./stylez.css",
+      "unverified": true
+    }
+  ],
+  "textSpan": {
+    "start": 31,
+    "length": 14
+  }
+}

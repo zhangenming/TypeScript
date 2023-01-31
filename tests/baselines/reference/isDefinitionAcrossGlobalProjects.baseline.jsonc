@@ -17,6 +17,80 @@
 
 [
   {
+    === Definition ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function [|FA|]() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface I {
+      //     FA();
+      // }
+      // 
+      // const ia: I = {
+      //     FA() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // namespace NS {
+        //     [|export function FA() {
+        //         FB();
+        //     }|]
+        // }
+        // 
+        // interface I {
+        //     FA();
+        // }
+        // 
+        // const ia: I = {
+        //     FA() { },
+        //     FB() { },
+        //     FC() { },
+        //  };
+    === References ===
+      === 0 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function [|FA|]() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface I {
+      //     FA();
+      // }
+      // 
+      // const ia: I = {
+      //     FA() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // namespace NS {
+        //     [|export function FA() {
+        //         FB();
+        //     }|]
+        // }
+        // 
+        // interface I {
+        //     FA();
+        // }
+        // 
+        // const ia: I = {
+        //     FA() { },
+        //     FB() { },
+        //     FC() { },
+        //  };
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -130,6 +204,151 @@
 //     FB() { },
 //     FC() { },
 //  };
+
+[
+  {
+    === Definition ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface [|I|] {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // [|interface I {
+        //     FB();
+        // }|]
+        // 
+        // const ib: I = { FB() {} };
+    === References ===
+      === 0 ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface [|I|] {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // [|interface I {
+        //     FB();
+        // }|]
+        // 
+        // const ib: I = { FB() {} };
+      === 1 ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface I {
+      //     FB();
+      // }
+      // 
+      // const ib: [|I|] = { FB() {} };
+      === 2 ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // interface [|I|] {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // [|interface I {
+        //     FC();
+        // }|]
+        // 
+        // const ic: I = { FC() {} };
+      === 3 ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: [|I|] = { FC() {} };
+      === 4 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface [|I|] {
+      //     FA();
+      // }
+      // 
+      // const ia: I = {
+      //     FA() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // namespace NS {
+        //     export function FA() {
+        //         FB();
+        //     }
+        // }
+        // 
+        // [|interface I {
+        //     FA();
+        // }|]
+        // 
+        // const ia: I = {
+        //     FA() { },
+        //     FB() { },
+        //     FC() { },
+        //  };
+      === 5 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface I {
+      //     FA();
+      // }
+      // 
+      // const ia: [|I|] = {
+      //     FA() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+  }
+]
 
 [
   {
@@ -249,6 +468,114 @@
 //     FB() { },
 //     FC() { },
 //  };
+
+[
+  {
+    === Definition ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface I {
+      //     [|FA|]();
+      // }
+      // 
+      // const ia: I = {
+      //     FA() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // namespace NS {
+        //     export function FA() {
+        //         FB();
+        //     }
+        // }
+        // 
+        // interface I {
+        //     [|FA();|]
+        // }
+        // 
+        // const ia: I = {
+        //     FA() { },
+        //     FB() { },
+        //     FC() { },
+        //  };
+    === References ===
+      === 0 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface I {
+      //     [|FA|]();
+      // }
+      // 
+      // const ia: I = {
+      //     FA() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // namespace NS {
+        //     export function FA() {
+        //         FB();
+        //     }
+        // }
+        // 
+        // interface I {
+        //     [|FA();|]
+        // }
+        // 
+        // const ia: I = {
+        //     FA() { },
+        //     FB() { },
+        //     FC() { },
+        //  };
+      === 1 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface I {
+      //     FA();
+      // }
+      // 
+      // const ia: I = {
+      //     [|FA|]() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // namespace NS {
+        //     export function FA() {
+        //         FB();
+        //     }
+        // }
+        // 
+        // interface I {
+        //     FA();
+        // }
+        // 
+        // const ia: I = {
+        //     [|FA() { }|],
+        //     FB() { },
+        //     FC() { },
+        //  };
+  }
+]
 
 [
   {
@@ -378,6 +705,73 @@
 
 [
   {
+    === Definition ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function [|FB|]() {}
+      // }
+      // 
+      // interface I {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // namespace NS {
+        //     [|export function FB() {}|]
+        // }
+        // 
+        // interface I {
+        //     FB();
+        // }
+        // 
+        // const ib: I = { FB() {} };
+    === References ===
+      === 0 ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function [|FB|]() {}
+      // }
+      // 
+      // interface I {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // namespace NS {
+        //     [|export function FB() {}|]
+        // }
+        // 
+        // interface I {
+        //     FB();
+        // }
+        // 
+        // const ib: I = { FB() {} };
+      === 1 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         [|FB|]();
+      //     }
+      // }
+      // 
+      // interface I {
+      //     FA();
+      // }
+      // 
+      // const ia: I = {
+      //     FA() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -500,6 +894,151 @@
 //     FB() { },
 //     FC() { },
 //  };
+
+[
+  {
+    === Definition ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface [|I|] {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // [|interface I {
+        //     FB();
+        // }|]
+        // 
+        // const ib: I = { FB() {} };
+    === References ===
+      === 0 ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface [|I|] {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // [|interface I {
+        //     FB();
+        // }|]
+        // 
+        // const ib: I = { FB() {} };
+      === 1 ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface I {
+      //     FB();
+      // }
+      // 
+      // const ib: [|I|] = { FB() {} };
+      === 2 ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // interface [|I|] {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // [|interface I {
+        //     FC();
+        // }|]
+        // 
+        // const ic: I = { FC() {} };
+      === 3 ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: [|I|] = { FC() {} };
+      === 4 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface [|I|] {
+      //     FA();
+      // }
+      // 
+      // const ia: I = {
+      //     FA() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // namespace NS {
+        //     export function FA() {
+        //         FB();
+        //     }
+        // }
+        // 
+        // [|interface I {
+        //     FA();
+        // }|]
+        // 
+        // const ia: I = {
+        //     FA() { },
+        //     FB() { },
+        //     FC() { },
+        //  };
+      === 5 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface I {
+      //     FA();
+      // }
+      // 
+      // const ia: [|I|] = {
+      //     FA() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+  }
+]
 
 [
   {
@@ -633,6 +1172,112 @@
 
 [
   {
+    === Definition ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface I {
+      //     [|FB|]();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // interface I {
+        //     [|FB();|]
+        // }
+        // 
+        // const ib: I = { FB() {} };
+    === References ===
+      === 0 ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface I {
+      //     [|FB|]();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // interface I {
+        //     [|FB();|]
+        // }
+        // 
+        // const ib: I = { FB() {} };
+      === 1 ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface I {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { [|FB|]() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // interface I {
+        //     FB();
+        // }
+        // 
+        // const ib: I = { [|FB() {}|] };
+      === 2 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface I {
+      //     FA();
+      // }
+      // 
+      // const ia: I = {
+      //     FA() { },
+      //     [|FB|]() { },
+      //     FC() { },
+      //  };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // namespace NS {
+        //     export function FA() {
+        //         FB();
+        //     }
+        // }
+        // 
+        // interface I {
+        //     FA();
+        // }
+        // 
+        // const ia: I = {
+        //     FA() { },
+        //     [|FB() { }|],
+        //     FC() { },
+        //  };
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -755,6 +1400,56 @@
 
 [
   {
+    === Definition ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function [|FC|]() {}
+      // }
+      // 
+      // interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // namespace NS {
+        //     [|export function FC() {}|]
+        // }
+        // 
+        // interface I {
+        //     FC();
+        // }
+        // 
+        // const ic: I = { FC() {} };
+    === References ===
+      === 0 ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function [|FC|]() {}
+      // }
+      // 
+      // interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // namespace NS {
+        //     [|export function FC() {}|]
+        // }
+        // 
+        // interface I {
+        //     FC();
+        // }
+        // 
+        // const ic: I = { FC() {} };
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -868,6 +1563,176 @@
 //     FB() { },
 //     FC() { },
 //  };
+
+[
+  {
+    === Definition ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // interface [|I|] {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // [|interface I {
+        //     FC();
+        // }|]
+        // 
+        // const ic: I = { FC() {} };
+    === References ===
+      === 0 ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // interface [|I|] {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // [|interface I {
+        //     FC();
+        // }|]
+        // 
+        // const ic: I = { FC() {} };
+      === 1 ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: [|I|] = { FC() {} };
+  },
+  {
+    === Definition ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface [|I|] {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // [|interface I {
+        //     FB();
+        // }|]
+        // 
+        // const ib: I = { FB() {} };
+    === References ===
+      === 0 ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface [|I|] {
+      //     FB();
+      // }
+      // 
+      // const ib: I = { FB() {} };
+      === ContextSpan ===
+        // === /b/index.ts ===
+        // namespace NS {
+        //     export function FB() {}
+        // }
+        // 
+        // [|interface I {
+        //     FB();
+        // }|]
+        // 
+        // const ib: I = { FB() {} };
+      === 1 ===
+      // === /b/index.ts ===
+      // namespace NS {
+      //     export function FB() {}
+      // }
+      // 
+      // interface I {
+      //     FB();
+      // }
+      // 
+      // const ib: [|I|] = { FB() {} };
+      === 2 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface [|I|] {
+      //     FA();
+      // }
+      // 
+      // const ia: I = {
+      //     FA() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // namespace NS {
+        //     export function FA() {
+        //         FB();
+        //     }
+        // }
+        // 
+        // [|interface I {
+        //     FA();
+        // }|]
+        // 
+        // const ia: I = {
+        //     FA() { },
+        //     FB() { },
+        //     FC() { },
+        //  };
+      === 3 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface I {
+      //     FA();
+      // }
+      // 
+      // const ia: [|I|] = {
+      //     FA() { },
+      //     FB() { },
+      //     FC() { },
+      //  };
+  }
+]
 
 [
   {
@@ -1031,6 +1896,112 @@
 //     FB() { },
 //     [|FC|]() { },
 //  };
+
+[
+  {
+    === Definition ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // interface I {
+      //     [|FC|]();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // interface I {
+        //     [|FC();|]
+        // }
+        // 
+        // const ic: I = { FC() {} };
+    === References ===
+      === 0 ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // interface I {
+      //     [|FC|]();
+      // }
+      // 
+      // const ic: I = { FC() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // interface I {
+        //     [|FC();|]
+        // }
+        // 
+        // const ic: I = { FC() {} };
+      === 1 ===
+      // === /c/index.ts ===
+      // namespace NS {
+      //     export function FC() {}
+      // }
+      // 
+      // interface I {
+      //     FC();
+      // }
+      // 
+      // const ic: I = { [|FC|]() {} };
+      === ContextSpan ===
+        // === /c/index.ts ===
+        // namespace NS {
+        //     export function FC() {}
+        // }
+        // 
+        // interface I {
+        //     FC();
+        // }
+        // 
+        // const ic: I = { [|FC() {}|] };
+      === 2 ===
+      // === /a/index.ts ===
+      // namespace NS {
+      //     export function FA() {
+      //         FB();
+      //     }
+      // }
+      // 
+      // interface I {
+      //     FA();
+      // }
+      // 
+      // const ia: I = {
+      //     FA() { },
+      //     FB() { },
+      //     [|FC|]() { },
+      //  };
+      === ContextSpan ===
+        // === /a/index.ts ===
+        // namespace NS {
+        //     export function FA() {
+        //         FB();
+        //     }
+        // }
+        // 
+        // interface I {
+        //     FA();
+        // }
+        // 
+        // const ia: I = {
+        //     FA() { },
+        //     FB() { },
+        //     [|FC() { }|],
+        //  };
+  }
+]
 
 [
   {

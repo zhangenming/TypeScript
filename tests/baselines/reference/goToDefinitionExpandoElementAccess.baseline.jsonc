@@ -1,0 +1,78 @@
+// === /tests/cases/fourslash/goToDefinitionExpandoElementAccess.ts ===
+// function f() {}
+// f[[|"x"|]] = 0;
+// f[/*GOTO DEF*/[|"x"|]] = 1;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionExpandoElementAccess.ts ===
+    // function f() {}
+    // f[[|"x"|]] = 0;
+    // f["x"] = 1;
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionExpandoElementAccess.ts ===
+      // function f() {}
+      // [|f["x"]|] = 0;
+      // f["x"] = 1;
+    === 1 ===
+    // === /tests/cases/fourslash/goToDefinitionExpandoElementAccess.ts ===
+    // function f() {}
+    // f["x"] = 0;
+    // f[[|"x"|]] = 1;
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionExpandoElementAccess.ts ===
+      // function f() {}
+      // f["x"] = 0;
+      // [|f["x"]|] = 1;
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionExpandoElementAccess.ts ===
+    // function f() {}
+    // f["x"] = 0;
+    // f[[|"x"|]] = 1;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionExpandoElementAccess.ts",
+      "textSpan": {
+        "start": 18,
+        "length": 3
+      },
+      "kind": "property",
+      "name": "\"x\"",
+      "containerName": "f",
+      "contextSpan": {
+        "start": 16,
+        "length": 6
+      },
+      "isLocal": true,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    },
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionExpandoElementAccess.ts",
+      "textSpan": {
+        "start": 30,
+        "length": 3
+      },
+      "kind": "property",
+      "name": "\"x\"",
+      "containerName": "f",
+      "contextSpan": {
+        "start": 28,
+        "length": 6
+      },
+      "isLocal": true,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 30,
+    "length": 3
+  }
+}

@@ -8,4 +8,4 @@
 //// f.f = '[|foo|]'
 //// f.f = `[|foo|]`
 
-verify.rangesWithSameTextAreRenameLocations("foo");
+verify.baselineRename(test.rangesByText().get("foo"));

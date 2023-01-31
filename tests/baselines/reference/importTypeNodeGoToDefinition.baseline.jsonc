@@ -1,0 +1,397 @@
+// === /ns.ts ===
+// [|export namespace Foo {
+//     export namespace Bar {
+//         export class Baz {}
+//     }
+// }|]
+
+// === /usage.ts ===
+// type A = typeof import(/*GOTO DEF*/"./ns").Foo.Bar;
+// type B = import("./ns").Foo.Bar.Baz;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /ns.ts ===
+    // [|export namespace Foo {
+    //     export namespace Bar {
+    //         export class Baz {}
+    //     }
+    // }|]
+  === TextSpan ===
+    // === /usage.ts ===
+    // type A = typeof import([|"./ns"|]).Foo.Bar;
+    // type B = import("./ns").Foo.Bar.Baz;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/ns.ts",
+      "textSpan": {
+        "start": 0,
+        "length": 85
+      },
+      "kind": "module",
+      "name": "\"/ns\"",
+      "containerName": "",
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 23,
+    "length": 6
+  }
+}
+
+// === /ns.ts ===
+// export namespace [|Foo|] {
+//     export namespace Bar {
+//         export class Baz {}
+//     }
+// }
+
+// === /usage.ts ===
+// type A = typeof import("./ns")./*GOTO DEF*/Foo.Bar;
+// type B = import("./ns").Foo.Bar.Baz;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /ns.ts ===
+    // export namespace [|Foo|] {
+    //     export namespace Bar {
+    //         export class Baz {}
+    //     }
+    // }
+    === ContextSpan ===
+      // === /ns.ts ===
+      // [|export namespace Foo {
+      //     export namespace Bar {
+      //         export class Baz {}
+      //     }
+      // }|]
+  === TextSpan ===
+    // === /usage.ts ===
+    // type A = typeof import("./ns").[|Foo|].Bar;
+    // type B = import("./ns").Foo.Bar.Baz;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/ns.ts",
+      "textSpan": {
+        "start": 17,
+        "length": 3
+      },
+      "kind": "module",
+      "name": "Foo",
+      "containerName": "\"/ns\"",
+      "contextSpan": {
+        "start": 0,
+        "length": 85
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 31,
+    "length": 3
+  }
+}
+
+// === /ns.ts ===
+// export namespace Foo {
+//     export namespace [|Bar|] {
+//         export class Baz {}
+//     }
+// }
+
+// === /usage.ts ===
+// type A = typeof import("./ns").Foo./*GOTO DEF*/Bar;
+// type B = import("./ns").Foo.Bar.Baz;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /ns.ts ===
+    // export namespace Foo {
+    //     export namespace [|Bar|] {
+    //         export class Baz {}
+    //     }
+    // }
+    === ContextSpan ===
+      // === /ns.ts ===
+      // export namespace Foo {
+      //     [|export namespace Bar {
+      //         export class Baz {}
+      //     }|]
+      // }
+  === TextSpan ===
+    // === /usage.ts ===
+    // type A = typeof import("./ns").Foo.[|Bar|];
+    // type B = import("./ns").Foo.Bar.Baz;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/ns.ts",
+      "textSpan": {
+        "start": 44,
+        "length": 3
+      },
+      "kind": "module",
+      "name": "Bar",
+      "containerName": "Foo",
+      "contextSpan": {
+        "start": 27,
+        "length": 56
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 35,
+    "length": 3
+  }
+}
+
+// === /ns.ts ===
+// [|export namespace Foo {
+//     export namespace Bar {
+//         export class Baz {}
+//     }
+// }|]
+
+// === /usage.ts ===
+// type A = typeof import("./ns").Foo.Bar;
+// type B = import(/*GOTO DEF*/"./ns").Foo.Bar.Baz;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /ns.ts ===
+    // [|export namespace Foo {
+    //     export namespace Bar {
+    //         export class Baz {}
+    //     }
+    // }|]
+  === TextSpan ===
+    // === /usage.ts ===
+    // type A = typeof import("./ns").Foo.Bar;
+    // type B = import([|"./ns"|]).Foo.Bar.Baz;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/ns.ts",
+      "textSpan": {
+        "start": 0,
+        "length": 85
+      },
+      "kind": "module",
+      "name": "\"/ns\"",
+      "containerName": "",
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 56,
+    "length": 6
+  }
+}
+
+// === /ns.ts ===
+// export namespace [|Foo|] {
+//     export namespace Bar {
+//         export class Baz {}
+//     }
+// }
+
+// === /usage.ts ===
+// type A = typeof import("./ns").Foo.Bar;
+// type B = import("./ns")./*GOTO DEF*/Foo.Bar.Baz;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /ns.ts ===
+    // export namespace [|Foo|] {
+    //     export namespace Bar {
+    //         export class Baz {}
+    //     }
+    // }
+    === ContextSpan ===
+      // === /ns.ts ===
+      // [|export namespace Foo {
+      //     export namespace Bar {
+      //         export class Baz {}
+      //     }
+      // }|]
+  === TextSpan ===
+    // === /usage.ts ===
+    // type A = typeof import("./ns").Foo.Bar;
+    // type B = import("./ns").[|Foo|].Bar.Baz;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/ns.ts",
+      "textSpan": {
+        "start": 17,
+        "length": 3
+      },
+      "kind": "module",
+      "name": "Foo",
+      "containerName": "\"/ns\"",
+      "contextSpan": {
+        "start": 0,
+        "length": 85
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 64,
+    "length": 3
+  }
+}
+
+// === /ns.ts ===
+// export namespace Foo {
+//     export namespace [|Bar|] {
+//         export class Baz {}
+//     }
+// }
+
+// === /usage.ts ===
+// type A = typeof import("./ns").Foo.Bar;
+// type B = import("./ns").Foo./*GOTO DEF*/Bar.Baz;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /ns.ts ===
+    // export namespace Foo {
+    //     export namespace [|Bar|] {
+    //         export class Baz {}
+    //     }
+    // }
+    === ContextSpan ===
+      // === /ns.ts ===
+      // export namespace Foo {
+      //     [|export namespace Bar {
+      //         export class Baz {}
+      //     }|]
+      // }
+  === TextSpan ===
+    // === /usage.ts ===
+    // type A = typeof import("./ns").Foo.Bar;
+    // type B = import("./ns").Foo.[|Bar|].Baz;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/ns.ts",
+      "textSpan": {
+        "start": 44,
+        "length": 3
+      },
+      "kind": "module",
+      "name": "Bar",
+      "containerName": "Foo",
+      "contextSpan": {
+        "start": 27,
+        "length": 56
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 68,
+    "length": 3
+  }
+}
+
+// === /ns.ts ===
+// export namespace Foo {
+//     export namespace Bar {
+//         export class [|Baz|] {}
+//     }
+// }
+
+// === /usage.ts ===
+// type A = typeof import("./ns").Foo.Bar;
+// type B = import("./ns").Foo.Bar./*GOTO DEF*/Baz;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /ns.ts ===
+    // export namespace Foo {
+    //     export namespace Bar {
+    //         export class [|Baz|] {}
+    //     }
+    // }
+    === ContextSpan ===
+      // === /ns.ts ===
+      // export namespace Foo {
+      //     export namespace Bar {
+      //         [|export class Baz {}|]
+      //     }
+      // }
+  === TextSpan ===
+    // === /usage.ts ===
+    // type A = typeof import("./ns").Foo.Bar;
+    // type B = import("./ns").Foo.Bar.[|Baz|];
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/ns.ts",
+      "textSpan": {
+        "start": 71,
+        "length": 3
+      },
+      "kind": "class",
+      "name": "Baz",
+      "containerName": "Foo.Bar",
+      "contextSpan": {
+        "start": 58,
+        "length": 19
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 72,
+    "length": 3
+  }
+}

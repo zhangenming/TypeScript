@@ -1,0 +1,51 @@
+// === /tests/cases/fourslash/a.ts ===
+// [|export module Module {
+// }
+// export class Class {
+//     private f;
+// }
+// export interface Interface {
+//     x;
+// }|]
+
+// === /tests/cases/fourslash/b.ts ===
+// import /*GOTO DEF*/alias = require("./a");
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/a.ts ===
+    // [|export module Module {
+    // }
+    // export class Class {
+    //     private f;
+    // }
+    // export interface Interface {
+    //     x;
+    // }|]
+  === TextSpan ===
+    // === /tests/cases/fourslash/b.ts ===
+    // import [|alias|] = require("./a");
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/a.ts",
+      "textSpan": {
+        "start": 0,
+        "length": 100
+      },
+      "kind": "module",
+      "name": "\"/tests/cases/fourslash/a\"",
+      "containerName": "",
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 7,
+    "length": 5
+  }
+}

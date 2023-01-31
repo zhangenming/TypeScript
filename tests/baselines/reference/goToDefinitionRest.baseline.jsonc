@@ -1,0 +1,70 @@
+// === /tests/cases/fourslash/goToDefinitionRest.ts ===
+// interface Gen {
+//     x: number;
+//     [|parent|]: Gen;
+//     millenial: string;
+// }
+// let t: Gen;
+// var { x, ...rest } = t;
+// rest./*GOTO DEF*/parent;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionRest.ts ===
+    // interface Gen {
+    //     x: number;
+    //     [|parent|]: Gen;
+    //     millenial: string;
+    // }
+    // let t: Gen;
+    // var { x, ...rest } = t;
+    // rest.parent;
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionRest.ts ===
+      // interface Gen {
+      //     x: number;
+      //     [|parent: Gen;|]
+      //     millenial: string;
+      // }
+      // let t: Gen;
+      // var { x, ...rest } = t;
+      // rest.parent;
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionRest.ts ===
+    // interface Gen {
+    //     x: number;
+    //     parent: Gen;
+    //     millenial: string;
+    // }
+    // let t: Gen;
+    // var { x, ...rest } = t;
+    // rest.[|parent|];
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionRest.ts",
+      "textSpan": {
+        "start": 35,
+        "length": 6
+      },
+      "kind": "property",
+      "name": "parent",
+      "containerName": "Gen",
+      "contextSpan": {
+        "start": 35,
+        "length": 12
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 114,
+    "length": 6
+  }
+}

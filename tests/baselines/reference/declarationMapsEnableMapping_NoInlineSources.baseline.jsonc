@@ -1,0 +1,226 @@
+=== goToDefinition ===
+// === /index.ts ===
+// export class Foo {
+//     member: string;
+//     [|methodName|](propName: SomeType): SomeType { return propName; }
+//     otherMethod() {
+//         if (Math.random() > 0.5) {
+//             return {x: 42};
+//         }
+//         return {y: "yes"};
+//     }
+// }
+// 
+// export interface SomeType {
+//     member: number;
+// }
+
+// === /mymodule.ts ===
+// import * as mod from "/dist/index";
+// const instance = new mod.Foo();
+// instance./*GOTO DEF*/methodName({member: 12});
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /index.ts ===
+    // export class Foo {
+    //     member: string;
+    //     [|methodName|](propName: SomeType): SomeType { return propName; }
+    //     otherMethod() {
+    //         if (Math.random() > 0.5) {
+    //             return {x: 42};
+    //         }
+    //         return {y: "yes"};
+    //     }
+    // }
+    // 
+    // export interface SomeType {
+    //     member: number;
+    // }
+  === TextSpan ===
+    // === /mymodule.ts ===
+    // import * as mod from "/dist/index";
+    // const instance = new mod.Foo();
+    // instance.[|methodName|]({member: 12});
+}
+
+{
+  "definitions": [
+    {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/index.ts",
+      "textSpan": {
+        "start": 43,
+        "length": 10
+      },
+      "kind": "",
+      "name": ""
+    }
+  ],
+  "textSpan": {
+    "start": 77,
+    "length": 10
+  }
+}
+
+=== goToType ===
+// === /index.ts ===
+// export class Foo {
+//     member: string;
+//     methodName(propName: SomeType): SomeType { return propName; }
+//     otherMethod() {
+//         if (Math.random() > 0.5) {
+//             return {x: 42};
+//         }
+//         return {y: "yes"};
+//     }
+// }
+// 
+// export interface [|SomeType|] {
+//     member: number;
+// }
+
+// === /mymodule.ts ===
+// import * as mod from "/dist/index";
+// const instance = new mod.Foo();
+// instance./*GOTO TYPE*/methodName({member: 12});
+
+=== 0 ===
+// === /index.ts ===
+// export class Foo {
+//     member: string;
+//     methodName(propName: SomeType): SomeType { return propName; }
+//     otherMethod() {
+//         if (Math.random() > 0.5) {
+//             return {x: 42};
+//         }
+//         return {y: "yes"};
+//     }
+// }
+// 
+// export interface [|SomeType|] {
+//     member: number;
+// }
+
+
+[
+  {
+    "containerKind": "",
+    "containerName": "",
+    "fileName": "/index.ts",
+    "textSpan": {
+      "start": 251,
+      "length": 8
+    },
+    "kind": "",
+    "name": ""
+  }
+]
+
+=== getDefinitionAtPosition ===
+// === /index.ts ===
+// export class Foo {
+//     member: string;
+//     [|methodName|](propName: SomeType): SomeType { return propName; }
+//     otherMethod() {
+//         if (Math.random() > 0.5) {
+//             return {x: 42};
+//         }
+//         return {y: "yes"};
+//     }
+// }
+// 
+// export interface SomeType {
+//     member: number;
+// }
+
+// === /mymodule.ts ===
+// import * as mod from "/dist/index";
+// const instance = new mod.Foo();
+// instance./*GOTO DEF POS*/methodName({member: 12});
+
+=== 0 ===
+// === /index.ts ===
+// export class Foo {
+//     member: string;
+//     [|methodName|](propName: SomeType): SomeType { return propName; }
+//     otherMethod() {
+//         if (Math.random() > 0.5) {
+//             return {x: 42};
+//         }
+//         return {y: "yes"};
+//     }
+// }
+// 
+// export interface SomeType {
+//     member: number;
+// }
+
+
+[
+  {
+    "containerKind": "",
+    "containerName": "",
+    "fileName": "/index.ts",
+    "textSpan": {
+      "start": 43,
+      "length": 10
+    },
+    "kind": "",
+    "name": ""
+  }
+]
+
+=== goToImplementation ===
+// === /index.ts ===
+// export class Foo {
+//     member: string;
+//     [|methodName|](propName: SomeType): SomeType { return propName; }
+//     otherMethod() {
+//         if (Math.random() > 0.5) {
+//             return {x: 42};
+//         }
+//         return {y: "yes"};
+//     }
+// }
+// 
+// export interface SomeType {
+//     member: number;
+// }
+
+// === /mymodule.ts ===
+// import * as mod from "/dist/index";
+// const instance = new mod.Foo();
+// instance./*GOTO IMPL*/methodName({member: 12});
+
+=== 0 ===
+// === /index.ts ===
+// export class Foo {
+//     member: string;
+//     [|methodName|](propName: SomeType): SomeType { return propName; }
+//     otherMethod() {
+//         if (Math.random() > 0.5) {
+//             return {x: 42};
+//         }
+//         return {y: "yes"};
+//     }
+// }
+// 
+// export interface SomeType {
+//     member: number;
+// }
+
+
+[
+  {
+    "fileName": "/index.ts",
+    "textSpan": {
+      "start": 43,
+      "length": 10
+    },
+    "kind": "",
+    "displayParts": []
+  }
+]

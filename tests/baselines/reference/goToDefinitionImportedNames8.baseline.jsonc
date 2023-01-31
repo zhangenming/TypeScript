@@ -1,0 +1,53 @@
+// === /tests/cases/fourslash/a.js ===
+// class [|Class|] {
+//     private f;
+// }
+//  export { Class };
+
+// === /tests/cases/fourslash/b.js ===
+// import { /*GOTO DEF*/Class } from "./a";
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/a.js ===
+    // class [|Class|] {
+    //     private f;
+    // }
+    //  export { Class };
+    === ContextSpan ===
+      // === /tests/cases/fourslash/a.js ===
+      // [|class Class {
+      //     private f;
+      // }|]
+      //  export { Class };
+  === TextSpan ===
+    // === /tests/cases/fourslash/b.js ===
+    // import { [|Class|] } from "./a";
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/a.js",
+      "textSpan": {
+        "start": 6,
+        "length": 5
+      },
+      "kind": "class",
+      "name": "Class",
+      "containerName": "",
+      "contextSpan": {
+        "start": 0,
+        "length": 30
+      },
+      "isLocal": true,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 9,
+    "length": 5
+  }
+}

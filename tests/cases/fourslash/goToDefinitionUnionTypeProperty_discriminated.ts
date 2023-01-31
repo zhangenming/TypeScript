@@ -21,9 +21,10 @@
 ////  [|/*propBogus*/prop|]: 0,
 ////};
 
-verify.goToDefinition({
-    kind: "aKind",
-    prop: "aProp",
-    kindBogus: ["aKind", "bKind"],
-    propBogus: ["aProp", "bProp"],
-});
+
+verify.baselineGoToDefinition(
+    "kind",
+    "prop",
+    "kindBogus",
+    "propBogus",
+);

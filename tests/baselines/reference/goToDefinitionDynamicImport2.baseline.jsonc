@@ -1,0 +1,58 @@
+// === /tests/cases/fourslash/foo.ts ===
+// export function [|bar|]() { return "bar"; }
+// var x = import("./foo");
+// x.then(foo => {
+//     foo.b/*GOTO DEF*/ar(); 
+// })
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/foo.ts ===
+    // export function [|bar|]() { return "bar"; }
+    // var x = import("./foo");
+    // x.then(foo => {
+    //     foo.bar(); 
+    // })
+    === ContextSpan ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // [|export function bar() { return "bar"; }|]
+      // var x = import("./foo");
+      // x.then(foo => {
+      //     foo.bar(); 
+      // })
+  === TextSpan ===
+    // === /tests/cases/fourslash/foo.ts ===
+    // export function bar() { return "bar"; }
+    // var x = import("./foo");
+    // x.then(foo => {
+    //     foo.[|bar|](); 
+    // })
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/foo.ts",
+      "textSpan": {
+        "start": 16,
+        "length": 3
+      },
+      "kind": "function",
+      "name": "bar",
+      "containerName": "\"/tests/cases/fourslash/foo\"",
+      "contextSpan": {
+        "start": 0,
+        "length": 39
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 89,
+    "length": 3
+  }
+}

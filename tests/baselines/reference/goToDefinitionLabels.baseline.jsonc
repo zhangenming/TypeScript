@@ -1,0 +1,173 @@
+// === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+// [|label1|]: while (true) {
+//     label2: while (true) {
+//         break /*GOTO DEF*/label1;
+//         continue label2;
+//         () => { break label1; }
+//         continue unknownLabel;
+//     }
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+    // [|label1|]: while (true) {
+    //     label2: while (true) {
+    //         break label1;
+    //         continue label2;
+    //         () => { break label1; }
+    //         continue unknownLabel;
+    //     }
+    // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+    // label1: while (true) {
+    //     label2: while (true) {
+    //         break [|label1|];
+    //         continue label2;
+    //         () => { break label1; }
+    //         continue unknownLabel;
+    //     }
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionLabels.ts",
+      "textSpan": {
+        "start": 0,
+        "length": 6
+      },
+      "kind": "label",
+      "name": "label1",
+      "isLocal": true,
+      "isAmbient": false
+    }
+  ],
+  "textSpan": {
+    "start": 64,
+    "length": 6
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+// label1: while (true) {
+//     [|label2|]: while (true) {
+//         break label1;
+//         continue /*GOTO DEF*/label2;
+//         () => { break label1; }
+//         continue unknownLabel;
+//     }
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+    // label1: while (true) {
+    //     [|label2|]: while (true) {
+    //         break label1;
+    //         continue label2;
+    //         () => { break label1; }
+    //         continue unknownLabel;
+    //     }
+    // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+    // label1: while (true) {
+    //     label2: while (true) {
+    //         break label1;
+    //         continue [|label2|];
+    //         () => { break label1; }
+    //         continue unknownLabel;
+    //     }
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionLabels.ts",
+      "textSpan": {
+        "start": 27,
+        "length": 6
+      },
+      "kind": "label",
+      "name": "label2",
+      "isLocal": true,
+      "isAmbient": false
+    }
+  ],
+  "textSpan": {
+    "start": 89,
+    "length": 6
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+// [|label1|]: while (true) {
+//     label2: while (true) {
+//         break label1;
+//         continue label2;
+//         () => { break /*GOTO DEF*/label1; }
+//         continue unknownLabel;
+//     }
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+    // [|label1|]: while (true) {
+    //     label2: while (true) {
+    //         break label1;
+    //         continue label2;
+    //         () => { break label1; }
+    //         continue unknownLabel;
+    //     }
+    // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+    // label1: while (true) {
+    //     label2: while (true) {
+    //         break label1;
+    //         continue label2;
+    //         () => { break [|label1|]; }
+    //         continue unknownLabel;
+    //     }
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionLabels.ts",
+      "textSpan": {
+        "start": 0,
+        "length": 6
+      },
+      "kind": "label",
+      "name": "label1",
+      "isLocal": true,
+      "isAmbient": false
+    }
+  ],
+  "textSpan": {
+    "start": 119,
+    "length": 6
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+// label1: while (true) {
+//     label2: while (true) {
+//         break label1;
+//         continue label2;
+//         () => { break label1; }
+//         continue /*GOTO DEF*/unknownLabel;
+//     }
+// }
+
+undefined

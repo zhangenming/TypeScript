@@ -1,0 +1,66 @@
+// === /tests/cases/fourslash/goToImplementationLocal_05.ts ===
+// class Bar {
+//     public hello() {}
+// }
+// 
+// var [|someVar|] = new Bar();
+// someVa/*GOTO IMPL*/r.hello();
+
+=== 0 ===
+// === /tests/cases/fourslash/goToImplementationLocal_05.ts ===
+// class Bar {
+//     public hello() {}
+// }
+// 
+// var [|someVar|] = new Bar();
+// someVar.hello();
+=== ContextSpan ===
+  // === /tests/cases/fourslash/goToImplementationLocal_05.ts ===
+  // class Bar {
+  //     public hello() {}
+  // }
+  // 
+  // [|var someVar = new Bar();|]
+  // someVar.hello();
+
+
+[
+  {
+    "textSpan": {
+      "start": 41,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/goToImplementationLocal_05.ts",
+    "contextSpan": {
+      "start": 37,
+      "length": 24
+    },
+    "displayParts": [
+      {
+        "text": "var",
+        "kind": "keyword"
+      },
+      {
+        "text": " ",
+        "kind": "space"
+      },
+      {
+        "text": "someVar",
+        "kind": "localName"
+      },
+      {
+        "text": ":",
+        "kind": "punctuation"
+      },
+      {
+        "text": " ",
+        "kind": "space"
+      },
+      {
+        "text": "Bar",
+        "kind": "className"
+      }
+    ],
+    "kind": "var"
+  }
+]

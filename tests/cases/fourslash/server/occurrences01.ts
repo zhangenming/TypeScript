@@ -10,4 +10,4 @@
 ////        continue foo;
 ////}
 
-verify.rangesAreOccurrences(false);
+verify.baselineOccurences(...test.ranges());

@@ -38,5 +38,4 @@
 ////obj.[|bool|];
 ////obj[`[|bool|]`];
 
-verify.rangesWithSameTextAreRenameLocations("num");
-verify.rangesWithSameTextAreRenameLocations("bool");
+verify.baselineRename([...test.rangesByText().get("num"), ...test.rangesByText().get("bool")]);

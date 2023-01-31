@@ -1,0 +1,172 @@
+=== RenameOptions ===
+{
+ "findInStrings": true,
+ "findInComments": true,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameCommentsAndStrings4.ts ======*/
+
+///<reference path="./Bar.ts" />
+function [|RENAME|]() {
+    // This is a reference to RENAME in a comment.
+    "this is a reference to RENAME in a string";
+    `Foo RENAME Baz.`;
+    {
+        const Bar = 0;
+        `RENAME ba ${Bar} bara RENAME berbobo ${Bar} araura RENAME ara!`;
+    }
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameCommentsAndStrings4.ts ===
+// ///<reference path="./Bar.ts" />
+// function [|Bar|]() {
+//     // This is a reference to Bar in a comment.
+//     "this is a reference to Bar in a string";
+//     `Foo Bar Baz.`;
+//     {
+//         const Bar = 0;
+//         `Bar ba ${Bar} bara Bar berbobo ${Bar} araura Bar ara!`;
+//     }
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameCommentsAndStrings4.ts ===
+  // ///<reference path="./Bar.ts" />
+  // [|function Bar() {
+  //     // This is a reference to Bar in a comment.
+  //     "this is a reference to Bar in a string";
+  //     `Foo Bar Baz.`;
+  //     {
+  //         const Bar = 0;
+  //         `Bar ba ${Bar} bara Bar berbobo ${Bar} araura Bar ara!`;
+  //     }
+  // }|]
+=== 1 ===
+// === /tests/cases/fourslash/renameCommentsAndStrings4.ts ===
+// ///<reference path="./Bar.ts" />
+// function Bar() {
+//     // This is a reference to [|Bar|] in a comment.
+//     "this is a reference to Bar in a string";
+//     `Foo Bar Baz.`;
+//     {
+//         const Bar = 0;
+//         `Bar ba ${Bar} bara Bar berbobo ${Bar} araura Bar ara!`;
+//     }
+// }
+=== 2 ===
+// === /tests/cases/fourslash/renameCommentsAndStrings4.ts ===
+// ///<reference path="./Bar.ts" />
+// function Bar() {
+//     // This is a reference to Bar in a comment.
+//     "this is a reference to [|Bar|] in a string";
+//     `Foo Bar Baz.`;
+//     {
+//         const Bar = 0;
+//         `Bar ba ${Bar} bara Bar berbobo ${Bar} araura Bar ara!`;
+//     }
+// }
+=== 3 ===
+// === /tests/cases/fourslash/renameCommentsAndStrings4.ts ===
+// ///<reference path="./Bar.ts" />
+// function Bar() {
+//     // This is a reference to Bar in a comment.
+//     "this is a reference to Bar in a string";
+//     `Foo [|Bar|] Baz.`;
+//     {
+//         const Bar = 0;
+//         `Bar ba ${Bar} bara Bar berbobo ${Bar} araura Bar ara!`;
+//     }
+// }
+=== 4 ===
+// === /tests/cases/fourslash/renameCommentsAndStrings4.ts ===
+// ///<reference path="./Bar.ts" />
+// function Bar() {
+//     // This is a reference to Bar in a comment.
+//     "this is a reference to Bar in a string";
+//     `Foo Bar Baz.`;
+//     {
+//         const Bar = 0;
+//         `[|Bar|] ba ${Bar} bara Bar berbobo ${Bar} araura Bar ara!`;
+//     }
+// }
+=== 5 ===
+// === /tests/cases/fourslash/renameCommentsAndStrings4.ts ===
+// ///<reference path="./Bar.ts" />
+// function Bar() {
+//     // This is a reference to Bar in a comment.
+//     "this is a reference to Bar in a string";
+//     `Foo Bar Baz.`;
+//     {
+//         const Bar = 0;
+//         `Bar ba ${Bar} bara [|Bar|] berbobo ${Bar} araura Bar ara!`;
+//     }
+// }
+=== 6 ===
+// === /tests/cases/fourslash/renameCommentsAndStrings4.ts ===
+// ///<reference path="./Bar.ts" />
+// function Bar() {
+//     // This is a reference to Bar in a comment.
+//     "this is a reference to Bar in a string";
+//     `Foo Bar Baz.`;
+//     {
+//         const Bar = 0;
+//         `Bar ba ${Bar} bara Bar berbobo ${Bar} araura [|Bar|] ara!`;
+//     }
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 42,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameCommentsAndStrings4.ts",
+    "contextSpan": {
+      "start": 33,
+      "length": 232
+    }
+  },
+  {
+    "textSpan": {
+      "start": 80,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameCommentsAndStrings4.ts"
+  },
+  {
+    "textSpan": {
+      "start": 126,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameCommentsAndStrings4.ts"
+  },
+  {
+    "textSpan": {
+      "start": 153,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameCommentsAndStrings4.ts"
+  },
+  {
+    "textSpan": {
+      "start": 202,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameCommentsAndStrings4.ts"
+  },
+  {
+    "textSpan": {
+      "start": 221,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameCommentsAndStrings4.ts"
+  },
+  {
+    "textSpan": {
+      "start": 247,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameCommentsAndStrings4.ts"
+  }
+]

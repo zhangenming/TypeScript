@@ -1,0 +1,107 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+function bar() {
+}
+bar.[|RENAME|] = "foo";
+console.log(bar.RENAME);
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// function bar() {
+// }
+// bar.[|foo|] = "foo";
+// console.log(bar.foo);
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // function bar() {
+  // }
+  // [|bar.foo = "foo";|]
+  // console.log(bar.foo);
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// function bar() {
+// }
+// bar.foo = "foo";
+// console.log(bar.[|foo|]);
+
+
+[
+  {
+    "textSpan": {
+      "start": 23,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 19,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 52,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+function bar() {
+}
+bar.RENAME = "foo";
+console.log(bar.[|RENAME|]);
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// function bar() {
+// }
+// bar.[|foo|] = "foo";
+// console.log(bar.foo);
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // function bar() {
+  // }
+  // [|bar.foo = "foo";|]
+  // console.log(bar.foo);
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// function bar() {
+// }
+// bar.foo = "foo";
+// console.log(bar.[|foo|]);
+
+
+[
+  {
+    "textSpan": {
+      "start": 23,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 19,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 52,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]

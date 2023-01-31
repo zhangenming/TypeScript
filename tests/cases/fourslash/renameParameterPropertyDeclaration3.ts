@@ -7,4 +7,5 @@
 ////     }
 //// }
 
-verify.rangesWithSameTextAreRenameLocations("protectedParam");
+verify.baselineRename(test.rangesByText().get("protectedParam"));
+

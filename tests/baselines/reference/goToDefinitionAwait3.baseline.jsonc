@@ -1,0 +1,86 @@
+// === /tests/cases/fourslash/goToDefinitionAwait3.ts ===
+// class C {
+//     notAsync() {
+//       /*GOTO DEF*/await Promise.resolve(0);
+//     }
+// 
+//     async foo() {
+//       await Promise.resolve(0);
+//     }
+// }
+
+undefined
+
+// === /tests/cases/fourslash/goToDefinitionAwait3.ts ===
+// class C {
+//     notAsync() {
+//       await Promise.resolve(0);
+//     }
+// 
+//     async [|foo|]() {
+//       /*GOTO DEF*/await Promise.resolve(0);
+//     }
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionAwait3.ts ===
+    // class C {
+    //     notAsync() {
+    //       await Promise.resolve(0);
+    //     }
+    // 
+    //     async [|foo|]() {
+    //       await Promise.resolve(0);
+    //     }
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionAwait3.ts ===
+      // class C {
+      //     notAsync() {
+      //       await Promise.resolve(0);
+      //     }
+      // 
+      //     [|async foo() {
+      //       await Promise.resolve(0);
+      //     }|]
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionAwait3.ts ===
+    // class C {
+    //     notAsync() {
+    //       await Promise.resolve(0);
+    //     }
+    // 
+    //     async foo() {
+    //       [|await|] Promise.resolve(0);
+    //     }
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionAwait3.ts",
+      "textSpan": {
+        "start": 76,
+        "length": 3
+      },
+      "kind": "method",
+      "name": "foo",
+      "containerName": "C",
+      "contextSpan": {
+        "start": 70,
+        "length": 51
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 90,
+    "length": 5
+  }
+}

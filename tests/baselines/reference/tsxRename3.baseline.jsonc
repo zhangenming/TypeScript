@@ -1,0 +1,227 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+    }
+    interface ElementAttributesProperty { props }
+}
+class MyClass {
+  props: {
+    [|RENAME|]?: string;
+    size?: number;
+}
+
+
+var x = <MyClass RENAME='hello'/>;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props }
+// }
+// class MyClass {
+//   props: {
+//     [|name|]?: string;
+//     size?: number;
+// }
+// 
+// 
+// var x = <MyClass name='hello'/>;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props }
+  // }
+  // class MyClass {
+  //   props: {
+  //     [|name?: string;|]
+  //     size?: number;
+  // }
+  // 
+  // 
+  // var x = <MyClass name='hello'/>;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props }
+// }
+// class MyClass {
+//   props: {
+//     name?: string;
+//     size?: number;
+// }
+// 
+// 
+// var x = <MyClass [|name|]='hello'/>;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props }
+  // }
+  // class MyClass {
+  //   props: {
+  //     name?: string;
+  //     size?: number;
+  // }
+  // 
+  // 
+  // var x = <MyClass [|name='hello'|]/>;
+
+
+[
+  {
+    "textSpan": {
+      "start": 170,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 170,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 225,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 225,
+      "length": 12
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+    }
+    interface ElementAttributesProperty { props }
+}
+class MyClass {
+  props: {
+    RENAME?: string;
+    size?: number;
+}
+
+
+var x = <MyClass [|RENAME|]='hello'/>;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props }
+// }
+// class MyClass {
+//   props: {
+//     [|name|]?: string;
+//     size?: number;
+// }
+// 
+// 
+// var x = <MyClass name='hello'/>;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props }
+  // }
+  // class MyClass {
+  //   props: {
+  //     [|name?: string;|]
+  //     size?: number;
+  // }
+  // 
+  // 
+  // var x = <MyClass name='hello'/>;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props }
+// }
+// class MyClass {
+//   props: {
+//     name?: string;
+//     size?: number;
+// }
+// 
+// 
+// var x = <MyClass [|name|]='hello'/>;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props }
+  // }
+  // class MyClass {
+  //   props: {
+  //     name?: string;
+  //     size?: number;
+  // }
+  // 
+  // 
+  // var x = <MyClass [|name='hello'|]/>;
+
+
+[
+  {
+    "textSpan": {
+      "start": 170,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 170,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 225,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 225,
+      "length": 12
+    }
+  }
+]

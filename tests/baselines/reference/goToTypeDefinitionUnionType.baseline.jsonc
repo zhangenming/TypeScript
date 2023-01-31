@@ -1,0 +1,191 @@
+// === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
+// class [|C|] {
+//     p;
+// }
+// 
+// interface [|I|] {
+//     x;
+// }
+// 
+// module M {
+//     export interface [|I|] {
+//         y;
+//     }
+// }
+// 
+// var x: C | I | M.I;
+// 
+// /*GOTO TYPE*/x;
+
+=== 0 ===
+// === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
+// class [|C|] {
+//     p;
+// }
+// 
+// interface I {
+//     x;
+// }
+// 
+// module M {
+//     export interface I {
+//         y;
+//     }
+// }
+// 
+// var x: C | I | M.I;
+// 
+// x;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
+  // [|class C {
+  //     p;
+  // }|]
+  // 
+  // interface I {
+  //     x;
+  // }
+  // 
+  // module M {
+  //     export interface I {
+  //         y;
+  //     }
+  // }
+  // 
+  // var x: C | I | M.I;
+  // 
+  // x;
+=== 1 ===
+// === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
+// class C {
+//     p;
+// }
+// 
+// interface [|I|] {
+//     x;
+// }
+// 
+// module M {
+//     export interface I {
+//         y;
+//     }
+// }
+// 
+// var x: C | I | M.I;
+// 
+// x;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
+  // class C {
+  //     p;
+  // }
+  // 
+  // [|interface I {
+  //     x;
+  // }|]
+  // 
+  // module M {
+  //     export interface I {
+  //         y;
+  //     }
+  // }
+  // 
+  // var x: C | I | M.I;
+  // 
+  // x;
+=== 2 ===
+// === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
+// class C {
+//     p;
+// }
+// 
+// interface I {
+//     x;
+// }
+// 
+// module M {
+//     export interface [|I|] {
+//         y;
+//     }
+// }
+// 
+// var x: C | I | M.I;
+// 
+// x;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
+  // class C {
+  //     p;
+  // }
+  // 
+  // interface I {
+  //     x;
+  // }
+  // 
+  // module M {
+  //     [|export interface I {
+  //         y;
+  //     }|]
+  // }
+  // 
+  // var x: C | I | M.I;
+  // 
+  // x;
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/goToTypeDefinitionUnionType.ts",
+    "textSpan": {
+      "start": 6,
+      "length": 1
+    },
+    "kind": "class",
+    "name": "C",
+    "containerName": "",
+    "contextSpan": {
+      "start": 0,
+      "length": 18
+    },
+    "isLocal": false,
+    "isAmbient": false,
+    "unverified": false,
+    "failedAliasResolution": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/goToTypeDefinitionUnionType.ts",
+    "textSpan": {
+      "start": 30,
+      "length": 1
+    },
+    "kind": "interface",
+    "name": "I",
+    "containerName": "",
+    "contextSpan": {
+      "start": 20,
+      "length": 22
+    },
+    "isLocal": false,
+    "isAmbient": false,
+    "unverified": false,
+    "failedAliasResolution": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/goToTypeDefinitionUnionType.ts",
+    "textSpan": {
+      "start": 76,
+      "length": 1
+    },
+    "kind": "interface",
+    "name": "I",
+    "containerName": "M",
+    "contextSpan": {
+      "start": 59,
+      "length": 37
+    },
+    "isLocal": false,
+    "isAmbient": false,
+    "unverified": false,
+    "failedAliasResolution": false
+  }
+]

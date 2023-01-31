@@ -1,0 +1,145 @@
+=== occurences ===
+// === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
+// module Alpha {
+//     export var [|x|] = 100;
+// }
+// 
+// module Beta {
+//     import p = Alpha./*OCCURENCES*/[|x|];
+// }
+// 
+// var x = Alpha.[|x|]
+
+=== 0 ===
+// === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
+// module Alpha {
+//     export var [|x|] = 100;
+// }
+// 
+// module Beta {
+//     import p = Alpha.x;
+// }
+// 
+// var x = Alpha.x
+=== ContextSpan ===
+  // === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
+  // module Alpha {
+  //     [|export var x = 100;|]
+  // }
+  // 
+  // module Beta {
+  //     import p = Alpha.x;
+  // }
+  // 
+  // var x = Alpha.x
+=== 1 ===
+// === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
+// module Alpha {
+//     export var x = 100;
+// }
+// 
+// module Beta {
+//     import p = Alpha.[|x|];
+// }
+// 
+// var x = Alpha.x
+=== 2 ===
+// === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
+// module Alpha {
+//     export var x = 100;
+// }
+// 
+// module Beta {
+//     import p = Alpha.x;
+// }
+// 
+// var x = Alpha.[|x|]
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts",
+    "textSpan": {
+      "start": 30,
+      "length": 1
+    },
+    "isWriteAccess": true,
+    "contextSpan": {
+      "start": 19,
+      "length": 19
+    }
+  },
+  {
+    "fileName": "/tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts",
+    "textSpan": {
+      "start": 77,
+      "length": 1
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts",
+    "textSpan": {
+      "start": 97,
+      "length": 1
+    },
+    "isWriteAccess": false
+  }
+]
+
+=== getDefinitionAtPosition ===
+// === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
+// module Alpha {
+//     export var [|x|] = 100;
+// }
+// 
+// module Beta {
+//     import p = Alpha./*GOTO DEF POS*/x;
+// }
+// 
+// var x = Alpha.x
+
+=== 0 ===
+// === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
+// module Alpha {
+//     export var [|x|] = 100;
+// }
+// 
+// module Beta {
+//     import p = Alpha.x;
+// }
+// 
+// var x = Alpha.x
+=== ContextSpan ===
+  // === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
+  // module Alpha {
+  //     [|export var x = 100;|]
+  // }
+  // 
+  // module Beta {
+  //     import p = Alpha.x;
+  // }
+  // 
+  // var x = Alpha.x
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts",
+    "textSpan": {
+      "start": 30,
+      "length": 1
+    },
+    "kind": "var",
+    "name": "x",
+    "containerName": "Alpha",
+    "contextSpan": {
+      "start": 19,
+      "length": 19
+    },
+    "isLocal": false,
+    "isAmbient": false,
+    "unverified": false,
+    "failedAliasResolution": false
+  }
+]

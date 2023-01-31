@@ -1,0 +1,65 @@
+=== goToDefinition ===
+// === /node_modules/foo/src/a.ts ===
+// export const [|a |]= 'a';
+
+// === /b.ts ===
+// import { a } from 'foo/a';
+// a/*GOTO DEF*/
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /node_modules/foo/src/a.ts ===
+    // export const [|a |]= 'a';
+  === TextSpan ===
+    // === /b.ts ===
+    // import { a } from 'foo/a';
+    // [|a|]
+}
+
+{
+  "definitions": [
+    {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/node_modules/foo/src/a.ts",
+      "textSpan": {
+        "start": 13,
+        "length": 2
+      },
+      "kind": "",
+      "name": ""
+    }
+  ],
+  "textSpan": {
+    "start": 27,
+    "length": 1
+  }
+}
+
+=== goToSourceDefinition ===
+// === /node_modules/foo/src/a.ts ===
+// export const [|a |]= 'a';
+
+// === /b.ts ===
+// import { a } from 'foo/a';
+// a/*GOTO SOURCE DEF*/
+
+=== 0 ===
+// === /node_modules/foo/src/a.ts ===
+// export const [|a |]= 'a';
+
+
+[
+  {
+    "containerKind": "",
+    "containerName": "",
+    "fileName": "/node_modules/foo/src/a.ts",
+    "textSpan": {
+      "start": 13,
+      "length": 2
+    },
+    "kind": "",
+    "name": ""
+  }
+]

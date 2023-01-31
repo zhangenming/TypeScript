@@ -1,3 +1,112 @@
+=== getDefinitionAtPosition ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param /*GOTO DEF POS*/foo I pity the foo
+//  */
+// function f([|foo|]: I) {
+//     return foo;
+// }
+
+=== 0 ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param foo I pity the foo
+//  */
+// function f([|foo|]: I) {
+//     return foo;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/jsDocServices.ts ===
+  // interface I {}
+  // 
+  // /**
+  //  * @param foo I pity the foo
+  //  */
+  // function f([|foo: I|]) {
+  //     return foo;
+  // }
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts",
+    "textSpan": {
+      "start": 64,
+      "length": 3
+    },
+    "kind": "parameter",
+    "name": "foo",
+    "containerName": "",
+    "contextSpan": {
+      "start": 64,
+      "length": 6
+    },
+    "isLocal": false,
+    "isAmbient": false,
+    "unverified": false,
+    "failedAliasResolution": false
+  }
+]
+
+=== goToType ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface [|I|] {}
+// 
+// /**
+//  * @param /*GOTO TYPE*/foo I pity the foo
+//  */
+// function f(foo: I) {
+//     return foo;
+// }
+
+=== 0 ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface [|I|] {}
+// 
+// /**
+//  * @param foo I pity the foo
+//  */
+// function f(foo: I) {
+//     return foo;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/jsDocServices.ts ===
+  // [|interface I {}|]
+  // 
+  // /**
+  //  * @param foo I pity the foo
+  //  */
+  // function f(foo: I) {
+  //     return foo;
+  // }
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts",
+    "textSpan": {
+      "start": 10,
+      "length": 1
+    },
+    "kind": "interface",
+    "name": "I",
+    "containerName": "",
+    "contextSpan": {
+      "start": 0,
+      "length": 14
+    },
+    "isLocal": false,
+    "isAmbient": false,
+    "unverified": false,
+    "failedAliasResolution": false
+  }
+]
+
+=== findAllReferences ===
 // === /tests/cases/fourslash/jsDocServices.ts ===
 // interface I {}
 // 
@@ -7,6 +116,72 @@
 // function f([|foo|]: I) {
 //     return [|foo|];
 // }
+
+[
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f([|foo|]: I) {
+      //     return foo;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/jsDocServices.ts ===
+        // interface I {}
+        // 
+        // /**
+        //  * @param foo I pity the foo
+        //  */
+        // function f([|foo: I|]) {
+        //     return foo;
+        // }
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param [|foo|] I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return foo;
+      // }
+      === 1 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f([|foo|]: I) {
+      //     return foo;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/jsDocServices.ts ===
+        // interface I {}
+        // 
+        // /**
+        //  * @param foo I pity the foo
+        //  */
+        // function f([|foo: I|]) {
+        //     return foo;
+        // }
+      === 2 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return [|foo|];
+      // }
+  }
+]
 
 [
   {
@@ -101,6 +276,72 @@
 // function f(/*FIND ALL REFS*/[|foo|]: I) {
 //     return [|foo|];
 // }
+
+[
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f([|foo|]: I) {
+      //     return foo;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/jsDocServices.ts ===
+        // interface I {}
+        // 
+        // /**
+        //  * @param foo I pity the foo
+        //  */
+        // function f([|foo: I|]) {
+        //     return foo;
+        // }
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param [|foo|] I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return foo;
+      // }
+      === 1 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f([|foo|]: I) {
+      //     return foo;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/jsDocServices.ts ===
+        // interface I {}
+        // 
+        // /**
+        //  * @param foo I pity the foo
+        //  */
+        // function f([|foo: I|]) {
+        //     return foo;
+        // }
+      === 2 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return [|foo|];
+      // }
+  }
+]
 
 [
   {
@@ -201,6 +442,72 @@
 
 [
   {
+    === Definition ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f([|foo|]: I) {
+      //     return foo;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/jsDocServices.ts ===
+        // interface I {}
+        // 
+        // /**
+        //  * @param foo I pity the foo
+        //  */
+        // function f([|foo: I|]) {
+        //     return foo;
+        // }
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param [|foo|] I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return foo;
+      // }
+      === 1 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f([|foo|]: I) {
+      //     return foo;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/jsDocServices.ts ===
+        // interface I {}
+        // 
+        // /**
+        //  * @param foo I pity the foo
+        //  */
+        // function f([|foo: I|]) {
+        //     return foo;
+        // }
+      === 2 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return [|foo|];
+      // }
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -280,5 +587,535 @@
         "isWriteAccess": false
       }
     ]
+  }
+]
+
+=== documentHighlights ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param /*HIGHLIGHTS*/[|foo|] I pity the foo
+//  */
+// function f([|foo|]: I) {
+//     return [|foo|];
+// }
+
+[
+  {
+    === /tests/cases/fourslash/jsDocServices.ts ===
+      === 0 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param [|foo|] I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return foo;
+      // }
+      === 1 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f([|foo|]: I) {
+      //     return foo;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/jsDocServices.ts ===
+        // interface I {}
+        // 
+        // /**
+        //  * @param foo I pity the foo
+        //  */
+        // function f([|foo: I|]) {
+        //     return foo;
+        // }
+      === 2 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return [|foo|];
+      // }
+  }
+]
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 30,
+          "length": 3
+        },
+        "kind": "reference"
+      },
+      {
+        "textSpan": {
+          "start": 64,
+          "length": 3
+        },
+        "kind": "writtenReference",
+        "contextSpan": {
+          "start": 64,
+          "length": 6
+        }
+      },
+      {
+        "textSpan": {
+          "start": 85,
+          "length": 3
+        },
+        "kind": "reference"
+      }
+    ]
+  }
+]
+
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param [|foo|] I pity the foo
+//  */
+// function f(/*HIGHLIGHTS*/[|foo|]: I) {
+//     return [|foo|];
+// }
+
+[
+  {
+    === /tests/cases/fourslash/jsDocServices.ts ===
+      === 0 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param [|foo|] I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return foo;
+      // }
+      === 1 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f([|foo|]: I) {
+      //     return foo;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/jsDocServices.ts ===
+        // interface I {}
+        // 
+        // /**
+        //  * @param foo I pity the foo
+        //  */
+        // function f([|foo: I|]) {
+        //     return foo;
+        // }
+      === 2 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return [|foo|];
+      // }
+  }
+]
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 30,
+          "length": 3
+        },
+        "kind": "reference"
+      },
+      {
+        "textSpan": {
+          "start": 64,
+          "length": 3
+        },
+        "kind": "writtenReference",
+        "contextSpan": {
+          "start": 64,
+          "length": 6
+        }
+      },
+      {
+        "textSpan": {
+          "start": 85,
+          "length": 3
+        },
+        "kind": "reference"
+      }
+    ]
+  }
+]
+
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param [|foo|] I pity the foo
+//  */
+// function f([|foo|]: I) {
+//     return /*HIGHLIGHTS*/[|foo|];
+// }
+
+[
+  {
+    === /tests/cases/fourslash/jsDocServices.ts ===
+      === 0 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param [|foo|] I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return foo;
+      // }
+      === 1 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f([|foo|]: I) {
+      //     return foo;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/jsDocServices.ts ===
+        // interface I {}
+        // 
+        // /**
+        //  * @param foo I pity the foo
+        //  */
+        // function f([|foo: I|]) {
+        //     return foo;
+        // }
+      === 2 ===
+      // === /tests/cases/fourslash/jsDocServices.ts ===
+      // interface I {}
+      // 
+      // /**
+      //  * @param foo I pity the foo
+      //  */
+      // function f(foo: I) {
+      //     return [|foo|];
+      // }
+  }
+]
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 30,
+          "length": 3
+        },
+        "kind": "reference"
+      },
+      {
+        "textSpan": {
+          "start": 64,
+          "length": 3
+        },
+        "kind": "writtenReference",
+        "contextSpan": {
+          "start": 64,
+          "length": 6
+        }
+      },
+      {
+        "textSpan": {
+          "start": 85,
+          "length": 3
+        },
+        "kind": "reference"
+      }
+    ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/jsDocServices.ts ======*/
+
+interface I {}
+
+/**
+ * @param [|RENAME|] I pity the foo
+ */
+function f(RENAME: I) {
+    return RENAME;
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param [|foo|] I pity the foo
+//  */
+// function f(foo: I) {
+//     return foo;
+// }
+=== 1 ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param foo I pity the foo
+//  */
+// function f([|foo|]: I) {
+//     return foo;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/jsDocServices.ts ===
+  // interface I {}
+  // 
+  // /**
+  //  * @param foo I pity the foo
+  //  */
+  // function f([|foo: I|]) {
+  //     return foo;
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param foo I pity the foo
+//  */
+// function f(foo: I) {
+//     return [|foo|];
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts"
+  },
+  {
+    "textSpan": {
+      "start": 64,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts",
+    "contextSpan": {
+      "start": 64,
+      "length": 6
+    }
+  },
+  {
+    "textSpan": {
+      "start": 85,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/jsDocServices.ts ======*/
+
+interface I {}
+
+/**
+ * @param RENAME I pity the foo
+ */
+function f([|RENAME|]: I) {
+    return RENAME;
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param [|foo|] I pity the foo
+//  */
+// function f(foo: I) {
+//     return foo;
+// }
+=== 1 ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param foo I pity the foo
+//  */
+// function f([|foo|]: I) {
+//     return foo;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/jsDocServices.ts ===
+  // interface I {}
+  // 
+  // /**
+  //  * @param foo I pity the foo
+  //  */
+  // function f([|foo: I|]) {
+  //     return foo;
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param foo I pity the foo
+//  */
+// function f(foo: I) {
+//     return [|foo|];
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts"
+  },
+  {
+    "textSpan": {
+      "start": 64,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts",
+    "contextSpan": {
+      "start": 64,
+      "length": 6
+    }
+  },
+  {
+    "textSpan": {
+      "start": 85,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/jsDocServices.ts ======*/
+
+interface I {}
+
+/**
+ * @param RENAME I pity the foo
+ */
+function f(RENAME: I) {
+    return [|RENAME|];
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param [|foo|] I pity the foo
+//  */
+// function f(foo: I) {
+//     return foo;
+// }
+=== 1 ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param foo I pity the foo
+//  */
+// function f([|foo|]: I) {
+//     return foo;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/jsDocServices.ts ===
+  // interface I {}
+  // 
+  // /**
+  //  * @param foo I pity the foo
+  //  */
+  // function f([|foo: I|]) {
+  //     return foo;
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param foo I pity the foo
+//  */
+// function f(foo: I) {
+//     return [|foo|];
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts"
+  },
+  {
+    "textSpan": {
+      "start": 64,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts",
+    "contextSpan": {
+      "start": 64,
+      "length": 6
+    }
+  },
+  {
+    "textSpan": {
+      "start": 85,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/jsDocServices.ts"
   }
 ]

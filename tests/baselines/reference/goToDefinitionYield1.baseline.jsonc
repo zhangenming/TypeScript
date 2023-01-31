@@ -1,0 +1,131 @@
+// === /tests/cases/fourslash/goToDefinitionYield1.ts ===
+// function* [|gen|]() {
+//     /*GOTO DEF*/yield 0;
+// }
+// 
+// const genFunction = function*() {
+//     yield 0;
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionYield1.ts ===
+    // function* [|gen|]() {
+    //     yield 0;
+    // }
+    // 
+    // const genFunction = function*() {
+    //     yield 0;
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionYield1.ts ===
+      // [|function* gen() {
+      //     yield 0;
+      // }|]
+      // 
+      // const genFunction = function*() {
+      //     yield 0;
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionYield1.ts ===
+    // function* gen() {
+    //     [|yield|] 0;
+    // }
+    // 
+    // const genFunction = function*() {
+    //     yield 0;
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionYield1.ts",
+      "textSpan": {
+        "start": 10,
+        "length": 3
+      },
+      "kind": "function",
+      "name": "gen",
+      "containerName": "",
+      "contextSpan": {
+        "start": 0,
+        "length": 32
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 22,
+    "length": 5
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinitionYield1.ts ===
+// function* gen() {
+//     yield 0;
+// }
+// 
+// const [|genFunction|] = function*() {
+//     /*GOTO DEF*/yield 0;
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionYield1.ts ===
+    // function* gen() {
+    //     yield 0;
+    // }
+    // 
+    // const [|genFunction|] = function*() {
+    //     yield 0;
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionYield1.ts ===
+      // function* gen() {
+      //     yield 0;
+      // }
+      // 
+      // const genFunction = [|function*() {
+      //     yield 0;
+      // }|]
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionYield1.ts ===
+    // function* gen() {
+    //     yield 0;
+    // }
+    // 
+    // const genFunction = function*() {
+    //     [|yield|] 0;
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionYield1.ts",
+      "textSpan": {
+        "start": 40,
+        "length": 11
+      },
+      "kind": "local function",
+      "name": "genFunction",
+      "containerName": "",
+      "contextSpan": {
+        "start": 54,
+        "length": 28
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 72,
+    "length": 5
+  }
+}

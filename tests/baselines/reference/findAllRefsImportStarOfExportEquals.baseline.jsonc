@@ -1,3 +1,4 @@
+=== findAllReferences ===
 // === /b.ts ===
 // import [|b|] from "a";
 // [|b|]();
@@ -14,6 +15,134 @@
 //     export const x: number;
 // }
 // export = [|a|];
+
+[
+  {
+    === Definition ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+    === References ===
+      === 0 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+      === 1 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace [|a|] {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // [|declare namespace a {
+        //     export const x: number;
+        // }|]
+        // export = a;
+      === 2 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = [|a|];
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // [|export = a;|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+      === 1 ===
+      // === /b.ts ===
+      // import b from "a";
+      // [|b|]();
+      // b.x;
+      === 2 ===
+      // === /b.ts ===
+      // import b from "a";
+      // b();
+      // [|b|].x;
+  },
+  {
+    === Definition ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+      === 1 ===
+      // === /c.ts ===
+      // import a from "a";
+      // [|a|]();
+      // a.x;
+      === 2 ===
+      // === /c.ts ===
+      // import a from "a";
+      // a();
+      // [|a|].x;
+  }
+]
 
 [
   {
@@ -441,6 +570,134 @@
 
 [
   {
+    === Definition ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+    === References ===
+      === 0 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+      === 1 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace [|a|] {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // [|declare namespace a {
+        //     export const x: number;
+        // }|]
+        // export = a;
+      === 2 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = [|a|];
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // [|export = a;|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+      === 1 ===
+      // === /b.ts ===
+      // import b from "a";
+      // [|b|]();
+      // b.x;
+      === 2 ===
+      // === /b.ts ===
+      // import b from "a";
+      // b();
+      // [|b|].x;
+  },
+  {
+    === Definition ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+      === 1 ===
+      // === /c.ts ===
+      // import a from "a";
+      // [|a|]();
+      // a.x;
+      === 2 ===
+      // === /c.ts ===
+      // import a from "a";
+      // a();
+      // [|a|].x;
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -865,6 +1122,134 @@
 
 [
   {
+    === Definition ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+    === References ===
+      === 0 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+      === 1 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace [|a|] {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // [|declare namespace a {
+        //     export const x: number;
+        // }|]
+        // export = a;
+      === 2 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = [|a|];
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // [|export = a;|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+      === 1 ===
+      // === /b.ts ===
+      // import b from "a";
+      // [|b|]();
+      // b.x;
+      === 2 ===
+      // === /b.ts ===
+      // import b from "a";
+      // b();
+      // [|b|].x;
+  },
+  {
+    === Definition ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+      === 1 ===
+      // === /c.ts ===
+      // import a from "a";
+      // [|a|]();
+      // a.x;
+      === 2 ===
+      // === /c.ts ===
+      // import a from "a";
+      // a();
+      // [|a|].x;
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -1268,6 +1653,42 @@
 
 [
   {
+    === Definition ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+      === 1 ===
+      // === /b.ts ===
+      // import b from "a";
+      // [|b|]();
+      // b.x;
+      === 2 ===
+      // === /b.ts ===
+      // import b from "a";
+      // b();
+      // [|b|].x;
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -1421,6 +1842,42 @@
 // import [|b|] from "a";
 // /*FIND ALL REFS*/[|b|]();
 // [|b|].x;
+
+[
+  {
+    === Definition ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+      === 1 ===
+      // === /b.ts ===
+      // import b from "a";
+      // [|b|]();
+      // b.x;
+      === 2 ===
+      // === /b.ts ===
+      // import b from "a";
+      // b();
+      // [|b|].x;
+  }
+]
 
 [
   {
@@ -1586,6 +2043,134 @@
 //     export const x: number;
 // }
 // export = [|a|];
+
+[
+  {
+    === Definition ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+      === 1 ===
+      // === /c.ts ===
+      // import a from "a";
+      // [|a|]();
+      // a.x;
+      === 2 ===
+      // === /c.ts ===
+      // import a from "a";
+      // a();
+      // [|a|].x;
+  },
+  {
+    === Definition ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+    === References ===
+      === 0 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+      === 1 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace [|a|] {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // [|declare namespace a {
+        //     export const x: number;
+        // }|]
+        // export = a;
+      === 2 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = [|a|];
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // [|export = a;|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+      === 1 ===
+      // === /b.ts ===
+      // import b from "a";
+      // [|b|]();
+      // b.x;
+      === 2 ===
+      // === /b.ts ===
+      // import b from "a";
+      // b();
+      // [|b|].x;
+  }
+]
 
 [
   {
@@ -2013,6 +2598,134 @@
 
 [
   {
+    === Definition ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+      === 1 ===
+      // === /c.ts ===
+      // import a from "a";
+      // [|a|]();
+      // a.x;
+      === 2 ===
+      // === /c.ts ===
+      // import a from "a";
+      // a();
+      // [|a|].x;
+  },
+  {
+    === Definition ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+    === References ===
+      === 0 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+      === 1 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace [|a|] {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // [|declare namespace a {
+        //     export const x: number;
+        // }|]
+        // export = a;
+      === 2 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = [|a|];
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // [|export = a;|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+      === 1 ===
+      // === /b.ts ===
+      // import b from "a";
+      // [|b|]();
+      // b.x;
+      === 2 ===
+      // === /b.ts ===
+      // import b from "a";
+      // b();
+      // [|b|].x;
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -2428,6 +3141,134 @@
 
 [
   {
+    === Definition ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // import [|a|] from "a";
+      // a();
+      // a.x;
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|import a from "a";|]
+        // a();
+        // a.x;
+      === 1 ===
+      // === /c.ts ===
+      // import a from "a";
+      // [|a|]();
+      // a.x;
+      === 2 ===
+      // === /c.ts ===
+      // import a from "a";
+      // a();
+      // [|a|].x;
+  },
+  {
+    === Definition ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+    === References ===
+      === 0 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function [|a|](): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // [|declare function a(): void;|]
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // export = a;
+      === 1 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace [|a|] {
+      //     export const x: number;
+      // }
+      // export = a;
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // [|declare namespace a {
+        //     export const x: number;
+        // }|]
+        // export = a;
+      === 2 ===
+      // === /node_modules/a/index.d.ts ===
+      // declare function a(): void;
+      // declare namespace a {
+      //     export const x: number;
+      // }
+      // export = [|a|];
+      === ContextSpan ===
+        // === /node_modules/a/index.d.ts ===
+        // declare function a(): void;
+        // declare namespace a {
+        //     export const x: number;
+        // }
+        // [|export = a;|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import [|b|] from "a";
+      // b();
+      // b.x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import b from "a";|]
+        // b();
+        // b.x;
+      === 1 ===
+      // === /b.ts ===
+      // import b from "a";
+      // [|b|]();
+      // b.x;
+      === 2 ===
+      // === /b.ts ===
+      // import b from "a";
+      // b();
+      // [|b|].x;
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -2821,5 +3662,813 @@
         "isWriteAccess": false
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /node_modules/a/index.d.ts ======*/
+
+declare function RENAME(): void;
+declare namespace RENAME {
+    export const x: number;
+}
+export = RENAME;
+
+/*====== /c.ts ======*/
+
+import RENAME from "a";
+RENAME();
+RENAME.x;
+
+=== 0 ===
+// === /node_modules/a/index.d.ts ===
+// declare function [|a|](): void;
+// declare namespace a {
+//     export const x: number;
+// }
+// export = a;
+=== ContextSpan ===
+  // === /node_modules/a/index.d.ts ===
+  // [|declare function a(): void;|]
+  // declare namespace a {
+  //     export const x: number;
+  // }
+  // export = a;
+=== 1 ===
+// === /node_modules/a/index.d.ts ===
+// declare function a(): void;
+// declare namespace [|a|] {
+//     export const x: number;
+// }
+// export = a;
+=== ContextSpan ===
+  // === /node_modules/a/index.d.ts ===
+  // declare function a(): void;
+  // [|declare namespace a {
+  //     export const x: number;
+  // }|]
+  // export = a;
+=== 2 ===
+// === /node_modules/a/index.d.ts ===
+// declare function a(): void;
+// declare namespace a {
+//     export const x: number;
+// }
+// export = [|a|];
+=== ContextSpan ===
+  // === /node_modules/a/index.d.ts ===
+  // declare function a(): void;
+  // declare namespace a {
+  //     export const x: number;
+  // }
+  // [|export = a;|]
+=== 3 ===
+// === /c.ts ===
+// import [|a|] from "a";
+// a();
+// a.x;
+=== ContextSpan ===
+  // === /c.ts ===
+  // [|import a from "a";|]
+  // a();
+  // a.x;
+=== 4 ===
+// === /c.ts ===
+// import a from "a";
+// [|a|]();
+// a.x;
+=== 5 ===
+// === /c.ts ===
+// import a from "a";
+// a();
+// [|a|].x;
+
+
+[
+  {
+    "textSpan": {
+      "start": 17,
+      "length": 1
+    },
+    "fileName": "/node_modules/a/index.d.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 46,
+      "length": 1
+    },
+    "fileName": "/node_modules/a/index.d.ts",
+    "contextSpan": {
+      "start": 28,
+      "length": 51
+    }
+  },
+  {
+    "textSpan": {
+      "start": 89,
+      "length": 1
+    },
+    "fileName": "/node_modules/a/index.d.ts",
+    "contextSpan": {
+      "start": 80,
+      "length": 11
+    }
+  },
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 1
+    },
+    "fileName": "/c.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 1
+    },
+    "fileName": "/c.ts"
+  },
+  {
+    "textSpan": {
+      "start": 24,
+      "length": 1
+    },
+    "fileName": "/c.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /node_modules/a/index.d.ts ======*/
+
+declare function RENAME(): void;
+declare namespace RENAME {
+    export const x: number;
+}
+export = RENAME;
+
+/*====== /c.ts ======*/
+
+import RENAME from "a";
+RENAME();
+RENAME.x;
+
+=== 0 ===
+// === /node_modules/a/index.d.ts ===
+// declare function [|a|](): void;
+// declare namespace a {
+//     export const x: number;
+// }
+// export = a;
+=== ContextSpan ===
+  // === /node_modules/a/index.d.ts ===
+  // [|declare function a(): void;|]
+  // declare namespace a {
+  //     export const x: number;
+  // }
+  // export = a;
+=== 1 ===
+// === /node_modules/a/index.d.ts ===
+// declare function a(): void;
+// declare namespace [|a|] {
+//     export const x: number;
+// }
+// export = a;
+=== ContextSpan ===
+  // === /node_modules/a/index.d.ts ===
+  // declare function a(): void;
+  // [|declare namespace a {
+  //     export const x: number;
+  // }|]
+  // export = a;
+=== 2 ===
+// === /node_modules/a/index.d.ts ===
+// declare function a(): void;
+// declare namespace a {
+//     export const x: number;
+// }
+// export = [|a|];
+=== ContextSpan ===
+  // === /node_modules/a/index.d.ts ===
+  // declare function a(): void;
+  // declare namespace a {
+  //     export const x: number;
+  // }
+  // [|export = a;|]
+=== 3 ===
+// === /c.ts ===
+// import [|a|] from "a";
+// a();
+// a.x;
+=== ContextSpan ===
+  // === /c.ts ===
+  // [|import a from "a";|]
+  // a();
+  // a.x;
+=== 4 ===
+// === /c.ts ===
+// import a from "a";
+// [|a|]();
+// a.x;
+=== 5 ===
+// === /c.ts ===
+// import a from "a";
+// a();
+// [|a|].x;
+
+
+[
+  {
+    "textSpan": {
+      "start": 17,
+      "length": 1
+    },
+    "fileName": "/node_modules/a/index.d.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 46,
+      "length": 1
+    },
+    "fileName": "/node_modules/a/index.d.ts",
+    "contextSpan": {
+      "start": 28,
+      "length": 51
+    }
+  },
+  {
+    "textSpan": {
+      "start": 89,
+      "length": 1
+    },
+    "fileName": "/node_modules/a/index.d.ts",
+    "contextSpan": {
+      "start": 80,
+      "length": 11
+    }
+  },
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 1
+    },
+    "fileName": "/c.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 1
+    },
+    "fileName": "/c.ts"
+  },
+  {
+    "textSpan": {
+      "start": 24,
+      "length": 1
+    },
+    "fileName": "/c.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /node_modules/a/index.d.ts ======*/
+
+declare function RENAME(): void;
+declare namespace RENAME {
+    export const x: number;
+}
+export = RENAME;
+
+/*====== /c.ts ======*/
+
+import RENAME from "a";
+RENAME();
+RENAME.x;
+
+=== 0 ===
+// === /node_modules/a/index.d.ts ===
+// declare function [|a|](): void;
+// declare namespace a {
+//     export const x: number;
+// }
+// export = a;
+=== ContextSpan ===
+  // === /node_modules/a/index.d.ts ===
+  // [|declare function a(): void;|]
+  // declare namespace a {
+  //     export const x: number;
+  // }
+  // export = a;
+=== 1 ===
+// === /node_modules/a/index.d.ts ===
+// declare function a(): void;
+// declare namespace [|a|] {
+//     export const x: number;
+// }
+// export = a;
+=== ContextSpan ===
+  // === /node_modules/a/index.d.ts ===
+  // declare function a(): void;
+  // [|declare namespace a {
+  //     export const x: number;
+  // }|]
+  // export = a;
+=== 2 ===
+// === /node_modules/a/index.d.ts ===
+// declare function a(): void;
+// declare namespace a {
+//     export const x: number;
+// }
+// export = [|a|];
+=== ContextSpan ===
+  // === /node_modules/a/index.d.ts ===
+  // declare function a(): void;
+  // declare namespace a {
+  //     export const x: number;
+  // }
+  // [|export = a;|]
+=== 3 ===
+// === /c.ts ===
+// import [|a|] from "a";
+// a();
+// a.x;
+=== ContextSpan ===
+  // === /c.ts ===
+  // [|import a from "a";|]
+  // a();
+  // a.x;
+=== 4 ===
+// === /c.ts ===
+// import a from "a";
+// [|a|]();
+// a.x;
+=== 5 ===
+// === /c.ts ===
+// import a from "a";
+// a();
+// [|a|].x;
+
+
+[
+  {
+    "textSpan": {
+      "start": 17,
+      "length": 1
+    },
+    "fileName": "/node_modules/a/index.d.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 46,
+      "length": 1
+    },
+    "fileName": "/node_modules/a/index.d.ts",
+    "contextSpan": {
+      "start": 28,
+      "length": 51
+    }
+  },
+  {
+    "textSpan": {
+      "start": 89,
+      "length": 1
+    },
+    "fileName": "/node_modules/a/index.d.ts",
+    "contextSpan": {
+      "start": 80,
+      "length": 11
+    }
+  },
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 1
+    },
+    "fileName": "/c.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 1
+    },
+    "fileName": "/c.ts"
+  },
+  {
+    "textSpan": {
+      "start": 24,
+      "length": 1
+    },
+    "fileName": "/c.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /b.ts ======*/
+
+import RENAME from "a";
+RENAME();
+RENAME.x;
+
+=== 0 ===
+// === /b.ts ===
+// import [|b|] from "a";
+// b();
+// b.x;
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|import b from "a";|]
+  // b();
+  // b.x;
+=== 1 ===
+// === /b.ts ===
+// import b from "a";
+// [|b|]();
+// b.x;
+=== 2 ===
+// === /b.ts ===
+// import b from "a";
+// b();
+// [|b|].x;
+
+
+[
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 1
+    },
+    "fileName": "/b.ts"
+  },
+  {
+    "textSpan": {
+      "start": 24,
+      "length": 1
+    },
+    "fileName": "/b.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /b.ts ======*/
+
+import RENAME from "a";
+RENAME();
+RENAME.x;
+
+=== 0 ===
+// === /b.ts ===
+// import [|b|] from "a";
+// b();
+// b.x;
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|import b from "a";|]
+  // b();
+  // b.x;
+=== 1 ===
+// === /b.ts ===
+// import b from "a";
+// [|b|]();
+// b.x;
+=== 2 ===
+// === /b.ts ===
+// import b from "a";
+// b();
+// [|b|].x;
+
+
+[
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 1
+    },
+    "fileName": "/b.ts"
+  },
+  {
+    "textSpan": {
+      "start": 24,
+      "length": 1
+    },
+    "fileName": "/b.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /b.ts ======*/
+
+import RENAME from "a";
+RENAME();
+RENAME.x;
+
+=== 0 ===
+// === /b.ts ===
+// import [|b|] from "a";
+// b();
+// b.x;
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|import b from "a";|]
+  // b();
+  // b.x;
+=== 1 ===
+// === /b.ts ===
+// import b from "a";
+// [|b|]();
+// b.x;
+=== 2 ===
+// === /b.ts ===
+// import b from "a";
+// b();
+// [|b|].x;
+
+
+[
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 1
+    },
+    "fileName": "/b.ts"
+  },
+  {
+    "textSpan": {
+      "start": 24,
+      "length": 1
+    },
+    "fileName": "/b.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /c.ts ======*/
+
+import [|RENAME|] from "a";
+RENAME();
+RENAME.x;
+
+=== 0 ===
+// === /c.ts ===
+// import [|a|] from "a";
+// a();
+// a.x;
+=== ContextSpan ===
+  // === /c.ts ===
+  // [|import a from "a";|]
+  // a();
+  // a.x;
+=== 1 ===
+// === /c.ts ===
+// import a from "a";
+// [|a|]();
+// a.x;
+=== 2 ===
+// === /c.ts ===
+// import a from "a";
+// a();
+// [|a|].x;
+
+
+[
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 1
+    },
+    "fileName": "/c.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 1
+    },
+    "fileName": "/c.ts"
+  },
+  {
+    "textSpan": {
+      "start": 24,
+      "length": 1
+    },
+    "fileName": "/c.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /c.ts ======*/
+
+import RENAME from "a";
+[|RENAME|]();
+RENAME.x;
+
+=== 0 ===
+// === /c.ts ===
+// import [|a|] from "a";
+// a();
+// a.x;
+=== ContextSpan ===
+  // === /c.ts ===
+  // [|import a from "a";|]
+  // a();
+  // a.x;
+=== 1 ===
+// === /c.ts ===
+// import a from "a";
+// [|a|]();
+// a.x;
+=== 2 ===
+// === /c.ts ===
+// import a from "a";
+// a();
+// [|a|].x;
+
+
+[
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 1
+    },
+    "fileName": "/c.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 1
+    },
+    "fileName": "/c.ts"
+  },
+  {
+    "textSpan": {
+      "start": 24,
+      "length": 1
+    },
+    "fileName": "/c.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /c.ts ======*/
+
+import RENAME from "a";
+RENAME();
+[|RENAME|].x;
+
+=== 0 ===
+// === /c.ts ===
+// import [|a|] from "a";
+// a();
+// a.x;
+=== ContextSpan ===
+  // === /c.ts ===
+  // [|import a from "a";|]
+  // a();
+  // a.x;
+=== 1 ===
+// === /c.ts ===
+// import a from "a";
+// [|a|]();
+// a.x;
+=== 2 ===
+// === /c.ts ===
+// import a from "a";
+// a();
+// [|a|].x;
+
+
+[
+  {
+    "textSpan": {
+      "start": 7,
+      "length": 1
+    },
+    "fileName": "/c.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 1
+    },
+    "fileName": "/c.ts"
+  },
+  {
+    "textSpan": {
+      "start": 24,
+      "length": 1
+    },
+    "fileName": "/c.ts"
   }
 ]

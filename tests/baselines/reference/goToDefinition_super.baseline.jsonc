@@ -1,0 +1,277 @@
+// === /tests/cases/fourslash/goToDefinition_super.ts ===
+// class A {
+//     [|constructor() {}|]
+//     x() {}
+// }
+// class [|B|] extends A {}
+// class C extends B {
+//     constructor() {
+//         /*GOTO DEF*/super();
+//     }
+//     method() {
+//         super.x();
+//     }
+// }
+// class D {
+//     constructor() {
+//         super();
+//     }
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinition_super.ts ===
+    // class A {
+    //     [|constructor() {}|]
+    //     x() {}
+    // }
+    // class B extends A {}
+    // class C extends B {
+    //     constructor() {
+    //         super();
+    //     }
+    //     method() {
+    //         super.x();
+    //     }
+    // }
+    // class D {
+    //     constructor() {
+    //         super();
+    //     }
+    // }
+    === 1 ===
+    // === /tests/cases/fourslash/goToDefinition_super.ts ===
+    // class A {
+    //     constructor() {}
+    //     x() {}
+    // }
+    // class [|B|] extends A {}
+    // class C extends B {
+    //     constructor() {
+    //         super();
+    //     }
+    //     method() {
+    //         super.x();
+    //     }
+    // }
+    // class D {
+    //     constructor() {
+    //         super();
+    //     }
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinition_super.ts ===
+      // class A {
+      //     constructor() {}
+      //     x() {}
+      // }
+      // [|class B extends A {}|]
+      // class C extends B {
+      //     constructor() {
+      //         super();
+      //     }
+      //     method() {
+      //         super.x();
+      //     }
+      // }
+      // class D {
+      //     constructor() {
+      //         super();
+      //     }
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinition_super.ts ===
+    // class A {
+    //     constructor() {}
+    //     x() {}
+    // }
+    // class B extends A {}
+    // class C extends B {
+    //     constructor() {
+    //         [|super|]();
+    //     }
+    //     method() {
+    //         super.x();
+    //     }
+    // }
+    // class D {
+    //     constructor() {
+    //         super();
+    //     }
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinition_super.ts",
+      "textSpan": {
+        "start": 14,
+        "length": 16
+      },
+      "kind": "constructor",
+      "name": "__constructor",
+      "containerName": "A",
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    },
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinition_super.ts",
+      "textSpan": {
+        "start": 50,
+        "length": 1
+      },
+      "kind": "class",
+      "name": "B",
+      "containerName": "",
+      "contextSpan": {
+        "start": 44,
+        "length": 20
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 113,
+    "length": 5
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinition_super.ts ===
+// class A {
+//     constructor() {}
+//     x() {}
+// }
+// class [|B|] extends A {}
+// class C extends B {
+//     constructor() {
+//         super();
+//     }
+//     method() {
+//         /*GOTO DEF*/super.x();
+//     }
+// }
+// class D {
+//     constructor() {
+//         super();
+//     }
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinition_super.ts ===
+    // class A {
+    //     constructor() {}
+    //     x() {}
+    // }
+    // class [|B|] extends A {}
+    // class C extends B {
+    //     constructor() {
+    //         super();
+    //     }
+    //     method() {
+    //         super.x();
+    //     }
+    // }
+    // class D {
+    //     constructor() {
+    //         super();
+    //     }
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinition_super.ts ===
+      // class A {
+      //     constructor() {}
+      //     x() {}
+      // }
+      // [|class B extends A {}|]
+      // class C extends B {
+      //     constructor() {
+      //         super();
+      //     }
+      //     method() {
+      //         super.x();
+      //     }
+      // }
+      // class D {
+      //     constructor() {
+      //         super();
+      //     }
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinition_super.ts ===
+    // class A {
+    //     constructor() {}
+    //     x() {}
+    // }
+    // class B extends A {}
+    // class C extends B {
+    //     constructor() {
+    //         super();
+    //     }
+    //     method() {
+    //         [|super|].x();
+    //     }
+    // }
+    // class D {
+    //     constructor() {
+    //         super();
+    //     }
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinition_super.ts",
+      "textSpan": {
+        "start": 50,
+        "length": 1
+      },
+      "kind": "class",
+      "name": "B",
+      "containerName": "",
+      "contextSpan": {
+        "start": 44,
+        "length": 20
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 151,
+    "length": 5
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinition_super.ts ===
+// class A {
+//     constructor() {}
+//     x() {}
+// }
+// class B extends A {}
+// class C extends B {
+//     constructor() {
+//         super();
+//     }
+//     method() {
+//         super.x();
+//     }
+// }
+// class D {
+//     constructor() {
+//         /*GOTO DEF*/super();
+//     }
+// }
+
+undefined

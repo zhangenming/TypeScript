@@ -1,5 +1,6 @@
 /// <reference path='fourslash.ts' />
 
+// @BaselineFile: goToTypeDefinition-shims.baseline
 // @Filename: goToTypeDefinition_Definition.ts
 ////class /*definition*/C {
 ////    p;
@@ -9,4 +10,4 @@
 // @Filename: goToTypeDefinition_Consumption.ts
 /////*reference*/c = undefined;
 
-verify.goToType("reference", "definition");
+verify.baselineGoToType("reference");

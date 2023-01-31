@@ -1,0 +1,37 @@
+// === /tests/cases/fourslash/server/a.ts ===
+// [||]export class Foo {}
+
+// === /tests/cases/fourslash/server/b.ts ===
+// import n = require('./a/*GOTO DEF*/');
+// var x = new n.Foo();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/server/a.ts ===
+    // [||]export class Foo {}
+  === TextSpan ===
+    // === /tests/cases/fourslash/server/b.ts ===
+    // import n = require([|'./a'|]);
+    // var x = new n.Foo();
+}
+
+{
+  "definitions": [
+    {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/server/a.ts",
+      "textSpan": {
+        "start": 0,
+        "length": 0
+      },
+      "kind": "",
+      "name": ""
+    }
+  ],
+  "textSpan": {
+    "start": 19,
+    "length": 5
+  }
+}

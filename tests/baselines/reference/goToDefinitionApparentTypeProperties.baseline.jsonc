@@ -1,0 +1,133 @@
+// === /tests/cases/fourslash/goToDefinitionApparentTypeProperties.ts ===
+// interface Number {
+//     [|myObjectMethod|](): number;
+// }
+// 
+// var o = 0;
+// o./*GOTO DEF*/myObjectMethod();
+// o["myObjectMethod"]();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionApparentTypeProperties.ts ===
+    // interface Number {
+    //     [|myObjectMethod|](): number;
+    // }
+    // 
+    // var o = 0;
+    // o.myObjectMethod();
+    // o["myObjectMethod"]();
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionApparentTypeProperties.ts ===
+      // interface Number {
+      //     [|myObjectMethod(): number;|]
+      // }
+      // 
+      // var o = 0;
+      // o.myObjectMethod();
+      // o["myObjectMethod"]();
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionApparentTypeProperties.ts ===
+    // interface Number {
+    //     myObjectMethod(): number;
+    // }
+    // 
+    // var o = 0;
+    // o.[|myObjectMethod|]();
+    // o["myObjectMethod"]();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionApparentTypeProperties.ts",
+      "textSpan": {
+        "start": 23,
+        "length": 14
+      },
+      "kind": "method",
+      "name": "myObjectMethod",
+      "containerName": "Number",
+      "contextSpan": {
+        "start": 23,
+        "length": 25
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 65,
+    "length": 14
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinitionApparentTypeProperties.ts ===
+// interface Number {
+//     [|myObjectMethod|](): number;
+// }
+// 
+// var o = 0;
+// o.myObjectMethod();
+// o["/*GOTO DEF*/myObjectMethod"]();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionApparentTypeProperties.ts ===
+    // interface Number {
+    //     [|myObjectMethod|](): number;
+    // }
+    // 
+    // var o = 0;
+    // o.myObjectMethod();
+    // o["myObjectMethod"]();
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionApparentTypeProperties.ts ===
+      // interface Number {
+      //     [|myObjectMethod(): number;|]
+      // }
+      // 
+      // var o = 0;
+      // o.myObjectMethod();
+      // o["myObjectMethod"]();
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionApparentTypeProperties.ts ===
+    // interface Number {
+    //     myObjectMethod(): number;
+    // }
+    // 
+    // var o = 0;
+    // o.myObjectMethod();
+    // o[[|"myObjectMethod"|]]();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionApparentTypeProperties.ts",
+      "textSpan": {
+        "start": 23,
+        "length": 14
+      },
+      "kind": "method",
+      "name": "myObjectMethod",
+      "containerName": "Number",
+      "contextSpan": {
+        "start": 23,
+        "length": 25
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 85,
+    "length": 16
+  }
+}

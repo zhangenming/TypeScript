@@ -1,0 +1,39 @@
+// === /tests/cases/fourslash/file1.ts ===
+// class ClassA implements IInterface {
+//     private /*HIGHLIGHTS*/[|value|]: number;
+// }
+
+[
+  {
+    === /tests/cases/fourslash/file1.ts ===
+      === 0 ===
+      // === /tests/cases/fourslash/file1.ts ===
+      // class ClassA implements IInterface {
+      //     private [|value|]: number;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/file1.ts ===
+        // class ClassA implements IInterface {
+        //     [|private value: number;|]
+        // }
+  }
+]
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/file1.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 49,
+          "length": 5
+        },
+        "kind": "reference",
+        "contextSpan": {
+          "start": 41,
+          "length": 22
+        }
+      }
+    ]
+  }
+]

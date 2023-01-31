@@ -1,0 +1,435 @@
+// === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+// declare var [|ambientVar|];
+// declare function ambientFunction();
+// declare class ambientClass {
+//     constructor();
+//     static method();
+//     public method();
+// }
+// 
+// /*GOTO DEF*/ambientVar = 1;
+// ambientFunction();
+// var ambientClassVariable = new ambientClass();
+// ambientClass.method();
+// ambientClassVariable.method();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+    // declare var [|ambientVar|];
+    // declare function ambientFunction();
+    // declare class ambientClass {
+    //     constructor();
+    //     static method();
+    //     public method();
+    // }
+    // 
+    // ambientVar = 1;
+    // ambientFunction();
+    // var ambientClassVariable = new ambientClass();
+    // ambientClass.method();
+    // ambientClassVariable.method();
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+      // [|declare var ambientVar;|]
+      // declare function ambientFunction();
+      // declare class ambientClass {
+      //     constructor();
+      //     static method();
+      //     public method();
+      // }
+      // 
+      // ambientVar = 1;
+      // ambientFunction();
+      // var ambientClassVariable = new ambientClass();
+      // ambientClass.method();
+      // ambientClassVariable.method();
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+    // declare var ambientVar;
+    // declare function ambientFunction();
+    // declare class ambientClass {
+    //     constructor();
+    //     static method();
+    //     public method();
+    // }
+    // 
+    // [|ambientVar|] = 1;
+    // ambientFunction();
+    // var ambientClassVariable = new ambientClass();
+    // ambientClass.method();
+    // ambientClassVariable.method();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionAmbiants.ts",
+      "textSpan": {
+        "start": 12,
+        "length": 10
+      },
+      "kind": "var",
+      "name": "ambientVar",
+      "containerName": "",
+      "contextSpan": {
+        "start": 0,
+        "length": 23
+      },
+      "isLocal": false,
+      "isAmbient": true,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 153,
+    "length": 10
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+// declare var ambientVar;
+// declare function [|ambientFunction|]();
+// declare class ambientClass {
+//     constructor();
+//     static method();
+//     public method();
+// }
+// 
+// ambientVar = 1;
+// /*GOTO DEF*/ambientFunction();
+// var ambientClassVariable = new ambientClass();
+// ambientClass.method();
+// ambientClassVariable.method();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+    // declare var ambientVar;
+    // declare function [|ambientFunction|]();
+    // declare class ambientClass {
+    //     constructor();
+    //     static method();
+    //     public method();
+    // }
+    // 
+    // ambientVar = 1;
+    // ambientFunction();
+    // var ambientClassVariable = new ambientClass();
+    // ambientClass.method();
+    // ambientClassVariable.method();
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+      // declare var ambientVar;
+      // [|declare function ambientFunction();|]
+      // declare class ambientClass {
+      //     constructor();
+      //     static method();
+      //     public method();
+      // }
+      // 
+      // ambientVar = 1;
+      // ambientFunction();
+      // var ambientClassVariable = new ambientClass();
+      // ambientClass.method();
+      // ambientClassVariable.method();
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+    // declare var ambientVar;
+    // declare function ambientFunction();
+    // declare class ambientClass {
+    //     constructor();
+    //     static method();
+    //     public method();
+    // }
+    // 
+    // ambientVar = 1;
+    // [|ambientFunction|]();
+    // var ambientClassVariable = new ambientClass();
+    // ambientClass.method();
+    // ambientClassVariable.method();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionAmbiants.ts",
+      "textSpan": {
+        "start": 41,
+        "length": 15
+      },
+      "kind": "function",
+      "name": "ambientFunction",
+      "containerName": "",
+      "contextSpan": {
+        "start": 24,
+        "length": 35
+      },
+      "isLocal": false,
+      "isAmbient": true,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 169,
+    "length": 15
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+// declare var ambientVar;
+// declare function ambientFunction();
+// declare class ambientClass {
+//     [|constructor();|]
+//     static method();
+//     public method();
+// }
+// 
+// ambientVar = 1;
+// ambientFunction();
+// var ambientClassVariable = new /*GOTO DEF*/ambientClass();
+// ambientClass.method();
+// ambientClassVariable.method();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+    // declare var ambientVar;
+    // declare function ambientFunction();
+    // declare class ambientClass {
+    //     [|constructor();|]
+    //     static method();
+    //     public method();
+    // }
+    // 
+    // ambientVar = 1;
+    // ambientFunction();
+    // var ambientClassVariable = new ambientClass();
+    // ambientClass.method();
+    // ambientClassVariable.method();
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+    // declare var ambientVar;
+    // declare function ambientFunction();
+    // declare class ambientClass {
+    //     constructor();
+    //     static method();
+    //     public method();
+    // }
+    // 
+    // ambientVar = 1;
+    // ambientFunction();
+    // var ambientClassVariable = new [|ambientClass|]();
+    // ambientClass.method();
+    // ambientClassVariable.method();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionAmbiants.ts",
+      "textSpan": {
+        "start": 93,
+        "length": 14
+      },
+      "kind": "constructor",
+      "name": "__constructor",
+      "containerName": "ambientClass",
+      "isLocal": false,
+      "isAmbient": true,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 219,
+    "length": 12
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+// declare var ambientVar;
+// declare function ambientFunction();
+// declare class ambientClass {
+//     constructor();
+//     static [|method|]();
+//     public method();
+// }
+// 
+// ambientVar = 1;
+// ambientFunction();
+// var ambientClassVariable = new ambientClass();
+// ambientClass./*GOTO DEF*/method();
+// ambientClassVariable.method();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+    // declare var ambientVar;
+    // declare function ambientFunction();
+    // declare class ambientClass {
+    //     constructor();
+    //     static [|method|]();
+    //     public method();
+    // }
+    // 
+    // ambientVar = 1;
+    // ambientFunction();
+    // var ambientClassVariable = new ambientClass();
+    // ambientClass.method();
+    // ambientClassVariable.method();
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+      // declare var ambientVar;
+      // declare function ambientFunction();
+      // declare class ambientClass {
+      //     constructor();
+      //     [|static method();|]
+      //     public method();
+      // }
+      // 
+      // ambientVar = 1;
+      // ambientFunction();
+      // var ambientClassVariable = new ambientClass();
+      // ambientClass.method();
+      // ambientClassVariable.method();
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+    // declare var ambientVar;
+    // declare function ambientFunction();
+    // declare class ambientClass {
+    //     constructor();
+    //     static method();
+    //     public method();
+    // }
+    // 
+    // ambientVar = 1;
+    // ambientFunction();
+    // var ambientClassVariable = new ambientClass();
+    // ambientClass.[|method|]();
+    // ambientClassVariable.method();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionAmbiants.ts",
+      "textSpan": {
+        "start": 119,
+        "length": 6
+      },
+      "kind": "method",
+      "name": "method",
+      "containerName": "ambientClass",
+      "contextSpan": {
+        "start": 112,
+        "length": 16
+      },
+      "isLocal": false,
+      "isAmbient": true,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 248,
+    "length": 6
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+// declare var ambientVar;
+// declare function ambientFunction();
+// declare class ambientClass {
+//     constructor();
+//     static method();
+//     public [|method|]();
+// }
+// 
+// ambientVar = 1;
+// ambientFunction();
+// var ambientClassVariable = new ambientClass();
+// ambientClass.method();
+// ambientClassVariable./*GOTO DEF*/method();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+    // declare var ambientVar;
+    // declare function ambientFunction();
+    // declare class ambientClass {
+    //     constructor();
+    //     static method();
+    //     public [|method|]();
+    // }
+    // 
+    // ambientVar = 1;
+    // ambientFunction();
+    // var ambientClassVariable = new ambientClass();
+    // ambientClass.method();
+    // ambientClassVariable.method();
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+      // declare var ambientVar;
+      // declare function ambientFunction();
+      // declare class ambientClass {
+      //     constructor();
+      //     static method();
+      //     [|public method();|]
+      // }
+      // 
+      // ambientVar = 1;
+      // ambientFunction();
+      // var ambientClassVariable = new ambientClass();
+      // ambientClass.method();
+      // ambientClassVariable.method();
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionAmbiants.ts ===
+    // declare var ambientVar;
+    // declare function ambientFunction();
+    // declare class ambientClass {
+    //     constructor();
+    //     static method();
+    //     public method();
+    // }
+    // 
+    // ambientVar = 1;
+    // ambientFunction();
+    // var ambientClassVariable = new ambientClass();
+    // ambientClass.method();
+    // ambientClassVariable.[|method|]();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionAmbiants.ts",
+      "textSpan": {
+        "start": 140,
+        "length": 6
+      },
+      "kind": "method",
+      "name": "method",
+      "containerName": "ambientClass",
+      "contextSpan": {
+        "start": 133,
+        "length": 16
+      },
+      "isLocal": false,
+      "isAmbient": true,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 279,
+    "length": 6
+  }
+}

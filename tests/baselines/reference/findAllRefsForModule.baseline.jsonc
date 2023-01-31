@@ -1,3 +1,4 @@
+=== findAllReferences ===
 // === /b.ts ===
 // import { x } from "/*FIND ALL REFS*/[|./a|]";
 
@@ -6,6 +7,30 @@
 
 // === /d.ts ===
 // /// <reference path="[|./a.ts|]" />
+
+[
+  {
+    === Definition ===
+      // === /a.ts ===
+      // [|export const x = 0;|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import { x } from "[|./a|]";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x } from "./a";|]
+      === 1 ===
+      // === /c/sub.js ===
+      // const a = require("[|../a|]");
+      === ContextSpan ===
+        // === /c/sub.js ===
+        // [|const a = require("../a");|]
+      === 2 ===
+      // === /d.ts ===
+      // /// <reference path="[|./a.ts|]" />
+  }
+]
 
 [
   {
@@ -82,6 +107,30 @@
 
 [
   {
+    === Definition ===
+      // === /a.ts ===
+      // [|export const x = 0;|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import { x } from "[|./a|]";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x } from "./a";|]
+      === 1 ===
+      // === /c/sub.js ===
+      // const a = require("[|../a|]");
+      === ContextSpan ===
+        // === /c/sub.js ===
+        // [|const a = require("../a");|]
+      === 2 ===
+      // === /d.ts ===
+      // /// <reference path="[|./a.ts|]" />
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -155,6 +204,30 @@
 
 [
   {
+    === Definition ===
+      // === /a.ts ===
+      // [|export const x = 0;|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import { x } from "[|./a|]";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x } from "./a";|]
+      === 1 ===
+      // === /c/sub.js ===
+      // const a = require("[|../a|]");
+      === ContextSpan ===
+        // === /c/sub.js ===
+        // [|const a = require("../a");|]
+      === 2 ===
+      // === /d.ts ===
+      // /// <reference path="[|./a.ts|]" />
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -212,6 +285,102 @@
         },
         "fileName": "/d.ts",
         "isWriteAccess": false
+      }
+    ]
+  }
+]
+
+=== documentHighlights ===
+// === /b.ts ===
+// import { x } from "/*HIGHLIGHTS*/[|./a|]";
+
+[
+  {
+    === /b.ts ===
+      === 0 ===
+      // === /b.ts ===
+      // import { x } from "[|./a|]";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x } from "./a";|]
+  }
+]
+
+[
+  {
+    "fileName": "/b.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 19,
+          "length": 3
+        },
+        "kind": "reference",
+        "contextSpan": {
+          "start": 0,
+          "length": 24
+        }
+      }
+    ]
+  }
+]
+
+// === /c/sub.js ===
+// const a = require("/*HIGHLIGHTS*/[|../a|]");
+
+[
+  {
+    === /c/sub.js ===
+      === 0 ===
+      // === /c/sub.js ===
+      // const a = require("[|../a|]");
+      === ContextSpan ===
+        // === /c/sub.js ===
+        // [|const a = require("../a");|]
+  }
+]
+
+[
+  {
+    "fileName": "/c/sub.js",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 19,
+          "length": 4
+        },
+        "kind": "reference",
+        "contextSpan": {
+          "start": 0,
+          "length": 26
+        }
+      }
+    ]
+  }
+]
+
+// === /d.ts ===
+// /// <reference path="/*HIGHLIGHTS*/[|./a.ts|]" />
+
+[
+  {
+    === /d.ts ===
+      === 0 ===
+      // === /d.ts ===
+      // /// <reference path="[|./a.ts|]" />
+  }
+]
+
+[
+  {
+    "fileName": "/d.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 21,
+          "length": 6
+        },
+        "kind": "reference"
       }
     ]
   }

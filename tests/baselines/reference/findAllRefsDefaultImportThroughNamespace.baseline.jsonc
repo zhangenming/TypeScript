@@ -1,3 +1,4 @@
+=== findAllReferences ===
 // === /a.ts ===
 // export /*FIND ALL REFS*/[|default|] function f() {}
 
@@ -7,6 +8,31 @@
 // 
 // declare const x: { default: number };
 // x.default;
+
+[
+  {
+    === Definition ===
+      // === /a.ts ===
+      // export default function [|f|]() {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export default function f() {}|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export [|default|] function f() {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export default function f() {}|]
+      === 1 ===
+      // === /c.ts ===
+      // import { a } from "./b";
+      // a.[|default|]();
+      // 
+      // declare const x: { default: number };
+      // x.default;
+  }
+]
 
 [
   {
@@ -98,6 +124,31 @@
 
 [
   {
+    === Definition ===
+      // === /a.ts ===
+      // export default function [|f|]() {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export default function f() {}|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export default function [|f|]() {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export default function f() {}|]
+      === 1 ===
+      // === /c.ts ===
+      // import { a } from "./b";
+      // a.[|default|]();
+      // 
+      // declare const x: { default: number };
+      // x.default;
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -186,6 +237,31 @@
 
 [
   {
+    === Definition ===
+      // === /a.ts ===
+      // export default function [|f|]() {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export default function f() {}|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export default function [|f|]() {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export default function f() {}|]
+      === 1 ===
+      // === /c.ts ===
+      // import { a } from "./b";
+      // a.[|default|]();
+      // 
+      // declare const x: { default: number };
+      // x.default;
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -266,6 +342,47 @@
 // 
 // declare const x: { /*FIND ALL REFS*/[|default|]: number };
 // x.[|default|];
+
+[
+  {
+    === Definition ===
+      // === /c.ts ===
+      // import { a } from "./b";
+      // a.default();
+      // 
+      // declare const x: { [|default|]: number };
+      // x.default;
+      === ContextSpan ===
+        // === /c.ts ===
+        // import { a } from "./b";
+        // a.default();
+        // 
+        // declare const x: { [|default: number|] };
+        // x.default;
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // import { a } from "./b";
+      // a.default();
+      // 
+      // declare const x: { [|default|]: number };
+      // x.default;
+      === ContextSpan ===
+        // === /c.ts ===
+        // import { a } from "./b";
+        // a.default();
+        // 
+        // declare const x: { [|default: number|] };
+        // x.default;
+      === 1 ===
+      // === /c.ts ===
+      // import { a } from "./b";
+      // a.default();
+      // 
+      // declare const x: { default: number };
+      // x.[|default|];
+  }
+]
 
 [
   {
@@ -354,6 +471,47 @@
 
 [
   {
+    === Definition ===
+      // === /c.ts ===
+      // import { a } from "./b";
+      // a.default();
+      // 
+      // declare const x: { [|default|]: number };
+      // x.default;
+      === ContextSpan ===
+        // === /c.ts ===
+        // import { a } from "./b";
+        // a.default();
+        // 
+        // declare const x: { [|default: number|] };
+        // x.default;
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // import { a } from "./b";
+      // a.default();
+      // 
+      // declare const x: { [|default|]: number };
+      // x.default;
+      === ContextSpan ===
+        // === /c.ts ===
+        // import { a } from "./b";
+        // a.default();
+        // 
+        // declare const x: { [|default: number|] };
+        // x.default;
+      === 1 ===
+      // === /c.ts ===
+      // import { a } from "./b";
+      // a.default();
+      // 
+      // declare const x: { default: number };
+      // x.[|default|];
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -425,5 +583,154 @@
         "isWriteAccess": false
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /a.ts ======*/
+
+export default function RENAME() {}
+
+=== 0 ===
+// === /a.ts ===
+// export default function [|f|]() {}
+=== ContextSpan ===
+  // === /a.ts ===
+  // [|export default function f() {}|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 24,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 30
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /c.ts ======*/
+
+import { a } from "./b";
+a.default();
+
+declare const x: { [|RENAME|]: number };
+x.RENAME;
+
+=== 0 ===
+// === /c.ts ===
+// import { a } from "./b";
+// a.default();
+// 
+// declare const x: { [|default|]: number };
+// x.default;
+=== ContextSpan ===
+  // === /c.ts ===
+  // import { a } from "./b";
+  // a.default();
+  // 
+  // declare const x: { [|default: number|] };
+  // x.default;
+=== 1 ===
+// === /c.ts ===
+// import { a } from "./b";
+// a.default();
+// 
+// declare const x: { default: number };
+// x.[|default|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 58,
+      "length": 7
+    },
+    "fileName": "/c.ts",
+    "contextSpan": {
+      "start": 58,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 79,
+      "length": 7
+    },
+    "fileName": "/c.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /c.ts ======*/
+
+import { a } from "./b";
+a.default();
+
+declare const x: { RENAME: number };
+x.[|RENAME|];
+
+=== 0 ===
+// === /c.ts ===
+// import { a } from "./b";
+// a.default();
+// 
+// declare const x: { [|default|]: number };
+// x.default;
+=== ContextSpan ===
+  // === /c.ts ===
+  // import { a } from "./b";
+  // a.default();
+  // 
+  // declare const x: { [|default: number|] };
+  // x.default;
+=== 1 ===
+// === /c.ts ===
+// import { a } from "./b";
+// a.default();
+// 
+// declare const x: { default: number };
+// x.[|default|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 58,
+      "length": 7
+    },
+    "fileName": "/c.ts",
+    "contextSpan": {
+      "start": 58,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 79,
+      "length": 7
+    },
+    "fileName": "/c.ts"
   }
 ]

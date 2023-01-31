@@ -1,5 +1,7 @@
 /// <reference path='fourslash.ts' />
 
+// @BaselineFile: getDefinitionAtPosition-shims.baseline.jsonc
+
 // @Filename: goToDefinitionDifferentFile_Definition.ts
 ////var /*remoteVariableDefinition*/remoteVariable;
 ////function /*remoteFunctionDefinition*/remoteFunction() { }
@@ -14,4 +16,4 @@
 ////class fooCls implements /*remoteInterfaceReference*/remoteInterface { }
 ////var fooVar = /*remoteModuleReference*/remoteModule.foo;
 
-verify.goToDefinitionForMarkers("remoteVariable", "remoteFunction", "remoteClass", "remoteInterface", "remoteModule");
+verify.baselineGoToDefinition("remoteVariableReference", "remoteFunctionReference", "remoteClassReference", "remoteInterfaceReference", "remoteModuleReference");

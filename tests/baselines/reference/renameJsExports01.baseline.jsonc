@@ -1,9 +1,32 @@
+=== findAllReferences ===
 // === /tests/cases/fourslash/a.js ===
 // exports.[|area|] = function (r) { return r * r; }
 
 // === /tests/cases/fourslash/b.js ===
 // var mod = require('./a');
 // var t = mod./*FIND ALL REFS*/[|area|](10);
+
+[
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/a.js ===
+      // exports.[|area|] = function (r) { return r * r; }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/a.js ===
+        // [|exports.area|] = function (r) { return r * r; }
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/a.js ===
+      // exports.[|area|] = function (r) { return r * r; }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/a.js ===
+        // [|exports.area = function (r) { return r * r; }|]
+      === 1 ===
+      // === /tests/cases/fourslash/b.js ===
+      // var mod = require('./a');
+      // var t = mod.[|area|](10);
+  }
+]
 
 [
   {
@@ -114,5 +137,102 @@
         "isWriteAccess": false
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+exports.RENAME = function (r) { return r * r; }
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+var mod = require('./a');
+var t = mod.RENAME(10);
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// exports.[|area|] = function (r) { return r * r; }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // [|exports.area = function (r) { return r * r; }|]
+=== 1 ===
+// === /tests/cases/fourslash/b.js ===
+// var mod = require('./a');
+// var t = mod.[|area|](10);
+
+
+[
+  {
+    "textSpan": {
+      "start": 8,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 0,
+      "length": 45
+    }
+  },
+  {
+    "textSpan": {
+      "start": 38,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+exports.RENAME = function (r) { return r * r; }
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+var mod = require('./a');
+var t = mod.[|RENAME|](10);
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// exports.[|area|] = function (r) { return r * r; }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // [|exports.area = function (r) { return r * r; }|]
+=== 1 ===
+// === /tests/cases/fourslash/b.js ===
+// var mod = require('./a');
+// var t = mod.[|area|](10);
+
+
+[
+  {
+    "textSpan": {
+      "start": 8,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 0,
+      "length": 45
+    }
+  },
+  {
+    "textSpan": {
+      "start": 38,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
   }
 ]

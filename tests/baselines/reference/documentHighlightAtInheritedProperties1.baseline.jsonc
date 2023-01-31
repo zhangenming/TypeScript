@@ -1,0 +1,85 @@
+// === /tests/cases/fourslash/file1.ts ===
+// interface interface1 extends interface1 {
+//    /*HIGHLIGHTS*/[|doStuff|](): void;
+//    propName: string;
+// }
+
+[
+  {
+    === /tests/cases/fourslash/file1.ts ===
+      === 0 ===
+      // === /tests/cases/fourslash/file1.ts ===
+      // interface interface1 extends interface1 {
+      //    [|doStuff|](): void;
+      //    propName: string;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/file1.ts ===
+        // interface interface1 extends interface1 {
+        //    [|doStuff(): void;|]
+        //    propName: string;
+        // }
+  }
+]
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/file1.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 45,
+          "length": 7
+        },
+        "kind": "reference",
+        "contextSpan": {
+          "start": 45,
+          "length": 16
+        }
+      }
+    ]
+  }
+]
+
+// === /tests/cases/fourslash/file1.ts ===
+// interface interface1 extends interface1 {
+//    doStuff(): void;
+//    /*HIGHLIGHTS*/[|propName|]: string;
+// }
+
+[
+  {
+    === /tests/cases/fourslash/file1.ts ===
+      === 0 ===
+      // === /tests/cases/fourslash/file1.ts ===
+      // interface interface1 extends interface1 {
+      //    doStuff(): void;
+      //    [|propName|]: string;
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/file1.ts ===
+        // interface interface1 extends interface1 {
+        //    doStuff(): void;
+        //    [|propName: string;|]
+        // }
+  }
+]
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/file1.ts",
+    "highlightSpans": [
+      {
+        "textSpan": {
+          "start": 65,
+          "length": 8
+        },
+        "kind": "reference",
+        "contextSpan": {
+          "start": 65,
+          "length": 17
+        }
+      }
+    ]
+  }
+]

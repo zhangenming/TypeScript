@@ -1,3 +1,4 @@
+=== findAllReferences ===
 // === /foo/types/types.ts ===
 // export type /*FIND ALL REFS*/[|Full|] = { prop: string; };
 
@@ -6,6 +7,36 @@
 // export type fullType = foo.[|Full|];
 // type namespaceImport = typeof import('./foo/types');
 // type fullType2 = import('./foo/types').foo.[|Full|];
+
+[
+  {
+    === Definition ===
+      // === /foo/types/types.ts ===
+      // export type [|Full|] = { prop: string; };
+      === ContextSpan ===
+        // === /foo/types/types.ts ===
+        // [|export type Full = { prop: string; };|]
+    === References ===
+      === 0 ===
+      // === /foo/types/types.ts ===
+      // export type [|Full|] = { prop: string; };
+      === ContextSpan ===
+        // === /foo/types/types.ts ===
+        // [|export type Full = { prop: string; };|]
+      === 1 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = foo.[|Full|];
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === 2 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.[|Full|];
+  }
+]
 
 [
   {
@@ -137,6 +168,36 @@
 
 [
   {
+    === Definition ===
+      // === /foo/types/types.ts ===
+      // export type [|Full|] = { prop: string; };
+      === ContextSpan ===
+        // === /foo/types/types.ts ===
+        // [|export type Full = { prop: string; };|]
+    === References ===
+      === 0 ===
+      // === /foo/types/types.ts ===
+      // export type [|Full|] = { prop: string; };
+      === ContextSpan ===
+        // === /foo/types/types.ts ===
+        // [|export type Full = { prop: string; };|]
+      === 1 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = foo.[|Full|];
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === 2 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.[|Full|];
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -259,6 +320,36 @@
 // export type fullType = foo.[|Full|];
 // type namespaceImport = typeof import('./foo/types');
 // type fullType2 = import('./foo/types').foo./*FIND ALL REFS*/[|Full|];
+
+[
+  {
+    === Definition ===
+      // === /foo/types/types.ts ===
+      // export type [|Full|] = { prop: string; };
+      === ContextSpan ===
+        // === /foo/types/types.ts ===
+        // [|export type Full = { prop: string; };|]
+    === References ===
+      === 0 ===
+      // === /foo/types/types.ts ===
+      // export type [|Full|] = { prop: string; };
+      === ContextSpan ===
+        // === /foo/types/types.ts ===
+        // [|export type Full = { prop: string; };|]
+      === 1 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = foo.[|Full|];
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === 2 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.[|Full|];
+  }
+]
 
 [
   {
@@ -385,6 +476,86 @@
 // === /foo/types/index.ts ===
 // import * as /*FIND ALL REFS*/[|foo|] from './types';
 // export { [|foo|] };
+
+[
+  {
+    === Definition ===
+      // === /foo/types/index.ts ===
+      // import * as [|foo|] from './types';
+      // export { foo };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // [|import * as foo from './types';|]
+        // export { foo };
+    === References ===
+      === 0 ===
+      // === /foo/types/index.ts ===
+      // import * as [|foo|] from './types';
+      // export { foo };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // [|import * as foo from './types';|]
+        // export { foo };
+      === 1 ===
+      // === /foo/types/index.ts ===
+      // import * as foo from './types';
+      // export { [|foo|] };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // import * as foo from './types';
+        // [|export { foo };|]
+  },
+  {
+    === Definition ===
+      // === /foo/types/index.ts ===
+      // import * as foo from './types';
+      // export { [|foo|] };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // import * as foo from './types';
+        // [|export { foo };|]
+    === References ===
+      === 0 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').[|foo|].Full;
+  },
+  {
+    === Definition ===
+      // === /app.ts ===
+      // import { [|foo|] } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === ContextSpan ===
+        // === /app.ts ===
+        // [|import { foo } from './foo/types';|]
+        // export type fullType = foo.Full;
+        // type namespaceImport = typeof import('./foo/types');
+        // type fullType2 = import('./foo/types').foo.Full;
+    === References ===
+      === 0 ===
+      // === /app.ts ===
+      // import { [|foo|] } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === ContextSpan ===
+        // === /app.ts ===
+        // [|import { foo } from './foo/types';|]
+        // export type fullType = foo.Full;
+        // type namespaceImport = typeof import('./foo/types');
+        // type fullType2 = import('./foo/types').foo.Full;
+      === 1 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = [|foo|].Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+  }
+]
 
 [
   {
@@ -557,6 +728,86 @@
 
 [
   {
+    === Definition ===
+      // === /foo/types/index.ts ===
+      // import * as [|foo|] from './types';
+      // export { foo };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // [|import * as foo from './types';|]
+        // export { foo };
+    === References ===
+      === 0 ===
+      // === /foo/types/index.ts ===
+      // import * as [|foo|] from './types';
+      // export { foo };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // [|import * as foo from './types';|]
+        // export { foo };
+      === 1 ===
+      // === /foo/types/index.ts ===
+      // import * as foo from './types';
+      // export { [|foo|] };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // import * as foo from './types';
+        // [|export { foo };|]
+  },
+  {
+    === Definition ===
+      // === /foo/types/index.ts ===
+      // import * as foo from './types';
+      // export { [|foo|] };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // import * as foo from './types';
+        // [|export { foo };|]
+    === References ===
+      === 0 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').[|foo|].Full;
+  },
+  {
+    === Definition ===
+      // === /app.ts ===
+      // import { [|foo|] } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === ContextSpan ===
+        // === /app.ts ===
+        // [|import { foo } from './foo/types';|]
+        // export type fullType = foo.Full;
+        // type namespaceImport = typeof import('./foo/types');
+        // type fullType2 = import('./foo/types').foo.Full;
+    === References ===
+      === 0 ===
+      // === /app.ts ===
+      // import { [|foo|] } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === ContextSpan ===
+        // === /app.ts ===
+        // [|import { foo } from './foo/types';|]
+        // export type fullType = foo.Full;
+        // type namespaceImport = typeof import('./foo/types');
+        // type fullType2 = import('./foo/types').foo.Full;
+      === 1 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = [|foo|].Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -723,6 +974,86 @@
 // === /foo/types/index.ts ===
 // import * as [|foo|] from './types';
 // export { [|foo|] };
+
+[
+  {
+    === Definition ===
+      // === /app.ts ===
+      // import { [|foo|] } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === ContextSpan ===
+        // === /app.ts ===
+        // [|import { foo } from './foo/types';|]
+        // export type fullType = foo.Full;
+        // type namespaceImport = typeof import('./foo/types');
+        // type fullType2 = import('./foo/types').foo.Full;
+    === References ===
+      === 0 ===
+      // === /app.ts ===
+      // import { [|foo|] } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === ContextSpan ===
+        // === /app.ts ===
+        // [|import { foo } from './foo/types';|]
+        // export type fullType = foo.Full;
+        // type namespaceImport = typeof import('./foo/types');
+        // type fullType2 = import('./foo/types').foo.Full;
+      === 1 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = [|foo|].Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+  },
+  {
+    === Definition ===
+      // === /foo/types/index.ts ===
+      // import * as [|foo|] from './types';
+      // export { foo };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // [|import * as foo from './types';|]
+        // export { foo };
+    === References ===
+      === 0 ===
+      // === /foo/types/index.ts ===
+      // import * as [|foo|] from './types';
+      // export { foo };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // [|import * as foo from './types';|]
+        // export { foo };
+      === 1 ===
+      // === /foo/types/index.ts ===
+      // import * as foo from './types';
+      // export { [|foo|] };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // import * as foo from './types';
+        // [|export { foo };|]
+  },
+  {
+    === Definition ===
+      // === /foo/types/index.ts ===
+      // import * as foo from './types';
+      // export { [|foo|] };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // import * as foo from './types';
+        // [|export { foo };|]
+    === References ===
+      === 0 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').[|foo|].Full;
+  }
+]
 
 [
   {
@@ -895,6 +1226,86 @@
 
 [
   {
+    === Definition ===
+      // === /app.ts ===
+      // import { [|foo|] } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === ContextSpan ===
+        // === /app.ts ===
+        // [|import { foo } from './foo/types';|]
+        // export type fullType = foo.Full;
+        // type namespaceImport = typeof import('./foo/types');
+        // type fullType2 = import('./foo/types').foo.Full;
+    === References ===
+      === 0 ===
+      // === /app.ts ===
+      // import { [|foo|] } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === ContextSpan ===
+        // === /app.ts ===
+        // [|import { foo } from './foo/types';|]
+        // export type fullType = foo.Full;
+        // type namespaceImport = typeof import('./foo/types');
+        // type fullType2 = import('./foo/types').foo.Full;
+      === 1 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = [|foo|].Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+  },
+  {
+    === Definition ===
+      // === /foo/types/index.ts ===
+      // import * as [|foo|] from './types';
+      // export { foo };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // [|import * as foo from './types';|]
+        // export { foo };
+    === References ===
+      === 0 ===
+      // === /foo/types/index.ts ===
+      // import * as [|foo|] from './types';
+      // export { foo };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // [|import * as foo from './types';|]
+        // export { foo };
+      === 1 ===
+      // === /foo/types/index.ts ===
+      // import * as foo from './types';
+      // export { [|foo|] };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // import * as foo from './types';
+        // [|export { foo };|]
+  },
+  {
+    === Definition ===
+      // === /foo/types/index.ts ===
+      // import * as foo from './types';
+      // export { [|foo|] };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // import * as foo from './types';
+        // [|export { foo };|]
+    === References ===
+      === 0 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').[|foo|].Full;
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -1059,6 +1470,86 @@
 
 [
   {
+    === Definition ===
+      // === /foo/types/index.ts ===
+      // import * as [|foo|] from './types';
+      // export { foo };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // [|import * as foo from './types';|]
+        // export { foo };
+    === References ===
+      === 0 ===
+      // === /foo/types/index.ts ===
+      // import * as [|foo|] from './types';
+      // export { foo };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // [|import * as foo from './types';|]
+        // export { foo };
+      === 1 ===
+      // === /foo/types/index.ts ===
+      // import * as foo from './types';
+      // export { [|foo|] };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // import * as foo from './types';
+        // [|export { foo };|]
+  },
+  {
+    === Definition ===
+      // === /foo/types/index.ts ===
+      // import * as foo from './types';
+      // export { [|foo|] };
+      === ContextSpan ===
+        // === /foo/types/index.ts ===
+        // import * as foo from './types';
+        // [|export { foo };|]
+    === References ===
+      === 0 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').[|foo|].Full;
+  },
+  {
+    === Definition ===
+      // === /app.ts ===
+      // import { [|foo|] } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === ContextSpan ===
+        // === /app.ts ===
+        // [|import { foo } from './foo/types';|]
+        // export type fullType = foo.Full;
+        // type namespaceImport = typeof import('./foo/types');
+        // type fullType2 = import('./foo/types').foo.Full;
+    === References ===
+      === 0 ===
+      // === /app.ts ===
+      // import { [|foo|] } from './foo/types';
+      // export type fullType = foo.Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+      === ContextSpan ===
+        // === /app.ts ===
+        // [|import { foo } from './foo/types';|]
+        // export type fullType = foo.Full;
+        // type namespaceImport = typeof import('./foo/types');
+        // type fullType2 = import('./foo/types').foo.Full;
+      === 1 ===
+      // === /app.ts ===
+      // import { foo } from './foo/types';
+      // export type fullType = [|foo|].Full;
+      // type namespaceImport = typeof import('./foo/types');
+      // type fullType2 = import('./foo/types').foo.Full;
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -1208,5 +1699,1009 @@
         "isWriteAccess": false
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /foo/types/index.ts ======*/
+
+import * as RENAME from './types';
+export { RENAME as foo/*END SUFFIX*/ };
+
+=== 0 ===
+// === /foo/types/index.ts ===
+// import * as [|foo|] from './types';
+// export { foo };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // [|import * as foo from './types';|]
+  // export { foo };
+=== 1 ===
+// === /foo/types/index.ts ===
+// import * as foo from './types';
+// export { [|foo|] };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // import * as foo from './types';
+  // [|export { foo };|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 31
+    }
+  },
+  {
+    "textSpan": {
+      "start": 41,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 32,
+      "length": 15
+    },
+    "suffixText": " as foo"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /foo/types/index.ts ======*/
+
+import * as foo from './types';
+export { /*START PREFIX*/foo as RENAME };
+
+/*====== /app.ts ======*/
+
+import { RENAME } from './foo/types';
+export type fullType = RENAME.Full;
+type namespaceImport = typeof import('./foo/types');
+type fullType2 = import('./foo/types').RENAME.Full;
+
+=== 0 ===
+// === /foo/types/index.ts ===
+// import * as foo from './types';
+// export { [|foo|] };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // import * as foo from './types';
+  // [|export { foo };|]
+=== 1 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').[|foo|].Full;
+=== 2 ===
+// === /app.ts ===
+// import { [|foo|] } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== ContextSpan ===
+  // === /app.ts ===
+  // [|import { foo } from './foo/types';|]
+  // export type fullType = foo.Full;
+  // type namespaceImport = typeof import('./foo/types');
+  // type fullType2 = import('./foo/types').foo.Full;
+=== 3 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = [|foo|].Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+
+
+[
+  {
+    "textSpan": {
+      "start": 41,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 32,
+      "length": 15
+    },
+    "prefixText": "foo as "
+  },
+  {
+    "textSpan": {
+      "start": 160,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/app.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 34
+    }
+  },
+  {
+    "textSpan": {
+      "start": 58,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /app.ts ======*/
+
+import { /*START PREFIX*/foo as [|RENAME|] } from './foo/types';
+export type fullType = RENAME.Full;
+type namespaceImport = typeof import('./foo/types');
+type fullType2 = import('./foo/types').foo.Full;
+
+=== 0 ===
+// === /app.ts ===
+// import { [|foo|] } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== ContextSpan ===
+  // === /app.ts ===
+  // [|import { foo } from './foo/types';|]
+  // export type fullType = foo.Full;
+  // type namespaceImport = typeof import('./foo/types');
+  // type fullType2 = import('./foo/types').foo.Full;
+=== 1 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = [|foo|].Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/app.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 34
+    },
+    "prefixText": "foo as "
+  },
+  {
+    "textSpan": {
+      "start": 58,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /app.ts ======*/
+
+import { /*START PREFIX*/foo as RENAME } from './foo/types';
+export type fullType = [|RENAME|].Full;
+type namespaceImport = typeof import('./foo/types');
+type fullType2 = import('./foo/types').foo.Full;
+
+=== 0 ===
+// === /app.ts ===
+// import { [|foo|] } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== ContextSpan ===
+  // === /app.ts ===
+  // [|import { foo } from './foo/types';|]
+  // export type fullType = foo.Full;
+  // type namespaceImport = typeof import('./foo/types');
+  // type fullType2 = import('./foo/types').foo.Full;
+=== 1 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = [|foo|].Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/app.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 34
+    },
+    "prefixText": "foo as "
+  },
+  {
+    "textSpan": {
+      "start": 58,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /foo/types/types.ts ======*/
+
+export type RENAME = { prop: string; };
+
+/*====== /app.ts ======*/
+
+import { foo } from './foo/types';
+export type fullType = foo.RENAME;
+type namespaceImport = typeof import('./foo/types');
+type fullType2 = import('./foo/types').foo.RENAME;
+
+=== 0 ===
+// === /foo/types/types.ts ===
+// export type [|Full|] = { prop: string; };
+=== ContextSpan ===
+  // === /foo/types/types.ts ===
+  // [|export type Full = { prop: string; };|]
+=== 1 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.[|Full|];
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== 2 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.[|Full|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 4
+    },
+    "fileName": "/foo/types/types.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 37
+    }
+  },
+  {
+    "textSpan": {
+      "start": 62,
+      "length": 4
+    },
+    "fileName": "/app.ts"
+  },
+  {
+    "textSpan": {
+      "start": 164,
+      "length": 4
+    },
+    "fileName": "/app.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /foo/types/types.ts ======*/
+
+export type RENAME = { prop: string; };
+
+/*====== /app.ts ======*/
+
+import { foo } from './foo/types';
+export type fullType = foo.[|RENAME|];
+type namespaceImport = typeof import('./foo/types');
+type fullType2 = import('./foo/types').foo.RENAME;
+
+=== 0 ===
+// === /foo/types/types.ts ===
+// export type [|Full|] = { prop: string; };
+=== ContextSpan ===
+  // === /foo/types/types.ts ===
+  // [|export type Full = { prop: string; };|]
+=== 1 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.[|Full|];
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== 2 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.[|Full|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 4
+    },
+    "fileName": "/foo/types/types.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 37
+    }
+  },
+  {
+    "textSpan": {
+      "start": 62,
+      "length": 4
+    },
+    "fileName": "/app.ts"
+  },
+  {
+    "textSpan": {
+      "start": 164,
+      "length": 4
+    },
+    "fileName": "/app.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /foo/types/types.ts ======*/
+
+export type RENAME = { prop: string; };
+
+/*====== /app.ts ======*/
+
+import { foo } from './foo/types';
+export type fullType = foo.RENAME;
+type namespaceImport = typeof import('./foo/types');
+type fullType2 = import('./foo/types').foo.[|RENAME|];
+
+=== 0 ===
+// === /foo/types/types.ts ===
+// export type [|Full|] = { prop: string; };
+=== ContextSpan ===
+  // === /foo/types/types.ts ===
+  // [|export type Full = { prop: string; };|]
+=== 1 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.[|Full|];
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== 2 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.[|Full|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 4
+    },
+    "fileName": "/foo/types/types.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 37
+    }
+  },
+  {
+    "textSpan": {
+      "start": 62,
+      "length": 4
+    },
+    "fileName": "/app.ts"
+  },
+  {
+    "textSpan": {
+      "start": 164,
+      "length": 4
+    },
+    "fileName": "/app.ts"
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /app.ts ======*/
+
+import { [|RENAME|] } from './foo/types';
+export type fullType = RENAME.Full;
+type namespaceImport = typeof import('./foo/types');
+type fullType2 = import('./foo/types').RENAME.Full;
+
+/*====== /foo/types/index.ts ======*/
+
+import * as RENAME from './types';
+export { RENAME };
+
+=== 0 ===
+// === /app.ts ===
+// import { [|foo|] } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== ContextSpan ===
+  // === /app.ts ===
+  // [|import { foo } from './foo/types';|]
+  // export type fullType = foo.Full;
+  // type namespaceImport = typeof import('./foo/types');
+  // type fullType2 = import('./foo/types').foo.Full;
+=== 1 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = [|foo|].Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== 2 ===
+// === /foo/types/index.ts ===
+// import * as [|foo|] from './types';
+// export { foo };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // [|import * as foo from './types';|]
+  // export { foo };
+=== 3 ===
+// === /foo/types/index.ts ===
+// import * as foo from './types';
+// export { [|foo|] };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // import * as foo from './types';
+  // [|export { foo };|]
+=== 4 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').[|foo|].Full;
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/app.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 34
+    }
+  },
+  {
+    "textSpan": {
+      "start": 58,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  },
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 31
+    }
+  },
+  {
+    "textSpan": {
+      "start": 41,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 32,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 160,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /app.ts ======*/
+
+import { RENAME } from './foo/types';
+export type fullType = [|RENAME|].Full;
+type namespaceImport = typeof import('./foo/types');
+type fullType2 = import('./foo/types').RENAME.Full;
+
+/*====== /foo/types/index.ts ======*/
+
+import * as RENAME from './types';
+export { RENAME };
+
+=== 0 ===
+// === /app.ts ===
+// import { [|foo|] } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== ContextSpan ===
+  // === /app.ts ===
+  // [|import { foo } from './foo/types';|]
+  // export type fullType = foo.Full;
+  // type namespaceImport = typeof import('./foo/types');
+  // type fullType2 = import('./foo/types').foo.Full;
+=== 1 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = [|foo|].Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== 2 ===
+// === /foo/types/index.ts ===
+// import * as [|foo|] from './types';
+// export { foo };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // [|import * as foo from './types';|]
+  // export { foo };
+=== 3 ===
+// === /foo/types/index.ts ===
+// import * as foo from './types';
+// export { [|foo|] };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // import * as foo from './types';
+  // [|export { foo };|]
+=== 4 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').[|foo|].Full;
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/app.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 34
+    }
+  },
+  {
+    "textSpan": {
+      "start": 58,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  },
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 31
+    }
+  },
+  {
+    "textSpan": {
+      "start": 41,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 32,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 160,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /foo/types/index.ts ======*/
+
+import * as RENAME from './types';
+export { RENAME };
+
+/*====== /app.ts ======*/
+
+import { RENAME } from './foo/types';
+export type fullType = RENAME.Full;
+type namespaceImport = typeof import('./foo/types');
+type fullType2 = import('./foo/types').[|RENAME|].Full;
+
+=== 0 ===
+// === /foo/types/index.ts ===
+// import * as [|foo|] from './types';
+// export { foo };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // [|import * as foo from './types';|]
+  // export { foo };
+=== 1 ===
+// === /foo/types/index.ts ===
+// import * as foo from './types';
+// export { [|foo|] };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // import * as foo from './types';
+  // [|export { foo };|]
+=== 2 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').[|foo|].Full;
+=== 3 ===
+// === /app.ts ===
+// import { [|foo|] } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== ContextSpan ===
+  // === /app.ts ===
+  // [|import { foo } from './foo/types';|]
+  // export type fullType = foo.Full;
+  // type namespaceImport = typeof import('./foo/types');
+  // type fullType2 = import('./foo/types').foo.Full;
+=== 4 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = [|foo|].Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+
+
+[
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 31
+    }
+  },
+  {
+    "textSpan": {
+      "start": 41,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 32,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 160,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/app.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 34
+    }
+  },
+  {
+    "textSpan": {
+      "start": 58,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /foo/types/index.ts ======*/
+
+import * as RENAME from './types';
+export { RENAME };
+
+/*====== /app.ts ======*/
+
+import { [|RENAME|] } from './foo/types';
+export type fullType = RENAME.Full;
+type namespaceImport = typeof import('./foo/types');
+type fullType2 = import('./foo/types').RENAME.Full;
+
+=== 0 ===
+// === /foo/types/index.ts ===
+// import * as [|foo|] from './types';
+// export { foo };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // [|import * as foo from './types';|]
+  // export { foo };
+=== 1 ===
+// === /foo/types/index.ts ===
+// import * as foo from './types';
+// export { [|foo|] };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // import * as foo from './types';
+  // [|export { foo };|]
+=== 2 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').[|foo|].Full;
+=== 3 ===
+// === /app.ts ===
+// import { [|foo|] } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== ContextSpan ===
+  // === /app.ts ===
+  // [|import { foo } from './foo/types';|]
+  // export type fullType = foo.Full;
+  // type namespaceImport = typeof import('./foo/types');
+  // type fullType2 = import('./foo/types').foo.Full;
+=== 4 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = [|foo|].Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+
+
+[
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 31
+    }
+  },
+  {
+    "textSpan": {
+      "start": 41,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 32,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 160,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/app.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 34
+    }
+  },
+  {
+    "textSpan": {
+      "start": 58,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /foo/types/index.ts ======*/
+
+import * as RENAME from './types';
+export { RENAME };
+
+/*====== /app.ts ======*/
+
+import { RENAME } from './foo/types';
+export type fullType = RENAME.Full;
+type namespaceImport = typeof import('./foo/types');
+type fullType2 = import('./foo/types').RENAME.Full;
+
+=== 0 ===
+// === /foo/types/index.ts ===
+// import * as [|foo|] from './types';
+// export { foo };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // [|import * as foo from './types';|]
+  // export { foo };
+=== 1 ===
+// === /foo/types/index.ts ===
+// import * as foo from './types';
+// export { [|foo|] };
+=== ContextSpan ===
+  // === /foo/types/index.ts ===
+  // import * as foo from './types';
+  // [|export { foo };|]
+=== 2 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').[|foo|].Full;
+=== 3 ===
+// === /app.ts ===
+// import { [|foo|] } from './foo/types';
+// export type fullType = foo.Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+=== ContextSpan ===
+  // === /app.ts ===
+  // [|import { foo } from './foo/types';|]
+  // export type fullType = foo.Full;
+  // type namespaceImport = typeof import('./foo/types');
+  // type fullType2 = import('./foo/types').foo.Full;
+=== 4 ===
+// === /app.ts ===
+// import { foo } from './foo/types';
+// export type fullType = [|foo|].Full;
+// type namespaceImport = typeof import('./foo/types');
+// type fullType2 = import('./foo/types').foo.Full;
+
+
+[
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 31
+    }
+  },
+  {
+    "textSpan": {
+      "start": 41,
+      "length": 3
+    },
+    "fileName": "/foo/types/index.ts",
+    "contextSpan": {
+      "start": 32,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 160,
+      "length": 3
+    },
+    "fileName": "/app.ts"
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/app.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 34
+    }
+  },
+  {
+    "textSpan": {
+      "start": 58,
+      "length": 3
+    },
+    "fileName": "/app.ts"
   }
 ]

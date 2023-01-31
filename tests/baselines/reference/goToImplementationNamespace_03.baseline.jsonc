@@ -1,0 +1,261 @@
+// === /tests/cases/fourslash/goToImplementationNamespace_03.ts ===
+// namespace Foo {
+//     export interface Bar {
+//         hello(): void;
+//     }
+// 
+//     class [|BarImpl|] implements Bar {
+//         hello() {}
+//     }
+// }
+// 
+// class [|Baz|] implements Foo.Bar {
+//     hello() {}
+// }
+// 
+// var someVar1 : Foo.Bar = [|{ hello: () => {/**1*/} }|];
+// 
+// var someVar2 = <Foo.Bar> [|{ hello: () => {/**2*/} }|];
+// 
+// function whatever(x: Foo.Ba/*GOTO IMPL*/r) {
+// 
+// }
+
+=== 0 ===
+// === /tests/cases/fourslash/goToImplementationNamespace_03.ts ===
+// namespace Foo {
+//     export interface Bar {
+//         hello(): void;
+//     }
+// 
+//     class [|BarImpl|] implements Bar {
+//         hello() {}
+//     }
+// }
+// 
+// class Baz implements Foo.Bar {
+//     hello() {}
+// }
+// 
+// var someVar1 : Foo.Bar = { hello: () => {/**1*/} };
+// 
+// var someVar2 = <Foo.Bar> { hello: () => {/**2*/} };
+// 
+// function whatever(x: Foo.Bar) {
+// 
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/goToImplementationNamespace_03.ts ===
+  // namespace Foo {
+  //     export interface Bar {
+  //         hello(): void;
+  //     }
+  // 
+  //     [|class BarImpl implements Bar {
+  //         hello() {}
+  //     }|]
+  // }
+  // 
+  // class Baz implements Foo.Bar {
+  //     hello() {}
+  // }
+  // 
+  // var someVar1 : Foo.Bar = { hello: () => {/**1*/} };
+  // 
+  // var someVar2 = <Foo.Bar> { hello: () => {/**2*/} };
+  // 
+  // function whatever(x: Foo.Bar) {
+  // 
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/goToImplementationNamespace_03.ts ===
+// namespace Foo {
+//     export interface Bar {
+//         hello(): void;
+//     }
+// 
+//     class BarImpl implements Bar {
+//         hello() {}
+//     }
+// }
+// 
+// class [|Baz|] implements Foo.Bar {
+//     hello() {}
+// }
+// 
+// var someVar1 : Foo.Bar = { hello: () => {/**1*/} };
+// 
+// var someVar2 = <Foo.Bar> { hello: () => {/**2*/} };
+// 
+// function whatever(x: Foo.Bar) {
+// 
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/goToImplementationNamespace_03.ts ===
+  // namespace Foo {
+  //     export interface Bar {
+  //         hello(): void;
+  //     }
+  // 
+  //     class BarImpl implements Bar {
+  //         hello() {}
+  //     }
+  // }
+  // 
+  // [|class Baz implements Foo.Bar {
+  //     hello() {}
+  // }|]
+  // 
+  // var someVar1 : Foo.Bar = { hello: () => {/**1*/} };
+  // 
+  // var someVar2 = <Foo.Bar> { hello: () => {/**2*/} };
+  // 
+  // function whatever(x: Foo.Bar) {
+  // 
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/goToImplementationNamespace_03.ts ===
+// namespace Foo {
+//     export interface Bar {
+//         hello(): void;
+//     }
+// 
+//     class BarImpl implements Bar {
+//         hello() {}
+//     }
+// }
+// 
+// class Baz implements Foo.Bar {
+//     hello() {}
+// }
+// 
+// var someVar1 : Foo.Bar = [|{ hello: () => {/**1*/} }|];
+// 
+// var someVar2 = <Foo.Bar> { hello: () => {/**2*/} };
+// 
+// function whatever(x: Foo.Bar) {
+// 
+// }
+=== 3 ===
+// === /tests/cases/fourslash/goToImplementationNamespace_03.ts ===
+// namespace Foo {
+//     export interface Bar {
+//         hello(): void;
+//     }
+// 
+//     class BarImpl implements Bar {
+//         hello() {}
+//     }
+// }
+// 
+// class Baz implements Foo.Bar {
+//     hello() {}
+// }
+// 
+// var someVar1 : Foo.Bar = { hello: () => {/**1*/} };
+// 
+// var someVar2 = <Foo.Bar> [|{ hello: () => {/**2*/} }|];
+// 
+// function whatever(x: Foo.Bar) {
+// 
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 83,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/goToImplementationNamespace_03.ts",
+    "contextSpan": {
+      "start": 77,
+      "length": 55
+    },
+    "displayParts": [
+      {
+        "text": "class",
+        "kind": "keyword"
+      },
+      {
+        "text": " ",
+        "kind": "space"
+      },
+      {
+        "text": "BarImpl",
+        "kind": "className"
+      }
+    ],
+    "kind": "class"
+  },
+  {
+    "textSpan": {
+      "start": 142,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/goToImplementationNamespace_03.ts",
+    "contextSpan": {
+      "start": 136,
+      "length": 47
+    },
+    "displayParts": [
+      {
+        "text": "class",
+        "kind": "keyword"
+      },
+      {
+        "text": " ",
+        "kind": "space"
+      },
+      {
+        "text": "Baz",
+        "kind": "className"
+      }
+    ],
+    "kind": "class"
+  },
+  {
+    "textSpan": {
+      "start": 210,
+      "length": 25
+    },
+    "fileName": "/tests/cases/fourslash/goToImplementationNamespace_03.ts",
+    "kind": "interface",
+    "displayParts": [
+      {
+        "text": "(",
+        "kind": "punctuation"
+      },
+      {
+        "text": "object literal",
+        "kind": "text"
+      },
+      {
+        "text": ")",
+        "kind": "punctuation"
+      }
+    ]
+  },
+  {
+    "textSpan": {
+      "start": 263,
+      "length": 25
+    },
+    "fileName": "/tests/cases/fourslash/goToImplementationNamespace_03.ts",
+    "kind": "interface",
+    "displayParts": [
+      {
+        "text": "(",
+        "kind": "punctuation"
+      },
+      {
+        "text": "object literal",
+        "kind": "text"
+      },
+      {
+        "text": ")",
+        "kind": "punctuation"
+      }
+    ]
+  }
+]

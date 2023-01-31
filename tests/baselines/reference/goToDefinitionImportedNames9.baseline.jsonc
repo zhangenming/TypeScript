@@ -1,0 +1,55 @@
+// === /tests/cases/fourslash/a.js ===
+// class [|Class|] {
+//     f;
+// }
+//  export { Class };
+
+// === /tests/cases/fourslash/b.js ===
+// const { Class } = require("./a");
+//  /*GOTO DEF*/Class;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/a.js ===
+    // class [|Class|] {
+    //     f;
+    // }
+    //  export { Class };
+    === ContextSpan ===
+      // === /tests/cases/fourslash/a.js ===
+      // [|class Class {
+      //     f;
+      // }|]
+      //  export { Class };
+  === TextSpan ===
+    // === /tests/cases/fourslash/b.js ===
+    // const { Class } = require("./a");
+    //  [|Class|];
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/a.js",
+      "textSpan": {
+        "start": 6,
+        "length": 5
+      },
+      "kind": "class",
+      "name": "Class",
+      "containerName": "",
+      "contextSpan": {
+        "start": 0,
+        "length": 22
+      },
+      "isLocal": true,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 35,
+    "length": 5
+  }
+}

@@ -10,5 +10,4 @@
 ////    return target;
 ////}
 
-goTo.marker("1");
-verify.occurrencesAtPositionCount(3);
+verify.baselineOccurences(...test.markers());

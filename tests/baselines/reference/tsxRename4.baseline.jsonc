@@ -1,0 +1,935 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element {}
+    interface IntrinsicElements {
+        div: {};
+    }
+}
+class [|RENAME|] {}
+
+<RENAME></RENAME>;
+<RENAME/>;
+
+<div> </div>
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class [|MyClass|] {}
+// 
+// <MyClass></MyClass>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // [|class MyClass {}|]
+  // 
+  // <MyClass></MyClass>;
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <[|MyClass|]></MyClass>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // [|<MyClass></MyClass>|];
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 2 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></[|MyClass|]>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // [|<MyClass></MyClass>|];
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 3 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></MyClass>;
+// <[|MyClass|]/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // <MyClass></MyClass>;
+  // [|<MyClass/>|];
+  // 
+  // <div> </div>
+
+
+[
+  {
+    "textSpan": {
+      "start": 111,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 105,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 124,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 123,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 134,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 123,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 145,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 144,
+      "length": 10
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element {}
+    interface IntrinsicElements {
+        div: {};
+    }
+}
+class RENAME {}
+
+<[|RENAME|]></RENAME>;
+<RENAME/>;
+
+<div> </div>
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class [|MyClass|] {}
+// 
+// <MyClass></MyClass>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // [|class MyClass {}|]
+  // 
+  // <MyClass></MyClass>;
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <[|MyClass|]></MyClass>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // [|<MyClass></MyClass>|];
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 2 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></[|MyClass|]>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // [|<MyClass></MyClass>|];
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 3 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></MyClass>;
+// <[|MyClass|]/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // <MyClass></MyClass>;
+  // [|<MyClass/>|];
+  // 
+  // <div> </div>
+
+
+[
+  {
+    "textSpan": {
+      "start": 111,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 105,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 124,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 123,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 134,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 123,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 145,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 144,
+      "length": 10
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element {}
+    interface IntrinsicElements {
+        div: {};
+    }
+}
+class RENAME {}
+
+<RENAME></[|RENAME|]>;
+<RENAME/>;
+
+<div> </div>
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class [|MyClass|] {}
+// 
+// <MyClass></MyClass>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // [|class MyClass {}|]
+  // 
+  // <MyClass></MyClass>;
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <[|MyClass|]></MyClass>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // [|<MyClass></MyClass>|];
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 2 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></[|MyClass|]>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // [|<MyClass></MyClass>|];
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 3 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></MyClass>;
+// <[|MyClass|]/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // <MyClass></MyClass>;
+  // [|<MyClass/>|];
+  // 
+  // <div> </div>
+
+
+[
+  {
+    "textSpan": {
+      "start": 111,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 105,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 124,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 123,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 134,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 123,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 145,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 144,
+      "length": 10
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element {}
+    interface IntrinsicElements {
+        div: {};
+    }
+}
+class RENAME {}
+
+<RENAME></RENAME>;
+<[|RENAME|]/>;
+
+<div> </div>
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class [|MyClass|] {}
+// 
+// <MyClass></MyClass>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // [|class MyClass {}|]
+  // 
+  // <MyClass></MyClass>;
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <[|MyClass|]></MyClass>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // [|<MyClass></MyClass>|];
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 2 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></[|MyClass|]>;
+// <MyClass/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // [|<MyClass></MyClass>|];
+  // <MyClass/>;
+  // 
+  // <div> </div>
+=== 3 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></MyClass>;
+// <[|MyClass|]/>;
+// 
+// <div> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // <MyClass></MyClass>;
+  // [|<MyClass/>|];
+  // 
+  // <div> </div>
+
+
+[
+  {
+    "textSpan": {
+      "start": 111,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 105,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 124,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 123,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 134,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 123,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 145,
+      "length": 7
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 144,
+      "length": 10
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element {}
+    interface IntrinsicElements {
+        div: {};
+    }
+}
+class MyClass {}
+
+<MyClass></MyClass>;
+<MyClass/>;
+
+<[|RENAME|]> </RENAME>
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></MyClass>;
+// <MyClass/>;
+// 
+// <[|div|]> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // <MyClass></MyClass>;
+  // <MyClass/>;
+  // 
+  // [|<div> </div>|]
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></MyClass>;
+// <MyClass/>;
+// 
+// <div> </[|div|]>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // <MyClass></MyClass>;
+  // <MyClass/>;
+  // 
+  // [|<div> </div>|]
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "textSpan": {
+      "start": 158,
+      "length": 3
+    },
+    "contextSpan": {
+      "start": 157,
+      "length": 12
+    }
+  },
+  {
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "textSpan": {
+      "start": 165,
+      "length": 3
+    },
+    "contextSpan": {
+      "start": 157,
+      "length": 12
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element {}
+    interface IntrinsicElements {
+        div: {};
+    }
+}
+class MyClass {}
+
+<MyClass></MyClass>;
+<MyClass/>;
+
+<RENAME> </[|RENAME|]>
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></MyClass>;
+// <MyClass/>;
+// 
+// <[|div|]> </div>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // <MyClass></MyClass>;
+  // <MyClass/>;
+  // 
+  // [|<div> </div>|]
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element {}
+//     interface IntrinsicElements {
+//         div: {};
+//     }
+// }
+// class MyClass {}
+// 
+// <MyClass></MyClass>;
+// <MyClass/>;
+// 
+// <div> </[|div|]>
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element {}
+  //     interface IntrinsicElements {
+  //         div: {};
+  //     }
+  // }
+  // class MyClass {}
+  // 
+  // <MyClass></MyClass>;
+  // <MyClass/>;
+  // 
+  // [|<div> </div>|]
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "textSpan": {
+      "start": 158,
+      "length": 3
+    },
+    "contextSpan": {
+      "start": 157,
+      "length": 12
+    }
+  },
+  {
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "textSpan": {
+      "start": 165,
+      "length": 3
+    },
+    "contextSpan": {
+      "start": 157,
+      "length": 12
+    }
+  }
+]

@@ -1,0 +1,439 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ======*/
+
+interface I {
+    [|RENAME|]: number;
+    property2: string;
+}
+var elems: I[];
+
+for (let { RENAME: property1/*END SUFFIX*/ } of elems) {
+    property1++;
+}
+for (let { RENAME: p2 } of elems) {
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+// interface I {
+//     [|property1|]: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// for (let { property1 } of elems) {
+//     property1++;
+// }
+// for (let { property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+  // interface I {
+  //     [|property1: number;|]
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // for (let { property1 } of elems) {
+  //     property1++;
+  // }
+  // for (let { property1: p2 } of elems) {
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// for (let { [|property1|] } of elems) {
+//     property1++;
+// }
+// for (let { property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // for ([|let { property1 } of elems|]) {
+  //     property1++;
+  // }
+  // for (let { property1: p2 } of elems) {
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// for (let { property1 } of elems) {
+//     property1++;
+// }
+// for (let { [|property1|]: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // for (let { property1 } of elems) {
+  //     property1++;
+  // }
+  // for ([|let { property1: p2 } of elems|]) {
+  // }
+
+
+[
+  {
+    "textSpan": {
+      "start": 18,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts",
+    "contextSpan": {
+      "start": 18,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 90,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts",
+    "contextSpan": {
+      "start": 84,
+      "length": 26
+    },
+    "suffixText": ": property1"
+  },
+  {
+    "textSpan": {
+      "start": 144,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts",
+    "contextSpan": {
+      "start": 138,
+      "length": 30
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ======*/
+
+interface I {
+    RENAME: number;
+    property2: string;
+}
+var elems: I[];
+
+for (let { RENAME: property1/*END SUFFIX*/ } of elems) {
+    property1++;
+}
+for (let { [|RENAME|]: p2 } of elems) {
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+// interface I {
+//     [|property1|]: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// for (let { property1 } of elems) {
+//     property1++;
+// }
+// for (let { property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+  // interface I {
+  //     [|property1: number;|]
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // for (let { property1 } of elems) {
+  //     property1++;
+  // }
+  // for (let { property1: p2 } of elems) {
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// for (let { [|property1|] } of elems) {
+//     property1++;
+// }
+// for (let { property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // for ([|let { property1 } of elems|]) {
+  //     property1++;
+  // }
+  // for (let { property1: p2 } of elems) {
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// for (let { property1 } of elems) {
+//     property1++;
+// }
+// for (let { [|property1|]: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // for (let { property1 } of elems) {
+  //     property1++;
+  // }
+  // for ([|let { property1: p2 } of elems|]) {
+  // }
+
+
+[
+  {
+    "textSpan": {
+      "start": 18,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts",
+    "contextSpan": {
+      "start": 18,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 90,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts",
+    "contextSpan": {
+      "start": 84,
+      "length": 26
+    },
+    "suffixText": ": property1"
+  },
+  {
+    "textSpan": {
+      "start": 144,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts",
+    "contextSpan": {
+      "start": 138,
+      "length": 30
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ======*/
+
+interface I {
+    property1: number;
+    property2: string;
+}
+var elems: I[];
+
+for (let { /*START PREFIX*/property1: [|RENAME|] } of elems) {
+    RENAME++;
+}
+for (let { property1: p2 } of elems) {
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// for (let { [|property1|] } of elems) {
+//     property1++;
+// }
+// for (let { property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // for ([|let { property1 } of elems|]) {
+  //     property1++;
+  // }
+  // for (let { property1: p2 } of elems) {
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// for (let { property1 } of elems) {
+//     [|property1|]++;
+// }
+// for (let { property1: p2 } of elems) {
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 90,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts",
+    "contextSpan": {
+      "start": 84,
+      "length": 26
+    },
+    "prefixText": "property1: "
+  },
+  {
+    "textSpan": {
+      "start": 118,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ======*/
+
+interface I {
+    property1: number;
+    property2: string;
+}
+var elems: I[];
+
+for (let { /*START PREFIX*/property1: RENAME } of elems) {
+    [|RENAME|]++;
+}
+for (let { property1: p2 } of elems) {
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// for (let { [|property1|] } of elems) {
+//     property1++;
+// }
+// for (let { property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // for ([|let { property1 } of elems|]) {
+  //     property1++;
+  // }
+  // for (let { property1: p2 } of elems) {
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// for (let { property1 } of elems) {
+//     [|property1|]++;
+// }
+// for (let { property1: p2 } of elems) {
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 90,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts",
+    "contextSpan": {
+      "start": 84,
+      "length": 26
+    },
+    "prefixText": "property1: "
+  },
+  {
+    "textSpan": {
+      "start": 118,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts"
+  }
+]

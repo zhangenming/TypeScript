@@ -1,0 +1,99 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameAlias3.ts ======*/
+
+module SomeModule { export class [|RENAME|] { } }
+import M = SomeModule;
+import C = M.RENAME;
+
+=== 0 ===
+// === /tests/cases/fourslash/renameAlias3.ts ===
+// module SomeModule { export class [|SomeClass|] { } }
+// import M = SomeModule;
+// import C = M.SomeClass;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameAlias3.ts ===
+  // module SomeModule { [|export class SomeClass { }|] }
+  // import M = SomeModule;
+  // import C = M.SomeClass;
+=== 1 ===
+// === /tests/cases/fourslash/renameAlias3.ts ===
+// module SomeModule { export class SomeClass { } }
+// import M = SomeModule;
+// import C = M.[|SomeClass|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 33,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameAlias3.ts",
+    "contextSpan": {
+      "start": 20,
+      "length": 26
+    }
+  },
+  {
+    "textSpan": {
+      "start": 85,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameAlias3.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameAlias3.ts ======*/
+
+module SomeModule { export class RENAME { } }
+import M = SomeModule;
+import C = M.[|RENAME|];
+
+=== 0 ===
+// === /tests/cases/fourslash/renameAlias3.ts ===
+// module SomeModule { export class [|SomeClass|] { } }
+// import M = SomeModule;
+// import C = M.SomeClass;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameAlias3.ts ===
+  // module SomeModule { [|export class SomeClass { }|] }
+  // import M = SomeModule;
+  // import C = M.SomeClass;
+=== 1 ===
+// === /tests/cases/fourslash/renameAlias3.ts ===
+// module SomeModule { export class SomeClass { } }
+// import M = SomeModule;
+// import C = M.[|SomeClass|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 33,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameAlias3.ts",
+    "contextSpan": {
+      "start": 20,
+      "length": 26
+    }
+  },
+  {
+    "textSpan": {
+      "start": 85,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameAlias3.ts"
+  }
+]

@@ -16,5 +16,10 @@
 ////}
 
 verify.noErrors();
-verify.rangesWithSameTextAreRenameLocations("N", "O", "P", "Q");
-verify.baselineFindAllReferences("N", "O", "P", "Q");
+verify.baselineCommands(
+    { type: "findAllReferences", markerOrRange: ["N", "O", "P", "Q"] },
+    { type: "findRenameLocations", markerOrRange: test.rangesByText().get("N") },
+    { type: "findRenameLocations", markerOrRange: test.rangesByText().get("O") },
+    { type: "findRenameLocations", markerOrRange: test.rangesByText().get("P") },
+    { type: "findRenameLocations", markerOrRange: test.rangesByText().get("Q") },
+);

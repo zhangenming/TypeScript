@@ -1,0 +1,284 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renamePrivateAccessor.ts ======*/
+
+class Foo {
+   get [|RENAME|]() { return 1 }
+   set RENAME(value: number) { }
+   retFoo() {
+       return this.RENAME;
+   }
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+// class Foo {
+//    get [|#foo|]() { return 1 }
+//    set #foo(value: number) { }
+//    retFoo() {
+//        return this.#foo;
+//    }
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+  // class Foo {
+  //    [|get #foo() { return 1 }|]
+  //    set #foo(value: number) { }
+  //    retFoo() {
+  //        return this.#foo;
+  //    }
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+// class Foo {
+//    get #foo() { return 1 }
+//    set [|#foo|](value: number) { }
+//    retFoo() {
+//        return this.#foo;
+//    }
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+  // class Foo {
+  //    get #foo() { return 1 }
+  //    [|set #foo(value: number) { }|]
+  //    retFoo() {
+  //        return this.#foo;
+  //    }
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+// class Foo {
+//    get #foo() { return 1 }
+//    set #foo(value: number) { }
+//    retFoo() {
+//        return this.[|#foo|];
+//    }
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateAccessor.ts",
+    "contextSpan": {
+      "start": 15,
+      "length": 23
+    }
+  },
+  {
+    "textSpan": {
+      "start": 46,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateAccessor.ts",
+    "contextSpan": {
+      "start": 42,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 103,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateAccessor.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renamePrivateAccessor.ts ======*/
+
+class Foo {
+   get RENAME() { return 1 }
+   set [|RENAME|](value: number) { }
+   retFoo() {
+       return this.RENAME;
+   }
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+// class Foo {
+//    get [|#foo|]() { return 1 }
+//    set #foo(value: number) { }
+//    retFoo() {
+//        return this.#foo;
+//    }
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+  // class Foo {
+  //    [|get #foo() { return 1 }|]
+  //    set #foo(value: number) { }
+  //    retFoo() {
+  //        return this.#foo;
+  //    }
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+// class Foo {
+//    get #foo() { return 1 }
+//    set [|#foo|](value: number) { }
+//    retFoo() {
+//        return this.#foo;
+//    }
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+  // class Foo {
+  //    get #foo() { return 1 }
+  //    [|set #foo(value: number) { }|]
+  //    retFoo() {
+  //        return this.#foo;
+  //    }
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+// class Foo {
+//    get #foo() { return 1 }
+//    set #foo(value: number) { }
+//    retFoo() {
+//        return this.[|#foo|];
+//    }
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateAccessor.ts",
+    "contextSpan": {
+      "start": 15,
+      "length": 23
+    }
+  },
+  {
+    "textSpan": {
+      "start": 46,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateAccessor.ts",
+    "contextSpan": {
+      "start": 42,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 103,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateAccessor.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renamePrivateAccessor.ts ======*/
+
+class Foo {
+   get RENAME() { return 1 }
+   set RENAME(value: number) { }
+   retFoo() {
+       return this.[|RENAME|];
+   }
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+// class Foo {
+//    get [|#foo|]() { return 1 }
+//    set #foo(value: number) { }
+//    retFoo() {
+//        return this.#foo;
+//    }
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+  // class Foo {
+  //    [|get #foo() { return 1 }|]
+  //    set #foo(value: number) { }
+  //    retFoo() {
+  //        return this.#foo;
+  //    }
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+// class Foo {
+//    get #foo() { return 1 }
+//    set [|#foo|](value: number) { }
+//    retFoo() {
+//        return this.#foo;
+//    }
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+  // class Foo {
+  //    get #foo() { return 1 }
+  //    [|set #foo(value: number) { }|]
+  //    retFoo() {
+  //        return this.#foo;
+  //    }
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renamePrivateAccessor.ts ===
+// class Foo {
+//    get #foo() { return 1 }
+//    set #foo(value: number) { }
+//    retFoo() {
+//        return this.[|#foo|];
+//    }
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 19,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateAccessor.ts",
+    "contextSpan": {
+      "start": 15,
+      "length": 23
+    }
+  },
+  {
+    "textSpan": {
+      "start": 46,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateAccessor.ts",
+    "contextSpan": {
+      "start": 42,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 103,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renamePrivateAccessor.ts"
+  }
+]

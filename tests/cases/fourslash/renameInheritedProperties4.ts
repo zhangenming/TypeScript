@@ -7,4 +7,4 @@
 //// var v: interface1;
 //// v.[|doStuff|]();
 
-verify.rangesWithSameTextAreRenameLocations("doStuff");
+verify.baselineRename(test.rangesByText().get("doStuff"));

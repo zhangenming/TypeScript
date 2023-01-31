@@ -15,13 +15,12 @@
 
 const [r0Def, r0, r1, r2, r3Def, r3, r4] = test.ranges();
 
-verify.baselineFindAllReferences('0', '1', '2', '3', '4')
-
-verify.rangesAreRenameLocations([r1]);
-
 // Can't rename a default import.
 goTo.rangeStart(r2);
 verify.renameInfoFailed();
 
-// Can rename a default property.
-verify.rangesAreRenameLocations([r3, r4]);
+verify.baselineCommands(
+    { type: "findAllReferences", markerOrRange: ['0', '1', '2', '3', '4'] },
+    // Can rename a default property.
+    { type: "findRenameLocations", markerOrRange: [r1, r3, r4] },
+);

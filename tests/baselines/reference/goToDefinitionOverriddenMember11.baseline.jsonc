@@ -1,0 +1,109 @@
+// === /tests/cases/fourslash/a.js ===
+// class Foo {
+//     [|m|]() {}
+// }
+// class Bar extends Foo {
+//     /** @over/*GOTO DEF*/ride see {@link https://test.com} description */
+//     m() {}
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/a.js ===
+    // class Foo {
+    //     [|m|]() {}
+    // }
+    // class Bar extends Foo {
+    //     /** @override see {@link https://test.com} description */
+    //     m() {}
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/a.js ===
+      // class Foo {
+      //     [|m() {}|]
+      // }
+      // class Bar extends Foo {
+      //     /** @override see {@link https://test.com} description */
+      //     m() {}
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/a.js ===
+    // class Foo {
+    //     m() {}
+    // }
+    // class Bar extends Foo {
+    //     /** @[|override|] see {@link https://test.com} description */
+    //     m() {}
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/a.js",
+      "textSpan": {
+        "start": 16,
+        "length": 1
+      },
+      "kind": "method",
+      "name": "m",
+      "containerName": "Foo",
+      "contextSpan": {
+        "start": 16,
+        "length": 6
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 58,
+    "length": 8
+  }
+}
+
+// === /tests/cases/fourslash/a.js ===
+// class Foo {
+//     m() {}
+// }
+// class Bar extends Foo {
+//     /** @override se/*GOTO DEF*/e {@link https://test.com} description */
+//     m() {}
+// }
+
+undefined
+
+// === /tests/cases/fourslash/a.js ===
+// class Foo {
+//     m() {}
+// }
+// class Bar extends Foo {
+//     /** @override see {@li/*GOTO DEF*/nk https://test.com} description */
+//     m() {}
+// }
+
+undefined
+
+// === /tests/cases/fourslash/a.js ===
+// class Foo {
+//     m() {}
+// }
+// class Bar extends Foo {
+//     /** @override see {@link https://test.c/*GOTO DEF*/om} description */
+//     m() {}
+// }
+
+undefined
+
+// === /tests/cases/fourslash/a.js ===
+// class Foo {
+//     m() {}
+// }
+// class Bar extends Foo {
+//     /** @override see {@link https://test.com} /*GOTO DEF*/description */
+//     m() {}
+// }
+
+undefined

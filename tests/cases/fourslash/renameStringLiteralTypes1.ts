@@ -11,4 +11,4 @@
 ////
 ////animate({ deltaX: 100, deltaY: 100, easing: "[|ease-in-out|]" });
 
-verify.rangesWithSameTextAreRenameLocations("ease-in-out");
+verify.baselineRename(test.rangesByText().get("ease-in-out"));

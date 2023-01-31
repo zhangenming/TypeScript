@@ -1,0 +1,329 @@
+// === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+// var [|remoteVariable|];
+// function remoteFunction() { }
+// class remoteClass { }
+// interface remoteInterface{ }
+// module remoteModule{ export var foo = 1;}
+
+// === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Consumption.ts ===
+// /*GOTO DEF*/remoteVariable = 1;
+// remoteFunction();
+// var foo = new remoteClass();
+// class fooCls implements remoteInterface { }
+// var fooVar = remoteModule.foo;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+    // var [|remoteVariable|];
+    // function remoteFunction() { }
+    // class remoteClass { }
+    // interface remoteInterface{ }
+    // module remoteModule{ export var foo = 1;}
+    === ContextSpan ===
+      // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+      // [|var remoteVariable;|]
+      // function remoteFunction() { }
+      // class remoteClass { }
+      // interface remoteInterface{ }
+      // module remoteModule{ export var foo = 1;}
+  === TextSpan ===
+    // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Consumption.ts ===
+    // [|remoteVariable|] = 1;
+    // remoteFunction();
+    // var foo = new remoteClass();
+    // class fooCls implements remoteInterface { }
+    // var fooVar = remoteModule.foo;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts",
+      "textSpan": {
+        "start": 4,
+        "length": 14
+      },
+      "kind": "var",
+      "name": "remoteVariable",
+      "containerName": "",
+      "contextSpan": {
+        "start": 0,
+        "length": 19
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 0,
+    "length": 14
+  }
+}
+
+// === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+// var remoteVariable;
+// function [|remoteFunction|]() { }
+// class remoteClass { }
+// interface remoteInterface{ }
+// module remoteModule{ export var foo = 1;}
+
+// === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Consumption.ts ===
+// remoteVariable = 1;
+// /*GOTO DEF*/remoteFunction();
+// var foo = new remoteClass();
+// class fooCls implements remoteInterface { }
+// var fooVar = remoteModule.foo;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+    // var remoteVariable;
+    // function [|remoteFunction|]() { }
+    // class remoteClass { }
+    // interface remoteInterface{ }
+    // module remoteModule{ export var foo = 1;}
+    === ContextSpan ===
+      // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+      // var remoteVariable;
+      // [|function remoteFunction() { }|]
+      // class remoteClass { }
+      // interface remoteInterface{ }
+      // module remoteModule{ export var foo = 1;}
+  === TextSpan ===
+    // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Consumption.ts ===
+    // remoteVariable = 1;
+    // [|remoteFunction|]();
+    // var foo = new remoteClass();
+    // class fooCls implements remoteInterface { }
+    // var fooVar = remoteModule.foo;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts",
+      "textSpan": {
+        "start": 29,
+        "length": 14
+      },
+      "kind": "function",
+      "name": "remoteFunction",
+      "containerName": "",
+      "contextSpan": {
+        "start": 20,
+        "length": 29
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 20,
+    "length": 14
+  }
+}
+
+// === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+// var remoteVariable;
+// function remoteFunction() { }
+// class [|remoteClass|] { }
+// interface remoteInterface{ }
+// module remoteModule{ export var foo = 1;}
+
+// === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Consumption.ts ===
+// remoteVariable = 1;
+// remoteFunction();
+// var foo = new /*GOTO DEF*/remoteClass();
+// class fooCls implements remoteInterface { }
+// var fooVar = remoteModule.foo;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+    // var remoteVariable;
+    // function remoteFunction() { }
+    // class [|remoteClass|] { }
+    // interface remoteInterface{ }
+    // module remoteModule{ export var foo = 1;}
+    === ContextSpan ===
+      // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+      // var remoteVariable;
+      // function remoteFunction() { }
+      // [|class remoteClass { }|]
+      // interface remoteInterface{ }
+      // module remoteModule{ export var foo = 1;}
+  === TextSpan ===
+    // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Consumption.ts ===
+    // remoteVariable = 1;
+    // remoteFunction();
+    // var foo = new [|remoteClass|]();
+    // class fooCls implements remoteInterface { }
+    // var fooVar = remoteModule.foo;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts",
+      "textSpan": {
+        "start": 56,
+        "length": 11
+      },
+      "kind": "class",
+      "name": "remoteClass",
+      "containerName": "",
+      "contextSpan": {
+        "start": 50,
+        "length": 21
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 52,
+    "length": 11
+  }
+}
+
+// === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+// var remoteVariable;
+// function remoteFunction() { }
+// class remoteClass { }
+// interface [|remoteInterface|]{ }
+// module remoteModule{ export var foo = 1;}
+
+// === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Consumption.ts ===
+// remoteVariable = 1;
+// remoteFunction();
+// var foo = new remoteClass();
+// class fooCls implements /*GOTO DEF*/remoteInterface { }
+// var fooVar = remoteModule.foo;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+    // var remoteVariable;
+    // function remoteFunction() { }
+    // class remoteClass { }
+    // interface [|remoteInterface|]{ }
+    // module remoteModule{ export var foo = 1;}
+    === ContextSpan ===
+      // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+      // var remoteVariable;
+      // function remoteFunction() { }
+      // class remoteClass { }
+      // [|interface remoteInterface{ }|]
+      // module remoteModule{ export var foo = 1;}
+  === TextSpan ===
+    // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Consumption.ts ===
+    // remoteVariable = 1;
+    // remoteFunction();
+    // var foo = new remoteClass();
+    // class fooCls implements [|remoteInterface|] { }
+    // var fooVar = remoteModule.foo;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts",
+      "textSpan": {
+        "start": 82,
+        "length": 15
+      },
+      "kind": "interface",
+      "name": "remoteInterface",
+      "containerName": "",
+      "contextSpan": {
+        "start": 72,
+        "length": 28
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 91,
+    "length": 15
+  }
+}
+
+// === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+// var remoteVariable;
+// function remoteFunction() { }
+// class remoteClass { }
+// interface remoteInterface{ }
+// module [|remoteModule|]{ export var foo = 1;}
+
+// === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Consumption.ts ===
+// remoteVariable = 1;
+// remoteFunction();
+// var foo = new remoteClass();
+// class fooCls implements remoteInterface { }
+// var fooVar = /*GOTO DEF*/remoteModule.foo;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+    // var remoteVariable;
+    // function remoteFunction() { }
+    // class remoteClass { }
+    // interface remoteInterface{ }
+    // module [|remoteModule|]{ export var foo = 1;}
+    === ContextSpan ===
+      // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts ===
+      // var remoteVariable;
+      // function remoteFunction() { }
+      // class remoteClass { }
+      // interface remoteInterface{ }
+      // [|module remoteModule{ export var foo = 1;}|]
+  === TextSpan ===
+    // === /tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Consumption.ts ===
+    // remoteVariable = 1;
+    // remoteFunction();
+    // var foo = new remoteClass();
+    // class fooCls implements remoteInterface { }
+    // var fooVar = [|remoteModule|].foo;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/shims-pp/goToDefinitionDifferentFile_Definition.ts",
+      "textSpan": {
+        "start": 108,
+        "length": 12
+      },
+      "kind": "module",
+      "name": "remoteModule",
+      "containerName": "",
+      "contextSpan": {
+        "start": 101,
+        "length": 41
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 124,
+    "length": 12
+  }
+}

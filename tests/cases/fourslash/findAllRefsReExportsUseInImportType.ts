@@ -20,7 +20,6 @@ const full = {
     definition: "type Full = {\n    prop: string;\n}",
     ranges: fullRanges
 };
-verify.renameLocations(fullRanges, fullRanges);
 
 const fooTypesRanges = [foo0, foo1];
 const fooTypes = {
@@ -38,9 +37,8 @@ const fooExport = {
     ranges: exportFooRanges
 };
 
-verify.renameLocations([foo0], [foo0, { range: foo1, suffixText: " as foo" }]);
-verify.renameLocations([foo1, foo4], [foo2, foo3, foo4, { range: foo1, prefixText: "foo as " }]);
-verify.renameLocations(fooAppRanges, [{ range: foo2, prefixText: "foo as " }, foo3]);
-
-verify.rangesAreRenameLocations({ ranges: [foo2, foo3, foo4, foo0, foo1], providePrefixAndSuffixTextForRename: false });
-verify.baselineFindAllReferences('full0', 'full1', 'full2', 'foo0', 'foo1', 'foo2', 'foo3', 'foo4')
+verify.baselineCommands(
+    { type: "findAllReferences", markerOrRange: ['full0', 'full1', 'full2', 'foo0', 'foo1', 'foo2', 'foo3', 'foo4'] },
+    { type: "findRenameLocations", markerOrRange: [foo0, foo1, ...fooAppRanges, ...fullRanges] },
+    { type: "findRenameLocations", markerOrRange: [foo2, foo3, foo4, foo0, foo1], options: { providePrefixAndSuffixTextForRename: false } },
+);

@@ -1,0 +1,197 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+        div: {
+            [|RENAME|]?: string;
+            isOpen?: boolean;
+        };
+        span: { n: string; };
+    }
+}
+var x = <div RENAME="hello" />;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//         div: {
+//             [|name|]?: string;
+//             isOpen?: boolean;
+//         };
+//         span: { n: string; };
+//     }
+// }
+// var x = <div name="hello" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //         div: {
+  //             [|name?: string;|]
+  //             isOpen?: boolean;
+  //         };
+  //         span: { n: string; };
+  //     }
+  // }
+  // var x = <div name="hello" />;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//         div: {
+//             name?: string;
+//             isOpen?: boolean;
+//         };
+//         span: { n: string; };
+//     }
+// }
+// var x = <div [|name|]="hello" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //         div: {
+  //             name?: string;
+  //             isOpen?: boolean;
+  //         };
+  //         span: { n: string; };
+  //     }
+  // }
+  // var x = <div [|name="hello"|] />;
+
+
+[
+  {
+    "textSpan": {
+      "start": 108,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 108,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 215,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 215,
+      "length": 12
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+        div: {
+            RENAME?: string;
+            isOpen?: boolean;
+        };
+        span: { n: string; };
+    }
+}
+var x = <div [|RENAME|]="hello" />;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//         div: {
+//             [|name|]?: string;
+//             isOpen?: boolean;
+//         };
+//         span: { n: string; };
+//     }
+// }
+// var x = <div name="hello" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //         div: {
+  //             [|name?: string;|]
+  //             isOpen?: boolean;
+  //         };
+  //         span: { n: string; };
+  //     }
+  // }
+  // var x = <div name="hello" />;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//         div: {
+//             name?: string;
+//             isOpen?: boolean;
+//         };
+//         span: { n: string; };
+//     }
+// }
+// var x = <div [|name|]="hello" />;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //         div: {
+  //             name?: string;
+  //             isOpen?: boolean;
+  //         };
+  //         span: { n: string; };
+  //     }
+  // }
+  // var x = <div [|name="hello"|] />;
+
+
+[
+  {
+    "textSpan": {
+      "start": 108,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 108,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 215,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 215,
+      "length": 12
+    }
+  }
+]

@@ -25,15 +25,18 @@
 
 let count = 1;
 
-checkRefs();
+verify.baselineCommands(
+    { type: "findAllReferences", markerOrRange: '1' },
+    {
+        type: "customWork",
+        work: () => {
+            cancellation.setCancelled();
+            verifyOperationIsCancelled(() => verify.baselineFindAllReferences('1'));
 
-cancellation.setCancelled();
-verifyOperationIsCancelled(checkRefs);
-
-// verify that internal state is still correct
-cancellation.resetCancelled();
-checkRefs();
-
-function checkRefs() {
-    verify.baselineFindAllReferencesMulti(count++, '1');
-}
+            // verify that internal state is still correct
+            cancellation.resetCancelled();
+            return "cancelled findAllReferences";
+        }
+    },
+    { type: "findAllReferences", markerOrRange: '1' },
+);

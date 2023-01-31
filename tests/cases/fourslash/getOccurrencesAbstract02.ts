@@ -11,10 +11,4 @@
 ////    abstract bar(): void;
 ////}
 
-verify.rangesAreOccurrences(false);
-
-goTo.marker("1");
-verify.occurrencesAtPositionCount(0);
-
-goTo.marker("2");
-verify.occurrencesAtPositionCount(2);
+verify.baselineOccurences(...test.ranges(), ...test.markers());

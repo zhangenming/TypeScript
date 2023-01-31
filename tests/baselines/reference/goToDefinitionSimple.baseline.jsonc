@@ -1,0 +1,95 @@
+// === /tests/cases/fourslash/Definition.ts ===
+// class [|c|] { }
+
+// === /tests/cases/fourslash/Consumption.ts ===
+// var n = new /*GOTO DEF*/c();
+// var n = new c();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/Definition.ts ===
+    // class [|c|] { }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/Definition.ts ===
+      // [|class c { }|]
+  === TextSpan ===
+    // === /tests/cases/fourslash/Consumption.ts ===
+    // var n = new [|c|]();
+    // var n = new c();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/Definition.ts",
+      "textSpan": {
+        "start": 6,
+        "length": 1
+      },
+      "kind": "class",
+      "name": "c",
+      "containerName": "",
+      "contextSpan": {
+        "start": 0,
+        "length": 11
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 12,
+    "length": 1
+  }
+}
+
+// === /tests/cases/fourslash/Definition.ts ===
+// class [|c|] { }
+
+// === /tests/cases/fourslash/Consumption.ts ===
+// var n = new c();
+// var n = new c/*GOTO DEF*/();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/Definition.ts ===
+    // class [|c|] { }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/Definition.ts ===
+      // [|class c { }|]
+  === TextSpan ===
+    // === /tests/cases/fourslash/Consumption.ts ===
+    // var n = new c();
+    // var n = new [|c|]();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/Definition.ts",
+      "textSpan": {
+        "start": 6,
+        "length": 1
+      },
+      "kind": "class",
+      "name": "c",
+      "containerName": "",
+      "contextSpan": {
+        "start": 0,
+        "length": 11
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 29,
+    "length": 1
+  }
+}

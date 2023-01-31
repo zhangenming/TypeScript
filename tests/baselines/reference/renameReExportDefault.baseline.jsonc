@@ -1,0 +1,428 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /a.ts ======*/
+
+export { default } from "./b";
+export { default as [|RENAME|] } from "./b";
+export { default as bee } from "./b";
+import { default as b } from "./b";
+import { default as bee } from "./b";
+import b from "./b";
+
+=== 0 ===
+// === /a.ts ===
+// export { default } from "./b";
+// export { default as [|b|] } from "./b";
+// export { default as bee } from "./b";
+// import { default as b } from "./b";
+// import { default as bee } from "./b";
+// import b from "./b";
+=== ContextSpan ===
+  // === /a.ts ===
+  // export { default } from "./b";
+  // [|export { default as b } from "./b";|]
+  // export { default as bee } from "./b";
+  // import { default as b } from "./b";
+  // import { default as bee } from "./b";
+  // import b from "./b";
+
+
+[
+  {
+    "textSpan": {
+      "start": 51,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 31,
+      "length": 35
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /a.ts ======*/
+
+export { default } from "./b";
+export { default as b } from "./b";
+export { default as bee } from "./b";
+import { default as [|RENAME|] } from "./b";
+import { default as bee } from "./b";
+import b from "./b";
+
+=== 0 ===
+// === /a.ts ===
+// export { default } from "./b";
+// export { default as b } from "./b";
+// export { default as bee } from "./b";
+// import { default as [|b|] } from "./b";
+// import { default as bee } from "./b";
+// import b from "./b";
+=== ContextSpan ===
+  // === /a.ts ===
+  // export { default } from "./b";
+  // export { default as b } from "./b";
+  // export { default as bee } from "./b";
+  // [|import { default as b } from "./b";|]
+  // import { default as bee } from "./b";
+  // import b from "./b";
+
+
+[
+  {
+    "textSpan": {
+      "start": 125,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 105,
+      "length": 35
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /a.ts ======*/
+
+export { default } from "./b";
+export { default as b } from "./b";
+export { default as bee } from "./b";
+import { default as b } from "./b";
+import { default as bee } from "./b";
+import [|RENAME|] from "./b";
+
+=== 0 ===
+// === /a.ts ===
+// export { default } from "./b";
+// export { default as b } from "./b";
+// export { default as bee } from "./b";
+// import { default as b } from "./b";
+// import { default as bee } from "./b";
+// import [|b|] from "./b";
+=== ContextSpan ===
+  // === /a.ts ===
+  // export { default } from "./b";
+  // export { default as b } from "./b";
+  // export { default as bee } from "./b";
+  // import { default as b } from "./b";
+  // import { default as bee } from "./b";
+  // [|import b from "./b";|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 186,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 179,
+      "length": 20
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /b.ts ======*/
+
+const RENAME = 0;
+export default RENAME;
+
+/*====== /a.ts ======*/
+
+export { default } from "./b";
+export { default as RENAME } from "./b";
+export { default as bee } from "./b";
+import { default as RENAME } from "./b";
+import { default as bee } from "./b";
+import RENAME from "./b";
+
+=== 0 ===
+// === /b.ts ===
+// const [|b|] = 0;
+// export default b;
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|const b = 0;|]
+  // export default b;
+=== 1 ===
+// === /b.ts ===
+// const b = 0;
+// export default [|b|];
+=== ContextSpan ===
+  // === /b.ts ===
+  // const b = 0;
+  // [|export default b;|]
+=== 2 ===
+// === /a.ts ===
+// export { default } from "./b";
+// export { default as [|b|] } from "./b";
+// export { default as bee } from "./b";
+// import { default as b } from "./b";
+// import { default as bee } from "./b";
+// import b from "./b";
+=== ContextSpan ===
+  // === /a.ts ===
+  // export { default } from "./b";
+  // [|export { default as b } from "./b";|]
+  // export { default as bee } from "./b";
+  // import { default as b } from "./b";
+  // import { default as bee } from "./b";
+  // import b from "./b";
+=== 3 ===
+// === /a.ts ===
+// export { default } from "./b";
+// export { default as b } from "./b";
+// export { default as bee } from "./b";
+// import { default as [|b|] } from "./b";
+// import { default as bee } from "./b";
+// import b from "./b";
+=== ContextSpan ===
+  // === /a.ts ===
+  // export { default } from "./b";
+  // export { default as b } from "./b";
+  // export { default as bee } from "./b";
+  // [|import { default as b } from "./b";|]
+  // import { default as bee } from "./b";
+  // import b from "./b";
+=== 4 ===
+// === /a.ts ===
+// export { default } from "./b";
+// export { default as b } from "./b";
+// export { default as bee } from "./b";
+// import { default as b } from "./b";
+// import { default as bee } from "./b";
+// import [|b|] from "./b";
+=== ContextSpan ===
+  // === /a.ts ===
+  // export { default } from "./b";
+  // export { default as b } from "./b";
+  // export { default as bee } from "./b";
+  // import { default as b } from "./b";
+  // import { default as bee } from "./b";
+  // [|import b from "./b";|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 6,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 12
+    }
+  },
+  {
+    "textSpan": {
+      "start": 28,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 13,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 51,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 31,
+      "length": 35
+    }
+  },
+  {
+    "textSpan": {
+      "start": 125,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 105,
+      "length": 35
+    }
+  },
+  {
+    "textSpan": {
+      "start": 186,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 179,
+      "length": 20
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /b.ts ======*/
+
+const RENAME = 0;
+export default RENAME;
+
+/*====== /a.ts ======*/
+
+export { default } from "./b";
+export { default as RENAME } from "./b";
+export { default as bee } from "./b";
+import { default as RENAME } from "./b";
+import { default as bee } from "./b";
+import RENAME from "./b";
+
+=== 0 ===
+// === /b.ts ===
+// const [|b|] = 0;
+// export default b;
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|const b = 0;|]
+  // export default b;
+=== 1 ===
+// === /b.ts ===
+// const b = 0;
+// export default [|b|];
+=== ContextSpan ===
+  // === /b.ts ===
+  // const b = 0;
+  // [|export default b;|]
+=== 2 ===
+// === /a.ts ===
+// export { default } from "./b";
+// export { default as [|b|] } from "./b";
+// export { default as bee } from "./b";
+// import { default as b } from "./b";
+// import { default as bee } from "./b";
+// import b from "./b";
+=== ContextSpan ===
+  // === /a.ts ===
+  // export { default } from "./b";
+  // [|export { default as b } from "./b";|]
+  // export { default as bee } from "./b";
+  // import { default as b } from "./b";
+  // import { default as bee } from "./b";
+  // import b from "./b";
+=== 3 ===
+// === /a.ts ===
+// export { default } from "./b";
+// export { default as b } from "./b";
+// export { default as bee } from "./b";
+// import { default as [|b|] } from "./b";
+// import { default as bee } from "./b";
+// import b from "./b";
+=== ContextSpan ===
+  // === /a.ts ===
+  // export { default } from "./b";
+  // export { default as b } from "./b";
+  // export { default as bee } from "./b";
+  // [|import { default as b } from "./b";|]
+  // import { default as bee } from "./b";
+  // import b from "./b";
+=== 4 ===
+// === /a.ts ===
+// export { default } from "./b";
+// export { default as b } from "./b";
+// export { default as bee } from "./b";
+// import { default as b } from "./b";
+// import { default as bee } from "./b";
+// import [|b|] from "./b";
+=== ContextSpan ===
+  // === /a.ts ===
+  // export { default } from "./b";
+  // export { default as b } from "./b";
+  // export { default as bee } from "./b";
+  // import { default as b } from "./b";
+  // import { default as bee } from "./b";
+  // [|import b from "./b";|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 6,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 12
+    }
+  },
+  {
+    "textSpan": {
+      "start": 28,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 13,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 51,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 31,
+      "length": 35
+    }
+  },
+  {
+    "textSpan": {
+      "start": 125,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 105,
+      "length": 35
+    }
+  },
+  {
+    "textSpan": {
+      "start": 186,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 179,
+      "length": 20
+    }
+  }
+]

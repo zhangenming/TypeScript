@@ -1,0 +1,117 @@
+// === /tests/cases/fourslash/goToDefinitionInTypeArgument.ts ===
+// class Foo<T> { }
+// 
+// class [|Bar|] { }
+// 
+// var x = new Foo<Ba/*GOTO DEF*/r>();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionInTypeArgument.ts ===
+    // class Foo<T> { }
+    // 
+    // class [|Bar|] { }
+    // 
+    // var x = new Foo<Bar>();
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionInTypeArgument.ts ===
+      // class Foo<T> { }
+      // 
+      // [|class Bar { }|]
+      // 
+      // var x = new Foo<Bar>();
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionInTypeArgument.ts ===
+    // class Foo<T> { }
+    // 
+    // class Bar { }
+    // 
+    // var x = new Foo<[|Bar|]>();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionInTypeArgument.ts",
+      "textSpan": {
+        "start": 24,
+        "length": 3
+      },
+      "kind": "class",
+      "name": "Bar",
+      "containerName": "",
+      "contextSpan": {
+        "start": 18,
+        "length": 13
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 49,
+    "length": 3
+  }
+}
+
+// === /tests/cases/fourslash/goToDefinitionInTypeArgument.ts ===
+// class [|Foo|]<T> { }
+// 
+// class Bar { }
+// 
+// var x = new Fo/*GOTO DEF*/o<Bar>();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionInTypeArgument.ts ===
+    // class [|Foo|]<T> { }
+    // 
+    // class Bar { }
+    // 
+    // var x = new Foo<Bar>();
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionInTypeArgument.ts ===
+      // [|class Foo<T> { }|]
+      // 
+      // class Bar { }
+      // 
+      // var x = new Foo<Bar>();
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionInTypeArgument.ts ===
+    // class Foo<T> { }
+    // 
+    // class Bar { }
+    // 
+    // var x = new [|Foo|]<Bar>();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionInTypeArgument.ts",
+      "textSpan": {
+        "start": 6,
+        "length": 3
+      },
+      "kind": "class",
+      "name": "Foo",
+      "containerName": "",
+      "contextSpan": {
+        "start": 0,
+        "length": 16
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 45,
+    "length": 3
+  }
+}

@@ -1,0 +1,57 @@
+// === /tests/cases/fourslash/goToDefinitionOverriddenMember5.ts ===
+// class Foo extends (class {
+//     [|m|]() {}
+// }) {
+//     /*GOTO DEF*/override m() {}
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionOverriddenMember5.ts ===
+    // class Foo extends (class {
+    //     [|m|]() {}
+    // }) {
+    //     override m() {}
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionOverriddenMember5.ts ===
+      // class Foo extends (class {
+      //     [|m() {}|]
+      // }) {
+      //     override m() {}
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionOverriddenMember5.ts ===
+    // class Foo extends (class {
+    //     m() {}
+    // }) {
+    //     [|override|] m() {}
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionOverriddenMember5.ts",
+      "textSpan": {
+        "start": 31,
+        "length": 1
+      },
+      "kind": "method",
+      "name": "m",
+      "containerName": "(Anonymous class)",
+      "contextSpan": {
+        "start": 31,
+        "length": 6
+      },
+      "isLocal": true,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 47,
+    "length": 8
+  }
+}

@@ -1,0 +1,82 @@
+// === /tests/cases/fourslash/b.ts ===
+// @/*OCCURENCES*/[|decorator|]
+// class C {
+//     @[|decorator|]
+//     method() {}
+// }
+// function [|decorator|](target) {
+//     return target;
+// }
+
+=== 0 ===
+// === /tests/cases/fourslash/b.ts ===
+// @[|decorator|]
+// class C {
+//     @decorator
+//     method() {}
+// }
+// function decorator(target) {
+//     return target;
+// }
+=== 1 ===
+// === /tests/cases/fourslash/b.ts ===
+// @decorator
+// class C {
+//     @[|decorator|]
+//     method() {}
+// }
+// function decorator(target) {
+//     return target;
+// }
+=== 2 ===
+// === /tests/cases/fourslash/b.ts ===
+// @decorator
+// class C {
+//     @decorator
+//     method() {}
+// }
+// function [|decorator|](target) {
+//     return target;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/b.ts ===
+  // @decorator
+  // class C {
+  //     @decorator
+  //     method() {}
+  // }
+  // [|function decorator(target) {
+  //     return target;
+  // }|]
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/b.ts",
+    "textSpan": {
+      "start": 1,
+      "length": 9
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/b.ts",
+    "textSpan": {
+      "start": 26,
+      "length": 9
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/b.ts",
+    "textSpan": {
+      "start": 63,
+      "length": 9
+    },
+    "isWriteAccess": true,
+    "contextSpan": {
+      "start": 54,
+      "length": 49
+    }
+  }
+]

@@ -1,5 +1,7 @@
 /// <reference path="../fourslash.ts"/>
 
+// @BaselineFile: getDefinitionTypeReferenceDirective-shims.baseline.jsonc
+
 // @typeRoots: src/types
 // @Filename: src/types/lib/index.d.ts
 /////*0*/declare let $: {x: number};
@@ -8,4 +10,4 @@
 //// /// <reference types="[|lib/*1*/|]"/>
 //// $.x;
 
-verify.goToDefinition("1", "0");
+verify.baselineGoToDefinition("1");

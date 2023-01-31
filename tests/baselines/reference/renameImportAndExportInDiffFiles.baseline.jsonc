@@ -1,9 +1,55 @@
+=== findAllReferences ===
 // === /tests/cases/fourslash/b.ts ===
 // import { [|a|] } from './a';
 // export { [|a|] };
 
 // === /tests/cases/fourslash/a.ts ===
 // export var /*FIND ALL REFS*/[|a|];
+
+[
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/a.ts ===
+      // export var [|a|];
+      === ContextSpan ===
+        // === /tests/cases/fourslash/a.ts ===
+        // [|export var a;|]
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/a.ts ===
+      // export var [|a|];
+      === ContextSpan ===
+        // === /tests/cases/fourslash/a.ts ===
+        // [|export var a;|]
+  },
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/b.ts ===
+      // import { [|a|] } from './a';
+      // export { a };
+      === ContextSpan ===
+        // === /tests/cases/fourslash/b.ts ===
+        // [|import { a } from './a';|]
+        // export { a };
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/b.ts ===
+      // import { [|a|] } from './a';
+      // export { a };
+      === ContextSpan ===
+        // === /tests/cases/fourslash/b.ts ===
+        // [|import { a } from './a';|]
+        // export { a };
+      === 1 ===
+      // === /tests/cases/fourslash/b.ts ===
+      // import { a } from './a';
+      // export { [|a|] };
+      === ContextSpan ===
+        // === /tests/cases/fourslash/b.ts ===
+        // import { a } from './a';
+        // [|export { a };|]
+  }
+]
 
 [
   {
@@ -178,6 +224,51 @@
 
 [
   {
+    === Definition ===
+      // === /tests/cases/fourslash/b.ts ===
+      // import { [|a|] } from './a';
+      // export { a };
+      === ContextSpan ===
+        // === /tests/cases/fourslash/b.ts ===
+        // [|import { a } from './a';|]
+        // export { a };
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/b.ts ===
+      // import { [|a|] } from './a';
+      // export { a };
+      === ContextSpan ===
+        // === /tests/cases/fourslash/b.ts ===
+        // [|import { a } from './a';|]
+        // export { a };
+      === 1 ===
+      // === /tests/cases/fourslash/b.ts ===
+      // import { a } from './a';
+      // export { [|a|] };
+      === ContextSpan ===
+        // === /tests/cases/fourslash/b.ts ===
+        // import { a } from './a';
+        // [|export { a };|]
+  },
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/a.ts ===
+      // export var [|a|];
+      === ContextSpan ===
+        // === /tests/cases/fourslash/a.ts ===
+        // [|export var a;|]
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/a.ts ===
+      // export var [|a|];
+      === ContextSpan ===
+        // === /tests/cases/fourslash/a.ts ===
+        // [|export var a;|]
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -349,6 +440,51 @@
 
 [
   {
+    === Definition ===
+      // === /tests/cases/fourslash/b.ts ===
+      // import { [|a|] } from './a';
+      // export { a };
+      === ContextSpan ===
+        // === /tests/cases/fourslash/b.ts ===
+        // [|import { a } from './a';|]
+        // export { a };
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/b.ts ===
+      // import { [|a|] } from './a';
+      // export { a };
+      === ContextSpan ===
+        // === /tests/cases/fourslash/b.ts ===
+        // [|import { a } from './a';|]
+        // export { a };
+      === 1 ===
+      // === /tests/cases/fourslash/b.ts ===
+      // import { a } from './a';
+      // export { [|a|] };
+      === ContextSpan ===
+        // === /tests/cases/fourslash/b.ts ===
+        // import { a } from './a';
+        // [|export { a };|]
+  },
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/a.ts ===
+      // export var [|a|];
+      === ContextSpan ===
+        // === /tests/cases/fourslash/a.ts ===
+        // [|export var a;|]
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/a.ts ===
+      // export var [|a|];
+      === ContextSpan ===
+        // === /tests/cases/fourslash/a.ts ===
+        // [|export var a;|]
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -508,5 +644,174 @@
         "isDefinition": false
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+export var RENAME;
+
+/*====== /tests/cases/fourslash/b.ts ======*/
+
+import { RENAME } from './a';
+export { RENAME as a/*END SUFFIX*/ };
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// export var [|a|];
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // [|export var a;|]
+=== 1 ===
+// === /tests/cases/fourslash/b.ts ===
+// import { [|a|] } from './a';
+// export { a };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/b.ts ===
+  // [|import { a } from './a';|]
+  // export { a };
+=== 2 ===
+// === /tests/cases/fourslash/b.ts ===
+// import { a } from './a';
+// export { [|a|] };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/b.ts ===
+  // import { a } from './a';
+  // [|export { a };|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 11,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 13
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 24
+    }
+  },
+  {
+    "textSpan": {
+      "start": 34,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/b.ts",
+    "contextSpan": {
+      "start": 25,
+      "length": 13
+    },
+    "suffixText": " as a"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/b.ts ======*/
+
+import { /*START PREFIX*/a as [|RENAME|] } from './a';
+export { RENAME as a/*END SUFFIX*/ };
+
+=== 0 ===
+// === /tests/cases/fourslash/b.ts ===
+// import { [|a|] } from './a';
+// export { a };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/b.ts ===
+  // [|import { a } from './a';|]
+  // export { a };
+=== 1 ===
+// === /tests/cases/fourslash/b.ts ===
+// import { a } from './a';
+// export { [|a|] };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/b.ts ===
+  // import { a } from './a';
+  // [|export { a };|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 24
+    },
+    "prefixText": "a as "
+  },
+  {
+    "textSpan": {
+      "start": 34,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/b.ts",
+    "contextSpan": {
+      "start": 25,
+      "length": 13
+    },
+    "suffixText": " as a"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/b.ts ======*/
+
+import { a } from './a';
+export { /*START PREFIX*/a as [|RENAME|] };
+
+=== 0 ===
+// === /tests/cases/fourslash/b.ts ===
+// import { a } from './a';
+// export { [|a|] };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/b.ts ===
+  // import { a } from './a';
+  // [|export { a };|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 34,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/b.ts",
+    "contextSpan": {
+      "start": 25,
+      "length": 13
+    },
+    "prefixText": "a as "
   }
 ]

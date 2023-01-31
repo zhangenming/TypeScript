@@ -1,0 +1,93 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ======*/
+
+import * as [|RENAME|] from 'bar';
+const bar = { /*START PREFIX*/foo: RENAME };
+
+=== 0 ===
+// === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
+// import * as [|foo|] from 'bar';
+// const bar = { foo };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
+  // [|import * as foo from 'bar';|]
+  // const bar = { foo };
+=== 1 ===
+// === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
+// import * as foo from 'bar';
+// const bar = { [|foo|] };
+
+
+[
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameImportNamespaceAndShorthand.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 42,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameImportNamespaceAndShorthand.ts",
+    "prefixText": "foo: "
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ======*/
+
+import * as RENAME from 'bar';
+const bar = { /*START PREFIX*/foo: [|RENAME|] };
+
+=== 0 ===
+// === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
+// import * as [|foo|] from 'bar';
+// const bar = { foo };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
+  // [|import * as foo from 'bar';|]
+  // const bar = { foo };
+=== 1 ===
+// === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
+// import * as foo from 'bar';
+// const bar = { [|foo|] };
+
+
+[
+  {
+    "textSpan": {
+      "start": 12,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameImportNamespaceAndShorthand.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 42,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/renameImportNamespaceAndShorthand.ts",
+    "prefixText": "foo: "
+  }
+]

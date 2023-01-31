@@ -1,0 +1,209 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameThis.ts ======*/
+
+function f([|RENAME|]) {
+    return RENAME;
+}
+this;
+const _ = { this: 0 }.this;
+
+=== 0 ===
+// === /tests/cases/fourslash/renameThis.ts ===
+// function f([|this|]) {
+//     return this;
+// }
+// this;
+// const _ = { this: 0 }.this;
+=== 1 ===
+// === /tests/cases/fourslash/renameThis.ts ===
+// function f(this) {
+//     return [|this|];
+// }
+// this;
+// const _ = { this: 0 }.this;
+
+
+[
+  {
+    "textSpan": {
+      "start": 11,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renameThis.ts"
+  },
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renameThis.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameThis.ts ======*/
+
+function f(RENAME) {
+    return [|RENAME|];
+}
+this;
+const _ = { this: 0 }.this;
+
+=== 0 ===
+// === /tests/cases/fourslash/renameThis.ts ===
+// function f([|this|]) {
+//     return this;
+// }
+// this;
+// const _ = { this: 0 }.this;
+=== 1 ===
+// === /tests/cases/fourslash/renameThis.ts ===
+// function f(this) {
+//     return [|this|];
+// }
+// this;
+// const _ = { this: 0 }.this;
+
+
+[
+  {
+    "textSpan": {
+      "start": 11,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renameThis.ts"
+  },
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renameThis.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameThis.ts ======*/
+
+function f(this) {
+    return this;
+}
+this;
+const _ = { [|RENAME|]: 0 }.RENAME;
+
+=== 0 ===
+// === /tests/cases/fourslash/renameThis.ts ===
+// function f(this) {
+//     return this;
+// }
+// this;
+// const _ = { [|this|]: 0 }.this;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameThis.ts ===
+  // function f(this) {
+  //     return this;
+  // }
+  // this;
+  // const _ = { [|this: 0|] }.this;
+=== 1 ===
+// === /tests/cases/fourslash/renameThis.ts ===
+// function f(this) {
+//     return this;
+// }
+// this;
+// const _ = { this: 0 }.[|this|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 56,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renameThis.ts",
+    "contextSpan": {
+      "start": 56,
+      "length": 7
+    }
+  },
+  {
+    "textSpan": {
+      "start": 66,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renameThis.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameThis.ts ======*/
+
+function f(this) {
+    return this;
+}
+this;
+const _ = { RENAME: 0 }.[|RENAME|];
+
+=== 0 ===
+// === /tests/cases/fourslash/renameThis.ts ===
+// function f(this) {
+//     return this;
+// }
+// this;
+// const _ = { [|this|]: 0 }.this;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameThis.ts ===
+  // function f(this) {
+  //     return this;
+  // }
+  // this;
+  // const _ = { [|this: 0|] }.this;
+=== 1 ===
+// === /tests/cases/fourslash/renameThis.ts ===
+// function f(this) {
+//     return this;
+// }
+// this;
+// const _ = { this: 0 }.[|this|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 56,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renameThis.ts",
+    "contextSpan": {
+      "start": 56,
+      "length": 7
+    }
+  },
+  {
+    "textSpan": {
+      "start": 66,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/renameThis.ts"
+  }
+]

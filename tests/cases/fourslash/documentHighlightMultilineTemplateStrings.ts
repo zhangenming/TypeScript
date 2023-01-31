@@ -6,5 +6,4 @@
 ////    c
 ////`
 
-const [r] = test.ranges();
-verify.noDocumentHighlights(r);
+verify.baselineDocumentHighlights(test.ranges());

@@ -140,4 +140,4 @@
 ////    }
 ////}
 
-goTo.eachMarker(() => verify.occurrencesAtPositionCount(0));
+verify.baselineOccurences(...test.markers());

@@ -1,0 +1,69 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": true,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/server/jsDocCallback.js ======*/
+
+
+/**
+ * @callback [|RENAME|]
+ * @param {string} eventName - Rename should work
+ */
+
+/** @type {RENAME} */
+var t;
+
+=== 0 ===
+// === /tests/cases/fourslash/server/jsDocCallback.js ===
+// 
+// /**
+//  * @callback [|FooCallback|]
+//  * @param {string} eventName - Rename should work
+//  */
+// 
+// /** @type {FooCallback} */
+// var t;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/server/jsDocCallback.js ===
+  // 
+  // /**
+  //  * [|@callback FooCallback
+  //  * @param {string} eventName - Rename should work
+  //  |]*/
+  // 
+  // /** @type {FooCallback} */
+  // var t;
+=== 1 ===
+// === /tests/cases/fourslash/server/jsDocCallback.js ===
+// 
+// /**
+//  * @callback FooCallback
+//  * @param {string} eventName - Rename should work
+//  */
+// 
+// /** @type {[|FooCallback|]} */
+// var t;
+
+
+[
+  {
+    "textSpan": {
+      "start": 18,
+      "length": 11
+    },
+    "fileName": "/tests/cases/fourslash/server/jsDocCallback.js",
+    "contextSpan": {
+      "start": 8,
+      "length": 73
+    }
+  },
+  {
+    "textSpan": {
+      "start": 96,
+      "length": 11
+    },
+    "fileName": "/tests/cases/fourslash/server/jsDocCallback.js"
+  }
+]

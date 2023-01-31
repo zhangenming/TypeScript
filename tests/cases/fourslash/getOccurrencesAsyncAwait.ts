@@ -19,4 +19,4 @@
 ////    }
 ////}
 
-verify.rangesAreOccurrences(false);
+verify.baselineOccurences(...test.ranges());

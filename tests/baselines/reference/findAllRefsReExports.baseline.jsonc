@@ -1,3 +1,4 @@
+=== findAllReferences ===
 // === /b.ts ===
 // export { [|foo|] as [|bar|] } from "./a";
 
@@ -16,6 +17,247 @@
 
 // === /a.ts ===
 // export function /*FIND ALL REFS*/[|foo|](): void {}
+
+[
+  {
+    === Definition ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+      === 1 ===
+      // === /b.ts ===
+      // export { [|foo|] as bar } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+      === 2 ===
+      // === /c.ts ===
+      // export { [|foo|] as default } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // [|bar|](); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { [|default|] as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+    === References ===
+      === 0 ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); [|boom|]();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); [|baz|](); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
 
 [
   {
@@ -868,6 +1110,247 @@
 
 [
   {
+    === Definition ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+      === 1 ===
+      // === /b.ts ===
+      // export { [|foo|] as bar } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+      === 2 ===
+      // === /c.ts ===
+      // export { [|foo|] as default } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // [|bar|](); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { [|default|] as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+    === References ===
+      === 0 ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); [|boom|]();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); [|baz|](); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -1702,6 +2185,247 @@
 
 [
   {
+    === Definition ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+      === 1 ===
+      // === /b.ts ===
+      // export { [|foo|] as bar } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+      === 2 ===
+      // === /c.ts ===
+      // export { [|foo|] as default } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // [|bar|](); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { [|default|] as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+    === References ===
+      === 0 ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); [|boom|]();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); [|baz|](); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -2527,6 +3251,62 @@
 
 [
   {
+    === Definition ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // [|bar|](); baz(); bang(); boom();
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -2742,6 +3522,62 @@
 
 // === /b.ts ===
 // export { foo as [|bar|] } from "./a";
+
+[
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // [|bar|](); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+  }
+]
 
 [
   {
@@ -2963,6 +3799,62 @@
 
 [
   {
+    === Definition ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // [|bar|](); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -3178,6 +4070,167 @@
 // import { [|default|] as [|bang|] } from "./c";
 // import [|boom|] from "./d";
 // bar(); [|baz|](); [|bang|](); [|boom|]();
+
+[
+  {
+    === Definition ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { [|default|] as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+    === References ===
+      === 0 ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); [|boom|]();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); [|baz|](); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
 
 [
   {
@@ -3727,6 +4780,167 @@
 
 [
   {
+    === Definition ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { [|default|] as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+    === References ===
+      === 0 ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); [|boom|]();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); [|baz|](); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -4267,6 +5481,247 @@
 
 // === /a.ts ===
 // export function [|foo|](): void {}
+
+[
+  {
+    === Definition ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+    === References ===
+      === 0 ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); [|boom|]();
+  },
+  {
+    === Definition ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+      === 1 ===
+      // === /b.ts ===
+      // export { [|foo|] as bar } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+      === 2 ===
+      // === /c.ts ===
+      // export { [|foo|] as default } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // [|bar|](); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { [|default|] as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); [|baz|](); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
 
 [
   {
@@ -5113,6 +6568,167 @@
 
 [
   {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); [|baz|](); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { [|default|] as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+    === References ===
+      === 0 ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); [|boom|]();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -5659,6 +7275,167 @@
 
 [
   {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); [|baz|](); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { [|default|] as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+    === References ===
+      === 0 ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); [|boom|]();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -6190,6 +7967,47 @@
 
 [
   {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -6304,6 +8122,47 @@
 // import { default as [|bang|] } from "./c";
 // import boom from "./d";
 // bar(); baz(); /*FIND ALL REFS*/[|bang|](); boom();
+
+[
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
 
 [
   {
@@ -6431,6 +8290,247 @@
 
 // === /a.ts ===
 // export function [|foo|](): void {}
+
+[
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); [|boom|]();
+  },
+  {
+    === Definition ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+    === References ===
+      === 0 ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+  },
+  {
+    === Definition ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+      === 1 ===
+      // === /b.ts ===
+      // export { [|foo|] as bar } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+      === 2 ===
+      // === /c.ts ===
+      // export { [|foo|] as default } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // [|bar|](); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { [|default|] as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); [|baz|](); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
 
 [
   {
@@ -7283,6 +9383,247 @@
 
 [
   {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import [|boom|] from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // [|import boom from "./d";|]
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); [|boom|]();
+  },
+  {
+    === Definition ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+    === References ===
+      === 0 ===
+      // === /d.ts ===
+      // export { [|default|] } from "./c";
+      === ContextSpan ===
+        // === /d.ts ===
+        // [|export { default } from "./c";|]
+  },
+  {
+    === Definition ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export function [|foo|](): void {}
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export function foo(): void {}|]
+      === 1 ===
+      // === /b.ts ===
+      // export { [|foo|] as bar } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+      === 2 ===
+      // === /c.ts ===
+      // export { [|foo|] as default } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // export { foo as [|bar|] } from "./a";
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|export { foo as bar } from "./a";|]
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { [|bar|] } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // [|import { bar } from "./b";|]
+        // import baz from "./c";
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // [|bar|](); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+    === References ===
+      === 0 ===
+      // === /c.ts ===
+      // export { foo as [|default|] } from "./a";
+      === ContextSpan ===
+        // === /c.ts ===
+        // [|export { foo as default } from "./a";|]
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { [|default|] as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import [|baz|] from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // [|import baz from "./c";|]
+        // import { default as bang } from "./c";
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); [|baz|](); bang(); boom();
+  },
+  {
+    === Definition ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+    === References ===
+      === 0 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as [|bang|] } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); bang(); boom();
+      === ContextSpan ===
+        // === /e.ts ===
+        // import { bar } from "./b";
+        // import baz from "./c";
+        // [|import { default as bang } from "./c";|]
+        // import boom from "./d";
+        // bar(); baz(); bang(); boom();
+      === 1 ===
+      // === /e.ts ===
+      // import { bar } from "./b";
+      // import baz from "./c";
+      // import { default as bang } from "./c";
+      // import boom from "./d";
+      // bar(); baz(); [|bang|](); boom();
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -8093,5 +10434,773 @@
         "isWriteAccess": false
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /a.ts ======*/
+
+export function RENAME(): void {}
+
+/*====== /b.ts ======*/
+
+export { RENAME as bar } from "./a";
+
+/*====== /c.ts ======*/
+
+export { RENAME as default } from "./a";
+
+=== 0 ===
+// === /a.ts ===
+// export function [|foo|](): void {}
+=== ContextSpan ===
+  // === /a.ts ===
+  // [|export function foo(): void {}|]
+=== 1 ===
+// === /b.ts ===
+// export { [|foo|] as bar } from "./a";
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|export { foo as bar } from "./a";|]
+=== 2 ===
+// === /c.ts ===
+// export { [|foo|] as default } from "./a";
+=== ContextSpan ===
+  // === /c.ts ===
+  // [|export { foo as default } from "./a";|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 16,
+      "length": 3
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 30
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 33
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/c.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 37
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /a.ts ======*/
+
+export function RENAME(): void {}
+
+/*====== /b.ts ======*/
+
+export { RENAME as bar } from "./a";
+
+/*====== /c.ts ======*/
+
+export { RENAME as default } from "./a";
+
+=== 0 ===
+// === /a.ts ===
+// export function [|foo|](): void {}
+=== ContextSpan ===
+  // === /a.ts ===
+  // [|export function foo(): void {}|]
+=== 1 ===
+// === /b.ts ===
+// export { [|foo|] as bar } from "./a";
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|export { foo as bar } from "./a";|]
+=== 2 ===
+// === /c.ts ===
+// export { [|foo|] as default } from "./a";
+=== ContextSpan ===
+  // === /c.ts ===
+  // [|export { foo as default } from "./a";|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 16,
+      "length": 3
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 30
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 33
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/c.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 37
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /a.ts ======*/
+
+export function RENAME(): void {}
+
+/*====== /b.ts ======*/
+
+export { RENAME as bar } from "./a";
+
+/*====== /c.ts ======*/
+
+export { RENAME as default } from "./a";
+
+=== 0 ===
+// === /a.ts ===
+// export function [|foo|](): void {}
+=== ContextSpan ===
+  // === /a.ts ===
+  // [|export function foo(): void {}|]
+=== 1 ===
+// === /b.ts ===
+// export { [|foo|] as bar } from "./a";
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|export { foo as bar } from "./a";|]
+=== 2 ===
+// === /c.ts ===
+// export { [|foo|] as default } from "./a";
+=== ContextSpan ===
+  // === /c.ts ===
+  // [|export { foo as default } from "./a";|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 16,
+      "length": 3
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 30
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 33
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/c.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 37
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /b.ts ======*/
+
+export { foo as RENAME } from "./a";
+
+/*====== /e.ts ======*/
+
+import { RENAME } from "./b";
+import baz from "./c";
+import { default as bang } from "./c";
+import boom from "./d";
+RENAME(); baz(); bang(); boom();
+
+=== 0 ===
+// === /b.ts ===
+// export { foo as [|bar|] } from "./a";
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|export { foo as bar } from "./a";|]
+=== 1 ===
+// === /e.ts ===
+// import { [|bar|] } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// bar(); baz(); bang(); boom();
+=== ContextSpan ===
+  // === /e.ts ===
+  // [|import { bar } from "./b";|]
+  // import baz from "./c";
+  // import { default as bang } from "./c";
+  // import boom from "./d";
+  // bar(); baz(); bang(); boom();
+=== 2 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// [|bar|](); baz(); bang(); boom();
+
+
+[
+  {
+    "textSpan": {
+      "start": 16,
+      "length": 3
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 33
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/e.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 26
+    }
+  },
+  {
+    "textSpan": {
+      "start": 113,
+      "length": 3
+    },
+    "fileName": "/e.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /e.ts ======*/
+
+import { /*START PREFIX*/bar as [|RENAME|] } from "./b";
+import baz from "./c";
+import { default as bang } from "./c";
+import boom from "./d";
+RENAME(); baz(); bang(); boom();
+
+=== 0 ===
+// === /e.ts ===
+// import { [|bar|] } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// bar(); baz(); bang(); boom();
+=== ContextSpan ===
+  // === /e.ts ===
+  // [|import { bar } from "./b";|]
+  // import baz from "./c";
+  // import { default as bang } from "./c";
+  // import boom from "./d";
+  // bar(); baz(); bang(); boom();
+=== 1 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// [|bar|](); baz(); bang(); boom();
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/e.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 26
+    },
+    "prefixText": "bar as "
+  },
+  {
+    "textSpan": {
+      "start": 113,
+      "length": 3
+    },
+    "fileName": "/e.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /e.ts ======*/
+
+import { /*START PREFIX*/bar as RENAME } from "./b";
+import baz from "./c";
+import { default as bang } from "./c";
+import boom from "./d";
+[|RENAME|](); baz(); bang(); boom();
+
+=== 0 ===
+// === /e.ts ===
+// import { [|bar|] } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// bar(); baz(); bang(); boom();
+=== ContextSpan ===
+  // === /e.ts ===
+  // [|import { bar } from "./b";|]
+  // import baz from "./c";
+  // import { default as bang } from "./c";
+  // import boom from "./d";
+  // bar(); baz(); bang(); boom();
+=== 1 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// [|bar|](); baz(); bang(); boom();
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 3
+    },
+    "fileName": "/e.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 26
+    },
+    "prefixText": "bar as "
+  },
+  {
+    "textSpan": {
+      "start": 113,
+      "length": 3
+    },
+    "fileName": "/e.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /e.ts ======*/
+
+import { bar } from "./b";
+import [|RENAME|] from "./c";
+import { default as bang } from "./c";
+import boom from "./d";
+bar(); RENAME(); bang(); boom();
+
+=== 0 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import [|baz|] from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// bar(); baz(); bang(); boom();
+=== ContextSpan ===
+  // === /e.ts ===
+  // import { bar } from "./b";
+  // [|import baz from "./c";|]
+  // import { default as bang } from "./c";
+  // import boom from "./d";
+  // bar(); baz(); bang(); boom();
+=== 1 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// bar(); [|baz|](); bang(); boom();
+
+
+[
+  {
+    "textSpan": {
+      "start": 34,
+      "length": 3
+    },
+    "fileName": "/e.ts",
+    "contextSpan": {
+      "start": 27,
+      "length": 22
+    }
+  },
+  {
+    "textSpan": {
+      "start": 120,
+      "length": 3
+    },
+    "fileName": "/e.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /e.ts ======*/
+
+import { bar } from "./b";
+import RENAME from "./c";
+import { default as bang } from "./c";
+import boom from "./d";
+bar(); [|RENAME|](); bang(); boom();
+
+=== 0 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import [|baz|] from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// bar(); baz(); bang(); boom();
+=== ContextSpan ===
+  // === /e.ts ===
+  // import { bar } from "./b";
+  // [|import baz from "./c";|]
+  // import { default as bang } from "./c";
+  // import boom from "./d";
+  // bar(); baz(); bang(); boom();
+=== 1 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// bar(); [|baz|](); bang(); boom();
+
+
+[
+  {
+    "textSpan": {
+      "start": 34,
+      "length": 3
+    },
+    "fileName": "/e.ts",
+    "contextSpan": {
+      "start": 27,
+      "length": 22
+    }
+  },
+  {
+    "textSpan": {
+      "start": 120,
+      "length": 3
+    },
+    "fileName": "/e.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /e.ts ======*/
+
+import { bar } from "./b";
+import baz from "./c";
+import { default as [|RENAME|] } from "./c";
+import boom from "./d";
+bar(); baz(); RENAME(); boom();
+
+=== 0 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as [|bang|] } from "./c";
+// import boom from "./d";
+// bar(); baz(); bang(); boom();
+=== ContextSpan ===
+  // === /e.ts ===
+  // import { bar } from "./b";
+  // import baz from "./c";
+  // [|import { default as bang } from "./c";|]
+  // import boom from "./d";
+  // bar(); baz(); bang(); boom();
+=== 1 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// bar(); baz(); [|bang|](); boom();
+
+
+[
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 4
+    },
+    "fileName": "/e.ts",
+    "contextSpan": {
+      "start": 50,
+      "length": 38
+    }
+  },
+  {
+    "textSpan": {
+      "start": 127,
+      "length": 4
+    },
+    "fileName": "/e.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /e.ts ======*/
+
+import { bar } from "./b";
+import baz from "./c";
+import { default as RENAME } from "./c";
+import boom from "./d";
+bar(); baz(); [|RENAME|](); boom();
+
+=== 0 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as [|bang|] } from "./c";
+// import boom from "./d";
+// bar(); baz(); bang(); boom();
+=== ContextSpan ===
+  // === /e.ts ===
+  // import { bar } from "./b";
+  // import baz from "./c";
+  // [|import { default as bang } from "./c";|]
+  // import boom from "./d";
+  // bar(); baz(); bang(); boom();
+=== 1 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// bar(); baz(); [|bang|](); boom();
+
+
+[
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 4
+    },
+    "fileName": "/e.ts",
+    "contextSpan": {
+      "start": 50,
+      "length": 38
+    }
+  },
+  {
+    "textSpan": {
+      "start": 127,
+      "length": 4
+    },
+    "fileName": "/e.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /e.ts ======*/
+
+import { bar } from "./b";
+import baz from "./c";
+import { default as bang } from "./c";
+import [|RENAME|] from "./d";
+bar(); baz(); bang(); RENAME();
+
+=== 0 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import [|boom|] from "./d";
+// bar(); baz(); bang(); boom();
+=== ContextSpan ===
+  // === /e.ts ===
+  // import { bar } from "./b";
+  // import baz from "./c";
+  // import { default as bang } from "./c";
+  // [|import boom from "./d";|]
+  // bar(); baz(); bang(); boom();
+=== 1 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// bar(); baz(); bang(); [|boom|]();
+
+
+[
+  {
+    "textSpan": {
+      "start": 96,
+      "length": 4
+    },
+    "fileName": "/e.ts",
+    "contextSpan": {
+      "start": 89,
+      "length": 23
+    }
+  },
+  {
+    "textSpan": {
+      "start": 135,
+      "length": 4
+    },
+    "fileName": "/e.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /e.ts ======*/
+
+import { bar } from "./b";
+import baz from "./c";
+import { default as bang } from "./c";
+import RENAME from "./d";
+bar(); baz(); bang(); [|RENAME|]();
+
+=== 0 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import [|boom|] from "./d";
+// bar(); baz(); bang(); boom();
+=== ContextSpan ===
+  // === /e.ts ===
+  // import { bar } from "./b";
+  // import baz from "./c";
+  // import { default as bang } from "./c";
+  // [|import boom from "./d";|]
+  // bar(); baz(); bang(); boom();
+=== 1 ===
+// === /e.ts ===
+// import { bar } from "./b";
+// import baz from "./c";
+// import { default as bang } from "./c";
+// import boom from "./d";
+// bar(); baz(); bang(); [|boom|]();
+
+
+[
+  {
+    "textSpan": {
+      "start": 96,
+      "length": 4
+    },
+    "fileName": "/e.ts",
+    "contextSpan": {
+      "start": 89,
+      "length": 23
+    }
+  },
+  {
+    "textSpan": {
+      "start": 135,
+      "length": 4
+    },
+    "fileName": "/e.ts"
   }
 ]

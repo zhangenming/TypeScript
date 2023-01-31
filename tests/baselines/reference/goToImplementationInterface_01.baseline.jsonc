@@ -1,0 +1,306 @@
+// === /tests/cases/fourslash/goToImplementationInterface_01.ts ===
+// interface Fo/*GOTO IMPL*/o { hello(): void }
+// 
+// class [|SuperBar|] implements Foo {
+//     hello () {}
+// }
+// 
+// abstract class [|AbstractBar|] implements Foo {
+//     abstract hello (): void;
+// }
+// 
+// class [|Bar|] extends SuperBar {
+// }
+// 
+// class [|NotAbstractBar|] extends AbstractBar {
+//     hello () {}
+// }
+// 
+// var x = new SuperBar();
+// var y: SuperBar = new SuperBar();
+// var z: AbstractBar = new NotAbstractBar();
+
+=== 0 ===
+// === /tests/cases/fourslash/goToImplementationInterface_01.ts ===
+// interface Foo { hello(): void }
+// 
+// class [|SuperBar|] implements Foo {
+//     hello () {}
+// }
+// 
+// abstract class AbstractBar implements Foo {
+//     abstract hello (): void;
+// }
+// 
+// class Bar extends SuperBar {
+// }
+// 
+// class NotAbstractBar extends AbstractBar {
+//     hello () {}
+// }
+// 
+// var x = new SuperBar();
+// var y: SuperBar = new SuperBar();
+// var z: AbstractBar = new NotAbstractBar();
+=== ContextSpan ===
+  // === /tests/cases/fourslash/goToImplementationInterface_01.ts ===
+  // interface Foo { hello(): void }
+  // 
+  // [|class SuperBar implements Foo {
+  //     hello () {}
+  // }|]
+  // 
+  // abstract class AbstractBar implements Foo {
+  //     abstract hello (): void;
+  // }
+  // 
+  // class Bar extends SuperBar {
+  // }
+  // 
+  // class NotAbstractBar extends AbstractBar {
+  //     hello () {}
+  // }
+  // 
+  // var x = new SuperBar();
+  // var y: SuperBar = new SuperBar();
+  // var z: AbstractBar = new NotAbstractBar();
+=== 1 ===
+// === /tests/cases/fourslash/goToImplementationInterface_01.ts ===
+// interface Foo { hello(): void }
+// 
+// class SuperBar implements Foo {
+//     hello () {}
+// }
+// 
+// abstract class [|AbstractBar|] implements Foo {
+//     abstract hello (): void;
+// }
+// 
+// class Bar extends SuperBar {
+// }
+// 
+// class NotAbstractBar extends AbstractBar {
+//     hello () {}
+// }
+// 
+// var x = new SuperBar();
+// var y: SuperBar = new SuperBar();
+// var z: AbstractBar = new NotAbstractBar();
+=== ContextSpan ===
+  // === /tests/cases/fourslash/goToImplementationInterface_01.ts ===
+  // interface Foo { hello(): void }
+  // 
+  // class SuperBar implements Foo {
+  //     hello () {}
+  // }
+  // 
+  // [|abstract class AbstractBar implements Foo {
+  //     abstract hello (): void;
+  // }|]
+  // 
+  // class Bar extends SuperBar {
+  // }
+  // 
+  // class NotAbstractBar extends AbstractBar {
+  //     hello () {}
+  // }
+  // 
+  // var x = new SuperBar();
+  // var y: SuperBar = new SuperBar();
+  // var z: AbstractBar = new NotAbstractBar();
+=== 2 ===
+// === /tests/cases/fourslash/goToImplementationInterface_01.ts ===
+// interface Foo { hello(): void }
+// 
+// class SuperBar implements Foo {
+//     hello () {}
+// }
+// 
+// abstract class AbstractBar implements Foo {
+//     abstract hello (): void;
+// }
+// 
+// class [|Bar|] extends SuperBar {
+// }
+// 
+// class NotAbstractBar extends AbstractBar {
+//     hello () {}
+// }
+// 
+// var x = new SuperBar();
+// var y: SuperBar = new SuperBar();
+// var z: AbstractBar = new NotAbstractBar();
+=== ContextSpan ===
+  // === /tests/cases/fourslash/goToImplementationInterface_01.ts ===
+  // interface Foo { hello(): void }
+  // 
+  // class SuperBar implements Foo {
+  //     hello () {}
+  // }
+  // 
+  // abstract class AbstractBar implements Foo {
+  //     abstract hello (): void;
+  // }
+  // 
+  // [|class Bar extends SuperBar {
+  // }|]
+  // 
+  // class NotAbstractBar extends AbstractBar {
+  //     hello () {}
+  // }
+  // 
+  // var x = new SuperBar();
+  // var y: SuperBar = new SuperBar();
+  // var z: AbstractBar = new NotAbstractBar();
+=== 3 ===
+// === /tests/cases/fourslash/goToImplementationInterface_01.ts ===
+// interface Foo { hello(): void }
+// 
+// class SuperBar implements Foo {
+//     hello () {}
+// }
+// 
+// abstract class AbstractBar implements Foo {
+//     abstract hello (): void;
+// }
+// 
+// class Bar extends SuperBar {
+// }
+// 
+// class [|NotAbstractBar|] extends AbstractBar {
+//     hello () {}
+// }
+// 
+// var x = new SuperBar();
+// var y: SuperBar = new SuperBar();
+// var z: AbstractBar = new NotAbstractBar();
+=== ContextSpan ===
+  // === /tests/cases/fourslash/goToImplementationInterface_01.ts ===
+  // interface Foo { hello(): void }
+  // 
+  // class SuperBar implements Foo {
+  //     hello () {}
+  // }
+  // 
+  // abstract class AbstractBar implements Foo {
+  //     abstract hello (): void;
+  // }
+  // 
+  // class Bar extends SuperBar {
+  // }
+  // 
+  // [|class NotAbstractBar extends AbstractBar {
+  //     hello () {}
+  // }|]
+  // 
+  // var x = new SuperBar();
+  // var y: SuperBar = new SuperBar();
+  // var z: AbstractBar = new NotAbstractBar();
+
+
+[
+  {
+    "textSpan": {
+      "start": 39,
+      "length": 8
+    },
+    "fileName": "/tests/cases/fourslash/goToImplementationInterface_01.ts",
+    "contextSpan": {
+      "start": 33,
+      "length": 49
+    },
+    "displayParts": [
+      {
+        "text": "class",
+        "kind": "keyword"
+      },
+      {
+        "text": " ",
+        "kind": "space"
+      },
+      {
+        "text": "SuperBar",
+        "kind": "className"
+      }
+    ],
+    "kind": "class"
+  },
+  {
+    "textSpan": {
+      "start": 99,
+      "length": 11
+    },
+    "fileName": "/tests/cases/fourslash/goToImplementationInterface_01.ts",
+    "contextSpan": {
+      "start": 84,
+      "length": 74
+    },
+    "displayParts": [
+      {
+        "text": "class",
+        "kind": "keyword"
+      },
+      {
+        "text": " ",
+        "kind": "space"
+      },
+      {
+        "text": "AbstractBar",
+        "kind": "className"
+      }
+    ],
+    "kind": "class"
+  },
+  {
+    "textSpan": {
+      "start": 166,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/goToImplementationInterface_01.ts",
+    "contextSpan": {
+      "start": 160,
+      "length": 30
+    },
+    "displayParts": [
+      {
+        "text": "class",
+        "kind": "keyword"
+      },
+      {
+        "text": " ",
+        "kind": "space"
+      },
+      {
+        "text": "Bar",
+        "kind": "className"
+      }
+    ],
+    "kind": "class"
+  },
+  {
+    "textSpan": {
+      "start": 198,
+      "length": 14
+    },
+    "fileName": "/tests/cases/fourslash/goToImplementationInterface_01.ts",
+    "contextSpan": {
+      "start": 192,
+      "length": 60
+    },
+    "displayParts": [
+      {
+        "text": "class",
+        "kind": "keyword"
+      },
+      {
+        "text": " ",
+        "kind": "space"
+      },
+      {
+        "text": "NotAbstractBar",
+        "kind": "className"
+      }
+    ],
+    "kind": "class"
+  }
+]

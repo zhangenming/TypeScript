@@ -1,0 +1,137 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+function bar() {
+    this.[|RENAME|] = 10;
+}
+var t = new bar();
+t.RENAME = 11;
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// function bar() {
+//     this.[|x|] = 10;
+// }
+// var t = new bar();
+// t.x = 11;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // function bar() {
+  //     [|this.x = 10;|]
+  // }
+  // var t = new bar();
+  // t.x = 11;
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// function bar() {
+//     this.x = 10;
+// }
+// var t = new bar();
+// t.[|x|] = 11;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // function bar() {
+  //     this.x = 10;
+  // }
+  // var t = new bar();
+  // [|t.x = 11;|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 26,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 21,
+      "length": 12
+    }
+  },
+  {
+    "textSpan": {
+      "start": 57,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 55,
+      "length": 9
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+function bar() {
+    this.RENAME = 10;
+}
+var t = new bar();
+t.[|RENAME|] = 11;
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// function bar() {
+//     this.[|x|] = 10;
+// }
+// var t = new bar();
+// t.x = 11;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // function bar() {
+  //     [|this.x = 10;|]
+  // }
+  // var t = new bar();
+  // t.x = 11;
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// function bar() {
+//     this.x = 10;
+// }
+// var t = new bar();
+// t.[|x|] = 11;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // function bar() {
+  //     this.x = 10;
+  // }
+  // var t = new bar();
+  // [|t.x = 11;|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 26,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 21,
+      "length": 12
+    }
+  },
+  {
+    "textSpan": {
+      "start": 57,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 55,
+      "length": 9
+    }
+  }
+]

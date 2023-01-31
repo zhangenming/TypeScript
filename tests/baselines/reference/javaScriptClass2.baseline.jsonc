@@ -1,0 +1,499 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/Foo.js ======*/
+
+class Foo {
+   constructor() {
+       this.[|RENAME|] = 'foo';
+       this.RENAME = 100;
+   }
+   method() { return this.RENAME; }
+}
+var x = new Foo();
+x.RENAME;
+
+=== 0 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.[|union|] = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.union;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/Foo.js ===
+  // class Foo {
+  //    constructor() {
+  //        [|this.union = 'foo';|]
+  //        this.union = 100;
+  //    }
+  //    method() { return this.union; }
+  // }
+  // var x = new Foo();
+  // x.union;
+=== 1 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.[|union|] = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.union;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/Foo.js ===
+  // class Foo {
+  //    constructor() {
+  //        this.union = 'foo';
+  //        [|this.union = 100;|]
+  //    }
+  //    method() { return this.union; }
+  // }
+  // var x = new Foo();
+  // x.union;
+=== 2 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.[|union|]; }
+// }
+// var x = new Foo();
+// x.union;
+=== 3 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.[|union|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js",
+    "contextSpan": {
+      "start": 38,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js",
+    "contextSpan": {
+      "start": 65,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 114,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js"
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/Foo.js ======*/
+
+class Foo {
+   constructor() {
+       this.RENAME = 'foo';
+       this.[|RENAME|] = 100;
+   }
+   method() { return this.RENAME; }
+}
+var x = new Foo();
+x.RENAME;
+
+=== 0 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.[|union|] = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.union;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/Foo.js ===
+  // class Foo {
+  //    constructor() {
+  //        [|this.union = 'foo';|]
+  //        this.union = 100;
+  //    }
+  //    method() { return this.union; }
+  // }
+  // var x = new Foo();
+  // x.union;
+=== 1 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.[|union|] = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.union;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/Foo.js ===
+  // class Foo {
+  //    constructor() {
+  //        this.union = 'foo';
+  //        [|this.union = 100;|]
+  //    }
+  //    method() { return this.union; }
+  // }
+  // var x = new Foo();
+  // x.union;
+=== 2 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.[|union|]; }
+// }
+// var x = new Foo();
+// x.union;
+=== 3 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.[|union|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js",
+    "contextSpan": {
+      "start": 38,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js",
+    "contextSpan": {
+      "start": 65,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 114,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js"
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/Foo.js ======*/
+
+class Foo {
+   constructor() {
+       this.RENAME = 'foo';
+       this.RENAME = 100;
+   }
+   method() { return this.[|RENAME|]; }
+}
+var x = new Foo();
+x.RENAME;
+
+=== 0 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.[|union|] = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.union;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/Foo.js ===
+  // class Foo {
+  //    constructor() {
+  //        [|this.union = 'foo';|]
+  //        this.union = 100;
+  //    }
+  //    method() { return this.union; }
+  // }
+  // var x = new Foo();
+  // x.union;
+=== 1 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.[|union|] = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.union;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/Foo.js ===
+  // class Foo {
+  //    constructor() {
+  //        this.union = 'foo';
+  //        [|this.union = 100;|]
+  //    }
+  //    method() { return this.union; }
+  // }
+  // var x = new Foo();
+  // x.union;
+=== 2 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.[|union|]; }
+// }
+// var x = new Foo();
+// x.union;
+=== 3 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.[|union|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js",
+    "contextSpan": {
+      "start": 38,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js",
+    "contextSpan": {
+      "start": 65,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 114,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js"
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/Foo.js ======*/
+
+class Foo {
+   constructor() {
+       this.RENAME = 'foo';
+       this.RENAME = 100;
+   }
+   method() { return this.RENAME; }
+}
+var x = new Foo();
+x.[|RENAME|];
+
+=== 0 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.[|union|] = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.union;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/Foo.js ===
+  // class Foo {
+  //    constructor() {
+  //        [|this.union = 'foo';|]
+  //        this.union = 100;
+  //    }
+  //    method() { return this.union; }
+  // }
+  // var x = new Foo();
+  // x.union;
+=== 1 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.[|union|] = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.union;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/Foo.js ===
+  // class Foo {
+  //    constructor() {
+  //        this.union = 'foo';
+  //        [|this.union = 100;|]
+  //    }
+  //    method() { return this.union; }
+  // }
+  // var x = new Foo();
+  // x.union;
+=== 2 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.[|union|]; }
+// }
+// var x = new Foo();
+// x.union;
+=== 3 ===
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.union = 'foo';
+//        this.union = 100;
+//    }
+//    method() { return this.union; }
+// }
+// var x = new Foo();
+// x.[|union|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js",
+    "contextSpan": {
+      "start": 38,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js",
+    "contextSpan": {
+      "start": 65,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 114,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js"
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/Foo.js"
+  }
+]

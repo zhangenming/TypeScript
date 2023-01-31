@@ -4,4 +4,4 @@
 ////import M = [|SomeModule|];
 ////import C = M.SomeClass;
 
-verify.rangesWithSameTextAreRenameLocations("SomeModule");
+verify.baselineRename(test.rangesByText().get("SomeModule"));

@@ -55,4 +55,4 @@
 ////    [|set ["[|{| "contextRangeIndex": 20 |}prop2|]"](v) { }|]
 ////};
 
-verify.rangesWithSameTextAreRenameLocations("prop2");
+verify.baselineRename(test.rangesByText().get("prop2"));

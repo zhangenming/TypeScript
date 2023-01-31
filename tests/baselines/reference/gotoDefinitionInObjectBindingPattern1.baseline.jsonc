@@ -1,0 +1,65 @@
+// === /tests/cases/fourslash/gotoDefinitionInObjectBindingPattern1.ts ===
+// function bar<T>(onfulfilled: (value: T) => void) {
+//   return undefined;
+// }
+// interface Test {
+//   [|prop2|]: number
+// }
+// bar<Test>(({pr/*GOTO DEF*/op2})=>{});
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/gotoDefinitionInObjectBindingPattern1.ts ===
+    // function bar<T>(onfulfilled: (value: T) => void) {
+    //   return undefined;
+    // }
+    // interface Test {
+    //   [|prop2|]: number
+    // }
+    // bar<Test>(({prop2})=>{});
+    === ContextSpan ===
+      // === /tests/cases/fourslash/gotoDefinitionInObjectBindingPattern1.ts ===
+      // function bar<T>(onfulfilled: (value: T) => void) {
+      //   return undefined;
+      // }
+      // interface Test {
+      //   [|prop2: number|]
+      // }
+      // bar<Test>(({prop2})=>{});
+  === TextSpan ===
+    // === /tests/cases/fourslash/gotoDefinitionInObjectBindingPattern1.ts ===
+    // function bar<T>(onfulfilled: (value: T) => void) {
+    //   return undefined;
+    // }
+    // interface Test {
+    //   prop2: number
+    // }
+    // bar<Test>(({[|prop2|]})=>{});
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/gotoDefinitionInObjectBindingPattern1.ts",
+      "textSpan": {
+        "start": 92,
+        "length": 5
+      },
+      "kind": "property",
+      "name": "prop2",
+      "containerName": "Test",
+      "contextSpan": {
+        "start": 92,
+        "length": 13
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 120,
+    "length": 5
+  }
+}

@@ -1,0 +1,746 @@
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             /*OCCURENCES*/[|protected|] prot1;
+// 
+//             [|protected|] constructor(public public, [|protected|] protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+
+=== 0 ===
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             [|protected|] prot1;
+// 
+//             protected constructor(public public, protected protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+=== 1 ===
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             protected prot1;
+// 
+//             [|protected|] constructor(public public, protected protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+=== 2 ===
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             protected prot1;
+// 
+//             protected constructor(public public, [|protected|] protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesProtected2.ts",
+    "textSpan": {
+      "start": 890,
+      "length": 9
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesProtected2.ts",
+    "textSpan": {
+      "start": 920,
+      "length": 9
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesProtected2.ts",
+    "textSpan": {
+      "start": 957,
+      "length": 9
+    },
+    "isWriteAccess": false
+  }
+]
+
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             [|protected|] prot1;
+// 
+//             /*OCCURENCES*/[|protected|] constructor(public public, [|protected|] protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+
+=== 0 ===
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             [|protected|] prot1;
+// 
+//             protected constructor(public public, protected protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+=== 1 ===
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             protected prot1;
+// 
+//             [|protected|] constructor(public public, protected protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+=== 2 ===
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             protected prot1;
+// 
+//             protected constructor(public public, [|protected|] protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesProtected2.ts",
+    "textSpan": {
+      "start": 890,
+      "length": 9
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesProtected2.ts",
+    "textSpan": {
+      "start": 920,
+      "length": 9
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesProtected2.ts",
+    "textSpan": {
+      "start": 957,
+      "length": 9
+    },
+    "isWriteAccess": false
+  }
+]
+
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             [|protected|] prot1;
+// 
+//             [|protected|] constructor(public public, /*OCCURENCES*/[|protected|] protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+
+=== 0 ===
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             protected prot1;
+// 
+//             protected constructor(public public, [|protected|] protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+=== 1 ===
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             [|protected|] prot1;
+// 
+//             protected constructor(public public, protected protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+=== 2 ===
+// === /tests/cases/fourslash/getOccurrencesProtected2.ts ===
+// module m {
+//     export class C1 {
+//         public pub1;
+//         public pub2;
+//         private priv1;
+//         private priv2;
+//         protected prot1;
+//         protected prot2;
+// 
+//         public public;
+//         private private;
+//         protected protected;
+// 
+//         public constructor(public a, private b, protected c, public d, private e, protected f) {
+//             this.public = 10;
+//             this.private = 10;
+//             this.protected = 10;
+//         }
+// 
+//         public get x() { return 10; }
+//         public set x(value) { }
+// 
+//         public static statPub;
+//         private static statPriv;
+//         protected static statProt;
+//     }
+// 
+//     export interface I1 {
+//     }
+// 
+//     export declare module ma.m1.m2.m3 {
+//         interface I2 {
+//         }
+//     }
+// 
+//     export module mb.m1.m2.m3 {
+//         declare var foo;
+// 
+//         export class C2 {
+//             public pub1;
+//             private priv1;
+//             protected prot1;
+// 
+//             [|protected|] constructor(public public, protected protected, private private) {
+//                 public = private = protected;
+//             }
+//         }
+//     }
+// 
+//     declare var ambientThing: number;
+//     export var exportedThing = 10;
+//     declare function foo(): string;
+// }
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesProtected2.ts",
+    "textSpan": {
+      "start": 957,
+      "length": 9
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesProtected2.ts",
+    "textSpan": {
+      "start": 890,
+      "length": 9
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesProtected2.ts",
+    "textSpan": {
+      "start": 920,
+      "length": 9
+    },
+    "isWriteAccess": false
+  }
+]

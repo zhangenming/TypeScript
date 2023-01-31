@@ -20,5 +20,7 @@
 //// import { a } from 'foo/a';
 //// [|a/*start*/|]
 
-verify.goToDefinition("start", "end");
-verify.goToSourceDefinition("start", "end");
+verify.baselineCommands(
+    { type: "goToDefinition", markerOrRange: "start" },
+    { type: "goToSourceDefinition", markerOrRange: "start" },
+);

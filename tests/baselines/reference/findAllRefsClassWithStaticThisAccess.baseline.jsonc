@@ -1,3 +1,4 @@
+=== findAllReferences ===
 // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
 // class /*FIND ALL REFS*/[|C|] {
 //     static s() {
@@ -10,6 +11,90 @@
 //         class Inner { x = this; }
 //     }
 // }
+
+[
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+      // class [|C|] {
+      //     static s() {
+      //         this;
+      //     }
+      //     static get f() {
+      //         return this;
+      // 
+      //         function inner() { this; }
+      //         class Inner { x = this; }
+      //     }
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+        // [|class C {
+        //     static s() {
+        //         this;
+        //     }
+        //     static get f() {
+        //         return this;
+        // 
+        //         function inner() { this; }
+        //         class Inner { x = this; }
+        //     }
+        // }|]
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+      // class [|C|] {
+      //     static s() {
+      //         this;
+      //     }
+      //     static get f() {
+      //         return this;
+      // 
+      //         function inner() { this; }
+      //         class Inner { x = this; }
+      //     }
+      // }
+      === ContextSpan ===
+        // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+        // [|class C {
+        //     static s() {
+        //         this;
+        //     }
+        //     static get f() {
+        //         return this;
+        // 
+        //         function inner() { this; }
+        //         class Inner { x = this; }
+        //     }
+        // }|]
+      === 1 ===
+      // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+      // class C {
+      //     static s() {
+      //         [|this|];
+      //     }
+      //     static get f() {
+      //         return this;
+      // 
+      //         function inner() { this; }
+      //         class Inner { x = this; }
+      //     }
+      // }
+      === 2 ===
+      // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+      // class C {
+      //     static s() {
+      //         this;
+      //     }
+      //     static get f() {
+      //         return [|this|];
+      // 
+      //         function inner() { this; }
+      //         class Inner { x = this; }
+      //     }
+      // }
+  }
+]
 
 [
   {
@@ -93,6 +178,51 @@
 
 [
   {
+    === Definition ===
+      // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+      // class C {
+      //     static s() {
+      //         [|this|];
+      //     }
+      //     static get f() {
+      //         return this;
+      // 
+      //         function inner() { this; }
+      //         class Inner { x = this; }
+      //     }
+      // }
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+      // class C {
+      //     static s() {
+      //         [|this|];
+      //     }
+      //     static get f() {
+      //         return this;
+      // 
+      //         function inner() { this; }
+      //         class Inner { x = this; }
+      //     }
+      // }
+      === 1 ===
+      // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+      // class C {
+      //     static s() {
+      //         this;
+      //     }
+      //     static get f() {
+      //         return [|this|];
+      // 
+      //         function inner() { this; }
+      //         class Inner { x = this; }
+      //     }
+      // }
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -166,6 +296,51 @@
 
 [
   {
+    === Definition ===
+      // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+      // class C {
+      //     static s() {
+      //         this;
+      //     }
+      //     static get f() {
+      //         return [|this|];
+      // 
+      //         function inner() { this; }
+      //         class Inner { x = this; }
+      //     }
+      // }
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+      // class C {
+      //     static s() {
+      //         [|this|];
+      //     }
+      //     static get f() {
+      //         return this;
+      // 
+      //         function inner() { this; }
+      //         class Inner { x = this; }
+      //     }
+      // }
+      === 1 ===
+      // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+      // class C {
+      //     static s() {
+      //         this;
+      //     }
+      //     static get f() {
+      //         return [|this|];
+      // 
+      //         function inner() { this; }
+      //         class Inner { x = this; }
+      //     }
+      // }
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -221,5 +396,68 @@
         "isWriteAccess": false
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ======*/
+
+class [|RENAME|] {
+    static s() {
+        this;
+    }
+    static get f() {
+        return this;
+
+        function inner() { this; }
+        class Inner { x = this; }
+    }
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+// class [|C|] {
+//     static s() {
+//         this;
+//     }
+//     static get f() {
+//         return this;
+// 
+//         function inner() { this; }
+//         class Inner { x = this; }
+//     }
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts ===
+  // [|class C {
+  //     static s() {
+  //         this;
+  //     }
+  //     static get f() {
+  //         return this;
+  // 
+  //         function inner() { this; }
+  //         class Inner { x = this; }
+  //     }
+  // }|]
+
+
+[
+  {
+    "textSpan": {
+      "start": 6,
+      "length": 1
+    },
+    "fileName": "/tests/cases/fourslash/findAllRefsClassWithStaticThisAccess.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 166
+    }
   }
 ]

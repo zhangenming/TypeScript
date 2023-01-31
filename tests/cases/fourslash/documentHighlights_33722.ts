@@ -13,5 +13,4 @@
 ////
 ////y().[|foo|]();
 
-const [r] = test.ranges();
-verify.documentHighlightsOf(r, [], { filesToSearch: ["/x.ts"] });
+verify.baselineDocumentHighlights(test.ranges(), { filesToSearch: ["/x.ts"] });

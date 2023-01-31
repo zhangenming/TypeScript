@@ -1,0 +1,96 @@
+// === /tests/cases/fourslash/goToDefinitionObjectSpread.ts ===
+// interface A1 { [|a|]: number };
+// interface A2 { [|a|]?: number };
+// let a1: A1;
+// let a2: A2;
+// let a12 = { ...a1, ...a2 };
+// a12.a/*GOTO DEF*/;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionObjectSpread.ts ===
+    // interface A1 { [|a|]: number };
+    // interface A2 { a?: number };
+    // let a1: A1;
+    // let a2: A2;
+    // let a12 = { ...a1, ...a2 };
+    // a12.a;
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionObjectSpread.ts ===
+      // interface A1 { [|a: number|] };
+      // interface A2 { a?: number };
+      // let a1: A1;
+      // let a2: A2;
+      // let a12 = { ...a1, ...a2 };
+      // a12.a;
+    === 1 ===
+    // === /tests/cases/fourslash/goToDefinitionObjectSpread.ts ===
+    // interface A1 { a: number };
+    // interface A2 { [|a|]?: number };
+    // let a1: A1;
+    // let a2: A2;
+    // let a12 = { ...a1, ...a2 };
+    // a12.a;
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionObjectSpread.ts ===
+      // interface A1 { a: number };
+      // interface A2 { [|a?: number|] };
+      // let a1: A1;
+      // let a2: A2;
+      // let a12 = { ...a1, ...a2 };
+      // a12.a;
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionObjectSpread.ts ===
+    // interface A1 { a: number };
+    // interface A2 { a?: number };
+    // let a1: A1;
+    // let a2: A2;
+    // let a12 = { ...a1, ...a2 };
+    // a12.[|a|];
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionObjectSpread.ts",
+      "textSpan": {
+        "start": 15,
+        "length": 1
+      },
+      "kind": "property",
+      "name": "a",
+      "containerName": "",
+      "contextSpan": {
+        "start": 15,
+        "length": 9
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    },
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionObjectSpread.ts",
+      "textSpan": {
+        "start": 43,
+        "length": 1
+      },
+      "kind": "property",
+      "name": "a",
+      "containerName": "",
+      "contextSpan": {
+        "start": 43,
+        "length": 10
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 113,
+    "length": 1
+  }
+}

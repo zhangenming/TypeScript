@@ -1,0 +1,7613 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`[|RENAME|]`]: number;
+    ['bool']: boolean;
+}
+
+let o: Obj = {
+    [`RENAME`]: 0,
+    ['bool']: true,
+};
+
+o = {
+    ['RENAME']: 1,
+    [`bool`]: false,
+};
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+o.bool;
+o['bool'];
+o["bool"];
+o[`bool`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.RENAME;
+obj[`RENAME`];
+
+obj.bool;
+obj[`bool`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`[|num|]`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [|[`num`]: number;|]
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`[|num|]`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [|[`num`]: 0|],
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['[|num|]']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     [|['num']: 1|],
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.[|num|];
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['[|num|]'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["[|num|]"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`[|num|]`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.[|num|];
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`[|num|]`];
+// 
+// obj.bool;
+// obj[`bool`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 22,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 20,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 84,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 82,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 128,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 167,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 175,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 185,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 195,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 37,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 47,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`RENAME`]: number;
+    ['bool']: boolean;
+}
+
+let o: Obj = {
+    [`[|RENAME|]`]: 0,
+    ['bool']: true,
+};
+
+o = {
+    ['RENAME']: 1,
+    [`bool`]: false,
+};
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+o.bool;
+o['bool'];
+o["bool"];
+o[`bool`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.RENAME;
+obj[`RENAME`];
+
+obj.bool;
+obj[`bool`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`[|num|]`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [|[`num`]: number;|]
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`[|num|]`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [|[`num`]: 0|],
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['[|num|]']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     [|['num']: 1|],
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.[|num|];
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['[|num|]'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["[|num|]"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`[|num|]`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.[|num|];
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`[|num|]`];
+// 
+// obj.bool;
+// obj[`bool`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 22,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 20,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 84,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 82,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 128,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 167,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 175,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 185,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 195,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 37,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 47,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`RENAME`]: number;
+    ['bool']: boolean;
+}
+
+let o: Obj = {
+    [`RENAME`]: 0,
+    ['bool']: true,
+};
+
+o = {
+    ['[|RENAME|]']: 1,
+    [`bool`]: false,
+};
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+o.bool;
+o['bool'];
+o["bool"];
+o[`bool`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.RENAME;
+obj[`RENAME`];
+
+obj.bool;
+obj[`bool`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`[|num|]`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [|[`num`]: number;|]
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`[|num|]`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [|[`num`]: 0|],
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['[|num|]']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     [|['num']: 1|],
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.[|num|];
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['[|num|]'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["[|num|]"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`[|num|]`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.[|num|];
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`[|num|]`];
+// 
+// obj.bool;
+// obj[`bool`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 22,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 20,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 84,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 82,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 128,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 167,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 175,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 185,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 195,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 37,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 47,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`RENAME`]: number;
+    ['bool']: boolean;
+}
+
+let o: Obj = {
+    [`RENAME`]: 0,
+    ['bool']: true,
+};
+
+o = {
+    ['RENAME']: 1,
+    [`bool`]: false,
+};
+
+o.[|RENAME|];
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+o.bool;
+o['bool'];
+o["bool"];
+o[`bool`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.RENAME;
+obj[`RENAME`];
+
+obj.bool;
+obj[`bool`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`[|num|]`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [|[`num`]: number;|]
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`[|num|]`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [|[`num`]: 0|],
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['[|num|]']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     [|['num']: 1|],
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.[|num|];
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['[|num|]'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["[|num|]"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`[|num|]`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.[|num|];
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`[|num|]`];
+// 
+// obj.bool;
+// obj[`bool`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 22,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 20,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 84,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 82,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 128,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 167,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 175,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 185,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 195,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 37,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 47,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`RENAME`]: number;
+    ['bool']: boolean;
+}
+
+let o: Obj = {
+    [`RENAME`]: 0,
+    ['bool']: true,
+};
+
+o = {
+    ['RENAME']: 1,
+    [`bool`]: false,
+};
+
+o.RENAME;
+o['[|RENAME|]'];
+o["RENAME"];
+o[`RENAME`];
+
+o.bool;
+o['bool'];
+o["bool"];
+o[`bool`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.RENAME;
+obj[`RENAME`];
+
+obj.bool;
+obj[`bool`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`[|num|]`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [|[`num`]: number;|]
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`[|num|]`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [|[`num`]: 0|],
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['[|num|]']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     [|['num']: 1|],
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.[|num|];
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['[|num|]'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["[|num|]"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`[|num|]`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.[|num|];
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`[|num|]`];
+// 
+// obj.bool;
+// obj[`bool`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 22,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 20,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 84,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 82,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 128,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 167,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 175,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 185,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 195,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 37,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 47,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`RENAME`]: number;
+    ['bool']: boolean;
+}
+
+let o: Obj = {
+    [`RENAME`]: 0,
+    ['bool']: true,
+};
+
+o = {
+    ['RENAME']: 1,
+    [`bool`]: false,
+};
+
+o.RENAME;
+o['RENAME'];
+o["[|RENAME|]"];
+o[`RENAME`];
+
+o.bool;
+o['bool'];
+o["bool"];
+o[`bool`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.RENAME;
+obj[`RENAME`];
+
+obj.bool;
+obj[`bool`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`[|num|]`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [|[`num`]: number;|]
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`[|num|]`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [|[`num`]: 0|],
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['[|num|]']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     [|['num']: 1|],
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.[|num|];
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['[|num|]'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["[|num|]"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`[|num|]`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.[|num|];
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`[|num|]`];
+// 
+// obj.bool;
+// obj[`bool`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 22,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 20,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 84,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 82,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 128,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 167,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 175,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 185,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 195,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 37,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 47,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`RENAME`]: number;
+    ['bool']: boolean;
+}
+
+let o: Obj = {
+    [`RENAME`]: 0,
+    ['bool']: true,
+};
+
+o = {
+    ['RENAME']: 1,
+    [`bool`]: false,
+};
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`[|RENAME|]`];
+
+o.bool;
+o['bool'];
+o["bool"];
+o[`bool`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.RENAME;
+obj[`RENAME`];
+
+obj.bool;
+obj[`bool`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`[|num|]`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [|[`num`]: number;|]
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`[|num|]`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [|[`num`]: 0|],
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['[|num|]']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     [|['num']: 1|],
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.[|num|];
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['[|num|]'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["[|num|]"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`[|num|]`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.[|num|];
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`[|num|]`];
+// 
+// obj.bool;
+// obj[`bool`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 22,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 20,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 84,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 82,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 128,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 167,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 175,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 185,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 195,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 37,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 47,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`RENAME`]: number;
+    ['bool']: boolean;
+}
+
+let o: Obj = {
+    [`RENAME`]: 0,
+    ['bool']: true,
+};
+
+o = {
+    ['RENAME']: 1,
+    [`bool`]: false,
+};
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+o.bool;
+o['bool'];
+o["bool"];
+o[`bool`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.RENAME;
+obj[`RENAME`];
+
+obj.bool;
+obj[`bool`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`[|num|]`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [|[`num`]: number;|]
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`[|num|]`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [|[`num`]: 0|],
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['[|num|]']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     [|['num']: 1|],
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.[|num|];
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['[|num|]'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["[|num|]"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`[|num|]`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.[|num|];
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`[|num|]`];
+// 
+// obj.bool;
+// obj[`bool`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 22,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 20,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 84,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 82,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 128,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 167,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 175,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 185,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 195,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 37,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 47,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`RENAME`]: number;
+    ['bool']: boolean;
+}
+
+let o: Obj = {
+    [`RENAME`]: 0,
+    ['bool']: true,
+};
+
+o = {
+    ['RENAME']: 1,
+    [`bool`]: false,
+};
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+o.bool;
+o['bool'];
+o["bool"];
+o[`bool`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.RENAME;
+obj[`RENAME`];
+
+obj.bool;
+obj[`bool`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`[|num|]`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [|[`num`]: number;|]
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`[|num|]`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [|[`num`]: 0|],
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['[|num|]']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     [|['num']: 1|],
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.[|num|];
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['[|num|]'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["[|num|]"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`[|num|]`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.[|num|];
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`[|num|]`];
+// 
+// obj.bool;
+// obj[`bool`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 22,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 20,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 84,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 82,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 128,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 167,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 175,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 185,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 195,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 37,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 47,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`num`]: number;
+    ['[|RENAME|]']: boolean;
+}
+
+let o: Obj = {
+    [`num`]: 0,
+    ['RENAME']: true,
+};
+
+o = {
+    ['num']: 1,
+    [`RENAME`]: false,
+};
+
+o.num;
+o['num'];
+o["num"];
+o[`num`];
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.num;
+obj[`num`];
+
+obj.RENAME;
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['[|bool|]']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     [|['bool']: boolean;|]
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['[|bool|]']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     [|['bool']: true|],
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`[|bool|]`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [|[`bool`]: false|],
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.[|bool|];
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['[|bool|]'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["[|bool|]"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`[|bool|]`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.[|bool|];
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`[|bool|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 41,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 100,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 98,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 144,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 205,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 214,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 225,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 236,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 59,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`num`]: number;
+    ['RENAME']: boolean;
+}
+
+let o: Obj = {
+    [`num`]: 0,
+    ['[|RENAME|]']: true,
+};
+
+o = {
+    ['num']: 1,
+    [`RENAME`]: false,
+};
+
+o.num;
+o['num'];
+o["num"];
+o[`num`];
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.num;
+obj[`num`];
+
+obj.RENAME;
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['[|bool|]']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     [|['bool']: boolean;|]
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['[|bool|]']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     [|['bool']: true|],
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`[|bool|]`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [|[`bool`]: false|],
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.[|bool|];
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['[|bool|]'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["[|bool|]"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`[|bool|]`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.[|bool|];
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`[|bool|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 41,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 100,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 98,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 144,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 205,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 214,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 225,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 236,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 59,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`num`]: number;
+    ['RENAME']: boolean;
+}
+
+let o: Obj = {
+    [`num`]: 0,
+    ['RENAME']: true,
+};
+
+o = {
+    ['num']: 1,
+    [`[|RENAME|]`]: false,
+};
+
+o.num;
+o['num'];
+o["num"];
+o[`num`];
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.num;
+obj[`num`];
+
+obj.RENAME;
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['[|bool|]']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     [|['bool']: boolean;|]
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['[|bool|]']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     [|['bool']: true|],
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`[|bool|]`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [|[`bool`]: false|],
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.[|bool|];
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['[|bool|]'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["[|bool|]"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`[|bool|]`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.[|bool|];
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`[|bool|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 41,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 100,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 98,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 144,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 205,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 214,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 225,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 236,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 59,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`num`]: number;
+    ['RENAME']: boolean;
+}
+
+let o: Obj = {
+    [`num`]: 0,
+    ['RENAME']: true,
+};
+
+o = {
+    ['num']: 1,
+    [`RENAME`]: false,
+};
+
+o.num;
+o['num'];
+o["num"];
+o[`num`];
+
+o.[|RENAME|];
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.num;
+obj[`num`];
+
+obj.RENAME;
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['[|bool|]']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     [|['bool']: boolean;|]
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['[|bool|]']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     [|['bool']: true|],
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`[|bool|]`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [|[`bool`]: false|],
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.[|bool|];
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['[|bool|]'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["[|bool|]"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`[|bool|]`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.[|bool|];
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`[|bool|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 41,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 100,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 98,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 144,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 205,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 214,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 225,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 236,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 59,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`num`]: number;
+    ['RENAME']: boolean;
+}
+
+let o: Obj = {
+    [`num`]: 0,
+    ['RENAME']: true,
+};
+
+o = {
+    ['num']: 1,
+    [`RENAME`]: false,
+};
+
+o.num;
+o['num'];
+o["num"];
+o[`num`];
+
+o.RENAME;
+o['[|RENAME|]'];
+o["RENAME"];
+o[`RENAME`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.num;
+obj[`num`];
+
+obj.RENAME;
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['[|bool|]']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     [|['bool']: boolean;|]
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['[|bool|]']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     [|['bool']: true|],
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`[|bool|]`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [|[`bool`]: false|],
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.[|bool|];
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['[|bool|]'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["[|bool|]"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`[|bool|]`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.[|bool|];
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`[|bool|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 41,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 100,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 98,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 144,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 205,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 214,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 225,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 236,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 59,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`num`]: number;
+    ['RENAME']: boolean;
+}
+
+let o: Obj = {
+    [`num`]: 0,
+    ['RENAME']: true,
+};
+
+o = {
+    ['num']: 1,
+    [`RENAME`]: false,
+};
+
+o.num;
+o['num'];
+o["num"];
+o[`num`];
+
+o.RENAME;
+o['RENAME'];
+o["[|RENAME|]"];
+o[`RENAME`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.num;
+obj[`num`];
+
+obj.RENAME;
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['[|bool|]']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     [|['bool']: boolean;|]
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['[|bool|]']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     [|['bool']: true|],
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`[|bool|]`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [|[`bool`]: false|],
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.[|bool|];
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['[|bool|]'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["[|bool|]"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`[|bool|]`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.[|bool|];
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`[|bool|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 41,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 100,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 98,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 144,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 205,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 214,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 225,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 236,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 59,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`num`]: number;
+    ['RENAME']: boolean;
+}
+
+let o: Obj = {
+    [`num`]: 0,
+    ['RENAME']: true,
+};
+
+o = {
+    ['num']: 1,
+    [`RENAME`]: false,
+};
+
+o.num;
+o['num'];
+o["num"];
+o[`num`];
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`[|RENAME|]`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.num;
+obj[`num`];
+
+obj.RENAME;
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['[|bool|]']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     [|['bool']: boolean;|]
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['[|bool|]']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     [|['bool']: true|],
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`[|bool|]`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [|[`bool`]: false|],
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.[|bool|];
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['[|bool|]'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["[|bool|]"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`[|bool|]`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.[|bool|];
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`[|bool|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 41,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 100,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 98,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 144,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 205,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 214,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 225,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 236,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 59,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`num`]: number;
+    ['RENAME']: boolean;
+}
+
+let o: Obj = {
+    [`num`]: 0,
+    ['RENAME']: true,
+};
+
+o = {
+    ['num']: 1,
+    [`RENAME`]: false,
+};
+
+o.num;
+o['num'];
+o["num"];
+o[`num`];
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.num;
+obj[`num`];
+
+obj.RENAME;
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['[|bool|]']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     [|['bool']: boolean;|]
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['[|bool|]']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     [|['bool']: true|],
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`[|bool|]`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [|[`bool`]: false|],
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.[|bool|];
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['[|bool|]'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["[|bool|]"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`[|bool|]`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.[|bool|];
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`[|bool|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 41,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 100,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 98,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 144,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 205,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 214,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 225,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 236,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 59,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.ts ======*/
+
+interface Obj {
+    [`num`]: number;
+    ['RENAME']: boolean;
+}
+
+let o: Obj = {
+    [`num`]: 0,
+    ['RENAME']: true,
+};
+
+o = {
+    ['num']: 1,
+    [`RENAME`]: false,
+};
+
+o.num;
+o['num'];
+o["num"];
+o[`num`];
+
+o.RENAME;
+o['RENAME'];
+o["RENAME"];
+o[`RENAME`];
+
+export { o };
+
+/*====== /tests/cases/fourslash/b.js ======*/
+
+import { o as obj } from './a';
+
+obj.num;
+obj[`num`];
+
+obj.RENAME;
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['[|bool|]']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     [|['bool']: boolean;|]
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 1 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['[|bool|]']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     [|['bool']: true|],
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [`bool`]: false,
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 2 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`[|bool|]`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface Obj {
+  //     [`num`]: number;
+  //     ['bool']: boolean;
+  // }
+  // 
+  // let o: Obj = {
+  //     [`num`]: 0,
+  //     ['bool']: true,
+  // };
+  // 
+  // o = {
+  //     ['num']: 1,
+  //     [|[`bool`]: false|],
+  // };
+  // 
+  // o.num;
+  // o['num'];
+  // o["num"];
+  // o[`num`];
+  // 
+  // o.bool;
+  // o['bool'];
+  // o["bool"];
+  // o[`bool`];
+  // 
+  // export { o };
+=== 3 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.[|bool|];
+// o['bool'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 4 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['[|bool|]'];
+// o["bool"];
+// o[`bool`];
+// 
+// export { o };
+=== 5 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["[|bool|]"];
+// o[`bool`];
+// 
+// export { o };
+=== 6 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface Obj {
+//     [`num`]: number;
+//     ['bool']: boolean;
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0,
+//     ['bool']: true,
+// };
+// 
+// o = {
+//     ['num']: 1,
+//     [`bool`]: false,
+// };
+// 
+// o.num;
+// o['num'];
+// o["num"];
+// o[`num`];
+// 
+// o.bool;
+// o['bool'];
+// o["bool"];
+// o[`[|bool|]`];
+// 
+// export { o };
+=== 7 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.[|bool|];
+// obj[`bool`];
+=== 8 ===
+// === /tests/cases/fourslash/b.js ===
+// import { o as obj } from './a';
+// 
+// obj.num;
+// obj[`num`];
+// 
+// obj.bool;
+// obj[`[|bool|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 41,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 100,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 98,
+      "length": 14
+    }
+  },
+  {
+    "textSpan": {
+      "start": 146,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "contextSpan": {
+      "start": 144,
+      "length": 15
+    }
+  },
+  {
+    "textSpan": {
+      "start": 205,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 214,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 225,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 236,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.ts"
+  },
+  {
+    "textSpan": {
+      "start": 59,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.js"
+  }
+]

@@ -1,0 +1,57 @@
+// === /tests/cases/fourslash/goToDefinitionAwait4.ts ===
+// async function outerAsyncFun() {
+//     let [|af|] = async () => {
+//       /*GOTO DEF*/await Promise.resolve(0);
+//     }
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionAwait4.ts ===
+    // async function outerAsyncFun() {
+    //     let [|af|] = async () => {
+    //       await Promise.resolve(0);
+    //     }
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionAwait4.ts ===
+      // async function outerAsyncFun() {
+      //     let af = [|async () => {
+      //       await Promise.resolve(0);
+      //     }|]
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionAwait4.ts ===
+    // async function outerAsyncFun() {
+    //     let af = async () => {
+    //       [|await|] Promise.resolve(0);
+    //     }
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionAwait4.ts",
+      "textSpan": {
+        "start": 41,
+        "length": 2
+      },
+      "kind": "function",
+      "name": "af",
+      "containerName": "",
+      "contextSpan": {
+        "start": 46,
+        "length": 51
+      },
+      "isLocal": true,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 66,
+    "length": 5
+  }
+}

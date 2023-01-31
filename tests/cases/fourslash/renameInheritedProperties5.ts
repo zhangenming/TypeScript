@@ -9,5 +9,5 @@
 //// var d: D;
 //// d.[|propD|];
 
-verify.rangesWithSameTextAreRenameLocations("propD");
+verify.baselineRename(test.rangesByText().get("propD"));
 

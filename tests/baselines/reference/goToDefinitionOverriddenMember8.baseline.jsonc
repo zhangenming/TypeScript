@@ -1,0 +1,56 @@
+// === /tests/cases/fourslash/a.ts ===
+// export class A {
+//     [|m|]() {}
+// }
+
+// === /tests/cases/fourslash/./b.ts ===
+// import { A } from "./a";
+// class B extends A {
+//     /*GOTO DEF*/override m() {}
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/a.ts ===
+    // export class A {
+    //     [|m|]() {}
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/a.ts ===
+      // export class A {
+      //     [|m() {}|]
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/./b.ts ===
+    // import { A } from "./a";
+    // class B extends A {
+    //     [|override|] m() {}
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/a.ts",
+      "textSpan": {
+        "start": 21,
+        "length": 1
+      },
+      "kind": "method",
+      "name": "m",
+      "containerName": "A",
+      "contextSpan": {
+        "start": 21,
+        "length": 6
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 49,
+    "length": 8
+  }
+}

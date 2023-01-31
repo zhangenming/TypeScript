@@ -1,6 +1,37 @@
+=== findAllReferences ===
 // === /tests/cases/fourslash/foo.ts ===
 // export function /*FIND ALL REFS*/[|bar|]() { return "bar"; }
 // import('./foo').then(({ [|bar|] }) => undefined);
+
+[
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function [|bar|]() { return "bar"; }
+      // import('./foo').then(({ bar }) => undefined);
+      === ContextSpan ===
+        // === /tests/cases/fourslash/foo.ts ===
+        // [|export function bar() { return "bar"; }|]
+        // import('./foo').then(({ bar }) => undefined);
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function [|bar|]() { return "bar"; }
+      // import('./foo').then(({ bar }) => undefined);
+      === ContextSpan ===
+        // === /tests/cases/fourslash/foo.ts ===
+        // [|export function bar() { return "bar"; }|]
+        // import('./foo').then(({ bar }) => undefined);
+      === 1 ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function bar() { return "bar"; }
+      // import('./foo').then(({ [|bar|] }) => undefined);
+      === ContextSpan ===
+        // === /tests/cases/fourslash/foo.ts ===
+        // export function bar() { return "bar"; }
+        // import('./foo').then(([|{ bar }|]) => undefined);
+  }
+]
 
 [
   {
@@ -87,6 +118,47 @@
 // === /tests/cases/fourslash/foo.ts ===
 // export function [|bar|]() { return "bar"; }
 // import('./foo').then(({ /*FIND ALL REFS*/[|bar|] }) => undefined);
+
+[
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function [|bar|]() { return "bar"; }
+      // import('./foo').then(({ bar }) => undefined);
+      === ContextSpan ===
+        // === /tests/cases/fourslash/foo.ts ===
+        // [|export function bar() { return "bar"; }|]
+        // import('./foo').then(({ bar }) => undefined);
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function [|bar|]() { return "bar"; }
+      // import('./foo').then(({ bar }) => undefined);
+      === ContextSpan ===
+        // === /tests/cases/fourslash/foo.ts ===
+        // [|export function bar() { return "bar"; }|]
+        // import('./foo').then(({ bar }) => undefined);
+  },
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function bar() { return "bar"; }
+      // import('./foo').then(({ [|bar|] }) => undefined);
+      === ContextSpan ===
+        // === /tests/cases/fourslash/foo.ts ===
+        // export function bar() { return "bar"; }
+        // import('./foo').then(([|{ bar }|]) => undefined);
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function bar() { return "bar"; }
+      // import('./foo').then(({ [|bar|] }) => undefined);
+      === ContextSpan ===
+        // === /tests/cases/fourslash/foo.ts ===
+        // export function bar() { return "bar"; }
+        // import('./foo').then(([|{ bar }|]) => undefined);
+  }
+]
 
 [
   {
@@ -240,5 +312,97 @@
         "isDefinition": true
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/foo.ts ======*/
+
+export function [|RENAME|]() { return "bar"; }
+import('./foo').then(({ RENAME: bar/*END SUFFIX*/ }) => undefined);
+
+=== 0 ===
+// === /tests/cases/fourslash/foo.ts ===
+// export function [|bar|]() { return "bar"; }
+// import('./foo').then(({ bar }) => undefined);
+=== ContextSpan ===
+  // === /tests/cases/fourslash/foo.ts ===
+  // [|export function bar() { return "bar"; }|]
+  // import('./foo').then(({ bar }) => undefined);
+=== 1 ===
+// === /tests/cases/fourslash/foo.ts ===
+// export function bar() { return "bar"; }
+// import('./foo').then(({ [|bar|] }) => undefined);
+=== ContextSpan ===
+  // === /tests/cases/fourslash/foo.ts ===
+  // export function bar() { return "bar"; }
+  // import('./foo').then(([|{ bar }|]) => undefined);
+
+
+[
+  {
+    "textSpan": {
+      "start": 16,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/foo.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 39
+    }
+  },
+  {
+    "textSpan": {
+      "start": 64,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/foo.ts",
+    "contextSpan": {
+      "start": 62,
+      "length": 7
+    },
+    "suffixText": ": bar"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/foo.ts ======*/
+
+export function bar() { return "bar"; }
+import('./foo').then(({ /*START PREFIX*/bar: [|RENAME|] }) => undefined);
+
+=== 0 ===
+// === /tests/cases/fourslash/foo.ts ===
+// export function bar() { return "bar"; }
+// import('./foo').then(({ [|bar|] }) => undefined);
+=== ContextSpan ===
+  // === /tests/cases/fourslash/foo.ts ===
+  // export function bar() { return "bar"; }
+  // import('./foo').then(([|{ bar }|]) => undefined);
+
+
+[
+  {
+    "textSpan": {
+      "start": 64,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/foo.ts",
+    "contextSpan": {
+      "start": 62,
+      "length": 7
+    },
+    "prefixText": "bar: "
   }
 ]

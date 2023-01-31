@@ -7,7 +7,4 @@
 ////
 /////*2*/const c = 0;
 
-verify.rangesAreOccurrences();
-
-goTo.marker("2");
-verify.occurrencesAtPositionCount(0);
+verify.baselineOccurences(...test.ranges(), "2");

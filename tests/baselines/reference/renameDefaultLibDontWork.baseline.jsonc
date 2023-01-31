@@ -1,0 +1,45 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": true,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file1.ts ======*/
+
+var [|RENAME|] = "foo";
+console.log(RENAME);
+
+=== 0 ===
+// === /tests/cases/fourslash/file1.ts ===
+// var [|test|] = "foo";
+// console.log(test);
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file1.ts ===
+  // [|var test = "foo";|]
+  // console.log(test);
+=== 1 ===
+// === /tests/cases/fourslash/file1.ts ===
+// var test = "foo";
+// console.log([|test|]);
+
+
+[
+  {
+    "textSpan": {
+      "start": 4,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/file1.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/file1.ts"
+  }
+]

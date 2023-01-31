@@ -1,0 +1,156 @@
+// === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
+// //global foo definition
+// function foo() {}
+// 
+// (function [|f/*OCCURENCES*/oo|](): number {
+//     return [|foo|](); // local foo reference
+// })
+// //global foo references
+// foo();
+// var f = foo;
+
+=== 0 ===
+// === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
+// //global foo definition
+// function foo() {}
+// 
+// (function [|foo|](): number {
+//     return foo(); // local foo reference
+// })
+// //global foo references
+// foo();
+// var f = foo;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
+  // //global foo definition
+  // function foo() {}
+  // 
+  // ([|function foo(): number {
+  //     return foo(); // local foo reference
+  // }|])
+  // //global foo references
+  // foo();
+  // var f = foo;
+=== 1 ===
+// === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
+// //global foo definition
+// function foo() {}
+// 
+// (function foo(): number {
+//     return [|foo|](); // local foo reference
+// })
+// //global foo references
+// foo();
+// var f = foo;
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts",
+    "textSpan": {
+      "start": 53,
+      "length": 3
+    },
+    "isWriteAccess": true,
+    "contextSpan": {
+      "start": 44,
+      "length": 67
+    }
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts",
+    "textSpan": {
+      "start": 80,
+      "length": 3
+    },
+    "isWriteAccess": false
+  }
+]
+
+// === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
+// //global foo definition
+// function [|foo|]() {}
+// 
+// (function foo(): number {
+//     return foo(); // local foo reference
+// })
+// //global foo references
+// [|fo/*OCCURENCES*/o|]();
+// var f = [|foo|];
+
+=== 0 ===
+// === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
+// //global foo definition
+// function [|foo|]() {}
+// 
+// (function foo(): number {
+//     return foo(); // local foo reference
+// })
+// //global foo references
+// foo();
+// var f = foo;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
+  // //global foo definition
+  // [|function foo() {}|]
+  // 
+  // (function foo(): number {
+  //     return foo(); // local foo reference
+  // })
+  // //global foo references
+  // foo();
+  // var f = foo;
+=== 1 ===
+// === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
+// //global foo definition
+// function foo() {}
+// 
+// (function foo(): number {
+//     return foo(); // local foo reference
+// })
+// //global foo references
+// [|foo|]();
+// var f = foo;
+=== 2 ===
+// === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
+// //global foo definition
+// function foo() {}
+// 
+// (function foo(): number {
+//     return foo(); // local foo reference
+// })
+// //global foo references
+// foo();
+// var f = [|foo|];
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts",
+    "textSpan": {
+      "start": 33,
+      "length": 3
+    },
+    "isWriteAccess": true,
+    "contextSpan": {
+      "start": 24,
+      "length": 17
+    }
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts",
+    "textSpan": {
+      "start": 137,
+      "length": 3
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts",
+    "textSpan": {
+      "start": 152,
+      "length": 3
+    },
+    "isWriteAccess": false
+  }
+]

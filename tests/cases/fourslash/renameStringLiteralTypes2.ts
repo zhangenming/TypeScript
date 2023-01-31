@@ -19,4 +19,4 @@
 ////    }
 ////}
 
-verify.rangesWithSameTextAreRenameLocations("a");
+verify.baselineRename(test.rangesByText().get("a"));

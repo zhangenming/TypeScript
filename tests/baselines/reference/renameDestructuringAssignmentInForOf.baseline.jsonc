@@ -1,0 +1,665 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ======*/
+
+interface I {
+    [|RENAME|]: number;
+    property2: string;
+}
+var elems: I[];
+
+var property1: number, p2: number;
+for ({ RENAME: property1/*END SUFFIX*/ } of elems) {
+    property1++;
+}
+for ({ RENAME: p2 } of elems) {
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     [|property1|]: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ property1 } of elems) {
+//     property1++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     [|property1: number;|]
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var property1: number, p2: number;
+  // for ({ property1 } of elems) {
+  //     property1++;
+  // }
+  // for ({ property1: p2 } of elems) {
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ [|property1|] } of elems) {
+//     property1++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var property1: number, p2: number;
+  // for ([|{ property1 } of elems|]) {
+  //     property1++;
+  // }
+  // for ({ property1: p2 } of elems) {
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ property1 } of elems) {
+//     property1++;
+// }
+// for ({ [|property1|]: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var property1: number, p2: number;
+  // for ({ property1 } of elems) {
+  //     property1++;
+  // }
+  // for ([|{ property1: p2 } of elems|]) {
+  // }
+
+
+[
+  {
+    "textSpan": {
+      "start": 18,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 18,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 121,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 119,
+      "length": 22
+    },
+    "suffixText": ": property1"
+  },
+  {
+    "textSpan": {
+      "start": 171,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 169,
+      "length": 26
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ======*/
+
+interface I {
+    RENAME: number;
+    property2: string;
+}
+var elems: I[];
+
+var property1: number, p2: number;
+for ({ RENAME: property1/*END SUFFIX*/ } of elems) {
+    property1++;
+}
+for ({ [|RENAME|]: p2 } of elems) {
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     [|property1|]: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ property1 } of elems) {
+//     property1++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     [|property1: number;|]
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var property1: number, p2: number;
+  // for ({ property1 } of elems) {
+  //     property1++;
+  // }
+  // for ({ property1: p2 } of elems) {
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ [|property1|] } of elems) {
+//     property1++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var property1: number, p2: number;
+  // for ([|{ property1 } of elems|]) {
+  //     property1++;
+  // }
+  // for ({ property1: p2 } of elems) {
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ property1 } of elems) {
+//     property1++;
+// }
+// for ({ [|property1|]: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var property1: number, p2: number;
+  // for ({ property1 } of elems) {
+  //     property1++;
+  // }
+  // for ([|{ property1: p2 } of elems|]) {
+  // }
+
+
+[
+  {
+    "textSpan": {
+      "start": 18,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 18,
+      "length": 18
+    }
+  },
+  {
+    "textSpan": {
+      "start": 121,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 119,
+      "length": 22
+    },
+    "suffixText": ": property1"
+  },
+  {
+    "textSpan": {
+      "start": 171,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 169,
+      "length": 26
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ======*/
+
+interface I {
+    property1: number;
+    property2: string;
+}
+var elems: I[];
+
+var [|RENAME|]: number, p2: number;
+for ({ /*START PREFIX*/property1: RENAME } of elems) {
+    RENAME++;
+}
+for ({ property1: p2 } of elems) {
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var [|property1|]: number, p2: number;
+// for ({ property1 } of elems) {
+//     property1++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var [|property1: number|], p2: number;
+  // for ({ property1 } of elems) {
+  //     property1++;
+  // }
+  // for ({ property1: p2 } of elems) {
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ [|property1|] } of elems) {
+//     property1++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var property1: number, p2: number;
+  // for ([|{ property1 } of elems|]) {
+  //     property1++;
+  // }
+  // for ({ property1: p2 } of elems) {
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ property1 } of elems) {
+//     [|property1|]++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 83,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 83,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 121,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 119,
+      "length": 22
+    },
+    "prefixText": "property1: "
+  },
+  {
+    "textSpan": {
+      "start": 149,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ======*/
+
+interface I {
+    property1: number;
+    property2: string;
+}
+var elems: I[];
+
+var RENAME: number, p2: number;
+for ({ /*START PREFIX*/property1: [|RENAME|] } of elems) {
+    RENAME++;
+}
+for ({ property1: p2 } of elems) {
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var [|property1|]: number, p2: number;
+// for ({ property1 } of elems) {
+//     property1++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var [|property1: number|], p2: number;
+  // for ({ property1 } of elems) {
+  //     property1++;
+  // }
+  // for ({ property1: p2 } of elems) {
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ [|property1|] } of elems) {
+//     property1++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var property1: number, p2: number;
+  // for ([|{ property1 } of elems|]) {
+  //     property1++;
+  // }
+  // for ({ property1: p2 } of elems) {
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ property1 } of elems) {
+//     [|property1|]++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 83,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 83,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 121,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 119,
+      "length": 22
+    },
+    "prefixText": "property1: "
+  },
+  {
+    "textSpan": {
+      "start": 149,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ======*/
+
+interface I {
+    property1: number;
+    property2: string;
+}
+var elems: I[];
+
+var RENAME: number, p2: number;
+for ({ /*START PREFIX*/property1: RENAME } of elems) {
+    [|RENAME|]++;
+}
+for ({ property1: p2 } of elems) {
+}
+
+=== 0 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var [|property1|]: number, p2: number;
+// for ({ property1 } of elems) {
+//     property1++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var [|property1: number|], p2: number;
+  // for ({ property1 } of elems) {
+  //     property1++;
+  // }
+  // for ({ property1: p2 } of elems) {
+  // }
+=== 1 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ [|property1|] } of elems) {
+//     property1++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var property1: number, p2: number;
+  // for ([|{ property1 } of elems|]) {
+  //     property1++;
+  // }
+  // for ({ property1: p2 } of elems) {
+  // }
+=== 2 ===
+// === /tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts ===
+// interface I {
+//     property1: number;
+//     property2: string;
+// }
+// var elems: I[];
+// 
+// var property1: number, p2: number;
+// for ({ property1 } of elems) {
+//     [|property1|]++;
+// }
+// for ({ property1: p2 } of elems) {
+// }
+
+
+[
+  {
+    "textSpan": {
+      "start": 83,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 83,
+      "length": 17
+    }
+  },
+  {
+    "textSpan": {
+      "start": 121,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts",
+    "contextSpan": {
+      "start": 119,
+      "length": 22
+    },
+    "prefixText": "property1: "
+  },
+  {
+    "textSpan": {
+      "start": 149,
+      "length": 9
+    },
+    "fileName": "/tests/cases/fourslash/renameDestructuringAssignmentInForOf.ts"
+  }
+]

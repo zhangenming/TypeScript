@@ -1,0 +1,46 @@
+// === /tests/cases/fourslash/b.ts ===
+// import [|n|] = require('a');
+// var x = new /*GOTO DEF*/n.Foo();
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/b.ts ===
+    // import [|n|] = require('a');
+    // var x = new n.Foo();
+    === ContextSpan ===
+      // === /tests/cases/fourslash/b.ts ===
+      // [|import n = require('a');|]
+      // var x = new n.Foo();
+  === TextSpan ===
+    // === /tests/cases/fourslash/b.ts ===
+    // import n = require('a');
+    // var x = new [|n|].Foo();
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/b.ts",
+      "textSpan": {
+        "start": 7,
+        "length": 1
+      },
+      "kind": "alias",
+      "name": "n",
+      "containerName": "",
+      "contextSpan": {
+        "start": 0,
+        "length": 24
+      },
+      "isLocal": true,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": true
+    }
+  ],
+  "textSpan": {
+    "start": 37,
+    "length": 1
+  }
+}

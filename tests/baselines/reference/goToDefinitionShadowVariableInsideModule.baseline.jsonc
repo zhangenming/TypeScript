@@ -1,0 +1,54 @@
+// === /tests/cases/fourslash/goToDefinitionShadowVariableInsideModule.ts ===
+// module shdModule {
+//     var [|shdVar|];
+//     /*GOTO DEF*/shdVar = 1;
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionShadowVariableInsideModule.ts ===
+    // module shdModule {
+    //     var [|shdVar|];
+    //     shdVar = 1;
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionShadowVariableInsideModule.ts ===
+      // module shdModule {
+      //     [|var shdVar;|]
+      //     shdVar = 1;
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionShadowVariableInsideModule.ts ===
+    // module shdModule {
+    //     var shdVar;
+    //     [|shdVar|] = 1;
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionShadowVariableInsideModule.ts",
+      "textSpan": {
+        "start": 27,
+        "length": 6
+      },
+      "kind": "var",
+      "name": "shdVar",
+      "containerName": "",
+      "contextSpan": {
+        "start": 23,
+        "length": 11
+      },
+      "isLocal": true,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 39,
+    "length": 6
+  }
+}

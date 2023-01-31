@@ -7,4 +7,4 @@
 ////    "this is a reference to Bar in a string"
 ////}|]
 
-verify.rangesWithSameTextAreRenameLocations("Bar");
+verify.baselineRename(test.rangesByText().get("Bar"));

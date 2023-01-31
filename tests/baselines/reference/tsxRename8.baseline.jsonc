@@ -1,0 +1,56 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+    }
+    interface ElementAttributesProperty { props; }
+}
+interface OptionPropBag {
+    propx: number
+    propString: string
+    optional?: boolean
+}
+declare function Opt(attributes: OptionPropBag): JSX.Element;
+let opt = <Opt />;
+let opt1 = <Opt propx={100} propString />;
+let opt2 = <Opt propx={100} optional/>;
+let opt3 = <Opt [|RENAME|] />;
+let opt4 = <Opt propx={100} propString="hi" />;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     propx: number
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt [|wrong|] />;
+// let opt4 = <Opt propx={100} propString="hi" />;
+
+
+[
+  {
+    "textSpan": {
+      "start": 412,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx"
+  }
+]

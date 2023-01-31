@@ -1,3 +1,4 @@
+=== findAllReferences ===
 // === /file1.ts ===
 // declare function log(s: string | number): void;
 // const /*FIND ALL REFS*/[|q|] = 1;
@@ -12,6 +13,100 @@
 // declare function log(s: string | number): void;
 // import { [|q|] } from "./file1";
 // log([|q|] + 1);
+
+[
+  {
+    === Definition ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const [|q|] = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // [|const q = 1;|]
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+    === References ===
+      === 0 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const [|q|] = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // [|const q = 1;|]
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+      === 1 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { [|q|] };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // [|export { q };|]
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+  },
+  {
+    === Definition ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { [|q|] } from "./file1";
+      // log(q + 1);
+      === ContextSpan ===
+        // === /file2.ts ===
+        // declare function log(s: string | number): void;
+        // [|import { q } from "./file1";|]
+        // log(q + 1);
+    === References ===
+      === 0 ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { [|q|] } from "./file1";
+      // log(q + 1);
+      === ContextSpan ===
+        // === /file2.ts ===
+        // declare function log(s: string | number): void;
+        // [|import { q } from "./file1";|]
+        // log(q + 1);
+      === 1 ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { q } from "./file1";
+      // log([|q|] + 1);
+  }
+]
 
 [
   {
@@ -203,6 +298,100 @@
 
 [
   {
+    === Definition ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const [|q|] = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // [|const q = 1;|]
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+    === References ===
+      === 0 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const [|q|] = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // [|const q = 1;|]
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+      === 1 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { [|q|] };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // [|export { q };|]
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+  },
+  {
+    === Definition ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { [|q|] } from "./file1";
+      // log(q + 1);
+      === ContextSpan ===
+        // === /file2.ts ===
+        // declare function log(s: string | number): void;
+        // [|import { q } from "./file1";|]
+        // log(q + 1);
+    === References ===
+      === 0 ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { [|q|] } from "./file1";
+      // log(q + 1);
+      === ContextSpan ===
+        // === /file2.ts ===
+        // declare function log(s: string | number): void;
+        // [|import { q } from "./file1";|]
+        // log(q + 1);
+      === 1 ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { q } from "./file1";
+      // log([|q|] + 1);
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -388,6 +577,100 @@
 // declare function log(s: string | number): void;
 // import { /*FIND ALL REFS*/[|q|] } from "./file1";
 // log([|q|] + 1);
+
+[
+  {
+    === Definition ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { [|q|] } from "./file1";
+      // log(q + 1);
+      === ContextSpan ===
+        // === /file2.ts ===
+        // declare function log(s: string | number): void;
+        // [|import { q } from "./file1";|]
+        // log(q + 1);
+    === References ===
+      === 0 ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { [|q|] } from "./file1";
+      // log(q + 1);
+      === ContextSpan ===
+        // === /file2.ts ===
+        // declare function log(s: string | number): void;
+        // [|import { q } from "./file1";|]
+        // log(q + 1);
+      === 1 ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { q } from "./file1";
+      // log([|q|] + 1);
+  },
+  {
+    === Definition ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const [|q|] = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // [|const q = 1;|]
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+    === References ===
+      === 0 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const [|q|] = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // [|const q = 1;|]
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+      === 1 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { [|q|] };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // [|export { q };|]
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+  }
+]
 
 [
   {
@@ -579,6 +862,100 @@
 
 [
   {
+    === Definition ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { [|q|] } from "./file1";
+      // log(q + 1);
+      === ContextSpan ===
+        // === /file2.ts ===
+        // declare function log(s: string | number): void;
+        // [|import { q } from "./file1";|]
+        // log(q + 1);
+    === References ===
+      === 0 ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { [|q|] } from "./file1";
+      // log(q + 1);
+      === ContextSpan ===
+        // === /file2.ts ===
+        // declare function log(s: string | number): void;
+        // [|import { q } from "./file1";|]
+        // log(q + 1);
+      === 1 ===
+      // === /file2.ts ===
+      // declare function log(s: string | number): void;
+      // import { q } from "./file1";
+      // log([|q|] + 1);
+  },
+  {
+    === Definition ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const [|q|] = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // [|const q = 1;|]
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+    === References ===
+      === 0 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const [|q|] = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // [|const q = 1;|]
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+      === 1 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { [|q|] };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // [|export { q };|]
+        // const x = {
+        //     z: 'value'
+        // }
+        // const { z } = x;
+        // log(z);
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -758,6 +1135,72 @@
 
 [
   {
+    === Definition ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { q };
+      // const x = {
+      //     [|z|]: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // export { q };
+        // const x = {
+        //     [|z: 'value'|]
+        // }
+        // const { z } = x;
+        // log(z);
+    === References ===
+      === 0 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { q };
+      // const x = {
+      //     [|z|]: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // export { q };
+        // const x = {
+        //     [|z: 'value'|]
+        // }
+        // const { z } = x;
+        // log(z);
+      === 1 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { [|z|] } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // [|const { z } = x;|]
+        // log(z);
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -847,6 +1290,105 @@
 // }
 // const { /*FIND ALL REFS*/[|z|] } = x;
 // log([|z|]);
+
+[
+  {
+    === Definition ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { q };
+      // const x = {
+      //     [|z|]: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // export { q };
+        // const x = {
+        //     [|z: 'value'|]
+        // }
+        // const { z } = x;
+        // log(z);
+    === References ===
+      === 0 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { q };
+      // const x = {
+      //     [|z|]: 'value'
+      // }
+      // const { z } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // export { q };
+        // const x = {
+        //     [|z: 'value'|]
+        // }
+        // const { z } = x;
+        // log(z);
+  },
+  {
+    === Definition ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { [|z|] } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // [|const { z } = x;|]
+        // log(z);
+    === References ===
+      === 0 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { [|z|] } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // [|const { z } = x;|]
+        // log(z);
+      === 1 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log([|z|]);
+  }
+]
 
 [
   {
@@ -996,6 +1538,62 @@
 
 [
   {
+    === Definition ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { [|z|] } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // [|const { z } = x;|]
+        // log(z);
+    === References ===
+      === 0 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { [|z|] } = x;
+      // log(z);
+      === ContextSpan ===
+        // === /file1.ts ===
+        // declare function log(s: string | number): void;
+        // const q = 1;
+        // export { q };
+        // const x = {
+        //     z: 'value'
+        // }
+        // [|const { z } = x;|]
+        // log(z);
+      === 1 ===
+      // === /file1.ts ===
+      // declare function log(s: string | number): void;
+      // const q = 1;
+      // export { q };
+      // const x = {
+      //     z: 'value'
+      // }
+      // const { z } = x;
+      // log([|z|]);
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -1059,5 +1657,1309 @@
         "isWriteAccess": false
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const q = 1;
+export { q };
+const x = {
+    [|RENAME|]: 'value'
+}
+const { RENAME: z/*END SUFFIX*/ } = x;
+log(z);
+
+=== 0 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     [|z|]: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // export { q };
+  // const x = {
+  //     [|z: 'value'|]
+  // }
+  // const { z } = x;
+  // log(z);
+=== 1 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { [|z|] } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // export { q };
+  // const x = {
+  //     z: 'value'
+  // }
+  // [|const { z } = x;|]
+  // log(z);
+
+
+[
+  {
+    "textSpan": {
+      "start": 91,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 91,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 112,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 104,
+      "length": 16
+    },
+    "suffixText": ": z"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const q = 1;
+export { q };
+const x = {
+    z: 'value'
+}
+const { /*START PREFIX*/z: [|RENAME|] } = x;
+log(RENAME);
+
+=== 0 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { [|z|] } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // export { q };
+  // const x = {
+  //     z: 'value'
+  // }
+  // [|const { z } = x;|]
+  // log(z);
+=== 1 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log([|z|]);
+
+
+[
+  {
+    "textSpan": {
+      "start": 112,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 104,
+      "length": 16
+    },
+    "prefixText": "z: "
+  },
+  {
+    "textSpan": {
+      "start": 125,
+      "length": 1
+    },
+    "fileName": "/file1.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const q = 1;
+export { q };
+const x = {
+    z: 'value'
+}
+const { /*START PREFIX*/z: RENAME } = x;
+log([|RENAME|]);
+
+=== 0 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { [|z|] } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // export { q };
+  // const x = {
+  //     z: 'value'
+  // }
+  // [|const { z } = x;|]
+  // log(z);
+=== 1 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log([|z|]);
+
+
+[
+  {
+    "textSpan": {
+      "start": 112,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 104,
+      "length": 16
+    },
+    "prefixText": "z: "
+  },
+  {
+    "textSpan": {
+      "start": 125,
+      "length": 1
+    },
+    "fileName": "/file1.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const [|RENAME|] = 1;
+export { RENAME as q/*END SUFFIX*/ };
+const x = {
+    z: 'value'
+}
+const { z } = x;
+log(z);
+
+=== 0 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const [|q|] = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // [|const q = 1;|]
+  // export { q };
+  // const x = {
+  //     z: 'value'
+  // }
+  // const { z } = x;
+  // log(z);
+=== 1 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { [|q|] };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // [|export { q };|]
+  // const x = {
+  //     z: 'value'
+  // }
+  // const { z } = x;
+  // log(z);
+
+
+[
+  {
+    "textSpan": {
+      "start": 54,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 12
+    }
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 61,
+      "length": 13
+    },
+    "suffixText": " as q"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const q = 1;
+export { /*START PREFIX*/q as [|RENAME|] };
+const x = {
+    z: 'value'
+}
+const { z } = x;
+log(z);
+
+/*====== /file2.ts ======*/
+
+declare function log(s: string | number): void;
+import { RENAME } from "./file1";
+log(RENAME + 1);
+
+=== 0 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { [|q|] };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // [|export { q };|]
+  // const x = {
+  //     z: 'value'
+  // }
+  // const { z } = x;
+  // log(z);
+=== 1 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { [|q|] } from "./file1";
+// log(q + 1);
+=== ContextSpan ===
+  // === /file2.ts ===
+  // declare function log(s: string | number): void;
+  // [|import { q } from "./file1";|]
+  // log(q + 1);
+=== 2 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { q } from "./file1";
+// log([|q|] + 1);
+
+
+[
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 61,
+      "length": 13
+    },
+    "prefixText": "q as "
+  },
+  {
+    "textSpan": {
+      "start": 57,
+      "length": 1
+    },
+    "fileName": "/file2.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 28
+    }
+  },
+  {
+    "textSpan": {
+      "start": 81,
+      "length": 1
+    },
+    "fileName": "/file2.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /file2.ts ======*/
+
+declare function log(s: string | number): void;
+import { /*START PREFIX*/q as RENAME } from "./file1";
+log(RENAME + 1);
+
+=== 0 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { [|q|] } from "./file1";
+// log(q + 1);
+=== ContextSpan ===
+  // === /file2.ts ===
+  // declare function log(s: string | number): void;
+  // [|import { q } from "./file1";|]
+  // log(q + 1);
+=== 1 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { q } from "./file1";
+// log([|q|] + 1);
+
+
+[
+  {
+    "textSpan": {
+      "start": 57,
+      "length": 1
+    },
+    "fileName": "/file2.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 28
+    },
+    "prefixText": "q as "
+  },
+  {
+    "textSpan": {
+      "start": 81,
+      "length": 1
+    },
+    "fileName": "/file2.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /file2.ts ======*/
+
+declare function log(s: string | number): void;
+import { /*START PREFIX*/q as RENAME } from "./file1";
+log(RENAME + 1);
+
+=== 0 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { [|q|] } from "./file1";
+// log(q + 1);
+=== ContextSpan ===
+  // === /file2.ts ===
+  // declare function log(s: string | number): void;
+  // [|import { q } from "./file1";|]
+  // log(q + 1);
+=== 1 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { q } from "./file1";
+// log([|q|] + 1);
+
+
+[
+  {
+    "textSpan": {
+      "start": 57,
+      "length": 1
+    },
+    "fileName": "/file2.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 28
+    },
+    "prefixText": "q as "
+  },
+  {
+    "textSpan": {
+      "start": 81,
+      "length": 1
+    },
+    "fileName": "/file2.ts"
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const q = 1;
+export { q };
+const x = {
+    [|RENAME|]: 'value'
+}
+const { RENAME } = x;
+log(RENAME);
+
+=== 0 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     [|z|]: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // export { q };
+  // const x = {
+  //     [|z: 'value'|]
+  // }
+  // const { z } = x;
+  // log(z);
+=== 1 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { [|z|] } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // export { q };
+  // const x = {
+  //     z: 'value'
+  // }
+  // [|const { z } = x;|]
+  // log(z);
+=== 2 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log([|z|]);
+
+
+[
+  {
+    "textSpan": {
+      "start": 91,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 91,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 112,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 104,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 125,
+      "length": 1
+    },
+    "fileName": "/file1.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const q = 1;
+export { q };
+const x = {
+    RENAME: 'value'
+}
+const { [|RENAME|] } = x;
+log(RENAME);
+
+=== 0 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     [|z|]: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // export { q };
+  // const x = {
+  //     [|z: 'value'|]
+  // }
+  // const { z } = x;
+  // log(z);
+=== 1 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { [|z|] } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // export { q };
+  // const x = {
+  //     z: 'value'
+  // }
+  // [|const { z } = x;|]
+  // log(z);
+=== 2 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log([|z|]);
+
+
+[
+  {
+    "textSpan": {
+      "start": 91,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 91,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 112,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 104,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 125,
+      "length": 1
+    },
+    "fileName": "/file1.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const q = 1;
+export { q };
+const x = {
+    RENAME: 'value'
+}
+const { RENAME } = x;
+log([|RENAME|]);
+
+=== 0 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     [|z|]: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // export { q };
+  // const x = {
+  //     [|z: 'value'|]
+  // }
+  // const { z } = x;
+  // log(z);
+=== 1 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { [|z|] } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // export { q };
+  // const x = {
+  //     z: 'value'
+  // }
+  // [|const { z } = x;|]
+  // log(z);
+=== 2 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log([|z|]);
+
+
+[
+  {
+    "textSpan": {
+      "start": 91,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 91,
+      "length": 10
+    }
+  },
+  {
+    "textSpan": {
+      "start": 112,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 104,
+      "length": 16
+    }
+  },
+  {
+    "textSpan": {
+      "start": 125,
+      "length": 1
+    },
+    "fileName": "/file1.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const [|RENAME|] = 1;
+export { RENAME };
+const x = {
+    z: 'value'
+}
+const { z } = x;
+log(z);
+
+/*====== /file2.ts ======*/
+
+declare function log(s: string | number): void;
+import { RENAME } from "./file1";
+log(RENAME + 1);
+
+=== 0 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const [|q|] = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // [|const q = 1;|]
+  // export { q };
+  // const x = {
+  //     z: 'value'
+  // }
+  // const { z } = x;
+  // log(z);
+=== 1 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { [|q|] };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // [|export { q };|]
+  // const x = {
+  //     z: 'value'
+  // }
+  // const { z } = x;
+  // log(z);
+=== 2 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { [|q|] } from "./file1";
+// log(q + 1);
+=== ContextSpan ===
+  // === /file2.ts ===
+  // declare function log(s: string | number): void;
+  // [|import { q } from "./file1";|]
+  // log(q + 1);
+=== 3 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { q } from "./file1";
+// log([|q|] + 1);
+
+
+[
+  {
+    "textSpan": {
+      "start": 54,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 12
+    }
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 61,
+      "length": 13
+    }
+  },
+  {
+    "textSpan": {
+      "start": 57,
+      "length": 1
+    },
+    "fileName": "/file2.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 28
+    }
+  },
+  {
+    "textSpan": {
+      "start": 81,
+      "length": 1
+    },
+    "fileName": "/file2.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const RENAME = 1;
+export { [|RENAME|] };
+const x = {
+    z: 'value'
+}
+const { z } = x;
+log(z);
+
+/*====== /file2.ts ======*/
+
+declare function log(s: string | number): void;
+import { RENAME } from "./file1";
+log(RENAME + 1);
+
+=== 0 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const [|q|] = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // [|const q = 1;|]
+  // export { q };
+  // const x = {
+  //     z: 'value'
+  // }
+  // const { z } = x;
+  // log(z);
+=== 1 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { [|q|] };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // [|export { q };|]
+  // const x = {
+  //     z: 'value'
+  // }
+  // const { z } = x;
+  // log(z);
+=== 2 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { [|q|] } from "./file1";
+// log(q + 1);
+=== ContextSpan ===
+  // === /file2.ts ===
+  // declare function log(s: string | number): void;
+  // [|import { q } from "./file1";|]
+  // log(q + 1);
+=== 3 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { q } from "./file1";
+// log([|q|] + 1);
+
+
+[
+  {
+    "textSpan": {
+      "start": 54,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 12
+    }
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 61,
+      "length": 13
+    }
+  },
+  {
+    "textSpan": {
+      "start": 57,
+      "length": 1
+    },
+    "fileName": "/file2.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 28
+    }
+  },
+  {
+    "textSpan": {
+      "start": 81,
+      "length": 1
+    },
+    "fileName": "/file2.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /file2.ts ======*/
+
+declare function log(s: string | number): void;
+import { RENAME } from "./file1";
+log(RENAME + 1);
+
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const RENAME = 1;
+export { RENAME };
+const x = {
+    z: 'value'
+}
+const { z } = x;
+log(z);
+
+=== 0 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { [|q|] } from "./file1";
+// log(q + 1);
+=== ContextSpan ===
+  // === /file2.ts ===
+  // declare function log(s: string | number): void;
+  // [|import { q } from "./file1";|]
+  // log(q + 1);
+=== 1 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { q } from "./file1";
+// log([|q|] + 1);
+=== 2 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const [|q|] = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // [|const q = 1;|]
+  // export { q };
+  // const x = {
+  //     z: 'value'
+  // }
+  // const { z } = x;
+  // log(z);
+=== 3 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { [|q|] };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // [|export { q };|]
+  // const x = {
+  //     z: 'value'
+  // }
+  // const { z } = x;
+  // log(z);
+
+
+[
+  {
+    "textSpan": {
+      "start": 57,
+      "length": 1
+    },
+    "fileName": "/file2.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 28
+    }
+  },
+  {
+    "textSpan": {
+      "start": 81,
+      "length": 1
+    },
+    "fileName": "/file2.ts"
+  },
+  {
+    "textSpan": {
+      "start": 54,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 12
+    }
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 61,
+      "length": 13
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": false
+}
+/*====== /file2.ts ======*/
+
+declare function log(s: string | number): void;
+import { RENAME } from "./file1";
+log(RENAME + 1);
+
+/*====== /file1.ts ======*/
+
+declare function log(s: string | number): void;
+const RENAME = 1;
+export { RENAME };
+const x = {
+    z: 'value'
+}
+const { z } = x;
+log(z);
+
+=== 0 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { [|q|] } from "./file1";
+// log(q + 1);
+=== ContextSpan ===
+  // === /file2.ts ===
+  // declare function log(s: string | number): void;
+  // [|import { q } from "./file1";|]
+  // log(q + 1);
+=== 1 ===
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// import { q } from "./file1";
+// log([|q|] + 1);
+=== 2 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const [|q|] = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // [|const q = 1;|]
+  // export { q };
+  // const x = {
+  //     z: 'value'
+  // }
+  // const { z } = x;
+  // log(z);
+=== 3 ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { [|q|] };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
+=== ContextSpan ===
+  // === /file1.ts ===
+  // declare function log(s: string | number): void;
+  // const q = 1;
+  // [|export { q };|]
+  // const x = {
+  //     z: 'value'
+  // }
+  // const { z } = x;
+  // log(z);
+
+
+[
+  {
+    "textSpan": {
+      "start": 57,
+      "length": 1
+    },
+    "fileName": "/file2.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 28
+    }
+  },
+  {
+    "textSpan": {
+      "start": 81,
+      "length": 1
+    },
+    "fileName": "/file2.ts"
+  },
+  {
+    "textSpan": {
+      "start": 54,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 48,
+      "length": 12
+    }
+  },
+  {
+    "textSpan": {
+      "start": 70,
+      "length": 1
+    },
+    "fileName": "/file1.ts",
+    "contextSpan": {
+      "start": 61,
+      "length": 13
+    }
   }
 ]

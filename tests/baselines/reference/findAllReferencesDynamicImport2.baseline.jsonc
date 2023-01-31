@@ -1,9 +1,51 @@
+=== findAllReferences ===
 // === /tests/cases/fourslash/foo.ts ===
 // export function /*FIND ALL REFS*/[|bar|]() { return "bar"; }
 // var x = import("./foo");
 // x.then(foo => {
 //     foo.[|bar|]();
 // })
+
+[
+  {
+    === Definition ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function [|bar|]() { return "bar"; }
+      // var x = import("./foo");
+      // x.then(foo => {
+      //     foo.bar();
+      // })
+      === ContextSpan ===
+        // === /tests/cases/fourslash/foo.ts ===
+        // [|export function bar() { return "bar"; }|]
+        // var x = import("./foo");
+        // x.then(foo => {
+        //     foo.bar();
+        // })
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function [|bar|]() { return "bar"; }
+      // var x = import("./foo");
+      // x.then(foo => {
+      //     foo.bar();
+      // })
+      === ContextSpan ===
+        // === /tests/cases/fourslash/foo.ts ===
+        // [|export function bar() { return "bar"; }|]
+        // var x = import("./foo");
+        // x.then(foo => {
+        //     foo.bar();
+        // })
+      === 1 ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function bar() { return "bar"; }
+      // var x = import("./foo");
+      // x.then(foo => {
+      //     foo.[|bar|]();
+      // })
+  }
+]
 
 [
   {
@@ -92,6 +134,47 @@
 
 [
   {
+    === Definition ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function [|bar|]() { return "bar"; }
+      // var x = import("./foo");
+      // x.then(foo => {
+      //     foo.bar();
+      // })
+      === ContextSpan ===
+        // === /tests/cases/fourslash/foo.ts ===
+        // [|export function bar() { return "bar"; }|]
+        // var x = import("./foo");
+        // x.then(foo => {
+        //     foo.bar();
+        // })
+    === References ===
+      === 0 ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function [|bar|]() { return "bar"; }
+      // var x = import("./foo");
+      // x.then(foo => {
+      //     foo.bar();
+      // })
+      === ContextSpan ===
+        // === /tests/cases/fourslash/foo.ts ===
+        // [|export function bar() { return "bar"; }|]
+        // var x = import("./foo");
+        // x.then(foo => {
+        //     foo.bar();
+        // })
+      === 1 ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // export function bar() { return "bar"; }
+      // var x = import("./foo");
+      // x.then(foo => {
+      //     foo.[|bar|]();
+      // })
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -163,5 +246,122 @@
         "isWriteAccess": false
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/foo.ts ======*/
+
+export function [|RENAME|]() { return "bar"; }
+var x = import("./foo");
+x.then(foo => {
+    foo.RENAME();
+})
+
+=== 0 ===
+// === /tests/cases/fourslash/foo.ts ===
+// export function [|bar|]() { return "bar"; }
+// var x = import("./foo");
+// x.then(foo => {
+//     foo.bar();
+// })
+=== ContextSpan ===
+  // === /tests/cases/fourslash/foo.ts ===
+  // [|export function bar() { return "bar"; }|]
+  // var x = import("./foo");
+  // x.then(foo => {
+  //     foo.bar();
+  // })
+=== 1 ===
+// === /tests/cases/fourslash/foo.ts ===
+// export function bar() { return "bar"; }
+// var x = import("./foo");
+// x.then(foo => {
+//     foo.[|bar|]();
+// })
+
+
+[
+  {
+    "textSpan": {
+      "start": 16,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/foo.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 39
+    }
+  },
+  {
+    "textSpan": {
+      "start": 89,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/foo.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/foo.ts ======*/
+
+export function RENAME() { return "bar"; }
+var x = import("./foo");
+x.then(foo => {
+    foo.[|RENAME|]();
+})
+
+=== 0 ===
+// === /tests/cases/fourslash/foo.ts ===
+// export function [|bar|]() { return "bar"; }
+// var x = import("./foo");
+// x.then(foo => {
+//     foo.bar();
+// })
+=== ContextSpan ===
+  // === /tests/cases/fourslash/foo.ts ===
+  // [|export function bar() { return "bar"; }|]
+  // var x = import("./foo");
+  // x.then(foo => {
+  //     foo.bar();
+  // })
+=== 1 ===
+// === /tests/cases/fourslash/foo.ts ===
+// export function bar() { return "bar"; }
+// var x = import("./foo");
+// x.then(foo => {
+//     foo.[|bar|]();
+// })
+
+
+[
+  {
+    "textSpan": {
+      "start": 16,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/foo.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 39
+    }
+  },
+  {
+    "textSpan": {
+      "start": 89,
+      "length": 3
+    },
+    "fileName": "/tests/cases/fourslash/foo.ts"
   }
 ]

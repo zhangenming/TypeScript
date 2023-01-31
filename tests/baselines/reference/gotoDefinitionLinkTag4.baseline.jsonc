@@ -1,0 +1,43 @@
+// === /tests/cases/fourslash/a.ts ===
+// interface [|Foo|] {
+//     foo: E.Foo;
+// }
+
+// === /tests/cases/fourslash/b.ts ===
+// enum E {
+//     /** {@link /*GOTO DEF POS*/Foo} */
+//     Foo
+// }
+
+=== 0 ===
+// === /tests/cases/fourslash/a.ts ===
+// interface [|Foo|] {
+//     foo: E.Foo;
+// }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.ts ===
+  // [|interface Foo {
+  //     foo: E.Foo;
+  // }|]
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/a.ts",
+    "textSpan": {
+      "start": 10,
+      "length": 3
+    },
+    "kind": "interface",
+    "name": "Foo",
+    "containerName": "",
+    "contextSpan": {
+      "start": 0,
+      "length": 33
+    },
+    "isLocal": false,
+    "isAmbient": false,
+    "unverified": false,
+    "failedAliasResolution": false
+  }
+]

@@ -1,9 +1,59 @@
+=== findAllReferences ===
 // === /b.ts ===
 // import { [|x|] as [|x|] } from "./a";
 // [|x|];
 
 // === /a.ts ===
 // export const /*FIND ALL REFS*/[|x|] = 0;
+
+[
+  {
+    === Definition ===
+      // === /a.ts ===
+      // export const [|x|] = 0;
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export const x = 0;|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export const [|x|] = 0;
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export const x = 0;|]
+      === 1 ===
+      // === /b.ts ===
+      // import { [|x|] as x } from "./a";
+      // x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x as x } from "./a";|]
+        // x;
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // import { x as [|x|] } from "./a";
+      // x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x as x } from "./a";|]
+        // x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import { x as [|x|] } from "./a";
+      // x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x as x } from "./a";|]
+        // x;
+      === 1 ===
+      // === /b.ts ===
+      // import { x as x } from "./a";
+      // [|x|];
+  }
+]
 
 [
   {
@@ -187,6 +237,55 @@
 
 [
   {
+    === Definition ===
+      // === /a.ts ===
+      // export const [|x|] = 0;
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export const x = 0;|]
+    === References ===
+      === 0 ===
+      // === /a.ts ===
+      // export const [|x|] = 0;
+      === ContextSpan ===
+        // === /a.ts ===
+        // [|export const x = 0;|]
+      === 1 ===
+      // === /b.ts ===
+      // import { [|x|] as x } from "./a";
+      // x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x as x } from "./a";|]
+        // x;
+  },
+  {
+    === Definition ===
+      // === /b.ts ===
+      // import { x as [|x|] } from "./a";
+      // x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x as x } from "./a";|]
+        // x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import { x as [|x|] } from "./a";
+      // x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x as x } from "./a";|]
+        // x;
+      === 1 ===
+      // === /b.ts ===
+      // import { x as x } from "./a";
+      // [|x|];
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -360,6 +459,32 @@
 
 [
   {
+    === Definition ===
+      // === /b.ts ===
+      // import { x as [|x|] } from "./a";
+      // x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x as x } from "./a";|]
+        // x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import { x as [|x|] } from "./a";
+      // x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x as x } from "./a";|]
+        // x;
+      === 1 ===
+      // === /b.ts ===
+      // import { x as x } from "./a";
+      // [|x|];
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -466,6 +591,32 @@
 
 [
   {
+    === Definition ===
+      // === /b.ts ===
+      // import { x as [|x|] } from "./a";
+      // x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x as x } from "./a";|]
+        // x;
+    === References ===
+      === 0 ===
+      // === /b.ts ===
+      // import { x as [|x|] } from "./a";
+      // x;
+      === ContextSpan ===
+        // === /b.ts ===
+        // [|import { x as x } from "./a";|]
+        // x;
+      === 1 ===
+      // === /b.ts ===
+      // import { x as x } from "./a";
+      // [|x|];
+  }
+]
+
+[
+  {
     "definition": {
       "containerKind": "",
       "containerName": "",
@@ -561,5 +712,270 @@
         "isWriteAccess": false
       }
     ]
+  }
+]
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /a.ts ======*/
+
+export const RENAME = 0;
+
+/*====== /b.ts ======*/
+
+import { RENAME as RENAME } from "./a";
+RENAME;
+
+=== 0 ===
+// === /a.ts ===
+// export const [|x|] = 0;
+=== ContextSpan ===
+  // === /a.ts ===
+  // [|export const x = 0;|]
+=== 1 ===
+// === /b.ts ===
+// import { [|x|] as x } from "./a";
+// x;
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|import { x as x } from "./a";|]
+  // x;
+=== 2 ===
+// === /b.ts ===
+// import { x as [|x|] } from "./a";
+// x;
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|import { x as x } from "./a";|]
+  // x;
+=== 3 ===
+// === /b.ts ===
+// import { x as x } from "./a";
+// [|x|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 13,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 29
+    }
+  },
+  {
+    "textSpan": {
+      "start": 14,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 29
+    }
+  },
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 1
+    },
+    "fileName": "/b.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /a.ts ======*/
+
+export const RENAME = 0;
+
+/*====== /b.ts ======*/
+
+import { [|RENAME|] as RENAME } from "./a";
+RENAME;
+
+=== 0 ===
+// === /a.ts ===
+// export const [|x|] = 0;
+=== ContextSpan ===
+  // === /a.ts ===
+  // [|export const x = 0;|]
+=== 1 ===
+// === /b.ts ===
+// import { [|x|] as x } from "./a";
+// x;
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|import { x as x } from "./a";|]
+  // x;
+=== 2 ===
+// === /b.ts ===
+// import { x as [|x|] } from "./a";
+// x;
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|import { x as x } from "./a";|]
+  // x;
+=== 3 ===
+// === /b.ts ===
+// import { x as x } from "./a";
+// [|x|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 13,
+      "length": 1
+    },
+    "fileName": "/a.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 19
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 29
+    }
+  },
+  {
+    "textSpan": {
+      "start": 14,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 29
+    }
+  },
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 1
+    },
+    "fileName": "/b.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /b.ts ======*/
+
+import { x as [|RENAME|] } from "./a";
+RENAME;
+
+=== 0 ===
+// === /b.ts ===
+// import { x as [|x|] } from "./a";
+// x;
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|import { x as x } from "./a";|]
+  // x;
+=== 1 ===
+// === /b.ts ===
+// import { x as x } from "./a";
+// [|x|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 14,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 29
+    }
+  },
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 1
+    },
+    "fileName": "/b.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /b.ts ======*/
+
+import { x as RENAME } from "./a";
+[|RENAME|];
+
+=== 0 ===
+// === /b.ts ===
+// import { x as [|x|] } from "./a";
+// x;
+=== ContextSpan ===
+  // === /b.ts ===
+  // [|import { x as x } from "./a";|]
+  // x;
+=== 1 ===
+// === /b.ts ===
+// import { x as x } from "./a";
+// [|x|];
+
+
+[
+  {
+    "textSpan": {
+      "start": 14,
+      "length": 1
+    },
+    "fileName": "/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 29
+    }
+  },
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 1
+    },
+    "fileName": "/b.ts"
   }
 ]

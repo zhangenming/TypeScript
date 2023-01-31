@@ -1,0 +1,2144 @@
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: /*OCCURENCES*/[|for|] (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         [|break|];
+//         [|continue|];
+//         [|break|] label2;
+//         [|continue|] label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+
+=== 0 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: [|for|] (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 1 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         [|break|];
+//         continue;
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 2 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         [|continue|];
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 3 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         [|break|] label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 4 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         break label2;
+//         [|continue|] label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 221,
+      "length": 5
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 236,
+      "length": 8
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 254,
+      "length": 5
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 276,
+      "length": 8
+    },
+    "isWriteAccess": false
+  }
+]
+
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: [|for|] (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         /*OCCURENCES*/[|break|];
+//         [|continue|];
+//         [|break|] label2;
+//         [|continue|] label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+
+=== 0 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: [|for|] (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 1 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         [|break|];
+//         continue;
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 2 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         [|continue|];
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 3 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         [|break|] label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 4 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         break label2;
+//         [|continue|] label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 221,
+      "length": 5
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 236,
+      "length": 8
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 254,
+      "length": 5
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 276,
+      "length": 8
+    },
+    "isWriteAccess": false
+  }
+]
+
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: [|for|] (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         [|break|];
+//         /*OCCURENCES*/[|continue|];
+//         [|break|] label2;
+//         [|continue|] label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+
+=== 0 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: [|for|] (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 1 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         [|break|];
+//         continue;
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 2 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         [|continue|];
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 3 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         [|break|] label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 4 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         break label2;
+//         [|continue|] label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 221,
+      "length": 5
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 236,
+      "length": 8
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 254,
+      "length": 5
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 276,
+      "length": 8
+    },
+    "isWriteAccess": false
+  }
+]
+
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: [|for|] (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         [|break|];
+//         [|continue|];
+//         /*OCCURENCES*/[|break|] label2;
+//         [|continue|] label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+
+=== 0 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: [|for|] (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 1 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         [|break|];
+//         continue;
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 2 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         [|continue|];
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 3 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         [|break|] label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 4 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         break label2;
+//         [|continue|] label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 221,
+      "length": 5
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 236,
+      "length": 8
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 254,
+      "length": 5
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 276,
+      "length": 8
+    },
+    "isWriteAccess": false
+  }
+]
+
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: [|for|] (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         [|break|];
+//         [|continue|];
+//         [|break|] label2;
+//         /*OCCURENCES*/[|continue|] label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+
+=== 0 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: [|for|] (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 1 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         [|break|];
+//         continue;
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 2 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         [|continue|];
+//         break label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 3 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         [|break|] label2;
+//         continue label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+=== 4 ===
+// === /tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts ===
+// var arr = [1, 2, 3, 4];
+// label1: for (var n in arr) {
+//     break;
+//     continue;
+//     break label1;
+//     continue label1;
+// 
+//     label2: for (var i = 0; i < arr[n]; i++) {
+//         break label1;
+//         continue label1;
+// 
+//         break;
+//         continue;
+//         break label2;
+//         [|continue|] label2;
+// 
+//         function foo() {
+//             label3: while (true) {
+//                 break;
+//                 continue;
+//                 break label3;
+//                 continue label3;
+// 
+//                 // these cross function boundaries
+//                 break label1;
+//                 continue label1;
+//                 break label2;
+//                 continue label2;
+// 
+//                 label4: do {
+//                     break;
+//                     continue;
+//                     break label4;
+//                     continue label4;
+// 
+//                     break label3;
+//                     continue label3;
+// 
+//                     switch (10) {
+//                         case 1:
+//                         case 2:
+//                             break;
+//                             break label4;
+//                         default:
+//                             continue;
+//                     }
+// 
+//                     // these cross function boundaries
+//                     break label1;
+//                     continue label1;
+//                     break label2;
+//                     continue label2;
+//                     () => { break;
+//                 } while (true)
+//             }
+//         }
+//     }
+// }
+// 
+// label5: while (true) break label5;
+// 
+// label7: while (true) continue label5;
+
+
+[
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 130,
+      "length": 3
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 221,
+      "length": 5
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 236,
+      "length": 8
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 254,
+      "length": 5
+    },
+    "isWriteAccess": false
+  },
+  {
+    "fileName": "/tests/cases/fourslash/getOccurrencesLoopBreakContinue2.ts",
+    "textSpan": {
+      "start": 276,
+      "length": 8
+    },
+    "isWriteAccess": false
+  }
+]

@@ -1,0 +1,129 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/fileA.ts ======*/
+
+export function [|RENAME|]() {
+}
+
+
+/*====== /tests/cases/fourslash/fileB.ts ======*/
+
+import { RENAME as bar } from "./fileA";
+
+bar();
+
+=== 0 ===
+// === /tests/cases/fourslash/fileA.ts ===
+// export function [|__foo|]() {
+// }
+// 
+=== ContextSpan ===
+  // === /tests/cases/fourslash/fileA.ts ===
+  // [|export function __foo() {
+  // }|]
+  // 
+=== 1 ===
+// === /tests/cases/fourslash/fileB.ts ===
+// import { [|__foo|] as bar } from "./fileA";
+// 
+// bar();
+=== ContextSpan ===
+  // === /tests/cases/fourslash/fileB.ts ===
+  // [|import { __foo as bar } from "./fileA";|]
+  // 
+  // bar();
+
+
+[
+  {
+    "textSpan": {
+      "start": 16,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/fileA.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/fileB.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 39
+    }
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/fileA.ts ======*/
+
+export function RENAME() {
+}
+
+
+/*====== /tests/cases/fourslash/fileB.ts ======*/
+
+import { RENAME as bar } from "./fileA";
+
+bar();
+
+=== 0 ===
+// === /tests/cases/fourslash/fileA.ts ===
+// export function [|__foo|]() {
+// }
+// 
+=== ContextSpan ===
+  // === /tests/cases/fourslash/fileA.ts ===
+  // [|export function __foo() {
+  // }|]
+  // 
+=== 1 ===
+// === /tests/cases/fourslash/fileB.ts ===
+// import { [|__foo|] as bar } from "./fileA";
+// 
+// bar();
+=== ContextSpan ===
+  // === /tests/cases/fourslash/fileB.ts ===
+  // [|import { __foo as bar } from "./fileA";|]
+  // 
+  // bar();
+
+
+[
+  {
+    "textSpan": {
+      "start": 16,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/fileA.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 5
+    },
+    "fileName": "/tests/cases/fourslash/fileB.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 39
+    }
+  }
+]

@@ -1,0 +1,296 @@
+=== goToDefinition ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props }
+// }
+// class MyClass {
+//   props: {
+//     name?: string;
+//     size?: number;
+//   }
+// }
+// 
+// var [|nn|]: {name?: string; size?: number};
+// var x = <MyClass {...n/*GOTO DEF*/n}></MyClass>;
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/file.tsx ===
+    // declare module JSX {
+    //     interface Element { }
+    //     interface IntrinsicElements {
+    //     }
+    //     interface ElementAttributesProperty { props }
+    // }
+    // class MyClass {
+    //   props: {
+    //     name?: string;
+    //     size?: number;
+    //   }
+    // }
+    // 
+    // var [|nn|]: {name?: string; size?: number};
+    // var x = <MyClass {...nn}></MyClass>;
+    === ContextSpan ===
+      // === /tests/cases/fourslash/file.tsx ===
+      // declare module JSX {
+      //     interface Element { }
+      //     interface IntrinsicElements {
+      //     }
+      //     interface ElementAttributesProperty { props }
+      // }
+      // class MyClass {
+      //   props: {
+      //     name?: string;
+      //     size?: number;
+      //   }
+      // }
+      // 
+      // [|var nn: {name?: string; size?: number};|]
+      // var x = <MyClass {...nn}></MyClass>;
+  === TextSpan ===
+    // === /tests/cases/fourslash/file.tsx ===
+    // declare module JSX {
+    //     interface Element { }
+    //     interface IntrinsicElements {
+    //     }
+    //     interface ElementAttributesProperty { props }
+    // }
+    // class MyClass {
+    //   props: {
+    //     name?: string;
+    //     size?: number;
+    //   }
+    // }
+    // 
+    // var nn: {name?: string; size?: number};
+    // var x = <MyClass {...[|nn|]}></MyClass>;
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/file.tsx",
+      "textSpan": {
+        "start": 215,
+        "length": 2
+      },
+      "kind": "var",
+      "name": "nn",
+      "containerName": "",
+      "contextSpan": {
+        "start": 211,
+        "length": 39
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 272,
+    "length": 2
+  }
+}
+
+=== findRenameLocations ===
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+    }
+    interface ElementAttributesProperty { props }
+}
+class MyClass {
+  props: {
+    name?: string;
+    size?: number;
+  }
+}
+
+var RENAME: {name?: string; size?: number};
+var x = <MyClass {...[|RENAME|]}></MyClass>;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props }
+// }
+// class MyClass {
+//   props: {
+//     name?: string;
+//     size?: number;
+//   }
+// }
+// 
+// var [|nn|]: {name?: string; size?: number};
+// var x = <MyClass {...nn}></MyClass>;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props }
+  // }
+  // class MyClass {
+  //   props: {
+  //     name?: string;
+  //     size?: number;
+  //   }
+  // }
+  // 
+  // [|var nn: {name?: string; size?: number};|]
+  // var x = <MyClass {...nn}></MyClass>;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props }
+// }
+// class MyClass {
+//   props: {
+//     name?: string;
+//     size?: number;
+//   }
+// }
+// 
+// var nn: {name?: string; size?: number};
+// var x = <MyClass {...[|nn|]}></MyClass>;
+
+
+[
+  {
+    "textSpan": {
+      "start": 215,
+      "length": 2
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 211,
+      "length": 39
+    }
+  },
+  {
+    "textSpan": {
+      "start": 272,
+      "length": 2
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/file.tsx ======*/
+
+declare module JSX {
+    interface Element { }
+    interface IntrinsicElements {
+    }
+    interface ElementAttributesProperty { props }
+}
+class MyClass {
+  props: {
+    name?: string;
+    size?: number;
+  }
+}
+
+var [|RENAME|]: {name?: string; size?: number};
+var x = <MyClass {...RENAME}></MyClass>;
+
+=== 0 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props }
+// }
+// class MyClass {
+//   props: {
+//     name?: string;
+//     size?: number;
+//   }
+// }
+// 
+// var [|nn|]: {name?: string; size?: number};
+// var x = <MyClass {...nn}></MyClass>;
+=== ContextSpan ===
+  // === /tests/cases/fourslash/file.tsx ===
+  // declare module JSX {
+  //     interface Element { }
+  //     interface IntrinsicElements {
+  //     }
+  //     interface ElementAttributesProperty { props }
+  // }
+  // class MyClass {
+  //   props: {
+  //     name?: string;
+  //     size?: number;
+  //   }
+  // }
+  // 
+  // [|var nn: {name?: string; size?: number};|]
+  // var x = <MyClass {...nn}></MyClass>;
+=== 1 ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props }
+// }
+// class MyClass {
+//   props: {
+//     name?: string;
+//     size?: number;
+//   }
+// }
+// 
+// var nn: {name?: string; size?: number};
+// var x = <MyClass {...[|nn|]}></MyClass>;
+
+
+[
+  {
+    "textSpan": {
+      "start": 215,
+      "length": 2
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx",
+    "contextSpan": {
+      "start": 211,
+      "length": 39
+    }
+  },
+  {
+    "textSpan": {
+      "start": 272,
+      "length": 2
+    },
+    "fileName": "/tests/cases/fourslash/file.tsx"
+  }
+]

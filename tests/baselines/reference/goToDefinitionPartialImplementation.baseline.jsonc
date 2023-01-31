@@ -1,0 +1,105 @@
+// === /tests/cases/fourslash/goToDefinitionPartialImplementation_1.ts ===
+// module A {
+//     export interface [|IA|] {
+//         y: string;
+//     }
+// }
+
+// === /tests/cases/fourslash/goToDefinitionPartialImplementation_2.ts ===
+// module A {
+//     export interface [|IA|] {
+//         x: number;
+//     }
+// 
+//     var x: /*GOTO DEF*/IA;
+// }
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionPartialImplementation_1.ts ===
+    // module A {
+    //     export interface [|IA|] {
+    //         y: string;
+    //     }
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionPartialImplementation_1.ts ===
+      // module A {
+      //     [|export interface IA {
+      //         y: string;
+      //     }|]
+      // }
+    === 1 ===
+    // === /tests/cases/fourslash/goToDefinitionPartialImplementation_2.ts ===
+    // module A {
+    //     export interface [|IA|] {
+    //         x: number;
+    //     }
+    // 
+    //     var x: IA;
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionPartialImplementation_2.ts ===
+      // module A {
+      //     [|export interface IA {
+      //         x: number;
+      //     }|]
+      // 
+      //     var x: IA;
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionPartialImplementation_2.ts ===
+    // module A {
+    //     export interface IA {
+    //         x: number;
+    //     }
+    // 
+    //     var x: [|IA|];
+    // }
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionPartialImplementation_1.ts",
+      "textSpan": {
+        "start": 32,
+        "length": 2
+      },
+      "kind": "interface",
+      "name": "IA",
+      "containerName": "A",
+      "contextSpan": {
+        "start": 15,
+        "length": 46
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    },
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionPartialImplementation_2.ts",
+      "textSpan": {
+        "start": 32,
+        "length": 2
+      },
+      "kind": "interface",
+      "name": "IA",
+      "containerName": "A",
+      "contextSpan": {
+        "start": 15,
+        "length": 46
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 74,
+    "length": 2
+  }
+}

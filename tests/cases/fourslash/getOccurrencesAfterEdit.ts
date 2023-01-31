@@ -8,11 +8,14 @@
 ////    x.f/*1*/oo
 ////}
 
-goTo.marker("1");
-verify.occurrencesAtPositionCount(2);
-
-goTo.marker("0");
-edit.insert("\n");
-
-goTo.marker("1");
-verify.occurrencesAtPositionCount(2);
+verify.baselineCommands(
+    { type: "occurences", markerOrRange: "1" },
+    {
+        type: "customWork",
+        work: () => {
+            goTo.marker("0");
+            edit.insert("\n");
+        }
+    },
+    { type: "occurences", markerOrRange: "1" },
+);

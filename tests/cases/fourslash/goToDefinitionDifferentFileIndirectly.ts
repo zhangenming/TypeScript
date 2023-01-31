@@ -21,4 +21,4 @@
 ////class rem2fooCls implements /*remoteInterfaceReference*/rem2Int { }
 ////var rem2fooVar = /*remoteModuleReference*/rem2Mod.foo;
 
-verify.goToDefinitionForMarkers("remoteVariable", "remoteFunction", "remoteClass", "remoteInterface", "remoteModule")
+verify.baselineGoToDefinition("remoteVariableReference", "remoteFunctionReference", "remoteClassReference", "remoteInterfaceReference", "remoteModuleReference")

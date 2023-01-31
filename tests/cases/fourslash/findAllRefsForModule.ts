@@ -17,5 +17,7 @@
 const [r0Def, r0, r1Def, r1, r2] = test.ranges();
 const ranges = [r0, r1, r2];
 // Testing that it works with documentHighlights too
-verify.rangesAreDocumentHighlights(ranges);
-verify.baselineFindAllReferences('0', '1', '2')
+verify.baselineCommands(
+    { type: "findAllReferences", markerOrRange: ranges },
+    { type: "documentHighlights", markerOrRange: ranges }
+);

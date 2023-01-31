@@ -1,0 +1,51 @@
+// === /tests/cases/fourslash/a.ts ===
+// declare module [|"e"|] {
+//     class Foo { }
+// }
+
+// === /tests/cases/fourslash/b.ts ===
+// export * from 'e/*GOTO DEF*/';
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/a.ts ===
+    // declare module [|"e"|] {
+    //     class Foo { }
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/a.ts ===
+      // [|declare module "e" {
+      //     class Foo { }
+      // }|]
+  === TextSpan ===
+    // === /tests/cases/fourslash/b.ts ===
+    // export * from [|'e'|];
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/a.ts",
+      "textSpan": {
+        "start": 15,
+        "length": 3
+      },
+      "kind": "module",
+      "name": "\"e\"",
+      "containerName": "",
+      "contextSpan": {
+        "start": 0,
+        "length": 40
+      },
+      "isLocal": false,
+      "isAmbient": true,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 14,
+    "length": 3
+  }
+}

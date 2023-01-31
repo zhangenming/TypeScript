@@ -1,0 +1,160 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+exports.[|RENAME|] = function (r) { return r * r; }
+
+/*====== /tests/cases/fourslash/b.ts ======*/
+
+import { RENAME } from './a';
+var t = RENAME(10);
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// exports.[|area|] = function (r) { return r * r; }
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // [|exports.area = function (r) { return r * r; }|]
+=== 1 ===
+// === /tests/cases/fourslash/b.ts ===
+// import { [|area|] } from './a';
+// var t = area(10);
+=== ContextSpan ===
+  // === /tests/cases/fourslash/b.ts ===
+  // [|import { area } from './a';|]
+  // var t = area(10);
+=== 2 ===
+// === /tests/cases/fourslash/b.ts ===
+// import { area } from './a';
+// var t = [|area|](10);
+
+
+[
+  {
+    "textSpan": {
+      "start": 8,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 0,
+      "length": 45
+    }
+  },
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 27
+    }
+  },
+  {
+    "textSpan": {
+      "start": 36,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/b.ts ======*/
+
+import { /*START PREFIX*/area as RENAME } from './a';
+var t = RENAME(10);
+
+=== 0 ===
+// === /tests/cases/fourslash/b.ts ===
+// import { [|area|] } from './a';
+// var t = area(10);
+=== ContextSpan ===
+  // === /tests/cases/fourslash/b.ts ===
+  // [|import { area } from './a';|]
+  // var t = area(10);
+=== 1 ===
+// === /tests/cases/fourslash/b.ts ===
+// import { area } from './a';
+// var t = [|area|](10);
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 27
+    },
+    "prefixText": "area as "
+  },
+  {
+    "textSpan": {
+      "start": 36,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.ts"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/b.ts ======*/
+
+import { /*START PREFIX*/area as RENAME } from './a';
+var t = RENAME(10);
+
+=== 0 ===
+// === /tests/cases/fourslash/b.ts ===
+// import { [|area|] } from './a';
+// var t = area(10);
+=== ContextSpan ===
+  // === /tests/cases/fourslash/b.ts ===
+  // [|import { area } from './a';|]
+  // var t = area(10);
+=== 1 ===
+// === /tests/cases/fourslash/b.ts ===
+// import { area } from './a';
+// var t = [|area|](10);
+
+
+[
+  {
+    "textSpan": {
+      "start": 9,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.ts",
+    "contextSpan": {
+      "start": 0,
+      "length": 27
+    },
+    "prefixText": "area as "
+  },
+  {
+    "textSpan": {
+      "start": 36,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/b.ts"
+  }
+]

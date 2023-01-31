@@ -1,0 +1,65 @@
+// === /tests/cases/fourslash/a.ts ===
+// export module Module {
+// }
+// export class [|Class|] {
+//     private f;
+// }
+// export interface Interface {
+//     x;
+// }
+
+// === /tests/cases/fourslash/b.ts ===
+// import {/*GOTO DEF*/Class} from "./a";
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/a.ts ===
+    // export module Module {
+    // }
+    // export class [|Class|] {
+    //     private f;
+    // }
+    // export interface Interface {
+    //     x;
+    // }
+    === ContextSpan ===
+      // === /tests/cases/fourslash/a.ts ===
+      // export module Module {
+      // }
+      // [|export class Class {
+      //     private f;
+      // }|]
+      // export interface Interface {
+      //     x;
+      // }
+  === TextSpan ===
+    // === /tests/cases/fourslash/b.ts ===
+    // import {[|Class|]} from "./a";
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/a.ts",
+      "textSpan": {
+        "start": 38,
+        "length": 5
+      },
+      "kind": "class",
+      "name": "Class",
+      "containerName": "\"/tests/cases/fourslash/a\"",
+      "contextSpan": {
+        "start": 25,
+        "length": 37
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false
+    }
+  ],
+  "textSpan": {
+    "start": 8,
+    "length": 5
+  }
+}

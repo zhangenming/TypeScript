@@ -1,0 +1,70 @@
+// === /tests/cases/fourslash/goToDefinitionOverloadsInMultiplePropertyAccesses.ts ===
+// namespace A {
+//     export namespace B {
+//         export function f(value: number): void;
+//         export function [|f|](value: string): void;
+//         export function f(value: number | string) {}
+//     }
+// }
+// A.B./*GOTO DEF*/f("");
+
+{
+  === Definitions ===
+    === 0 ===
+    // === /tests/cases/fourslash/goToDefinitionOverloadsInMultiplePropertyAccesses.ts ===
+    // namespace A {
+    //     export namespace B {
+    //         export function f(value: number): void;
+    //         export function [|f|](value: string): void;
+    //         export function f(value: number | string) {}
+    //     }
+    // }
+    // A.B.f("");
+    === ContextSpan ===
+      // === /tests/cases/fourslash/goToDefinitionOverloadsInMultiplePropertyAccesses.ts ===
+      // namespace A {
+      //     export namespace B {
+      //         export function f(value: number): void;
+      //         [|export function f(value: string): void;|]
+      //         export function f(value: number | string) {}
+      //     }
+      // }
+      // A.B.f("");
+  === TextSpan ===
+    // === /tests/cases/fourslash/goToDefinitionOverloadsInMultiplePropertyAccesses.ts ===
+    // namespace A {
+    //     export namespace B {
+    //         export function f(value: number): void;
+    //         export function f(value: string): void;
+    //         export function f(value: number | string) {}
+    //     }
+    // }
+    // A.B.[|f|]("");
+}
+
+{
+  "definitions": [
+    {
+      "fileName": "/tests/cases/fourslash/goToDefinitionOverloadsInMultiplePropertyAccesses.ts",
+      "textSpan": {
+        "start": 111,
+        "length": 1
+      },
+      "kind": "function",
+      "name": "f",
+      "containerName": "B",
+      "contextSpan": {
+        "start": 95,
+        "length": 39
+      },
+      "isLocal": false,
+      "isAmbient": false,
+      "unverified": false,
+      "failedAliasResolution": false
+    }
+  ],
+  "textSpan": {
+    "start": 200,
+    "length": 1
+  }
+}

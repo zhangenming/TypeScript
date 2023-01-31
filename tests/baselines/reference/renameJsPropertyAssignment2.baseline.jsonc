@@ -1,0 +1,107 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+class Minimatch {
+}
+Minimatch.[|RENAME|] = "string";
+console.log(Minimatch.RENAME);
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// class Minimatch {
+// }
+// Minimatch.[|staticProperty|] = "string";
+// console.log(Minimatch.staticProperty);
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // class Minimatch {
+  // }
+  // [|Minimatch.staticProperty = "string";|]
+  // console.log(Minimatch.staticProperty);
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// class Minimatch {
+// }
+// Minimatch.staticProperty = "string";
+// console.log(Minimatch.[|staticProperty|]);
+
+
+[
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 14
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 20,
+      "length": 36
+    }
+  },
+  {
+    "textSpan": {
+      "start": 79,
+      "length": 14
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+class Minimatch {
+}
+Minimatch.RENAME = "string";
+console.log(Minimatch.[|RENAME|]);
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// class Minimatch {
+// }
+// Minimatch.[|staticProperty|] = "string";
+// console.log(Minimatch.staticProperty);
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // class Minimatch {
+  // }
+  // [|Minimatch.staticProperty = "string";|]
+  // console.log(Minimatch.staticProperty);
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// class Minimatch {
+// }
+// Minimatch.staticProperty = "string";
+// console.log(Minimatch.[|staticProperty|]);
+
+
+[
+  {
+    "textSpan": {
+      "start": 30,
+      "length": 14
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 20,
+      "length": 36
+    }
+  },
+  {
+    "textSpan": {
+      "start": 79,
+      "length": 14
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]

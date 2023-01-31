@@ -54,4 +54,4 @@
 ////    declare function foo(): string;
 ////}
 
-verify.rangesAreOccurrences(false);
+verify.baselineOccurences(...test.ranges());

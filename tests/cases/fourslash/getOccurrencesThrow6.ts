@@ -14,4 +14,4 @@
 ////    [|throw|] 300;
 ////}
 
-verify.rangesAreOccurrences(false);
+verify.baselineOccurences(...test.ranges());

@@ -1,0 +1,1019 @@
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+let obj = {};
+
+Object.defineProperty(obj, `[|RENAME|]`, { value: 0 });
+
+obj = {
+    [`RENAME`]: 1
+};
+
+obj.RENAME;
+obj['RENAME'];
+obj["RENAME"];
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `[|prop|]`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`[|prop|]`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // let obj = {};
+  // 
+  // Object.defineProperty(obj, `prop`, { value: 0 });
+  // 
+  // obj = {
+  //     [|[`prop`]: 1|]
+  // };
+  // 
+  // obj.prop;
+  // obj['prop'];
+  // obj["prop"];
+  // obj[`prop`];
+=== 2 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.[|prop|];
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 3 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['[|prop|]'];
+// obj["prop"];
+// obj[`prop`];
+=== 4 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["[|prop|]"];
+// obj[`prop`];
+=== 5 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`[|prop|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 80,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 78,
+      "length": 11
+    }
+  },
+  {
+    "textSpan": {
+      "start": 98,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 109,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 122,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 135,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+let obj = {};
+
+Object.defineProperty(obj, `RENAME`, { value: 0 });
+
+obj = {
+    [`[|RENAME|]`]: 1
+};
+
+obj.RENAME;
+obj['RENAME'];
+obj["RENAME"];
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `[|prop|]`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`[|prop|]`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // let obj = {};
+  // 
+  // Object.defineProperty(obj, `prop`, { value: 0 });
+  // 
+  // obj = {
+  //     [|[`prop`]: 1|]
+  // };
+  // 
+  // obj.prop;
+  // obj['prop'];
+  // obj["prop"];
+  // obj[`prop`];
+=== 2 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.[|prop|];
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 3 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['[|prop|]'];
+// obj["prop"];
+// obj[`prop`];
+=== 4 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["[|prop|]"];
+// obj[`prop`];
+=== 5 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`[|prop|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 80,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 78,
+      "length": 11
+    }
+  },
+  {
+    "textSpan": {
+      "start": 98,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 109,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 122,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 135,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+let obj = {};
+
+Object.defineProperty(obj, `RENAME`, { value: 0 });
+
+obj = {
+    [`RENAME`]: 1
+};
+
+obj.[|RENAME|];
+obj['RENAME'];
+obj["RENAME"];
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `[|prop|]`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`[|prop|]`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // let obj = {};
+  // 
+  // Object.defineProperty(obj, `prop`, { value: 0 });
+  // 
+  // obj = {
+  //     [|[`prop`]: 1|]
+  // };
+  // 
+  // obj.prop;
+  // obj['prop'];
+  // obj["prop"];
+  // obj[`prop`];
+=== 2 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.[|prop|];
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 3 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['[|prop|]'];
+// obj["prop"];
+// obj[`prop`];
+=== 4 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["[|prop|]"];
+// obj[`prop`];
+=== 5 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`[|prop|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 80,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 78,
+      "length": 11
+    }
+  },
+  {
+    "textSpan": {
+      "start": 98,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 109,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 122,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 135,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+let obj = {};
+
+Object.defineProperty(obj, `RENAME`, { value: 0 });
+
+obj = {
+    [`RENAME`]: 1
+};
+
+obj.RENAME;
+obj['[|RENAME|]'];
+obj["RENAME"];
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `[|prop|]`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`[|prop|]`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // let obj = {};
+  // 
+  // Object.defineProperty(obj, `prop`, { value: 0 });
+  // 
+  // obj = {
+  //     [|[`prop`]: 1|]
+  // };
+  // 
+  // obj.prop;
+  // obj['prop'];
+  // obj["prop"];
+  // obj[`prop`];
+=== 2 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.[|prop|];
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 3 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['[|prop|]'];
+// obj["prop"];
+// obj[`prop`];
+=== 4 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["[|prop|]"];
+// obj[`prop`];
+=== 5 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`[|prop|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 80,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 78,
+      "length": 11
+    }
+  },
+  {
+    "textSpan": {
+      "start": 98,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 109,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 122,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 135,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+let obj = {};
+
+Object.defineProperty(obj, `RENAME`, { value: 0 });
+
+obj = {
+    [`RENAME`]: 1
+};
+
+obj.RENAME;
+obj['RENAME'];
+obj["[|RENAME|]"];
+obj[`RENAME`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `[|prop|]`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`[|prop|]`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // let obj = {};
+  // 
+  // Object.defineProperty(obj, `prop`, { value: 0 });
+  // 
+  // obj = {
+  //     [|[`prop`]: 1|]
+  // };
+  // 
+  // obj.prop;
+  // obj['prop'];
+  // obj["prop"];
+  // obj[`prop`];
+=== 2 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.[|prop|];
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 3 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['[|prop|]'];
+// obj["prop"];
+// obj[`prop`];
+=== 4 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["[|prop|]"];
+// obj[`prop`];
+=== 5 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`[|prop|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 80,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 78,
+      "length": 11
+    }
+  },
+  {
+    "textSpan": {
+      "start": 98,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 109,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 122,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 135,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]
+
+=== RenameOptions ===
+{
+ "findInStrings": false,
+ "findInComments": false,
+ "providePrefixAndSuffixTextForRename": true
+}
+/*====== /tests/cases/fourslash/a.js ======*/
+
+let obj = {};
+
+Object.defineProperty(obj, `RENAME`, { value: 0 });
+
+obj = {
+    [`RENAME`]: 1
+};
+
+obj.RENAME;
+obj['RENAME'];
+obj["RENAME"];
+obj[`[|RENAME|]`];
+
+=== 0 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `[|prop|]`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 1 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`[|prop|]`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== ContextSpan ===
+  // === /tests/cases/fourslash/a.js ===
+  // let obj = {};
+  // 
+  // Object.defineProperty(obj, `prop`, { value: 0 });
+  // 
+  // obj = {
+  //     [|[`prop`]: 1|]
+  // };
+  // 
+  // obj.prop;
+  // obj['prop'];
+  // obj["prop"];
+  // obj[`prop`];
+=== 2 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.[|prop|];
+// obj['prop'];
+// obj["prop"];
+// obj[`prop`];
+=== 3 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['[|prop|]'];
+// obj["prop"];
+// obj[`prop`];
+=== 4 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["[|prop|]"];
+// obj[`prop`];
+=== 5 ===
+// === /tests/cases/fourslash/a.js ===
+// let obj = {};
+// 
+// Object.defineProperty(obj, `prop`, { value: 0 });
+// 
+// obj = {
+//     [`prop`]: 1
+// };
+// 
+// obj.prop;
+// obj['prop'];
+// obj["prop"];
+// obj[`[|prop|]`];
+
+
+[
+  {
+    "textSpan": {
+      "start": 43,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 80,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js",
+    "contextSpan": {
+      "start": 78,
+      "length": 11
+    }
+  },
+  {
+    "textSpan": {
+      "start": 98,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 109,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 122,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  },
+  {
+    "textSpan": {
+      "start": 135,
+      "length": 4
+    },
+    "fileName": "/tests/cases/fourslash/a.js"
+  }
+]
