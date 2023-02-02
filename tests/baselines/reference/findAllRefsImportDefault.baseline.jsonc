@@ -8,97 +8,93 @@
 //     return a + b;
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/f.ts ===
+    // export { foo as default };
+    // function [|foo|](a: number, b: number) {
+    //     return a + b;
+    // }
+      // === ContextSpan ===
       // === /tests/cases/fourslash/f.ts ===
       // export { foo as default };
-      // function [|foo|](a: number, b: number) {
+      // [|function foo(a: number, b: number) {
       //     return a + b;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/f.ts ===
-        // export { foo as default };
-        // [|function foo(a: number, b: number) {
-        //     return a + b;
-        // }|]
-    === References ===
-      === 0 ===
+      // }|]
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/f.ts ===
       // export { [|foo|] as default };
       // function foo(a: number, b: number) {
       //     return a + b;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/f.ts ===
         // [|export { foo as default };|]
         // function foo(a: number, b: number) {
         //     return a + b;
         // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/f.ts ===
       // export { foo as default };
       // function [|foo|](a: number, b: number) {
       //     return a + b;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/f.ts ===
         // export { foo as default };
         // [|function foo(a: number, b: number) {
         //     return a + b;
         // }|]
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/f.ts ===
+    // export { foo as [|default|] };
+    // function foo(a: number, b: number) {
+    //     return a + b;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/f.ts ===
+      // [|export { foo as default };|]
+      // function foo(a: number, b: number) {
+      //     return a + b;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/f.ts ===
       // export { foo as [|default|] };
       // function foo(a: number, b: number) {
       //     return a + b;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/f.ts ===
         // [|export { foo as default };|]
         // function foo(a: number, b: number) {
         //     return a + b;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/f.ts ===
-      // export { foo as [|default|] };
-      // function foo(a: number, b: number) {
-      //     return a + b;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/f.ts ===
-        // [|export { foo as default };|]
-        // function foo(a: number, b: number) {
-        //     return a + b;
-        // }
-  },
-  {
-    === Definition ===
+// === 2 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/b.ts ===
+    // import [|bar|] from "./f";
+    // bar(1, 2);
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/b.ts ===
+      // [|import bar from "./f";|]
+      // bar(1, 2);
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/b.ts ===
       // import [|bar|] from "./f";
       // bar(1, 2);
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/b.ts ===
         // [|import bar from "./f";|]
         // bar(1, 2);
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/b.ts ===
-      // import [|bar|] from "./f";
-      // bar(1, 2);
-      === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import bar from "./f";|]
-        // bar(1, 2);
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/b.ts ===
       // import bar from "./f";
       // [|bar|](1, 2);
-  }
-]
+
 
 [
   {

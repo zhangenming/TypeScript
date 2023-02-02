@@ -1,38 +1,36 @@
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/a.ts ======*/
-
-interface RENAME {
-    foo: E.Foo;
-}
-
-/*====== /tests/cases/fourslash/b.ts ======*/
-
-enum E {
-    /** {@link RENAME} */
-    Foo
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/a.ts ===
-// interface [|Foo|] {
+// interface RENAME {
 //     foo: E.Foo;
 // }
-=== ContextSpan ===
-  // === /tests/cases/fourslash/a.ts ===
-  // [|interface Foo {
-  //     foo: E.Foo;
-  // }|]
-=== 1 ===
+
 // === /tests/cases/fourslash/b.ts ===
 // enum E {
-//     /** {@link [|Foo|]} */
+//     /** {@link RENAME} */
 //     Foo
 // }
+
+// === 0 ===
+  // === /tests/cases/fourslash/a.ts ===
+  // interface [|Foo|] {
+  //     foo: E.Foo;
+  // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/a.ts ===
+    // [|interface Foo {
+    //     foo: E.Foo;
+    // }|]
+// === 1 ===
+  // === /tests/cases/fourslash/b.ts ===
+  // enum E {
+  //     /** {@link [|Foo|]} */
+  //     Foo
+  // }
 
 
 [

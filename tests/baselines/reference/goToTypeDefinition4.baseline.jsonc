@@ -1,11 +1,11 @@
-=== goToType ===
+// === goToType ===
 // === /tests/cases/fourslash/bar.ts ===
 // import { T } from "./foo";
 // let x: /*GOTO TYPE*/T;
 
 undefined
 
-=== goToDefinition ===
+// === goToDefinition ===
 // === /tests/cases/fourslash/foo.ts ===
 // export type [|T|] = string;
 // export const [|T|] = "";
@@ -14,29 +14,28 @@ undefined
 // import { T } from "./foo";
 // let x: /*GOTO DEF*/T;
 
-{
-  === Definitions ===
-    === 0 ===
+// === Definitions ===
+  // === 0 ===
     // === /tests/cases/fourslash/foo.ts ===
     // export type [|T|] = string;
     // export const T = "";
-    === ContextSpan ===
+      // === ContextSpan ===
       // === /tests/cases/fourslash/foo.ts ===
       // [|export type T = string;|]
       // export const T = "";
-    === 1 ===
+  // === 1 ===
     // === /tests/cases/fourslash/foo.ts ===
     // export type T = string;
     // export const [|T|] = "";
-    === ContextSpan ===
+      // === ContextSpan ===
       // === /tests/cases/fourslash/foo.ts ===
       // export type T = string;
       // [|export const T = "";|]
-  === TextSpan ===
-    // === /tests/cases/fourslash/bar.ts ===
-    // import { T } from "./foo";
-    // let x: [|T|];
-}
+// === TextSpan ===
+  // === /tests/cases/fourslash/bar.ts ===
+  // import { T } from "./foo";
+  // let x: [|T|];
+
 
 {
   "definitions": [

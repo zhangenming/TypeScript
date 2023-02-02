@@ -1,4 +1,4 @@
-=== findAllReferences ===
+// === findAllReferences ===
 // === /tests/cases/fourslash/foo.ts ===
 // export function /*FIND ALL REFS*/[|bar|]() { return "bar"; }
 // var x = import("./foo");
@@ -6,46 +6,44 @@
 //     foo.[|bar|]();
 // })
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/foo.ts ===
+    // export function [|bar|]() { return "bar"; }
+    // var x = import("./foo");
+    // x.then(foo => {
+    //     foo.bar();
+    // })
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // [|export function bar() { return "bar"; }|]
+      // var x = import("./foo");
+      // x.then(foo => {
+      //     foo.bar();
+      // })
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/foo.ts ===
       // export function [|bar|]() { return "bar"; }
       // var x = import("./foo");
       // x.then(foo => {
       //     foo.bar();
       // })
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/foo.ts ===
         // [|export function bar() { return "bar"; }|]
         // var x = import("./foo");
         // x.then(foo => {
         //     foo.bar();
         // })
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/foo.ts ===
-      // export function [|bar|]() { return "bar"; }
-      // var x = import("./foo");
-      // x.then(foo => {
-      //     foo.bar();
-      // })
-      === ContextSpan ===
-        // === /tests/cases/fourslash/foo.ts ===
-        // [|export function bar() { return "bar"; }|]
-        // var x = import("./foo");
-        // x.then(foo => {
-        //     foo.bar();
-        // })
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/foo.ts ===
       // export function bar() { return "bar"; }
       // var x = import("./foo");
       // x.then(foo => {
       //     foo.[|bar|]();
       // })
-  }
-]
+
 
 [
   {
@@ -132,46 +130,44 @@
 //     foo./*FIND ALL REFS*/[|bar|]();
 // })
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/foo.ts ===
+    // export function [|bar|]() { return "bar"; }
+    // var x = import("./foo");
+    // x.then(foo => {
+    //     foo.bar();
+    // })
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/foo.ts ===
+      // [|export function bar() { return "bar"; }|]
+      // var x = import("./foo");
+      // x.then(foo => {
+      //     foo.bar();
+      // })
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/foo.ts ===
       // export function [|bar|]() { return "bar"; }
       // var x = import("./foo");
       // x.then(foo => {
       //     foo.bar();
       // })
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/foo.ts ===
         // [|export function bar() { return "bar"; }|]
         // var x = import("./foo");
         // x.then(foo => {
         //     foo.bar();
         // })
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/foo.ts ===
-      // export function [|bar|]() { return "bar"; }
-      // var x = import("./foo");
-      // x.then(foo => {
-      //     foo.bar();
-      // })
-      === ContextSpan ===
-        // === /tests/cases/fourslash/foo.ts ===
-        // [|export function bar() { return "bar"; }|]
-        // var x = import("./foo");
-        // x.then(foo => {
-        //     foo.bar();
-        // })
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/foo.ts ===
       // export function bar() { return "bar"; }
       // var x = import("./foo");
       // x.then(foo => {
       //     foo.[|bar|]();
       // })
-  }
-]
+
 
 [
   {
@@ -249,42 +245,41 @@
   }
 ]
 
-=== findRenameLocations ===
-=== RenameOptions ===
+// === findRenameLocations ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/foo.ts ======*/
-
-export function [|RENAME|]() { return "bar"; }
-var x = import("./foo");
-x.then(foo => {
-    foo.RENAME();
-})
-
-=== 0 ===
 // === /tests/cases/fourslash/foo.ts ===
-// export function [|bar|]() { return "bar"; }
+// export function [|RENAME|]() { return "bar"; }
 // var x = import("./foo");
 // x.then(foo => {
-//     foo.bar();
+//     foo.RENAME();
 // })
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/foo.ts ===
-  // [|export function bar() { return "bar"; }|]
+  // export function [|bar|]() { return "bar"; }
   // var x = import("./foo");
   // x.then(foo => {
   //     foo.bar();
   // })
-=== 1 ===
-// === /tests/cases/fourslash/foo.ts ===
-// export function bar() { return "bar"; }
-// var x = import("./foo");
-// x.then(foo => {
-//     foo.[|bar|]();
-// })
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/foo.ts ===
+    // [|export function bar() { return "bar"; }|]
+    // var x = import("./foo");
+    // x.then(foo => {
+    //     foo.bar();
+    // })
+// === 1 ===
+  // === /tests/cases/fourslash/foo.ts ===
+  // export function bar() { return "bar"; }
+  // var x = import("./foo");
+  // x.then(foo => {
+  //     foo.[|bar|]();
+  // })
 
 
 [
@@ -308,41 +303,40 @@ x.then(foo => {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/foo.ts ======*/
-
-export function RENAME() { return "bar"; }
-var x = import("./foo");
-x.then(foo => {
-    foo.[|RENAME|]();
-})
-
-=== 0 ===
 // === /tests/cases/fourslash/foo.ts ===
-// export function [|bar|]() { return "bar"; }
+// export function RENAME() { return "bar"; }
 // var x = import("./foo");
 // x.then(foo => {
-//     foo.bar();
+//     foo.[|RENAME|]();
 // })
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/foo.ts ===
-  // [|export function bar() { return "bar"; }|]
+  // export function [|bar|]() { return "bar"; }
   // var x = import("./foo");
   // x.then(foo => {
   //     foo.bar();
   // })
-=== 1 ===
-// === /tests/cases/fourslash/foo.ts ===
-// export function bar() { return "bar"; }
-// var x = import("./foo");
-// x.then(foo => {
-//     foo.[|bar|]();
-// })
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/foo.ts ===
+    // [|export function bar() { return "bar"; }|]
+    // var x = import("./foo");
+    // x.then(foo => {
+    //     foo.bar();
+    // })
+// === 1 ===
+  // === /tests/cases/fourslash/foo.ts ===
+  // export function bar() { return "bar"; }
+  // var x = import("./foo");
+  // x.then(foo => {
+  //     foo.[|bar|]();
+  // })
 
 
 [

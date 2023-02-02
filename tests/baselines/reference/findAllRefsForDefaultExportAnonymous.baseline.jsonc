@@ -1,39 +1,36 @@
-=== findAllReferences ===
+// === findAllReferences ===
 // === /a.ts ===
 // export /*FIND ALL REFS*/[|default|] function() {}
 
 // === /b.ts ===
 // import [|f|] from "./a";
 
-[
-  {
-    === Definition ===
-      // === /a.ts ===
-      // [|export default function() {}|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // [|export default function() {}|]
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // export [|default|] function() {}
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // [|export default function() {}|]
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /b.ts ===
+    // import [|f|] from "./a";
+      // === ContextSpan ===
+      // === /b.ts ===
+      // [|import f from "./a";|]
+  // === References ===
+    // === 0 ===
       // === /b.ts ===
       // import [|f|] from "./a";
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|import f from "./a";|]
-    === References ===
-      === 0 ===
-      // === /b.ts ===
-      // import [|f|] from "./a";
-      === ContextSpan ===
-        // === /b.ts ===
-        // [|import f from "./a";|]
-  }
-]
+
 
 [
   {
@@ -152,35 +149,32 @@
 // === /a.ts ===
 // export [|default|] function() {}
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /b.ts ===
+    // import [|f|] from "./a";
+      // === ContextSpan ===
+      // === /b.ts ===
+      // [|import f from "./a";|]
+  // === References ===
+    // === 0 ===
       // === /b.ts ===
       // import [|f|] from "./a";
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|import f from "./a";|]
-    === References ===
-      === 0 ===
-      // === /b.ts ===
-      // import [|f|] from "./a";
-      === ContextSpan ===
-        // === /b.ts ===
-        // [|import f from "./a";|]
-  },
-  {
-    === Definition ===
-      // === /a.ts ===
-      // [|export default function() {}|]
-    === References ===
-      === 0 ===
+// === 1 ===
+  // === Definition ===
+    // === /a.ts ===
+    // [|export default function() {}|]
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // export [|default|] function() {}
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // [|export default function() {}|]
-  }
-]
+
 
 [
   {
@@ -293,23 +287,22 @@
   }
 ]
 
-=== findRenameLocations ===
-=== RenameOptions ===
+// === findRenameLocations ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /b.ts ======*/
-
-import [|RENAME|] from "./a";
-
-=== 0 ===
 // === /b.ts ===
-// import [|f|] from "./a";
-=== ContextSpan ===
+// import [|RENAME|] from "./a";
+
+// === 0 ===
   // === /b.ts ===
-  // [|import f from "./a";|]
+  // import [|f|] from "./a";
+    // === ContextSpan ===
+    // === /b.ts ===
+    // [|import f from "./a";|]
 
 
 [

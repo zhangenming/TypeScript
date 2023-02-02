@@ -7,28 +7,27 @@
 //     foo: E.Foo;
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // enum E {
+    //     /** {@link Foo} */
+    //     Foo
+    // }
+    // interface [|Foo|] {
+    //     foo: E.Foo;
+    // }
+      // === ContextSpan ===
       // === /a.ts ===
       // enum E {
       //     /** {@link Foo} */
       //     Foo
       // }
-      // interface [|Foo|] {
+      // [|interface Foo {
       //     foo: E.Foo;
-      // }
-      === ContextSpan ===
-        // === /a.ts ===
-        // enum E {
-        //     /** {@link Foo} */
-        //     Foo
-        // }
-        // [|interface Foo {
-        //     foo: E.Foo;
-        // }|]
-    === References ===
-      === 0 ===
+      // }|]
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // enum E {
       //     /** {@link [|Foo|]} */
@@ -37,7 +36,7 @@
       // interface Foo {
       //     foo: E.Foo;
       // }
-      === 1 ===
+    // === 1 ===
       // === /a.ts ===
       // enum E {
       //     /** {@link Foo} */
@@ -46,7 +45,7 @@
       // interface [|Foo|] {
       //     foo: E.Foo;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // enum E {
         //     /** {@link Foo} */
@@ -55,8 +54,7 @@
         // [|interface Foo {
         //     foo: E.Foo;
         // }|]
-  }
-]
+
 
 [
   {

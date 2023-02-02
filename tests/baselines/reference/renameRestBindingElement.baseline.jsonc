@@ -1,50 +1,49 @@
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameRestBindingElement.ts ======*/
-
-interface I {
-    a: number;
-    b: number;
-    c: number;
-}
-function foo({ a, ...[|RENAME|] }: I) {
-    RENAME;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameRestBindingElement.ts ===
 // interface I {
 //     a: number;
 //     b: number;
 //     c: number;
 // }
-// function foo({ a, ...[|rest|] }: I) {
-//     rest;
+// function foo({ a, ...[|RENAME|] }: I) {
+//     RENAME;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameRestBindingElement.ts ===
   // interface I {
   //     a: number;
   //     b: number;
   //     c: number;
   // }
-  // function foo([|{ a, ...rest }: I|]) {
+  // function foo({ a, ...[|rest|] }: I) {
   //     rest;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameRestBindingElement.ts ===
-// interface I {
-//     a: number;
-//     b: number;
-//     c: number;
-// }
-// function foo({ a, ...rest }: I) {
-//     [|rest|];
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameRestBindingElement.ts ===
+    // interface I {
+    //     a: number;
+    //     b: number;
+    //     c: number;
+    // }
+    // function foo([|{ a, ...rest }: I|]) {
+    //     rest;
+    // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameRestBindingElement.ts ===
+  // interface I {
+  //     a: number;
+  //     b: number;
+  //     c: number;
+  // }
+  // function foo({ a, ...rest }: I) {
+  //     [|rest|];
+  // }
 
 
 [

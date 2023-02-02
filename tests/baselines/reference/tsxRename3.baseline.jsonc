@@ -1,27 +1,9 @@
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/file.tsx ======*/
-
-declare module JSX {
-    interface Element { }
-    interface IntrinsicElements {
-    }
-    interface ElementAttributesProperty { props }
-}
-class MyClass {
-  props: {
-    [|RENAME|]?: string;
-    size?: number;
-}
-
-
-var x = <MyClass RENAME='hello'/>;
-
-=== 0 ===
 // === /tests/cases/fourslash/file.tsx ===
 // declare module JSX {
 //     interface Element { }
@@ -31,13 +13,14 @@ var x = <MyClass RENAME='hello'/>;
 // }
 // class MyClass {
 //   props: {
-//     [|name|]?: string;
+//     [|RENAME|]?: string;
 //     size?: number;
 // }
 // 
 // 
-// var x = <MyClass name='hello'/>;
-=== ContextSpan ===
+// var x = <MyClass RENAME='hello'/>;
+
+// === 0 ===
   // === /tests/cases/fourslash/file.tsx ===
   // declare module JSX {
   //     interface Element { }
@@ -47,29 +30,29 @@ var x = <MyClass RENAME='hello'/>;
   // }
   // class MyClass {
   //   props: {
-  //     [|name?: string;|]
+  //     [|name|]?: string;
   //     size?: number;
   // }
   // 
   // 
   // var x = <MyClass name='hello'/>;
-=== 1 ===
-// === /tests/cases/fourslash/file.tsx ===
-// declare module JSX {
-//     interface Element { }
-//     interface IntrinsicElements {
-//     }
-//     interface ElementAttributesProperty { props }
-// }
-// class MyClass {
-//   props: {
-//     name?: string;
-//     size?: number;
-// }
-// 
-// 
-// var x = <MyClass [|name|]='hello'/>;
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/file.tsx ===
+    // declare module JSX {
+    //     interface Element { }
+    //     interface IntrinsicElements {
+    //     }
+    //     interface ElementAttributesProperty { props }
+    // }
+    // class MyClass {
+    //   props: {
+    //     [|name?: string;|]
+    //     size?: number;
+    // }
+    // 
+    // 
+    // var x = <MyClass name='hello'/>;
+// === 1 ===
   // === /tests/cases/fourslash/file.tsx ===
   // declare module JSX {
   //     interface Element { }
@@ -84,7 +67,23 @@ var x = <MyClass RENAME='hello'/>;
   // }
   // 
   // 
-  // var x = <MyClass [|name='hello'|]/>;
+  // var x = <MyClass [|name|]='hello'/>;
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/file.tsx ===
+    // declare module JSX {
+    //     interface Element { }
+    //     interface IntrinsicElements {
+    //     }
+    //     interface ElementAttributesProperty { props }
+    // }
+    // class MyClass {
+    //   props: {
+    //     name?: string;
+    //     size?: number;
+    // }
+    // 
+    // 
+    // var x = <MyClass [|name='hello'|]/>;
 
 
 [
@@ -112,30 +111,12 @@ var x = <MyClass RENAME='hello'/>;
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/file.tsx ======*/
-
-declare module JSX {
-    interface Element { }
-    interface IntrinsicElements {
-    }
-    interface ElementAttributesProperty { props }
-}
-class MyClass {
-  props: {
-    RENAME?: string;
-    size?: number;
-}
-
-
-var x = <MyClass [|RENAME|]='hello'/>;
-
-=== 0 ===
 // === /tests/cases/fourslash/file.tsx ===
 // declare module JSX {
 //     interface Element { }
@@ -145,13 +126,14 @@ var x = <MyClass [|RENAME|]='hello'/>;
 // }
 // class MyClass {
 //   props: {
-//     [|name|]?: string;
+//     RENAME?: string;
 //     size?: number;
 // }
 // 
 // 
-// var x = <MyClass name='hello'/>;
-=== ContextSpan ===
+// var x = <MyClass [|RENAME|]='hello'/>;
+
+// === 0 ===
   // === /tests/cases/fourslash/file.tsx ===
   // declare module JSX {
   //     interface Element { }
@@ -161,29 +143,29 @@ var x = <MyClass [|RENAME|]='hello'/>;
   // }
   // class MyClass {
   //   props: {
-  //     [|name?: string;|]
+  //     [|name|]?: string;
   //     size?: number;
   // }
   // 
   // 
   // var x = <MyClass name='hello'/>;
-=== 1 ===
-// === /tests/cases/fourslash/file.tsx ===
-// declare module JSX {
-//     interface Element { }
-//     interface IntrinsicElements {
-//     }
-//     interface ElementAttributesProperty { props }
-// }
-// class MyClass {
-//   props: {
-//     name?: string;
-//     size?: number;
-// }
-// 
-// 
-// var x = <MyClass [|name|]='hello'/>;
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/file.tsx ===
+    // declare module JSX {
+    //     interface Element { }
+    //     interface IntrinsicElements {
+    //     }
+    //     interface ElementAttributesProperty { props }
+    // }
+    // class MyClass {
+    //   props: {
+    //     [|name?: string;|]
+    //     size?: number;
+    // }
+    // 
+    // 
+    // var x = <MyClass name='hello'/>;
+// === 1 ===
   // === /tests/cases/fourslash/file.tsx ===
   // declare module JSX {
   //     interface Element { }
@@ -198,7 +180,23 @@ var x = <MyClass [|RENAME|]='hello'/>;
   // }
   // 
   // 
-  // var x = <MyClass [|name='hello'|]/>;
+  // var x = <MyClass [|name|]='hello'/>;
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/file.tsx ===
+    // declare module JSX {
+    //     interface Element { }
+    //     interface IntrinsicElements {
+    //     }
+    //     interface ElementAttributesProperty { props }
+    // }
+    // class MyClass {
+    //   props: {
+    //     name?: string;
+    //     size?: number;
+    // }
+    // 
+    // 
+    // var x = <MyClass [|name='hello'|]/>;
 
 
 [

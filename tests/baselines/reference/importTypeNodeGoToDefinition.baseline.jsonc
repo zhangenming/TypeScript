@@ -9,20 +9,19 @@
 // type A = typeof import(/*GOTO DEF*/"./ns").Foo.Bar;
 // type B = import("./ns").Foo.Bar.Baz;
 
-{
-  === Definitions ===
-    === 0 ===
+// === Definitions ===
+  // === 0 ===
     // === /ns.ts ===
     // [|export namespace Foo {
     //     export namespace Bar {
     //         export class Baz {}
     //     }
     // }|]
-  === TextSpan ===
-    // === /usage.ts ===
-    // type A = typeof import([|"./ns"|]).Foo.Bar;
-    // type B = import("./ns").Foo.Bar.Baz;
-}
+// === TextSpan ===
+  // === /usage.ts ===
+  // type A = typeof import([|"./ns"|]).Foo.Bar;
+  // type B = import("./ns").Foo.Bar.Baz;
+
 
 {
   "definitions": [
@@ -58,27 +57,26 @@
 // type A = typeof import("./ns")./*GOTO DEF*/Foo.Bar;
 // type B = import("./ns").Foo.Bar.Baz;
 
-{
-  === Definitions ===
-    === 0 ===
+// === Definitions ===
+  // === 0 ===
     // === /ns.ts ===
     // export namespace [|Foo|] {
     //     export namespace Bar {
     //         export class Baz {}
     //     }
     // }
-    === ContextSpan ===
+      // === ContextSpan ===
       // === /ns.ts ===
       // [|export namespace Foo {
       //     export namespace Bar {
       //         export class Baz {}
       //     }
       // }|]
-  === TextSpan ===
-    // === /usage.ts ===
-    // type A = typeof import("./ns").[|Foo|].Bar;
-    // type B = import("./ns").Foo.Bar.Baz;
-}
+// === TextSpan ===
+  // === /usage.ts ===
+  // type A = typeof import("./ns").[|Foo|].Bar;
+  // type B = import("./ns").Foo.Bar.Baz;
+
 
 {
   "definitions": [
@@ -118,27 +116,26 @@
 // type A = typeof import("./ns").Foo./*GOTO DEF*/Bar;
 // type B = import("./ns").Foo.Bar.Baz;
 
-{
-  === Definitions ===
-    === 0 ===
+// === Definitions ===
+  // === 0 ===
     // === /ns.ts ===
     // export namespace Foo {
     //     export namespace [|Bar|] {
     //         export class Baz {}
     //     }
     // }
-    === ContextSpan ===
+      // === ContextSpan ===
       // === /ns.ts ===
       // export namespace Foo {
       //     [|export namespace Bar {
       //         export class Baz {}
       //     }|]
       // }
-  === TextSpan ===
-    // === /usage.ts ===
-    // type A = typeof import("./ns").Foo.[|Bar|];
-    // type B = import("./ns").Foo.Bar.Baz;
-}
+// === TextSpan ===
+  // === /usage.ts ===
+  // type A = typeof import("./ns").Foo.[|Bar|];
+  // type B = import("./ns").Foo.Bar.Baz;
+
 
 {
   "definitions": [
@@ -178,20 +175,19 @@
 // type A = typeof import("./ns").Foo.Bar;
 // type B = import(/*GOTO DEF*/"./ns").Foo.Bar.Baz;
 
-{
-  === Definitions ===
-    === 0 ===
+// === Definitions ===
+  // === 0 ===
     // === /ns.ts ===
     // [|export namespace Foo {
     //     export namespace Bar {
     //         export class Baz {}
     //     }
     // }|]
-  === TextSpan ===
-    // === /usage.ts ===
-    // type A = typeof import("./ns").Foo.Bar;
-    // type B = import([|"./ns"|]).Foo.Bar.Baz;
-}
+// === TextSpan ===
+  // === /usage.ts ===
+  // type A = typeof import("./ns").Foo.Bar;
+  // type B = import([|"./ns"|]).Foo.Bar.Baz;
+
 
 {
   "definitions": [
@@ -227,27 +223,26 @@
 // type A = typeof import("./ns").Foo.Bar;
 // type B = import("./ns")./*GOTO DEF*/Foo.Bar.Baz;
 
-{
-  === Definitions ===
-    === 0 ===
+// === Definitions ===
+  // === 0 ===
     // === /ns.ts ===
     // export namespace [|Foo|] {
     //     export namespace Bar {
     //         export class Baz {}
     //     }
     // }
-    === ContextSpan ===
+      // === ContextSpan ===
       // === /ns.ts ===
       // [|export namespace Foo {
       //     export namespace Bar {
       //         export class Baz {}
       //     }
       // }|]
-  === TextSpan ===
-    // === /usage.ts ===
-    // type A = typeof import("./ns").Foo.Bar;
-    // type B = import("./ns").[|Foo|].Bar.Baz;
-}
+// === TextSpan ===
+  // === /usage.ts ===
+  // type A = typeof import("./ns").Foo.Bar;
+  // type B = import("./ns").[|Foo|].Bar.Baz;
+
 
 {
   "definitions": [
@@ -287,27 +282,26 @@
 // type A = typeof import("./ns").Foo.Bar;
 // type B = import("./ns").Foo./*GOTO DEF*/Bar.Baz;
 
-{
-  === Definitions ===
-    === 0 ===
+// === Definitions ===
+  // === 0 ===
     // === /ns.ts ===
     // export namespace Foo {
     //     export namespace [|Bar|] {
     //         export class Baz {}
     //     }
     // }
-    === ContextSpan ===
+      // === ContextSpan ===
       // === /ns.ts ===
       // export namespace Foo {
       //     [|export namespace Bar {
       //         export class Baz {}
       //     }|]
       // }
-  === TextSpan ===
-    // === /usage.ts ===
-    // type A = typeof import("./ns").Foo.Bar;
-    // type B = import("./ns").Foo.[|Bar|].Baz;
-}
+// === TextSpan ===
+  // === /usage.ts ===
+  // type A = typeof import("./ns").Foo.Bar;
+  // type B = import("./ns").Foo.[|Bar|].Baz;
+
 
 {
   "definitions": [
@@ -347,27 +341,26 @@
 // type A = typeof import("./ns").Foo.Bar;
 // type B = import("./ns").Foo.Bar./*GOTO DEF*/Baz;
 
-{
-  === Definitions ===
-    === 0 ===
+// === Definitions ===
+  // === 0 ===
     // === /ns.ts ===
     // export namespace Foo {
     //     export namespace Bar {
     //         export class [|Baz|] {}
     //     }
     // }
-    === ContextSpan ===
+      // === ContextSpan ===
       // === /ns.ts ===
       // export namespace Foo {
       //     export namespace Bar {
       //         [|export class Baz {}|]
       //     }
       // }
-  === TextSpan ===
-    // === /usage.ts ===
-    // type A = typeof import("./ns").Foo.Bar;
-    // type B = import("./ns").Foo.Bar.[|Baz|];
-}
+// === TextSpan ===
+  // === /usage.ts ===
+  // type A = typeof import("./ns").Foo.Bar;
+  // type B = import("./ns").Foo.Bar.[|Baz|];
+
 
 {
   "definitions": [

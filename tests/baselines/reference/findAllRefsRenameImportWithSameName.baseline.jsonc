@@ -1,4 +1,4 @@
-=== findAllReferences ===
+// === findAllReferences ===
 // === /b.ts ===
 // import { [|x|] as [|x|] } from "./a";
 // [|x|];
@@ -6,54 +6,51 @@
 // === /a.ts ===
 // export const /*FIND ALL REFS*/[|x|] = 0;
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // export const [|x|] = 0;
+      // === ContextSpan ===
+      // === /a.ts ===
+      // [|export const x = 0;|]
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // export const [|x|] = 0;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // [|export const x = 0;|]
-    === References ===
-      === 0 ===
-      // === /a.ts ===
-      // export const [|x|] = 0;
-      === ContextSpan ===
-        // === /a.ts ===
-        // [|export const x = 0;|]
-      === 1 ===
+    // === 1 ===
       // === /b.ts ===
       // import { [|x|] as x } from "./a";
       // x;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|import { x as x } from "./a";|]
         // x;
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /b.ts ===
+    // import { x as [|x|] } from "./a";
+    // x;
+      // === ContextSpan ===
+      // === /b.ts ===
+      // [|import { x as x } from "./a";|]
+      // x;
+  // === References ===
+    // === 0 ===
       // === /b.ts ===
       // import { x as [|x|] } from "./a";
       // x;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|import { x as x } from "./a";|]
         // x;
-    === References ===
-      === 0 ===
-      // === /b.ts ===
-      // import { x as [|x|] } from "./a";
-      // x;
-      === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x as x } from "./a";|]
-        // x;
-      === 1 ===
+    // === 1 ===
       // === /b.ts ===
       // import { x as x } from "./a";
       // [|x|];
-  }
-]
+
 
 [
   {
@@ -235,54 +232,51 @@
 // === /a.ts ===
 // export const [|x|] = 0;
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // export const [|x|] = 0;
+      // === ContextSpan ===
+      // === /a.ts ===
+      // [|export const x = 0;|]
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // export const [|x|] = 0;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // [|export const x = 0;|]
-    === References ===
-      === 0 ===
-      // === /a.ts ===
-      // export const [|x|] = 0;
-      === ContextSpan ===
-        // === /a.ts ===
-        // [|export const x = 0;|]
-      === 1 ===
+    // === 1 ===
       // === /b.ts ===
       // import { [|x|] as x } from "./a";
       // x;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|import { x as x } from "./a";|]
         // x;
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /b.ts ===
+    // import { x as [|x|] } from "./a";
+    // x;
+      // === ContextSpan ===
+      // === /b.ts ===
+      // [|import { x as x } from "./a";|]
+      // x;
+  // === References ===
+    // === 0 ===
       // === /b.ts ===
       // import { x as [|x|] } from "./a";
       // x;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|import { x as x } from "./a";|]
         // x;
-    === References ===
-      === 0 ===
-      // === /b.ts ===
-      // import { x as [|x|] } from "./a";
-      // x;
-      === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x as x } from "./a";|]
-        // x;
-      === 1 ===
+    // === 1 ===
       // === /b.ts ===
       // import { x as x } from "./a";
       // [|x|];
-  }
-]
+
 
 [
   {
@@ -457,31 +451,29 @@
 // import { x as /*FIND ALL REFS*/[|x|] } from "./a";
 // [|x|];
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /b.ts ===
+    // import { x as [|x|] } from "./a";
+    // x;
+      // === ContextSpan ===
+      // === /b.ts ===
+      // [|import { x as x } from "./a";|]
+      // x;
+  // === References ===
+    // === 0 ===
       // === /b.ts ===
       // import { x as [|x|] } from "./a";
       // x;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|import { x as x } from "./a";|]
         // x;
-    === References ===
-      === 0 ===
-      // === /b.ts ===
-      // import { x as [|x|] } from "./a";
-      // x;
-      === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x as x } from "./a";|]
-        // x;
-      === 1 ===
+    // === 1 ===
       // === /b.ts ===
       // import { x as x } from "./a";
       // [|x|];
-  }
-]
+
 
 [
   {
@@ -589,31 +581,29 @@
 // import { x as [|x|] } from "./a";
 // /*FIND ALL REFS*/[|x|];
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /b.ts ===
+    // import { x as [|x|] } from "./a";
+    // x;
+      // === ContextSpan ===
+      // === /b.ts ===
+      // [|import { x as x } from "./a";|]
+      // x;
+  // === References ===
+    // === 0 ===
       // === /b.ts ===
       // import { x as [|x|] } from "./a";
       // x;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|import { x as x } from "./a";|]
         // x;
-    === References ===
-      === 0 ===
-      // === /b.ts ===
-      // import { x as [|x|] } from "./a";
-      // x;
-      === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x as x } from "./a";|]
-        // x;
-      === 1 ===
+    // === 1 ===
       // === /b.ts ===
       // import { x as x } from "./a";
       // [|x|];
-  }
-]
+
 
 [
   {
@@ -715,48 +705,46 @@
   }
 ]
 
-=== findRenameLocations ===
-=== RenameOptions ===
+// === findRenameLocations ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /a.ts ======*/
-
-export const RENAME = 0;
-
-/*====== /b.ts ======*/
-
-import { RENAME as RENAME } from "./a";
-RENAME;
-
-=== 0 ===
 // === /a.ts ===
-// export const [|x|] = 0;
-=== ContextSpan ===
+// export const RENAME = 0;
+
+// === /b.ts ===
+// import { RENAME as RENAME } from "./a";
+// RENAME;
+
+// === 0 ===
   // === /a.ts ===
-  // [|export const x = 0;|]
-=== 1 ===
-// === /b.ts ===
-// import { [|x|] as x } from "./a";
-// x;
-=== ContextSpan ===
+  // export const [|x|] = 0;
+    // === ContextSpan ===
+    // === /a.ts ===
+    // [|export const x = 0;|]
+// === 1 ===
   // === /b.ts ===
-  // [|import { x as x } from "./a";|]
+  // import { [|x|] as x } from "./a";
   // x;
-=== 2 ===
-// === /b.ts ===
-// import { x as [|x|] } from "./a";
-// x;
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /b.ts ===
+    // [|import { x as x } from "./a";|]
+    // x;
+// === 2 ===
   // === /b.ts ===
-  // [|import { x as x } from "./a";|]
+  // import { x as [|x|] } from "./a";
   // x;
-=== 3 ===
-// === /b.ts ===
-// import { x as x } from "./a";
-// [|x|];
+    // === ContextSpan ===
+    // === /b.ts ===
+    // [|import { x as x } from "./a";|]
+    // x;
+// === 3 ===
+  // === /b.ts ===
+  // import { x as x } from "./a";
+  // [|x|];
 
 
 [
@@ -802,47 +790,45 @@ RENAME;
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /a.ts ======*/
-
-export const RENAME = 0;
-
-/*====== /b.ts ======*/
-
-import { [|RENAME|] as RENAME } from "./a";
-RENAME;
-
-=== 0 ===
 // === /a.ts ===
-// export const [|x|] = 0;
-=== ContextSpan ===
+// export const RENAME = 0;
+
+// === /b.ts ===
+// import { [|RENAME|] as RENAME } from "./a";
+// RENAME;
+
+// === 0 ===
   // === /a.ts ===
-  // [|export const x = 0;|]
-=== 1 ===
-// === /b.ts ===
-// import { [|x|] as x } from "./a";
-// x;
-=== ContextSpan ===
+  // export const [|x|] = 0;
+    // === ContextSpan ===
+    // === /a.ts ===
+    // [|export const x = 0;|]
+// === 1 ===
   // === /b.ts ===
-  // [|import { x as x } from "./a";|]
+  // import { [|x|] as x } from "./a";
   // x;
-=== 2 ===
-// === /b.ts ===
-// import { x as [|x|] } from "./a";
-// x;
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /b.ts ===
+    // [|import { x as x } from "./a";|]
+    // x;
+// === 2 ===
   // === /b.ts ===
-  // [|import { x as x } from "./a";|]
+  // import { x as [|x|] } from "./a";
   // x;
-=== 3 ===
-// === /b.ts ===
-// import { x as x } from "./a";
-// [|x|];
+    // === ContextSpan ===
+    // === /b.ts ===
+    // [|import { x as x } from "./a";|]
+    // x;
+// === 3 ===
+  // === /b.ts ===
+  // import { x as x } from "./a";
+  // [|x|];
 
 
 [
@@ -888,29 +874,28 @@ RENAME;
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /b.ts ======*/
-
-import { x as [|RENAME|] } from "./a";
-RENAME;
-
-=== 0 ===
 // === /b.ts ===
-// import { x as [|x|] } from "./a";
-// x;
-=== ContextSpan ===
+// import { x as [|RENAME|] } from "./a";
+// RENAME;
+
+// === 0 ===
   // === /b.ts ===
-  // [|import { x as x } from "./a";|]
+  // import { x as [|x|] } from "./a";
   // x;
-=== 1 ===
-// === /b.ts ===
-// import { x as x } from "./a";
-// [|x|];
+    // === ContextSpan ===
+    // === /b.ts ===
+    // [|import { x as x } from "./a";|]
+    // x;
+// === 1 ===
+  // === /b.ts ===
+  // import { x as x } from "./a";
+  // [|x|];
 
 
 [
@@ -934,29 +919,28 @@ RENAME;
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /b.ts ======*/
-
-import { x as RENAME } from "./a";
-[|RENAME|];
-
-=== 0 ===
 // === /b.ts ===
-// import { x as [|x|] } from "./a";
-// x;
-=== ContextSpan ===
+// import { x as RENAME } from "./a";
+// [|RENAME|];
+
+// === 0 ===
   // === /b.ts ===
-  // [|import { x as x } from "./a";|]
+  // import { x as [|x|] } from "./a";
   // x;
-=== 1 ===
-// === /b.ts ===
-// import { x as x } from "./a";
-// [|x|];
+    // === ContextSpan ===
+    // === /b.ts ===
+    // [|import { x as x } from "./a";|]
+    // x;
+// === 1 ===
+  // === /b.ts ===
+  // import { x as x } from "./a";
+  // [|x|];
 
 
 [

@@ -1,43 +1,20 @@
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameLocationsForClassExpression01.ts ======*/
-
-class Foo {
-}
-
-var x = class [|RENAME|] {
-    doIt() {
-        return RENAME;
-    }
-
-    static doItStatically() {
-        return RENAME.y;
-    }
-}
-
-var y = class {
-   getSomeName() {
-      return Foo
-   }
-}
-var z = class Foo {}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
 // class Foo {
 // }
 // 
-// var x = class [|Foo|] {
+// var x = class [|RENAME|] {
 //     doIt() {
-//         return Foo;
+//         return RENAME;
 //     }
 // 
 //     static doItStatically() {
-//         return Foo.y;
+//         return RENAME.y;
 //     }
 // }
 // 
@@ -47,12 +24,13 @@ var z = class Foo {}
 //    }
 // }
 // var z = class Foo {}
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
   // class Foo {
   // }
   // 
-  // var x = [|class Foo {
+  // var x = class [|Foo|] {
   //     doIt() {
   //         return Foo;
   //     }
@@ -60,7 +38,7 @@ var z = class Foo {}
   //     static doItStatically() {
   //         return Foo.y;
   //     }
-  // }|]
+  // }
   // 
   // var y = class {
   //    getSomeName() {
@@ -68,48 +46,69 @@ var z = class Foo {}
   //    }
   // }
   // var z = class Foo {}
-=== 1 ===
-// === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
-// class Foo {
-// }
-// 
-// var x = class Foo {
-//     doIt() {
-//         return [|Foo|];
-//     }
-// 
-//     static doItStatically() {
-//         return Foo.y;
-//     }
-// }
-// 
-// var y = class {
-//    getSomeName() {
-//       return Foo
-//    }
-// }
-// var z = class Foo {}
-=== 2 ===
-// === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
-// class Foo {
-// }
-// 
-// var x = class Foo {
-//     doIt() {
-//         return Foo;
-//     }
-// 
-//     static doItStatically() {
-//         return [|Foo|].y;
-//     }
-// }
-// 
-// var y = class {
-//    getSomeName() {
-//       return Foo
-//    }
-// }
-// var z = class Foo {}
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
+    // class Foo {
+    // }
+    // 
+    // var x = [|class Foo {
+    //     doIt() {
+    //         return Foo;
+    //     }
+    // 
+    //     static doItStatically() {
+    //         return Foo.y;
+    //     }
+    // }|]
+    // 
+    // var y = class {
+    //    getSomeName() {
+    //       return Foo
+    //    }
+    // }
+    // var z = class Foo {}
+// === 1 ===
+  // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
+  // class Foo {
+  // }
+  // 
+  // var x = class Foo {
+  //     doIt() {
+  //         return [|Foo|];
+  //     }
+  // 
+  //     static doItStatically() {
+  //         return Foo.y;
+  //     }
+  // }
+  // 
+  // var y = class {
+  //    getSomeName() {
+  //       return Foo
+  //    }
+  // }
+  // var z = class Foo {}
+// === 2 ===
+  // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
+  // class Foo {
+  // }
+  // 
+  // var x = class Foo {
+  //     doIt() {
+  //         return Foo;
+  //     }
+  // 
+  //     static doItStatically() {
+  //         return [|Foo|].y;
+  //     }
+  // }
+  // 
+  // var y = class {
+  //    getSomeName() {
+  //       return Foo
+  //    }
+  // }
+  // var z = class Foo {}
 
 
 [
@@ -140,46 +139,23 @@ var z = class Foo {}
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameLocationsForClassExpression01.ts ======*/
-
-class Foo {
-}
-
-var x = class RENAME {
-    doIt() {
-        return [|RENAME|];
-    }
-
-    static doItStatically() {
-        return RENAME.y;
-    }
-}
-
-var y = class {
-   getSomeName() {
-      return Foo
-   }
-}
-var z = class Foo {}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
 // class Foo {
 // }
 // 
-// var x = class [|Foo|] {
+// var x = class RENAME {
 //     doIt() {
-//         return Foo;
+//         return [|RENAME|];
 //     }
 // 
 //     static doItStatically() {
-//         return Foo.y;
+//         return RENAME.y;
 //     }
 // }
 // 
@@ -189,12 +165,13 @@ var z = class Foo {}
 //    }
 // }
 // var z = class Foo {}
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
   // class Foo {
   // }
   // 
-  // var x = [|class Foo {
+  // var x = class [|Foo|] {
   //     doIt() {
   //         return Foo;
   //     }
@@ -202,7 +179,7 @@ var z = class Foo {}
   //     static doItStatically() {
   //         return Foo.y;
   //     }
-  // }|]
+  // }
   // 
   // var y = class {
   //    getSomeName() {
@@ -210,48 +187,69 @@ var z = class Foo {}
   //    }
   // }
   // var z = class Foo {}
-=== 1 ===
-// === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
-// class Foo {
-// }
-// 
-// var x = class Foo {
-//     doIt() {
-//         return [|Foo|];
-//     }
-// 
-//     static doItStatically() {
-//         return Foo.y;
-//     }
-// }
-// 
-// var y = class {
-//    getSomeName() {
-//       return Foo
-//    }
-// }
-// var z = class Foo {}
-=== 2 ===
-// === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
-// class Foo {
-// }
-// 
-// var x = class Foo {
-//     doIt() {
-//         return Foo;
-//     }
-// 
-//     static doItStatically() {
-//         return [|Foo|].y;
-//     }
-// }
-// 
-// var y = class {
-//    getSomeName() {
-//       return Foo
-//    }
-// }
-// var z = class Foo {}
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
+    // class Foo {
+    // }
+    // 
+    // var x = [|class Foo {
+    //     doIt() {
+    //         return Foo;
+    //     }
+    // 
+    //     static doItStatically() {
+    //         return Foo.y;
+    //     }
+    // }|]
+    // 
+    // var y = class {
+    //    getSomeName() {
+    //       return Foo
+    //    }
+    // }
+    // var z = class Foo {}
+// === 1 ===
+  // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
+  // class Foo {
+  // }
+  // 
+  // var x = class Foo {
+  //     doIt() {
+  //         return [|Foo|];
+  //     }
+  // 
+  //     static doItStatically() {
+  //         return Foo.y;
+  //     }
+  // }
+  // 
+  // var y = class {
+  //    getSomeName() {
+  //       return Foo
+  //    }
+  // }
+  // var z = class Foo {}
+// === 2 ===
+  // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
+  // class Foo {
+  // }
+  // 
+  // var x = class Foo {
+  //     doIt() {
+  //         return Foo;
+  //     }
+  // 
+  //     static doItStatically() {
+  //         return [|Foo|].y;
+  //     }
+  // }
+  // 
+  // var y = class {
+  //    getSomeName() {
+  //       return Foo
+  //    }
+  // }
+  // var z = class Foo {}
 
 
 [
@@ -282,46 +280,23 @@ var z = class Foo {}
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameLocationsForClassExpression01.ts ======*/
-
-class Foo {
-}
-
-var x = class RENAME {
-    doIt() {
-        return RENAME;
-    }
-
-    static doItStatically() {
-        return [|RENAME|].y;
-    }
-}
-
-var y = class {
-   getSomeName() {
-      return Foo
-   }
-}
-var z = class Foo {}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
 // class Foo {
 // }
 // 
-// var x = class [|Foo|] {
+// var x = class RENAME {
 //     doIt() {
-//         return Foo;
+//         return RENAME;
 //     }
 // 
 //     static doItStatically() {
-//         return Foo.y;
+//         return [|RENAME|].y;
 //     }
 // }
 // 
@@ -331,12 +306,13 @@ var z = class Foo {}
 //    }
 // }
 // var z = class Foo {}
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
   // class Foo {
   // }
   // 
-  // var x = [|class Foo {
+  // var x = class [|Foo|] {
   //     doIt() {
   //         return Foo;
   //     }
@@ -344,7 +320,7 @@ var z = class Foo {}
   //     static doItStatically() {
   //         return Foo.y;
   //     }
-  // }|]
+  // }
   // 
   // var y = class {
   //    getSomeName() {
@@ -352,48 +328,69 @@ var z = class Foo {}
   //    }
   // }
   // var z = class Foo {}
-=== 1 ===
-// === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
-// class Foo {
-// }
-// 
-// var x = class Foo {
-//     doIt() {
-//         return [|Foo|];
-//     }
-// 
-//     static doItStatically() {
-//         return Foo.y;
-//     }
-// }
-// 
-// var y = class {
-//    getSomeName() {
-//       return Foo
-//    }
-// }
-// var z = class Foo {}
-=== 2 ===
-// === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
-// class Foo {
-// }
-// 
-// var x = class Foo {
-//     doIt() {
-//         return Foo;
-//     }
-// 
-//     static doItStatically() {
-//         return [|Foo|].y;
-//     }
-// }
-// 
-// var y = class {
-//    getSomeName() {
-//       return Foo
-//    }
-// }
-// var z = class Foo {}
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
+    // class Foo {
+    // }
+    // 
+    // var x = [|class Foo {
+    //     doIt() {
+    //         return Foo;
+    //     }
+    // 
+    //     static doItStatically() {
+    //         return Foo.y;
+    //     }
+    // }|]
+    // 
+    // var y = class {
+    //    getSomeName() {
+    //       return Foo
+    //    }
+    // }
+    // var z = class Foo {}
+// === 1 ===
+  // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
+  // class Foo {
+  // }
+  // 
+  // var x = class Foo {
+  //     doIt() {
+  //         return [|Foo|];
+  //     }
+  // 
+  //     static doItStatically() {
+  //         return Foo.y;
+  //     }
+  // }
+  // 
+  // var y = class {
+  //    getSomeName() {
+  //       return Foo
+  //    }
+  // }
+  // var z = class Foo {}
+// === 2 ===
+  // === /tests/cases/fourslash/renameLocationsForClassExpression01.ts ===
+  // class Foo {
+  // }
+  // 
+  // var x = class Foo {
+  //     doIt() {
+  //         return Foo;
+  //     }
+  // 
+  //     static doItStatically() {
+  //         return [|Foo|].y;
+  //     }
+  // }
+  // 
+  // var y = class {
+  //    getSomeName() {
+  //       return Foo
+  //    }
+  // }
+  // var z = class Foo {}
 
 
 [

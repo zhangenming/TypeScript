@@ -1,4 +1,4 @@
-=== findAllReferences ===
+// === findAllReferences ===
 // === /tests/cases/fourslash/renameImportOfReExport.ts ===
 // declare module "a" {
 //     export class /*FIND ALL REFS*/[|C|] {}
@@ -11,9 +11,33 @@
 //     export function f(c: [|C|]): void;
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class [|C|] {}
+    // }
+    // declare module "b" {
+    //     export { C } from "a";
+    // }
+    // declare module "c" {
+    //     import { C } from "b";
+    //     export function f(c: C): void;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+      // declare module "a" {
+      //     [|export class C {}|]
+      // }
+      // declare module "b" {
+      //     export { C } from "a";
+      // }
+      // declare module "c" {
+      //     import { C } from "b";
+      //     export function f(c: C): void;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class [|C|] {}
@@ -25,7 +49,7 @@
       //     import { C } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfReExport.ts ===
         // declare module "a" {
         //     [|export class C {}|]
@@ -37,34 +61,33 @@
         //     import { C } from "b";
         //     export function f(c: C): void;
         // }
-    === References ===
-      === 0 ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class C {}
+    // }
+    // declare module "b" {
+    //     export { [|C|] } from "a";
+    // }
+    // declare module "c" {
+    //     import { C } from "b";
+    //     export function f(c: C): void;
+    // }
+      // === ContextSpan ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
-      //     export class [|C|] {}
+      //     export class C {}
       // }
       // declare module "b" {
-      //     export { C } from "a";
+      //     [|export { C } from "a";|]
       // }
       // declare module "c" {
       //     import { C } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-        // declare module "a" {
-        //     [|export class C {}|]
-        // }
-        // declare module "b" {
-        //     export { C } from "a";
-        // }
-        // declare module "c" {
-        //     import { C } from "b";
-        //     export function f(c: C): void;
-        // }
-  },
-  {
-    === Definition ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class C {}
@@ -76,7 +99,7 @@
       //     import { C } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfReExport.ts ===
         // declare module "a" {
         //     export class C {}
@@ -88,34 +111,33 @@
         //     import { C } from "b";
         //     export function f(c: C): void;
         // }
-    === References ===
-      === 0 ===
+// === 2 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class C {}
+    // }
+    // declare module "b" {
+    //     export { C } from "a";
+    // }
+    // declare module "c" {
+    //     import { [|C|] } from "b";
+    //     export function f(c: C): void;
+    // }
+      // === ContextSpan ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class C {}
       // }
       // declare module "b" {
-      //     export { [|C|] } from "a";
+      //     export { C } from "a";
       // }
       // declare module "c" {
-      //     import { C } from "b";
+      //     [|import { C } from "b";|]
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     [|export { C } from "a";|]
-        // }
-        // declare module "c" {
-        //     import { C } from "b";
-        //     export function f(c: C): void;
-        // }
-  },
-  {
-    === Definition ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class C {}
@@ -127,7 +149,7 @@
       //     import { [|C|] } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfReExport.ts ===
         // declare module "a" {
         //     export class C {}
@@ -139,32 +161,7 @@
         //     [|import { C } from "b";|]
         //     export function f(c: C): void;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C } from "a";
-      // }
-      // declare module "c" {
-      //     import { [|C|] } from "b";
-      //     export function f(c: C): void;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     export { C } from "a";
-        // }
-        // declare module "c" {
-        //     [|import { C } from "b";|]
-        //     export function f(c: C): void;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class C {}
@@ -176,8 +173,7 @@
       //     import { C } from "b";
       //     export function f(c: [|C|]): void;
       // }
-  }
-]
+
 
 [
   {
@@ -405,9 +401,33 @@
 //     export function f(c: [|C|]): void;
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class [|C|] {}
+    // }
+    // declare module "b" {
+    //     export { C } from "a";
+    // }
+    // declare module "c" {
+    //     import { C } from "b";
+    //     export function f(c: C): void;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+      // declare module "a" {
+      //     [|export class C {}|]
+      // }
+      // declare module "b" {
+      //     export { C } from "a";
+      // }
+      // declare module "c" {
+      //     import { C } from "b";
+      //     export function f(c: C): void;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class [|C|] {}
@@ -419,7 +439,7 @@
       //     import { C } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfReExport.ts ===
         // declare module "a" {
         //     [|export class C {}|]
@@ -431,34 +451,33 @@
         //     import { C } from "b";
         //     export function f(c: C): void;
         // }
-    === References ===
-      === 0 ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class C {}
+    // }
+    // declare module "b" {
+    //     export { [|C|] } from "a";
+    // }
+    // declare module "c" {
+    //     import { C } from "b";
+    //     export function f(c: C): void;
+    // }
+      // === ContextSpan ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
-      //     export class [|C|] {}
+      //     export class C {}
       // }
       // declare module "b" {
-      //     export { C } from "a";
+      //     [|export { C } from "a";|]
       // }
       // declare module "c" {
       //     import { C } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-        // declare module "a" {
-        //     [|export class C {}|]
-        // }
-        // declare module "b" {
-        //     export { C } from "a";
-        // }
-        // declare module "c" {
-        //     import { C } from "b";
-        //     export function f(c: C): void;
-        // }
-  },
-  {
-    === Definition ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class C {}
@@ -470,7 +489,7 @@
       //     import { C } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfReExport.ts ===
         // declare module "a" {
         //     export class C {}
@@ -482,34 +501,33 @@
         //     import { C } from "b";
         //     export function f(c: C): void;
         // }
-    === References ===
-      === 0 ===
+// === 2 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class C {}
+    // }
+    // declare module "b" {
+    //     export { C } from "a";
+    // }
+    // declare module "c" {
+    //     import { [|C|] } from "b";
+    //     export function f(c: C): void;
+    // }
+      // === ContextSpan ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class C {}
       // }
       // declare module "b" {
-      //     export { [|C|] } from "a";
+      //     export { C } from "a";
       // }
       // declare module "c" {
-      //     import { C } from "b";
+      //     [|import { C } from "b";|]
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     [|export { C } from "a";|]
-        // }
-        // declare module "c" {
-        //     import { C } from "b";
-        //     export function f(c: C): void;
-        // }
-  },
-  {
-    === Definition ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class C {}
@@ -521,7 +539,7 @@
       //     import { [|C|] } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfReExport.ts ===
         // declare module "a" {
         //     export class C {}
@@ -533,32 +551,7 @@
         //     [|import { C } from "b";|]
         //     export function f(c: C): void;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C } from "a";
-      // }
-      // declare module "c" {
-      //     import { [|C|] } from "b";
-      //     export function f(c: C): void;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     export { C } from "a";
-        // }
-        // declare module "c" {
-        //     [|import { C } from "b";|]
-        //     export function f(c: C): void;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class C {}
@@ -570,8 +563,7 @@
       //     import { C } from "b";
       //     export function f(c: [|C|]): void;
       // }
-  }
-]
+
 
 [
   {
@@ -799,9 +791,33 @@
 //     export function f(c: [|C|]): void;
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class C {}
+    // }
+    // declare module "b" {
+    //     export { C } from "a";
+    // }
+    // declare module "c" {
+    //     import { [|C|] } from "b";
+    //     export function f(c: C): void;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+      // declare module "a" {
+      //     export class C {}
+      // }
+      // declare module "b" {
+      //     export { C } from "a";
+      // }
+      // declare module "c" {
+      //     [|import { C } from "b";|]
+      //     export function f(c: C): void;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class C {}
@@ -813,7 +829,7 @@
       //     import { [|C|] } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfReExport.ts ===
         // declare module "a" {
         //     export class C {}
@@ -825,32 +841,7 @@
         //     [|import { C } from "b";|]
         //     export function f(c: C): void;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C } from "a";
-      // }
-      // declare module "c" {
-      //     import { [|C|] } from "b";
-      //     export function f(c: C): void;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     export { C } from "a";
-        // }
-        // declare module "c" {
-        //     [|import { C } from "b";|]
-        //     export function f(c: C): void;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class C {}
@@ -862,9 +853,33 @@
       //     import { C } from "b";
       //     export function f(c: [|C|]): void;
       // }
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class C {}
+    // }
+    // declare module "b" {
+    //     export { [|C|] } from "a";
+    // }
+    // declare module "c" {
+    //     import { C } from "b";
+    //     export function f(c: C): void;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+      // declare module "a" {
+      //     export class C {}
+      // }
+      // declare module "b" {
+      //     [|export { C } from "a";|]
+      // }
+      // declare module "c" {
+      //     import { C } from "b";
+      //     export function f(c: C): void;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class C {}
@@ -876,7 +891,7 @@
       //     import { C } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfReExport.ts ===
         // declare module "a" {
         //     export class C {}
@@ -888,34 +903,33 @@
         //     import { C } from "b";
         //     export function f(c: C): void;
         // }
-    === References ===
-      === 0 ===
+// === 2 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class [|C|] {}
+    // }
+    // declare module "b" {
+    //     export { C } from "a";
+    // }
+    // declare module "c" {
+    //     import { C } from "b";
+    //     export function f(c: C): void;
+    // }
+      // === ContextSpan ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
-      //     export class C {}
+      //     [|export class C {}|]
       // }
       // declare module "b" {
-      //     export { [|C|] } from "a";
+      //     export { C } from "a";
       // }
       // declare module "c" {
       //     import { C } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     [|export { C } from "a";|]
-        // }
-        // declare module "c" {
-        //     import { C } from "b";
-        //     export function f(c: C): void;
-        // }
-  },
-  {
-    === Definition ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfReExport.ts ===
       // declare module "a" {
       //     export class [|C|] {}
@@ -927,7 +941,7 @@
       //     import { C } from "b";
       //     export function f(c: C): void;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfReExport.ts ===
         // declare module "a" {
         //     [|export class C {}|]
@@ -939,33 +953,7 @@
         //     import { C } from "b";
         //     export function f(c: C): void;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-      // declare module "a" {
-      //     export class [|C|] {}
-      // }
-      // declare module "b" {
-      //     export { C } from "a";
-      // }
-      // declare module "c" {
-      //     import { C } from "b";
-      //     export function f(c: C): void;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport.ts ===
-        // declare module "a" {
-        //     [|export class C {}|]
-        // }
-        // declare module "b" {
-        //     export { C } from "a";
-        // }
-        // declare module "c" {
-        //     import { C } from "b";
-        //     export function f(c: C): void;
-        // }
-  }
-]
+
 
 [
   {
@@ -1181,42 +1169,29 @@
   }
 ]
 
-=== findRenameLocations ===
-=== RenameOptions ===
+// === findRenameLocations ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfReExport.ts ======*/
-
-declare module "a" {
-    export class [|RENAME|] {}
-}
-declare module "b" {
-    export { RENAME as C/*END SUFFIX*/ } from "a";
-}
-declare module "c" {
-    import { C } from "b";
-    export function f(c: C): void;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfReExport.ts ===
 // declare module "a" {
-//     export class [|C|] {}
+//     export class [|RENAME|] {}
 // }
 // declare module "b" {
-//     export { C } from "a";
+//     export { RENAME as C/*END SUFFIX*/ } from "a";
 // }
 // declare module "c" {
 //     import { C } from "b";
 //     export function f(c: C): void;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfReExport.ts ===
   // declare module "a" {
-  //     [|export class C {}|]
+  //     export class [|C|] {}
   // }
   // declare module "b" {
   //     export { C } from "a";
@@ -1225,30 +1200,42 @@ declare module "c" {
   //     import { C } from "b";
   //     export function f(c: C): void;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfReExport.ts ===
-// declare module "a" {
-//     export class C {}
-// }
-// declare module "b" {
-//     export { [|C|] } from "a";
-// }
-// declare module "c" {
-//     import { C } from "b";
-//     export function f(c: C): void;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     [|export class C {}|]
+    // }
+    // declare module "b" {
+    //     export { C } from "a";
+    // }
+    // declare module "c" {
+    //     import { C } from "b";
+    //     export function f(c: C): void;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameImportOfReExport.ts ===
   // declare module "a" {
   //     export class C {}
   // }
   // declare module "b" {
-  //     [|export { C } from "a";|]
+  //     export { [|C|] } from "a";
   // }
   // declare module "c" {
   //     import { C } from "b";
   //     export function f(c: C): void;
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class C {}
+    // }
+    // declare module "b" {
+    //     [|export { C } from "a";|]
+    // }
+    // declare module "c" {
+    //     import { C } from "b";
+    //     export function f(c: C): void;
+    // }
 
 
 [
@@ -1277,62 +1264,49 @@ declare module "c" {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfReExport.ts ======*/
-
-declare module "a" {
-    export class C {}
-}
-declare module "b" {
-    export { /*START PREFIX*/C as [|RENAME|] } from "a";
-}
-declare module "c" {
-    import { RENAME } from "b";
-    export function f(c: RENAME): void;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfReExport.ts ===
 // declare module "a" {
 //     export class C {}
 // }
 // declare module "b" {
-//     export { [|C|] } from "a";
+//     export { /*START PREFIX*/C as [|RENAME|] } from "a";
 // }
 // declare module "c" {
-//     import { C } from "b";
-//     export function f(c: C): void;
+//     import { RENAME } from "b";
+//     export function f(c: RENAME): void;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfReExport.ts ===
   // declare module "a" {
   //     export class C {}
   // }
   // declare module "b" {
-  //     [|export { C } from "a";|]
+  //     export { [|C|] } from "a";
   // }
   // declare module "c" {
   //     import { C } from "b";
   //     export function f(c: C): void;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfReExport.ts ===
-// declare module "a" {
-//     export class C {}
-// }
-// declare module "b" {
-//     export { C } from "a";
-// }
-// declare module "c" {
-//     import { [|C|] } from "b";
-//     export function f(c: C): void;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class C {}
+    // }
+    // declare module "b" {
+    //     [|export { C } from "a";|]
+    // }
+    // declare module "c" {
+    //     import { C } from "b";
+    //     export function f(c: C): void;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameImportOfReExport.ts ===
   // declare module "a" {
   //     export class C {}
@@ -1341,21 +1315,33 @@ declare module "c" {
   //     export { C } from "a";
   // }
   // declare module "c" {
-  //     [|import { C } from "b";|]
+  //     import { [|C|] } from "b";
   //     export function f(c: C): void;
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameImportOfReExport.ts ===
-// declare module "a" {
-//     export class C {}
-// }
-// declare module "b" {
-//     export { C } from "a";
-// }
-// declare module "c" {
-//     import { C } from "b";
-//     export function f(c: [|C|]): void;
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class C {}
+    // }
+    // declare module "b" {
+    //     export { C } from "a";
+    // }
+    // declare module "c" {
+    //     [|import { C } from "b";|]
+    //     export function f(c: C): void;
+    // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+  // declare module "a" {
+  //     export class C {}
+  // }
+  // declare module "b" {
+  //     export { C } from "a";
+  // }
+  // declare module "c" {
+  //     import { C } from "b";
+  //     export function f(c: [|C|]): void;
+  // }
 
 
 [
@@ -1391,26 +1377,12 @@ declare module "c" {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfReExport.ts ======*/
-
-declare module "a" {
-    export class C {}
-}
-declare module "b" {
-    export { C } from "a";
-}
-declare module "c" {
-    import { /*START PREFIX*/C as [|RENAME|] } from "b";
-    export function f(c: RENAME): void;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfReExport.ts ===
 // declare module "a" {
 //     export class C {}
@@ -1419,10 +1391,11 @@ declare module "c" {
 //     export { C } from "a";
 // }
 // declare module "c" {
-//     import { [|C|] } from "b";
-//     export function f(c: C): void;
+//     import { /*START PREFIX*/C as [|RENAME|] } from "b";
+//     export function f(c: RENAME): void;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfReExport.ts ===
   // declare module "a" {
   //     export class C {}
@@ -1431,21 +1404,33 @@ declare module "c" {
   //     export { C } from "a";
   // }
   // declare module "c" {
-  //     [|import { C } from "b";|]
+  //     import { [|C|] } from "b";
   //     export function f(c: C): void;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfReExport.ts ===
-// declare module "a" {
-//     export class C {}
-// }
-// declare module "b" {
-//     export { C } from "a";
-// }
-// declare module "c" {
-//     import { C } from "b";
-//     export function f(c: [|C|]): void;
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class C {}
+    // }
+    // declare module "b" {
+    //     export { C } from "a";
+    // }
+    // declare module "c" {
+    //     [|import { C } from "b";|]
+    //     export function f(c: C): void;
+    // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+  // declare module "a" {
+  //     export class C {}
+  // }
+  // declare module "b" {
+  //     export { C } from "a";
+  // }
+  // declare module "c" {
+  //     import { C } from "b";
+  //     export function f(c: [|C|]): void;
+  // }
 
 
 [
@@ -1470,26 +1455,12 @@ declare module "c" {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfReExport.ts ======*/
-
-declare module "a" {
-    export class C {}
-}
-declare module "b" {
-    export { C } from "a";
-}
-declare module "c" {
-    import { /*START PREFIX*/C as RENAME } from "b";
-    export function f(c: [|RENAME|]): void;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfReExport.ts ===
 // declare module "a" {
 //     export class C {}
@@ -1498,10 +1469,11 @@ declare module "c" {
 //     export { C } from "a";
 // }
 // declare module "c" {
-//     import { [|C|] } from "b";
-//     export function f(c: C): void;
+//     import { /*START PREFIX*/C as RENAME } from "b";
+//     export function f(c: [|RENAME|]): void;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfReExport.ts ===
   // declare module "a" {
   //     export class C {}
@@ -1510,21 +1482,33 @@ declare module "c" {
   //     export { C } from "a";
   // }
   // declare module "c" {
-  //     [|import { C } from "b";|]
+  //     import { [|C|] } from "b";
   //     export function f(c: C): void;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfReExport.ts ===
-// declare module "a" {
-//     export class C {}
-// }
-// declare module "b" {
-//     export { C } from "a";
-// }
-// declare module "c" {
-//     import { C } from "b";
-//     export function f(c: [|C|]): void;
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+    // declare module "a" {
+    //     export class C {}
+    // }
+    // declare module "b" {
+    //     export { C } from "a";
+    // }
+    // declare module "c" {
+    //     [|import { C } from "b";|]
+    //     export function f(c: C): void;
+    // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameImportOfReExport.ts ===
+  // declare module "a" {
+  //     export class C {}
+  // }
+  // declare module "b" {
+  //     export { C } from "a";
+  // }
+  // declare module "c" {
+  //     import { C } from "b";
+  //     export function f(c: [|C|]): void;
+  // }
 
 
 [

@@ -34,11 +34,24 @@
 //     constructor() { super(); }
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/a.ts ===
+    // export class [|C|] {
+    //     constructor(n: number);
+    //     constructor();
+    //     constructor(n?: number){}
+    //     static f() {
+    //         this.f();
+    //         new this();
+    //     }
+    // }
+    // new C();
+    // const D = C;
+    // new D();
+      // === ContextSpan ===
       // === /tests/cases/fourslash/a.ts ===
-      // export class [|C|] {
+      // [|export class C {
       //     constructor(n: number);
       //     constructor();
       //     constructor(n?: number){}
@@ -46,26 +59,12 @@
       //         this.f();
       //         new this();
       //     }
-      // }
+      // }|]
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|export class C {
-        //     constructor(n: number);
-        //     constructor();
-        //     constructor(n?: number){}
-        //     static f() {
-        //         this.f();
-        //         new this();
-        //     }
-        // }|]
-        // new C();
-        // const D = C;
-        // new D();
-    === References ===
-      === 0 ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     [|constructor|](n: number);
@@ -79,7 +78,7 @@
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // export class C {
         //     [|constructor(n: number);|]
@@ -93,7 +92,7 @@
         // new C();
         // const D = C;
         // new D();
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -107,7 +106,7 @@
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // export class C {
         //     constructor(n: number);
@@ -121,7 +120,7 @@
         // new C();
         // const D = C;
         // new D();
-      === 2 ===
+    // === 2 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -135,7 +134,7 @@
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // export class C {
         //     constructor(n: number);
@@ -149,7 +148,7 @@
         // new C();
         // const D = C;
         // new D();
-      === 3 ===
+    // === 3 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -163,17 +162,17 @@
       // new C();
       // const D = C;
       // new D();
-      === 4 ===
+    // === 4 ===
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.[|C|]();
       // class d extends a.C { constructor() { super(); }
-      === 5 ===
+    // === 5 ===
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.C();
       // class d extends a.C { constructor() { [|super|](); }
-      === 6 ===
+    // === 6 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -187,26 +186,37 @@
       // new [|C|]();
       // const D = C;
       // new D();
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/b.ts ===
+    // import { [|C|] } from "./a";
+    // new C();
+      // === ContextSpan ===
       // === /tests/cases/fourslash/b.ts ===
-      // import { [|C|] } from "./a";
+      // [|import { C } from "./a";|]
       // new C();
-      === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import { C } from "./a";|]
-        // new C();
-    === References ===
-      === 0 ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/b.ts ===
       // import { C } from "./a";
       // new [|C|]();
-  },
-  {
-    === Definition ===
+// === 2 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/c.ts ===
+    // import { [|C|] } from "./a";
+    // class D extends C {
+    //     constructor() {
+    //         super();
+    //         super.method();
+    //     }
+    //     method() { super(); }
+    // }
+    // class E implements C {
+    //     constructor() { super(); }
+    // }
+      // === ContextSpan ===
       // === /tests/cases/fourslash/c.ts ===
-      // import { [|C|] } from "./a";
+      // [|import { C } from "./a";|]
       // class D extends C {
       //     constructor() {
       //         super();
@@ -217,21 +227,8 @@
       // class E implements C {
       //     constructor() { super(); }
       // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|import { C } from "./a";|]
-        // class D extends C {
-        //     constructor() {
-        //         super();
-        //         super.method();
-        //     }
-        //     method() { super(); }
-        // }
-        // class E implements C {
-        //     constructor() { super(); }
-        // }
-    === References ===
-      === 0 ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/c.ts ===
       // import { C } from "./a";
       // class D extends C {
@@ -244,8 +241,7 @@
       // class E implements C {
       //     constructor() { super(); }
       // }
-  }
-]
+
 
 [
   {
@@ -542,11 +538,24 @@
 //     constructor() { super(); }
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/a.ts ===
+    // export class [|C|] {
+    //     constructor(n: number);
+    //     constructor();
+    //     constructor(n?: number){}
+    //     static f() {
+    //         this.f();
+    //         new this();
+    //     }
+    // }
+    // new C();
+    // const D = C;
+    // new D();
+      // === ContextSpan ===
       // === /tests/cases/fourslash/a.ts ===
-      // export class [|C|] {
+      // [|export class C {
       //     constructor(n: number);
       //     constructor();
       //     constructor(n?: number){}
@@ -554,26 +563,12 @@
       //         this.f();
       //         new this();
       //     }
-      // }
+      // }|]
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|export class C {
-        //     constructor(n: number);
-        //     constructor();
-        //     constructor(n?: number){}
-        //     static f() {
-        //         this.f();
-        //         new this();
-        //     }
-        // }|]
-        // new C();
-        // const D = C;
-        // new D();
-    === References ===
-      === 0 ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     [|constructor|](n: number);
@@ -587,7 +582,7 @@
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // export class C {
         //     [|constructor(n: number);|]
@@ -601,7 +596,7 @@
         // new C();
         // const D = C;
         // new D();
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -615,7 +610,7 @@
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // export class C {
         //     constructor(n: number);
@@ -629,7 +624,7 @@
         // new C();
         // const D = C;
         // new D();
-      === 2 ===
+    // === 2 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -643,7 +638,7 @@
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // export class C {
         //     constructor(n: number);
@@ -657,7 +652,7 @@
         // new C();
         // const D = C;
         // new D();
-      === 3 ===
+    // === 3 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -671,17 +666,17 @@
       // new C();
       // const D = C;
       // new D();
-      === 4 ===
+    // === 4 ===
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.[|C|]();
       // class d extends a.C { constructor() { super(); }
-      === 5 ===
+    // === 5 ===
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.C();
       // class d extends a.C { constructor() { [|super|](); }
-      === 6 ===
+    // === 6 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -695,26 +690,37 @@
       // new [|C|]();
       // const D = C;
       // new D();
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/b.ts ===
+    // import { [|C|] } from "./a";
+    // new C();
+      // === ContextSpan ===
       // === /tests/cases/fourslash/b.ts ===
-      // import { [|C|] } from "./a";
+      // [|import { C } from "./a";|]
       // new C();
-      === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import { C } from "./a";|]
-        // new C();
-    === References ===
-      === 0 ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/b.ts ===
       // import { C } from "./a";
       // new [|C|]();
-  },
-  {
-    === Definition ===
+// === 2 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/c.ts ===
+    // import { [|C|] } from "./a";
+    // class D extends C {
+    //     constructor() {
+    //         super();
+    //         super.method();
+    //     }
+    //     method() { super(); }
+    // }
+    // class E implements C {
+    //     constructor() { super(); }
+    // }
+      // === ContextSpan ===
       // === /tests/cases/fourslash/c.ts ===
-      // import { [|C|] } from "./a";
+      // [|import { C } from "./a";|]
       // class D extends C {
       //     constructor() {
       //         super();
@@ -725,21 +731,8 @@
       // class E implements C {
       //     constructor() { super(); }
       // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|import { C } from "./a";|]
-        // class D extends C {
-        //     constructor() {
-        //         super();
-        //         super.method();
-        //     }
-        //     method() { super(); }
-        // }
-        // class E implements C {
-        //     constructor() { super(); }
-        // }
-    === References ===
-      === 0 ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/c.ts ===
       // import { C } from "./a";
       // class D extends C {
@@ -752,8 +745,7 @@
       // class E implements C {
       //     constructor() { super(); }
       // }
-  }
-]
+
 
 [
   {
@@ -1050,11 +1042,24 @@
 //     constructor() { super(); }
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/a.ts ===
+    // export class [|C|] {
+    //     constructor(n: number);
+    //     constructor();
+    //     constructor(n?: number){}
+    //     static f() {
+    //         this.f();
+    //         new this();
+    //     }
+    // }
+    // new C();
+    // const D = C;
+    // new D();
+      // === ContextSpan ===
       // === /tests/cases/fourslash/a.ts ===
-      // export class [|C|] {
+      // [|export class C {
       //     constructor(n: number);
       //     constructor();
       //     constructor(n?: number){}
@@ -1062,26 +1067,12 @@
       //         this.f();
       //         new this();
       //     }
-      // }
+      // }|]
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|export class C {
-        //     constructor(n: number);
-        //     constructor();
-        //     constructor(n?: number){}
-        //     static f() {
-        //         this.f();
-        //         new this();
-        //     }
-        // }|]
-        // new C();
-        // const D = C;
-        // new D();
-    === References ===
-      === 0 ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     [|constructor|](n: number);
@@ -1095,7 +1086,7 @@
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // export class C {
         //     [|constructor(n: number);|]
@@ -1109,7 +1100,7 @@
         // new C();
         // const D = C;
         // new D();
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -1123,7 +1114,7 @@
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // export class C {
         //     constructor(n: number);
@@ -1137,7 +1128,7 @@
         // new C();
         // const D = C;
         // new D();
-      === 2 ===
+    // === 2 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -1151,7 +1142,7 @@
       // new C();
       // const D = C;
       // new D();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // export class C {
         //     constructor(n: number);
@@ -1165,7 +1156,7 @@
         // new C();
         // const D = C;
         // new D();
-      === 3 ===
+    // === 3 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -1179,17 +1170,17 @@
       // new C();
       // const D = C;
       // new D();
-      === 4 ===
+    // === 4 ===
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.[|C|]();
       // class d extends a.C { constructor() { super(); }
-      === 5 ===
+    // === 5 ===
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.C();
       // class d extends a.C { constructor() { [|super|](); }
-      === 6 ===
+    // === 6 ===
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -1203,26 +1194,37 @@
       // new [|C|]();
       // const D = C;
       // new D();
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/b.ts ===
+    // import { [|C|] } from "./a";
+    // new C();
+      // === ContextSpan ===
       // === /tests/cases/fourslash/b.ts ===
-      // import { [|C|] } from "./a";
+      // [|import { C } from "./a";|]
       // new C();
-      === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import { C } from "./a";|]
-        // new C();
-    === References ===
-      === 0 ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/b.ts ===
       // import { C } from "./a";
       // new [|C|]();
-  },
-  {
-    === Definition ===
+// === 2 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/c.ts ===
+    // import { [|C|] } from "./a";
+    // class D extends C {
+    //     constructor() {
+    //         super();
+    //         super.method();
+    //     }
+    //     method() { super(); }
+    // }
+    // class E implements C {
+    //     constructor() { super(); }
+    // }
+      // === ContextSpan ===
       // === /tests/cases/fourslash/c.ts ===
-      // import { [|C|] } from "./a";
+      // [|import { C } from "./a";|]
       // class D extends C {
       //     constructor() {
       //         super();
@@ -1233,21 +1235,8 @@
       // class E implements C {
       //     constructor() { super(); }
       // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|import { C } from "./a";|]
-        // class D extends C {
-        //     constructor() {
-        //         super();
-        //         super.method();
-        //     }
-        //     method() { super(); }
-        // }
-        // class E implements C {
-        //     constructor() { super(); }
-        // }
-    === References ===
-      === 0 ===
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/c.ts ===
       // import { C } from "./a";
       // class D extends C {
@@ -1260,8 +1249,7 @@
       // class E implements C {
       //     constructor() { super(); }
       // }
-  }
-]
+
 
 [
   {

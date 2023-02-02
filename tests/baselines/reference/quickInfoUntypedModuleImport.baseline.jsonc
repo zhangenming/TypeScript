@@ -1,4 +1,4 @@
-=== getDefinitionAtPosition ===
+// === getDefinitionAtPosition ===
 // === /tests/cases/fourslash/node_modules/foo/index.js ===
 // [||]{}
 
@@ -6,9 +6,9 @@
 // import foo from /*GOTO DEF POS*/"foo";
 // foo();
 
-=== 0 ===
-// === /tests/cases/fourslash/node_modules/foo/index.js ===
-// [||]{}
+// === 0 ===
+  // === /tests/cases/fourslash/node_modules/foo/index.js ===
+  // [||]{}
 
 
 [
@@ -30,14 +30,14 @@
 // import /*GOTO DEF POS*/[|foo|] from "foo";
 // foo();
 
-=== 0 ===
-// === /tests/cases/fourslash/a.ts ===
-// import [|foo|] from "foo";
-// foo();
-=== ContextSpan ===
+// === 0 ===
   // === /tests/cases/fourslash/a.ts ===
-  // [|import foo from "foo";|]
+  // import [|foo|] from "foo";
   // foo();
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/a.ts ===
+    // [|import foo from "foo";|]
+    // foo();
 
 
 [
@@ -61,36 +61,34 @@
   }
 ]
 
-=== findAllReferences ===
+// === findAllReferences ===
 // === /tests/cases/fourslash/a.ts ===
 // import /*FIND ALL REFS*/[|foo|] from "foo";
 // [|foo|]();
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/a.ts ===
+    // import [|foo|] from "foo";
+    // foo();
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/a.ts ===
+      // [|import foo from "foo";|]
+      // foo();
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/a.ts ===
       // import [|foo|] from "foo";
       // foo();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // [|import foo from "foo";|]
         // foo();
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/a.ts ===
-      // import [|foo|] from "foo";
-      // foo();
-      === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|import foo from "foo";|]
-        // foo();
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/a.ts ===
       // import foo from "foo";
       // [|foo|]();
-  }
-]
+
 
 [
   {
@@ -154,23 +152,21 @@
 // import foo from /*FIND ALL REFS*/"[|foo|]";
 // foo();
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/a.ts ===
+    // import foo from "[|foo|]";
+    // foo();
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/a.ts ===
       // import foo from "[|foo|]";
       // foo();
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/a.ts ===
-      // import foo from "[|foo|]";
-      // foo();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // [|import foo from "foo";|]
         // foo();
-  }
-]
+
 
 [
   {
@@ -213,31 +209,29 @@
 // import [|foo|] from "foo";
 // /*FIND ALL REFS*/[|foo|]();
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/a.ts ===
+    // import [|foo|] from "foo";
+    // foo();
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/a.ts ===
+      // [|import foo from "foo";|]
+      // foo();
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/a.ts ===
       // import [|foo|] from "foo";
       // foo();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.ts ===
         // [|import foo from "foo";|]
         // foo();
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/a.ts ===
-      // import [|foo|] from "foo";
-      // foo();
-      === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|import foo from "foo";|]
-        // foo();
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/a.ts ===
       // import foo from "foo";
       // [|foo|]();
-  }
-]
+
 
 [
   {

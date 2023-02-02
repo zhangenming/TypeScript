@@ -1,48 +1,30 @@
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringClassProperty.ts ======*/
+// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+// class A {
+//     [|RENAME|]: string;
+// }
+// class B {
+//     syntax1(a: A): void {
+//         let { RENAME: foo/*END SUFFIX*/ } = a;
+//     }
+//     syntax2(a: A): void {
+//         let { RENAME: foo } = a;
+//     }
+//     syntax11(a: A): void {
+//         let { RENAME: foo/*END SUFFIX*/ } = a;
+//         foo = "newString";
+//     }
+// }
 
-class A {
-    [|RENAME|]: string;
-}
-class B {
-    syntax1(a: A): void {
-        let { RENAME: foo/*END SUFFIX*/ } = a;
-    }
-    syntax2(a: A): void {
-        let { RENAME: foo } = a;
-    }
-    syntax11(a: A): void {
-        let { RENAME: foo/*END SUFFIX*/ } = a;
-        foo = "newString";
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
-// class A {
-//     [|foo|]: string;
-// }
-// class B {
-//     syntax1(a: A): void {
-//         let { foo } = a;
-//     }
-//     syntax2(a: A): void {
-//         let { foo: foo } = a;
-//     }
-//     syntax11(a: A): void {
-//         let { foo } = a;
-//         foo = "newString";
-//     }
-// }
-=== ContextSpan ===
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
   // class A {
-  //     [|foo: string;|]
+  //     [|foo|]: string;
   // }
   // class B {
   //     syntax1(a: A): void {
@@ -56,31 +38,31 @@ class B {
   //         foo = "newString";
   //     }
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
-// class A {
-//     foo: string;
-// }
-// class B {
-//     syntax1(a: A): void {
-//         let { [|foo|] } = a;
-//     }
-//     syntax2(a: A): void {
-//         let { foo: foo } = a;
-//     }
-//     syntax11(a: A): void {
-//         let { foo } = a;
-//         foo = "newString";
-//     }
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+    // class A {
+    //     [|foo: string;|]
+    // }
+    // class B {
+    //     syntax1(a: A): void {
+    //         let { foo } = a;
+    //     }
+    //     syntax2(a: A): void {
+    //         let { foo: foo } = a;
+    //     }
+    //     syntax11(a: A): void {
+    //         let { foo } = a;
+    //         foo = "newString";
+    //     }
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
   // class A {
   //     foo: string;
   // }
   // class B {
   //     syntax1(a: A): void {
-  //         [|let { foo } = a;|]
+  //         let { [|foo|] } = a;
   //     }
   //     syntax2(a: A): void {
   //         let { foo: foo } = a;
@@ -90,24 +72,24 @@ class B {
   //         foo = "newString";
   //     }
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
-// class A {
-//     foo: string;
-// }
-// class B {
-//     syntax1(a: A): void {
-//         let { foo } = a;
-//     }
-//     syntax2(a: A): void {
-//         let { [|foo|]: foo } = a;
-//     }
-//     syntax11(a: A): void {
-//         let { foo } = a;
-//         foo = "newString";
-//     }
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+    // class A {
+    //     foo: string;
+    // }
+    // class B {
+    //     syntax1(a: A): void {
+    //         [|let { foo } = a;|]
+    //     }
+    //     syntax2(a: A): void {
+    //         let { foo: foo } = a;
+    //     }
+    //     syntax11(a: A): void {
+    //         let { foo } = a;
+    //         foo = "newString";
+    //     }
+    // }
+// === 2 ===
   // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
   // class A {
   //     foo: string;
@@ -117,31 +99,31 @@ class B {
   //         let { foo } = a;
   //     }
   //     syntax2(a: A): void {
-  //         [|let { foo: foo } = a;|]
+  //         let { [|foo|]: foo } = a;
   //     }
   //     syntax11(a: A): void {
   //         let { foo } = a;
   //         foo = "newString";
   //     }
   // }
-=== 3 ===
-// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
-// class A {
-//     foo: string;
-// }
-// class B {
-//     syntax1(a: A): void {
-//         let { foo } = a;
-//     }
-//     syntax2(a: A): void {
-//         let { foo: foo } = a;
-//     }
-//     syntax11(a: A): void {
-//         let { [|foo|] } = a;
-//         foo = "newString";
-//     }
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+    // class A {
+    //     foo: string;
+    // }
+    // class B {
+    //     syntax1(a: A): void {
+    //         let { foo } = a;
+    //     }
+    //     syntax2(a: A): void {
+    //         [|let { foo: foo } = a;|]
+    //     }
+    //     syntax11(a: A): void {
+    //         let { foo } = a;
+    //         foo = "newString";
+    //     }
+    // }
+// === 3 ===
   // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
   // class A {
   //     foo: string;
@@ -154,10 +136,27 @@ class B {
   //         let { foo: foo } = a;
   //     }
   //     syntax11(a: A): void {
-  //         [|let { foo } = a;|]
+  //         let { [|foo|] } = a;
   //         foo = "newString";
   //     }
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+    // class A {
+    //     foo: string;
+    // }
+    // class B {
+    //     syntax1(a: A): void {
+    //         let { foo } = a;
+    //     }
+    //     syntax2(a: A): void {
+    //         let { foo: foo } = a;
+    //     }
+    //     syntax11(a: A): void {
+    //         [|let { foo } = a;|]
+    //         foo = "newString";
+    //     }
+    // }
 
 
 [
@@ -209,51 +208,33 @@ class B {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringClassProperty.ts ======*/
+// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+// class A {
+//     RENAME: string;
+// }
+// class B {
+//     syntax1(a: A): void {
+//         let { RENAME: foo/*END SUFFIX*/ } = a;
+//     }
+//     syntax2(a: A): void {
+//         let { [|RENAME|]: foo } = a;
+//     }
+//     syntax11(a: A): void {
+//         let { RENAME: foo/*END SUFFIX*/ } = a;
+//         foo = "newString";
+//     }
+// }
 
-class A {
-    RENAME: string;
-}
-class B {
-    syntax1(a: A): void {
-        let { RENAME: foo/*END SUFFIX*/ } = a;
-    }
-    syntax2(a: A): void {
-        let { [|RENAME|]: foo } = a;
-    }
-    syntax11(a: A): void {
-        let { RENAME: foo/*END SUFFIX*/ } = a;
-        foo = "newString";
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
-// class A {
-//     [|foo|]: string;
-// }
-// class B {
-//     syntax1(a: A): void {
-//         let { foo } = a;
-//     }
-//     syntax2(a: A): void {
-//         let { foo: foo } = a;
-//     }
-//     syntax11(a: A): void {
-//         let { foo } = a;
-//         foo = "newString";
-//     }
-// }
-=== ContextSpan ===
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
   // class A {
-  //     [|foo: string;|]
+  //     [|foo|]: string;
   // }
   // class B {
   //     syntax1(a: A): void {
@@ -267,31 +248,31 @@ class B {
   //         foo = "newString";
   //     }
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
-// class A {
-//     foo: string;
-// }
-// class B {
-//     syntax1(a: A): void {
-//         let { [|foo|] } = a;
-//     }
-//     syntax2(a: A): void {
-//         let { foo: foo } = a;
-//     }
-//     syntax11(a: A): void {
-//         let { foo } = a;
-//         foo = "newString";
-//     }
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+    // class A {
+    //     [|foo: string;|]
+    // }
+    // class B {
+    //     syntax1(a: A): void {
+    //         let { foo } = a;
+    //     }
+    //     syntax2(a: A): void {
+    //         let { foo: foo } = a;
+    //     }
+    //     syntax11(a: A): void {
+    //         let { foo } = a;
+    //         foo = "newString";
+    //     }
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
   // class A {
   //     foo: string;
   // }
   // class B {
   //     syntax1(a: A): void {
-  //         [|let { foo } = a;|]
+  //         let { [|foo|] } = a;
   //     }
   //     syntax2(a: A): void {
   //         let { foo: foo } = a;
@@ -301,24 +282,24 @@ class B {
   //         foo = "newString";
   //     }
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
-// class A {
-//     foo: string;
-// }
-// class B {
-//     syntax1(a: A): void {
-//         let { foo } = a;
-//     }
-//     syntax2(a: A): void {
-//         let { [|foo|]: foo } = a;
-//     }
-//     syntax11(a: A): void {
-//         let { foo } = a;
-//         foo = "newString";
-//     }
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+    // class A {
+    //     foo: string;
+    // }
+    // class B {
+    //     syntax1(a: A): void {
+    //         [|let { foo } = a;|]
+    //     }
+    //     syntax2(a: A): void {
+    //         let { foo: foo } = a;
+    //     }
+    //     syntax11(a: A): void {
+    //         let { foo } = a;
+    //         foo = "newString";
+    //     }
+    // }
+// === 2 ===
   // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
   // class A {
   //     foo: string;
@@ -328,31 +309,31 @@ class B {
   //         let { foo } = a;
   //     }
   //     syntax2(a: A): void {
-  //         [|let { foo: foo } = a;|]
+  //         let { [|foo|]: foo } = a;
   //     }
   //     syntax11(a: A): void {
   //         let { foo } = a;
   //         foo = "newString";
   //     }
   // }
-=== 3 ===
-// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
-// class A {
-//     foo: string;
-// }
-// class B {
-//     syntax1(a: A): void {
-//         let { foo } = a;
-//     }
-//     syntax2(a: A): void {
-//         let { foo: foo } = a;
-//     }
-//     syntax11(a: A): void {
-//         let { [|foo|] } = a;
-//         foo = "newString";
-//     }
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+    // class A {
+    //     foo: string;
+    // }
+    // class B {
+    //     syntax1(a: A): void {
+    //         let { foo } = a;
+    //     }
+    //     syntax2(a: A): void {
+    //         [|let { foo: foo } = a;|]
+    //     }
+    //     syntax11(a: A): void {
+    //         let { foo } = a;
+    //         foo = "newString";
+    //     }
+    // }
+// === 3 ===
   // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
   // class A {
   //     foo: string;
@@ -365,10 +346,27 @@ class B {
   //         let { foo: foo } = a;
   //     }
   //     syntax11(a: A): void {
-  //         [|let { foo } = a;|]
+  //         let { [|foo|] } = a;
   //         foo = "newString";
   //     }
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+    // class A {
+    //     foo: string;
+    // }
+    // class B {
+    //     syntax1(a: A): void {
+    //         let { foo } = a;
+    //     }
+    //     syntax2(a: A): void {
+    //         let { foo: foo } = a;
+    //     }
+    //     syntax11(a: A): void {
+    //         [|let { foo } = a;|]
+    //         foo = "newString";
+    //     }
+    // }
 
 
 [
@@ -420,38 +418,19 @@ class B {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringClassProperty.ts ======*/
-
-class A {
-    foo: string;
-}
-class B {
-    syntax1(a: A): void {
-        let { /*START PREFIX*/foo: [|RENAME|] } = a;
-    }
-    syntax2(a: A): void {
-        let { foo: foo } = a;
-    }
-    syntax11(a: A): void {
-        let { foo } = a;
-        foo = "newString";
-    }
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
 // class A {
 //     foo: string;
 // }
 // class B {
 //     syntax1(a: A): void {
-//         let { [|foo|] } = a;
+//         let { /*START PREFIX*/foo: [|RENAME|] } = a;
 //     }
 //     syntax2(a: A): void {
 //         let { foo: foo } = a;
@@ -461,14 +440,15 @@ class B {
 //         foo = "newString";
 //     }
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
   // class A {
   //     foo: string;
   // }
   // class B {
   //     syntax1(a: A): void {
-  //         [|let { foo } = a;|]
+  //         let { [|foo|] } = a;
   //     }
   //     syntax2(a: A): void {
   //         let { foo: foo } = a;
@@ -478,6 +458,23 @@ class B {
   //         foo = "newString";
   //     }
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+    // class A {
+    //     foo: string;
+    // }
+    // class B {
+    //     syntax1(a: A): void {
+    //         [|let { foo } = a;|]
+    //     }
+    //     syntax2(a: A): void {
+    //         let { foo: foo } = a;
+    //     }
+    //     syntax11(a: A): void {
+    //         let { foo } = a;
+    //         foo = "newString";
+    //     }
+    // }
 
 
 [
@@ -495,31 +492,12 @@ class B {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringClassProperty.ts ======*/
-
-class A {
-    foo: string;
-}
-class B {
-    syntax1(a: A): void {
-        let { foo } = a;
-    }
-    syntax2(a: A): void {
-        let { foo: foo } = a;
-    }
-    syntax11(a: A): void {
-        let { /*START PREFIX*/foo: [|RENAME|] } = a;
-        RENAME = "newString";
-    }
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
 // class A {
 //     foo: string;
@@ -532,11 +510,12 @@ class B {
 //         let { foo: foo } = a;
 //     }
 //     syntax11(a: A): void {
-//         let { [|foo|] } = a;
-//         foo = "newString";
+//         let { /*START PREFIX*/foo: [|RENAME|] } = a;
+//         RENAME = "newString";
 //     }
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
   // class A {
   //     foo: string;
@@ -549,27 +528,44 @@ class B {
   //         let { foo: foo } = a;
   //     }
   //     syntax11(a: A): void {
-  //         [|let { foo } = a;|]
+  //         let { [|foo|] } = a;
   //         foo = "newString";
   //     }
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
-// class A {
-//     foo: string;
-// }
-// class B {
-//     syntax1(a: A): void {
-//         let { foo } = a;
-//     }
-//     syntax2(a: A): void {
-//         let { foo: foo } = a;
-//     }
-//     syntax11(a: A): void {
-//         let { foo } = a;
-//         [|foo|] = "newString";
-//     }
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+    // class A {
+    //     foo: string;
+    // }
+    // class B {
+    //     syntax1(a: A): void {
+    //         let { foo } = a;
+    //     }
+    //     syntax2(a: A): void {
+    //         let { foo: foo } = a;
+    //     }
+    //     syntax11(a: A): void {
+    //         [|let { foo } = a;|]
+    //         foo = "newString";
+    //     }
+    // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+  // class A {
+  //     foo: string;
+  // }
+  // class B {
+  //     syntax1(a: A): void {
+  //         let { foo } = a;
+  //     }
+  //     syntax2(a: A): void {
+  //         let { foo: foo } = a;
+  //     }
+  //     syntax11(a: A): void {
+  //         let { foo } = a;
+  //         [|foo|] = "newString";
+  //     }
+  // }
 
 
 [
@@ -594,31 +590,12 @@ class B {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringClassProperty.ts ======*/
-
-class A {
-    foo: string;
-}
-class B {
-    syntax1(a: A): void {
-        let { foo } = a;
-    }
-    syntax2(a: A): void {
-        let { foo: foo } = a;
-    }
-    syntax11(a: A): void {
-        let { /*START PREFIX*/foo: RENAME } = a;
-        [|RENAME|] = "newString";
-    }
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
 // class A {
 //     foo: string;
@@ -631,11 +608,12 @@ class B {
 //         let { foo: foo } = a;
 //     }
 //     syntax11(a: A): void {
-//         let { [|foo|] } = a;
-//         foo = "newString";
+//         let { /*START PREFIX*/foo: RENAME } = a;
+//         [|RENAME|] = "newString";
 //     }
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
   // class A {
   //     foo: string;
@@ -648,27 +626,44 @@ class B {
   //         let { foo: foo } = a;
   //     }
   //     syntax11(a: A): void {
-  //         [|let { foo } = a;|]
+  //         let { [|foo|] } = a;
   //         foo = "newString";
   //     }
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
-// class A {
-//     foo: string;
-// }
-// class B {
-//     syntax1(a: A): void {
-//         let { foo } = a;
-//     }
-//     syntax2(a: A): void {
-//         let { foo: foo } = a;
-//     }
-//     syntax11(a: A): void {
-//         let { foo } = a;
-//         [|foo|] = "newString";
-//     }
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+    // class A {
+    //     foo: string;
+    // }
+    // class B {
+    //     syntax1(a: A): void {
+    //         let { foo } = a;
+    //     }
+    //     syntax2(a: A): void {
+    //         let { foo: foo } = a;
+    //     }
+    //     syntax11(a: A): void {
+    //         [|let { foo } = a;|]
+    //         foo = "newString";
+    //     }
+    // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameDestructuringClassProperty.ts ===
+  // class A {
+  //     foo: string;
+  // }
+  // class B {
+  //     syntax1(a: A): void {
+  //         let { foo } = a;
+  //     }
+  //     syntax2(a: A): void {
+  //         let { foo: foo } = a;
+  //     }
+  //     syntax11(a: A): void {
+  //         let { foo } = a;
+  //         [|foo|] = "newString";
+  //     }
+  // }
 
 
 [

@@ -4,44 +4,41 @@
 // === /a.ts ===
 // export function /*FIND ALL REFS*/[|foo|](): void {}
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // export function [|foo|](): void {}
+      // === ContextSpan ===
+      // === /a.ts ===
+      // [|export function foo(): void {}|]
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // export function [|foo|](): void {}
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // [|export function foo(): void {}|]
-    === References ===
-      === 0 ===
-      // === /a.ts ===
-      // export function [|foo|](): void {}
-      === ContextSpan ===
-        // === /a.ts ===
-        // [|export function foo(): void {}|]
-      === 1 ===
+    // === 1 ===
       // === /b.ts ===
       // import { [|foo|] as oof } from "./a";
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|import { foo as oof } from "./a";|]
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /b.ts ===
+    // import { foo as [|oof|] } from "./a";
+      // === ContextSpan ===
+      // === /b.ts ===
+      // [|import { foo as oof } from "./a";|]
+  // === References ===
+    // === 0 ===
       // === /b.ts ===
       // import { foo as [|oof|] } from "./a";
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|import { foo as oof } from "./a";|]
-    === References ===
-      === 0 ===
-      // === /b.ts ===
-      // import { foo as [|oof|] } from "./a";
-      === ContextSpan ===
-        // === /b.ts ===
-        // [|import { foo as oof } from "./a";|]
-  }
-]
+
 
 [
   {

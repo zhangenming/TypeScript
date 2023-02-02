@@ -1,42 +1,27 @@
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ======*/
-
-interface I {
-    [|RENAME|]: number;
-    property2: string;
-}
-var elems: I[];
-
-var p2: number, property1: number;
-for ({ RENAME: property1/*END SUFFIX*/ } = elems[0]; p2 < 100; p2++) {
-   p2 = property1++;
-}
-for ({ RENAME: p2 } = elems[0]; p2 < 100; p2++) {
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
 // interface I {
-//     [|property1|]: number;
+//     [|RENAME|]: number;
 //     property2: string;
 // }
 // var elems: I[];
 // 
 // var p2: number, property1: number;
-// for ({ property1 } = elems[0]; p2 < 100; p2++) {
+// for ({ RENAME: property1/*END SUFFIX*/ } = elems[0]; p2 < 100; p2++) {
 //    p2 = property1++;
 // }
-// for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+// for ({ RENAME: p2 } = elems[0]; p2 < 100; p2++) {
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
-  //     [|property1: number;|]
+  //     [|property1|]: number;
   //     property2: string;
   // }
   // var elems: I[];
@@ -47,21 +32,21 @@ for ({ RENAME: p2 } = elems[0]; p2 < 100; p2++) {
   // }
   // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
-// interface I {
-//     property1: number;
-//     property2: string;
-// }
-// var elems: I[];
-// 
-// var p2: number, property1: number;
-// for ({ [|property1|] } = elems[0]; p2 < 100; p2++) {
-//    p2 = property1++;
-// }
-// for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     [|property1: number;|]
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, property1: number;
+    // for ({ property1 } = elems[0]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
   //     property1: number;
@@ -70,26 +55,26 @@ for ({ RENAME: p2 } = elems[0]; p2 < 100; p2++) {
   // var elems: I[];
   // 
   // var p2: number, property1: number;
-  // for ([|{ property1 } = elems[0]|]; p2 < 100; p2++) {
+  // for ({ [|property1|] } = elems[0]; p2 < 100; p2++) {
   //    p2 = property1++;
   // }
   // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
-// interface I {
-//     property1: number;
-//     property2: string;
-// }
-// var elems: I[];
-// 
-// var p2: number, property1: number;
-// for ({ property1 } = elems[0]; p2 < 100; p2++) {
-//    p2 = property1++;
-// }
-// for ({ [|property1|]: p2 } = elems[0]; p2 < 100; p2++) {
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     property1: number;
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, property1: number;
+    // for ([|{ property1 } = elems[0]|]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+    // }
+// === 2 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
   //     property1: number;
@@ -101,8 +86,22 @@ for ({ RENAME: p2 } = elems[0]; p2 < 100; p2++) {
   // for ({ property1 } = elems[0]; p2 < 100; p2++) {
   //    p2 = property1++;
   // }
-  // for ([|{ property1: p2 } = elems[0]|]; p2 < 100; p2++) {
+  // for ({ [|property1|]: p2 } = elems[0]; p2 < 100; p2++) {
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     property1: number;
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, property1: number;
+    // for ({ property1 } = elems[0]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ([|{ property1: p2 } = elems[0]|]; p2 < 100; p2++) {
+    // }
 
 
 [
@@ -142,45 +141,30 @@ for ({ RENAME: p2 } = elems[0]; p2 < 100; p2++) {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ======*/
-
-interface I {
-    RENAME: number;
-    property2: string;
-}
-var elems: I[];
-
-var p2: number, property1: number;
-for ({ RENAME: property1/*END SUFFIX*/ } = elems[0]; p2 < 100; p2++) {
-   p2 = property1++;
-}
-for ({ [|RENAME|]: p2 } = elems[0]; p2 < 100; p2++) {
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
 // interface I {
-//     [|property1|]: number;
+//     RENAME: number;
 //     property2: string;
 // }
 // var elems: I[];
 // 
 // var p2: number, property1: number;
-// for ({ property1 } = elems[0]; p2 < 100; p2++) {
+// for ({ RENAME: property1/*END SUFFIX*/ } = elems[0]; p2 < 100; p2++) {
 //    p2 = property1++;
 // }
-// for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+// for ({ [|RENAME|]: p2 } = elems[0]; p2 < 100; p2++) {
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
-  //     [|property1: number;|]
+  //     [|property1|]: number;
   //     property2: string;
   // }
   // var elems: I[];
@@ -191,21 +175,21 @@ for ({ [|RENAME|]: p2 } = elems[0]; p2 < 100; p2++) {
   // }
   // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
-// interface I {
-//     property1: number;
-//     property2: string;
-// }
-// var elems: I[];
-// 
-// var p2: number, property1: number;
-// for ({ [|property1|] } = elems[0]; p2 < 100; p2++) {
-//    p2 = property1++;
-// }
-// for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     [|property1: number;|]
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, property1: number;
+    // for ({ property1 } = elems[0]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
   //     property1: number;
@@ -214,26 +198,26 @@ for ({ [|RENAME|]: p2 } = elems[0]; p2 < 100; p2++) {
   // var elems: I[];
   // 
   // var p2: number, property1: number;
-  // for ([|{ property1 } = elems[0]|]; p2 < 100; p2++) {
+  // for ({ [|property1|] } = elems[0]; p2 < 100; p2++) {
   //    p2 = property1++;
   // }
   // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
-// interface I {
-//     property1: number;
-//     property2: string;
-// }
-// var elems: I[];
-// 
-// var p2: number, property1: number;
-// for ({ property1 } = elems[0]; p2 < 100; p2++) {
-//    p2 = property1++;
-// }
-// for ({ [|property1|]: p2 } = elems[0]; p2 < 100; p2++) {
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     property1: number;
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, property1: number;
+    // for ([|{ property1 } = elems[0]|]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+    // }
+// === 2 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
   //     property1: number;
@@ -245,8 +229,22 @@ for ({ [|RENAME|]: p2 } = elems[0]; p2 < 100; p2++) {
   // for ({ property1 } = elems[0]; p2 < 100; p2++) {
   //    p2 = property1++;
   // }
-  // for ([|{ property1: p2 } = elems[0]|]; p2 < 100; p2++) {
+  // for ({ [|property1|]: p2 } = elems[0]; p2 < 100; p2++) {
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     property1: number;
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, property1: number;
+    // for ({ property1 } = elems[0]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ([|{ property1: p2 } = elems[0]|]; p2 < 100; p2++) {
+    // }
 
 
 [
@@ -286,28 +284,12 @@ for ({ [|RENAME|]: p2 } = elems[0]; p2 < 100; p2++) {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ======*/
-
-interface I {
-    property1: number;
-    property2: string;
-}
-var elems: I[];
-
-var p2: number, [|RENAME|]: number;
-for ({ /*START PREFIX*/property1: RENAME } = elems[0]; p2 < 100; p2++) {
-   p2 = RENAME++;
-}
-for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
 // interface I {
 //     property1: number;
@@ -315,13 +297,14 @@ for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
 // }
 // var elems: I[];
 // 
-// var p2: number, [|property1|]: number;
-// for ({ property1 } = elems[0]; p2 < 100; p2++) {
-//    p2 = property1++;
+// var p2: number, [|RENAME|]: number;
+// for ({ /*START PREFIX*/property1: RENAME } = elems[0]; p2 < 100; p2++) {
+//    p2 = RENAME++;
 // }
 // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
   //     property1: number;
@@ -329,27 +312,27 @@ for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
   // var elems: I[];
   // 
-  // var p2: number, [|property1: number|];
+  // var p2: number, [|property1|]: number;
   // for ({ property1 } = elems[0]; p2 < 100; p2++) {
   //    p2 = property1++;
   // }
   // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
-// interface I {
-//     property1: number;
-//     property2: string;
-// }
-// var elems: I[];
-// 
-// var p2: number, property1: number;
-// for ({ [|property1|] } = elems[0]; p2 < 100; p2++) {
-//    p2 = property1++;
-// }
-// for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     property1: number;
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, [|property1: number|];
+    // for ({ property1 } = elems[0]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
   //     property1: number;
@@ -358,25 +341,39 @@ for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // var elems: I[];
   // 
   // var p2: number, property1: number;
-  // for ([|{ property1 } = elems[0]|]; p2 < 100; p2++) {
+  // for ({ [|property1|] } = elems[0]; p2 < 100; p2++) {
   //    p2 = property1++;
   // }
   // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
-// interface I {
-//     property1: number;
-//     property2: string;
-// }
-// var elems: I[];
-// 
-// var p2: number, property1: number;
-// for ({ property1 } = elems[0]; p2 < 100; p2++) {
-//    p2 = [|property1|]++;
-// }
-// for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     property1: number;
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, property1: number;
+    // for ([|{ property1 } = elems[0]|]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+    // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var p2: number, property1: number;
+  // for ({ property1 } = elems[0]; p2 < 100; p2++) {
+  //    p2 = [|property1|]++;
+  // }
+  // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+  // }
 
 
 [
@@ -412,28 +409,12 @@ for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ======*/
-
-interface I {
-    property1: number;
-    property2: string;
-}
-var elems: I[];
-
-var p2: number, RENAME: number;
-for ({ /*START PREFIX*/property1: [|RENAME|] } = elems[0]; p2 < 100; p2++) {
-   p2 = RENAME++;
-}
-for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
 // interface I {
 //     property1: number;
@@ -441,13 +422,14 @@ for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
 // }
 // var elems: I[];
 // 
-// var p2: number, [|property1|]: number;
-// for ({ property1 } = elems[0]; p2 < 100; p2++) {
-//    p2 = property1++;
+// var p2: number, RENAME: number;
+// for ({ /*START PREFIX*/property1: [|RENAME|] } = elems[0]; p2 < 100; p2++) {
+//    p2 = RENAME++;
 // }
 // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
   //     property1: number;
@@ -455,27 +437,27 @@ for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
   // var elems: I[];
   // 
-  // var p2: number, [|property1: number|];
+  // var p2: number, [|property1|]: number;
   // for ({ property1 } = elems[0]; p2 < 100; p2++) {
   //    p2 = property1++;
   // }
   // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
-// interface I {
-//     property1: number;
-//     property2: string;
-// }
-// var elems: I[];
-// 
-// var p2: number, property1: number;
-// for ({ [|property1|] } = elems[0]; p2 < 100; p2++) {
-//    p2 = property1++;
-// }
-// for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     property1: number;
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, [|property1: number|];
+    // for ({ property1 } = elems[0]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
   //     property1: number;
@@ -484,25 +466,39 @@ for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // var elems: I[];
   // 
   // var p2: number, property1: number;
-  // for ([|{ property1 } = elems[0]|]; p2 < 100; p2++) {
+  // for ({ [|property1|] } = elems[0]; p2 < 100; p2++) {
   //    p2 = property1++;
   // }
   // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
-// interface I {
-//     property1: number;
-//     property2: string;
-// }
-// var elems: I[];
-// 
-// var p2: number, property1: number;
-// for ({ property1 } = elems[0]; p2 < 100; p2++) {
-//    p2 = [|property1|]++;
-// }
-// for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     property1: number;
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, property1: number;
+    // for ([|{ property1 } = elems[0]|]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+    // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var p2: number, property1: number;
+  // for ({ property1 } = elems[0]; p2 < 100; p2++) {
+  //    p2 = [|property1|]++;
+  // }
+  // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+  // }
 
 
 [
@@ -538,28 +534,12 @@ for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ======*/
-
-interface I {
-    property1: number;
-    property2: string;
-}
-var elems: I[];
-
-var p2: number, RENAME: number;
-for ({ /*START PREFIX*/property1: RENAME } = elems[0]; p2 < 100; p2++) {
-   p2 = [|RENAME|]++;
-}
-for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
 // interface I {
 //     property1: number;
@@ -567,13 +547,14 @@ for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
 // }
 // var elems: I[];
 // 
-// var p2: number, [|property1|]: number;
-// for ({ property1 } = elems[0]; p2 < 100; p2++) {
-//    p2 = property1++;
+// var p2: number, RENAME: number;
+// for ({ /*START PREFIX*/property1: RENAME } = elems[0]; p2 < 100; p2++) {
+//    p2 = [|RENAME|]++;
 // }
 // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
   //     property1: number;
@@ -581,27 +562,27 @@ for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
   // var elems: I[];
   // 
-  // var p2: number, [|property1: number|];
+  // var p2: number, [|property1|]: number;
   // for ({ property1 } = elems[0]; p2 < 100; p2++) {
   //    p2 = property1++;
   // }
   // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
-// interface I {
-//     property1: number;
-//     property2: string;
-// }
-// var elems: I[];
-// 
-// var p2: number, property1: number;
-// for ({ [|property1|] } = elems[0]; p2 < 100; p2++) {
-//    p2 = property1++;
-// }
-// for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     property1: number;
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, [|property1: number|];
+    // for ({ property1 } = elems[0]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
   // interface I {
   //     property1: number;
@@ -610,25 +591,39 @@ for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // var elems: I[];
   // 
   // var p2: number, property1: number;
-  // for ([|{ property1 } = elems[0]|]; p2 < 100; p2++) {
+  // for ({ [|property1|] } = elems[0]; p2 < 100; p2++) {
   //    p2 = property1++;
   // }
   // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
-// interface I {
-//     property1: number;
-//     property2: string;
-// }
-// var elems: I[];
-// 
-// var p2: number, property1: number;
-// for ({ property1 } = elems[0]; p2 < 100; p2++) {
-//    p2 = [|property1|]++;
-// }
-// for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+    // interface I {
+    //     property1: number;
+    //     property2: string;
+    // }
+    // var elems: I[];
+    // 
+    // var p2: number, property1: number;
+    // for ([|{ property1 } = elems[0]|]; p2 < 100; p2++) {
+    //    p2 = property1++;
+    // }
+    // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+    // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameDestructuringAssignmentInFor.ts ===
+  // interface I {
+  //     property1: number;
+  //     property2: string;
+  // }
+  // var elems: I[];
+  // 
+  // var p2: number, property1: number;
+  // for ({ property1 } = elems[0]; p2 < 100; p2++) {
+  //    p2 = [|property1|]++;
+  // }
+  // for ({ property1: p2 } = elems[0]; p2 < 100; p2++) {
+  // }
 
 
 [

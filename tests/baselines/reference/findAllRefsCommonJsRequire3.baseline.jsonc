@@ -6,54 +6,51 @@
 // function [|f|]() { }
 // module.exports = { [|f|] }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /b.js ===
+    // const { [|f|] } = require('./a')
+    // f
+      // === ContextSpan ===
+      // === /b.js ===
+      // [|const { f } = require('./a')|]
+      // f
+  // === References ===
+    // === 0 ===
       // === /b.js ===
       // const { [|f|] } = require('./a')
       // f
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.js ===
         // [|const { f } = require('./a')|]
         // f
-    === References ===
-      === 0 ===
-      // === /b.js ===
-      // const { [|f|] } = require('./a')
-      // f
-      === ContextSpan ===
-        // === /b.js ===
-        // [|const { f } = require('./a')|]
-        // f
-      === 1 ===
+    // === 1 ===
       // === /b.js ===
       // const { f } = require('./a')
       // [|f|]
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /a.js ===
+    // function [|f|]() { }
+    // module.exports = { f }
+      // === ContextSpan ===
+      // === /a.js ===
+      // [|function f() { }|]
+      // module.exports = { f }
+  // === References ===
+    // === 0 ===
       // === /a.js ===
       // function [|f|]() { }
       // module.exports = { f }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.js ===
         // [|function f() { }|]
         // module.exports = { f }
-    === References ===
-      === 0 ===
-      // === /a.js ===
-      // function [|f|]() { }
-      // module.exports = { f }
-      === ContextSpan ===
-        // === /a.js ===
-        // [|function f() { }|]
-        // module.exports = { f }
-      === 1 ===
+    // === 1 ===
       // === /a.js ===
       // function f() { }
       // module.exports = { [|f|] }
-  }
-]
+
 
 [
   {

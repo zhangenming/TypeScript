@@ -6,58 +6,55 @@
 // import x = require("./f");
 // x.[|foo|](1, 2);
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/f.ts ===
+    // export { foo as foo }
+    // function [|foo|](a: number, b: number) { }
+      // === ContextSpan ===
       // === /tests/cases/fourslash/f.ts ===
       // export { foo as foo }
-      // function [|foo|](a: number, b: number) { }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/f.ts ===
-        // export { foo as foo }
-        // [|function foo(a: number, b: number) { }|]
-    === References ===
-      === 0 ===
+      // [|function foo(a: number, b: number) { }|]
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/f.ts ===
       // export { [|foo|] as foo }
       // function foo(a: number, b: number) { }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/f.ts ===
         // [|export { foo as foo }|]
         // function foo(a: number, b: number) { }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/f.ts ===
       // export { foo as foo }
       // function [|foo|](a: number, b: number) { }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/f.ts ===
         // export { foo as foo }
         // [|function foo(a: number, b: number) { }|]
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/f.ts ===
+    // export { foo as [|foo|] }
+    // function foo(a: number, b: number) { }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/f.ts ===
+      // [|export { foo as foo }|]
+      // function foo(a: number, b: number) { }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/f.ts ===
       // export { foo as [|foo|] }
       // function foo(a: number, b: number) { }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/f.ts ===
         // [|export { foo as foo }|]
         // function foo(a: number, b: number) { }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/f.ts ===
-      // export { foo as [|foo|] }
-      // function foo(a: number, b: number) { }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/f.ts ===
-        // [|export { foo as foo }|]
-        // function foo(a: number, b: number) { }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/b.ts ===
       // import x = require("./f");
       // x.[|foo|](1, 2);
-  }
-]
+
 
 [
   {

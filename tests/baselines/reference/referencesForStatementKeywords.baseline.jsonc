@@ -24,9 +24,61 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import [|A|] = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // [|import A = require("./a");|]
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import [|A|] = require("./a");
@@ -52,7 +104,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // [|import A = require("./a");|]
@@ -78,61 +130,7 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import [|A|] = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // [|import A = require("./a");|]
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -237,13 +235,12 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /a.ts ===
-      // [|export const a = 1;|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // [|export const a = 1;|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("[|./a|]");
@@ -269,7 +266,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // [|import A = require("./a");|]
@@ -295,8 +292,7 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -368,9 +364,61 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import [|N2|] = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // [|import N2 = N;|]
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -396,7 +444,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -422,61 +470,7 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import [|N2|] = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // [|import N2 = N;|]
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -604,9 +598,61 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type [|B|] from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // [|import type B from "./b";|]
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -632,7 +678,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -658,76 +704,21 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type [|B|] from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // [|import type B from "./b";|]
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /b.ts ===
+    // export default class [|B|] {}
+      // === ContextSpan ===
+      // === /b.ts ===
+      // [|export default class B {}|]
+  // === References ===
+    // === 0 ===
       // === /b.ts ===
       // export default class [|B|] {}
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|export default class B {}|]
-    === References ===
-      === 0 ===
-      // === /b.ts ===
-      // export default class [|B|] {}
-      === ContextSpan ===
-        // === /b.ts ===
-        // [|export default class B {}|]
-  }
-]
+
 
 [
   {
@@ -885,9 +876,61 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type [|B|] from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // [|import type B from "./b";|]
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -913,7 +956,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -939,76 +982,21 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type [|B|] from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // [|import type B from "./b";|]
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /b.ts ===
+    // export default class [|B|] {}
+      // === ContextSpan ===
+      // === /b.ts ===
+      // [|export default class B {}|]
+  // === References ===
+    // === 0 ===
       // === /b.ts ===
       // export default class [|B|] {}
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|export default class B {}|]
-    === References ===
-      === 0 ===
-      // === /b.ts ===
-      // export default class [|B|] {}
-      === ContextSpan ===
-        // === /b.ts ===
-        // [|export default class B {}|]
-  }
-]
+
 
 [
   {
@@ -1163,13 +1151,12 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /b.ts ===
-      // [|export default class B {}|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /b.ts ===
+    // [|export default class B {}|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -1195,7 +1182,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -1221,8 +1208,7 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -1294,9 +1280,61 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as [|C|] from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // [|import type * as C from "./c";|]
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -1322,7 +1360,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -1348,61 +1386,7 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as [|C|] from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // [|import type * as C from "./c";|]
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -1479,9 +1463,61 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as [|C|] from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // [|import type * as C from "./c";|]
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -1507,7 +1543,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -1533,61 +1569,7 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as [|C|] from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // [|import type * as C from "./c";|]
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -1664,9 +1646,61 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as [|C|] from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // [|import type * as C from "./c";|]
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -1692,7 +1726,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -1718,61 +1752,7 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as [|C|] from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // [|import type * as C from "./c";|]
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -1849,13 +1829,12 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /c.ts ===
-      // [|export const c = 1;|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /c.ts ===
+    // [|export const c = 1;|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -1881,7 +1860,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -1907,8 +1886,7 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -1983,9 +1961,61 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { [|D|] } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // [|import type { D } from "./d";|]
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -2011,7 +2041,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -2037,76 +2067,21 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { [|D|] } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // [|import type { D } from "./d";|]
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /d.ts ===
+    // export class [|D|] {}
+      // === ContextSpan ===
+      // === /d.ts ===
+      // [|export class D {}|]
+  // === References ===
+    // === 0 ===
       // === /d.ts ===
       // export class [|D|] {}
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /d.ts ===
         // [|export class D {}|]
-    === References ===
-      === 0 ===
-      // === /d.ts ===
-      // export class [|D|] {}
-      === ContextSpan ===
-        // === /d.ts ===
-        // [|export class D {}|]
-  }
-]
+
 
 [
   {
@@ -2264,9 +2239,61 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { [|D|] } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // [|import type { D } from "./d";|]
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -2292,7 +2319,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -2318,76 +2345,21 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { [|D|] } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // [|import type { D } from "./d";|]
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /d.ts ===
+    // export class [|D|] {}
+      // === ContextSpan ===
+      // === /d.ts ===
+      // [|export class D {}|]
+  // === References ===
+    // === 0 ===
       // === /d.ts ===
       // export class [|D|] {}
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /d.ts ===
         // [|export class D {}|]
-    === References ===
-      === 0 ===
-      // === /d.ts ===
-      // export class [|D|] {}
-      === ContextSpan ===
-        // === /d.ts ===
-        // [|export class D {}|]
-  }
-]
+
 
 [
   {
@@ -2542,13 +2514,12 @@
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /d.ts ===
-      // [|export class D {}|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /d.ts ===
+    // [|export class D {}|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -2574,7 +2545,7 @@
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -2600,8 +2571,7 @@
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -2729,14 +2699,13 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /e.ts ===
-      // [|export const e1 = 1;
-      // export const e2 = 2;|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /e.ts ===
+    // [|export const e1 = 1;
+    // export const e2 = 2;|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -2762,7 +2731,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -2788,8 +2757,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -2861,9 +2829,61 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as [|e3|] } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // [|import type { e1, e2 as e3 } from "./e";|]
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -2889,7 +2909,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -2915,61 +2935,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as [|e3|] } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // [|import type { e1, e2 as e3 } from "./e";|]
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -3090,13 +3056,12 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /f.ts ===
-      // [|export const f = 1;|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /f.ts ===
+    // [|export const f = 1;|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -3122,7 +3087,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -3148,8 +3113,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -3221,13 +3185,12 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /g.ts ===
-      // [|export const g = 1;|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /g.ts ===
+    // [|export const g = 1;|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -3253,7 +3216,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -3279,8 +3242,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -3352,13 +3314,12 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /g.ts ===
-      // [|export const g = 1;|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /g.ts ===
+    // [|export const g = 1;|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -3384,7 +3345,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -3410,8 +3371,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -3483,13 +3443,12 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /g.ts ===
-      // [|export const g = 1;|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /g.ts ===
+    // [|export const g = 1;|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -3515,7 +3474,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -3541,8 +3500,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -3614,9 +3572,61 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as [|H|] from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // [|export type * as H from "./h";|]
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -3642,7 +3652,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -3668,61 +3678,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as [|H|] from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // [|export type * as H from "./h";|]
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -3799,9 +3755,61 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as [|H|] from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // [|export type * as H from "./h";|]
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -3827,7 +3835,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -3853,61 +3861,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as [|H|] from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // [|export type * as H from "./h";|]
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -3984,9 +3938,61 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as [|H|] from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // [|export type * as H from "./h";|]
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -4012,7 +4018,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -4038,61 +4044,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as [|H|] from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // [|export type * as H from "./h";|]
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -4169,13 +4121,12 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /h.ts ===
-      // [|export const h = 1;|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /h.ts ===
+    // [|export const h = 1;|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -4201,7 +4152,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -4227,8 +4178,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -4303,9 +4253,61 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { [|I|] } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // [|export type { I } from "./i";|]
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -4331,7 +4333,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -4357,76 +4359,21 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { [|I|] } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // [|export type { I } from "./i";|]
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /i.ts ===
+    // export class [|I|] {}
+      // === ContextSpan ===
+      // === /i.ts ===
+      // [|export class I {}|]
+  // === References ===
+    // === 0 ===
       // === /i.ts ===
       // export class [|I|] {}
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /i.ts ===
         // [|export class I {}|]
-    === References ===
-      === 0 ===
-      // === /i.ts ===
-      // export class [|I|] {}
-      === ContextSpan ===
-        // === /i.ts ===
-        // [|export class I {}|]
-  }
-]
+
 
 [
   {
@@ -4584,9 +4531,61 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { [|I|] } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // [|export type { I } from "./i";|]
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -4612,7 +4611,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -4638,76 +4637,21 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { [|I|] } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // [|export type { I } from "./i";|]
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /i.ts ===
+    // export class [|I|] {}
+      // === ContextSpan ===
+      // === /i.ts ===
+      // [|export class I {}|]
+  // === References ===
+    // === 0 ===
       // === /i.ts ===
       // export class [|I|] {}
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /i.ts ===
         // [|export class I {}|]
-    === References ===
-      === 0 ===
-      // === /i.ts ===
-      // export class [|I|] {}
-      === ContextSpan ===
-        // === /i.ts ===
-        // [|export class I {}|]
-  }
-]
+
 
 [
   {
@@ -4862,13 +4806,12 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /i.ts ===
-      // [|export class I {}|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /i.ts ===
+    // [|export class I {}|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -4894,7 +4837,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -4920,8 +4863,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -5049,14 +4991,13 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
-      // === /j.ts ===
-      // [|export const j1 = 1;
-      // export const j2 = 2;|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /j.ts ===
+    // [|export const j1 = 1;
+    // export const j2 = 2;|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -5082,7 +5023,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -5108,8 +5049,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -5181,9 +5121,61 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as [|j3|] } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // [|export type { j1, j2 as j3 } from "./j";|]
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -5209,7 +5201,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -5235,61 +5227,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as [|j3|] } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // [|export type { j1, j2 as j3 } from "./j";|]
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -5410,9 +5348,61 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type [|Z1|] = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // [|type Z1 = 1;|]
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -5438,7 +5428,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -5464,60 +5454,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type [|Z1|] = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // [|type Z1 = 1;|]
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-      === 1 ===
+    // === 1 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -5543,7 +5480,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -5569,8 +5506,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -5676,9 +5612,61 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 as z4 };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type [|Z1|] = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as z4 };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // [|type Z1 = 1;|]
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // export type { z2, z3 as z4 };
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -5704,7 +5692,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -5730,60 +5718,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type [|Z1|] = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as z4 };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // [|type Z1 = 1;|]
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // export type { z2, z3 as z4 };
-      === 1 ===
+    // === 1 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -5809,7 +5744,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as z4 };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -5835,8 +5770,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // export type { z2, z3 as z4 };
-  }
-]
+
 
 [
   {
@@ -5998,9 +5932,61 @@ undefined
 // type Z3 = 3;
 // export type { z2, z3 /*FIND ALL REFS*/as [|z4|] };
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main.ts ===
+    // // import ... = ...
+    // import A = require("./a");
+    // namespace N { }
+    // import N2 = N;
+    // 
+    // // import ... from ...
+    // import type B from "./b";
+    // import type * as C from "./c";
+    // import type { D } from "./d";
+    // import type { e1, e2 as e3 } from "./e";
+    // 
+    // // import "module"
+    // import "./f";
+    // 
+    // // export ... from ...
+    // export type * from "./g";
+    // export type * as H from "./h";
+    // export type { I } from "./i";
+    // export type { j1, j2 as j3 } from "./j";
+    // type Z1 = 1;
+    // export type { Z1 };
+    // type Z2 = 2;
+    // type Z3 = 3;
+    // export type { z2, z3 as [|z4|] };
+      // === ContextSpan ===
+      // === /main.ts ===
+      // // import ... = ...
+      // import A = require("./a");
+      // namespace N { }
+      // import N2 = N;
+      // 
+      // // import ... from ...
+      // import type B from "./b";
+      // import type * as C from "./c";
+      // import type { D } from "./d";
+      // import type { e1, e2 as e3 } from "./e";
+      // 
+      // // import "module"
+      // import "./f";
+      // 
+      // // export ... from ...
+      // export type * from "./g";
+      // export type * as H from "./h";
+      // export type { I } from "./i";
+      // export type { j1, j2 as j3 } from "./j";
+      // type Z1 = 1;
+      // export type { Z1 };
+      // type Z2 = 2;
+      // type Z3 = 3;
+      // [|export type { z2, z3 as z4 };|]
+  // === References ===
+    // === 0 ===
       // === /main.ts ===
       // // import ... = ...
       // import A = require("./a");
@@ -6026,7 +6012,7 @@ undefined
       // type Z2 = 2;
       // type Z3 = 3;
       // export type { z2, z3 as [|z4|] };
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main.ts ===
         // // import ... = ...
         // import A = require("./a");
@@ -6052,61 +6038,7 @@ undefined
         // type Z2 = 2;
         // type Z3 = 3;
         // [|export type { z2, z3 as z4 };|]
-    === References ===
-      === 0 ===
-      // === /main.ts ===
-      // // import ... = ...
-      // import A = require("./a");
-      // namespace N { }
-      // import N2 = N;
-      // 
-      // // import ... from ...
-      // import type B from "./b";
-      // import type * as C from "./c";
-      // import type { D } from "./d";
-      // import type { e1, e2 as e3 } from "./e";
-      // 
-      // // import "module"
-      // import "./f";
-      // 
-      // // export ... from ...
-      // export type * from "./g";
-      // export type * as H from "./h";
-      // export type { I } from "./i";
-      // export type { j1, j2 as j3 } from "./j";
-      // type Z1 = 1;
-      // export type { Z1 };
-      // type Z2 = 2;
-      // type Z3 = 3;
-      // export type { z2, z3 as [|z4|] };
-      === ContextSpan ===
-        // === /main.ts ===
-        // // import ... = ...
-        // import A = require("./a");
-        // namespace N { }
-        // import N2 = N;
-        // 
-        // // import ... from ...
-        // import type B from "./b";
-        // import type * as C from "./c";
-        // import type { D } from "./d";
-        // import type { e1, e2 as e3 } from "./e";
-        // 
-        // // import "module"
-        // import "./f";
-        // 
-        // // export ... from ...
-        // export type * from "./g";
-        // export type * as H from "./h";
-        // export type { I } from "./i";
-        // export type { j1, j2 as j3 } from "./j";
-        // type Z1 = 1;
-        // export type { Z1 };
-        // type Z2 = 2;
-        // type Z3 = 3;
-        // [|export type { z2, z3 as z4 };|]
-  }
-]
+
 
 [
   {
@@ -6161,35 +6093,33 @@ undefined
 // const [|x|] = {};
 // /*FIND ALL REFS*/export = [|x|];
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main2.ts ===
+    // const [|x|] = {};
+    // export = x;
+      // === ContextSpan ===
+      // === /main2.ts ===
+      // [|const x = {};|]
+      // export = x;
+  // === References ===
+    // === 0 ===
       // === /main2.ts ===
       // const [|x|] = {};
       // export = x;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main2.ts ===
         // [|const x = {};|]
         // export = x;
-    === References ===
-      === 0 ===
-      // === /main2.ts ===
-      // const [|x|] = {};
-      // export = x;
-      === ContextSpan ===
-        // === /main2.ts ===
-        // [|const x = {};|]
-        // export = x;
-      === 1 ===
+    // === 1 ===
       // === /main2.ts ===
       // const x = {};
       // export = [|x|];
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main2.ts ===
         // const x = {};
         // [|export = x;|]
-  }
-]
+
 
 [
   {
@@ -6271,35 +6201,33 @@ undefined
 // const [|y|] = {};
 // /*FIND ALL REFS*/export default [|y|];
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /main3.ts ===
+    // const [|y|] = {};
+    // export default y;
+      // === ContextSpan ===
+      // === /main3.ts ===
+      // [|const y = {};|]
+      // export default y;
+  // === References ===
+    // === 0 ===
       // === /main3.ts ===
       // const [|y|] = {};
       // export default y;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main3.ts ===
         // [|const y = {};|]
         // export default y;
-    === References ===
-      === 0 ===
-      // === /main3.ts ===
-      // const [|y|] = {};
-      // export default y;
-      === ContextSpan ===
-        // === /main3.ts ===
-        // [|const y = {};|]
-        // export default y;
-      === 1 ===
+    // === 1 ===
       // === /main3.ts ===
       // const y = {};
       // export default [|y|];
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /main3.ts ===
         // const y = {};
         // [|export default y;|]
-  }
-]
+
 
 [
   {

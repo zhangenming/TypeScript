@@ -1,4 +1,4 @@
-=== findAllReferences ===
+// === findAllReferences ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
 // declare namespace /*FIND ALL REFS*/[|N|] {
 //     export var x: number;
@@ -15,9 +15,41 @@
 //     export const y: typeof [|Q|].x;
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace [|N|] {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+      // [|declare namespace N {
+      //     export var x: number;
+      // }|]
+      // declare module "mod" {
+      //     export = N;
+      // }
+      // declare module "a" {
+      //     import * as O from "mod";
+      //     export { O as P }; // Renaming N here would rename
+      // }
+      // declare module "b" {
+      //     import { P as Q } from "a";
+      //     export const y: typeof Q.x;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace [|N|] {
       //     export var x: number;
@@ -33,7 +65,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // [|declare namespace N {
         //     export var x: number;
@@ -49,40 +81,7 @@
         //     import { P as Q } from "a";
         //     export const y: typeof Q.x;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-      // declare namespace [|N|] {
-      //     export var x: number;
-      // }
-      // declare module "mod" {
-      //     export = N;
-      // }
-      // declare module "a" {
-      //     import * as O from "mod";
-      //     export { O as P }; // Renaming N here would rename
-      // }
-      // declare module "b" {
-      //     import { P as Q } from "a";
-      //     export const y: typeof Q.x;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-        // [|declare namespace N {
-        //     export var x: number;
-        // }|]
-        // declare module "mod" {
-        //     export = N;
-        // }
-        // declare module "a" {
-        //     import * as O from "mod";
-        //     export { O as P }; // Renaming N here would rename
-        // }
-        // declare module "b" {
-        //     import { P as Q } from "a";
-        //     export const y: typeof Q.x;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -98,7 +97,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -114,9 +113,41 @@
         //     import { P as Q } from "a";
         //     export const y: typeof Q.x;
         // }
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as [|O|] from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+      // declare namespace N {
+      //     export var x: number;
+      // }
+      // declare module "mod" {
+      //     export = N;
+      // }
+      // declare module "a" {
+      //     [|import * as O from "mod";|]
+      //     export { O as P }; // Renaming N here would rename
+      // }
+      // declare module "b" {
+      //     import { P as Q } from "a";
+      //     export const y: typeof Q.x;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -132,7 +163,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -148,40 +179,7 @@
         //     import { P as Q } from "a";
         //     export const y: typeof Q.x;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-      // declare namespace N {
-      //     export var x: number;
-      // }
-      // declare module "mod" {
-      //     export = N;
-      // }
-      // declare module "a" {
-      //     import * as [|O|] from "mod";
-      //     export { O as P }; // Renaming N here would rename
-      // }
-      // declare module "b" {
-      //     import { P as Q } from "a";
-      //     export const y: typeof Q.x;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-        // declare namespace N {
-        //     export var x: number;
-        // }
-        // declare module "mod" {
-        //     export = N;
-        // }
-        // declare module "a" {
-        //     [|import * as O from "mod";|]
-        //     export { O as P }; // Renaming N here would rename
-        // }
-        // declare module "b" {
-        //     import { P as Q } from "a";
-        //     export const y: typeof Q.x;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -197,7 +195,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -213,9 +211,41 @@
         //     import { P as Q } from "a";
         //     export const y: typeof Q.x;
         // }
-  },
-  {
-    === Definition ===
+// === 2 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as [|P|] }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+      // declare namespace N {
+      //     export var x: number;
+      // }
+      // declare module "mod" {
+      //     export = N;
+      // }
+      // declare module "a" {
+      //     import * as O from "mod";
+      //     [|export { O as P };|] // Renaming N here would rename
+      // }
+      // declare module "b" {
+      //     import { P as Q } from "a";
+      //     export const y: typeof Q.x;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -231,7 +261,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -247,40 +277,7 @@
         //     import { P as Q } from "a";
         //     export const y: typeof Q.x;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-      // declare namespace N {
-      //     export var x: number;
-      // }
-      // declare module "mod" {
-      //     export = N;
-      // }
-      // declare module "a" {
-      //     import * as O from "mod";
-      //     export { O as [|P|] }; // Renaming N here would rename
-      // }
-      // declare module "b" {
-      //     import { P as Q } from "a";
-      //     export const y: typeof Q.x;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-        // declare namespace N {
-        //     export var x: number;
-        // }
-        // declare module "mod" {
-        //     export = N;
-        // }
-        // declare module "a" {
-        //     import * as O from "mod";
-        //     [|export { O as P };|] // Renaming N here would rename
-        // }
-        // declare module "b" {
-        //     import { P as Q } from "a";
-        //     export const y: typeof Q.x;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -296,7 +293,7 @@
       //     import { [|P|] as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -312,9 +309,41 @@
         //     [|import { P as Q } from "a";|]
         //     export const y: typeof Q.x;
         // }
-  },
-  {
-    === Definition ===
+// === 3 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as [|Q|] } from "a";
+    //     export const y: typeof Q.x;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+      // declare namespace N {
+      //     export var x: number;
+      // }
+      // declare module "mod" {
+      //     export = N;
+      // }
+      // declare module "a" {
+      //     import * as O from "mod";
+      //     export { O as P }; // Renaming N here would rename
+      // }
+      // declare module "b" {
+      //     [|import { P as Q } from "a";|]
+      //     export const y: typeof Q.x;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -330,7 +359,7 @@
       //     import { P as [|Q|] } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -346,40 +375,7 @@
         //     [|import { P as Q } from "a";|]
         //     export const y: typeof Q.x;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-      // declare namespace N {
-      //     export var x: number;
-      // }
-      // declare module "mod" {
-      //     export = N;
-      // }
-      // declare module "a" {
-      //     import * as O from "mod";
-      //     export { O as P }; // Renaming N here would rename
-      // }
-      // declare module "b" {
-      //     import { P as [|Q|] } from "a";
-      //     export const y: typeof Q.x;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-        // declare namespace N {
-        //     export var x: number;
-        // }
-        // declare module "mod" {
-        //     export = N;
-        // }
-        // declare module "a" {
-        //     import * as O from "mod";
-        //     export { O as P }; // Renaming N here would rename
-        // }
-        // declare module "b" {
-        //     [|import { P as Q } from "a";|]
-        //     export const y: typeof Q.x;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -395,8 +391,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof [|Q|].x;
       // }
-  }
-]
+
 
 [
   {
@@ -745,9 +740,41 @@
 //     export const y: typeof [|Q|].x;
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as [|O|] from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+      // declare namespace N {
+      //     export var x: number;
+      // }
+      // declare module "mod" {
+      //     export = N;
+      // }
+      // declare module "a" {
+      //     [|import * as O from "mod";|]
+      //     export { O as P }; // Renaming N here would rename
+      // }
+      // declare module "b" {
+      //     import { P as Q } from "a";
+      //     export const y: typeof Q.x;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -763,7 +790,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -779,40 +806,7 @@
         //     import { P as Q } from "a";
         //     export const y: typeof Q.x;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-      // declare namespace N {
-      //     export var x: number;
-      // }
-      // declare module "mod" {
-      //     export = N;
-      // }
-      // declare module "a" {
-      //     import * as [|O|] from "mod";
-      //     export { O as P }; // Renaming N here would rename
-      // }
-      // declare module "b" {
-      //     import { P as Q } from "a";
-      //     export const y: typeof Q.x;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-        // declare namespace N {
-        //     export var x: number;
-        // }
-        // declare module "mod" {
-        //     export = N;
-        // }
-        // declare module "a" {
-        //     [|import * as O from "mod";|]
-        //     export { O as P }; // Renaming N here would rename
-        // }
-        // declare module "b" {
-        //     import { P as Q } from "a";
-        //     export const y: typeof Q.x;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -828,7 +822,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -844,9 +838,41 @@
         //     import { P as Q } from "a";
         //     export const y: typeof Q.x;
         // }
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as [|P|] }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+      // declare namespace N {
+      //     export var x: number;
+      // }
+      // declare module "mod" {
+      //     export = N;
+      // }
+      // declare module "a" {
+      //     import * as O from "mod";
+      //     [|export { O as P };|] // Renaming N here would rename
+      // }
+      // declare module "b" {
+      //     import { P as Q } from "a";
+      //     export const y: typeof Q.x;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -862,7 +888,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -878,40 +904,7 @@
         //     import { P as Q } from "a";
         //     export const y: typeof Q.x;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-      // declare namespace N {
-      //     export var x: number;
-      // }
-      // declare module "mod" {
-      //     export = N;
-      // }
-      // declare module "a" {
-      //     import * as O from "mod";
-      //     export { O as [|P|] }; // Renaming N here would rename
-      // }
-      // declare module "b" {
-      //     import { P as Q } from "a";
-      //     export const y: typeof Q.x;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-        // declare namespace N {
-        //     export var x: number;
-        // }
-        // declare module "mod" {
-        //     export = N;
-        // }
-        // declare module "a" {
-        //     import * as O from "mod";
-        //     [|export { O as P };|] // Renaming N here would rename
-        // }
-        // declare module "b" {
-        //     import { P as Q } from "a";
-        //     export const y: typeof Q.x;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -927,7 +920,7 @@
       //     import { [|P|] as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -943,9 +936,41 @@
         //     [|import { P as Q } from "a";|]
         //     export const y: typeof Q.x;
         // }
-  },
-  {
-    === Definition ===
+// === 2 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as [|Q|] } from "a";
+    //     export const y: typeof Q.x;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+      // declare namespace N {
+      //     export var x: number;
+      // }
+      // declare module "mod" {
+      //     export = N;
+      // }
+      // declare module "a" {
+      //     import * as O from "mod";
+      //     export { O as P }; // Renaming N here would rename
+      // }
+      // declare module "b" {
+      //     [|import { P as Q } from "a";|]
+      //     export const y: typeof Q.x;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -961,7 +986,7 @@
       //     import { P as [|Q|] } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -977,40 +1002,7 @@
         //     [|import { P as Q } from "a";|]
         //     export const y: typeof Q.x;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-      // declare namespace N {
-      //     export var x: number;
-      // }
-      // declare module "mod" {
-      //     export = N;
-      // }
-      // declare module "a" {
-      //     import * as O from "mod";
-      //     export { O as P }; // Renaming N here would rename
-      // }
-      // declare module "b" {
-      //     import { P as [|Q|] } from "a";
-      //     export const y: typeof Q.x;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-        // declare namespace N {
-        //     export var x: number;
-        // }
-        // declare module "mod" {
-        //     export = N;
-        // }
-        // declare module "a" {
-        //     import * as O from "mod";
-        //     export { O as P }; // Renaming N here would rename
-        // }
-        // declare module "b" {
-        //     [|import { P as Q } from "a";|]
-        //     export const y: typeof Q.x;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -1026,8 +1018,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof [|Q|].x;
       // }
-  }
-]
+
 
 [
   {
@@ -1317,9 +1308,41 @@
 //     export const y: typeof [|Q|].x;
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as [|P|] }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+      // declare namespace N {
+      //     export var x: number;
+      // }
+      // declare module "mod" {
+      //     export = N;
+      // }
+      // declare module "a" {
+      //     import * as O from "mod";
+      //     [|export { O as P };|] // Renaming N here would rename
+      // }
+      // declare module "b" {
+      //     import { P as Q } from "a";
+      //     export const y: typeof Q.x;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -1335,7 +1358,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -1351,40 +1374,7 @@
         //     import { P as Q } from "a";
         //     export const y: typeof Q.x;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-      // declare namespace N {
-      //     export var x: number;
-      // }
-      // declare module "mod" {
-      //     export = N;
-      // }
-      // declare module "a" {
-      //     import * as O from "mod";
-      //     export { O as [|P|] }; // Renaming N here would rename
-      // }
-      // declare module "b" {
-      //     import { P as Q } from "a";
-      //     export const y: typeof Q.x;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-        // declare namespace N {
-        //     export var x: number;
-        // }
-        // declare module "mod" {
-        //     export = N;
-        // }
-        // declare module "a" {
-        //     import * as O from "mod";
-        //     [|export { O as P };|] // Renaming N here would rename
-        // }
-        // declare module "b" {
-        //     import { P as Q } from "a";
-        //     export const y: typeof Q.x;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -1400,7 +1390,7 @@
       //     import { [|P|] as Q } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -1416,9 +1406,41 @@
         //     [|import { P as Q } from "a";|]
         //     export const y: typeof Q.x;
         // }
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as [|Q|] } from "a";
+    //     export const y: typeof Q.x;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+      // declare namespace N {
+      //     export var x: number;
+      // }
+      // declare module "mod" {
+      //     export = N;
+      // }
+      // declare module "a" {
+      //     import * as O from "mod";
+      //     export { O as P }; // Renaming N here would rename
+      // }
+      // declare module "b" {
+      //     [|import { P as Q } from "a";|]
+      //     export const y: typeof Q.x;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -1434,7 +1456,7 @@
       //     import { P as [|Q|] } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -1450,40 +1472,7 @@
         //     [|import { P as Q } from "a";|]
         //     export const y: typeof Q.x;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-      // declare namespace N {
-      //     export var x: number;
-      // }
-      // declare module "mod" {
-      //     export = N;
-      // }
-      // declare module "a" {
-      //     import * as O from "mod";
-      //     export { O as P }; // Renaming N here would rename
-      // }
-      // declare module "b" {
-      //     import { P as [|Q|] } from "a";
-      //     export const y: typeof Q.x;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-        // declare namespace N {
-        //     export var x: number;
-        // }
-        // declare module "mod" {
-        //     export = N;
-        // }
-        // declare module "a" {
-        //     import * as O from "mod";
-        //     export { O as P }; // Renaming N here would rename
-        // }
-        // declare module "b" {
-        //     [|import { P as Q } from "a";|]
-        //     export const y: typeof Q.x;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -1499,8 +1488,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof [|Q|].x;
       // }
-  }
-]
+
 
 [
   {
@@ -1699,9 +1687,41 @@
 //     export const y: typeof [|Q|].x;
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as [|Q|] } from "a";
+    //     export const y: typeof Q.x;
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+      // declare namespace N {
+      //     export var x: number;
+      // }
+      // declare module "mod" {
+      //     export = N;
+      // }
+      // declare module "a" {
+      //     import * as O from "mod";
+      //     export { O as P }; // Renaming N here would rename
+      // }
+      // declare module "b" {
+      //     [|import { P as Q } from "a";|]
+      //     export const y: typeof Q.x;
+      // }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -1717,7 +1737,7 @@
       //     import { P as [|Q|] } from "a";
       //     export const y: typeof Q.x;
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
         // declare namespace N {
         //     export var x: number;
@@ -1733,40 +1753,7 @@
         //     [|import { P as Q } from "a";|]
         //     export const y: typeof Q.x;
         // }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-      // declare namespace N {
-      //     export var x: number;
-      // }
-      // declare module "mod" {
-      //     export = N;
-      // }
-      // declare module "a" {
-      //     import * as O from "mod";
-      //     export { O as P }; // Renaming N here would rename
-      // }
-      // declare module "b" {
-      //     import { P as [|Q|] } from "a";
-      //     export const y: typeof Q.x;
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-        // declare namespace N {
-        //     export var x: number;
-        // }
-        // declare module "mod" {
-        //     export = N;
-        // }
-        // declare module "a" {
-        //     import * as O from "mod";
-        //     export { O as P }; // Renaming N here would rename
-        // }
-        // declare module "b" {
-        //     [|import { P as Q } from "a";|]
-        //     export const y: typeof Q.x;
-        // }
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
       // declare namespace N {
       //     export var x: number;
@@ -1782,8 +1769,7 @@
       //     import { P as Q } from "a";
       //     export const y: typeof [|Q|].x;
       // }
-  }
-]
+
 
 [
   {
@@ -1875,37 +1861,19 @@
   }
 ]
 
-=== findRenameLocations ===
-=== RenameOptions ===
+// === findRenameLocations ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfExportEquals2.ts ======*/
-
-declare namespace [|RENAME|] {
-    export var x: number;
-}
-declare module "mod" {
-    export = RENAME;
-}
-declare module "a" {
-    import * as O from "mod";
-    export { O as P }; // Renaming N here would rename
-}
-declare module "b" {
-    import { P as Q } from "a";
-    export const y: typeof Q.x;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-// declare namespace [|N|] {
+// declare namespace [|RENAME|] {
 //     export var x: number;
 // }
 // declare module "mod" {
-//     export = N;
+//     export = RENAME;
 // }
 // declare module "a" {
 //     import * as O from "mod";
@@ -1915,11 +1883,12 @@ declare module "b" {
 //     import { P as Q } from "a";
 //     export const y: typeof Q.x;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-  // [|declare namespace N {
+  // declare namespace [|N|] {
   //     export var x: number;
-  // }|]
+  // }
   // declare module "mod" {
   //     export = N;
   // }
@@ -1931,29 +1900,29 @@ declare module "b" {
   //     import { P as Q } from "a";
   //     export const y: typeof Q.x;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-// declare namespace N {
-//     export var x: number;
-// }
-// declare module "mod" {
-//     export = [|N|];
-// }
-// declare module "a" {
-//     import * as O from "mod";
-//     export { O as P }; // Renaming N here would rename
-// }
-// declare module "b" {
-//     import { P as Q } from "a";
-//     export const y: typeof Q.x;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // [|declare namespace N {
+    //     export var x: number;
+    // }|]
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
   // }
   // declare module "mod" {
-  //     [|export = N;|]
+  //     export = [|N|];
   // }
   // declare module "a" {
   //     import * as O from "mod";
@@ -1963,6 +1932,22 @@ declare module "b" {
   //     import { P as Q } from "a";
   //     export const y: typeof Q.x;
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     [|export = N;|]
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
 
 
 [
@@ -1990,36 +1975,18 @@ declare module "b" {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfExportEquals2.ts ======*/
-
-declare namespace RENAME {
-    export var x: number;
-}
-declare module "mod" {
-    export = [|RENAME|];
-}
-declare module "a" {
-    import * as O from "mod";
-    export { O as P }; // Renaming N here would rename
-}
-declare module "b" {
-    import { P as Q } from "a";
-    export const y: typeof Q.x;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-// declare namespace [|N|] {
+// declare namespace RENAME {
 //     export var x: number;
 // }
 // declare module "mod" {
-//     export = N;
+//     export = [|RENAME|];
 // }
 // declare module "a" {
 //     import * as O from "mod";
@@ -2029,11 +1996,12 @@ declare module "b" {
 //     import { P as Q } from "a";
 //     export const y: typeof Q.x;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-  // [|declare namespace N {
+  // declare namespace [|N|] {
   //     export var x: number;
-  // }|]
+  // }
   // declare module "mod" {
   //     export = N;
   // }
@@ -2045,29 +2013,29 @@ declare module "b" {
   //     import { P as Q } from "a";
   //     export const y: typeof Q.x;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-// declare namespace N {
-//     export var x: number;
-// }
-// declare module "mod" {
-//     export = [|N|];
-// }
-// declare module "a" {
-//     import * as O from "mod";
-//     export { O as P }; // Renaming N here would rename
-// }
-// declare module "b" {
-//     import { P as Q } from "a";
-//     export const y: typeof Q.x;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // [|declare namespace N {
+    //     export var x: number;
+    // }|]
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
   // }
   // declare module "mod" {
-  //     [|export = N;|]
+  //     export = [|N|];
   // }
   // declare module "a" {
   //     import * as O from "mod";
@@ -2077,6 +2045,22 @@ declare module "b" {
   //     import { P as Q } from "a";
   //     export const y: typeof Q.x;
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     [|export = N;|]
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
 
 
 [
@@ -2104,31 +2088,13 @@ declare module "b" {
   }
 ]
 
-=== findRenameLocations ===
-=== RenameOptions ===
+// === findRenameLocations ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfExportEquals2.ts ======*/
-
-declare namespace N {
-    export var x: number;
-}
-declare module "mod" {
-    export = N;
-}
-declare module "a" {
-    import * as [|RENAME|] from "mod";
-    export { RENAME as P }; // Renaming N here would rename
-}
-declare module "b" {
-    import { P as Q } from "a";
-    export const y: typeof Q.x;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
 // declare namespace N {
 //     export var x: number;
@@ -2137,14 +2103,15 @@ declare module "b" {
 //     export = N;
 // }
 // declare module "a" {
-//     import * as [|O|] from "mod";
-//     export { O as P }; // Renaming N here would rename
+//     import * as [|RENAME|] from "mod";
+//     export { RENAME as P }; // Renaming N here would rename
 // }
 // declare module "b" {
 //     import { P as Q } from "a";
 //     export const y: typeof Q.x;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
@@ -2153,30 +2120,30 @@ declare module "b" {
   //     export = N;
   // }
   // declare module "a" {
-  //     [|import * as O from "mod";|]
+  //     import * as [|O|] from "mod";
   //     export { O as P }; // Renaming N here would rename
   // }
   // declare module "b" {
   //     import { P as Q } from "a";
   //     export const y: typeof Q.x;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-// declare namespace N {
-//     export var x: number;
-// }
-// declare module "mod" {
-//     export = N;
-// }
-// declare module "a" {
-//     import * as O from "mod";
-//     export { [|O|] as P }; // Renaming N here would rename
-// }
-// declare module "b" {
-//     import { P as Q } from "a";
-//     export const y: typeof Q.x;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     [|import * as O from "mod";|]
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
@@ -2186,12 +2153,28 @@ declare module "b" {
   // }
   // declare module "a" {
   //     import * as O from "mod";
-  //     [|export { O as P };|] // Renaming N here would rename
+  //     export { [|O|] as P }; // Renaming N here would rename
   // }
   // declare module "b" {
   //     import { P as Q } from "a";
   //     export const y: typeof Q.x;
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     [|export { O as P };|] // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
 
 
 [
@@ -2219,30 +2202,12 @@ declare module "b" {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfExportEquals2.ts ======*/
-
-declare namespace N {
-    export var x: number;
-}
-declare module "mod" {
-    export = N;
-}
-declare module "a" {
-    import * as RENAME from "mod";
-    export { [|RENAME|] as P }; // Renaming N here would rename
-}
-declare module "b" {
-    import { P as Q } from "a";
-    export const y: typeof Q.x;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
 // declare namespace N {
 //     export var x: number;
@@ -2251,14 +2216,15 @@ declare module "b" {
 //     export = N;
 // }
 // declare module "a" {
-//     import * as [|O|] from "mod";
-//     export { O as P }; // Renaming N here would rename
+//     import * as RENAME from "mod";
+//     export { [|RENAME|] as P }; // Renaming N here would rename
 // }
 // declare module "b" {
 //     import { P as Q } from "a";
 //     export const y: typeof Q.x;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
@@ -2267,30 +2233,30 @@ declare module "b" {
   //     export = N;
   // }
   // declare module "a" {
-  //     [|import * as O from "mod";|]
+  //     import * as [|O|] from "mod";
   //     export { O as P }; // Renaming N here would rename
   // }
   // declare module "b" {
   //     import { P as Q } from "a";
   //     export const y: typeof Q.x;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-// declare namespace N {
-//     export var x: number;
-// }
-// declare module "mod" {
-//     export = N;
-// }
-// declare module "a" {
-//     import * as O from "mod";
-//     export { [|O|] as P }; // Renaming N here would rename
-// }
-// declare module "b" {
-//     import { P as Q } from "a";
-//     export const y: typeof Q.x;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     [|import * as O from "mod";|]
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
@@ -2300,12 +2266,28 @@ declare module "b" {
   // }
   // declare module "a" {
   //     import * as O from "mod";
-  //     [|export { O as P };|] // Renaming N here would rename
+  //     export { [|O|] as P }; // Renaming N here would rename
   // }
   // declare module "b" {
   //     import { P as Q } from "a";
   //     export const y: typeof Q.x;
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     [|export { O as P };|] // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
 
 
 [
@@ -2333,31 +2315,13 @@ declare module "b" {
   }
 ]
 
-=== findRenameLocations ===
-=== RenameOptions ===
+// === findRenameLocations ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfExportEquals2.ts ======*/
-
-declare namespace N {
-    export var x: number;
-}
-declare module "mod" {
-    export = N;
-}
-declare module "a" {
-    import * as O from "mod";
-    export { O as [|RENAME|] }; // Renaming N here would rename
-}
-declare module "b" {
-    import { RENAME as Q } from "a";
-    export const y: typeof Q.x;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
 // declare namespace N {
 //     export var x: number;
@@ -2367,13 +2331,14 @@ declare module "b" {
 // }
 // declare module "a" {
 //     import * as O from "mod";
-//     export { O as [|P|] }; // Renaming N here would rename
+//     export { O as [|RENAME|] }; // Renaming N here would rename
 // }
 // declare module "b" {
-//     import { P as Q } from "a";
+//     import { RENAME as Q } from "a";
 //     export const y: typeof Q.x;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
@@ -2383,29 +2348,29 @@ declare module "b" {
   // }
   // declare module "a" {
   //     import * as O from "mod";
-  //     [|export { O as P };|] // Renaming N here would rename
+  //     export { O as [|P|] }; // Renaming N here would rename
   // }
   // declare module "b" {
   //     import { P as Q } from "a";
   //     export const y: typeof Q.x;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-// declare namespace N {
-//     export var x: number;
-// }
-// declare module "mod" {
-//     export = N;
-// }
-// declare module "a" {
-//     import * as O from "mod";
-//     export { O as P }; // Renaming N here would rename
-// }
-// declare module "b" {
-//     import { [|P|] as Q } from "a";
-//     export const y: typeof Q.x;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     [|export { O as P };|] // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
@@ -2418,9 +2383,25 @@ declare module "b" {
   //     export { O as P }; // Renaming N here would rename
   // }
   // declare module "b" {
-  //     [|import { P as Q } from "a";|]
+  //     import { [|P|] as Q } from "a";
   //     export const y: typeof Q.x;
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     [|import { P as Q } from "a";|]
+    //     export const y: typeof Q.x;
+    // }
 
 
 [
@@ -2448,30 +2429,12 @@ declare module "b" {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfExportEquals2.ts ======*/
-
-declare namespace N {
-    export var x: number;
-}
-declare module "mod" {
-    export = N;
-}
-declare module "a" {
-    import * as O from "mod";
-    export { O as RENAME }; // Renaming N here would rename
-}
-declare module "b" {
-    import { [|RENAME|] as Q } from "a";
-    export const y: typeof Q.x;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
 // declare namespace N {
 //     export var x: number;
@@ -2481,13 +2444,14 @@ declare module "b" {
 // }
 // declare module "a" {
 //     import * as O from "mod";
-//     export { O as [|P|] }; // Renaming N here would rename
+//     export { O as RENAME }; // Renaming N here would rename
 // }
 // declare module "b" {
-//     import { P as Q } from "a";
+//     import { [|RENAME|] as Q } from "a";
 //     export const y: typeof Q.x;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
@@ -2497,29 +2461,29 @@ declare module "b" {
   // }
   // declare module "a" {
   //     import * as O from "mod";
-  //     [|export { O as P };|] // Renaming N here would rename
+  //     export { O as [|P|] }; // Renaming N here would rename
   // }
   // declare module "b" {
   //     import { P as Q } from "a";
   //     export const y: typeof Q.x;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-// declare namespace N {
-//     export var x: number;
-// }
-// declare module "mod" {
-//     export = N;
-// }
-// declare module "a" {
-//     import * as O from "mod";
-//     export { O as P }; // Renaming N here would rename
-// }
-// declare module "b" {
-//     import { [|P|] as Q } from "a";
-//     export const y: typeof Q.x;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     [|export { O as P };|] // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     import { P as Q } from "a";
+    //     export const y: typeof Q.x;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
@@ -2532,9 +2496,25 @@ declare module "b" {
   //     export { O as P }; // Renaming N here would rename
   // }
   // declare module "b" {
-  //     [|import { P as Q } from "a";|]
+  //     import { [|P|] as Q } from "a";
   //     export const y: typeof Q.x;
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     [|import { P as Q } from "a";|]
+    //     export const y: typeof Q.x;
+    // }
 
 
 [
@@ -2562,31 +2542,13 @@ declare module "b" {
   }
 ]
 
-=== findRenameLocations ===
-=== RenameOptions ===
+// === findRenameLocations ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfExportEquals2.ts ======*/
-
-declare namespace N {
-    export var x: number;
-}
-declare module "mod" {
-    export = N;
-}
-declare module "a" {
-    import * as O from "mod";
-    export { O as P }; // Renaming N here would rename
-}
-declare module "b" {
-    import { P as [|RENAME|] } from "a";
-    export const y: typeof RENAME.x;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
 // declare namespace N {
 //     export var x: number;
@@ -2599,10 +2561,11 @@ declare module "b" {
 //     export { O as P }; // Renaming N here would rename
 // }
 // declare module "b" {
-//     import { P as [|Q|] } from "a";
-//     export const y: typeof Q.x;
+//     import { P as [|RENAME|] } from "a";
+//     export const y: typeof RENAME.x;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
@@ -2615,25 +2578,41 @@ declare module "b" {
   //     export { O as P }; // Renaming N here would rename
   // }
   // declare module "b" {
-  //     [|import { P as Q } from "a";|]
+  //     import { P as [|Q|] } from "a";
   //     export const y: typeof Q.x;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-// declare namespace N {
-//     export var x: number;
-// }
-// declare module "mod" {
-//     export = N;
-// }
-// declare module "a" {
-//     import * as O from "mod";
-//     export { O as P }; // Renaming N here would rename
-// }
-// declare module "b" {
-//     import { P as Q } from "a";
-//     export const y: typeof [|Q|].x;
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     [|import { P as Q } from "a";|]
+    //     export const y: typeof Q.x;
+    // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+  // declare namespace N {
+  //     export var x: number;
+  // }
+  // declare module "mod" {
+  //     export = N;
+  // }
+  // declare module "a" {
+  //     import * as O from "mod";
+  //     export { O as P }; // Renaming N here would rename
+  // }
+  // declare module "b" {
+  //     import { P as Q } from "a";
+  //     export const y: typeof [|Q|].x;
+  // }
 
 
 [
@@ -2657,30 +2636,12 @@ declare module "b" {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameImportOfExportEquals2.ts ======*/
-
-declare namespace N {
-    export var x: number;
-}
-declare module "mod" {
-    export = N;
-}
-declare module "a" {
-    import * as O from "mod";
-    export { O as P }; // Renaming N here would rename
-}
-declare module "b" {
-    import { P as RENAME } from "a";
-    export const y: typeof [|RENAME|].x;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
 // declare namespace N {
 //     export var x: number;
@@ -2693,10 +2654,11 @@ declare module "b" {
 //     export { O as P }; // Renaming N here would rename
 // }
 // declare module "b" {
-//     import { P as [|Q|] } from "a";
-//     export const y: typeof Q.x;
+//     import { P as RENAME } from "a";
+//     export const y: typeof [|RENAME|].x;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
   // declare namespace N {
   //     export var x: number;
@@ -2709,25 +2671,41 @@ declare module "b" {
   //     export { O as P }; // Renaming N here would rename
   // }
   // declare module "b" {
-  //     [|import { P as Q } from "a";|]
+  //     import { P as [|Q|] } from "a";
   //     export const y: typeof Q.x;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-// declare namespace N {
-//     export var x: number;
-// }
-// declare module "mod" {
-//     export = N;
-// }
-// declare module "a" {
-//     import * as O from "mod";
-//     export { O as P }; // Renaming N here would rename
-// }
-// declare module "b" {
-//     import { P as Q } from "a";
-//     export const y: typeof [|Q|].x;
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+    // declare namespace N {
+    //     export var x: number;
+    // }
+    // declare module "mod" {
+    //     export = N;
+    // }
+    // declare module "a" {
+    //     import * as O from "mod";
+    //     export { O as P }; // Renaming N here would rename
+    // }
+    // declare module "b" {
+    //     [|import { P as Q } from "a";|]
+    //     export const y: typeof Q.x;
+    // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
+  // declare namespace N {
+  //     export var x: number;
+  // }
+  // declare module "mod" {
+  //     export = N;
+  // }
+  // declare module "a" {
+  //     import * as O from "mod";
+  //     export { O as P }; // Renaming N here would rename
+  // }
+  // declare module "b" {
+  //     import { P as Q } from "a";
+  //     export const y: typeof [|Q|].x;
+  // }
 
 
 [

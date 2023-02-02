@@ -1,51 +1,32 @@
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": true,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameForDefaultExport03.ts ======*/
-
-function [|RENAME|]() {
-    return 100;
-}
-
-export default RENAME;
-
-var x: typeof RENAME;
-
-var y = RENAME();
-
-/**
- *  Commenting RENAME
- */
-namespace RENAME {
-    var local = 100;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function [|f|]() {
+// function [|RENAME|]() {
 //     return 100;
 // }
 // 
-// export default f;
+// export default RENAME;
 // 
-// var x: typeof f;
+// var x: typeof RENAME;
 // 
-// var y = f();
+// var y = RENAME();
 // 
 // /**
-//  *  Commenting f
+//  *  Commenting RENAME
 //  */
-// namespace f {
+// namespace RENAME {
 //     var local = 100;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-  // [|function f() {
+  // function [|f|]() {
   //     return 100;
-  // }|]
+  // }
   // 
   // export default f;
   // 
@@ -59,31 +40,31 @@ namespace RENAME {
   // namespace f {
   //     var local = 100;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default [|f|];
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // [|function f() {
+    //     return 100;
+    // }|]
+    // 
+    // export default f;
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // namespace f {
+    //     var local = 100;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
   // function f() {
   //     return 100;
   // }
   // 
-  // [|export default f;|]
+  // export default [|f|];
   // 
   // var x: typeof f;
   // 
@@ -95,61 +76,61 @@ namespace RENAME {
   // namespace f {
   //     var local = 100;
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof [|f|];
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = [|f|]();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace [|f|] {
-//     var local = 100;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // function f() {
+    //     return 100;
+    // }
+    // 
+    // [|export default f;|]
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // namespace f {
+    //     var local = 100;
+    // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof [|f|];
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = [|f|]();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+// === 4 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
   // function f() {
   //     return 100;
@@ -164,27 +145,45 @@ namespace RENAME {
   // /**
   //  *  Commenting f
   //  */
-  // [|namespace f {
+  // namespace [|f|] {
   //     var local = 100;
-  // }|]
-=== 5 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting [|f|]
-//  */
-// namespace f {
-//     var local = 100;
-// }
+  // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // function f() {
+    //     return 100;
+    // }
+    // 
+    // export default f;
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // [|namespace f {
+    //     var local = 100;
+    // }|]
+// === 5 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting [|f|]
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
 
 
 [
@@ -244,54 +243,35 @@ namespace RENAME {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": true,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameForDefaultExport03.ts ======*/
-
-function RENAME() {
-    return 100;
-}
-
-export default [|RENAME|];
-
-var x: typeof RENAME;
-
-var y = RENAME();
-
-/**
- *  Commenting RENAME
- */
-namespace RENAME {
-    var local = 100;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function [|f|]() {
+// function RENAME() {
 //     return 100;
 // }
 // 
-// export default f;
+// export default [|RENAME|];
 // 
-// var x: typeof f;
+// var x: typeof RENAME;
 // 
-// var y = f();
+// var y = RENAME();
 // 
 // /**
-//  *  Commenting f
+//  *  Commenting RENAME
 //  */
-// namespace f {
+// namespace RENAME {
 //     var local = 100;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-  // [|function f() {
+  // function [|f|]() {
   //     return 100;
-  // }|]
+  // }
   // 
   // export default f;
   // 
@@ -305,31 +285,31 @@ namespace RENAME {
   // namespace f {
   //     var local = 100;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default [|f|];
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // [|function f() {
+    //     return 100;
+    // }|]
+    // 
+    // export default f;
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // namespace f {
+    //     var local = 100;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
   // function f() {
   //     return 100;
   // }
   // 
-  // [|export default f;|]
+  // export default [|f|];
   // 
   // var x: typeof f;
   // 
@@ -341,61 +321,61 @@ namespace RENAME {
   // namespace f {
   //     var local = 100;
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof [|f|];
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = [|f|]();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace [|f|] {
-//     var local = 100;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // function f() {
+    //     return 100;
+    // }
+    // 
+    // [|export default f;|]
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // namespace f {
+    //     var local = 100;
+    // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof [|f|];
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = [|f|]();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+// === 4 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
   // function f() {
   //     return 100;
@@ -410,27 +390,45 @@ namespace RENAME {
   // /**
   //  *  Commenting f
   //  */
-  // [|namespace f {
+  // namespace [|f|] {
   //     var local = 100;
-  // }|]
-=== 5 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting [|f|]
-//  */
-// namespace f {
-//     var local = 100;
-// }
+  // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // function f() {
+    //     return 100;
+    // }
+    // 
+    // export default f;
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // [|namespace f {
+    //     var local = 100;
+    // }|]
+// === 5 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting [|f|]
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
 
 
 [
@@ -490,54 +488,35 @@ namespace RENAME {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": true,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameForDefaultExport03.ts ======*/
-
-function RENAME() {
-    return 100;
-}
-
-export default RENAME;
-
-var x: typeof [|RENAME|];
-
-var y = RENAME();
-
-/**
- *  Commenting RENAME
- */
-namespace RENAME {
-    var local = 100;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function [|f|]() {
+// function RENAME() {
 //     return 100;
 // }
 // 
-// export default f;
+// export default RENAME;
 // 
-// var x: typeof f;
+// var x: typeof [|RENAME|];
 // 
-// var y = f();
+// var y = RENAME();
 // 
 // /**
-//  *  Commenting f
+//  *  Commenting RENAME
 //  */
-// namespace f {
+// namespace RENAME {
 //     var local = 100;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-  // [|function f() {
+  // function [|f|]() {
   //     return 100;
-  // }|]
+  // }
   // 
   // export default f;
   // 
@@ -551,31 +530,31 @@ namespace RENAME {
   // namespace f {
   //     var local = 100;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default [|f|];
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // [|function f() {
+    //     return 100;
+    // }|]
+    // 
+    // export default f;
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // namespace f {
+    //     var local = 100;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
   // function f() {
   //     return 100;
   // }
   // 
-  // [|export default f;|]
+  // export default [|f|];
   // 
   // var x: typeof f;
   // 
@@ -587,61 +566,61 @@ namespace RENAME {
   // namespace f {
   //     var local = 100;
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof [|f|];
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = [|f|]();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace [|f|] {
-//     var local = 100;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // function f() {
+    //     return 100;
+    // }
+    // 
+    // [|export default f;|]
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // namespace f {
+    //     var local = 100;
+    // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof [|f|];
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = [|f|]();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+// === 4 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
   // function f() {
   //     return 100;
@@ -656,27 +635,45 @@ namespace RENAME {
   // /**
   //  *  Commenting f
   //  */
-  // [|namespace f {
+  // namespace [|f|] {
   //     var local = 100;
-  // }|]
-=== 5 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting [|f|]
-//  */
-// namespace f {
-//     var local = 100;
-// }
+  // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // function f() {
+    //     return 100;
+    // }
+    // 
+    // export default f;
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // [|namespace f {
+    //     var local = 100;
+    // }|]
+// === 5 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting [|f|]
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
 
 
 [
@@ -736,54 +733,35 @@ namespace RENAME {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": true,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameForDefaultExport03.ts ======*/
-
-function RENAME() {
-    return 100;
-}
-
-export default RENAME;
-
-var x: typeof RENAME;
-
-var y = [|RENAME|]();
-
-/**
- *  Commenting RENAME
- */
-namespace RENAME {
-    var local = 100;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function [|f|]() {
+// function RENAME() {
 //     return 100;
 // }
 // 
-// export default f;
+// export default RENAME;
 // 
-// var x: typeof f;
+// var x: typeof RENAME;
 // 
-// var y = f();
+// var y = [|RENAME|]();
 // 
 // /**
-//  *  Commenting f
+//  *  Commenting RENAME
 //  */
-// namespace f {
+// namespace RENAME {
 //     var local = 100;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-  // [|function f() {
+  // function [|f|]() {
   //     return 100;
-  // }|]
+  // }
   // 
   // export default f;
   // 
@@ -797,31 +775,31 @@ namespace RENAME {
   // namespace f {
   //     var local = 100;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default [|f|];
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // [|function f() {
+    //     return 100;
+    // }|]
+    // 
+    // export default f;
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // namespace f {
+    //     var local = 100;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
   // function f() {
   //     return 100;
   // }
   // 
-  // [|export default f;|]
+  // export default [|f|];
   // 
   // var x: typeof f;
   // 
@@ -833,61 +811,61 @@ namespace RENAME {
   // namespace f {
   //     var local = 100;
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof [|f|];
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = [|f|]();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace [|f|] {
-//     var local = 100;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // function f() {
+    //     return 100;
+    // }
+    // 
+    // [|export default f;|]
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // namespace f {
+    //     var local = 100;
+    // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof [|f|];
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = [|f|]();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+// === 4 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
   // function f() {
   //     return 100;
@@ -902,27 +880,45 @@ namespace RENAME {
   // /**
   //  *  Commenting f
   //  */
-  // [|namespace f {
+  // namespace [|f|] {
   //     var local = 100;
-  // }|]
-=== 5 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting [|f|]
-//  */
-// namespace f {
-//     var local = 100;
-// }
+  // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // function f() {
+    //     return 100;
+    // }
+    // 
+    // export default f;
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // [|namespace f {
+    //     var local = 100;
+    // }|]
+// === 5 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting [|f|]
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
 
 
 [
@@ -982,54 +978,35 @@ namespace RENAME {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": true,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameForDefaultExport03.ts ======*/
-
-function RENAME() {
-    return 100;
-}
-
-export default RENAME;
-
-var x: typeof RENAME;
-
-var y = RENAME();
-
-/**
- *  Commenting RENAME
- */
-namespace [|RENAME|] {
-    var local = 100;
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function [|f|]() {
+// function RENAME() {
 //     return 100;
 // }
 // 
-// export default f;
+// export default RENAME;
 // 
-// var x: typeof f;
+// var x: typeof RENAME;
 // 
-// var y = f();
+// var y = RENAME();
 // 
 // /**
-//  *  Commenting f
+//  *  Commenting RENAME
 //  */
-// namespace f {
+// namespace [|RENAME|] {
 //     var local = 100;
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-  // [|function f() {
+  // function [|f|]() {
   //     return 100;
-  // }|]
+  // }
   // 
   // export default f;
   // 
@@ -1043,31 +1020,31 @@ namespace [|RENAME|] {
   // namespace f {
   //     var local = 100;
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default [|f|];
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // [|function f() {
+    //     return 100;
+    // }|]
+    // 
+    // export default f;
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // namespace f {
+    //     var local = 100;
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
   // function f() {
   //     return 100;
   // }
   // 
-  // [|export default f;|]
+  // export default [|f|];
   // 
   // var x: typeof f;
   // 
@@ -1079,61 +1056,61 @@ namespace [|RENAME|] {
   // namespace f {
   //     var local = 100;
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof [|f|];
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = [|f|]();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace f {
-//     var local = 100;
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting f
-//  */
-// namespace [|f|] {
-//     var local = 100;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // function f() {
+    //     return 100;
+    // }
+    // 
+    // [|export default f;|]
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // namespace f {
+    //     var local = 100;
+    // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof [|f|];
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = [|f|]();
+  // 
+  // /**
+  //  *  Commenting f
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
+// === 4 ===
   // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
   // function f() {
   //     return 100;
@@ -1148,27 +1125,45 @@ namespace [|RENAME|] {
   // /**
   //  *  Commenting f
   //  */
-  // [|namespace f {
+  // namespace [|f|] {
   //     var local = 100;
-  // }|]
-=== 5 ===
-// === /tests/cases/fourslash/renameForDefaultExport03.ts ===
-// function f() {
-//     return 100;
-// }
-// 
-// export default f;
-// 
-// var x: typeof f;
-// 
-// var y = f();
-// 
-// /**
-//  *  Commenting [|f|]
-//  */
-// namespace f {
-//     var local = 100;
-// }
+  // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+    // function f() {
+    //     return 100;
+    // }
+    // 
+    // export default f;
+    // 
+    // var x: typeof f;
+    // 
+    // var y = f();
+    // 
+    // /**
+    //  *  Commenting f
+    //  */
+    // [|namespace f {
+    //     var local = 100;
+    // }|]
+// === 5 ===
+  // === /tests/cases/fourslash/renameForDefaultExport03.ts ===
+  // function f() {
+  //     return 100;
+  // }
+  // 
+  // export default f;
+  // 
+  // var x: typeof f;
+  // 
+  // var y = f();
+  // 
+  // /**
+  //  *  Commenting [|f|]
+  //  */
+  // namespace f {
+  //     var local = 100;
+  // }
 
 
 [

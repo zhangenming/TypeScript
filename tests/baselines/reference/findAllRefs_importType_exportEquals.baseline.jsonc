@@ -1,4 +1,4 @@
-=== findAllReferences ===
+// === findAllReferences ===
 // === /a.ts ===
 // type /*FIND ALL REFS*/[|T|] = number;
 // namespace T {
@@ -10,61 +10,59 @@
 // const x: import("[|./a|]") = 0;
 // const y: import("./a").U = "";
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // type [|T|] = number;
+    // namespace T {
+    //     export type U = string;
+    // }
+    // export = T;
+      // === ContextSpan ===
+      // === /a.ts ===
+      // [|type T = number;|]
+      // namespace T {
+      //     export type U = string;
+      // }
+      // export = T;
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // type [|T|] = number;
       // namespace T {
       //     export type U = string;
       // }
       // export = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // [|type T = number;|]
         // namespace T {
         //     export type U = string;
         // }
         // export = T;
-    === References ===
-      === 0 ===
-      // === /a.ts ===
-      // type [|T|] = number;
-      // namespace T {
-      //     export type U = string;
-      // }
-      // export = T;
-      === ContextSpan ===
-        // === /a.ts ===
-        // [|type T = number;|]
-        // namespace T {
-        //     export type U = string;
-        // }
-        // export = T;
-      === 1 ===
+    // === 1 ===
       // === /a.ts ===
       // type T = number;
       // namespace T {
       //     export type U = string;
       // }
       // export = [|T|];
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // namespace T {
         //     export type U = string;
         // }
         // [|export = T;|]
-      === 2 ===
+    // === 2 ===
       // === /b.ts ===
       // const x: import("[|./a|]") = 0;
       // const y: import("./a").U = "";
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|const x: import("./a") = 0;|]
         // const y: import("./a").U = "";
-  }
-]
+
 
 [
   {
@@ -180,53 +178,51 @@
 // }
 // export = [|T|];
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // type [|T|] = number;
+    // namespace T {
+    //     export type U = string;
+    // }
+    // export = T;
+      // === ContextSpan ===
       // === /a.ts ===
-      // type [|T|] = number;
+      // [|type T = number;|]
       // namespace T {
       //     export type U = string;
       // }
       // export = T;
-      === ContextSpan ===
-        // === /a.ts ===
-        // [|type T = number;|]
-        // namespace T {
-        //     export type U = string;
-        // }
-        // export = T;
-    === References ===
-      === 0 ===
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // type T = number;
       // namespace [|T|] {
       //     export type U = string;
       // }
       // export = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // [|namespace T {
         //     export type U = string;
         // }|]
         // export = T;
-      === 1 ===
+    // === 1 ===
       // === /a.ts ===
       // type T = number;
       // namespace T {
       //     export type U = string;
       // }
       // export = [|T|];
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // namespace T {
         //     export type U = string;
         // }
         // [|export = T;|]
-  }
-]
+
 
 [
   {
@@ -301,75 +297,73 @@
 // const x: import("[|./a|]") = 0;
 // const y: import("./a").U = "";
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // type [|T|] = number;
+    // namespace T {
+    //     export type U = string;
+    // }
+    // export = T;
+      // === ContextSpan ===
+      // === /a.ts ===
+      // [|type T = number;|]
+      // namespace T {
+      //     export type U = string;
+      // }
+      // export = T;
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // type [|T|] = number;
       // namespace T {
       //     export type U = string;
       // }
       // export = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // [|type T = number;|]
         // namespace T {
         //     export type U = string;
         // }
         // export = T;
-    === References ===
-      === 0 ===
-      // === /a.ts ===
-      // type [|T|] = number;
-      // namespace T {
-      //     export type U = string;
-      // }
-      // export = T;
-      === ContextSpan ===
-        // === /a.ts ===
-        // [|type T = number;|]
-        // namespace T {
-        //     export type U = string;
-        // }
-        // export = T;
-      === 1 ===
+    // === 1 ===
       // === /a.ts ===
       // type T = number;
       // namespace [|T|] {
       //     export type U = string;
       // }
       // export = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // [|namespace T {
         //     export type U = string;
         // }|]
         // export = T;
-      === 2 ===
+    // === 2 ===
       // === /a.ts ===
       // type T = number;
       // namespace T {
       //     export type U = string;
       // }
       // export = [|T|];
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // namespace T {
         //     export type U = string;
         // }
         // [|export = T;|]
-      === 3 ===
+    // === 3 ===
       // === /b.ts ===
       // const x: import("[|./a|]") = 0;
       // const y: import("./a").U = "";
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|const x: import("./a") = 0;|]
         // const y: import("./a").U = "";
-  }
-]
+
 
 [
   {
@@ -498,107 +492,104 @@
 // const x: import("/*FIND ALL REFS*/[|./a|]") = 0;
 // const y: import("[|./a|]").U = "";
 
-[
-  {
-    === Definition ===
-      // === /a.ts ===
-      // [|type T = number;
-      // namespace T {
-      //     export type U = string;
-      // }
-      // export = T;|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // [|type T = number;
+    // namespace T {
+    //     export type U = string;
+    // }
+    // export = T;|]
+  // === References ===
+    // === 0 ===
       // === /b.ts ===
       // const x: import("./a") = 0;
       // const y: import("[|./a|]").U = "";
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // const x: import("./a") = 0;
         // [|const y: import("./a").U = "";|]
-      === 1 ===
+    // === 1 ===
       // === /a.ts ===
       // type T = number;
       // namespace T {
       //     export type U = string;
       // }
       // [|export|] = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // namespace T {
         //     export type U = string;
         // }
         // [|export = T;|]
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /a.ts ===
+    // type [|T|] = number;
+    // namespace T {
+    //     export type U = string;
+    // }
+    // export = T;
+      // === ContextSpan ===
+      // === /a.ts ===
+      // [|type T = number;|]
+      // namespace T {
+      //     export type U = string;
+      // }
+      // export = T;
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // type [|T|] = number;
       // namespace T {
       //     export type U = string;
       // }
       // export = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // [|type T = number;|]
         // namespace T {
         //     export type U = string;
         // }
         // export = T;
-    === References ===
-      === 0 ===
-      // === /a.ts ===
-      // type [|T|] = number;
-      // namespace T {
-      //     export type U = string;
-      // }
-      // export = T;
-      === ContextSpan ===
-        // === /a.ts ===
-        // [|type T = number;|]
-        // namespace T {
-        //     export type U = string;
-        // }
-        // export = T;
-      === 1 ===
+    // === 1 ===
       // === /a.ts ===
       // type T = number;
       // namespace [|T|] {
       //     export type U = string;
       // }
       // export = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // [|namespace T {
         //     export type U = string;
         // }|]
         // export = T;
-      === 2 ===
+    // === 2 ===
       // === /a.ts ===
       // type T = number;
       // namespace T {
       //     export type U = string;
       // }
       // export = [|T|];
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // namespace T {
         //     export type U = string;
         // }
         // [|export = T;|]
-      === 3 ===
+    // === 3 ===
       // === /b.ts ===
       // const x: import("[|./a|]") = 0;
       // const y: import("./a").U = "";
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|const x: import("./a") = 0;|]
         // const y: import("./a").U = "";
-  }
-]
+
 
 [
   {
@@ -780,107 +771,104 @@
 // const x: import("[|./a|]") = 0;
 // const y: import("/*FIND ALL REFS*/[|./a|]").U = "";
 
-[
-  {
-    === Definition ===
-      // === /a.ts ===
-      // [|type T = number;
-      // namespace T {
-      //     export type U = string;
-      // }
-      // export = T;|]
-    === References ===
-      === 0 ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // [|type T = number;
+    // namespace T {
+    //     export type U = string;
+    // }
+    // export = T;|]
+  // === References ===
+    // === 0 ===
       // === /b.ts ===
       // const x: import("./a") = 0;
       // const y: import("[|./a|]").U = "";
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // const x: import("./a") = 0;
         // [|const y: import("./a").U = "";|]
-      === 1 ===
+    // === 1 ===
       // === /a.ts ===
       // type T = number;
       // namespace T {
       //     export type U = string;
       // }
       // [|export|] = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // namespace T {
         //     export type U = string;
         // }
         // [|export = T;|]
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /a.ts ===
+    // type [|T|] = number;
+    // namespace T {
+    //     export type U = string;
+    // }
+    // export = T;
+      // === ContextSpan ===
+      // === /a.ts ===
+      // [|type T = number;|]
+      // namespace T {
+      //     export type U = string;
+      // }
+      // export = T;
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // type [|T|] = number;
       // namespace T {
       //     export type U = string;
       // }
       // export = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // [|type T = number;|]
         // namespace T {
         //     export type U = string;
         // }
         // export = T;
-    === References ===
-      === 0 ===
-      // === /a.ts ===
-      // type [|T|] = number;
-      // namespace T {
-      //     export type U = string;
-      // }
-      // export = T;
-      === ContextSpan ===
-        // === /a.ts ===
-        // [|type T = number;|]
-        // namespace T {
-        //     export type U = string;
-        // }
-        // export = T;
-      === 1 ===
+    // === 1 ===
       // === /a.ts ===
       // type T = number;
       // namespace [|T|] {
       //     export type U = string;
       // }
       // export = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // [|namespace T {
         //     export type U = string;
         // }|]
         // export = T;
-      === 2 ===
+    // === 2 ===
       // === /a.ts ===
       // type T = number;
       // namespace T {
       //     export type U = string;
       // }
       // export = [|T|];
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // namespace T {
         //     export type U = string;
         // }
         // [|export = T;|]
-      === 3 ===
+    // === 3 ===
       // === /b.ts ===
       // const x: import("[|./a|]") = 0;
       // const y: import("./a").U = "";
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|const x: import("./a") = 0;|]
         // const y: import("./a").U = "";
-  }
-]
+
 
 [
   {
@@ -1062,75 +1050,73 @@
 // const x: import("[|./a|]") = 0;
 // const y: import("./a").U = "";
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /a.ts ===
+    // type [|T|] = number;
+    // namespace T {
+    //     export type U = string;
+    // }
+    // export = T;
+      // === ContextSpan ===
+      // === /a.ts ===
+      // [|type T = number;|]
+      // namespace T {
+      //     export type U = string;
+      // }
+      // export = T;
+  // === References ===
+    // === 0 ===
       // === /a.ts ===
       // type [|T|] = number;
       // namespace T {
       //     export type U = string;
       // }
       // export = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // [|type T = number;|]
         // namespace T {
         //     export type U = string;
         // }
         // export = T;
-    === References ===
-      === 0 ===
-      // === /a.ts ===
-      // type [|T|] = number;
-      // namespace T {
-      //     export type U = string;
-      // }
-      // export = T;
-      === ContextSpan ===
-        // === /a.ts ===
-        // [|type T = number;|]
-        // namespace T {
-        //     export type U = string;
-        // }
-        // export = T;
-      === 1 ===
+    // === 1 ===
       // === /a.ts ===
       // type T = number;
       // namespace [|T|] {
       //     export type U = string;
       // }
       // export = T;
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // [|namespace T {
         //     export type U = string;
         // }|]
         // export = T;
-      === 2 ===
+    // === 2 ===
       // === /a.ts ===
       // type T = number;
       // namespace T {
       //     export type U = string;
       // }
       // export = [|T|];
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.ts ===
         // type T = number;
         // namespace T {
         //     export type U = string;
         // }
         // [|export = T;|]
-      === 3 ===
+    // === 3 ===
       // === /b.ts ===
       // const x: import("[|./a|]") = 0;
       // const y: import("./a").U = "";
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /b.ts ===
         // [|const x: import("./a") = 0;|]
         // const y: import("./a").U = "";
-  }
-]
+
 
 [
   {
@@ -1248,49 +1234,48 @@
   }
 ]
 
-=== findRenameLocations ===
-=== RenameOptions ===
+// === findRenameLocations ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /a.ts ======*/
-
-type [|RENAME|] = number;
-namespace T {
-    export type U = string;
-}
-export = RENAME;
-
-=== 0 ===
 // === /a.ts ===
-// type [|T|] = number;
+// type [|RENAME|] = number;
 // namespace T {
 //     export type U = string;
 // }
-// export = T;
-=== ContextSpan ===
+// export = RENAME;
+
+// === 0 ===
   // === /a.ts ===
-  // [|type T = number;|]
+  // type [|T|] = number;
   // namespace T {
   //     export type U = string;
   // }
   // export = T;
-=== 1 ===
-// === /a.ts ===
-// type T = number;
-// namespace T {
-//     export type U = string;
-// }
-// export = [|T|];
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /a.ts ===
+    // [|type T = number;|]
+    // namespace T {
+    //     export type U = string;
+    // }
+    // export = T;
+// === 1 ===
   // === /a.ts ===
   // type T = number;
   // namespace T {
   //     export type U = string;
   // }
-  // [|export = T;|]
+  // export = [|T|];
+    // === ContextSpan ===
+    // === /a.ts ===
+    // type T = number;
+    // namespace T {
+    //     export type U = string;
+    // }
+    // [|export = T;|]
 
 
 [
@@ -1318,48 +1303,47 @@ export = RENAME;
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /a.ts ======*/
-
-type T = number;
-namespace [|RENAME|] {
-    export type U = string;
-}
-export = RENAME;
-
-=== 0 ===
 // === /a.ts ===
 // type T = number;
-// namespace [|T|] {
+// namespace [|RENAME|] {
 //     export type U = string;
 // }
-// export = T;
-=== ContextSpan ===
+// export = RENAME;
+
+// === 0 ===
   // === /a.ts ===
   // type T = number;
-  // [|namespace T {
+  // namespace [|T|] {
   //     export type U = string;
-  // }|]
+  // }
   // export = T;
-=== 1 ===
-// === /a.ts ===
-// type T = number;
-// namespace T {
-//     export type U = string;
-// }
-// export = [|T|];
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /a.ts ===
+    // type T = number;
+    // [|namespace T {
+    //     export type U = string;
+    // }|]
+    // export = T;
+// === 1 ===
   // === /a.ts ===
   // type T = number;
   // namespace T {
   //     export type U = string;
   // }
-  // [|export = T;|]
+  // export = [|T|];
+    // === ContextSpan ===
+    // === /a.ts ===
+    // type T = number;
+    // namespace T {
+    //     export type U = string;
+    // }
+    // [|export = T;|]
 
 
 [
@@ -1387,62 +1371,61 @@ export = RENAME;
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /a.ts ======*/
-
-type RENAME = number;
-namespace RENAME {
-    export type U = string;
-}
-export = [|RENAME|];
-
-=== 0 ===
 // === /a.ts ===
-// type [|T|] = number;
-// namespace T {
+// type RENAME = number;
+// namespace RENAME {
 //     export type U = string;
 // }
-// export = T;
-=== ContextSpan ===
+// export = [|RENAME|];
+
+// === 0 ===
   // === /a.ts ===
-  // [|type T = number;|]
+  // type [|T|] = number;
   // namespace T {
   //     export type U = string;
   // }
   // export = T;
-=== 1 ===
-// === /a.ts ===
-// type T = number;
-// namespace [|T|] {
-//     export type U = string;
-// }
-// export = T;
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /a.ts ===
+    // [|type T = number;|]
+    // namespace T {
+    //     export type U = string;
+    // }
+    // export = T;
+// === 1 ===
   // === /a.ts ===
   // type T = number;
-  // [|namespace T {
+  // namespace [|T|] {
   //     export type U = string;
-  // }|]
+  // }
   // export = T;
-=== 2 ===
-// === /a.ts ===
-// type T = number;
-// namespace T {
-//     export type U = string;
-// }
-// export = [|T|];
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /a.ts ===
+    // type T = number;
+    // [|namespace T {
+    //     export type U = string;
+    // }|]
+    // export = T;
+// === 2 ===
   // === /a.ts ===
   // type T = number;
   // namespace T {
   //     export type U = string;
   // }
-  // [|export = T;|]
+  // export = [|T|];
+    // === ContextSpan ===
+    // === /a.ts ===
+    // type T = number;
+    // namespace T {
+    //     export type U = string;
+    // }
+    // [|export = T;|]
 
 
 [

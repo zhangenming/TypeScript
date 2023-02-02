@@ -743,13 +743,15 @@ export class TestState {
                 "" :
                 ts.isArray(defs) ?
                     this.readableDocumentSpanArray(defs, "") + "\n\n" :
-                    "{\n" +
-                    (defs.definitions ?
-                        "  === Definitions ===\n" + this.readableDocumentSpanArray(defs.definitions, "    ") :
-                        "") +
-                    "  === TextSpan ===\n" +
-                    this.readableDocumentSpan({ fileName: this.activeFile.fileName, textSpan: defs.textSpan }, "    ") +
-                    "}\n\n",
+                    (
+                        (defs.definitions ?
+                            "// === Definitions ===\n" +
+                            this.readableDocumentSpanArray(defs.definitions, "  ") :
+                            "") +
+                        "// === TextSpan ===\n" +
+                        this.readableDocumentSpan({ fileName: this.activeFile.fileName, textSpan: defs.textSpan }, "  ") +
+                        "\n\n"
+                    ),
         );
     }
 
@@ -1090,6 +1092,10 @@ export class TestState {
         }
     }
 
+    private readableJsoncBaseline(content: string, leadingSpaces: string) {
+        return content.split(/\r?\n/).map(l => leadingSpaces + "// " + l).join("\n");
+    }
+
     private readableSpan(fileName: string, { start, length }: ts.TextSpan, leadingSpaces: string) {
         const content = this.tryGetFileContent(fileName);
         if (content !== undefined) {
@@ -1100,12 +1106,12 @@ export class TestState {
                 content.slice(start, end) +
                 `|]` +
                 content.slice(end);
-            return newContent.split(/\r?\n/).map(l => leadingSpaces + "// " + l).join("\n") + "\n";
+            return this.readableJsoncBaseline(newContent, leadingSpaces) + "\n";
         }
         else {
             const newContent = `=== ${fileName} ===\n` +
                 `Unavailable file content:: start: ${start}, length: ${length}\n`;
-            return newContent.split(/\r?\n/).map(l => leadingSpaces + "// " + l).join("\n") + "\n";
+            return this.readableJsoncBaseline(newContent, leadingSpaces) + "\n";
         }
     }
 
@@ -1113,14 +1119,24 @@ export class TestState {
         const readableTextSpan = this.readableSpan(span.fileName, span.textSpan, leadingSpaces);
         return !span.contextSpan ?
             readableTextSpan :
-            readableTextSpan + leadingSpaces + "=== ContextSpan ===\n" + this.readableSpan(span.fileName, span.contextSpan, leadingSpaces + "  ");
+            readableTextSpan + leadingSpaces + "  // === ContextSpan ===\n" + this.readableSpan(span.fileName, span.contextSpan, leadingSpaces + "  ");
     }
 
     private readableDocumentSpanArray(spans: readonly ts.DocumentSpan[], leadingSpaces: string) {
-        return spans.map((span, index) =>
-            leadingSpaces +
-            `=== ${index} ===\n` +
-            this.readableDocumentSpan(span, leadingSpaces)).join("");
+        return this.readableArray(
+            spans,
+            (span, leadingSpaces) => this.readableDocumentSpan(span, leadingSpaces),
+            leadingSpaces,
+        );
+    }
+
+    private readableArray<T>(
+        array: readonly T[],
+        toString: (ele: T, leadingSpaces: string) => string,
+        leadingSpaces: string,
+    ) {
+        return array.map((ele, index) => leadingSpaces + "// " + `=== ${index} ===\n` +
+            toString(ele, leadingSpaces + "  ")).join("");
     }
 
     public verifyBaselineCommands(...commands: FourSlashInterface.BaselineCommand[]) {
@@ -1128,26 +1144,26 @@ export class TestState {
         commands.forEach((command, index) => {
             if (commands.length !== 1) {
                 if (index !== 0) baselineContent += `\n\n`;
-                baselineContent += `=== ${command.type} ===\n`;
+                baselineContent += `// === ${command.type} ===\n`;
             }
             switch (command.type) {
                 case "findAllReferences":
-                    return baselineArrayOrSingle(
+                    return baselineArrayOrSingleCommand(
                         command.markerOrRange,
                         markerOrRange => this.baselineFindAllReferencesWorker(markerOrRange),
                     );
                 case "getFileReferences":
-                    return baselineArrayOrSingle(
+                    return baselineArrayOrSingleCommand(
                         command.fileName,
                         fileName => this.baselineGetFileReferences(fileName),
                     );
                 case "findRenameLocations":
-                    return baselineArrayOrSingle(
+                    return baselineArrayOrSingleCommand(
                         command.markerOrRange,
                         markerOrRange => this.baselineRenameWorker(markerOrRange, command.options),
                     );
                 case "goToDefinition":
-                    return baselineArrayOrSingle(
+                    return baselineArrayOrSingleCommand(
                         command.markerOrRange,
                         markerOrRange => this.baselineGoToDefs(
                             "/*GOTO DEF*/",
@@ -1156,7 +1172,7 @@ export class TestState {
                         ),
                     );
                 case "getDefinitionAtPosition":
-                    return baselineArrayOrSingle(
+                    return baselineArrayOrSingleCommand(
                         command.markerOrRange,
                         markerOrRange => this.baselineGoToDefs(
                             "/*GOTO DEF POS*/",
@@ -1168,7 +1184,7 @@ export class TestState {
                     if (this.testType !== FourSlashTestType.Server) {
                         this.raiseError("goToSourceDefinition may only be used in fourslash/server tests.");
                     }
-                    return baselineArrayOrSingle(
+                    return baselineArrayOrSingleCommand(
                         command.markerOrRange,
                         markerOrRange => this.baselineGoToDefs(
                             "/*GOTO SOURCE DEF*/",
@@ -1178,7 +1194,7 @@ export class TestState {
                         ),
                     );
                 case "goToType":
-                    return baselineArrayOrSingle(
+                    return baselineArrayOrSingleCommand(
                         command.markerOrRange,
                         markerOrRange => this.baselineGoToDefs(
                             "/*GOTO TYPE*/",
@@ -1187,7 +1203,7 @@ export class TestState {
                         ),
                     );
                 case "goToImplementation":
-                    return baselineArrayOrSingle(
+                    return baselineArrayOrSingleCommand(
                         command.markerOrRange,
                         markerOrRange => this.baselineGoToDefs(
                             "/*GOTO IMPL*/",
@@ -1196,12 +1212,12 @@ export class TestState {
                         ),
                     );
                 case "occurences":
-                    return baselineArrayOrSingle(
+                    return baselineArrayOrSingleCommand(
                         command.markerOrRange,
                         markerOrRange => this.baselineGetOccurences(markerOrRange),
                     );
                 case "documentHighlights":
-                    return baselineArrayOrSingle(
+                    return baselineArrayOrSingleCommand(
                         command.markerOrRange,
                         markerOrRange => this.baselineGetDocumentHighlights(markerOrRange, command.options),
                     );
@@ -1214,7 +1230,7 @@ export class TestState {
         });
         Harness.Baseline.runBaseline(this.getBaselineFileNameForContainingTestFile(".baseline.jsonc"), baselineContent);
 
-        function baselineArrayOrSingle<T>(
+        function baselineArrayOrSingleCommand<T>(
             arrayOrSingle: ArrayOrSingle<T>,
             worker: (single: T) => string,
         ) {
@@ -1236,14 +1252,14 @@ export class TestState {
             references,
             references => ts.flatMap(references, r => r.references),
             references => references ?
-                "[\n" +
-                references.map(r => `  {\n    === Definition ===\n` +
-                    this.readableDocumentSpan(r.definition, "      ") +
-                    `    === References ===\n` +
-                    this.readableDocumentSpanArray(r.references, "      ") +
-                    "  }"
-                ).join(",\n") +
-                "\n]\n\n" :
+                this.readableArray(
+                    references,
+                    (r, leadingSpaces) => leadingSpaces + "// === Definition ===\n" +
+                        this.readableDocumentSpan(r.definition, leadingSpaces + "  ") +
+                        leadingSpaces + "// === References ===\n" +
+                        this.readableDocumentSpanArray(r.references, leadingSpaces + "  "),
+                    "",
+                ) + "\n\n" :
                 "",
         );
     }
@@ -1299,7 +1315,7 @@ export class TestState {
             if (group.length) {
                 const contentOfFile = this.tryGetFileContent(group[0].fileName);
                 if (contentOfFile !== undefined) {
-                    baselineContent += getBaselineContentForFile(group[0].fileName, contentOfFile, group);
+                    baselineContent += this.readableJsoncBaseline(getBaselineContentForFile(group[0].fileName, contentOfFile, group), "");
                 }
                 else {
                     baselineContent += `// === ${group[0].fileName} ===\n// Unavailable file content:\n`;
@@ -1316,7 +1332,7 @@ export class TestState {
                 content.slice(0, marker.position) +
                 refType +
                 content.slice(marker.position);
-            baselineContent += newContent.split(/\r?\n/).map(l => "// " + l).join("\n") + "\n\n";
+            baselineContent += this.readableJsoncBaseline(newContent, "") + "\n\n";
         }
         return baselineContent;
 
@@ -1361,7 +1377,7 @@ export class TestState {
                 foundMarker = true;
             }
             newContent += content.slice(pos);
-            return newContent.split(/\r?\n/).map(l => "// " + l).join("\n");
+            return newContent;
         }
     }
 
@@ -1575,7 +1591,7 @@ export class TestState {
         }
 
         const renamesByFile = ts.group(locations, l => l.fileName);
-        const baselineContent = `=== RenameOptions ===\n${JSON.stringify({ findInStrings, findInComments, providePrefixAndSuffixTextForRename }, undefined, " ")}\n` +
+        const baselineContent = `// === RenameOptions ===\n${JSON.stringify({ findInStrings, findInComments, providePrefixAndSuffixTextForRename }, undefined, " ")}\n` +
             renamesByFile.map(renames => {
                 const { fileName } = renames[0];
                 const sortedRenames = ts.sort(renames, (a, b) => b.textSpan.start - a.textSpan.start);
@@ -1589,7 +1605,7 @@ export class TestState {
                         (suffixText ? `${suffixText}/*END SUFFIX*/` : "") +
                         baselineFileContent.slice(textSpan.start + textSpan.length);
                 }
-                return `/*====== ${fileName} ======*/\n\n${baselineFileContent}`;
+                return this.readableJsoncBaseline(`=== ${fileName} ===\n${baselineFileContent}`, "");
             }).join("\n\n") + "\n\n";
 
         const readableLocations = this.readableDocumentSpanArray(locations, "") + "\n\n";
@@ -3470,17 +3486,16 @@ export class TestState {
             highlights?.map(h => h.highlightSpans.map(s => s.fileName ? s as ts.DocumentSpan : { ...s, fileName: h.fileName })) || ts.emptyArray,
             markerOrRange
         );
-        const readableReferences = highlights ?
-            "[\n" +
-            highlights.map(h =>
-                `  {\n    === ${h.fileName} ===\n` +
-                this.readableDocumentSpanArray(h.highlightSpans.map(span => span.fileName ? span as ts.DocumentSpan : { ...span, fileName: h.fileName }), "      ") +
-                "  }"
-            ).join(",\n") +
-            "\n]\n\n" :
+        const readableHighlights = highlights ?
+            (this.readableArray(
+                highlights,
+                (h, leadingSpaces) => leadingSpaces + `// === ${h.fileName} ===\n` +
+                    this.readableDocumentSpanArray(h.highlightSpans.map(span => span.fileName ? span as ts.DocumentSpan : { ...span, fileName: h.fileName }), leadingSpaces + "  "),
+                ""
+            ) + "\n\n") :
             "";
         // Write response JSON
-        return baselineContent + readableReferences + JSON.stringify(highlights, undefined, 2);
+        return baselineContent + readableHighlights + JSON.stringify(highlights, undefined, 2);
     }
 
     public verifyBaselineDocumentHighlights(markerOrRange: ArrayOrSingle<MarkerOrNameOrRange>, options: FourSlashInterface.VerifyDocumentHighlightsOptions | undefined) {

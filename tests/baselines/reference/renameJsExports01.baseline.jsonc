@@ -1,4 +1,4 @@
-=== findAllReferences ===
+// === findAllReferences ===
 // === /tests/cases/fourslash/a.js ===
 // exports.[|area|] = function (r) { return r * r; }
 
@@ -6,27 +6,25 @@
 // var mod = require('./a');
 // var t = mod./*FIND ALL REFS*/[|area|](10);
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/a.js ===
+    // exports.[|area|] = function (r) { return r * r; }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/a.js ===
+      // [|exports.area|] = function (r) { return r * r; }
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/a.js ===
       // exports.[|area|] = function (r) { return r * r; }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/a.js ===
-        // [|exports.area|] = function (r) { return r * r; }
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/a.js ===
-      // exports.[|area|] = function (r) { return r * r; }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.js ===
         // [|exports.area = function (r) { return r * r; }|]
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/b.js ===
       // var mod = require('./a');
       // var t = mod.[|area|](10);
-  }
-]
+
 
 [
   {
@@ -140,32 +138,30 @@
   }
 ]
 
-=== findRenameLocations ===
-=== RenameOptions ===
+// === findRenameLocations ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/a.js ======*/
-
-exports.RENAME = function (r) { return r * r; }
-
-/*====== /tests/cases/fourslash/b.js ======*/
-
-var mod = require('./a');
-var t = mod.RENAME(10);
-
-=== 0 ===
 // === /tests/cases/fourslash/a.js ===
-// exports.[|area|] = function (r) { return r * r; }
-=== ContextSpan ===
-  // === /tests/cases/fourslash/a.js ===
-  // [|exports.area = function (r) { return r * r; }|]
-=== 1 ===
+// exports.RENAME = function (r) { return r * r; }
+
 // === /tests/cases/fourslash/b.js ===
 // var mod = require('./a');
-// var t = mod.[|area|](10);
+// var t = mod.RENAME(10);
+
+// === 0 ===
+  // === /tests/cases/fourslash/a.js ===
+  // exports.[|area|] = function (r) { return r * r; }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/a.js ===
+    // [|exports.area = function (r) { return r * r; }|]
+// === 1 ===
+  // === /tests/cases/fourslash/b.js ===
+  // var mod = require('./a');
+  // var t = mod.[|area|](10);
 
 
 [
@@ -189,31 +185,29 @@ var t = mod.RENAME(10);
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/a.js ======*/
-
-exports.RENAME = function (r) { return r * r; }
-
-/*====== /tests/cases/fourslash/b.js ======*/
-
-var mod = require('./a');
-var t = mod.[|RENAME|](10);
-
-=== 0 ===
 // === /tests/cases/fourslash/a.js ===
-// exports.[|area|] = function (r) { return r * r; }
-=== ContextSpan ===
-  // === /tests/cases/fourslash/a.js ===
-  // [|exports.area = function (r) { return r * r; }|]
-=== 1 ===
+// exports.RENAME = function (r) { return r * r; }
+
 // === /tests/cases/fourslash/b.js ===
 // var mod = require('./a');
-// var t = mod.[|area|](10);
+// var t = mod.[|RENAME|](10);
+
+// === 0 ===
+  // === /tests/cases/fourslash/a.js ===
+  // exports.[|area|] = function (r) { return r * r; }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/a.js ===
+    // [|exports.area = function (r) { return r * r; }|]
+// === 1 ===
+  // === /tests/cases/fourslash/b.js ===
+  // var mod = require('./a');
+  // var t = mod.[|area|](10);
 
 
 [

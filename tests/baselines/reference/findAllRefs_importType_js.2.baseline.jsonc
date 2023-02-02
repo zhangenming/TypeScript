@@ -8,33 +8,31 @@
 // /** @type {import("./a").[|D|]} */
 // const y = 0;
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /a.js ===
+    // module.exports = class C {};
+    // module.exports.[|D|] = class D {};
+      // === ContextSpan ===
+      // === /a.js ===
+      // module.exports = class C {};
+      // [|module.exports.D|] = class D {};
+  // === References ===
+    // === 0 ===
       // === /a.js ===
       // module.exports = class C {};
       // module.exports.[|D|] = class D {};
-      === ContextSpan ===
-        // === /a.js ===
-        // module.exports = class C {};
-        // [|module.exports.D|] = class D {};
-    === References ===
-      === 0 ===
-      // === /a.js ===
-      // module.exports = class C {};
-      // module.exports.[|D|] = class D {};
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /a.js ===
         // module.exports = class C {};
         // [|module.exports.D = class D {};|]
-      === 1 ===
+    // === 1 ===
       // === /b.js ===
       // /** @type {import("./a")} */
       // const x = 0;
       // /** @type {import("./a").[|D|]} */
       // const y = 0;
-  }
-]
+
 
 [
   {

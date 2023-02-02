@@ -1,4 +1,4 @@
-=== findAllReferences ===
+// === findAllReferences ===
 // === /tests/cases/fourslash/A.ts ===
 // import [|B|] from "./B";
 // let b = new [|B|]();
@@ -10,63 +10,60 @@
 //     }
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/B.ts ===
+    // export default class [|B|] {
+    //     test() {
+    //     }
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/B.ts ===
+      // [|export default class B {
+      //     test() {
+      //     }
+      // }|]
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/B.ts ===
       // export default class [|B|] {
       //     test() {
       //     }
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/B.ts ===
         // [|export default class B {
         //     test() {
         //     }
         // }|]
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/B.ts ===
-      // export default class [|B|] {
-      //     test() {
-      //     }
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/B.ts ===
-        // [|export default class B {
-        //     test() {
-        //     }
-        // }|]
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/A.ts ===
+    // import [|B|] from "./B";
+    // let b = new B();
+    // b.test();
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/A.ts ===
+      // [|import B from "./B";|]
+      // let b = new B();
+      // b.test();
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/A.ts ===
       // import [|B|] from "./B";
       // let b = new B();
       // b.test();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/A.ts ===
         // [|import B from "./B";|]
         // let b = new B();
         // b.test();
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/A.ts ===
-      // import [|B|] from "./B";
-      // let b = new B();
-      // b.test();
-      === ContextSpan ===
-        // === /tests/cases/fourslash/A.ts ===
-        // [|import B from "./B";|]
-        // let b = new B();
-        // b.test();
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/A.ts ===
       // import B from "./B";
       // let b = new [|B|]();
       // b.test();
-  }
-]
+
 
 [
   {
@@ -215,63 +212,60 @@
 //     }
 // }
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/A.ts ===
+    // import [|B|] from "./B";
+    // let b = new B();
+    // b.test();
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/A.ts ===
+      // [|import B from "./B";|]
+      // let b = new B();
+      // b.test();
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/A.ts ===
       // import [|B|] from "./B";
       // let b = new B();
       // b.test();
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/A.ts ===
         // [|import B from "./B";|]
         // let b = new B();
         // b.test();
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/A.ts ===
-      // import [|B|] from "./B";
-      // let b = new B();
-      // b.test();
-      === ContextSpan ===
-        // === /tests/cases/fourslash/A.ts ===
-        // [|import B from "./B";|]
-        // let b = new B();
-        // b.test();
-      === 1 ===
+    // === 1 ===
       // === /tests/cases/fourslash/A.ts ===
       // import B from "./B";
       // let b = new [|B|]();
       // b.test();
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/B.ts ===
+    // export default class [|B|] {
+    //     test() {
+    //     }
+    // }
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/B.ts ===
+      // [|export default class B {
+      //     test() {
+      //     }
+      // }|]
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/B.ts ===
       // export default class [|B|] {
       //     test() {
       //     }
       // }
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/B.ts ===
         // [|export default class B {
         //     test() {
         //     }
         // }|]
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/B.ts ===
-      // export default class [|B|] {
-      //     test() {
-      //     }
-      // }
-      === ContextSpan ===
-        // === /tests/cases/fourslash/B.ts ===
-        // [|export default class B {
-        //     test() {
-        //     }
-        // }|]
-  }
-]
+
 
 [
   {
@@ -409,25 +403,25 @@
   }
 ]
 
-=== occurences ===
+// === occurences ===
 // === /tests/cases/fourslash/B.ts ===
 // export default class /*OCCURENCES*/[|B|] {
 //     test() {
 //     }
 // }
 
-=== 0 ===
-// === /tests/cases/fourslash/B.ts ===
-// export default class [|B|] {
-//     test() {
-//     }
-// }
-=== ContextSpan ===
+// === 0 ===
   // === /tests/cases/fourslash/B.ts ===
-  // [|export default class B {
+  // export default class [|B|] {
   //     test() {
   //     }
-  // }|]
+  // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/B.ts ===
+    // [|export default class B {
+    //     test() {
+    //     }
+    // }|]
 
 
 [
@@ -445,53 +439,51 @@
   }
 ]
 
-=== findRenameLocations ===
-=== RenameOptions ===
+// === findRenameLocations ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/B.ts ======*/
-
-export default class [|RENAME|] {
-    test() {
-    }
-}
-
-/*====== /tests/cases/fourslash/A.ts ======*/
-
-import RENAME from "./B";
-let b = new RENAME();
-b.test();
-
-=== 0 ===
 // === /tests/cases/fourslash/B.ts ===
-// export default class [|B|] {
+// export default class [|RENAME|] {
 //     test() {
 //     }
 // }
-=== ContextSpan ===
+
+// === /tests/cases/fourslash/A.ts ===
+// import RENAME from "./B";
+// let b = new RENAME();
+// b.test();
+
+// === 0 ===
   // === /tests/cases/fourslash/B.ts ===
-  // [|export default class B {
+  // export default class [|B|] {
   //     test() {
   //     }
-  // }|]
-=== 1 ===
-// === /tests/cases/fourslash/A.ts ===
-// import [|B|] from "./B";
-// let b = new B();
-// b.test();
-=== ContextSpan ===
+  // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/B.ts ===
+    // [|export default class B {
+    //     test() {
+    //     }
+    // }|]
+// === 1 ===
   // === /tests/cases/fourslash/A.ts ===
-  // [|import B from "./B";|]
+  // import [|B|] from "./B";
   // let b = new B();
   // b.test();
-=== 2 ===
-// === /tests/cases/fourslash/A.ts ===
-// import B from "./B";
-// let b = new [|B|]();
-// b.test();
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/A.ts ===
+    // [|import B from "./B";|]
+    // let b = new B();
+    // b.test();
+// === 2 ===
+  // === /tests/cases/fourslash/A.ts ===
+  // import B from "./B";
+  // let b = new [|B|]();
+  // b.test();
 
 
 [
@@ -526,33 +518,32 @@ b.test();
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/A.ts ======*/
-
-import RENAME from "./B";
-let b = new RENAME();
-b.test();
-
-=== 0 ===
 // === /tests/cases/fourslash/A.ts ===
-// import [|B|] from "./B";
-// let b = new B();
+// import RENAME from "./B";
+// let b = new RENAME();
 // b.test();
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/A.ts ===
-  // [|import B from "./B";|]
+  // import [|B|] from "./B";
   // let b = new B();
   // b.test();
-=== 1 ===
-// === /tests/cases/fourslash/A.ts ===
-// import B from "./B";
-// let b = new [|B|]();
-// b.test();
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/A.ts ===
+    // [|import B from "./B";|]
+    // let b = new B();
+    // b.test();
+// === 1 ===
+  // === /tests/cases/fourslash/A.ts ===
+  // import B from "./B";
+  // let b = new [|B|]();
+  // b.test();
 
 
 [
@@ -576,33 +567,32 @@ b.test();
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/A.ts ======*/
-
-import RENAME from "./B";
-let b = new RENAME();
-b.test();
-
-=== 0 ===
 // === /tests/cases/fourslash/A.ts ===
-// import [|B|] from "./B";
-// let b = new B();
+// import RENAME from "./B";
+// let b = new RENAME();
 // b.test();
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/A.ts ===
-  // [|import B from "./B";|]
+  // import [|B|] from "./B";
   // let b = new B();
   // b.test();
-=== 1 ===
-// === /tests/cases/fourslash/A.ts ===
-// import B from "./B";
-// let b = new [|B|]();
-// b.test();
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/A.ts ===
+    // [|import B from "./B";|]
+    // let b = new B();
+    // b.test();
+// === 1 ===
+  // === /tests/cases/fourslash/A.ts ===
+  // import B from "./B";
+  // let b = new [|B|]();
+  // b.test();
 
 
 [

@@ -1,48 +1,31 @@
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ======*/
-
-interface MultiRobot {
-    name: string;
-    skills: {
-        [|RENAME|]: string;
-        secondary: string;
-    };
-}
-let multiRobots: MultiRobot[];
-for (let { skills: {RENAME: primaryA, secondary: secondaryA } } of multiRobots) {
-    console.log(primaryA);
-}
-for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots) {
-    console.log(primary);
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
 // interface MultiRobot {
 //     name: string;
 //     skills: {
-//         [|primary|]: string;
+//         [|RENAME|]: string;
 //         secondary: string;
 //     };
 // }
 // let multiRobots: MultiRobot[];
-// for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
+// for (let { skills: {RENAME: primaryA, secondary: secondaryA } } of multiRobots) {
 //     console.log(primaryA);
 // }
-// for (let { skills: {primary, secondary } } of multiRobots) {
+// for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots) {
 //     console.log(primary);
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
   // interface MultiRobot {
   //     name: string;
   //     skills: {
-  //         [|primary: string;|]
+  //         [|primary|]: string;
   //         secondary: string;
   //     };
   // }
@@ -53,23 +36,23 @@ for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots)
   // for (let { skills: {primary, secondary } } of multiRobots) {
   //     console.log(primary);
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
-// interface MultiRobot {
-//     name: string;
-//     skills: {
-//         primary: string;
-//         secondary: string;
-//     };
-// }
-// let multiRobots: MultiRobot[];
-// for (let { skills: {[|primary|]: primaryA, secondary: secondaryA } } of multiRobots) {
-//     console.log(primaryA);
-// }
-// for (let { skills: {primary, secondary } } of multiRobots) {
-//     console.log(primary);
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
+    // interface MultiRobot {
+    //     name: string;
+    //     skills: {
+    //         [|primary: string;|]
+    //         secondary: string;
+    //     };
+    // }
+    // let multiRobots: MultiRobot[];
+    // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
+    //     console.log(primaryA);
+    // }
+    // for (let { skills: {primary, secondary } } of multiRobots) {
+    //     console.log(primary);
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
   // interface MultiRobot {
   //     name: string;
@@ -79,29 +62,29 @@ for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots)
   //     };
   // }
   // let multiRobots: MultiRobot[];
-  // for ([|let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots|]) {
+  // for (let { skills: {[|primary|]: primaryA, secondary: secondaryA } } of multiRobots) {
   //     console.log(primaryA);
   // }
   // for (let { skills: {primary, secondary } } of multiRobots) {
   //     console.log(primary);
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
-// interface MultiRobot {
-//     name: string;
-//     skills: {
-//         primary: string;
-//         secondary: string;
-//     };
-// }
-// let multiRobots: MultiRobot[];
-// for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
-//     console.log(primaryA);
-// }
-// for (let { skills: {[|primary|], secondary } } of multiRobots) {
-//     console.log(primary);
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
+    // interface MultiRobot {
+    //     name: string;
+    //     skills: {
+    //         primary: string;
+    //         secondary: string;
+    //     };
+    // }
+    // let multiRobots: MultiRobot[];
+    // for ([|let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots|]) {
+    //     console.log(primaryA);
+    // }
+    // for (let { skills: {primary, secondary } } of multiRobots) {
+    //     console.log(primary);
+    // }
+// === 2 ===
   // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
   // interface MultiRobot {
   //     name: string;
@@ -114,9 +97,25 @@ for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots)
   // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
   //     console.log(primaryA);
   // }
-  // for ([|let { skills: {primary, secondary } } of multiRobots|]) {
+  // for (let { skills: {[|primary|], secondary } } of multiRobots) {
   //     console.log(primary);
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
+    // interface MultiRobot {
+    //     name: string;
+    //     skills: {
+    //         primary: string;
+    //         secondary: string;
+    //     };
+    // }
+    // let multiRobots: MultiRobot[];
+    // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
+    //     console.log(primaryA);
+    // }
+    // for ([|let { skills: {primary, secondary } } of multiRobots|]) {
+    //     console.log(primary);
+    // }
 
 
 [
@@ -156,51 +155,34 @@ for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots)
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ======*/
-
-interface MultiRobot {
-    name: string;
-    skills: {
-        RENAME: string;
-        secondary: string;
-    };
-}
-let multiRobots: MultiRobot[];
-for (let { skills: {[|RENAME|]: primaryA, secondary: secondaryA } } of multiRobots) {
-    console.log(primaryA);
-}
-for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots) {
-    console.log(primary);
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
 // interface MultiRobot {
 //     name: string;
 //     skills: {
-//         [|primary|]: string;
+//         RENAME: string;
 //         secondary: string;
 //     };
 // }
 // let multiRobots: MultiRobot[];
-// for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
+// for (let { skills: {[|RENAME|]: primaryA, secondary: secondaryA } } of multiRobots) {
 //     console.log(primaryA);
 // }
-// for (let { skills: {primary, secondary } } of multiRobots) {
+// for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots) {
 //     console.log(primary);
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
   // interface MultiRobot {
   //     name: string;
   //     skills: {
-  //         [|primary: string;|]
+  //         [|primary|]: string;
   //         secondary: string;
   //     };
   // }
@@ -211,23 +193,23 @@ for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots)
   // for (let { skills: {primary, secondary } } of multiRobots) {
   //     console.log(primary);
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
-// interface MultiRobot {
-//     name: string;
-//     skills: {
-//         primary: string;
-//         secondary: string;
-//     };
-// }
-// let multiRobots: MultiRobot[];
-// for (let { skills: {[|primary|]: primaryA, secondary: secondaryA } } of multiRobots) {
-//     console.log(primaryA);
-// }
-// for (let { skills: {primary, secondary } } of multiRobots) {
-//     console.log(primary);
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
+    // interface MultiRobot {
+    //     name: string;
+    //     skills: {
+    //         [|primary: string;|]
+    //         secondary: string;
+    //     };
+    // }
+    // let multiRobots: MultiRobot[];
+    // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
+    //     console.log(primaryA);
+    // }
+    // for (let { skills: {primary, secondary } } of multiRobots) {
+    //     console.log(primary);
+    // }
+// === 1 ===
   // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
   // interface MultiRobot {
   //     name: string;
@@ -237,29 +219,29 @@ for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots)
   //     };
   // }
   // let multiRobots: MultiRobot[];
-  // for ([|let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots|]) {
+  // for (let { skills: {[|primary|]: primaryA, secondary: secondaryA } } of multiRobots) {
   //     console.log(primaryA);
   // }
   // for (let { skills: {primary, secondary } } of multiRobots) {
   //     console.log(primary);
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
-// interface MultiRobot {
-//     name: string;
-//     skills: {
-//         primary: string;
-//         secondary: string;
-//     };
-// }
-// let multiRobots: MultiRobot[];
-// for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
-//     console.log(primaryA);
-// }
-// for (let { skills: {[|primary|], secondary } } of multiRobots) {
-//     console.log(primary);
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
+    // interface MultiRobot {
+    //     name: string;
+    //     skills: {
+    //         primary: string;
+    //         secondary: string;
+    //     };
+    // }
+    // let multiRobots: MultiRobot[];
+    // for ([|let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots|]) {
+    //     console.log(primaryA);
+    // }
+    // for (let { skills: {primary, secondary } } of multiRobots) {
+    //     console.log(primary);
+    // }
+// === 2 ===
   // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
   // interface MultiRobot {
   //     name: string;
@@ -272,9 +254,25 @@ for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots)
   // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
   //     console.log(primaryA);
   // }
-  // for ([|let { skills: {primary, secondary } } of multiRobots|]) {
+  // for (let { skills: {[|primary|], secondary } } of multiRobots) {
   //     console.log(primary);
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
+    // interface MultiRobot {
+    //     name: string;
+    //     skills: {
+    //         primary: string;
+    //         secondary: string;
+    //     };
+    // }
+    // let multiRobots: MultiRobot[];
+    // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
+    //     console.log(primaryA);
+    // }
+    // for ([|let { skills: {primary, secondary } } of multiRobots|]) {
+    //     console.log(primary);
+    // }
 
 
 [
@@ -314,30 +312,12 @@ for (let { skills: {RENAME: primary/*END SUFFIX*/, secondary } } of multiRobots)
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ======*/
-
-interface MultiRobot {
-    name: string;
-    skills: {
-        primary: string;
-        secondary: string;
-    };
-}
-let multiRobots: MultiRobot[];
-for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
-    console.log(primaryA);
-}
-for (let { skills: {/*START PREFIX*/primary: [|RENAME|], secondary } } of multiRobots) {
-    console.log(RENAME);
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
 // interface MultiRobot {
 //     name: string;
@@ -350,10 +330,11 @@ for (let { skills: {/*START PREFIX*/primary: [|RENAME|], secondary } } of multiR
 // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
 //     console.log(primaryA);
 // }
-// for (let { skills: {[|primary|], secondary } } of multiRobots) {
-//     console.log(primary);
+// for (let { skills: {/*START PREFIX*/primary: [|RENAME|], secondary } } of multiRobots) {
+//     console.log(RENAME);
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
   // interface MultiRobot {
   //     name: string;
@@ -366,25 +347,41 @@ for (let { skills: {/*START PREFIX*/primary: [|RENAME|], secondary } } of multiR
   // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
   //     console.log(primaryA);
   // }
-  // for ([|let { skills: {primary, secondary } } of multiRobots|]) {
+  // for (let { skills: {[|primary|], secondary } } of multiRobots) {
   //     console.log(primary);
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
-// interface MultiRobot {
-//     name: string;
-//     skills: {
-//         primary: string;
-//         secondary: string;
-//     };
-// }
-// let multiRobots: MultiRobot[];
-// for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
-//     console.log(primaryA);
-// }
-// for (let { skills: {primary, secondary } } of multiRobots) {
-//     console.log([|primary|]);
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
+    // interface MultiRobot {
+    //     name: string;
+    //     skills: {
+    //         primary: string;
+    //         secondary: string;
+    //     };
+    // }
+    // let multiRobots: MultiRobot[];
+    // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
+    //     console.log(primaryA);
+    // }
+    // for ([|let { skills: {primary, secondary } } of multiRobots|]) {
+    //     console.log(primary);
+    // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
+  // interface MultiRobot {
+  //     name: string;
+  //     skills: {
+  //         primary: string;
+  //         secondary: string;
+  //     };
+  // }
+  // let multiRobots: MultiRobot[];
+  // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
+  //     console.log(primaryA);
+  // }
+  // for (let { skills: {primary, secondary } } of multiRobots) {
+  //     console.log([|primary|]);
+  // }
 
 
 [
@@ -409,30 +406,12 @@ for (let { skills: {/*START PREFIX*/primary: [|RENAME|], secondary } } of multiR
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ======*/
-
-interface MultiRobot {
-    name: string;
-    skills: {
-        primary: string;
-        secondary: string;
-    };
-}
-let multiRobots: MultiRobot[];
-for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
-    console.log(primaryA);
-}
-for (let { skills: {/*START PREFIX*/primary: RENAME, secondary } } of multiRobots) {
-    console.log([|RENAME|]);
-}
-
-=== 0 ===
 // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
 // interface MultiRobot {
 //     name: string;
@@ -445,10 +424,11 @@ for (let { skills: {/*START PREFIX*/primary: RENAME, secondary } } of multiRobot
 // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
 //     console.log(primaryA);
 // }
-// for (let { skills: {[|primary|], secondary } } of multiRobots) {
-//     console.log(primary);
+// for (let { skills: {/*START PREFIX*/primary: RENAME, secondary } } of multiRobots) {
+//     console.log([|RENAME|]);
 // }
-=== ContextSpan ===
+
+// === 0 ===
   // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
   // interface MultiRobot {
   //     name: string;
@@ -461,25 +441,41 @@ for (let { skills: {/*START PREFIX*/primary: RENAME, secondary } } of multiRobot
   // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
   //     console.log(primaryA);
   // }
-  // for ([|let { skills: {primary, secondary } } of multiRobots|]) {
+  // for (let { skills: {[|primary|], secondary } } of multiRobots) {
   //     console.log(primary);
   // }
-=== 1 ===
-// === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
-// interface MultiRobot {
-//     name: string;
-//     skills: {
-//         primary: string;
-//         secondary: string;
-//     };
-// }
-// let multiRobots: MultiRobot[];
-// for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
-//     console.log(primaryA);
-// }
-// for (let { skills: {primary, secondary } } of multiRobots) {
-//     console.log([|primary|]);
-// }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
+    // interface MultiRobot {
+    //     name: string;
+    //     skills: {
+    //         primary: string;
+    //         secondary: string;
+    //     };
+    // }
+    // let multiRobots: MultiRobot[];
+    // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
+    //     console.log(primaryA);
+    // }
+    // for ([|let { skills: {primary, secondary } } of multiRobots|]) {
+    //     console.log(primary);
+    // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameDestructuringNestedBindingElement.ts ===
+  // interface MultiRobot {
+  //     name: string;
+  //     skills: {
+  //         primary: string;
+  //         secondary: string;
+  //     };
+  // }
+  // let multiRobots: MultiRobot[];
+  // for (let { skills: {primary: primaryA, secondary: secondaryA } } of multiRobots) {
+  //     console.log(primaryA);
+  // }
+  // for (let { skills: {primary, secondary } } of multiRobots) {
+  //     console.log([|primary|]);
+  // }
 
 
 [

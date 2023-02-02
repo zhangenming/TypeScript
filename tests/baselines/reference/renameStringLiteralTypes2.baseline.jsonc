@@ -1,230 +1,229 @@
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameStringLiteralTypes2.ts ======*/
+// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+// type Foo = "[|RENAME|]" | "b";
+// 
+// class C {
+//     p: Foo = "RENAME";
+//     m() {
+//         if (this.p === "RENAME") {}
+//         if ("RENAME" === this.p) {}
+// 
+//         if (this.p !== "RENAME") {}
+//         if ("RENAME" !== this.p) {}
+// 
+//         if (this.p == "RENAME") {}
+//         if ("RENAME" == this.p) {}
+// 
+//         if (this.p != "RENAME") {}
+//         if ("RENAME" != this.p) {}
+//     }
+// }
 
-type Foo = "[|RENAME|]" | "b";
-
-class C {
-    p: Foo = "RENAME";
-    m() {
-        if (this.p === "RENAME") {}
-        if ("RENAME" === this.p) {}
-
-        if (this.p !== "RENAME") {}
-        if ("RENAME" !== this.p) {}
-
-        if (this.p == "RENAME") {}
-        if ("RENAME" == this.p) {}
-
-        if (this.p != "RENAME") {}
-        if ("RENAME" != this.p) {}
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "[|a|]" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 1 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "[|a|]";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 2 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "[|a|]") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("[|a|]" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "[|a|]") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 5 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("[|a|]" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 6 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "[|a|]") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 7 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("[|a|]" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 8 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "[|a|]") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 9 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("[|a|]" != this.p) {}
-//     }
-// }
+// === 0 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "[|a|]" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "[|a|]";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "[|a|]") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("[|a|]" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 4 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "[|a|]") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 5 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("[|a|]" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 6 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "[|a|]") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 7 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("[|a|]" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 8 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "[|a|]") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 9 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("[|a|]" != this.p) {}
+  //     }
+  // }
 
 
 [
@@ -300,233 +299,232 @@ class C {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameStringLiteralTypes2.ts ======*/
+// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+// type Foo = "RENAME" | "b";
+// 
+// class C {
+//     p: Foo = "[|RENAME|]";
+//     m() {
+//         if (this.p === "RENAME") {}
+//         if ("RENAME" === this.p) {}
+// 
+//         if (this.p !== "RENAME") {}
+//         if ("RENAME" !== this.p) {}
+// 
+//         if (this.p == "RENAME") {}
+//         if ("RENAME" == this.p) {}
+// 
+//         if (this.p != "RENAME") {}
+//         if ("RENAME" != this.p) {}
+//     }
+// }
 
-type Foo = "RENAME" | "b";
-
-class C {
-    p: Foo = "[|RENAME|]";
-    m() {
-        if (this.p === "RENAME") {}
-        if ("RENAME" === this.p) {}
-
-        if (this.p !== "RENAME") {}
-        if ("RENAME" !== this.p) {}
-
-        if (this.p == "RENAME") {}
-        if ("RENAME" == this.p) {}
-
-        if (this.p != "RENAME") {}
-        if ("RENAME" != this.p) {}
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "[|a|]" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 1 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "[|a|]";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 2 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "[|a|]") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("[|a|]" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "[|a|]") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 5 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("[|a|]" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 6 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "[|a|]") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 7 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("[|a|]" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 8 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "[|a|]") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 9 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("[|a|]" != this.p) {}
-//     }
-// }
+// === 0 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "[|a|]" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "[|a|]";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "[|a|]") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("[|a|]" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 4 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "[|a|]") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 5 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("[|a|]" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 6 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "[|a|]") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 7 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("[|a|]" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 8 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "[|a|]") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 9 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("[|a|]" != this.p) {}
+  //     }
+  // }
 
 
 [
@@ -602,233 +600,232 @@ class C {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameStringLiteralTypes2.ts ======*/
+// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+// type Foo = "RENAME" | "b";
+// 
+// class C {
+//     p: Foo = "RENAME";
+//     m() {
+//         if (this.p === "[|RENAME|]") {}
+//         if ("RENAME" === this.p) {}
+// 
+//         if (this.p !== "RENAME") {}
+//         if ("RENAME" !== this.p) {}
+// 
+//         if (this.p == "RENAME") {}
+//         if ("RENAME" == this.p) {}
+// 
+//         if (this.p != "RENAME") {}
+//         if ("RENAME" != this.p) {}
+//     }
+// }
 
-type Foo = "RENAME" | "b";
-
-class C {
-    p: Foo = "RENAME";
-    m() {
-        if (this.p === "[|RENAME|]") {}
-        if ("RENAME" === this.p) {}
-
-        if (this.p !== "RENAME") {}
-        if ("RENAME" !== this.p) {}
-
-        if (this.p == "RENAME") {}
-        if ("RENAME" == this.p) {}
-
-        if (this.p != "RENAME") {}
-        if ("RENAME" != this.p) {}
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "[|a|]" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 1 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "[|a|]";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 2 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "[|a|]") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("[|a|]" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "[|a|]") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 5 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("[|a|]" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 6 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "[|a|]") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 7 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("[|a|]" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 8 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "[|a|]") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 9 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("[|a|]" != this.p) {}
-//     }
-// }
+// === 0 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "[|a|]" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "[|a|]";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "[|a|]") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("[|a|]" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 4 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "[|a|]") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 5 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("[|a|]" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 6 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "[|a|]") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 7 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("[|a|]" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 8 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "[|a|]") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 9 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("[|a|]" != this.p) {}
+  //     }
+  // }
 
 
 [
@@ -904,233 +901,232 @@ class C {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameStringLiteralTypes2.ts ======*/
+// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+// type Foo = "RENAME" | "b";
+// 
+// class C {
+//     p: Foo = "RENAME";
+//     m() {
+//         if (this.p === "RENAME") {}
+//         if ("[|RENAME|]" === this.p) {}
+// 
+//         if (this.p !== "RENAME") {}
+//         if ("RENAME" !== this.p) {}
+// 
+//         if (this.p == "RENAME") {}
+//         if ("RENAME" == this.p) {}
+// 
+//         if (this.p != "RENAME") {}
+//         if ("RENAME" != this.p) {}
+//     }
+// }
 
-type Foo = "RENAME" | "b";
-
-class C {
-    p: Foo = "RENAME";
-    m() {
-        if (this.p === "RENAME") {}
-        if ("[|RENAME|]" === this.p) {}
-
-        if (this.p !== "RENAME") {}
-        if ("RENAME" !== this.p) {}
-
-        if (this.p == "RENAME") {}
-        if ("RENAME" == this.p) {}
-
-        if (this.p != "RENAME") {}
-        if ("RENAME" != this.p) {}
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "[|a|]" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 1 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "[|a|]";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 2 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "[|a|]") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("[|a|]" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "[|a|]") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 5 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("[|a|]" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 6 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "[|a|]") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 7 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("[|a|]" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 8 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "[|a|]") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 9 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("[|a|]" != this.p) {}
-//     }
-// }
+// === 0 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "[|a|]" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "[|a|]";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "[|a|]") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("[|a|]" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 4 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "[|a|]") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 5 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("[|a|]" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 6 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "[|a|]") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 7 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("[|a|]" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 8 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "[|a|]") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 9 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("[|a|]" != this.p) {}
+  //     }
+  // }
 
 
 [
@@ -1206,233 +1202,232 @@ class C {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameStringLiteralTypes2.ts ======*/
+// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+// type Foo = "RENAME" | "b";
+// 
+// class C {
+//     p: Foo = "RENAME";
+//     m() {
+//         if (this.p === "RENAME") {}
+//         if ("RENAME" === this.p) {}
+// 
+//         if (this.p !== "[|RENAME|]") {}
+//         if ("RENAME" !== this.p) {}
+// 
+//         if (this.p == "RENAME") {}
+//         if ("RENAME" == this.p) {}
+// 
+//         if (this.p != "RENAME") {}
+//         if ("RENAME" != this.p) {}
+//     }
+// }
 
-type Foo = "RENAME" | "b";
-
-class C {
-    p: Foo = "RENAME";
-    m() {
-        if (this.p === "RENAME") {}
-        if ("RENAME" === this.p) {}
-
-        if (this.p !== "[|RENAME|]") {}
-        if ("RENAME" !== this.p) {}
-
-        if (this.p == "RENAME") {}
-        if ("RENAME" == this.p) {}
-
-        if (this.p != "RENAME") {}
-        if ("RENAME" != this.p) {}
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "[|a|]" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 1 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "[|a|]";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 2 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "[|a|]") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("[|a|]" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "[|a|]") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 5 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("[|a|]" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 6 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "[|a|]") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 7 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("[|a|]" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 8 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "[|a|]") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 9 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("[|a|]" != this.p) {}
-//     }
-// }
+// === 0 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "[|a|]" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "[|a|]";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "[|a|]") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("[|a|]" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 4 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "[|a|]") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 5 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("[|a|]" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 6 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "[|a|]") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 7 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("[|a|]" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 8 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "[|a|]") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 9 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("[|a|]" != this.p) {}
+  //     }
+  // }
 
 
 [
@@ -1508,233 +1503,232 @@ class C {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameStringLiteralTypes2.ts ======*/
+// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+// type Foo = "RENAME" | "b";
+// 
+// class C {
+//     p: Foo = "RENAME";
+//     m() {
+//         if (this.p === "RENAME") {}
+//         if ("RENAME" === this.p) {}
+// 
+//         if (this.p !== "RENAME") {}
+//         if ("[|RENAME|]" !== this.p) {}
+// 
+//         if (this.p == "RENAME") {}
+//         if ("RENAME" == this.p) {}
+// 
+//         if (this.p != "RENAME") {}
+//         if ("RENAME" != this.p) {}
+//     }
+// }
 
-type Foo = "RENAME" | "b";
-
-class C {
-    p: Foo = "RENAME";
-    m() {
-        if (this.p === "RENAME") {}
-        if ("RENAME" === this.p) {}
-
-        if (this.p !== "RENAME") {}
-        if ("[|RENAME|]" !== this.p) {}
-
-        if (this.p == "RENAME") {}
-        if ("RENAME" == this.p) {}
-
-        if (this.p != "RENAME") {}
-        if ("RENAME" != this.p) {}
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "[|a|]" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 1 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "[|a|]";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 2 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "[|a|]") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("[|a|]" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "[|a|]") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 5 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("[|a|]" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 6 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "[|a|]") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 7 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("[|a|]" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 8 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "[|a|]") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 9 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("[|a|]" != this.p) {}
-//     }
-// }
+// === 0 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "[|a|]" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "[|a|]";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "[|a|]") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("[|a|]" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 4 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "[|a|]") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 5 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("[|a|]" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 6 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "[|a|]") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 7 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("[|a|]" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 8 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "[|a|]") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 9 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("[|a|]" != this.p) {}
+  //     }
+  // }
 
 
 [
@@ -1810,233 +1804,232 @@ class C {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameStringLiteralTypes2.ts ======*/
+// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+// type Foo = "RENAME" | "b";
+// 
+// class C {
+//     p: Foo = "RENAME";
+//     m() {
+//         if (this.p === "RENAME") {}
+//         if ("RENAME" === this.p) {}
+// 
+//         if (this.p !== "RENAME") {}
+//         if ("RENAME" !== this.p) {}
+// 
+//         if (this.p == "[|RENAME|]") {}
+//         if ("RENAME" == this.p) {}
+// 
+//         if (this.p != "RENAME") {}
+//         if ("RENAME" != this.p) {}
+//     }
+// }
 
-type Foo = "RENAME" | "b";
-
-class C {
-    p: Foo = "RENAME";
-    m() {
-        if (this.p === "RENAME") {}
-        if ("RENAME" === this.p) {}
-
-        if (this.p !== "RENAME") {}
-        if ("RENAME" !== this.p) {}
-
-        if (this.p == "[|RENAME|]") {}
-        if ("RENAME" == this.p) {}
-
-        if (this.p != "RENAME") {}
-        if ("RENAME" != this.p) {}
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "[|a|]" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 1 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "[|a|]";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 2 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "[|a|]") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("[|a|]" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "[|a|]") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 5 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("[|a|]" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 6 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "[|a|]") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 7 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("[|a|]" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 8 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "[|a|]") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 9 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("[|a|]" != this.p) {}
-//     }
-// }
+// === 0 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "[|a|]" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "[|a|]";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "[|a|]") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("[|a|]" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 4 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "[|a|]") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 5 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("[|a|]" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 6 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "[|a|]") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 7 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("[|a|]" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 8 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "[|a|]") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 9 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("[|a|]" != this.p) {}
+  //     }
+  // }
 
 
 [
@@ -2112,233 +2105,232 @@ class C {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameStringLiteralTypes2.ts ======*/
+// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+// type Foo = "RENAME" | "b";
+// 
+// class C {
+//     p: Foo = "RENAME";
+//     m() {
+//         if (this.p === "RENAME") {}
+//         if ("RENAME" === this.p) {}
+// 
+//         if (this.p !== "RENAME") {}
+//         if ("RENAME" !== this.p) {}
+// 
+//         if (this.p == "RENAME") {}
+//         if ("[|RENAME|]" == this.p) {}
+// 
+//         if (this.p != "RENAME") {}
+//         if ("RENAME" != this.p) {}
+//     }
+// }
 
-type Foo = "RENAME" | "b";
-
-class C {
-    p: Foo = "RENAME";
-    m() {
-        if (this.p === "RENAME") {}
-        if ("RENAME" === this.p) {}
-
-        if (this.p !== "RENAME") {}
-        if ("RENAME" !== this.p) {}
-
-        if (this.p == "RENAME") {}
-        if ("[|RENAME|]" == this.p) {}
-
-        if (this.p != "RENAME") {}
-        if ("RENAME" != this.p) {}
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "[|a|]" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 1 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "[|a|]";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 2 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "[|a|]") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("[|a|]" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "[|a|]") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 5 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("[|a|]" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 6 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "[|a|]") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 7 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("[|a|]" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 8 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "[|a|]") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 9 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("[|a|]" != this.p) {}
-//     }
-// }
+// === 0 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "[|a|]" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "[|a|]";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "[|a|]") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("[|a|]" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 4 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "[|a|]") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 5 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("[|a|]" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 6 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "[|a|]") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 7 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("[|a|]" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 8 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "[|a|]") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 9 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("[|a|]" != this.p) {}
+  //     }
+  // }
 
 
 [
@@ -2414,233 +2406,232 @@ class C {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameStringLiteralTypes2.ts ======*/
+// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+// type Foo = "RENAME" | "b";
+// 
+// class C {
+//     p: Foo = "RENAME";
+//     m() {
+//         if (this.p === "RENAME") {}
+//         if ("RENAME" === this.p) {}
+// 
+//         if (this.p !== "RENAME") {}
+//         if ("RENAME" !== this.p) {}
+// 
+//         if (this.p == "RENAME") {}
+//         if ("RENAME" == this.p) {}
+// 
+//         if (this.p != "[|RENAME|]") {}
+//         if ("RENAME" != this.p) {}
+//     }
+// }
 
-type Foo = "RENAME" | "b";
-
-class C {
-    p: Foo = "RENAME";
-    m() {
-        if (this.p === "RENAME") {}
-        if ("RENAME" === this.p) {}
-
-        if (this.p !== "RENAME") {}
-        if ("RENAME" !== this.p) {}
-
-        if (this.p == "RENAME") {}
-        if ("RENAME" == this.p) {}
-
-        if (this.p != "[|RENAME|]") {}
-        if ("RENAME" != this.p) {}
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "[|a|]" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 1 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "[|a|]";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 2 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "[|a|]") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("[|a|]" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "[|a|]") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 5 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("[|a|]" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 6 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "[|a|]") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 7 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("[|a|]" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 8 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "[|a|]") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 9 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("[|a|]" != this.p) {}
-//     }
-// }
+// === 0 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "[|a|]" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "[|a|]";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "[|a|]") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("[|a|]" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 4 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "[|a|]") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 5 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("[|a|]" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 6 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "[|a|]") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 7 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("[|a|]" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 8 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "[|a|]") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 9 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("[|a|]" != this.p) {}
+  //     }
+  // }
 
 
 [
@@ -2716,233 +2707,232 @@ class C {
   }
 ]
 
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameStringLiteralTypes2.ts ======*/
+// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+// type Foo = "RENAME" | "b";
+// 
+// class C {
+//     p: Foo = "RENAME";
+//     m() {
+//         if (this.p === "RENAME") {}
+//         if ("RENAME" === this.p) {}
+// 
+//         if (this.p !== "RENAME") {}
+//         if ("RENAME" !== this.p) {}
+// 
+//         if (this.p == "RENAME") {}
+//         if ("RENAME" == this.p) {}
+// 
+//         if (this.p != "RENAME") {}
+//         if ("[|RENAME|]" != this.p) {}
+//     }
+// }
 
-type Foo = "RENAME" | "b";
-
-class C {
-    p: Foo = "RENAME";
-    m() {
-        if (this.p === "RENAME") {}
-        if ("RENAME" === this.p) {}
-
-        if (this.p !== "RENAME") {}
-        if ("RENAME" !== this.p) {}
-
-        if (this.p == "RENAME") {}
-        if ("RENAME" == this.p) {}
-
-        if (this.p != "RENAME") {}
-        if ("[|RENAME|]" != this.p) {}
-    }
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "[|a|]" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 1 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "[|a|]";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 2 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "[|a|]") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 3 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("[|a|]" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 4 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "[|a|]") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 5 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("[|a|]" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 6 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "[|a|]") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 7 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("[|a|]" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 8 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "[|a|]") {}
-//         if ("a" != this.p) {}
-//     }
-// }
-=== 9 ===
-// === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
-// type Foo = "a" | "b";
-// 
-// class C {
-//     p: Foo = "a";
-//     m() {
-//         if (this.p === "a") {}
-//         if ("a" === this.p) {}
-// 
-//         if (this.p !== "a") {}
-//         if ("a" !== this.p) {}
-// 
-//         if (this.p == "a") {}
-//         if ("a" == this.p) {}
-// 
-//         if (this.p != "a") {}
-//         if ("[|a|]" != this.p) {}
-//     }
-// }
+// === 0 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "[|a|]" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 1 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "[|a|]";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 2 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "[|a|]") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 3 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("[|a|]" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 4 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "[|a|]") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 5 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("[|a|]" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 6 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "[|a|]") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 7 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("[|a|]" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 8 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "[|a|]") {}
+  //         if ("a" != this.p) {}
+  //     }
+  // }
+// === 9 ===
+  // === /tests/cases/fourslash/renameStringLiteralTypes2.ts ===
+  // type Foo = "a" | "b";
+  // 
+  // class C {
+  //     p: Foo = "a";
+  //     m() {
+  //         if (this.p === "a") {}
+  //         if ("a" === this.p) {}
+  // 
+  //         if (this.p !== "a") {}
+  //         if ("a" !== this.p) {}
+  // 
+  //         if (this.p == "a") {}
+  //         if ("a" == this.p) {}
+  // 
+  //         if (this.p != "a") {}
+  //         if ("[|a|]" != this.p) {}
+  //     }
+  // }
 
 
 [

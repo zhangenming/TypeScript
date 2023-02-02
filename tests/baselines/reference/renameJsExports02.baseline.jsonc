@@ -4,38 +4,35 @@
 // === /tests/cases/fourslash/a.js ===
 // module.exports = class /*FIND ALL REFS*/[|A|] {}
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/a.js ===
+    // module.exports = class [|A|] {}
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/a.js ===
+      // module.exports = [|class A {}|]
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/a.js ===
       // module.exports = class [|A|] {}
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/a.js ===
         // module.exports = [|class A {}|]
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/a.js ===
-      // module.exports = class [|A|] {}
-      === ContextSpan ===
-        // === /tests/cases/fourslash/a.js ===
-        // module.exports = [|class A {}|]
-  },
-  {
-    === Definition ===
+// === 1 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/b.js ===
+    // const [|A|] = require("./a");
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/b.js ===
+      // [|const A = require("./a");|]
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/b.js ===
       // const [|A|] = require("./a");
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/b.js ===
         // [|const A = require("./a");|]
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/b.js ===
-      // const [|A|] = require("./a");
-      === ContextSpan ===
-        // === /tests/cases/fourslash/b.js ===
-        // [|const A = require("./a");|]
-  }
-]
+
 
 [
   {
@@ -183,23 +180,21 @@
 // === /tests/cases/fourslash/b.js ===
 // const /*FIND ALL REFS*/[|A|] = require("./a");
 
-[
-  {
-    === Definition ===
+// === 0 ===
+  // === Definition ===
+    // === /tests/cases/fourslash/b.js ===
+    // const [|A|] = require("./a");
+      // === ContextSpan ===
+      // === /tests/cases/fourslash/b.js ===
+      // [|const A = require("./a");|]
+  // === References ===
+    // === 0 ===
       // === /tests/cases/fourslash/b.js ===
       // const [|A|] = require("./a");
-      === ContextSpan ===
+        // === ContextSpan ===
         // === /tests/cases/fourslash/b.js ===
         // [|const A = require("./a");|]
-    === References ===
-      === 0 ===
-      // === /tests/cases/fourslash/b.js ===
-      // const [|A|] = require("./a");
-      === ContextSpan ===
-        // === /tests/cases/fourslash/b.js ===
-        // [|const A = require("./a");|]
-  }
-]
+
 
 [
   {

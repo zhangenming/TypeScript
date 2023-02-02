@@ -1,82 +1,81 @@
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /tests/cases/fourslash/renameLabel3.ts ======*/
+// === /tests/cases/fourslash/renameLabel3.ts ===
+// [|RENAME|]:
+// for (let i = 0; i <= 10; i++) {
+//    if (i === 0) continue RENAME;
+//    if (i === 1) continue RENAME;
+//    if (i === 10) break RENAME;
+// }
 
-[|RENAME|]:
-for (let i = 0; i <= 10; i++) {
-   if (i === 0) continue RENAME;
-   if (i === 1) continue RENAME;
-   if (i === 10) break RENAME;
-}
-
-=== 0 ===
-// === /tests/cases/fourslash/renameLabel3.ts ===
-// [|loop|]:
-// for (let i = 0; i <= 10; i++) {
-//    if (i === 0) continue loop;
-//    if (i === 1) continue loop;
-//    if (i === 10) break loop;
-// }
-=== ContextSpan ===
+// === 0 ===
   // === /tests/cases/fourslash/renameLabel3.ts ===
-  // [|loop:
+  // [|loop|]:
   // for (let i = 0; i <= 10; i++) {
   //    if (i === 0) continue loop;
   //    if (i === 1) continue loop;
   //    if (i === 10) break loop;
-  // }|]
-=== 1 ===
-// === /tests/cases/fourslash/renameLabel3.ts ===
-// loop:
-// for (let i = 0; i <= 10; i++) {
-//    if (i === 0) continue [|loop|];
-//    if (i === 1) continue loop;
-//    if (i === 10) break loop;
-// }
-=== ContextSpan ===
+  // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameLabel3.ts ===
+    // [|loop:
+    // for (let i = 0; i <= 10; i++) {
+    //    if (i === 0) continue loop;
+    //    if (i === 1) continue loop;
+    //    if (i === 10) break loop;
+    // }|]
+// === 1 ===
   // === /tests/cases/fourslash/renameLabel3.ts ===
   // loop:
   // for (let i = 0; i <= 10; i++) {
-  //    if (i === 0) [|continue loop;|]
+  //    if (i === 0) continue [|loop|];
   //    if (i === 1) continue loop;
   //    if (i === 10) break loop;
   // }
-=== 2 ===
-// === /tests/cases/fourslash/renameLabel3.ts ===
-// loop:
-// for (let i = 0; i <= 10; i++) {
-//    if (i === 0) continue loop;
-//    if (i === 1) continue [|loop|];
-//    if (i === 10) break loop;
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameLabel3.ts ===
+    // loop:
+    // for (let i = 0; i <= 10; i++) {
+    //    if (i === 0) [|continue loop;|]
+    //    if (i === 1) continue loop;
+    //    if (i === 10) break loop;
+    // }
+// === 2 ===
   // === /tests/cases/fourslash/renameLabel3.ts ===
   // loop:
   // for (let i = 0; i <= 10; i++) {
   //    if (i === 0) continue loop;
-  //    if (i === 1) [|continue loop;|]
+  //    if (i === 1) continue [|loop|];
   //    if (i === 10) break loop;
   // }
-=== 3 ===
-// === /tests/cases/fourslash/renameLabel3.ts ===
-// loop:
-// for (let i = 0; i <= 10; i++) {
-//    if (i === 0) continue loop;
-//    if (i === 1) continue loop;
-//    if (i === 10) break [|loop|];
-// }
-=== ContextSpan ===
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameLabel3.ts ===
+    // loop:
+    // for (let i = 0; i <= 10; i++) {
+    //    if (i === 0) continue loop;
+    //    if (i === 1) [|continue loop;|]
+    //    if (i === 10) break loop;
+    // }
+// === 3 ===
   // === /tests/cases/fourslash/renameLabel3.ts ===
   // loop:
   // for (let i = 0; i <= 10; i++) {
   //    if (i === 0) continue loop;
   //    if (i === 1) continue loop;
-  //    if (i === 10) [|break loop;|]
+  //    if (i === 10) break [|loop|];
   // }
+    // === ContextSpan ===
+    // === /tests/cases/fourslash/renameLabel3.ts ===
+    // loop:
+    // for (let i = 0; i <= 10; i++) {
+    //    if (i === 0) continue loop;
+    //    if (i === 1) continue loop;
+    //    if (i === 10) [|break loop;|]
+    // }
 
 
 [

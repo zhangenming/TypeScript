@@ -1,46 +1,45 @@
-=== RenameOptions ===
+// === RenameOptions ===
 {
  "findInStrings": false,
  "findInComments": false,
  "providePrefixAndSuffixTextForRename": true
 }
-/*====== /a.js ======*/
-
-/**
- * @typedef {Object} RENAME
- * @property {number} a
- */
-
-/** @satisfies {[|RENAME|]} comment */
-const foo = { a: 1 };
-
-=== 0 ===
 // === /a.js ===
 // /**
-//  * @typedef {Object} [|T|]
+//  * @typedef {Object} RENAME
 //  * @property {number} a
 //  */
 // 
-// /** @satisfies {T} comment */
+// /** @satisfies {[|RENAME|]} comment */
 // const foo = { a: 1 };
-=== ContextSpan ===
+
+// === 0 ===
   // === /a.js ===
   // /**
-  //  * [|@typedef {Object} T
+  //  * @typedef {Object} [|T|]
   //  * @property {number} a
-  //  |]*/
+  //  */
   // 
   // /** @satisfies {T} comment */
   // const foo = { a: 1 };
-=== 1 ===
-// === /a.js ===
-// /**
-//  * @typedef {Object} T
-//  * @property {number} a
-//  */
-// 
-// /** @satisfies {[|T|]} comment */
-// const foo = { a: 1 };
+    // === ContextSpan ===
+    // === /a.js ===
+    // /**
+    //  * [|@typedef {Object} T
+    //  * @property {number} a
+    //  |]*/
+    // 
+    // /** @satisfies {T} comment */
+    // const foo = { a: 1 };
+// === 1 ===
+  // === /a.js ===
+  // /**
+  //  * @typedef {Object} T
+  //  * @property {number} a
+  //  */
+  // 
+  // /** @satisfies {[|T|]} comment */
+  // const foo = { a: 1 };
 
 
 [
