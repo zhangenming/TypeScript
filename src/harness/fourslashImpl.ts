@@ -1115,11 +1115,23 @@ export class TestState {
         }
     }
 
-    private readableDocumentSpan(span: ts.DocumentSpan, leadingSpaces: string) {
-        const readableTextSpan = this.readableSpan(span.fileName, span.textSpan, leadingSpaces);
-        return !span.contextSpan ?
-            readableTextSpan :
-            readableTextSpan + leadingSpaces + "  // === ContextSpan ===\n" + this.readableSpan(span.fileName, span.contextSpan, leadingSpaces + "  ");
+    private readableDocumentSpan<T extends ts.DocumentSpan>(span: T, leadingSpaces: string) {
+        // Add data from the span too
+        let readable = "";
+        for (const p in span) {
+            if (p === "fileName" || p === "textSpan" || p === "contextSpan") continue;
+            if (ts.hasProperty(span, p) && span[p] !== undefined) {
+                const value = JSON.stringify(span[p], undefined, " ");
+                if (value) readable += this.readableJsoncBaseline(`${p}: ${value}`, leadingSpaces) + "\n";
+            }
+        }
+        readable += this.readableSpan(span.fileName, span.textSpan, leadingSpaces);
+        if (span.contextSpan) {
+            readable += leadingSpaces +
+                "  // === ContextSpan ===\n" +
+                this.readableSpan(span.fileName, span.contextSpan, leadingSpaces + "  ");
+        }
+        return readable;
     }
 
     private readableDocumentSpanArray(spans: readonly ts.DocumentSpan[], leadingSpaces: string) {
@@ -1591,26 +1603,31 @@ export class TestState {
         }
 
         const renamesByFile = ts.group(locations, l => l.fileName);
-        const baselineContent = `// === RenameOptions ===\n${JSON.stringify({ findInStrings, findInComments, providePrefixAndSuffixTextForRename }, undefined, " ")}\n` +
-            renamesByFile.map(renames => {
-                const { fileName } = renames[0];
-                const sortedRenames = ts.sort(renames, (a, b) => b.textSpan.start - a.textSpan.start);
-                let baselineFileContent = this.getFileContent(fileName);
-                for (const { textSpan, suffixText, prefixText } of sortedRenames) {
-                    const isOriginalSpan = fileName === this.activeFile.fileName && ts.textSpanIntersectsWithPosition(textSpan, position);
-                    baselineFileContent =
-                        baselineFileContent.slice(0, textSpan.start) +
-                        (prefixText ? `/*START PREFIX*/${prefixText}` : "") +
-                        (isOriginalSpan ? "[|RENAME|]" : "RENAME") +
-                        (suffixText ? `${suffixText}/*END SUFFIX*/` : "") +
-                        baselineFileContent.slice(textSpan.start + textSpan.length);
-                }
-                return this.readableJsoncBaseline(`=== ${fileName} ===\n${baselineFileContent}`, "");
-            }).join("\n\n") + "\n\n";
+        const renameOptions = options ?
+            "// === RenameOptions ===\n" +
+            (options.findInStrings !== undefined ? `// findInStrings: ${findInStrings}\n` : "") +
+            (options.findInComments !== undefined ? `// findInComments: ${findInComments}\n` : "") +
+            (options.providePrefixAndSuffixTextForRename !== undefined ? `// providePrefixAndSuffixTextForRename: ${providePrefixAndSuffixTextForRename}\n` : "") :
+            "";
+        const baselineContent = renamesByFile.map(renames => {
+            const { fileName } = renames[0];
+            const sortedRenames = ts.sort(renames, (a, b) => b.textSpan.start - a.textSpan.start);
+            let baselineFileContent = this.getFileContent(fileName);
+            for (const { textSpan, suffixText, prefixText } of sortedRenames) {
+                const isOriginalSpan = fileName === this.activeFile.fileName && ts.textSpanIntersectsWithPosition(textSpan, position);
+                baselineFileContent =
+                    baselineFileContent.slice(0, textSpan.start) +
+                    (prefixText ? `/*START PREFIX*/${prefixText}` : "") +
+                    (isOriginalSpan ? "[|RENAME|]" : "RENAME") +
+                    (suffixText ? `${suffixText}/*END SUFFIX*/` : "") +
+                    baselineFileContent.slice(textSpan.start + textSpan.length);
+            }
+            return this.readableJsoncBaseline(`=== ${fileName} ===\n${baselineFileContent}`, "");
+        }).join("\n\n") + "\n\n";
 
         const readableLocations = this.readableDocumentSpanArray(locations, "") + "\n\n";
 
-        return baselineContent + readableLocations + JSON.stringify(locations, undefined, 2);
+        return renameOptions + baselineContent + readableLocations + JSON.stringify(locations, undefined, 2);
     }
 
     public verifyQuickInfoExists(negative: boolean) {
@@ -3481,6 +3498,9 @@ export class TestState {
         const highlights = this.getDocumentHighlightsAtCurrentPosition(ts.map(options?.filesToSearch, ts.normalizePath) || [this.activeFile.fileName]);
 
         // Write input files
+        const filesToSearch = options ? "// === FilesToSearch ===\n" +
+            options.filesToSearch.map(f => "// " + f).join("\n") + "\n" :
+            "";
         const baselineContent = this.getBaselineContentForGroupedReferences(
             "/*HIGHLIGHTS*/",
             highlights?.map(h => h.highlightSpans.map(s => s.fileName ? s as ts.DocumentSpan : { ...s, fileName: h.fileName })) || ts.emptyArray,
@@ -3495,7 +3515,7 @@ export class TestState {
             ) + "\n\n") :
             "";
         // Write response JSON
-        return baselineContent + readableHighlights + JSON.stringify(highlights, undefined, 2);
+        return filesToSearch + baselineContent + readableHighlights + JSON.stringify(highlights, undefined, 2);
     }
 
     public verifyBaselineDocumentHighlights(markerOrRange: ArrayOrSingle<MarkerOrNameOrRange>, options: FourSlashInterface.VerifyDocumentHighlightsOptions | undefined) {

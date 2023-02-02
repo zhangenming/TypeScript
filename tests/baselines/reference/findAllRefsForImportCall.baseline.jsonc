@@ -12,6 +12,44 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "function"
+    // name: "function hello(): void"
+    // displayParts: [
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "hello",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  }
+    // ]
     // === /app.ts ===
     // export function [|hello|]() {};
       // === ContextSpan ===
@@ -19,15 +57,21 @@
       // [|export function hello() {}|];
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /app.ts ===
       // export function [|hello|]() {};
         // === ContextSpan ===
         // === /app.ts ===
         // [|export function hello() {}|];
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /indirect-use.ts ===
       // import("./re-export").then(mod => mod.services.app.[|hello|]());
     // === 2 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /direct-use.ts ===
       // async function main() {
       //     const mod = await import("./app")

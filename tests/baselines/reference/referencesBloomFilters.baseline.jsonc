@@ -12,6 +12,44 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "property"
+    // name: "(property) searchProp: number"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "property",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "searchProp",
+    //   "kind": "propertyName"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "number",
+    //   "kind": "keyword"
+    //  }
+    // ]
     // === /tests/cases/fourslash/declaration.ts ===
     // var container = { [|searchProp|] : 1 };
       // === ContextSpan ===
@@ -19,18 +57,26 @@
       // var container = { [|searchProp : 1|] };
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /tests/cases/fourslash/declaration.ts ===
       // var container = { [|searchProp|] : 1 };
         // === ContextSpan ===
         // === /tests/cases/fourslash/declaration.ts ===
         // var container = { [|searchProp : 1|] };
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/expression.ts ===
       // function blah() { return (1 + 2 + container.[|searchProp|]()) === 2;  };
     // === 2 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/stringIndexer.ts ===
       // function blah2() { container["[|searchProp|]"] };
     // === 3 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /tests/cases/fourslash/redeclaration.ts ===
       // container = { "[|searchProp|]" : 18 };
         // === ContextSpan ===

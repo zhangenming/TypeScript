@@ -20,6 +20,44 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "function"
+    // name: "function foo(): void"
+    // displayParts: [
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  }
+    // ]
     // === /a.ts ===
     // export function [|foo|](): void {}
       // === ContextSpan ===
@@ -27,18 +65,24 @@
       // [|export function foo(): void {}|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /a.ts ===
       // export function [|foo|](): void {}
         // === ContextSpan ===
         // === /a.ts ===
         // [|export function foo(): void {}|]
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /b.ts ===
       // export { [|foo|] as bar } from "./a";
         // === ContextSpan ===
         // === /b.ts ===
         // [|export { foo as bar } from "./a";|]
     // === 2 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /c.ts ===
       // export { [|foo|] as default } from "./a";
         // === ContextSpan ===
@@ -46,6 +90,76 @@
         // [|export { foo as default } from "./a";|]
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nexport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /b.ts ===
     // export { foo as [|bar|] } from "./a";
       // === ContextSpan ===
@@ -53,6 +167,8 @@
       // [|export { foo as bar } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /b.ts ===
       // export { foo as [|bar|] } from "./a";
         // === ContextSpan ===
@@ -60,6 +176,76 @@
         // [|export { foo as bar } from "./a";|]
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nimport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { [|bar|] } from "./b";
     // import baz from "./c";
@@ -75,6 +261,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { [|bar|] } from "./b";
       // import baz from "./c";
@@ -89,6 +277,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -97,6 +287,76 @@
       // [|bar|](); baz(); bang(); boom();
 // === 3 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /c.ts ===
     // export { foo as [|default|] } from "./a";
       // === ContextSpan ===
@@ -104,12 +364,16 @@
       // [|export { foo as default } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /c.ts ===
       // export { foo as [|default|] } from "./a";
         // === ContextSpan ===
         // === /c.ts ===
         // [|export { foo as default } from "./a";|]
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -125,6 +389,76 @@
         // bar(); baz(); bang(); boom();
 // === 4 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /d.ts ===
     // export { [|default|] } from "./c";
       // === ContextSpan ===
@@ -132,6 +466,8 @@
       // [|export { default } from "./c";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /d.ts ===
       // export { [|default|] } from "./c";
         // === ContextSpan ===
@@ -139,6 +475,76 @@
         // [|export { default } from "./c";|]
 // === 5 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function boom(): void\nimport boom"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -154,6 +560,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -168,6 +576,8 @@
         // [|import boom from "./d";|]
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -176,6 +586,76 @@
       // bar(); baz(); bang(); [|boom|]();
 // === 6 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function baz(): void\nimport baz"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import [|baz|] from "./c";
@@ -191,6 +671,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import [|baz|] from "./c";
@@ -205,6 +687,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -213,6 +697,76 @@
       // bar(); [|baz|](); bang(); boom();
 // === 7 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -228,6 +782,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -242,6 +798,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -1101,6 +1659,44 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "function"
+    // name: "function foo(): void"
+    // displayParts: [
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  }
+    // ]
     // === /a.ts ===
     // export function [|foo|](): void {}
       // === ContextSpan ===
@@ -1108,18 +1704,21 @@
       // [|export function foo(): void {}|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /a.ts ===
       // export function [|foo|](): void {}
         // === ContextSpan ===
         // === /a.ts ===
         // [|export function foo(): void {}|]
     // === 1 ===
+      // isWriteAccess: false
       // === /b.ts ===
       // export { [|foo|] as bar } from "./a";
         // === ContextSpan ===
         // === /b.ts ===
         // [|export { foo as bar } from "./a";|]
     // === 2 ===
+      // isWriteAccess: false
       // === /c.ts ===
       // export { [|foo|] as default } from "./a";
         // === ContextSpan ===
@@ -1127,6 +1726,76 @@
         // [|export { foo as default } from "./a";|]
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nexport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /b.ts ===
     // export { foo as [|bar|] } from "./a";
       // === ContextSpan ===
@@ -1134,6 +1803,7 @@
       // [|export { foo as bar } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /b.ts ===
       // export { foo as [|bar|] } from "./a";
         // === ContextSpan ===
@@ -1141,6 +1811,76 @@
         // [|export { foo as bar } from "./a";|]
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nimport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { [|bar|] } from "./b";
     // import baz from "./c";
@@ -1156,6 +1896,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { [|bar|] } from "./b";
       // import baz from "./c";
@@ -1170,6 +1911,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -1178,6 +1920,76 @@
       // [|bar|](); baz(); bang(); boom();
 // === 3 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /c.ts ===
     // export { foo as [|default|] } from "./a";
       // === ContextSpan ===
@@ -1185,12 +1997,14 @@
       // [|export { foo as default } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /c.ts ===
       // export { foo as [|default|] } from "./a";
         // === ContextSpan ===
         // === /c.ts ===
         // [|export { foo as default } from "./a";|]
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -1206,6 +2020,76 @@
         // bar(); baz(); bang(); boom();
 // === 4 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /d.ts ===
     // export { [|default|] } from "./c";
       // === ContextSpan ===
@@ -1213,6 +2097,7 @@
       // [|export { default } from "./c";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /d.ts ===
       // export { [|default|] } from "./c";
         // === ContextSpan ===
@@ -1220,6 +2105,76 @@
         // [|export { default } from "./c";|]
 // === 5 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function boom(): void\nimport boom"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -1235,6 +2190,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -1249,6 +2205,7 @@
         // [|import boom from "./d";|]
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -1257,6 +2214,76 @@
       // bar(); baz(); bang(); [|boom|]();
 // === 6 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function baz(): void\nimport baz"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import [|baz|] from "./c";
@@ -1272,6 +2299,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import [|baz|] from "./c";
@@ -1286,6 +2314,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -1294,6 +2323,76 @@
       // bar(); [|baz|](); bang(); boom();
 // === 7 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -1309,6 +2408,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -1323,6 +2423,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -2167,6 +3268,44 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "function"
+    // name: "function foo(): void"
+    // displayParts: [
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  }
+    // ]
     // === /a.ts ===
     // export function [|foo|](): void {}
       // === ContextSpan ===
@@ -2174,18 +3313,21 @@
       // [|export function foo(): void {}|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /a.ts ===
       // export function [|foo|](): void {}
         // === ContextSpan ===
         // === /a.ts ===
         // [|export function foo(): void {}|]
     // === 1 ===
+      // isWriteAccess: false
       // === /b.ts ===
       // export { [|foo|] as bar } from "./a";
         // === ContextSpan ===
         // === /b.ts ===
         // [|export { foo as bar } from "./a";|]
     // === 2 ===
+      // isWriteAccess: false
       // === /c.ts ===
       // export { [|foo|] as default } from "./a";
         // === ContextSpan ===
@@ -2193,6 +3335,76 @@
         // [|export { foo as default } from "./a";|]
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nexport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /b.ts ===
     // export { foo as [|bar|] } from "./a";
       // === ContextSpan ===
@@ -2200,6 +3412,7 @@
       // [|export { foo as bar } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /b.ts ===
       // export { foo as [|bar|] } from "./a";
         // === ContextSpan ===
@@ -2207,6 +3420,76 @@
         // [|export { foo as bar } from "./a";|]
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nimport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { [|bar|] } from "./b";
     // import baz from "./c";
@@ -2222,6 +3505,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { [|bar|] } from "./b";
       // import baz from "./c";
@@ -2236,6 +3520,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -2244,6 +3529,76 @@
       // [|bar|](); baz(); bang(); boom();
 // === 3 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /c.ts ===
     // export { foo as [|default|] } from "./a";
       // === ContextSpan ===
@@ -2251,12 +3606,14 @@
       // [|export { foo as default } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /c.ts ===
       // export { foo as [|default|] } from "./a";
         // === ContextSpan ===
         // === /c.ts ===
         // [|export { foo as default } from "./a";|]
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -2272,6 +3629,76 @@
         // bar(); baz(); bang(); boom();
 // === 4 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /d.ts ===
     // export { [|default|] } from "./c";
       // === ContextSpan ===
@@ -2279,6 +3706,7 @@
       // [|export { default } from "./c";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /d.ts ===
       // export { [|default|] } from "./c";
         // === ContextSpan ===
@@ -2286,6 +3714,76 @@
         // [|export { default } from "./c";|]
 // === 5 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function boom(): void\nimport boom"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -2301,6 +3799,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -2315,6 +3814,7 @@
         // [|import boom from "./d";|]
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -2323,6 +3823,76 @@
       // bar(); baz(); bang(); [|boom|]();
 // === 6 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function baz(): void\nimport baz"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import [|baz|] from "./c";
@@ -2338,6 +3908,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import [|baz|] from "./c";
@@ -2352,6 +3923,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -2360,6 +3932,76 @@
       // bar(); [|baz|](); bang(); boom();
 // === 7 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -2375,6 +4017,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -2389,6 +4032,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -3224,6 +4868,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nexport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /b.ts ===
     // export { foo as [|bar|] } from "./a";
       // === ContextSpan ===
@@ -3231,6 +4945,8 @@
       // [|export { foo as bar } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /b.ts ===
       // export { foo as [|bar|] } from "./a";
         // === ContextSpan ===
@@ -3238,6 +4954,76 @@
         // [|export { foo as bar } from "./a";|]
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nimport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { [|bar|] } from "./b";
     // import baz from "./c";
@@ -3253,6 +5039,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { [|bar|] } from "./b";
       // import baz from "./c";
@@ -3267,6 +5055,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -3495,6 +5285,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nimport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { [|bar|] } from "./b";
     // import baz from "./c";
@@ -3510,6 +5370,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /e.ts ===
       // import { [|bar|] } from "./b";
       // import baz from "./c";
@@ -3524,6 +5386,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -3532,6 +5396,76 @@
       // [|bar|](); baz(); bang(); boom();
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nexport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /b.ts ===
     // export { foo as [|bar|] } from "./a";
       // === ContextSpan ===
@@ -3539,6 +5473,8 @@
       // [|export { foo as bar } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /b.ts ===
       // export { foo as [|bar|] } from "./a";
         // === ContextSpan ===
@@ -3766,6 +5702,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nimport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { [|bar|] } from "./b";
     // import baz from "./c";
@@ -3781,6 +5787,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { [|bar|] } from "./b";
       // import baz from "./c";
@@ -3795,6 +5802,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -3803,6 +5811,76 @@
       // [|bar|](); baz(); bang(); boom();
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nexport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /b.ts ===
     // export { foo as [|bar|] } from "./a";
       // === ContextSpan ===
@@ -3810,6 +5888,7 @@
       // [|export { foo as bar } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /b.ts ===
       // export { foo as [|bar|] } from "./a";
         // === ContextSpan ===
@@ -4037,6 +6116,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /c.ts ===
     // export { foo as [|default|] } from "./a";
       // === ContextSpan ===
@@ -4044,12 +6193,16 @@
       // [|export { foo as default } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /c.ts ===
       // export { foo as [|default|] } from "./a";
         // === ContextSpan ===
         // === /c.ts ===
         // [|export { foo as default } from "./a";|]
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -4065,6 +6218,76 @@
         // bar(); baz(); bang(); boom();
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /d.ts ===
     // export { [|default|] } from "./c";
       // === ContextSpan ===
@@ -4072,6 +6295,8 @@
       // [|export { default } from "./c";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /d.ts ===
       // export { [|default|] } from "./c";
         // === ContextSpan ===
@@ -4079,6 +6304,76 @@
         // [|export { default } from "./c";|]
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function boom(): void\nimport boom"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -4094,6 +6389,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -4108,6 +6405,8 @@
         // [|import boom from "./d";|]
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -4116,6 +6415,76 @@
       // bar(); baz(); bang(); [|boom|]();
 // === 3 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function baz(): void\nimport baz"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import [|baz|] from "./c";
@@ -4131,6 +6500,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import [|baz|] from "./c";
@@ -4145,6 +6516,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -4153,6 +6526,76 @@
       // bar(); [|baz|](); bang(); boom();
 // === 4 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -4168,6 +6611,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -4182,6 +6627,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -4738,6 +7185,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /c.ts ===
     // export { foo as [|default|] } from "./a";
       // === ContextSpan ===
@@ -4745,12 +7262,14 @@
       // [|export { foo as default } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /c.ts ===
       // export { foo as [|default|] } from "./a";
         // === ContextSpan ===
         // === /c.ts ===
         // [|export { foo as default } from "./a";|]
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -4766,6 +7285,76 @@
         // bar(); baz(); bang(); boom();
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /d.ts ===
     // export { [|default|] } from "./c";
       // === ContextSpan ===
@@ -4773,6 +7362,7 @@
       // [|export { default } from "./c";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /d.ts ===
       // export { [|default|] } from "./c";
         // === ContextSpan ===
@@ -4780,6 +7370,76 @@
         // [|export { default } from "./c";|]
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function boom(): void\nimport boom"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -4795,6 +7455,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -4809,6 +7470,7 @@
         // [|import boom from "./d";|]
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -4817,6 +7479,76 @@
       // bar(); baz(); bang(); [|boom|]();
 // === 3 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function baz(): void\nimport baz"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import [|baz|] from "./c";
@@ -4832,6 +7564,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import [|baz|] from "./c";
@@ -4846,6 +7579,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -4854,6 +7588,76 @@
       // bar(); [|baz|](); bang(); boom();
 // === 4 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -4869,6 +7673,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -4883,6 +7688,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -5436,6 +8242,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /d.ts ===
     // export { [|default|] } from "./c";
       // === ContextSpan ===
@@ -5443,6 +8319,8 @@
       // [|export { default } from "./c";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /d.ts ===
       // export { [|default|] } from "./c";
         // === ContextSpan ===
@@ -5450,6 +8328,76 @@
         // [|export { default } from "./c";|]
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function boom(): void\nimport boom"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -5465,6 +8413,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -5479,6 +8429,8 @@
         // [|import boom from "./d";|]
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -5487,6 +8439,44 @@
       // bar(); baz(); bang(); [|boom|]();
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "function"
+    // name: "function foo(): void"
+    // displayParts: [
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  }
+    // ]
     // === /a.ts ===
     // export function [|foo|](): void {}
       // === ContextSpan ===
@@ -5494,18 +8484,24 @@
       // [|export function foo(): void {}|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /a.ts ===
       // export function [|foo|](): void {}
         // === ContextSpan ===
         // === /a.ts ===
         // [|export function foo(): void {}|]
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /b.ts ===
       // export { [|foo|] as bar } from "./a";
         // === ContextSpan ===
         // === /b.ts ===
         // [|export { foo as bar } from "./a";|]
     // === 2 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /c.ts ===
       // export { [|foo|] as default } from "./a";
         // === ContextSpan ===
@@ -5513,6 +8509,76 @@
         // [|export { foo as default } from "./a";|]
 // === 3 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nexport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /b.ts ===
     // export { foo as [|bar|] } from "./a";
       // === ContextSpan ===
@@ -5520,6 +8586,8 @@
       // [|export { foo as bar } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /b.ts ===
       // export { foo as [|bar|] } from "./a";
         // === ContextSpan ===
@@ -5527,6 +8595,76 @@
         // [|export { foo as bar } from "./a";|]
 // === 4 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nimport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { [|bar|] } from "./b";
     // import baz from "./c";
@@ -5542,6 +8680,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { [|bar|] } from "./b";
       // import baz from "./c";
@@ -5556,6 +8696,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -5564,6 +8706,76 @@
       // [|bar|](); baz(); bang(); boom();
 // === 5 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /c.ts ===
     // export { foo as [|default|] } from "./a";
       // === ContextSpan ===
@@ -5571,12 +8783,16 @@
       // [|export { foo as default } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /c.ts ===
       // export { foo as [|default|] } from "./a";
         // === ContextSpan ===
         // === /c.ts ===
         // [|export { foo as default } from "./a";|]
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -5592,6 +8808,76 @@
         // bar(); baz(); bang(); boom();
 // === 6 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function baz(): void\nimport baz"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import [|baz|] from "./c";
@@ -5607,6 +8893,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import [|baz|] from "./c";
@@ -5621,6 +8909,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -5629,6 +8919,76 @@
       // bar(); [|baz|](); bang(); boom();
 // === 7 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -5644,6 +9004,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -5658,6 +9020,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -6511,6 +9875,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function baz(): void\nimport baz"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import [|baz|] from "./c";
@@ -6526,6 +9960,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import [|baz|] from "./c";
@@ -6540,6 +9976,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -6548,6 +9986,76 @@
       // bar(); [|baz|](); bang(); boom();
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /c.ts ===
     // export { foo as [|default|] } from "./a";
       // === ContextSpan ===
@@ -6555,12 +10063,16 @@
       // [|export { foo as default } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /c.ts ===
       // export { foo as [|default|] } from "./a";
         // === ContextSpan ===
         // === /c.ts ===
         // [|export { foo as default } from "./a";|]
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -6576,6 +10088,76 @@
         // bar(); baz(); bang(); boom();
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /d.ts ===
     // export { [|default|] } from "./c";
       // === ContextSpan ===
@@ -6583,6 +10165,8 @@
       // [|export { default } from "./c";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /d.ts ===
       // export { [|default|] } from "./c";
         // === ContextSpan ===
@@ -6590,6 +10174,76 @@
         // [|export { default } from "./c";|]
 // === 3 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function boom(): void\nimport boom"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -6605,6 +10259,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -6619,6 +10275,8 @@
         // [|import boom from "./d";|]
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -6627,6 +10285,76 @@
       // bar(); baz(); bang(); [|boom|]();
 // === 4 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -6642,6 +10370,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -6656,6 +10386,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -7212,6 +10944,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function baz(): void\nimport baz"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import [|baz|] from "./c";
@@ -7227,6 +11029,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import [|baz|] from "./c";
@@ -7241,6 +11044,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -7249,6 +11053,76 @@
       // bar(); [|baz|](); bang(); boom();
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /c.ts ===
     // export { foo as [|default|] } from "./a";
       // === ContextSpan ===
@@ -7256,12 +11130,14 @@
       // [|export { foo as default } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /c.ts ===
       // export { foo as [|default|] } from "./a";
         // === ContextSpan ===
         // === /c.ts ===
         // [|export { foo as default } from "./a";|]
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -7277,6 +11153,76 @@
         // bar(); baz(); bang(); boom();
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /d.ts ===
     // export { [|default|] } from "./c";
       // === ContextSpan ===
@@ -7284,6 +11230,7 @@
       // [|export { default } from "./c";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /d.ts ===
       // export { [|default|] } from "./c";
         // === ContextSpan ===
@@ -7291,6 +11238,76 @@
         // [|export { default } from "./c";|]
 // === 3 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function boom(): void\nimport boom"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -7306,6 +11323,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -7320,6 +11338,7 @@
         // [|import boom from "./d";|]
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -7328,6 +11347,76 @@
       // bar(); baz(); bang(); [|boom|]();
 // === 4 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -7343,6 +11432,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -7357,6 +11447,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -7898,6 +11989,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -7913,6 +12074,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -7927,6 +12090,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -8054,6 +12219,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -8069,6 +12304,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -8083,6 +12319,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -8220,6 +12457,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function boom(): void\nimport boom"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -8235,6 +12542,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -8249,6 +12558,8 @@
         // [|import boom from "./d";|]
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -8257,6 +12568,76 @@
       // bar(); baz(); bang(); [|boom|]();
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /d.ts ===
     // export { [|default|] } from "./c";
       // === ContextSpan ===
@@ -8264,6 +12645,8 @@
       // [|export { default } from "./c";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /d.ts ===
       // export { [|default|] } from "./c";
         // === ContextSpan ===
@@ -8271,6 +12654,44 @@
         // [|export { default } from "./c";|]
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "function"
+    // name: "function foo(): void"
+    // displayParts: [
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  }
+    // ]
     // === /a.ts ===
     // export function [|foo|](): void {}
       // === ContextSpan ===
@@ -8278,18 +12699,24 @@
       // [|export function foo(): void {}|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /a.ts ===
       // export function [|foo|](): void {}
         // === ContextSpan ===
         // === /a.ts ===
         // [|export function foo(): void {}|]
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /b.ts ===
       // export { [|foo|] as bar } from "./a";
         // === ContextSpan ===
         // === /b.ts ===
         // [|export { foo as bar } from "./a";|]
     // === 2 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /c.ts ===
       // export { [|foo|] as default } from "./a";
         // === ContextSpan ===
@@ -8297,6 +12724,76 @@
         // [|export { foo as default } from "./a";|]
 // === 3 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nexport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /b.ts ===
     // export { foo as [|bar|] } from "./a";
       // === ContextSpan ===
@@ -8304,6 +12801,8 @@
       // [|export { foo as bar } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /b.ts ===
       // export { foo as [|bar|] } from "./a";
         // === ContextSpan ===
@@ -8311,6 +12810,76 @@
         // [|export { foo as bar } from "./a";|]
 // === 4 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nimport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { [|bar|] } from "./b";
     // import baz from "./c";
@@ -8326,6 +12895,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { [|bar|] } from "./b";
       // import baz from "./c";
@@ -8340,6 +12911,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -8348,6 +12921,76 @@
       // [|bar|](); baz(); bang(); boom();
 // === 5 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /c.ts ===
     // export { foo as [|default|] } from "./a";
       // === ContextSpan ===
@@ -8355,12 +12998,16 @@
       // [|export { foo as default } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /c.ts ===
       // export { foo as [|default|] } from "./a";
         // === ContextSpan ===
         // === /c.ts ===
         // [|export { foo as default } from "./a";|]
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -8376,6 +13023,76 @@
         // bar(); baz(); bang(); boom();
 // === 6 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function baz(): void\nimport baz"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import [|baz|] from "./c";
@@ -8391,6 +13108,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import [|baz|] from "./c";
@@ -8405,6 +13124,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -8413,6 +13134,76 @@
       // bar(); [|baz|](); bang(); boom();
 // === 7 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -8428,6 +13219,8 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -8442,6 +13235,8 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -9301,6 +14096,76 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function boom(): void\nimport boom"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "boom",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -9316,6 +14181,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -9330,6 +14196,7 @@
         // [|import boom from "./d";|]
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -9338,6 +14205,76 @@
       // bar(); baz(); bang(); [|boom|]();
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /d.ts ===
     // export { [|default|] } from "./c";
       // === ContextSpan ===
@@ -9345,6 +14282,7 @@
       // [|export { default } from "./c";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /d.ts ===
       // export { [|default|] } from "./c";
         // === ContextSpan ===
@@ -9352,6 +14290,44 @@
         // [|export { default } from "./c";|]
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "function"
+    // name: "function foo(): void"
+    // displayParts: [
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  }
+    // ]
     // === /a.ts ===
     // export function [|foo|](): void {}
       // === ContextSpan ===
@@ -9359,18 +14335,21 @@
       // [|export function foo(): void {}|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /a.ts ===
       // export function [|foo|](): void {}
         // === ContextSpan ===
         // === /a.ts ===
         // [|export function foo(): void {}|]
     // === 1 ===
+      // isWriteAccess: false
       // === /b.ts ===
       // export { [|foo|] as bar } from "./a";
         // === ContextSpan ===
         // === /b.ts ===
         // [|export { foo as bar } from "./a";|]
     // === 2 ===
+      // isWriteAccess: false
       // === /c.ts ===
       // export { [|foo|] as default } from "./a";
         // === ContextSpan ===
@@ -9378,6 +14357,76 @@
         // [|export { foo as default } from "./a";|]
 // === 3 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nexport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /b.ts ===
     // export { foo as [|bar|] } from "./a";
       // === ContextSpan ===
@@ -9385,6 +14434,7 @@
       // [|export { foo as bar } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /b.ts ===
       // export { foo as [|bar|] } from "./a";
         // === ContextSpan ===
@@ -9392,6 +14442,76 @@
         // [|export { foo as bar } from "./a";|]
 // === 4 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bar(): void\nimport bar"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bar",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { [|bar|] } from "./b";
     // import baz from "./c";
@@ -9407,6 +14527,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { [|bar|] } from "./b";
       // import baz from "./c";
@@ -9421,6 +14542,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -9429,6 +14551,76 @@
       // [|bar|](); baz(); bang(); boom();
 // === 5 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function foo(): void\nexport default"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /c.ts ===
     // export { foo as [|default|] } from "./a";
       // === ContextSpan ===
@@ -9436,12 +14628,14 @@
       // [|export { foo as default } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /c.ts ===
       // export { foo as [|default|] } from "./a";
         // === ContextSpan ===
         // === /c.ts ===
         // [|export { foo as default } from "./a";|]
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -9457,6 +14651,76 @@
         // bar(); baz(); bang(); boom();
 // === 6 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function baz(): void\nimport baz"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "baz",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import [|baz|] from "./c";
@@ -9472,6 +14736,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import [|baz|] from "./c";
@@ -9486,6 +14751,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -9494,6 +14760,76 @@
       // bar(); [|baz|](); bang(); boom();
 // === 7 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function bang(): void\nimport bang"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "bang",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /e.ts ===
     // import { bar } from "./b";
     // import baz from "./c";
@@ -9509,6 +14845,7 @@
       // bar(); baz(); bang(); boom();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -9523,6 +14860,7 @@
         // import boom from "./d";
         // bar(); baz(); bang(); boom();
     // === 1 ===
+      // isWriteAccess: false
       // === /e.ts ===
       // import { bar } from "./b";
       // import baz from "./c";
@@ -10347,12 +15685,6 @@
 ]
 
 // === findRenameLocations ===
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /a.ts ===
 // export function RENAME(): void {}
 
@@ -10418,12 +15750,6 @@
   }
 ]
 
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /a.ts ===
 // export function RENAME(): void {}
 
@@ -10489,12 +15815,6 @@
   }
 ]
 
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /a.ts ===
 // export function RENAME(): void {}
 
@@ -10560,12 +15880,6 @@
   }
 ]
 
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /b.ts ===
 // export { foo as RENAME } from "./a";
 
@@ -10637,12 +15951,6 @@
   }
 ]
 
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /e.ts ===
 // import { /*START PREFIX*/bar as [|RENAME|] } from "./b";
 // import baz from "./c";
@@ -10651,6 +15959,7 @@
 // RENAME(); baz(); bang(); boom();
 
 // === 0 ===
+  // prefixText: "bar as "
   // === /e.ts ===
   // import { [|bar|] } from "./b";
   // import baz from "./c";
@@ -10695,12 +16004,6 @@
   }
 ]
 
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /e.ts ===
 // import { /*START PREFIX*/bar as RENAME } from "./b";
 // import baz from "./c";
@@ -10709,6 +16012,7 @@
 // [|RENAME|](); baz(); bang(); boom();
 
 // === 0 ===
+  // prefixText: "bar as "
   // === /e.ts ===
   // import { [|bar|] } from "./b";
   // import baz from "./c";
@@ -10753,12 +16057,6 @@
   }
 ]
 
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /e.ts ===
 // import { bar } from "./b";
 // import [|RENAME|] from "./c";
@@ -10810,12 +16108,6 @@
   }
 ]
 
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /e.ts ===
 // import { bar } from "./b";
 // import RENAME from "./c";
@@ -10867,12 +16159,6 @@
   }
 ]
 
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /e.ts ===
 // import { bar } from "./b";
 // import baz from "./c";
@@ -10924,12 +16210,6 @@
   }
 ]
 
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /e.ts ===
 // import { bar } from "./b";
 // import baz from "./c";
@@ -10981,12 +16261,6 @@
   }
 ]
 
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /e.ts ===
 // import { bar } from "./b";
 // import baz from "./c";
@@ -11038,12 +16312,6 @@
   }
 ]
 
-// === RenameOptions ===
-{
- "findInStrings": false,
- "findInComments": false,
- "providePrefixAndSuffixTextForRename": true
-}
 // === /e.ts ===
 // import { bar } from "./b";
 // import baz from "./c";

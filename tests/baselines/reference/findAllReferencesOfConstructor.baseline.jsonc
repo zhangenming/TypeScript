@@ -36,6 +36,24 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "class"
+    // name: "class C"
+    // displayParts: [
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "className"
+    //  }
+    // ]
     // === /tests/cases/fourslash/a.ts ===
     // export class [|C|] {
     //     constructor(n: number);
@@ -65,6 +83,8 @@
       // new D();
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: true
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     [|constructor|](n: number);
@@ -93,6 +113,8 @@
         // const D = C;
         // new D();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: true
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -121,6 +143,8 @@
         // const D = C;
         // new D();
     // === 2 ===
+      // isWriteAccess: false
+      // isDefinition: true
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -149,6 +173,8 @@
         // const D = C;
         // new D();
     // === 3 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -163,16 +189,22 @@
       // const D = C;
       // new D();
     // === 4 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.[|C|]();
       // class d extends a.C { constructor() { super(); }
     // === 5 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.C();
       // class d extends a.C { constructor() { [|super|](); }
     // === 6 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -188,6 +220,56 @@
       // new D();
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) class C\nimport C"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/b.ts ===
     // import { [|C|] } from "./a";
     // new C();
@@ -197,11 +279,63 @@
       // new C();
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/b.ts ===
       // import { C } from "./a";
       // new [|C|]();
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) class C\nimport C"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/c.ts ===
     // import { [|C|] } from "./a";
     // class D extends C {
@@ -229,6 +363,8 @@
       // }
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/c.ts ===
       // import { C } from "./a";
       // class D extends C {
@@ -540,6 +676,24 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "class"
+    // name: "class C"
+    // displayParts: [
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "className"
+    //  }
+    // ]
     // === /tests/cases/fourslash/a.ts ===
     // export class [|C|] {
     //     constructor(n: number);
@@ -569,6 +723,8 @@
       // new D();
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: true
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     [|constructor|](n: number);
@@ -597,6 +753,8 @@
         // const D = C;
         // new D();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: true
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -625,6 +783,8 @@
         // const D = C;
         // new D();
     // === 2 ===
+      // isWriteAccess: false
+      // isDefinition: true
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -653,6 +813,8 @@
         // const D = C;
         // new D();
     // === 3 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -667,16 +829,22 @@
       // const D = C;
       // new D();
     // === 4 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.[|C|]();
       // class d extends a.C { constructor() { super(); }
     // === 5 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.C();
       // class d extends a.C { constructor() { [|super|](); }
     // === 6 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -692,6 +860,56 @@
       // new D();
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) class C\nimport C"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/b.ts ===
     // import { [|C|] } from "./a";
     // new C();
@@ -701,11 +919,63 @@
       // new C();
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/b.ts ===
       // import { C } from "./a";
       // new [|C|]();
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) class C\nimport C"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/c.ts ===
     // import { [|C|] } from "./a";
     // class D extends C {
@@ -733,6 +1003,8 @@
       // }
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/c.ts ===
       // import { C } from "./a";
       // class D extends C {
@@ -1044,6 +1316,24 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "class"
+    // name: "class C"
+    // displayParts: [
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "className"
+    //  }
+    // ]
     // === /tests/cases/fourslash/a.ts ===
     // export class [|C|] {
     //     constructor(n: number);
@@ -1073,6 +1363,8 @@
       // new D();
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: true
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     [|constructor|](n: number);
@@ -1101,6 +1393,8 @@
         // const D = C;
         // new D();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: true
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -1129,6 +1423,8 @@
         // const D = C;
         // new D();
     // === 2 ===
+      // isWriteAccess: false
+      // isDefinition: true
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -1157,6 +1453,8 @@
         // const D = C;
         // new D();
     // === 3 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -1171,16 +1469,22 @@
       // const D = C;
       // new D();
     // === 4 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.[|C|]();
       // class d extends a.C { constructor() { super(); }
     // === 5 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/d.ts ===
       // import * as a from "./a";
       // new a.C();
       // class d extends a.C { constructor() { [|super|](); }
     // === 6 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/a.ts ===
       // export class C {
       //     constructor(n: number);
@@ -1196,6 +1500,56 @@
       // new D();
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) class C\nimport C"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/b.ts ===
     // import { [|C|] } from "./a";
     // new C();
@@ -1205,11 +1559,63 @@
       // new C();
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/b.ts ===
       // import { C } from "./a";
       // new [|C|]();
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) class C\nimport C"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "C",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/c.ts ===
     // import { [|C|] } from "./a";
     // class D extends C {
@@ -1237,6 +1643,8 @@
       // }
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/c.ts ===
       // import { C } from "./a";
       // class D extends C {

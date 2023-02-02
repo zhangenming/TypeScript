@@ -7,6 +7,11 @@
 // foo();
 
 // === 0 ===
+  // name: "foo"
+  // kind: "script"
+  // failedAliasResolution: false
+  // isAmbient: false
+  // unverified: false
   // === /tests/cases/fourslash/node_modules/foo/index.js ===
   // [||]{}
 
@@ -31,6 +36,13 @@
 // foo();
 
 // === 0 ===
+  // kind: "alias"
+  // name: "foo"
+  // containerName: ""
+  // isLocal: true
+  // isAmbient: false
+  // unverified: false
+  // failedAliasResolution: true
   // === /tests/cases/fourslash/a.ts ===
   // import [|foo|] from "foo";
   // foo();
@@ -68,6 +80,24 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "import foo"
+    // displayParts: [
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/a.ts ===
     // import [|foo|] from "foo";
     // foo();
@@ -77,6 +107,8 @@
       // foo();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /tests/cases/fourslash/a.ts ===
       // import [|foo|] from "foo";
       // foo();
@@ -85,6 +117,8 @@
         // [|import foo from "foo";|]
         // foo();
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/a.ts ===
       // import foo from "foo";
       // [|foo|]();
@@ -154,11 +188,23 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "var"
+    // name: "foo"
+    // displayParts: [
+    //  {
+    //   "text": "\"foo\"",
+    //   "kind": "stringLiteral"
+    //  }
+    // ]
     // === /tests/cases/fourslash/a.ts ===
     // import foo from "[|foo|]";
     // foo();
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isInString: true
       // === /tests/cases/fourslash/a.ts ===
       // import foo from "[|foo|]";
       // foo();
@@ -211,6 +257,24 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "import foo"
+    // displayParts: [
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/a.ts ===
     // import [|foo|] from "foo";
     // foo();
@@ -220,6 +284,7 @@
       // foo();
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
       // === /tests/cases/fourslash/a.ts ===
       // import [|foo|] from "foo";
       // foo();
@@ -228,6 +293,7 @@
         // [|import foo from "foo";|]
         // foo();
     // === 1 ===
+      // isWriteAccess: false
       // === /tests/cases/fourslash/a.ts ===
       // import foo from "foo";
       // [|foo|]();

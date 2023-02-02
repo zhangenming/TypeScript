@@ -6,6 +6,44 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "function"
+    // name: "function foo(): void"
+    // displayParts: [
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "foo",
+    //   "kind": "functionName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  }
+    // ]
     // === /a.ts ===
     // export function [|foo|](): void {}
       // === ContextSpan ===
@@ -13,12 +51,16 @@
       // [|export function foo(): void {}|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /a.ts ===
       // export function [|foo|](): void {}
         // === ContextSpan ===
         // === /a.ts ===
         // [|export function foo(): void {}|]
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /b.ts ===
       // import { [|foo|] as oof } from "./a";
         // === ContextSpan ===
@@ -26,6 +68,76 @@
         // [|import { foo as oof } from "./a";|]
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) function oof(): void\nimport oof"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "function",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "oof",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "void",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "oof",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /b.ts ===
     // import { foo as [|oof|] } from "./a";
       // === ContextSpan ===
@@ -33,6 +145,8 @@
       // [|import { foo as oof } from "./a";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /b.ts ===
       // import { foo as [|oof|] } from "./a";
         // === ContextSpan ===

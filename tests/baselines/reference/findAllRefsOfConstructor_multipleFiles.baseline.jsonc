@@ -18,6 +18,24 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "class"
+    // name: "class A"
+    // displayParts: [
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "A",
+    //   "kind": "className"
+    //  }
+    // ]
     // === /tests/cases/fourslash/f.ts ===
     // class [|A|] {
     //     constructor(s: string) {}
@@ -33,6 +51,8 @@
       // export { A, B };
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: true
       // === /tests/cases/fourslash/f.ts ===
       // class A {
       //     [|constructor|](s: string) {}
@@ -47,6 +67,8 @@
         // class B extends A { }
         // export { A, B };
     // === 1 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /tests/cases/fourslash/f.ts ===
       // class A {
       //     constructor(s: string) {}
@@ -62,6 +84,24 @@
         // [|export { A, B };|]
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "class"
+    // name: "class B"
+    // displayParts: [
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "B",
+    //   "kind": "className"
+    //  }
+    // ]
     // === /tests/cases/fourslash/f.ts ===
     // class A {
     //     constructor(s: string) {}
@@ -77,6 +117,8 @@
       // export { A, B };
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /tests/cases/fourslash/f.ts ===
       // class A {
       //     constructor(s: string) {}
@@ -92,6 +134,56 @@
         // [|export { A, B };|]
 // === 2 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) class B\nexport B"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "B",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "B",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/f.ts ===
     // class A {
     //     constructor(s: string) {}
@@ -107,6 +199,8 @@
       // [|export { A, B };|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/a.ts ===
       // import { A as A1 } from "./f";
       // const a1 = new A1("a1");
@@ -120,6 +214,56 @@
         // [|export { B as B1 } from "./f";|]
 // === 3 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) class B1\nexport B1"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "B1",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "B1",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/a.ts ===
     // import { A as A1 } from "./f";
     // const a1 = new A1("a1");
@@ -133,6 +277,8 @@
       // [|export { B as B1 } from "./f";|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /tests/cases/fourslash/a.ts ===
       // import { A as A1 } from "./f";
       // const a1 = new A1("a1");
@@ -146,6 +292,56 @@
         // [|export { B as B1 } from "./f";|]
 // === 4 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) class B1\nimport B1"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "B1",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "B1",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/b.ts ===
     // import B, { [|B1|] } from "./a";
     // const d = new B("b");
@@ -157,12 +353,64 @@
       // const d1 = new B1("b1");
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/b.ts ===
       // import B, { B1 } from "./a";
       // const d = new B("b");
       // const d1 = new [|B1|]("b1");
 // === 5 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) class A\nexport A"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "A",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "export",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "A",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/f.ts ===
     // class A {
     //     constructor(s: string) {}
@@ -178,6 +426,8 @@
       // [|export { A, B };|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/a.ts ===
       // import { [|A|] as A1 } from "./f";
       // const a1 = new A1("a1");
@@ -191,6 +441,56 @@
         // export { B as B1 } from "./f";
 // === 6 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) class A1\nimport A1"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "A1",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "A1",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/a.ts ===
     // import { A as [|A1|] } from "./f";
     // const a1 = new A1("a1");
@@ -204,6 +504,8 @@
       // export { B as B1 } from "./f";
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/a.ts ===
       // import { A as A1 } from "./f";
       // const a1 = new [|A1|]("a1");
@@ -211,6 +513,24 @@
       // export { B as B1 } from "./f";
 // === 7 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "class"
+    // name: "class default"
+    // displayParts: [
+    //  {
+    //   "text": "class",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "default",
+    //   "kind": "className"
+    //  }
+    // ]
     // === /tests/cases/fourslash/a.ts ===
     // import { A as A1 } from "./f";
     // const a1 = new A1("a1");
@@ -219,6 +539,24 @@
   // === References ===
 // === 8 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "import B"
+    // displayParts: [
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "B",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/b.ts ===
     // import [|B|], { B1 } from "./a";
     // const d = new B("b");
@@ -230,6 +568,8 @@
       // const d1 = new B1("b1");
   // === References ===
     // === 0 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/b.ts ===
       // import B, { B1 } from "./a";
       // const d = new [|B|]("b");

@@ -7,6 +7,36 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "var"
+    // name: "var x: number"
+    // displayParts: [
+    //  {
+    //   "text": "var",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "x",
+    //   "kind": "localName"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "number",
+    //   "kind": "keyword"
+    //  }
+    // ]
     // === /tests/cases/fourslash/m.ts ===
     // export var [|x|] = 12;
       // === ContextSpan ===
@@ -14,6 +44,8 @@
       // [|export var x = 12;|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /tests/cases/fourslash/m.ts ===
       // export var [|x|] = 12;
         // === ContextSpan ===
@@ -21,6 +53,68 @@
         // [|export var x = 12;|]
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) var x: number\nimport x"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "var",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "x",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "number",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "x",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/main.ts ===
     // import { [|x|] } from "./m";
     // const y = x;
@@ -30,6 +124,8 @@
       // const y = x;
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /tests/cases/fourslash/main.ts ===
       // import { [|x|] } from "./m";
       // const y = x;
@@ -38,6 +134,8 @@
         // [|import { x } from "./m";|]
         // const y = x;
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/main.ts ===
       // import { x } from "./m";
       // const y = [|x|];
@@ -212,6 +310,68 @@
 
 // === 0 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "alias"
+    // name: "(alias) var x: number\nimport x"
+    // displayParts: [
+    //  {
+    //   "text": "(",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": "alias",
+    //   "kind": "text"
+    //  },
+    //  {
+    //   "text": ")",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "var",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "x",
+    //   "kind": "aliasName"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "number",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": "\n",
+    //   "kind": "lineBreak"
+    //  },
+    //  {
+    //   "text": "import",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "x",
+    //   "kind": "aliasName"
+    //  }
+    // ]
     // === /tests/cases/fourslash/main.ts ===
     // import { [|x|] } from "./m";
     // const y = x;
@@ -221,6 +381,8 @@
       // const y = x;
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: true
       // === /tests/cases/fourslash/main.ts ===
       // import { [|x|] } from "./m";
       // const y = x;
@@ -229,11 +391,43 @@
         // [|import { x } from "./m";|]
         // const y = x;
     // === 1 ===
+      // isWriteAccess: false
+      // isDefinition: false
       // === /tests/cases/fourslash/main.ts ===
       // import { x } from "./m";
       // const y = [|x|];
 // === 1 ===
   // === Definition ===
+    // containerKind: ""
+    // containerName: ""
+    // kind: "var"
+    // name: "var x: number"
+    // displayParts: [
+    //  {
+    //   "text": "var",
+    //   "kind": "keyword"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "x",
+    //   "kind": "localName"
+    //  },
+    //  {
+    //   "text": ":",
+    //   "kind": "punctuation"
+    //  },
+    //  {
+    //   "text": " ",
+    //   "kind": "space"
+    //  },
+    //  {
+    //   "text": "number",
+    //   "kind": "keyword"
+    //  }
+    // ]
     // === /tests/cases/fourslash/m.ts ===
     // export var [|x|] = 12;
       // === ContextSpan ===
@@ -241,6 +435,8 @@
       // [|export var x = 12;|]
   // === References ===
     // === 0 ===
+      // isWriteAccess: true
+      // isDefinition: false
       // === /tests/cases/fourslash/m.ts ===
       // export var [|x|] = 12;
         // === ContextSpan ===

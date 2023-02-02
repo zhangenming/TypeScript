@@ -1,3 +1,7 @@
+// === FilesToSearch ===
+// /a.ts
+// /b.ts
+// /unknown.ts
 // === /b.ts ===
 // import { [|x|] } from "foo";
 
@@ -8,6 +12,7 @@
 // === 0 ===
   // === /b.ts ===
     // === 0 ===
+      // kind: "writtenReference"
       // === /b.ts ===
       // import { [|x|] } from "foo";
         // === ContextSpan ===
@@ -16,6 +21,7 @@
 // === 1 ===
   // === /a.ts ===
     // === 0 ===
+      // kind: "reference"
       // === /a.ts ===
       // import * as foo from "foo";
       // foo.[|x|];
@@ -52,6 +58,10 @@
   }
 ]
 
+// === FilesToSearch ===
+// /a.ts
+// /b.ts
+// /unknown.ts
 // === /b.ts ===
 // import { /*HIGHLIGHTS*/[|x|] } from "foo";
 
@@ -62,6 +72,7 @@
 // === 0 ===
   // === /b.ts ===
     // === 0 ===
+      // kind: "writtenReference"
       // === /b.ts ===
       // import { [|x|] } from "foo";
         // === ContextSpan ===
@@ -70,6 +81,7 @@
 // === 1 ===
   // === /a.ts ===
     // === 0 ===
+      // kind: "reference"
       // === /a.ts ===
       // import * as foo from "foo";
       // foo.[|x|];
