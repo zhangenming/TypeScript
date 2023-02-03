@@ -24,7 +24,7 @@ interface Array<T> { length: number; [n: number]: T; }
 
 /a/lib/tsc.js -w --extendedDiagnostics --watchFactory {"name":"myplugin/../malicious","myconfig":"somethingelse"}
 Output::
-error TS5096: 'watchFactory' name can only be a package name.
+error TS5107: 'watchFactory' name can only be a package name.
 
 
 PolledWatches::

@@ -37,7 +37,7 @@ FileWatcher:: Added:: WatchInfo: /user/username/projects/myproject/b.ts 250 {} S
 FileWatcher:: Added:: WatchInfo: /a/lib/lib.d.ts 250 {} Source file
 DirectoryWatcher:: Added:: WatchInfo: /user/username/projects/myproject/node_modules/@types 1 {} Type roots
 Elapsed:: *ms DirectoryWatcher:: Added:: WatchInfo: /user/username/projects/myproject/node_modules/@types 1 {} Type roots
-[96mtsconfig.json[0m:[93m1[0m:[93m33[0m - [91merror[0m[90m TS5096: [0m'watchFactory' name can only be a package name.
+[96mtsconfig.json[0m:[93m1[0m:[93m33[0m - [91merror[0m[90m TS5107: [0m'watchFactory' name can only be a package name.
 
 [7m1[0m {"watchOptions":{"watchFactory":"myplugin/../malicious"}}
 [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~[0m
@@ -93,7 +93,7 @@ exitCode:: ExitStatus.undefined
 
 //// [/user/username/projects/myproject/a.js]
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.a = void 0;
 var a = /** @class */ (function () {
     function a() {
@@ -107,7 +107,7 @@ exports.a = a;
 
 //// [/user/username/projects/myproject/b.js]
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.b = void 0;
 var b = /** @class */ (function () {
     function b() {
@@ -137,7 +137,7 @@ Synchronizing program
 CreatingProgramWith::
   roots: ["/user/username/projects/myproject/a.ts","/user/username/projects/myproject/b.ts"]
   options: {"watch":true,"extendedDiagnostics":true,"configFilePath":"/user/username/projects/myproject/tsconfig.json"}
-[96mtsconfig.json[0m:[93m1[0m:[93m33[0m - [91merror[0m[90m TS5096: [0m'watchFactory' name can only be a package name.
+[96mtsconfig.json[0m:[93m1[0m:[93m33[0m - [91merror[0m[90m TS5107: [0m'watchFactory' name can only be a package name.
 
 [7m1[0m {"watchOptions":{"watchFactory":"myplugin/../malicious"}}
 [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~[0m
@@ -187,7 +187,7 @@ exitCode:: ExitStatus.undefined
 
 //// [/user/username/projects/myproject/b.js]
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.foo = exports.b = void 0;
 var b = /** @class */ (function () {
     function b() {

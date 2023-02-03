@@ -260,7 +260,7 @@ Info 28   [00:00:51.000] 	Files (3)
 
 
 	../../../../a/lib/lib.d.ts
-	  Default library for target 'es3'
+	  Default library for target 'es5'
 	a.ts
 	  Matched by default include pattern '**/*'
 	b.ts
@@ -385,7 +385,7 @@ Info 42   [00:01:13.000] 	Files (4)
 
 
 	../../../../a/lib/lib.d.ts
-	  Default library for target 'es3'
+	  Default library for target 'es5'
 	a.ts
 	  Matched by default include pattern '**/*'
 	b.ts

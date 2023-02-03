@@ -24,7 +24,7 @@ interface Array<T> { length: number; [n: number]: T; }
 
 /a/lib/tsc.js -w --extendedDiagnostics --watchFactory myplugin/../malicious
 Output::
-error TS5096: 'watchFactory' name can only be a package name.
+error TS5107: 'watchFactory' name can only be a package name.
 
 
 PolledWatches::

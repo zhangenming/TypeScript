@@ -42,12 +42,12 @@ import {
     find,
     findIndex,
     firstDefined,
+    firstOrUndefinedIterator,
     flatten,
     forEach,
     forEachEntry,
     getBaseFileName,
     getDirectoryPath,
-    getEntries,
     getFileMatcherPatterns,
     getLocaleSpecificMessage,
     getNormalizedAbsolutePath,
@@ -87,7 +87,7 @@ import {
     NewLineKind,
     Node,
     NodeArray,
-    nodeModuleNameResolver,
+    nodeNextJsonConfigResolver,
     normalizePath,
     normalizeSlashes,
     NumericLiteral,
@@ -107,6 +107,7 @@ import {
     returnTrue,
     ScriptTarget,
     startsWith,
+    stringContains,
     StringLiteral,
     SyntaxKind,
     sys,
@@ -130,7 +131,7 @@ export const compileOnSaveCommandLineOption: CommandLineOption = {
     defaultValueDescription: false,
 };
 
-const jsxOptionMap = new Map(getEntries({
+const jsxOptionMap = new Map(Object.entries({
     "preserve": JsxEmit.Preserve,
     "react-native": JsxEmit.ReactNative,
     "react": JsxEmit.React,
@@ -139,7 +140,7 @@ const jsxOptionMap = new Map(getEntries({
 }));
 
 /** @internal */
-export const inverseJsxOptionMap = new Map(arrayFrom(mapIterator(jsxOptionMap.entries(), ([key, value]: [string, JsxEmit]) => ["" + value, key] as const)));
+export const inverseJsxOptionMap = new Map(mapIterator(jsxOptionMap.entries(), ([key, value]: [string, JsxEmit]) => ["" + value, key] as const));
 
 // NOTE: The order here is important to default lib ordering as entries will have the same
 //       order in the generated program (see `getDefaultLibPriority` in program.ts). This
@@ -158,6 +159,7 @@ const libEntries: [string, string][] = [
     ["es2020", "lib.es2020.d.ts"],
     ["es2021", "lib.es2021.d.ts"],
     ["es2022", "lib.es2022.d.ts"],
+    ["es2023", "lib.es2023.d.ts"],
     ["esnext", "lib.esnext.d.ts"],
     // Host only
     ["dom", "lib.dom.d.ts"],
@@ -210,14 +212,18 @@ const libEntries: [string, string][] = [
     ["es2022.object", "lib.es2022.object.d.ts"],
     ["es2022.sharedmemory", "lib.es2022.sharedmemory.d.ts"],
     ["es2022.string", "lib.es2022.string.d.ts"],
-    ["esnext.array", "lib.es2022.array.d.ts"],
+    ["es2022.regexp", "lib.es2022.regexp.d.ts"],
+    ["es2023.array", "lib.es2023.array.d.ts"],
+    ["esnext.array", "lib.es2023.array.d.ts"],
     ["esnext.symbol", "lib.es2019.symbol.d.ts"],
     ["esnext.asynciterable", "lib.es2018.asynciterable.d.ts"],
     ["esnext.intl", "lib.esnext.intl.d.ts"],
     ["esnext.bigint", "lib.es2020.bigint.d.ts"],
     ["esnext.string", "lib.es2022.string.d.ts"],
     ["esnext.promise", "lib.es2021.promise.d.ts"],
-    ["esnext.weakref", "lib.es2021.weakref.d.ts"]
+    ["esnext.weakref", "lib.es2021.weakref.d.ts"],
+    ["decorators", "lib.decorators.d.ts"],
+    ["decorators.legacy", "lib.decorators.legacy.d.ts"],
 ];
 
 /**
@@ -242,7 +248,7 @@ export const libMap = new Map(libEntries);
 export const optionsForWatch: CommandLineOption[] = [
     {
         name: "watchFile",
-        type: new Map(getEntries({
+        type: new Map(Object.entries({
             fixedpollinginterval: WatchFileKind.FixedPollingInterval,
             prioritypollinginterval: WatchFileKind.PriorityPollingInterval,
             dynamicprioritypolling: WatchFileKind.DynamicPriorityPolling,
@@ -256,7 +262,7 @@ export const optionsForWatch: CommandLineOption[] = [
     },
     {
         name: "watchDirectory",
-        type: new Map(getEntries({
+        type: new Map(Object.entries({
             usefsevents: WatchDirectoryKind.UseFsEvents,
             fixedpollinginterval: WatchDirectoryKind.FixedPollingInterval,
             dynamicprioritypolling: WatchDirectoryKind.DynamicPriorityPolling,
@@ -268,7 +274,7 @@ export const optionsForWatch: CommandLineOption[] = [
     },
     {
         name: "fallbackPolling",
-        type: new Map(getEntries({
+        type: new Map(Object.entries({
             fixedinterval: PollingWatchKind.FixedInterval,
             priorityinterval: PollingWatchKind.PriorityInterval,
             dynamicpriority: PollingWatchKind.DynamicPriority,
@@ -326,14 +332,16 @@ export const optionsForWatch: CommandLineOption[] = [
     },
 ];
 
-function watchFactoryNameToDiagnostic(watchFactory: string): [DiagnosticMessage] | undefined {
+function watchFactoryNameToDiagnostic(watchFactory: CompilerOptionsValue): [DiagnosticMessage] | undefined {
+    Debug.assert(watchFactory === undefined || isString(watchFactory));
     return !watchFactory || parsePackageName(watchFactory).rest ?
         [Diagnostics.watchFactory_name_can_only_be_a_package_name] :
         undefined;
 }
 
-function watchFactoryToDiagnostic(watchFactory: string | PluginImport, valueExpression: Expression | undefined) {
-    const watchFactoryName = isString(watchFactory) ? watchFactory : watchFactory.name;
+function watchFactoryToDiagnostic(watchFactory: CompilerOptionsValue, valueExpression: Expression | undefined) {
+    Debug.assert(isString(watchFactory) || typeof watchFactory === "object");
+    const watchFactoryName = isString(watchFactory) ? watchFactory : (watchFactory as PluginImport).name;
     const diagnostics = watchFactoryNameToDiagnostic(watchFactoryName);
     if (!diagnostics || !valueExpression || !isObjectLiteralExpression(valueExpression)) return diagnostics;
     const errorNode = forEach(valueExpression.properties, element => isPropertyAssignment(element) &&
@@ -537,7 +545,7 @@ export const commonOptionsWithBuild: CommandLineOption[] = [
 export const targetOptionDeclaration: CommandLineOptionOfCustomType = {
     name: "target",
     shortName: "t",
-    type: new Map(getEntries({
+    type: new Map(Object.entries({
         es3: ScriptTarget.ES3,
         es5: ScriptTarget.ES5,
         es6: ScriptTarget.ES2015,
@@ -559,14 +567,14 @@ export const targetOptionDeclaration: CommandLineOptionOfCustomType = {
     showInSimplifiedHelpView: true,
     category: Diagnostics.Language_and_Environment,
     description: Diagnostics.Set_the_JavaScript_language_version_for_emitted_JavaScript_and_include_compatible_library_declarations,
-    defaultValueDescription: ScriptTarget.ES3,
+    defaultValueDescription: ScriptTarget.ES5,
 };
 
 /** @internal */
 export const moduleOptionDeclaration: CommandLineOptionOfCustomType = {
     name: "module",
     shortName: "m",
-    type: new Map(getEntries({
+    type: new Map(Object.entries({
         none: ModuleKind.None,
         commonjs: ModuleKind.CommonJS,
         amd: ModuleKind.AMD,
@@ -791,7 +799,7 @@ const commandOptionsWithoutBuild: CommandLineOption[] = [
     },
     {
         name: "importsNotUsedAsValues",
-        type: new Map(getEntries({
+        type: new Map(Object.entries({
             remove: ImportsNotUsedAsValues.Remove,
             preserve: ImportsNotUsedAsValues.Preserve,
             error: ImportsNotUsedAsValues.Error,
@@ -818,6 +826,13 @@ const commandOptionsWithoutBuild: CommandLineOption[] = [
         category: Diagnostics.Interop_Constraints,
         description: Diagnostics.Ensure_that_each_file_can_be_safely_transpiled_without_relying_on_other_imports,
         transpileOptionValue: true,
+        defaultValueDescription: false,
+    },
+    {
+        name: "verbatimModuleSyntax",
+        type: "boolean",
+        category: Diagnostics.Interop_Constraints,
+        description: Diagnostics.Do_not_transform_or_elide_any_imports_or_exports_not_marked_as_type_only_ensuring_they_are_written_in_the_output_file_s_format_based_on_the_module_setting,
         defaultValueDescription: false,
     },
 
@@ -996,12 +1011,16 @@ const commandOptionsWithoutBuild: CommandLineOption[] = [
     // Module Resolution
     {
         name: "moduleResolution",
-        type: new Map(getEntries({
-            node: ModuleResolutionKind.NodeJs,
+        type: new Map(Object.entries({
+            // N.B. The first entry specifies the value shown in `tsc --init`
+            node10: ModuleResolutionKind.Node10,
+            node: ModuleResolutionKind.Node10,
             classic: ModuleResolutionKind.Classic,
             node16: ModuleResolutionKind.Node16,
             nodenext: ModuleResolutionKind.NodeNext,
+            bundler: ModuleResolutionKind.Bundler,
         })),
+        deprecatedKeys: new Set(["node"]),
         affectsModuleResolution: true,
         paramType: Diagnostics.STRATEGY,
         category: Diagnostics.Modules,
@@ -1117,6 +1136,41 @@ const commandOptionsWithoutBuild: CommandLineOption[] = [
         category: Diagnostics.Modules,
         description: Diagnostics.List_of_file_name_suffixes_to_search_when_resolving_a_module,
     },
+    {
+        name: "allowImportingTsExtensions",
+        type: "boolean",
+        affectsSemanticDiagnostics: true,
+        category: Diagnostics.Modules,
+        description: Diagnostics.Allow_imports_to_include_TypeScript_file_extensions_Requires_moduleResolution_bundler_and_either_noEmit_or_emitDeclarationOnly_to_be_set,
+        defaultValueDescription: false,
+    },
+    {
+        name: "resolvePackageJsonExports",
+        type: "boolean",
+        affectsModuleResolution: true,
+        category: Diagnostics.Modules,
+        description: Diagnostics.Use_the_package_json_exports_field_when_resolving_package_imports,
+        defaultValueDescription: Diagnostics.true_when_moduleResolution_is_node16_nodenext_or_bundler_otherwise_false,
+    },
+    {
+        name: "resolvePackageJsonImports",
+        type: "boolean",
+        affectsModuleResolution: true,
+        category: Diagnostics.Modules,
+        description: Diagnostics.Use_the_package_json_imports_field_when_resolving_imports,
+        defaultValueDescription: Diagnostics.true_when_moduleResolution_is_node16_nodenext_or_bundler_otherwise_false,
+    },
+    {
+        name: "customConditions",
+        type: "list",
+        element: {
+            name: "condition",
+            type: "string",
+        },
+        affectsModuleResolution: true,
+        category: Diagnostics.Modules,
+        description: Diagnostics.Conditions_to_set_in_addition_to_the_resolver_specific_defaults_when_resolving_imports,
+    },
 
     // Source Maps
     {
@@ -1151,10 +1205,11 @@ const commandOptionsWithoutBuild: CommandLineOption[] = [
     {
         name: "experimentalDecorators",
         type: "boolean",
+        affectsEmit: true,
         affectsSemanticDiagnostics: true,
         affectsBuildInfo: true,
         category: Diagnostics.Language_and_Environment,
-        description: Diagnostics.Enable_experimental_support_for_TC39_stage_2_draft_decorators,
+        description: Diagnostics.Enable_experimental_support_for_legacy_experimental_decorators,
         defaultValueDescription: false,
     },
     {
@@ -1200,6 +1255,14 @@ const commandOptionsWithoutBuild: CommandLineOption[] = [
         affectsModuleResolution: true,
         category: Diagnostics.Modules,
         description: Diagnostics.Enable_importing_json_files,
+        defaultValueDescription: false,
+    },
+    {
+        name: "allowArbitraryExtensions",
+        type: "boolean",
+        affectsProgramStructure: true,
+        category: Diagnostics.Modules,
+        description: Diagnostics.Enable_importing_files_with_any_extension_provided_a_declaration_file_is_present,
         defaultValueDescription: false,
     },
 
@@ -1252,7 +1315,7 @@ const commandOptionsWithoutBuild: CommandLineOption[] = [
     },
     {
         name: "newLine",
-        type: new Map(getEntries({
+        type: new Map(Object.entries({
             crlf: NewLineKind.CarriageReturnLineFeed,
             lf: NewLineKind.LineFeed
         })),
@@ -1261,7 +1324,7 @@ const commandOptionsWithoutBuild: CommandLineOption[] = [
         paramType: Diagnostics.NEWLINE,
         category: Diagnostics.Emit,
         description: Diagnostics.Set_the_newline_character_for_emitting_files,
-        defaultValueDescription: Diagnostics.Platform_specific
+        defaultValueDescription: "lf"
     },
     {
         name: "noErrorTruncation",
@@ -1437,7 +1500,7 @@ const commandOptionsWithoutBuild: CommandLineOption[] = [
         affectsModuleResolution: true,
         category: Diagnostics.Interop_Constraints,
         description: Diagnostics.Ensure_that_casing_is_correct_in_imports,
-        defaultValueDescription: false,
+        defaultValueDescription: true,
     },
     {
         name: "maxNodeModuleJsDepth",
@@ -1498,7 +1561,7 @@ const commandOptionsWithoutBuild: CommandLineOption[] = [
     },
     {
         name: "moduleDetection",
-        type: new Map(getEntries({
+        type: new Map(Object.entries({
             auto: ModuleDetectionKind.Auto,
             legacy: ModuleDetectionKind.Legacy,
             force: ModuleDetectionKind.Force,
@@ -1507,7 +1570,12 @@ const commandOptionsWithoutBuild: CommandLineOption[] = [
         description: Diagnostics.Control_what_method_is_used_to_detect_module_format_JS_files,
         category: Diagnostics.Language_and_Environment,
         defaultValueDescription: Diagnostics.auto_Colon_Treat_files_with_imports_exports_import_meta_jsx_with_jsx_Colon_react_jsx_or_esm_format_with_module_Colon_node16_as_modules,
-    }
+    },
+    {
+        name: "ignoreDeprecations",
+        type: "string",
+        defaultValueDescription: undefined,
+    },
 ];
 
 /** @internal */
@@ -1589,14 +1657,6 @@ export const buildOpts: CommandLineOption[] = [
 /** @internal */
 export const typeAcquisitionDeclarations: CommandLineOption[] = [
     {
-        /* @deprecated typingOptions.enableAutoDiscovery
-         * Use typeAcquisition.enable instead.
-         */
-        name: "enableAutoDiscovery",
-        type: "boolean",
-        defaultValueDescription: false,
-    },
-    {
         name: "enable",
         type: "boolean",
         defaultValueDescription: false,
@@ -1667,26 +1727,14 @@ export const defaultInitCompilerOptions: CompilerOptions = {
 };
 
 /** @internal */
-export function convertEnableAutoDiscoveryToEnable(typeAcquisition: TypeAcquisition): TypeAcquisition {
-    // Convert deprecated typingOptions.enableAutoDiscovery to typeAcquisition.enable
-    if (typeAcquisition && typeAcquisition.enableAutoDiscovery !== undefined && typeAcquisition.enable === undefined) {
-        return {
-            enable: typeAcquisition.enableAutoDiscovery,
-            include: typeAcquisition.include || [],
-            exclude: typeAcquisition.exclude || []
-        };
-    }
-    return typeAcquisition;
-}
-
-/** @internal */
 export function createCompilerDiagnosticForInvalidCustomType(opt: CommandLineOptionOfCustomType): Diagnostic {
     return createDiagnosticForInvalidCustomType(opt, createCompilerDiagnostic);
 }
 
 function createDiagnosticForInvalidCustomType(opt: CommandLineOptionOfCustomType, createDiagnostic: (message: DiagnosticMessage, arg0: string, arg1: string) => Diagnostic): Diagnostic {
-    const namesOfType = arrayFrom(opt.type.keys()).map(key => `'${key}'`).join(", ");
-    return createDiagnostic(Diagnostics.Argument_for_0_option_must_be_Colon_1, `--${opt.name}`, namesOfType);
+    const namesOfType = arrayFrom(opt.type.keys());
+    const stringNames = (opt.deprecatedKeys ? namesOfType.filter(k => !opt.deprecatedKeys!.has(k)) : namesOfType).map(key => `'${key}'`).join(", ");
+    return createDiagnostic(Diagnostics.Argument_for_0_option_must_be_Colon_1, `--${opt.name}`, stringNames);
 }
 
 /** @internal */
@@ -1695,10 +1743,13 @@ export function parseCustomTypeOption(opt: CommandLineOptionOfCustomType, value:
 }
 
 /** @internal */
-export function parseListTypeOption(opt: CommandLineOptionOfListType, value = "", errors: Push<Diagnostic>): (string | number)[] | undefined {
+export function parseListTypeOption(opt: CommandLineOptionOfListType, value = "", errors: Push<Diagnostic>): string | (string | number)[] | undefined {
     value = trimString(value);
     if (startsWith(value, "-")) {
         return undefined;
+    }
+    if (opt.type === "listOrElement" && !stringContains(value, ",")) {
+        return validateJsonOptionValue(opt, value, errors);
     }
     if (value === "") {
         return [];
@@ -1915,6 +1966,9 @@ function parseOptionValue(
                     const objectResult = parseObjectTypeOption(opt, args[i], errors);
                     options[opt.name] = objectResult?.value;
                     if (objectResult) i++;
+                    break;
+                case "listOrElement":
+                    Debug.fail("listOrElement not supported here");
                     break;
                 // If not a primitive, the possible types are specified in what is effectively a map of options.
                 default:
@@ -2156,6 +2210,15 @@ function getCommandLineTypeAcquisitionMap() {
     return commandLineTypeAcquisitionMapCache || (commandLineTypeAcquisitionMapCache = commandLineOptionsToMap(typeAcquisitionDeclarations));
 }
 
+const extendsOptionDeclaration: CommandLineOptionOfListType = {
+    name: "extends",
+    type: "listOrElement",
+    element: {
+        name: "extends",
+        type: "string"
+    },
+    category: Diagnostics.File_Management,
+};
 let _tsconfigRootOptions: CommandLineOptionOfObjectType;
 function getTsconfigRootOptionsMap() {
     if (_tsconfigRootOptions === undefined) {
@@ -2176,22 +2239,12 @@ function getTsconfigRootOptionsMap() {
                     extraKeyDiagnostics: watchOptionsDidYouMeanDiagnostics,
                 },
                 {
-                    name: "typingOptions",
-                    type: "object",
-                    elementOptions: getCommandLineTypeAcquisitionMap(),
-                    extraKeyDiagnostics: typeAcquisitionDidYouMeanDiagnostics,
-                },
-                {
                     name: "typeAcquisition",
                     type: "object",
                     elementOptions: getCommandLineTypeAcquisitionMap(),
                     extraKeyDiagnostics: typeAcquisitionDidYouMeanDiagnostics
                 },
-                {
-                    name: "extends",
-                    type: "string",
-                    category: Diagnostics.File_Management,
-                },
+                extendsOptionDeclaration,
                 {
                     name: "references",
                     type: "list",
@@ -2293,7 +2346,7 @@ function convertConfigFileToObject(sourceFile: JsonSourceFile, errors: Push<Diag
 /**
  * Convert the json syntax tree into the json value
  */
-export function convertToObject(sourceFile: JsonSourceFile, errors: Push<Diagnostic>): any {
+export function convertToObject(sourceFile: JsonSourceFile, errors: Diagnostic[]): any {
     return convertToObjectWorker(sourceFile, sourceFile.statements[0]?.expression, errors, /*returnValue*/ true, /*knownRootOptions*/ undefined, /*jsonConversionNotifier*/ undefined);
 }
 
@@ -2405,11 +2458,11 @@ export function convertToObjectWorker(
         let invalidReported: boolean | undefined;
         switch (valueExpression.kind) {
             case SyntaxKind.TrueKeyword:
-                reportInvalidOptionValue(option && option.type !== "boolean");
+                reportInvalidOptionValue(option && option.type !== "boolean" && (option.type !== "listOrElement" || option.element.type !== "boolean"));
                 return validateValue(/*value*/ true);
 
             case SyntaxKind.FalseKeyword:
-                reportInvalidOptionValue(option && option.type !== "boolean");
+                reportInvalidOptionValue(option && option.type !== "boolean"&& (option.type !== "listOrElement" || option.element.type !== "boolean"));
                 return validateValue(/*value*/ false);
 
             case SyntaxKind.NullKeyword:
@@ -2420,8 +2473,11 @@ export function convertToObjectWorker(
                 if (!isDoubleQuotedString(valueExpression)) {
                     errors.push(createDiagnosticForNodeInSourceFile(sourceFile, valueExpression, Diagnostics.String_literal_with_double_quotes_expected));
                 }
-                reportInvalidOptionValue(option && isString(option.type) && option.type !== "string" && option.type !== "string | object");
+                reportInvalidOptionValue(option && isString(option.type) && option.type !== "string" && option.type !== "string | object" && (option.type !== "listOrElement" || option.element.type !== "string"));
                 const text = (valueExpression as StringLiteral).text;
+                if (option) {
+                    Debug.assert(option.type !== "listOrElement" || option.element.type === "string", "Only string or array of string is handled for now");
+                }
                 if (option && !isString(option.type)) {
                     const customOption = option as CommandLineOptionOfCustomType;
                     // Validate custom option type
@@ -2438,18 +2494,18 @@ export function convertToObjectWorker(
                 return validateValue(text);
 
             case SyntaxKind.NumericLiteral:
-                reportInvalidOptionValue(option && option.type !== "number");
+                reportInvalidOptionValue(option && option.type !== "number" && (option.type !== "listOrElement" || option.element.type !== "number"));
                 return validateValue(Number((valueExpression as NumericLiteral).text));
 
             case SyntaxKind.PrefixUnaryExpression:
                 if ((valueExpression as PrefixUnaryExpression).operator !== SyntaxKind.MinusToken || (valueExpression as PrefixUnaryExpression).operand.kind !== SyntaxKind.NumericLiteral) {
                     break; // not valid JSON syntax
                 }
-                reportInvalidOptionValue(option && option.type !== "number");
+                reportInvalidOptionValue(option && option.type !== "number" && (option.type !== "listOrElement" || option.element.type !== "number"));
                 return validateValue(-Number(((valueExpression as PrefixUnaryExpression).operand as NumericLiteral).text));
 
             case SyntaxKind.ObjectLiteralExpression:
-                reportInvalidOptionValue(option && option.type !== "object" && option.type !== "string | object");
+                reportInvalidOptionValue(option && option.type !== "object" && option.type !== "string | object" && (option.type !== "listOrElement" || option.element.type !== "object"));
                 const objectLiteralExpression = valueExpression as ObjectLiteralExpression;
 
                 // Currently having element option declaration in the tsconfig with type "object"
@@ -2470,7 +2526,7 @@ export function convertToObjectWorker(
                 }
 
             case SyntaxKind.ArrayLiteralExpression:
-                reportInvalidOptionValue(option && option.type !== "list");
+                reportInvalidOptionValue(option && option.type !== "list" && option.type !== "listOrElement");
                 return validateValue(convertArrayLiteralExpressionToJson(
                     (valueExpression as ArrayLiteralExpression).elements,
                     option && (option as CommandLineOptionOfListType).element));
@@ -2512,8 +2568,10 @@ export function convertToObjectWorker(
     }
 }
 
-function getCompilerOptionValueTypeString(option: CommandLineOption) {
-    return option.type === "list" ?
+function getCompilerOptionValueTypeString(option: CommandLineOption): string {
+    return (option.type === "listOrElement") ?
+            `${getCompilerOptionValueTypeString(option.element)} or Array`:
+            option.type === "list" ?
         "Array" :
         isString(option.type) ? option.type : "string";
 }
@@ -2523,6 +2581,9 @@ function isCompilerOptionsValue(option: CommandLineOption | undefined, value: an
         if (isNullOrUndefined(value)) return true; // All options are undefinable/nullable
         if (option.type === "list") {
             return isArray(value);
+        }
+        if (option.type === "listOrElement") {
+            return isArray(value) || isCompilerOptionsValue(option.element, value);
         }
         if (option.type === "string | object") {
             return typeof value === "string" || typeof value === "object";
@@ -2640,6 +2701,7 @@ function getCustomTypeMapOfCommandLineOption(optionDefinition: CommandLineOption
             // this is of a type CommandLineOptionOfPrimitiveType
             return undefined;
         case "list":
+        case "listOrElement":
             return getCustomTypeMapOfCommandLineOption(optionDefinition.element);
         default:
             return optionDefinition.type;
@@ -2686,6 +2748,7 @@ function serializeOptionBaseObject(
             const value = options[name] as CompilerOptionsValue;
             const optionDefinition = optionsNameMap.get(name.toLowerCase());
             if (optionDefinition) {
+                Debug.assert(optionDefinition.type !== "listOrElement");
                 const customTypeMap = getCustomTypeMapOfCommandLineOption(optionDefinition);
                 if (!customTypeMap) {
                     // There is no map associated with this compiler option then use the value as-is
@@ -2871,7 +2934,7 @@ export function convertToOptionsWithAbsolutePaths(options: CompilerOptions, toAb
 function convertToOptionValueWithAbsolutePaths(option: CommandLineOption | undefined, value: CompilerOptionsValue, toAbsolutePath: (path: string) => string) {
     if (option && !isNullOrUndefined(value)) {
         if (option.type === "list") {
-            const values = value as readonly (string | number)[];
+            const values = value as readonly string[];
             if (option.element.isFilePath && values.length) {
                 return values.map(toAbsolutePath);
             }
@@ -2879,6 +2942,7 @@ function convertToOptionValueWithAbsolutePaths(option: CommandLineOption | undef
         else if (option.isFilePath) {
             return toAbsolutePath(value as string);
         }
+        Debug.assert(option.type !== "listOrElement");
     }
     return value;
 }
@@ -3150,13 +3214,22 @@ export interface ParsedTsconfig {
     /**
      * Note that the case of the config path has not yet been normalized, as no files have been imported into the project yet
      */
-    extendedConfigPath?: string;
+    extendedConfigPath?: string | string[];
 }
 
 function isSuccessfulParsedTsconfig(value: ParsedTsconfig) {
     return !!value.options;
 }
 
+interface ExtendsResult {
+    options: CompilerOptions;
+    watchOptions?: WatchOptions;
+    include?: string[];
+    exclude?: string[];
+    files?: string[];
+    compileOnSave?: boolean;
+    extendedSourceFiles?: Set<string>
+}
 /**
  * This *just* extracts options/include/exclude/files out of a config file.
  * It does *not* resolve the included files.
@@ -3168,7 +3241,7 @@ function parseConfig(
     basePath: string,
     configFileName: string | undefined,
     resolutionStack: string[],
-    errors: Push<Diagnostic>,
+    errors: Diagnostic[],
     extendedConfigCache?: Map<string, ExtendedConfigCacheEntry>
 ): ParsedTsconfig {
     basePath = normalizeSlashes(basePath);
@@ -3193,34 +3266,52 @@ function parseConfig(
     if (ownConfig.extendedConfigPath) {
         // copy the resolution stack so it is never reused between branches in potential diamond-problem scenarios.
         resolutionStack = resolutionStack.concat([resolvedPath]);
-        const extendedConfig = getExtendedConfig(sourceFile, ownConfig.extendedConfigPath, host, resolutionStack, errors, extendedConfigCache);
+        const result: ExtendsResult = { options: {} };
+        if (isString(ownConfig.extendedConfigPath)) {
+            applyExtendedConfig(result, ownConfig.extendedConfigPath);
+        }
+        else {
+            ownConfig.extendedConfigPath.forEach(extendedConfigPath => applyExtendedConfig(result, extendedConfigPath));
+        }
+        if (!ownConfig.raw.include && result.include) ownConfig.raw.include = result.include;
+        if (!ownConfig.raw.exclude && result.exclude) ownConfig.raw.exclude = result.exclude;
+        if (!ownConfig.raw.files && result.files) ownConfig.raw.files = result.files;
+        if (ownConfig.raw.compileOnSave === undefined && result.compileOnSave) ownConfig.raw.compileOnSave = result.compileOnSave;
+        if (sourceFile && result.extendedSourceFiles) sourceFile.extendedSourceFiles = arrayFrom(result.extendedSourceFiles.keys());
+
+        ownConfig.options = assign(result.options, ownConfig.options);
+        ownConfig.watchOptions = ownConfig.watchOptions && result.watchOptions ?
+            assign(result.watchOptions, ownConfig.watchOptions) :
+            ownConfig.watchOptions || result.watchOptions;
+    }
+    return ownConfig;
+
+    function applyExtendedConfig(result: ExtendsResult, extendedConfigPath: string){
+        const extendedConfig = getExtendedConfig(sourceFile, extendedConfigPath, host, resolutionStack, errors, extendedConfigCache, result);
         if (extendedConfig && isSuccessfulParsedTsconfig(extendedConfig)) {
-            const baseRaw = extendedConfig.raw;
-            const raw = ownConfig.raw;
-            let relativeDifference: string | undefined;
-            const setPropertyInRawIfNotUndefined = (propertyName: string) => {
-                if (!raw[propertyName] && baseRaw[propertyName]) {
-                    raw[propertyName] = map(baseRaw[propertyName], (path: string) => isRootedDiskPath(path) ? path : combinePaths(
-                        relativeDifference ||= convertToRelativePath(getDirectoryPath(ownConfig.extendedConfigPath!), basePath, createGetCanonicalFileName(host.useCaseSensitiveFileNames)),
+            const extendsRaw = extendedConfig.raw;
+            let relativeDifference: string | undefined ;
+            const setPropertyInResultIfNotUndefined = (propertyName: "include" | "exclude" | "files") => {
+                if (extendsRaw[propertyName]) {
+                    result[propertyName] = map(extendsRaw[propertyName], (path: string) => isRootedDiskPath(path) ? path : combinePaths(
+                        relativeDifference ||= convertToRelativePath(getDirectoryPath(extendedConfigPath), basePath, createGetCanonicalFileName(host.useCaseSensitiveFileNames)),
                         path
                     ));
                 }
             };
-            setPropertyInRawIfNotUndefined("include");
-            setPropertyInRawIfNotUndefined("exclude");
-            setPropertyInRawIfNotUndefined("files");
-            if (raw.compileOnSave === undefined) {
-                raw.compileOnSave = baseRaw.compileOnSave;
+            setPropertyInResultIfNotUndefined("include");
+            setPropertyInResultIfNotUndefined("exclude");
+            setPropertyInResultIfNotUndefined("files");
+            if (extendsRaw.compileOnSave !== undefined) {
+                result.compileOnSave = extendsRaw.compileOnSave;
             }
-            ownConfig.options = assign({}, extendedConfig.options, ownConfig.options);
-            ownConfig.watchOptions = ownConfig.watchOptions || extendedConfig.watchOptions ?
-                assign({}, extendedConfig.watchOptions, ownConfig.watchOptions) :
+            assign(result.options, extendedConfig.options);
+            result.watchOptions = extendedConfig.watchOptions ?
+                assign(result.watchOptions || {}, extendedConfig.watchOptions) :
                 undefined;
             // TODO extend type typeAcquisition
         }
     }
-
-    return ownConfig;
 }
 
 function parseOwnConfigOfJson(
@@ -3235,20 +3326,31 @@ function parseOwnConfigOfJson(
     }
 
     const options = convertCompilerOptionsFromJsonWorker(json.compilerOptions, basePath, errors, configFileName);
-    // typingOptions has been deprecated and is only supported for backward compatibility purposes.
-    // It should be removed in future releases - use typeAcquisition instead.
-    const typeAcquisition = convertTypeAcquisitionFromJsonWorker(json.typeAcquisition || json.typingOptions, basePath, errors, configFileName);
+    const typeAcquisition = convertTypeAcquisitionFromJsonWorker(json.typeAcquisition, basePath, errors, configFileName);
     const watchOptions = convertWatchOptionsFromJsonWorker(json.watchOptions, basePath, errors);
     json.compileOnSave = convertCompileOnSaveOptionFromJson(json, basePath, errors);
-    let extendedConfigPath: string | undefined;
+    let extendedConfigPath: string | string[] | undefined;
 
-    if (json.extends) {
-        if (!isString(json.extends)) {
-            errors.push(createCompilerDiagnostic(Diagnostics.Compiler_option_0_requires_a_value_of_type_1, "extends", "string"));
+    if (json.extends || json.extends === "") {
+        if (!isCompilerOptionsValue(extendsOptionDeclaration, json.extends)) {
+            errors.push(createCompilerDiagnostic(Diagnostics.Compiler_option_0_requires_a_value_of_type_1, "extends", getCompilerOptionValueTypeString(extendsOptionDeclaration)));
         }
         else {
             const newBase = configFileName ? directoryOfCombinedPath(configFileName, basePath) : basePath;
-            extendedConfigPath = getExtendsConfigPath(json.extends, host, newBase, errors, createCompilerDiagnostic);
+            if (isString(json.extends)) {
+                extendedConfigPath = getExtendsConfigPath(json.extends, host, newBase, errors, createCompilerDiagnostic);
+            }
+            else {
+                extendedConfigPath = [];
+                for (const fileName of json.extends as unknown[]) {
+                    if (isString(fileName)) {
+                        extendedConfigPath = append(extendedConfigPath, getExtendsConfigPath(fileName, host, newBase, errors, createCompilerDiagnostic));
+                    }
+                    else {
+                        errors.push(createCompilerDiagnostic(Diagnostics.Compiler_option_0_requires_a_value_of_type_1, "extends", getCompilerOptionValueTypeString(extendsOptionDeclaration.element)));
+                    }
+                }
+            }
         }
     }
     return { raw: json, options, watchOptions, typeAcquisition, extendedConfigPath };
@@ -3262,9 +3364,9 @@ function parseOwnConfigOfJsonSourceFile(
     errors: Push<Diagnostic>
 ): ParsedTsconfig {
     const options = getDefaultCompilerOptions(configFileName);
-    let typeAcquisition: TypeAcquisition | undefined, typingOptionstypeAcquisition: TypeAcquisition | undefined;
+    let typeAcquisition: TypeAcquisition | undefined;
     let watchOptions: WatchOptions | undefined;
-    let extendedConfigPath: string | undefined;
+    let extendedConfigPath: string | string[] | undefined;
     let rootCompilerOptions: PropertyName[] | undefined;
 
     const optionsIterator: JsonConversionNotifier = {
@@ -3280,9 +3382,6 @@ function parseOwnConfigOfJsonSourceFile(
                 case "typeAcquisition":
                     currentOption = (typeAcquisition || (typeAcquisition = getDefaultTypeAcquisition(configFileName)));
                     break;
-                case "typingOptions":
-                    currentOption = (typingOptionstypeAcquisition || (typingOptionstypeAcquisition = getDefaultTypeAcquisition(configFileName)));
-                    break;
                 default:
                     // Ignore anything other option that comes through as parent is not from root
                     return;
@@ -3294,15 +3393,33 @@ function parseOwnConfigOfJsonSourceFile(
             switch (key) {
                 case "extends":
                     const newBase = configFileName ? directoryOfCombinedPath(configFileName, basePath) : basePath;
+                    if (isString(value)) {
                     extendedConfigPath = getExtendsConfigPath(
-                        value as string,
+                        value,
                         host,
                         newBase,
                         errors,
                         (message, arg0) =>
                             createDiagnosticForNodeInSourceFile(sourceFile, valueNode, message, arg0)
                     );
-                    return;
+                    }
+                    else {
+                        extendedConfigPath = [];
+                        for (let index = 0; index < (value as unknown[]).length; index++) {
+                            const fileName = (value as unknown[])[index];
+                            if (isString(fileName)) {
+                                extendedConfigPath = append(extendedConfigPath, getExtendsConfigPath(
+                                    fileName,
+                                    host,
+                                    newBase,
+                                    errors,
+                                    (message, arg0) =>
+                                        createDiagnosticForNodeInSourceFile(sourceFile, (valueNode as ArrayLiteralExpression).elements[index], message, arg0)
+                                ));
+                            }
+                        }
+                    }
+                return;
             }
         },
         onSetUnknownOptionKeyValueInRoot(key: string, keyNode: PropertyName, _value: CompilerOptionsValue, _valueNode: Expression) {
@@ -3317,18 +3434,7 @@ function parseOwnConfigOfJsonSourceFile(
     const json = convertConfigFileToObject(sourceFile, errors, /*reportOptionsErrors*/ true, optionsIterator);
 
     if (!typeAcquisition) {
-        if (typingOptionstypeAcquisition) {
-            typeAcquisition = (typingOptionstypeAcquisition.enableAutoDiscovery !== undefined) ?
-                {
-                    enable: typingOptionstypeAcquisition.enableAutoDiscovery,
-                    include: typingOptionstypeAcquisition.include,
-                    exclude: typingOptionstypeAcquisition.exclude
-                } :
-                typingOptionstypeAcquisition;
-        }
-        else {
-            typeAcquisition = getDefaultTypeAcquisition(configFileName);
-        }
+        typeAcquisition = getDefaultTypeAcquisition(configFileName);
     }
 
     if (rootCompilerOptions && json && json.compilerOptions === undefined) {
@@ -3357,11 +3463,16 @@ function getExtendsConfigPath(
         return extendedConfigPath;
     }
     // If the path isn't a rooted or relative path, resolve like a module
-    const resolved = nodeModuleNameResolver(extendedConfig, combinePaths(basePath, "tsconfig.json"), { moduleResolution: ModuleResolutionKind.NodeJs }, host, /*cache*/ undefined, /*projectRefs*/ undefined, /*lookupConfig*/ true);
+    const resolved = nodeNextJsonConfigResolver(extendedConfig, combinePaths(basePath, "tsconfig.json"), host);
     if (resolved.resolvedModule) {
         return resolved.resolvedModule.resolvedFileName;
     }
-    errors.push(createDiagnostic(Diagnostics.File_0_not_found, extendedConfig));
+    if (extendedConfig === "") {
+        errors.push(createDiagnostic(Diagnostics.Compiler_option_0_cannot_be_given_an_empty_string, "extends"));
+    }
+    else {
+        errors.push(createDiagnostic(Diagnostics.File_0_not_found, extendedConfig));
+    }
     return undefined;
 }
 
@@ -3375,8 +3486,9 @@ function getExtendedConfig(
     extendedConfigPath: string,
     host: ParseConfigHost,
     resolutionStack: string[],
-    errors: Push<Diagnostic>,
-    extendedConfigCache?: Map<string, ExtendedConfigCacheEntry>
+    errors: Diagnostic[],
+    extendedConfigCache: Map<string, ExtendedConfigCacheEntry> | undefined,
+    result: ExtendsResult
 ): ParsedTsconfig | undefined {
     const path = host.useCaseSensitiveFileNames ? extendedConfigPath : toFileNameLowerCase(extendedConfigPath);
     let value: ExtendedConfigCacheEntry | undefined;
@@ -3396,9 +3508,11 @@ function getExtendedConfig(
         }
     }
     if (sourceFile) {
-        sourceFile.extendedSourceFiles = [extendedResult.fileName];
+        (result.extendedSourceFiles ??= new Set()).add(extendedResult.fileName);
         if (extendedResult.extendedSourceFiles) {
-            sourceFile.extendedSourceFiles.push(...extendedResult.extendedSourceFiles);
+            for (const extenedSourceFile of extendedResult.extendedSourceFiles) {
+                result.extendedSourceFiles.add(extenedSourceFile);
+            }
         }
     }
     if (extendedResult.parseDiagnostics.length) {
@@ -3454,9 +3568,7 @@ function convertTypeAcquisitionFromJsonWorker(jsonOptions: any,
     basePath: string, errors: Push<Diagnostic>, configFileName?: string): TypeAcquisition {
 
     const options = getDefaultTypeAcquisition(configFileName);
-    const typeAcquisition = convertEnableAutoDiscoveryToEnable(jsonOptions);
-
-    convertOptionsFromJson(getCommandLineTypeAcquisitionMap(), typeAcquisition, basePath, options, typeAcquisitionDidYouMeanDiagnostics, errors);
+    convertOptionsFromJson(getCommandLineTypeAcquisitionMap(), jsonOptions, basePath, options, typeAcquisitionDidYouMeanDiagnostics, errors);
     return options;
 }
 
@@ -3490,8 +3602,13 @@ function convertOptionsFromJson(optionsNameMap: Map<string, CommandLineOption>, 
 /** @internal */
 export function convertJsonOption(opt: CommandLineOption, value: any, basePath: string, errors: Push<Diagnostic>): CompilerOptionsValue {
     if (isCompilerOptionsValue(opt, value)) {
-        if (opt.type === "list" && isArray(value)) {
+        if ((opt.type === "list") && isArray(value)) {
             return convertJsonOptionOfListType(opt, value, basePath, errors);
+        }
+        else if (opt.type === "listOrElement") {
+            return isArray(value) ?
+                convertJsonOptionOfListType(opt, value, basePath, errors) :
+                convertJsonOption(opt.element, value, basePath, errors);
         }
         else if (!isString(opt.type)) {
             return convertJsonOptionOfCustomType(opt as CommandLineOptionOfCustomType, value as string, errors);
@@ -3506,7 +3623,8 @@ export function convertJsonOption(opt: CommandLineOption, value: any, basePath: 
 
 function normalizeOptionValue(option: CommandLineOption, basePath: string, value: any): CompilerOptionsValue {
     if (isNullOrUndefined(value)) return undefined;
-    if (option.type === "list") {
+    if (option.type === "listOrElement" && !isArray(value)) return normalizeOptionValue(option.element, basePath, value);
+    else if (option.type === "list" || option.type === "listOrElement") {
         const listOption = option;
         if (listOption.element.isFilePath || !isString(listOption.element.type)) {
             return filter(map(value, v => normalizeOptionValue(listOption.element, basePath, v)), v => listOption.listPreserveFalsyValues ? true : !!v) as CompilerOptionsValue;
@@ -3764,7 +3882,8 @@ function validateSpecs(specs: readonly string[], errors: Push<Diagnostic>, disal
     }
 }
 
-function specToDiagnostic(spec: string, _valueExpresion?: Expression, disallowTrailingRecursion?: boolean): [DiagnosticMessage, string] | undefined {
+function specToDiagnostic(spec: CompilerOptionsValue, _valueExpresion?: Expression, disallowTrailingRecursion?: boolean): [DiagnosticMessage, string] | undefined {
+    Debug.assert(typeof spec === "string");
     if (disallowTrailingRecursion && invalidTrailingRecursionPattern.test(spec)) {
         return [Diagnostics.File_specification_cannot_end_in_a_recursive_directory_wildcard_Asterisk_Asterisk_Colon_0, spec];
     }
@@ -3935,6 +4054,9 @@ function getOptionValueWithEmptyStrings(value: any, option: CommandLineOption): 
             return typeof value === "number" ? value : "";
         case "boolean":
             return typeof value === "boolean" ? value : "";
+        case "listOrElement":
+            if (!isArray(value)) return getOptionValueWithEmptyStrings(value, option.element);
+            // fall through to list
         case "list":
             const elementType = option.element;
             return isArray(value) ? value.map(v => getOptionValueWithEmptyStrings(v, elementType)) : "";
@@ -3948,7 +4070,7 @@ function getOptionValueWithEmptyStrings(value: any, option: CommandLineOption): 
 }
 
 
-function getDefaultValueForOption(option: CommandLineOption) {
+function getDefaultValueForOption(option: CommandLineOption): {} {
     switch (option.type) {
         case "number":
             return 1;
@@ -3960,11 +4082,13 @@ function getDefaultValueForOption(option: CommandLineOption) {
             return option.isFilePath ? `./${defaultValue && typeof defaultValue === "string" ? defaultValue : ""}` : "";
         case "list":
             return [];
+        case "listOrElement":
+            return getDefaultValueForOption(option.element);
         case "object":
             return {};
         default:
-            const iterResult = option.type.keys().next();
-            if (!iterResult.done) return iterResult.value;
+            const value = firstOrUndefinedIterator(option.type.keys());
+            if (value !== undefined) return value;
             return Debug.fail("Expected 'option.type' to have entries.");
     }
 }

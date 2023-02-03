@@ -47,7 +47,7 @@ WatchedDirectories:Recursive::
 WatchedDirectories::
 Info 2    [00:00:25.000] Host watch options changed to {}, it will be take effect for next watches.
 Info 3    [00:00:26.000] Watch options supplied had errors: Supplied options: {"watchFactory":"myplugin/../malicious"}
-Info 4    [00:00:27.000] Diagnostics:: error TS5096: 'watchFactory' name can only be a package name.
+Info 4    [00:00:27.000] Diagnostics:: error TS5107: 'watchFactory' name can only be a package name.
 
 Info 5    [00:00:28.000] response:
     {"seq":0,"type":"response","command":"configure","request_seq":1,"success":true}
@@ -119,7 +119,7 @@ Info 22   [00:00:45.000] 	Files (3)
 
 
 	../../../../a/lib/lib.d.ts
-	  Default library for target 'es3'
+	  Default library for target 'es5'
 	a.ts
 	  Matched by default include pattern '**/*'
 	b.ts

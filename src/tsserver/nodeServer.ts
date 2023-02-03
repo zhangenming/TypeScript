@@ -1,4 +1,37 @@
+import * as protocol from "../server/protocol";
 import * as ts from "./_namespaces/ts";
+import {
+    ApplyCodeActionCommandResult,
+    assertType,
+    CharacterCodes,
+    combinePaths,
+    createQueue,
+    Debug,
+    directorySeparator,
+    DirectoryWatcherCallback,
+    FileWatcher,
+    getDirectoryPath,
+    getNodeMajorVersion,
+    getRootLength,
+    JsTyping,
+    LanguageServiceMode,
+    MapLike,
+    noop,
+    noopFileWatcher,
+    normalizePath,
+    normalizeSlashes,
+    perfLogger,
+    SortedReadonlyArray,
+    startTracing,
+    stripQuotes,
+    sys,
+    toFileNameLowerCase,
+    tracing,
+    TypeAcquisition,
+    validateLocaleAndSetLanguage,
+    versionMajorMinor,
+    WatchOptions,
+} from "./_namespaces/ts";
 import * as server from "./_namespaces/ts.server";
 import {
     ActionInvalidate,
@@ -31,7 +64,6 @@ import {
     PackageInstalledResponse,
     Project,
     ProjectService,
-    protocol,
     ServerCancellationToken,
     ServerHost,
     Session,
@@ -43,39 +75,6 @@ import {
     TypesRegistryResponse,
     TypingInstallerRequestUnion,
 } from "./_namespaces/ts.server";
-import {
-    ApplyCodeActionCommandResult,
-    assertType,
-    CharacterCodes,
-    combinePaths,
-    createQueue,
-    Debug,
-    directorySeparator,
-    DirectoryWatcherCallback,
-    FileWatcher,
-    getDirectoryPath,
-    getEntries,
-    getNodeMajorVersion,
-    getRootLength,
-    JsTyping,
-    LanguageServiceMode,
-    MapLike,
-    noop,
-    noopFileWatcher,
-    normalizePath,
-    normalizeSlashes,
-    perfLogger,
-    SortedReadonlyArray,
-    startTracing,
-    stripQuotes,
-    sys,
-    toFileNameLowerCase,
-    tracing,
-    TypeAcquisition,
-    validateLocaleAndSetLanguage,
-    versionMajorMinor,
-    WatchOptions,
-} from "./_namespaces/ts";
 
 interface LogOptions {
     file?: string;
@@ -680,7 +679,7 @@ function startNodeSession(options: StartSessionOptions, logger: Logger, cancella
 
             switch (response.kind) {
                 case EventTypesRegistry:
-                    this.typesRegistryCache = new Map(getEntries(response.typesRegistry));
+                    this.typesRegistryCache = new Map(Object.entries(response.typesRegistry));
                     break;
                 case ActionPackageInstalled: {
                     const { success, message } = response;
@@ -830,7 +829,7 @@ function startNodeSession(options: StartSessionOptions, logger: Logger, cancella
             this.constructed = true;
         }
 
-        event<T extends object>(body: T, eventName: string): void {
+        override event<T extends object>(body: T, eventName: string): void {
             Debug.assert(!!this.constructed, "Should only call `IOSession.prototype.event` on an initialized IOSession");
 
             if (this.canUseEvents && this.eventPort) {
@@ -855,7 +854,7 @@ function startNodeSession(options: StartSessionOptions, logger: Logger, cancella
             this.eventSocket!.write(formatMessage(toEvent(eventName, body), this.logger, this.byteLength, this.host.newLine), "utf8");
         }
 
-        exit() {
+        override exit() {
             this.logger.info("Exiting...");
             this.projectService.closeLog();
             tracing?.stopTracing();
@@ -876,7 +875,7 @@ function startNodeSession(options: StartSessionOptions, logger: Logger, cancella
 
     class IpcIOSession extends IOSession {
 
-        protected writeMessage(msg: protocol.Message): void {
+        protected override writeMessage(msg: protocol.Message): void {
             const verboseLogging = logger.hasLevel(LogLevel.verbose);
             if (verboseLogging) {
                 const json = JSON.stringify(msg);
@@ -886,15 +885,15 @@ function startNodeSession(options: StartSessionOptions, logger: Logger, cancella
             process.send!(msg);
         }
 
-        protected parseMessage(message: any): protocol.Request {
+        protected override parseMessage(message: any): protocol.Request {
             return message as protocol.Request;
         }
 
-        protected toStringMessage(message: any) {
+        protected override toStringMessage(message: any) {
             return JSON.stringify(message, undefined, 2);
         }
 
-        public listen() {
+        public override listen() {
             process.on("message", (e: any) => {
                 this.onMessage(e);
             });
