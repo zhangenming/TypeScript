@@ -1252,8 +1252,9 @@ export class TestState {
         getDocumentSpanArray: (result: R) => readonly T[] | undefined,
         skipJsonOrGetAdditionalBaseline?: true | ((result: R) => string),
         documentSpanToPrefix?: (span: T) => string,
-        startMarker?: (span: T) => string,
-        endMarker?: (span: T) => string,
+        endMarker?: string,
+        startMarkerPrefix?: (span: T) => string | undefined,
+        endMarkerSuffix?: (span: T) => string | undefined,
         ignoredDocumentSpanProperties?: readonly string[],
     ): string {
         const spans = getDocumentSpanArray(result);
@@ -1266,8 +1267,9 @@ export class TestState {
             // Skip additional marker file since its already added in prev baseline,
             skipJsonOrGetAdditionalBaseline === true,
             documentSpanToPrefix,
-            startMarker,
             endMarker,
+            startMarkerPrefix,
+            endMarkerSuffix,
             ignoredDocumentSpanProperties,
         );
         if (skipJsonOrGetAdditionalBaseline === true) return baselineContent;
@@ -1282,8 +1284,9 @@ export class TestState {
         markerOrRange: MarkerOrNameOrRange | undefined,
         skipMarkerOnlyFile?: boolean,
         documentSpanToPrefix?: (span: T) => string,
-        startMarker?: (span: T) => string,
-        endMarker?: (span: T) => string,
+        endMarker?: string,
+        startMarkerPrefix?: (span: T) => string | undefined,
+        endMarkerSuffix?: (span: T) => string | undefined,
         ignoredDocumentSpanProperties?: readonly string[],
     ) {
         const marker: Marker | undefined = markerOrRange !== undefined ?
@@ -1335,10 +1338,14 @@ export class TestState {
             group: readonly T[],
         ) {
             let newContent = `=== ${fileName} ===\n`;
-            const details: [location: number, locationMarker: string, span?: T, type?: "textStart" | "textEnd" | "contextStart" | "contextEnd"][] = [];
+            type Detail = [location: number, locationMarker: string, span?: T, type?: "textStart" | "textEnd" | "contextStart" | "contextEnd"];
+            const detailPrefixes = new Map<Detail, string>();
+            const detailSuffixes = new Map<Detail, string>();
+            const details: Detail[] = [];
             if (fileName === marker?.fileName) details.push([marker.position, refType]);
             let canDetermineContextIdInline = true;
             for (const span of group) {
+                const contextSpanIndex = details.length;
                 if (span.contextSpan) {
                     details.push([span.contextSpan.start, "<|", span, "contextStart"]);
                     if (canDetermineContextIdInline && span.contextSpan.start > span.textSpan.start) {
@@ -1346,11 +1353,49 @@ export class TestState {
                         canDetermineContextIdInline = false;
                     }
                 }
+                const textSpanIndex = details.length;
+                const textSpanEnd = span.textSpan.start + span.textSpan.length;
                 details.push(
-                    [span.textSpan.start, startMarker?.(span) || "[|", span, "textStart"],
-                    [span.textSpan.start + span.textSpan.length, endMarker?.(span) || "|]", span, "textEnd"],
+                    [span.textSpan.start, "[|", span, "textStart"],
+                    [textSpanEnd, endMarker || "|]", span, "textEnd"],
                 );
-                if (span.contextSpan) details.push([span.contextSpan.start + span.contextSpan.length, "|>", span, "contextEnd"]);
+                let contextSpanEnd: number | undefined;
+                if (span.contextSpan) {
+                    contextSpanEnd = span.contextSpan.start + span.contextSpan.length;
+                    details.push([contextSpanEnd, "|>", span, "contextEnd"]);
+                }
+
+                const startPrefix = startMarkerPrefix?.(span);
+                if (startPrefix) {
+                    if (fileName === marker?.fileName && span.textSpan.start === marker?.position) {
+                        ts.Debug.assert(!detailPrefixes.has(details[0]), "Expected only single prefix at marker location");
+                        detailPrefixes.set(details[0], startPrefix);
+                    }
+                    else if (span.contextSpan?.start === span.textSpan.start) {
+                        // Write it at contextSpan instead of textSpan
+                        detailPrefixes.set(details[contextSpanIndex], startPrefix);
+                    }
+                    else {
+                        // At textSpan
+                        detailPrefixes.set(details[textSpanIndex], startPrefix);
+                    }
+                }
+
+                const endSuffix = endMarkerSuffix?.(span);
+                if (endSuffix) {
+                    if (fileName === marker?.fileName && textSpanEnd === marker?.position) {
+                        ts.Debug.assert(!detailSuffixes.has(details[0]), "Expected only single suffix at marker location");
+                        detailSuffixes.set(details[0], endSuffix);
+                    }
+                    else if (contextSpanEnd === textSpanEnd) {
+                        // Write it at contextSpan instead of textSpan
+                        detailSuffixes.set(details[textSpanIndex + 2], endSuffix);
+                    }
+                    else {
+                        // At textSpan
+                        detailSuffixes.set(details[textSpanIndex + 1], endSuffix);
+                    }
+                }
             }
             let pos = 0;
             const sortedDetails = ts.stableSort(details, (a, b) => ts.compareValues(a[0], b[0]));
@@ -1370,7 +1415,8 @@ export class TestState {
             // Stable sort should handle first two cases but with that marker will be before rangeEnd if locations match
             // So we will defer writing marker in this case by checking and finding index of rangeEnd if same
             let deferredMarkerIndex: number | undefined;
-            sortedDetails.forEach(([location, locationType, span, type], index) => {
+            sortedDetails.forEach((detail, index) => {
+                const [location, locationType, span, type] = detail;
                 if (!foundMarker && !span && deferredMarkerIndex === undefined) {
                     foundMarker = true;
                     // If this is marker position and its same as textEnd and/or contextEnd we want to write marker after those
@@ -1386,30 +1432,38 @@ export class TestState {
                     // Defer writing marker position to deffered marker index
                     if (deferredMarkerIndex !== undefined) return;
                 }
-                newContent += content.slice(pos, location) + locationType;
+                newContent += content.slice(pos, location);
                 pos = location;
-                if (!span) return;
-                switch (type) {
-                    case "textStart":
-                        let text = convertDocumentSpanToString(span, documentSpanToPrefix?.(span), ignoredDocumentSpanProperties);
-                        const contextId = spanToContextId.get(span);
-                        if (contextId !== undefined) {
-                            text = `contextId: ${contextId}` + (text ? ", " : "") + text;
-                        }
-                        if (text) newContent += `{| ${text} |}`;
-                        break;
-                    case "contextStart":
-                        if (canDetermineContextIdInline) {
-                            spanToContextId.set(span, currentContextId);
-                            currentContextId++;
-                        }
-                        break;
+                // Prefix
+                const prefix = detailPrefixes.get(detail);
+                if (prefix) newContent += prefix;
+                newContent += locationType;
+                if (span) {
+                    switch (type) {
+                        case "textStart":
+                            let text = convertDocumentSpanToString(span, documentSpanToPrefix?.(span), ignoredDocumentSpanProperties);
+                            const contextId = spanToContextId.get(span);
+                            if (contextId !== undefined) {
+                                text = `contextId: ${contextId}` + (text ? ", " : "") + text;
+                            }
+                            if (text) newContent += `{| ${text} |}`;
+                            break;
+                        case "contextStart":
+                            if (canDetermineContextIdInline) {
+                                spanToContextId.set(span, currentContextId);
+                                currentContextId++;
+                            }
+                            break;
+                    }
+                    if (deferredMarkerIndex === index) {
+                        // Write the marker
+                        newContent += refType;
+                        deferredMarkerIndex = undefined;
+                        detail = details[0]; // Marker detail
+                    }
                 }
-                if (deferredMarkerIndex === index) {
-                    // Write the marker
-                    newContent += refType;
-                    deferredMarkerIndex = undefined;
-                }
+                const suffix = detailSuffixes.get(detail);
+                if (suffix) newContent += suffix;
             });
             newContent += content.slice(pos);
             return readableJsoncBaseline(newContent);
@@ -1639,8 +1693,9 @@ export class TestState {
             ts.identity,
             /*skipJsonOrGetAdditionalBaseline*/ undefined,
             /*documentSpanToPrefix*/ undefined,
-            span => (span.prefixText ? `/*START PREFIX*/${span.prefixText}` : "") + "[|",
-            span => "RENAME|]" + (span.suffixText ? `${span.suffixText}/*END SUFFIX*/` : ""),
+            "RENAME|]",
+            span => span.prefixText ? `/*START PREFIX*/${span.prefixText}` : "",
+            span => span.suffixText ? `${span.suffixText}/*END SUFFIX*/` : "",
             ["prefixText", "suffixText"],
         );
     }
