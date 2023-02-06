@@ -1,80 +1,21 @@
 // === /a.ts ===
 // enum E {
-//     /** {@link /*FIND ALL REFS*/[|Foo|]} */
+//     /** {@link /*FIND ALL REFS*/[|{| defId: 0 |}Foo|]} */
 //     Foo
 // }
-// interface [|Foo|] {
+// <|interface [|{| contextId: 0, defId: 0, isWriteAccess: true |}Foo|] {
 //     foo: E.Foo;
+// }|>
+
+// === Definitions ===
+// === /a.ts ===
+// enum E {
+//     /** {@link /*FIND ALL REFS*/Foo} */
+//     Foo
 // }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "interface"
-    // name: "interface Foo"
-    // displayParts: [
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /a.ts ===
-    // enum E {
-    //     /** {@link Foo} */
-    //     Foo
-    // }
-    // interface [|Foo|] {
-    //     foo: E.Foo;
-    // }
-      // === ContextSpan ===
-      // === /a.ts ===
-      // enum E {
-      //     /** {@link Foo} */
-      //     Foo
-      // }
-      // [|interface Foo {
-      //     foo: E.Foo;
-      // }|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /a.ts ===
-      // enum E {
-      //     /** {@link [|Foo|]} */
-      //     Foo
-      // }
-      // interface Foo {
-      //     foo: E.Foo;
-      // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /a.ts ===
-      // enum E {
-      //     /** {@link Foo} */
-      //     Foo
-      // }
-      // interface [|Foo|] {
-      //     foo: E.Foo;
-      // }
-        // === ContextSpan ===
-        // === /a.ts ===
-        // enum E {
-        //     /** {@link Foo} */
-        //     Foo
-        // }
-        // [|interface Foo {
-        //     foo: E.Foo;
-        // }|]
-
+// <|interface [|{| contextId: 0, defId: 0, kind: "interface", name: "interface Foo", displayParts: [{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Foo","kind":"interfaceName"}] |}Foo|] {
+//     foo: E.Foo;
+// }|>
 
 [
   {

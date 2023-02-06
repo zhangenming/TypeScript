@@ -1,5 +1,5 @@
 // === /ns.ts ===
-// [|export namespace Foo {
+// [|{| kind: "module", name: "\"/ns\"" |}export namespace Foo {
 //     export namespace Bar {
 //         export class Baz {}
 //     }
@@ -9,26 +9,10 @@
 // type A = typeof import(/*GOTO DEF*/"./ns").Foo.Bar;
 // type B = import("./ns").Foo.Bar.Baz;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "\"/ns\""
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /ns.ts ===
-    // [|export namespace Foo {
-    //     export namespace Bar {
-    //         export class Baz {}
-    //     }
-    // }|]
 // === TextSpan ===
-  // === /usage.ts ===
-  // type A = typeof import([|"./ns"|]).Foo.Bar;
-  // type B = import("./ns").Foo.Bar.Baz;
-
+// === /usage.ts ===
+// type A = typeof import(/*GOTO DEF*/[|"./ns"|]).Foo.Bar;
+// type B = import("./ns").Foo.Bar.Baz;
 
 {
   "definitions": [
@@ -54,43 +38,20 @@
 }
 
 // === /ns.ts ===
-// export namespace [|Foo|] {
+// <|export namespace [|{| contextId: 0, kind: "module", name: "Foo", containerName: "\"/ns\"" |}Foo|] {
 //     export namespace Bar {
 //         export class Baz {}
 //     }
-// }
+// }|>
 
 // === /usage.ts ===
 // type A = typeof import("./ns")./*GOTO DEF*/Foo.Bar;
 // type B = import("./ns").Foo.Bar.Baz;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "Foo"
-    // containerName: "\"/ns\""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /ns.ts ===
-    // export namespace [|Foo|] {
-    //     export namespace Bar {
-    //         export class Baz {}
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /ns.ts ===
-      // [|export namespace Foo {
-      //     export namespace Bar {
-      //         export class Baz {}
-      //     }
-      // }|]
 // === TextSpan ===
-  // === /usage.ts ===
-  // type A = typeof import("./ns").[|Foo|].Bar;
-  // type B = import("./ns").Foo.Bar.Baz;
-
+// === /usage.ts ===
+// type A = typeof import("./ns")./*GOTO DEF*/[|Foo|].Bar;
+// type B = import("./ns").Foo.Bar.Baz;
 
 {
   "definitions": [
@@ -121,42 +82,19 @@
 
 // === /ns.ts ===
 // export namespace Foo {
-//     export namespace [|Bar|] {
+//     <|export namespace [|{| contextId: 0, kind: "module", name: "Bar", containerName: "Foo" |}Bar|] {
 //         export class Baz {}
-//     }
+//     }|>
 // }
 
 // === /usage.ts ===
 // type A = typeof import("./ns").Foo./*GOTO DEF*/Bar;
 // type B = import("./ns").Foo.Bar.Baz;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "Bar"
-    // containerName: "Foo"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /ns.ts ===
-    // export namespace Foo {
-    //     export namespace [|Bar|] {
-    //         export class Baz {}
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /ns.ts ===
-      // export namespace Foo {
-      //     [|export namespace Bar {
-      //         export class Baz {}
-      //     }|]
-      // }
 // === TextSpan ===
-  // === /usage.ts ===
-  // type A = typeof import("./ns").Foo.[|Bar|];
-  // type B = import("./ns").Foo.Bar.Baz;
-
+// === /usage.ts ===
+// type A = typeof import("./ns").Foo./*GOTO DEF*/[|Bar|];
+// type B = import("./ns").Foo.Bar.Baz;
 
 {
   "definitions": [
@@ -186,7 +124,7 @@
 }
 
 // === /ns.ts ===
-// [|export namespace Foo {
+// [|{| kind: "module", name: "\"/ns\"" |}export namespace Foo {
 //     export namespace Bar {
 //         export class Baz {}
 //     }
@@ -196,26 +134,10 @@
 // type A = typeof import("./ns").Foo.Bar;
 // type B = import(/*GOTO DEF*/"./ns").Foo.Bar.Baz;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "\"/ns\""
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /ns.ts ===
-    // [|export namespace Foo {
-    //     export namespace Bar {
-    //         export class Baz {}
-    //     }
-    // }|]
 // === TextSpan ===
-  // === /usage.ts ===
-  // type A = typeof import("./ns").Foo.Bar;
-  // type B = import([|"./ns"|]).Foo.Bar.Baz;
-
+// === /usage.ts ===
+// type A = typeof import("./ns").Foo.Bar;
+// type B = import(/*GOTO DEF*/[|"./ns"|]).Foo.Bar.Baz;
 
 {
   "definitions": [
@@ -241,43 +163,20 @@
 }
 
 // === /ns.ts ===
-// export namespace [|Foo|] {
+// <|export namespace [|{| contextId: 0, kind: "module", name: "Foo", containerName: "\"/ns\"" |}Foo|] {
 //     export namespace Bar {
 //         export class Baz {}
 //     }
-// }
+// }|>
 
 // === /usage.ts ===
 // type A = typeof import("./ns").Foo.Bar;
 // type B = import("./ns")./*GOTO DEF*/Foo.Bar.Baz;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "Foo"
-    // containerName: "\"/ns\""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /ns.ts ===
-    // export namespace [|Foo|] {
-    //     export namespace Bar {
-    //         export class Baz {}
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /ns.ts ===
-      // [|export namespace Foo {
-      //     export namespace Bar {
-      //         export class Baz {}
-      //     }
-      // }|]
 // === TextSpan ===
-  // === /usage.ts ===
-  // type A = typeof import("./ns").Foo.Bar;
-  // type B = import("./ns").[|Foo|].Bar.Baz;
-
+// === /usage.ts ===
+// type A = typeof import("./ns").Foo.Bar;
+// type B = import("./ns")./*GOTO DEF*/[|Foo|].Bar.Baz;
 
 {
   "definitions": [
@@ -308,42 +207,19 @@
 
 // === /ns.ts ===
 // export namespace Foo {
-//     export namespace [|Bar|] {
+//     <|export namespace [|{| contextId: 0, kind: "module", name: "Bar", containerName: "Foo" |}Bar|] {
 //         export class Baz {}
-//     }
+//     }|>
 // }
 
 // === /usage.ts ===
 // type A = typeof import("./ns").Foo.Bar;
 // type B = import("./ns").Foo./*GOTO DEF*/Bar.Baz;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "Bar"
-    // containerName: "Foo"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /ns.ts ===
-    // export namespace Foo {
-    //     export namespace [|Bar|] {
-    //         export class Baz {}
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /ns.ts ===
-      // export namespace Foo {
-      //     [|export namespace Bar {
-      //         export class Baz {}
-      //     }|]
-      // }
 // === TextSpan ===
-  // === /usage.ts ===
-  // type A = typeof import("./ns").Foo.Bar;
-  // type B = import("./ns").Foo.[|Bar|].Baz;
-
+// === /usage.ts ===
+// type A = typeof import("./ns").Foo.Bar;
+// type B = import("./ns").Foo./*GOTO DEF*/[|Bar|].Baz;
 
 {
   "definitions": [
@@ -375,7 +251,7 @@
 // === /ns.ts ===
 // export namespace Foo {
 //     export namespace Bar {
-//         export class [|Baz|] {}
+//         <|export class [|{| contextId: 0, kind: "class", name: "Baz", containerName: "Foo.Bar" |}Baz|] {}|>
 //     }
 // }
 
@@ -383,33 +259,10 @@
 // type A = typeof import("./ns").Foo.Bar;
 // type B = import("./ns").Foo.Bar./*GOTO DEF*/Baz;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "class"
-    // name: "Baz"
-    // containerName: "Foo.Bar"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /ns.ts ===
-    // export namespace Foo {
-    //     export namespace Bar {
-    //         export class [|Baz|] {}
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /ns.ts ===
-      // export namespace Foo {
-      //     export namespace Bar {
-      //         [|export class Baz {}|]
-      //     }
-      // }
 // === TextSpan ===
-  // === /usage.ts ===
-  // type A = typeof import("./ns").Foo.Bar;
-  // type B = import("./ns").Foo.Bar.[|Baz|];
-
+// === /usage.ts ===
+// type A = typeof import("./ns").Foo.Bar;
+// type B = import("./ns").Foo.Bar./*GOTO DEF*/[|Baz|];
 
 {
   "definitions": [

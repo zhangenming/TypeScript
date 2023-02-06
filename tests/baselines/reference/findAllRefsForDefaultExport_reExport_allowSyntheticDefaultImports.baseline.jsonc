@@ -1,230 +1,23 @@
 // === /export.ts ===
-// const /*FIND ALL REFS*/[|foo|] = 1;
-// export = [|foo|];
-
-// === /re-export-dep.ts ===
-// import [|fooDefault|] from "./re-export";
+// <|const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|] = 1;|>
+// <|export = [|{| contextId: 1, defId: 0 |}foo|];|>
 
 // === /re-export.ts ===
-// export { [|default|] } from "./export";
+// <|export { [|{| contextId: 2, defId: 1, isWriteAccess: true |}default|] } from "./export";|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const foo: 1"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /export.ts ===
-    // const [|foo|] = 1;
-    // export = foo;
-      // === ContextSpan ===
-      // === /export.ts ===
-      // [|const foo = 1;|]
-      // export = foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /export.ts ===
-      // const [|foo|] = 1;
-      // export = foo;
-        // === ContextSpan ===
-        // === /export.ts ===
-        // [|const foo = 1;|]
-        // export = foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /export.ts ===
-      // const foo = 1;
-      // export = [|foo|];
-        // === ContextSpan ===
-        // === /export.ts ===
-        // const foo = 1;
-        // [|export = foo;|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const foo: 1\nexport default"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "default",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /re-export.ts ===
-    // export { [|default|] } from "./export";
-      // === ContextSpan ===
-      // === /re-export.ts ===
-      // [|export { default } from "./export";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /re-export.ts ===
-      // export { [|default|] } from "./export";
-        // === ContextSpan ===
-        // === /re-export.ts ===
-        // [|export { default } from "./export";|]
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const fooDefault: 1\nimport fooDefault"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "fooDefault",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "fooDefault",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /re-export-dep.ts ===
-    // import [|fooDefault|] from "./re-export";
-      // === ContextSpan ===
-      // === /re-export-dep.ts ===
-      // [|import fooDefault from "./re-export";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /re-export-dep.ts ===
-      // import [|fooDefault|] from "./re-export";
-        // === ContextSpan ===
-        // === /re-export-dep.ts ===
-        // [|import fooDefault from "./re-export";|]
+// === /re-export-dep.ts ===
+// <|import [|{| contextId: 3, defId: 2, isWriteAccess: true |}fooDefault|] from "./re-export";|>
 
+// === Definitions ===
+// === /export.ts ===
+// <|const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "const", name: "const foo: 1", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}foo|] = 1;|>
+// export = foo;
+
+// === /re-export.ts ===
+// <|export { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) const foo: 1\nexport default", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"default","kind":"aliasName"}] |}default|] } from "./export";|>
+
+// === /re-export-dep.ts ===
+// <|import [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) const fooDefault: 1\nimport fooDefault", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"fooDefault","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"fooDefault","kind":"aliasName"}] |}fooDefault|] from "./re-export";|>
 
 [
   {
@@ -481,228 +274,25 @@
 ]
 
 // === /export.ts ===
-// const [|foo|] = 1;
-// export = /*FIND ALL REFS*/[|foo|];
-
-// === /re-export-dep.ts ===
-// import [|fooDefault|] from "./re-export";
+// <|const [|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|] = 1;|>
+// <|export = /*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}foo|];|>
 
 // === /re-export.ts ===
-// export { [|default|] } from "./export";
+// <|export { [|{| contextId: 2, defId: 1, isWriteAccess: true |}default|] } from "./export";|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const foo: 1"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /export.ts ===
-    // const [|foo|] = 1;
-    // export = foo;
-      // === ContextSpan ===
-      // === /export.ts ===
-      // [|const foo = 1;|]
-      // export = foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /export.ts ===
-      // const [|foo|] = 1;
-      // export = foo;
-        // === ContextSpan ===
-        // === /export.ts ===
-        // [|const foo = 1;|]
-        // export = foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /export.ts ===
-      // const foo = 1;
-      // export = [|foo|];
-        // === ContextSpan ===
-        // === /export.ts ===
-        // const foo = 1;
-        // [|export = foo;|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const foo: 1\nexport default"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "default",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /re-export.ts ===
-    // export { [|default|] } from "./export";
-      // === ContextSpan ===
-      // === /re-export.ts ===
-      // [|export { default } from "./export";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /re-export.ts ===
-      // export { [|default|] } from "./export";
-        // === ContextSpan ===
-        // === /re-export.ts ===
-        // [|export { default } from "./export";|]
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const fooDefault: 1\nimport fooDefault"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "fooDefault",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "fooDefault",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /re-export-dep.ts ===
-    // import [|fooDefault|] from "./re-export";
-      // === ContextSpan ===
-      // === /re-export-dep.ts ===
-      // [|import fooDefault from "./re-export";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /re-export-dep.ts ===
-      // import [|fooDefault|] from "./re-export";
-        // === ContextSpan ===
-        // === /re-export-dep.ts ===
-        // [|import fooDefault from "./re-export";|]
+// === /re-export-dep.ts ===
+// <|import [|{| contextId: 3, defId: 2, isWriteAccess: true |}fooDefault|] from "./re-export";|>
 
+// === Definitions ===
+// === /export.ts ===
+// <|const [|{| contextId: 0, defId: 0, kind: "const", name: "const foo: 1", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}foo|] = 1;|>
+// export = /*FIND ALL REFS*/foo;
+
+// === /re-export.ts ===
+// <|export { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) const foo: 1\nexport default", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"default","kind":"aliasName"}] |}default|] } from "./export";|>
+
+// === /re-export-dep.ts ===
+// <|import [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) const fooDefault: 1\nimport fooDefault", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"fooDefault","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"fooDefault","kind":"aliasName"}] |}fooDefault|] from "./re-export";|>
 
 [
   {
@@ -954,233 +544,26 @@
   }
 ]
 
-// === /export.ts ===
-// const [|foo|] = 1;
-// export = [|foo|];
+// === /re-export.ts ===
+// <|export { /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}default|] } from "./export";|>
 
 // === /re-export-dep.ts ===
-// import [|fooDefault|] from "./re-export";
+// <|import [|{| contextId: 1, defId: 1, isWriteAccess: true |}fooDefault|] from "./re-export";|>
 
+// === /export.ts ===
+// <|const [|{| contextId: 2, defId: 2, isWriteAccess: true |}foo|] = 1;|>
+// <|export = [|{| contextId: 3, defId: 2 |}foo|];|>
+
+// === Definitions ===
 // === /re-export.ts ===
-// export { /*FIND ALL REFS*/[|default|] } from "./export";
+// <|export { /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) const foo: 1\nexport default", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"default","kind":"aliasName"}] |}default|] } from "./export";|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const foo: 1\nexport default"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "default",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /re-export.ts ===
-    // export { [|default|] } from "./export";
-      // === ContextSpan ===
-      // === /re-export.ts ===
-      // [|export { default } from "./export";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /re-export.ts ===
-      // export { [|default|] } from "./export";
-        // === ContextSpan ===
-        // === /re-export.ts ===
-        // [|export { default } from "./export";|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const fooDefault: 1\nimport fooDefault"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "fooDefault",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "fooDefault",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /re-export-dep.ts ===
-    // import [|fooDefault|] from "./re-export";
-      // === ContextSpan ===
-      // === /re-export-dep.ts ===
-      // [|import fooDefault from "./re-export";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /re-export-dep.ts ===
-      // import [|fooDefault|] from "./re-export";
-        // === ContextSpan ===
-        // === /re-export-dep.ts ===
-        // [|import fooDefault from "./re-export";|]
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const foo: 1"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /export.ts ===
-    // const [|foo|] = 1;
-    // export = foo;
-      // === ContextSpan ===
-      // === /export.ts ===
-      // [|const foo = 1;|]
-      // export = foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /export.ts ===
-      // const [|foo|] = 1;
-      // export = foo;
-        // === ContextSpan ===
-        // === /export.ts ===
-        // [|const foo = 1;|]
-        // export = foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /export.ts ===
-      // const foo = 1;
-      // export = [|foo|];
-        // === ContextSpan ===
-        // === /export.ts ===
-        // const foo = 1;
-        // [|export = foo;|]
+// === /re-export-dep.ts ===
+// <|import [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) const fooDefault: 1\nimport fooDefault", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"fooDefault","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"fooDefault","kind":"aliasName"}] |}fooDefault|] from "./re-export";|>
 
+// === /export.ts ===
+// <|const [|{| contextId: 2, defId: 2, kind: "const", name: "const foo: 1", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}foo|] = 1;|>
+// export = foo;
 
 [
   {
@@ -1436,233 +819,26 @@
   }
 ]
 
-// === /export.ts ===
-// const [|foo|] = 1;
-// export = [|foo|];
-
 // === /re-export-dep.ts ===
-// import /*FIND ALL REFS*/[|fooDefault|] from "./re-export";
+// <|import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}fooDefault|] from "./re-export";|>
 
 // === /re-export.ts ===
-// export { [|default|] } from "./export";
+// <|export { [|{| contextId: 1, defId: 1, isWriteAccess: true |}default|] } from "./export";|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const fooDefault: 1\nimport fooDefault"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "fooDefault",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "fooDefault",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /re-export-dep.ts ===
-    // import [|fooDefault|] from "./re-export";
-      // === ContextSpan ===
-      // === /re-export-dep.ts ===
-      // [|import fooDefault from "./re-export";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /re-export-dep.ts ===
-      // import [|fooDefault|] from "./re-export";
-        // === ContextSpan ===
-        // === /re-export-dep.ts ===
-        // [|import fooDefault from "./re-export";|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const foo: 1\nexport default"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "default",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /re-export.ts ===
-    // export { [|default|] } from "./export";
-      // === ContextSpan ===
-      // === /re-export.ts ===
-      // [|export { default } from "./export";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /re-export.ts ===
-      // export { [|default|] } from "./export";
-        // === ContextSpan ===
-        // === /re-export.ts ===
-        // [|export { default } from "./export";|]
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const foo: 1"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /export.ts ===
-    // const [|foo|] = 1;
-    // export = foo;
-      // === ContextSpan ===
-      // === /export.ts ===
-      // [|const foo = 1;|]
-      // export = foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /export.ts ===
-      // const [|foo|] = 1;
-      // export = foo;
-        // === ContextSpan ===
-        // === /export.ts ===
-        // [|const foo = 1;|]
-        // export = foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /export.ts ===
-      // const foo = 1;
-      // export = [|foo|];
-        // === ContextSpan ===
-        // === /export.ts ===
-        // const foo = 1;
-        // [|export = foo;|]
+// === /export.ts ===
+// <|const [|{| contextId: 2, defId: 2, isWriteAccess: true |}foo|] = 1;|>
+// <|export = [|{| contextId: 3, defId: 2 |}foo|];|>
 
+// === Definitions ===
+// === /re-export-dep.ts ===
+// <|import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) const fooDefault: 1\nimport fooDefault", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"fooDefault","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"fooDefault","kind":"aliasName"}] |}fooDefault|] from "./re-export";|>
+
+// === /re-export.ts ===
+// <|export { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) const foo: 1\nexport default", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"default","kind":"aliasName"}] |}default|] } from "./export";|>
+
+// === /export.ts ===
+// <|const [|{| contextId: 2, defId: 2, kind: "const", name: "const foo: 1", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}foo|] = 1;|>
+// export = foo;
 
 [
   {

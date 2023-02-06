@@ -1,24 +1,10 @@
 // === /tests/cases/fourslash/a.ts ===
-// module SomeModule { export class [|RENAME|] { } }
+// module SomeModule { <|export class /*RENAME*/[|{| contextId: 0 |}SomeClassRENAME|] { }|> }
 // export = SomeModule;
 
 // === /tests/cases/fourslash/b.ts ===
 // import M = require("./a");
-// import C = M.RENAME;
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // module SomeModule { export class [|SomeClass|] { } }
-  // export = SomeModule;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // module SomeModule { [|export class SomeClass { }|] }
-    // export = SomeModule;
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import M = require("./a");
-  // import C = M.[|SomeClass|];
-
+// import C = M.[|SomeClassRENAME|];
 
 [
   {
@@ -42,26 +28,12 @@
 ]
 
 // === /tests/cases/fourslash/a.ts ===
-// module SomeModule { export class [|RENAME|] { } }
+// module SomeModule { <|export class [|{| contextId: 0 |}SomeClassRENAME|] { }|> }
 // export = SomeModule;
 
 // === /tests/cases/fourslash/b.ts ===
 // import M = require("./a");
-// import C = M.RENAME;
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // module SomeModule { export class [|SomeClass|] { } }
-  // export = SomeModule;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // module SomeModule { [|export class SomeClass { }|] }
-    // export = SomeModule;
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import M = require("./a");
-  // import C = M.[|SomeClass|];
-
+// import C = M./*RENAME*/[|SomeClassRENAME|];
 
 [
   {

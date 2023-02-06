@@ -1,277 +1,29 @@
 // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
 // interface I {
-//     ["/*FIND ALL REFS*/[|prop1|]"]: () => void;
+//     <|["/*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isDefinition: true |}prop1|]"]: () => void;|>
 // }
 // 
 // class C implements I {
-//     ["[|prop1|]"]: any;
+//     <|["[|{| contextId: 1, defId: 1 |}prop1|]"]: any;|>
 // }
 // 
 // var x: I = {
-//     ["[|prop1|]"]: function () { },
+//     <|["[|{| contextId: 2, defId: 0, isWriteAccess: true |}prop1|]"]: function () { }|>,
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) I[\"prop1\"]: () => void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": "[",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "\"prop1\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "]",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=>",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-    // interface I {
-    //     ["[|prop1|]"]: () => void;
-    // }
-    // 
-    // class C implements I {
-    //     ["prop1"]: any;
-    // }
-    // 
-    // var x: I = {
-    //     ["prop1"]: function () { },
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     [|["prop1"]: () => void;|]
-      // }
-      // 
-      // class C implements I {
-      //     ["prop1"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["[|prop1|]"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     ["prop1"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-        // interface I {
-        //     [|["prop1"]: () => void;|]
-        // }
-        // 
-        // class C implements I {
-        //     ["prop1"]: any;
-        // }
-        // 
-        // var x: I = {
-        //     ["prop1"]: function () { },
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["prop1"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     ["prop1"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["[|prop1|]"]: function () { },
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-        // interface I {
-        //     ["prop1"]: () => void;
-        // }
-        // 
-        // class C implements I {
-        //     ["prop1"]: any;
-        // }
-        // 
-        // var x: I = {
-        //     [|["prop1"]: function () { }|],
-        // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) C[\"prop1\"]: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "[",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "\"prop1\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "]",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-    // interface I {
-    //     ["prop1"]: () => void;
-    // }
-    // 
-    // class C implements I {
-    //     ["[|prop1|]"]: any;
-    // }
-    // 
-    // var x: I = {
-    //     ["prop1"]: function () { },
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["prop1"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     [|["prop1"]: any;|]
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["prop1"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     ["[|prop1|]"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-        // interface I {
-        //     ["prop1"]: () => void;
-        // }
-        // 
-        // class C implements I {
-        //     [|["prop1"]: any;|]
-        // }
-        // 
-        // var x: I = {
-        //     ["prop1"]: function () { },
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
+// interface I {
+//     <|["/*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) I[\"prop1\"]: () => void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":"[","kind":"punctuation"},{"text":"\"prop1\"","kind":"stringLiteral"},{"text":"]","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"=>","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}prop1|]"]: () => void;|>
+// }
+// 
+// class C implements I {
+//     <|["[|{| contextId: 1, defId: 1, kind: "property", name: "(property) C[\"prop1\"]: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":"[","kind":"punctuation"},{"text":"\"prop1\"","kind":"stringLiteral"},{"text":"]","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}prop1|]"]: any;|>
+// }
+// 
+// var x: I = {
+//     ["prop1"]: function () { },
+// }
 
 [
   {
@@ -467,278 +219,30 @@
 
 // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
 // interface I {
-//     ["[|prop1|]"]: () => void;
+//     <|["[|{| contextId: 0, defId: 0 |}prop1|]"]: () => void;|>
 // }
 // 
 // class C implements I {
-//     ["/*FIND ALL REFS*/[|prop1|]"]: any;
+//     <|["/*FIND ALL REFS*/[|{| contextId: 1, defId: 1, isDefinition: true |}prop1|]"]: any;|>
 // }
 // 
 // var x: I = {
-//     ["[|prop1|]"]: function () { },
+//     <|["[|{| contextId: 2, defId: 0, isWriteAccess: true |}prop1|]"]: function () { }|>,
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) I[\"prop1\"]: () => void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": "[",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "\"prop1\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "]",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=>",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-    // interface I {
-    //     ["[|prop1|]"]: () => void;
-    // }
-    // 
-    // class C implements I {
-    //     ["prop1"]: any;
-    // }
-    // 
-    // var x: I = {
-    //     ["prop1"]: function () { },
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     [|["prop1"]: () => void;|]
-      // }
-      // 
-      // class C implements I {
-      //     ["prop1"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["[|prop1|]"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     ["prop1"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-        // interface I {
-        //     [|["prop1"]: () => void;|]
-        // }
-        // 
-        // class C implements I {
-        //     ["prop1"]: any;
-        // }
-        // 
-        // var x: I = {
-        //     ["prop1"]: function () { },
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["prop1"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     ["prop1"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["[|prop1|]"]: function () { },
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-        // interface I {
-        //     ["prop1"]: () => void;
-        // }
-        // 
-        // class C implements I {
-        //     ["prop1"]: any;
-        // }
-        // 
-        // var x: I = {
-        //     [|["prop1"]: function () { }|],
-        // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) C[\"prop1\"]: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "[",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "\"prop1\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "]",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-    // interface I {
-    //     ["prop1"]: () => void;
-    // }
-    // 
-    // class C implements I {
-    //     ["[|prop1|]"]: any;
-    // }
-    // 
-    // var x: I = {
-    //     ["prop1"]: function () { },
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["prop1"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     [|["prop1"]: any;|]
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["prop1"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     ["[|prop1|]"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-        // interface I {
-        //     ["prop1"]: () => void;
-        // }
-        // 
-        // class C implements I {
-        //     [|["prop1"]: any;|]
-        // }
-        // 
-        // var x: I = {
-        //     ["prop1"]: function () { },
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
+// interface I {
+//     <|["[|{| contextId: 0, defId: 0, kind: "property", name: "(property) I[\"prop1\"]: () => void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":"[","kind":"punctuation"},{"text":"\"prop1\"","kind":"stringLiteral"},{"text":"]","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"=>","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}prop1|]"]: () => void;|>
+// }
+// 
+// class C implements I {
+//     <|["/*FIND ALL REFS*/[|{| contextId: 1, defId: 1, kind: "property", name: "(property) C[\"prop1\"]: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":"[","kind":"punctuation"},{"text":"\"prop1\"","kind":"stringLiteral"},{"text":"]","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}prop1|]"]: any;|>
+// }
+// 
+// var x: I = {
+//     ["prop1"]: function () { },
+// }
 
 [
   {
@@ -934,278 +438,30 @@
 
 // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
 // interface I {
-//     ["[|prop1|]"]: () => void;
+//     <|["[|{| contextId: 0, defId: 0 |}prop1|]"]: () => void;|>
 // }
 // 
 // class C implements I {
-//     ["[|prop1|]"]: any;
+//     <|["[|{| contextId: 1, defId: 1 |}prop1|]"]: any;|>
 // }
 // 
 // var x: I = {
-//     ["/*FIND ALL REFS*/[|prop1|]"]: function () { },
+//     <|["/*FIND ALL REFS*/[|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}prop1|]"]: function () { }|>,
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) I[\"prop1\"]: () => void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": "[",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "\"prop1\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "]",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=>",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-    // interface I {
-    //     ["[|prop1|]"]: () => void;
-    // }
-    // 
-    // class C implements I {
-    //     ["prop1"]: any;
-    // }
-    // 
-    // var x: I = {
-    //     ["prop1"]: function () { },
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     [|["prop1"]: () => void;|]
-      // }
-      // 
-      // class C implements I {
-      //     ["prop1"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["[|prop1|]"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     ["prop1"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-        // interface I {
-        //     [|["prop1"]: () => void;|]
-        // }
-        // 
-        // class C implements I {
-        //     ["prop1"]: any;
-        // }
-        // 
-        // var x: I = {
-        //     ["prop1"]: function () { },
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["prop1"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     ["prop1"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["[|prop1|]"]: function () { },
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-        // interface I {
-        //     ["prop1"]: () => void;
-        // }
-        // 
-        // class C implements I {
-        //     ["prop1"]: any;
-        // }
-        // 
-        // var x: I = {
-        //     [|["prop1"]: function () { }|],
-        // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) C[\"prop1\"]: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "[",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "\"prop1\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "]",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-    // interface I {
-    //     ["prop1"]: () => void;
-    // }
-    // 
-    // class C implements I {
-    //     ["[|prop1|]"]: any;
-    // }
-    // 
-    // var x: I = {
-    //     ["prop1"]: function () { },
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["prop1"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     [|["prop1"]: any;|]
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-      // interface I {
-      //     ["prop1"]: () => void;
-      // }
-      // 
-      // class C implements I {
-      //     ["[|prop1|]"]: any;
-      // }
-      // 
-      // var x: I = {
-      //     ["prop1"]: function () { },
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
-        // interface I {
-        //     ["prop1"]: () => void;
-        // }
-        // 
-        // class C implements I {
-        //     [|["prop1"]: any;|]
-        // }
-        // 
-        // var x: I = {
-        //     ["prop1"]: function () { },
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForComputedProperties.ts ===
+// interface I {
+//     <|["[|{| contextId: 0, defId: 0, kind: "property", name: "(property) I[\"prop1\"]: () => void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":"[","kind":"punctuation"},{"text":"\"prop1\"","kind":"stringLiteral"},{"text":"]","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"=>","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}prop1|]"]: () => void;|>
+// }
+// 
+// class C implements I {
+//     <|["[|{| contextId: 1, defId: 1, kind: "property", name: "(property) C[\"prop1\"]: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":"[","kind":"punctuation"},{"text":"\"prop1\"","kind":"stringLiteral"},{"text":"]","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}prop1|]"]: any;|>
+// }
+// 
+// var x: I = {
+//     ["/*FIND ALL REFS*/prop1"]: function () { },
+// }
 
 [
   {

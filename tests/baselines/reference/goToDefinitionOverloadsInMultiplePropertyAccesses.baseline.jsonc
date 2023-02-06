@@ -2,51 +2,22 @@
 // namespace A {
 //     export namespace B {
 //         export function f(value: number): void;
-//         export function [|f|](value: string): void;
+//         <|export function [|{| contextId: 0, kind: "function", name: "f", containerName: "B" |}f|](value: string): void;|>
 //         export function f(value: number | string) {}
 //     }
 // }
 // A.B./*GOTO DEF*/f("");
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "function"
-    // name: "f"
-    // containerName: "B"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionOverloadsInMultiplePropertyAccesses.ts ===
-    // namespace A {
-    //     export namespace B {
-    //         export function f(value: number): void;
-    //         export function [|f|](value: string): void;
-    //         export function f(value: number | string) {}
-    //     }
-    // }
-    // A.B.f("");
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinitionOverloadsInMultiplePropertyAccesses.ts ===
-      // namespace A {
-      //     export namespace B {
-      //         export function f(value: number): void;
-      //         [|export function f(value: string): void;|]
-      //         export function f(value: number | string) {}
-      //     }
-      // }
-      // A.B.f("");
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionOverloadsInMultiplePropertyAccesses.ts ===
-  // namespace A {
-  //     export namespace B {
-  //         export function f(value: number): void;
-  //         export function f(value: string): void;
-  //         export function f(value: number | string) {}
-  //     }
-  // }
-  // A.B.[|f|]("");
-
+// === /tests/cases/fourslash/goToDefinitionOverloadsInMultiplePropertyAccesses.ts ===
+// namespace A {
+//     export namespace B {
+//         export function f(value: number): void;
+//         export function f(value: string): void;
+//         export function f(value: number | string) {}
+//     }
+// }
+// A.B./*GOTO DEF*/[|f|]("");
 
 {
   "definitions": [

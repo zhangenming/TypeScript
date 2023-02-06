@@ -1,177 +1,36 @@
 // === /tests/cases/fourslash/referenceToClass_1.ts ===
-// class /*FIND ALL REFS*/[|foo|] {
-//     public n: [|foo|];
+// <|class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|] {
+//     public n: [|{| defId: 0 |}foo|];
 //     public foo: number;
-// }
+// }|>
 // 
 // class bar {
-//     public n: [|foo|];
-//     public k = new [|foo|]();
+//     public n: [|{| defId: 0 |}foo|];
+//     public k = new [|{| defId: 0 |}foo|]();
 // }
 // 
 // module mod {
-//     var k: [|foo|] = null;
+//     var k: [|{| defId: 0 |}foo|] = null;
 // }
 
 // === /tests/cases/fourslash/referenceToClass_2.ts ===
-// var k: [|foo|];
+// var k: [|{| defId: 0 |}foo|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class foo"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referenceToClass_1.ts ===
-    // class [|foo|] {
-    //     public n: foo;
-    //     public foo: number;
-    // }
-    // 
-    // class bar {
-    //     public n: foo;
-    //     public k = new foo();
-    // }
-    // 
-    // module mod {
-    //     var k: foo = null;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // [|class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }|]
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class [|foo|] {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referenceToClass_1.ts ===
-        // [|class foo {
-        //     public n: foo;
-        //     public foo: number;
-        // }|]
-        // 
-        // class bar {
-        //     public n: foo;
-        //     public k = new foo();
-        // }
-        // 
-        // module mod {
-        //     var k: foo = null;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: [|foo|];
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: [|foo|];
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new [|foo|]();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: [|foo|] = null;
-      // }
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referenceToClass_2.ts ===
-      // var k: [|foo|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/referenceToClass_1.ts ===
+// <|class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "class", name: "class foo", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"}] |}foo|] {
+//     public n: foo;
+//     public foo: number;
+// }|>
+// 
+// class bar {
+//     public n: foo;
+//     public k = new foo();
+// }
+// 
+// module mod {
+//     var k: foo = null;
+// }
 
 [
   {
@@ -268,173 +127,38 @@
 ]
 
 // === /tests/cases/fourslash/referenceToClass_1.ts ===
-// class [|foo|] {
-//     public n: /*FIND ALL REFS*/[|foo|];
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|] {
+//     public n: /*FIND ALL REFS*/[|{| defId: 0 |}foo|];
 //     public foo: number;
-// }
+// }|>
 // 
 // class bar {
-//     public n: [|foo|];
-//     public k = new [|foo|]();
+//     public n: [|{| defId: 0 |}foo|];
+//     public k = new [|{| defId: 0 |}foo|]();
 // }
 // 
 // module mod {
-//     var k: [|foo|] = null;
+//     var k: [|{| defId: 0 |}foo|] = null;
 // }
 
 // === /tests/cases/fourslash/referenceToClass_2.ts ===
-// var k: [|foo|];
+// var k: [|{| defId: 0 |}foo|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class foo"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referenceToClass_1.ts ===
-    // class [|foo|] {
-    //     public n: foo;
-    //     public foo: number;
-    // }
-    // 
-    // class bar {
-    //     public n: foo;
-    //     public k = new foo();
-    // }
-    // 
-    // module mod {
-    //     var k: foo = null;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // [|class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }|]
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class [|foo|] {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referenceToClass_1.ts ===
-        // [|class foo {
-        //     public n: foo;
-        //     public foo: number;
-        // }|]
-        // 
-        // class bar {
-        //     public n: foo;
-        //     public k = new foo();
-        // }
-        // 
-        // module mod {
-        //     var k: foo = null;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: [|foo|];
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: [|foo|];
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new [|foo|]();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: [|foo|] = null;
-      // }
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_2.ts ===
-      // var k: [|foo|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/referenceToClass_1.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class foo", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"}] |}foo|] {
+//     public n: /*FIND ALL REFS*/foo;
+//     public foo: number;
+// }|>
+// 
+// class bar {
+//     public n: foo;
+//     public k = new foo();
+// }
+// 
+// module mod {
+//     var k: foo = null;
+// }
 
 [
   {
@@ -525,173 +249,38 @@
 ]
 
 // === /tests/cases/fourslash/referenceToClass_1.ts ===
-// class [|foo|] {
-//     public n: [|foo|];
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|] {
+//     public n: [|{| defId: 0 |}foo|];
 //     public foo: number;
-// }
+// }|>
 // 
 // class bar {
-//     public n: /*FIND ALL REFS*/[|foo|];
-//     public k = new [|foo|]();
+//     public n: /*FIND ALL REFS*/[|{| defId: 0 |}foo|];
+//     public k = new [|{| defId: 0 |}foo|]();
 // }
 // 
 // module mod {
-//     var k: [|foo|] = null;
+//     var k: [|{| defId: 0 |}foo|] = null;
 // }
 
 // === /tests/cases/fourslash/referenceToClass_2.ts ===
-// var k: [|foo|];
+// var k: [|{| defId: 0 |}foo|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class foo"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referenceToClass_1.ts ===
-    // class [|foo|] {
-    //     public n: foo;
-    //     public foo: number;
-    // }
-    // 
-    // class bar {
-    //     public n: foo;
-    //     public k = new foo();
-    // }
-    // 
-    // module mod {
-    //     var k: foo = null;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // [|class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }|]
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class [|foo|] {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referenceToClass_1.ts ===
-        // [|class foo {
-        //     public n: foo;
-        //     public foo: number;
-        // }|]
-        // 
-        // class bar {
-        //     public n: foo;
-        //     public k = new foo();
-        // }
-        // 
-        // module mod {
-        //     var k: foo = null;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: [|foo|];
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: [|foo|];
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new [|foo|]();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: [|foo|] = null;
-      // }
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_2.ts ===
-      // var k: [|foo|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/referenceToClass_1.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class foo", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"}] |}foo|] {
+//     public n: foo;
+//     public foo: number;
+// }|>
+// 
+// class bar {
+//     public n: /*FIND ALL REFS*/foo;
+//     public k = new foo();
+// }
+// 
+// module mod {
+//     var k: foo = null;
+// }
 
 [
   {
@@ -782,173 +371,38 @@
 ]
 
 // === /tests/cases/fourslash/referenceToClass_1.ts ===
-// class [|foo|] {
-//     public n: [|foo|];
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|] {
+//     public n: [|{| defId: 0 |}foo|];
 //     public foo: number;
-// }
+// }|>
 // 
 // class bar {
-//     public n: [|foo|];
-//     public k = new /*FIND ALL REFS*/[|foo|]();
+//     public n: [|{| defId: 0 |}foo|];
+//     public k = new /*FIND ALL REFS*/[|{| defId: 0 |}foo|]();
 // }
 // 
 // module mod {
-//     var k: [|foo|] = null;
+//     var k: [|{| defId: 0 |}foo|] = null;
 // }
 
 // === /tests/cases/fourslash/referenceToClass_2.ts ===
-// var k: [|foo|];
+// var k: [|{| defId: 0 |}foo|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class foo"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referenceToClass_1.ts ===
-    // class [|foo|] {
-    //     public n: foo;
-    //     public foo: number;
-    // }
-    // 
-    // class bar {
-    //     public n: foo;
-    //     public k = new foo();
-    // }
-    // 
-    // module mod {
-    //     var k: foo = null;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // [|class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }|]
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class [|foo|] {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referenceToClass_1.ts ===
-        // [|class foo {
-        //     public n: foo;
-        //     public foo: number;
-        // }|]
-        // 
-        // class bar {
-        //     public n: foo;
-        //     public k = new foo();
-        // }
-        // 
-        // module mod {
-        //     var k: foo = null;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: [|foo|];
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: [|foo|];
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new [|foo|]();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: [|foo|] = null;
-      // }
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_2.ts ===
-      // var k: [|foo|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/referenceToClass_1.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class foo", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"}] |}foo|] {
+//     public n: foo;
+//     public foo: number;
+// }|>
+// 
+// class bar {
+//     public n: foo;
+//     public k = new /*FIND ALL REFS*/foo();
+// }
+// 
+// module mod {
+//     var k: foo = null;
+// }
 
 [
   {
@@ -1039,173 +493,38 @@
 ]
 
 // === /tests/cases/fourslash/referenceToClass_1.ts ===
-// class [|foo|] {
-//     public n: [|foo|];
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|] {
+//     public n: [|{| defId: 0 |}foo|];
 //     public foo: number;
-// }
+// }|>
 // 
 // class bar {
-//     public n: [|foo|];
-//     public k = new [|foo|]();
+//     public n: [|{| defId: 0 |}foo|];
+//     public k = new [|{| defId: 0 |}foo|]();
 // }
 // 
 // module mod {
-//     var k: /*FIND ALL REFS*/[|foo|] = null;
+//     var k: /*FIND ALL REFS*/[|{| defId: 0 |}foo|] = null;
 // }
 
 // === /tests/cases/fourslash/referenceToClass_2.ts ===
-// var k: [|foo|];
+// var k: [|{| defId: 0 |}foo|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class foo"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referenceToClass_1.ts ===
-    // class [|foo|] {
-    //     public n: foo;
-    //     public foo: number;
-    // }
-    // 
-    // class bar {
-    //     public n: foo;
-    //     public k = new foo();
-    // }
-    // 
-    // module mod {
-    //     var k: foo = null;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // [|class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }|]
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class [|foo|] {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referenceToClass_1.ts ===
-        // [|class foo {
-        //     public n: foo;
-        //     public foo: number;
-        // }|]
-        // 
-        // class bar {
-        //     public n: foo;
-        //     public k = new foo();
-        // }
-        // 
-        // module mod {
-        //     var k: foo = null;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: [|foo|];
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: [|foo|];
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new [|foo|]();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: [|foo|] = null;
-      // }
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_2.ts ===
-      // var k: [|foo|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/referenceToClass_1.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class foo", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"}] |}foo|] {
+//     public n: foo;
+//     public foo: number;
+// }|>
+// 
+// class bar {
+//     public n: foo;
+//     public k = new foo();
+// }
+// 
+// module mod {
+//     var k: /*FIND ALL REFS*/foo = null;
+// }
 
 [
   {
@@ -1296,173 +615,38 @@
 ]
 
 // === /tests/cases/fourslash/referenceToClass_1.ts ===
-// class [|foo|] {
-//     public n: [|foo|];
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|] {
+//     public n: [|{| defId: 0 |}foo|];
 //     public foo: number;
-// }
+// }|>
 // 
 // class bar {
-//     public n: [|foo|];
-//     public k = new [|foo|]();
+//     public n: [|{| defId: 0 |}foo|];
+//     public k = new [|{| defId: 0 |}foo|]();
 // }
 // 
 // module mod {
-//     var k: [|foo|] = null;
+//     var k: [|{| defId: 0 |}foo|] = null;
 // }
 
 // === /tests/cases/fourslash/referenceToClass_2.ts ===
-// var k: /*FIND ALL REFS*/[|foo|];
+// var k: /*FIND ALL REFS*/[|{| defId: 0 |}foo|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class foo"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referenceToClass_1.ts ===
-    // class [|foo|] {
-    //     public n: foo;
-    //     public foo: number;
-    // }
-    // 
-    // class bar {
-    //     public n: foo;
-    //     public k = new foo();
-    // }
-    // 
-    // module mod {
-    //     var k: foo = null;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // [|class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }|]
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class [|foo|] {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referenceToClass_1.ts ===
-        // [|class foo {
-        //     public n: foo;
-        //     public foo: number;
-        // }|]
-        // 
-        // class bar {
-        //     public n: foo;
-        //     public k = new foo();
-        // }
-        // 
-        // module mod {
-        //     var k: foo = null;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: [|foo|];
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: [|foo|];
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new [|foo|]();
-      // }
-      // 
-      // module mod {
-      //     var k: foo = null;
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_1.ts ===
-      // class foo {
-      //     public n: foo;
-      //     public foo: number;
-      // }
-      // 
-      // class bar {
-      //     public n: foo;
-      //     public k = new foo();
-      // }
-      // 
-      // module mod {
-      //     var k: [|foo|] = null;
-      // }
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referenceToClass_2.ts ===
-      // var k: [|foo|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/referenceToClass_1.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class foo", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"}] |}foo|] {
+//     public n: foo;
+//     public foo: number;
+// }|>
+// 
+// class bar {
+//     public n: foo;
+//     public k = new foo();
+// }
+// 
+// module mod {
+//     var k: foo = null;
+// }
 
 [
   {

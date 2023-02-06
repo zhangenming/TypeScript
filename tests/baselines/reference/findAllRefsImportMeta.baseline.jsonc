@@ -1,55 +1,22 @@
 // === /tests/cases/fourslash/foo.ts ===
 // /// <reference no-default-lib="true"/>
 // /// <reference path='./bar.d.ts' />
-// import./*FIND ALL REFS*/[|meta|];
-// import.[|meta|];
+// import./*FIND ALL REFS*/[|{| defId: 0 |}meta|];
+// import.[|{| defId: 0 |}meta|];
 
 // === /tests/cases/fourslash/baz.ts ===
 // /// <reference no-default-lib="true"/>
 // /// <reference path='./bar.d.ts' />
 // let x = import
 //   .  // hai :)
-//     [|meta|];
+//     [|{| defId: 0 |}meta|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "keyword"
-    // displayParts: [
-    //  {
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/foo.ts ===
-    // /// <reference no-default-lib="true"/>
-    // /// <reference path='./bar.d.ts' />
-    // import.[|meta|];
-    // import.meta;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/foo.ts ===
-      // /// <reference no-default-lib="true"/>
-      // /// <reference path='./bar.d.ts' />
-      // import.[|meta|];
-      // import.meta;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/foo.ts ===
-      // /// <reference no-default-lib="true"/>
-      // /// <reference path='./bar.d.ts' />
-      // import.meta;
-      // import.[|meta|];
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/baz.ts ===
-      // /// <reference no-default-lib="true"/>
-      // /// <reference path='./bar.d.ts' />
-      // let x = import
-      //   .  // hai :)
-      //     [|meta|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/foo.ts ===
+// /// <reference no-default-lib="true"/>
+// /// <reference path='./bar.d.ts' />
+// import./*FIND ALL REFS*/[|{| defId: 0, kind: "keyword", displayParts: [{"kind":"keyword"}] |}meta|];
+// import.meta;
 
 [
   {

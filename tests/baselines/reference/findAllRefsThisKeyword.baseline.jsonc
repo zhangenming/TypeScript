@@ -1,5 +1,5 @@
 // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-// /*FIND ALL REFS*/[|this|];
+// /*FIND ALL REFS*/[|{| defId: 0 |}this|];
 // function f(this) {
 //     return this;
 //     function g(this) { return this; }
@@ -22,88 +22,30 @@
 // const x = { this: 0 }
 // x.this;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "this"
-    // displayParts: [
-    //  {
-    //   "text": "this",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "typeof",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "globalThis",
-    //   "kind": "moduleName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-    // [|this|];
-    // function f(this) {
-    //     return this;
-    //     function g(this) { return this; }
-    // }
-    // class C {
-    //     static x() {
-    //         this;
-    //     }
-    //     static y() {
-    //         () => this;
-    //     }
-    //     constructor() {
-    //         this;
-    //     }
-    //     method() {
-    //         () => this;
-    //     }
-    // }
-    // // These are *not* real uses of the 'this' keyword, they are identifiers.
-    // const x = { this: 0 }
-    // x.this;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // [|this|];
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
+// /*FIND ALL REFS*/[|{| defId: 0, kind: "var", name: "this", displayParts: [{"text":"this","kind":"keyword"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"typeof","kind":"keyword"},{"text":" ","kind":"space"},{"text":"globalThis","kind":"moduleName"}] |}this|];
+// function f(this) {
+//     return this;
+//     function g(this) { return this; }
+// }
+// class C {
+//     static x() {
+//         this;
+//     }
+//     static y() {
+//         () => this;
+//     }
+//     constructor() {
+//         this;
+//     }
+//     method() {
+//         () => this;
+//     }
+// }
+// // These are *not* real uses of the 'this' keyword, they are identifiers.
+// const x = { this: 0 }
+// x.this;
 
 [
   {
@@ -159,8 +101,8 @@
 
 // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
 // this;
-// function f(/*FIND ALL REFS*/[|this|]) {
-//     return [|this|];
+// function f(/*FIND ALL REFS*/[|{| defId: 0, isWriteAccess: true, isDefinition: true |}this|]) {
+//     return [|{| defId: 0 |}this|];
 //     function g(this) { return this; }
 // }
 // class C {
@@ -181,123 +123,30 @@
 // const x = { this: 0 }
 // x.this;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "this"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "parameter",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "this",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-    // this;
-    // function f([|this|]) {
-    //     return this;
-    //     function g(this) { return this; }
-    // }
-    // class C {
-    //     static x() {
-    //         this;
-    //     }
-    //     static y() {
-    //         () => this;
-    //     }
-    //     constructor() {
-    //         this;
-    //     }
-    //     method() {
-    //         () => this;
-    //     }
-    // }
-    // // These are *not* real uses of the 'this' keyword, they are identifiers.
-    // const x = { this: 0 }
-    // x.this;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f([|this|]) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return [|this|];
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
+// this;
+// function f(/*FIND ALL REFS*/[|{| defId: 0, kind: "var", name: "this", displayParts: [{"text":"(","kind":"punctuation"},{"text":"parameter","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"this","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}this|]) {
+//     return this;
+//     function g(this) { return this; }
+// }
+// class C {
+//     static x() {
+//         this;
+//     }
+//     static y() {
+//         () => this;
+//     }
+//     constructor() {
+//         this;
+//     }
+//     method() {
+//         () => this;
+//     }
+// }
+// // These are *not* real uses of the 'this' keyword, they are identifiers.
+// const x = { this: 0 }
+// x.this;
 
 [
   {
@@ -371,8 +220,8 @@
 
 // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
 // this;
-// function f([|this|]) {
-//     return /*FIND ALL REFS*/[|this|];
+// function f([|{| defId: 0, isWriteAccess: true |}this|]) {
+//     return /*FIND ALL REFS*/[|{| defId: 0 |}this|];
 //     function g(this) { return this; }
 // }
 // class C {
@@ -393,121 +242,30 @@
 // const x = { this: 0 }
 // x.this;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "this"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "parameter",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "this",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-    // this;
-    // function f([|this|]) {
-    //     return this;
-    //     function g(this) { return this; }
-    // }
-    // class C {
-    //     static x() {
-    //         this;
-    //     }
-    //     static y() {
-    //         () => this;
-    //     }
-    //     constructor() {
-    //         this;
-    //     }
-    //     method() {
-    //         () => this;
-    //     }
-    // }
-    // // These are *not* real uses of the 'this' keyword, they are identifiers.
-    // const x = { this: 0 }
-    // x.this;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f([|this|]) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return [|this|];
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
+// this;
+// function f([|{| defId: 0, kind: "var", name: "this", displayParts: [{"text":"(","kind":"punctuation"},{"text":"parameter","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"this","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}this|]) {
+//     return /*FIND ALL REFS*/this;
+//     function g(this) { return this; }
+// }
+// class C {
+//     static x() {
+//         this;
+//     }
+//     static y() {
+//         () => this;
+//     }
+//     constructor() {
+//         this;
+//     }
+//     method() {
+//         () => this;
+//     }
+// }
+// // These are *not* real uses of the 'this' keyword, they are identifiers.
+// const x = { this: 0 }
+// x.this;
 
 [
   {
@@ -581,7 +339,7 @@
 // this;
 // function f(this) {
 //     return this;
-//     function g(/*FIND ALL REFS*/[|this|]) { return [|this|]; }
+//     function g(/*FIND ALL REFS*/[|{| defId: 0, isWriteAccess: true, isDefinition: true |}this|]) { return [|{| defId: 0 |}this|]; }
 // }
 // class C {
 //     static x() {
@@ -601,123 +359,30 @@
 // const x = { this: 0 }
 // x.this;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "this"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "parameter",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "this",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-    // this;
-    // function f(this) {
-    //     return this;
-    //     function g([|this|]) { return this; }
-    // }
-    // class C {
-    //     static x() {
-    //         this;
-    //     }
-    //     static y() {
-    //         () => this;
-    //     }
-    //     constructor() {
-    //         this;
-    //     }
-    //     method() {
-    //         () => this;
-    //     }
-    // }
-    // // These are *not* real uses of the 'this' keyword, they are identifiers.
-    // const x = { this: 0 }
-    // x.this;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g([|this|]) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return [|this|]; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
+// this;
+// function f(this) {
+//     return this;
+//     function g(/*FIND ALL REFS*/[|{| defId: 0, kind: "var", name: "this", displayParts: [{"text":"(","kind":"punctuation"},{"text":"parameter","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"this","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}this|]) { return this; }
+// }
+// class C {
+//     static x() {
+//         this;
+//     }
+//     static y() {
+//         () => this;
+//     }
+//     constructor() {
+//         this;
+//     }
+//     method() {
+//         () => this;
+//     }
+// }
+// // These are *not* real uses of the 'this' keyword, they are identifiers.
+// const x = { this: 0 }
+// x.this;
 
 [
   {
@@ -793,7 +458,7 @@
 // this;
 // function f(this) {
 //     return this;
-//     function g([|this|]) { return /*FIND ALL REFS*/[|this|]; }
+//     function g([|{| defId: 0, isWriteAccess: true |}this|]) { return /*FIND ALL REFS*/[|{| defId: 0 |}this|]; }
 // }
 // class C {
 //     static x() {
@@ -813,121 +478,30 @@
 // const x = { this: 0 }
 // x.this;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "this"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "parameter",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "this",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-    // this;
-    // function f(this) {
-    //     return this;
-    //     function g([|this|]) { return this; }
-    // }
-    // class C {
-    //     static x() {
-    //         this;
-    //     }
-    //     static y() {
-    //         () => this;
-    //     }
-    //     constructor() {
-    //         this;
-    //     }
-    //     method() {
-    //         () => this;
-    //     }
-    // }
-    // // These are *not* real uses of the 'this' keyword, they are identifiers.
-    // const x = { this: 0 }
-    // x.this;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g([|this|]) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return [|this|]; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
+// this;
+// function f(this) {
+//     return this;
+//     function g([|{| defId: 0, kind: "var", name: "this", displayParts: [{"text":"(","kind":"punctuation"},{"text":"parameter","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"this","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}this|]) { return /*FIND ALL REFS*/this; }
+// }
+// class C {
+//     static x() {
+//         this;
+//     }
+//     static y() {
+//         () => this;
+//     }
+//     constructor() {
+//         this;
+//     }
+//     method() {
+//         () => this;
+//     }
+// }
+// // These are *not* real uses of the 'this' keyword, they are identifiers.
+// const x = { this: 0 }
+// x.this;
 
 [
   {
@@ -1005,10 +579,10 @@
 // }
 // class C {
 //     static x() {
-//         /*FIND ALL REFS*/[|this|];
+//         /*FIND ALL REFS*/[|{| defId: 0 |}this|];
 //     }
 //     static y() {
-//         () => [|this|];
+//         () => [|{| defId: 0 |}this|];
 //     }
 //     constructor() {
 //         this;
@@ -1021,113 +595,30 @@
 // const x = { this: 0 }
 // x.this;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "this"
-    // displayParts: [
-    //  {
-    //   "text": "this",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "typeof",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-    // this;
-    // function f(this) {
-    //     return this;
-    //     function g(this) { return this; }
-    // }
-    // class C {
-    //     static x() {
-    //         [|this|];
-    //     }
-    //     static y() {
-    //         () => this;
-    //     }
-    //     constructor() {
-    //         this;
-    //     }
-    //     method() {
-    //         () => this;
-    //     }
-    // }
-    // // These are *not* real uses of the 'this' keyword, they are identifiers.
-    // const x = { this: 0 }
-    // x.this;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         [|this|];
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => [|this|];
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
+// this;
+// function f(this) {
+//     return this;
+//     function g(this) { return this; }
+// }
+// class C {
+//     static x() {
+//         /*FIND ALL REFS*/[|{| defId: 0, kind: "var", name: "this", displayParts: [{"text":"this","kind":"keyword"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"typeof","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C","kind":"className"}] |}this|];
+//     }
+//     static y() {
+//         () => this;
+//     }
+//     constructor() {
+//         this;
+//     }
+//     method() {
+//         () => this;
+//     }
+// }
+// // These are *not* real uses of the 'this' keyword, they are identifiers.
+// const x = { this: 0 }
+// x.this;
 
 [
   {
@@ -1197,10 +688,10 @@
 // }
 // class C {
 //     static x() {
-//         [|this|];
+//         [|{| defId: 0 |}this|];
 //     }
 //     static y() {
-//         () => /*FIND ALL REFS*/[|this|];
+//         () => /*FIND ALL REFS*/[|{| defId: 0 |}this|];
 //     }
 //     constructor() {
 //         this;
@@ -1213,113 +704,30 @@
 // const x = { this: 0 }
 // x.this;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "this"
-    // displayParts: [
-    //  {
-    //   "text": "this",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "typeof",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-    // this;
-    // function f(this) {
-    //     return this;
-    //     function g(this) { return this; }
-    // }
-    // class C {
-    //     static x() {
-    //         this;
-    //     }
-    //     static y() {
-    //         () => [|this|];
-    //     }
-    //     constructor() {
-    //         this;
-    //     }
-    //     method() {
-    //         () => this;
-    //     }
-    // }
-    // // These are *not* real uses of the 'this' keyword, they are identifiers.
-    // const x = { this: 0 }
-    // x.this;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         [|this|];
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => [|this|];
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
+// this;
+// function f(this) {
+//     return this;
+//     function g(this) { return this; }
+// }
+// class C {
+//     static x() {
+//         this;
+//     }
+//     static y() {
+//         () => /*FIND ALL REFS*/[|{| defId: 0, kind: "var", name: "this", displayParts: [{"text":"this","kind":"keyword"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"typeof","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C","kind":"className"}] |}this|];
+//     }
+//     constructor() {
+//         this;
+//     }
+//     method() {
+//         () => this;
+//     }
+// }
+// // These are *not* real uses of the 'this' keyword, they are identifiers.
+// const x = { this: 0 }
+// x.this;
 
 [
   {
@@ -1395,115 +803,40 @@
 //         () => this;
 //     }
 //     constructor() {
-//         /*FIND ALL REFS*/[|this|];
+//         /*FIND ALL REFS*/[|{| defId: 0 |}this|];
 //     }
 //     method() {
-//         () => [|this|];
+//         () => [|{| defId: 0 |}this|];
 //     }
 // }
 // // These are *not* real uses of the 'this' keyword, they are identifiers.
 // const x = { this: 0 }
 // x.this;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "this"
-    // displayParts: [
-    //  {
-    //   "text": "this",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "this",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-    // this;
-    // function f(this) {
-    //     return this;
-    //     function g(this) { return this; }
-    // }
-    // class C {
-    //     static x() {
-    //         this;
-    //     }
-    //     static y() {
-    //         () => this;
-    //     }
-    //     constructor() {
-    //         [|this|];
-    //     }
-    //     method() {
-    //         () => this;
-    //     }
-    // }
-    // // These are *not* real uses of the 'this' keyword, they are identifiers.
-    // const x = { this: 0 }
-    // x.this;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         [|this|];
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => [|this|];
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
+// this;
+// function f(this) {
+//     return this;
+//     function g(this) { return this; }
+// }
+// class C {
+//     static x() {
+//         this;
+//     }
+//     static y() {
+//         () => this;
+//     }
+//     constructor() {
+//         /*FIND ALL REFS*/[|{| defId: 0, kind: "var", name: "this", displayParts: [{"text":"this","kind":"keyword"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"this","kind":"keyword"}] |}this|];
+//     }
+//     method() {
+//         () => this;
+//     }
+// }
+// // These are *not* real uses of the 'this' keyword, they are identifiers.
+// const x = { this: 0 }
+// x.this;
 
 [
   {
@@ -1571,115 +904,40 @@
 //         () => this;
 //     }
 //     constructor() {
-//         [|this|];
+//         [|{| defId: 0 |}this|];
 //     }
 //     method() {
-//         () => /*FIND ALL REFS*/[|this|];
+//         () => /*FIND ALL REFS*/[|{| defId: 0 |}this|];
 //     }
 // }
 // // These are *not* real uses of the 'this' keyword, they are identifiers.
 // const x = { this: 0 }
 // x.this;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "this"
-    // displayParts: [
-    //  {
-    //   "text": "this",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "this",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-    // this;
-    // function f(this) {
-    //     return this;
-    //     function g(this) { return this; }
-    // }
-    // class C {
-    //     static x() {
-    //         this;
-    //     }
-    //     static y() {
-    //         () => this;
-    //     }
-    //     constructor() {
-    //         this;
-    //     }
-    //     method() {
-    //         () => [|this|];
-    //     }
-    // }
-    // // These are *not* real uses of the 'this' keyword, they are identifiers.
-    // const x = { this: 0 }
-    // x.this;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         [|this|];
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => [|this|];
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.this;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
+// this;
+// function f(this) {
+//     return this;
+//     function g(this) { return this; }
+// }
+// class C {
+//     static x() {
+//         this;
+//     }
+//     static y() {
+//         () => this;
+//     }
+//     constructor() {
+//         this;
+//     }
+//     method() {
+//         () => /*FIND ALL REFS*/[|{| defId: 0, kind: "var", name: "this", displayParts: [{"text":"this","kind":"keyword"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"this","kind":"keyword"}] |}this|];
+//     }
+// }
+// // These are *not* real uses of the 'this' keyword, they are identifiers.
+// const x = { this: 0 }
+// x.this;
 
 [
   {
@@ -1754,174 +1012,33 @@
 //     }
 // }
 // // These are *not* real uses of the 'this' keyword, they are identifiers.
-// const x = { /*FIND ALL REFS*/[|this|]: 0 }
-// x.[|this|];
+// const x = { /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}this|]: 0|> }
+// x.[|{| defId: 0 |}this|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) this: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "this",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-    // this;
-    // function f(this) {
-    //     return this;
-    //     function g(this) { return this; }
-    // }
-    // class C {
-    //     static x() {
-    //         this;
-    //     }
-    //     static y() {
-    //         () => this;
-    //     }
-    //     constructor() {
-    //         this;
-    //     }
-    //     method() {
-    //         () => this;
-    //     }
-    // }
-    // // These are *not* real uses of the 'this' keyword, they are identifiers.
-    // const x = { [|this|]: 0 }
-    // x.this;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { [|this: 0|] }
-      // x.this;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { [|this|]: 0 }
-      // x.this;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-        // this;
-        // function f(this) {
-        //     return this;
-        //     function g(this) { return this; }
-        // }
-        // class C {
-        //     static x() {
-        //         this;
-        //     }
-        //     static y() {
-        //         () => this;
-        //     }
-        //     constructor() {
-        //         this;
-        //     }
-        //     method() {
-        //         () => this;
-        //     }
-        // }
-        // // These are *not* real uses of the 'this' keyword, they are identifiers.
-        // const x = { [|this: 0|] }
-        // x.this;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.[|this|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
+// this;
+// function f(this) {
+//     return this;
+//     function g(this) { return this; }
+// }
+// class C {
+//     static x() {
+//         this;
+//     }
+//     static y() {
+//         () => this;
+//     }
+//     constructor() {
+//         this;
+//     }
+//     method() {
+//         () => this;
+//     }
+// }
+// // These are *not* real uses of the 'this' keyword, they are identifiers.
+// const x = { /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) this: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"this","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}this|]: 0|> }
+// x.this;
 
 [
   {
@@ -2022,172 +1139,33 @@
 //     }
 // }
 // // These are *not* real uses of the 'this' keyword, they are identifiers.
-// const x = { [|this|]: 0 }
-// x./*FIND ALL REFS*/[|this|];
+// const x = { <|[|{| contextId: 0, defId: 0, isWriteAccess: true |}this|]: 0|> }
+// x./*FIND ALL REFS*/[|{| defId: 0 |}this|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) this: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "this",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-    // this;
-    // function f(this) {
-    //     return this;
-    //     function g(this) { return this; }
-    // }
-    // class C {
-    //     static x() {
-    //         this;
-    //     }
-    //     static y() {
-    //         () => this;
-    //     }
-    //     constructor() {
-    //         this;
-    //     }
-    //     method() {
-    //         () => this;
-    //     }
-    // }
-    // // These are *not* real uses of the 'this' keyword, they are identifiers.
-    // const x = { [|this|]: 0 }
-    // x.this;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { [|this: 0|] }
-      // x.this;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { [|this|]: 0 }
-      // x.this;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-        // this;
-        // function f(this) {
-        //     return this;
-        //     function g(this) { return this; }
-        // }
-        // class C {
-        //     static x() {
-        //         this;
-        //     }
-        //     static y() {
-        //         () => this;
-        //     }
-        //     constructor() {
-        //         this;
-        //     }
-        //     method() {
-        //         () => this;
-        //     }
-        // }
-        // // These are *not* real uses of the 'this' keyword, they are identifiers.
-        // const x = { [|this: 0|] }
-        // x.this;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
-      // this;
-      // function f(this) {
-      //     return this;
-      //     function g(this) { return this; }
-      // }
-      // class C {
-      //     static x() {
-      //         this;
-      //     }
-      //     static y() {
-      //         () => this;
-      //     }
-      //     constructor() {
-      //         this;
-      //     }
-      //     method() {
-      //         () => this;
-      //     }
-      // }
-      // // These are *not* real uses of the 'this' keyword, they are identifiers.
-      // const x = { this: 0 }
-      // x.[|this|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsThisKeyword.ts ===
+// this;
+// function f(this) {
+//     return this;
+//     function g(this) { return this; }
+// }
+// class C {
+//     static x() {
+//         this;
+//     }
+//     static y() {
+//         () => this;
+//     }
+//     constructor() {
+//         this;
+//     }
+//     method() {
+//         () => this;
+//     }
+// }
+// // These are *not* real uses of the 'this' keyword, they are identifiers.
+// const x = { <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) this: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"this","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}this|]: 0|> }
+// x./*FIND ALL REFS*/this;
 
 [
   {

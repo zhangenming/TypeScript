@@ -1,35 +1,16 @@
 // === /tests/cases/fourslash/a.ts ===
-// declare module [|"e"|] {
+// <|declare module [|{| contextId: 0, kind: "module", name: "\"e\"", isAmbient: true |}"e"|] {
 //     class Foo { }
-// }
+// }|>
 
 // === /tests/cases/fourslash/b.ts ===
 // import n = require('e/*GOTO DEF*/');
 // var x = new n.Foo();
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "\"e\""
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: true
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/a.ts ===
-    // declare module [|"e"|] {
-    //     class Foo { }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|declare module "e" {
-      //     class Foo { }
-      // }|]
 // === TextSpan ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import n = require([|'e'|]);
-  // var x = new n.Foo();
-
+// === /tests/cases/fourslash/b.ts ===
+// import n = require([|'e/*GOTO DEF*/'|]);
+// var x = new n.Foo();
 
 {
   "definitions": [

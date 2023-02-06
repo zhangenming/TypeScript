@@ -1,150 +1,15 @@
-// === /c.ts ===
-// import { [|foo|] } from "./b";
-
 // === /a.ts ===
-// export function /*FIND ALL REFS*/[|foo|](): void {}
+// <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|](): void {}|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.ts ===
-    // export function [|foo|](): void {}
-      // === ContextSpan ===
-      // === /a.ts ===
-      // [|export function foo(): void {}|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.ts ===
-      // export function [|foo|](): void {}
-        // === ContextSpan ===
-        // === /a.ts ===
-        // [|export function foo(): void {}|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) function foo(): void\nimport foo"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /c.ts ===
-    // import { [|foo|] } from "./b";
-      // === ContextSpan ===
-      // === /c.ts ===
-      // [|import { foo } from "./b";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /c.ts ===
-      // import { [|foo|] } from "./b";
-        // === ContextSpan ===
-        // === /c.ts ===
-        // [|import { foo } from "./b";|]
+// === /c.ts ===
+// <|import { [|{| contextId: 1, defId: 1, isWriteAccess: true |}foo|] } from "./b";|>
 
+// === Definitions ===
+// === /a.ts ===
+// <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "function", name: "function foo(): void", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void {}|>
+
+// === /c.ts ===
+// <|import { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) function foo(): void\nimport foo", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"}] |}foo|] } from "./b";|>
 
 [
   {
@@ -314,152 +179,17 @@
 ]
 
 // === /c.ts ===
-// import { /*FIND ALL REFS*/[|foo|] } from "./b";
+// <|import { /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|] } from "./b";|>
 
 // === /a.ts ===
-// export function [|foo|](): void {}
+// <|export function [|{| contextId: 1, defId: 1, isWriteAccess: true |}foo|](): void {}|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) function foo(): void\nimport foo"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /c.ts ===
-    // import { [|foo|] } from "./b";
-      // === ContextSpan ===
-      // === /c.ts ===
-      // [|import { foo } from "./b";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /c.ts ===
-      // import { [|foo|] } from "./b";
-        // === ContextSpan ===
-        // === /c.ts ===
-        // [|import { foo } from "./b";|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.ts ===
-    // export function [|foo|](): void {}
-      // === ContextSpan ===
-      // === /a.ts ===
-      // [|export function foo(): void {}|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a.ts ===
-      // export function [|foo|](): void {}
-        // === ContextSpan ===
-        // === /a.ts ===
-        // [|export function foo(): void {}|]
+// === Definitions ===
+// === /c.ts ===
+// <|import { /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) function foo(): void\nimport foo", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"}] |}foo|] } from "./b";|>
 
+// === /a.ts ===
+// <|export function [|{| contextId: 1, defId: 1, kind: "function", name: "function foo(): void", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void {}|>
 
 [
   {

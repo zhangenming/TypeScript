@@ -1,73 +1,17 @@
-// === /a.js ===
-// /*FIND ALL REFS*/[|module|].exports = class C {};
-// module.exports.D = class D {};
-
 // === /b.js ===
-// /** @type {import("[|./a|]")} */
+// /** <|@type {import("[|{| contextId: 0, defId: 0 |}./a|]")} |>*/
 // const x = 0;
-// /** @type {import("[|./a|]").D} */
+// /** <|@type {import("[|{| contextId: 1, defId: 0 |}./a|]").D} |>*/
 // const y = 0;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "module \"/a\""
-    // displayParts: [
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"/a\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /a.js ===
-    // [|module.exports = class C {};
-    // module.exports.D = class D {};|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /b.js ===
-      // /** @type {import("[|./a|]")} */
-      // const x = 0;
-      // /** @type {import("./a").D} */
-      // const y = 0;
-        // === ContextSpan ===
-        // === /b.js ===
-        // /** [|@type {import("./a")} |]*/
-        // const x = 0;
-        // /** @type {import("./a").D} */
-        // const y = 0;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /b.js ===
-      // /** @type {import("./a")} */
-      // const x = 0;
-      // /** @type {import("[|./a|]").D} */
-      // const y = 0;
-        // === ContextSpan ===
-        // === /b.js ===
-        // /** @type {import("./a")} */
-        // const x = 0;
-        // /** [|@type {import("./a").D} |]*/
-        // const y = 0;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /a.js ===
-      // [|module|].exports = class C {};
-      // module.exports.D = class D {};
-        // === ContextSpan ===
-        // === /a.js ===
-        // [|module.exports = class C {};|]
-        // module.exports.D = class D {};
+// === /a.js ===
+// /*FIND ALL REFS*/<|[|{| contextId: 2, defId: 0 |}module|].exports = class C {};|>
+// module.exports.D = class D {};
 
+// === Definitions ===
+// === /a.js ===
+// /*FIND ALL REFS*/[|{| defId: 0, kind: "module", name: "module \"/a\"", displayParts: [{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"/a\"","kind":"stringLiteral"}] |}module.exports = class C {};
+// module.exports.D = class D {};|]
 
 [
   {

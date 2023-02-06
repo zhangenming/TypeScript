@@ -2,7 +2,7 @@
 // module FindRef4 {
 // 	module MixedStaticsClassTest {
 // 		export class Foo {
-// 			/*FIND ALL REFS*/[|bar|]: Foo;
+// 			/*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isDefinition: true |}bar|]: Foo;|>
 // 			static bar: Foo;
 // 
 // 			public foo(): void {
@@ -16,7 +16,7 @@
 // 		// instance function
 // 		var x = new MixedStaticsClassTest.Foo();
 // 		x.foo();
-// 		x.[|bar|];
+// 		x.[|{| defId: 0 |}bar|];
 // 
 // 		// static function
 // 		MixedStaticsClassTest.Foo.foo();
@@ -24,197 +24,32 @@
 // 	}
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) MixedStaticsClassTest.Foo.bar: Foo"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "MixedStaticsClassTest",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "bar",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-    // module FindRef4 {
-    // 	module MixedStaticsClassTest {
-    // 		export class Foo {
-    // 			[|bar|]: Foo;
-    // 			static bar: Foo;
-    // 
-    // 			public foo(): void {
-    // 			}
-    // 			public static foo(): void {
-    // 			}
-    // 		}
-    // 	}
-    // 
-    // 	function test() {
-    // 		// instance function
-    // 		var x = new MixedStaticsClassTest.Foo();
-    // 		x.foo();
-    // 		x.bar;
-    // 
-    // 		// static function
-    // 		MixedStaticsClassTest.Foo.foo();
-    // 		MixedStaticsClassTest.Foo.bar;
-    // 	}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			[|bar: Foo;|]
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			[|bar|]: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-        // module FindRef4 {
-        // 	module MixedStaticsClassTest {
-        // 		export class Foo {
-        // 			[|bar: Foo;|]
-        // 			static bar: Foo;
-        // 
-        // 			public foo(): void {
-        // 			}
-        // 			public static foo(): void {
-        // 			}
-        // 		}
-        // 	}
-        // 
-        // 	function test() {
-        // 		// instance function
-        // 		var x = new MixedStaticsClassTest.Foo();
-        // 		x.foo();
-        // 		x.bar;
-        // 
-        // 		// static function
-        // 		MixedStaticsClassTest.Foo.foo();
-        // 		MixedStaticsClassTest.Foo.bar;
-        // 	}
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.[|bar|];
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
+// module FindRef4 {
+// 	module MixedStaticsClassTest {
+// 		export class Foo {
+// 			/*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) MixedStaticsClassTest.Foo.bar: Foo", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"MixedStaticsClassTest","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"bar","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"}] |}bar|]: Foo;|>
+// 			static bar: Foo;
+// 
+// 			public foo(): void {
+// 			}
+// 			public static foo(): void {
+// 			}
+// 		}
+// 	}
+// 
+// 	function test() {
+// 		// instance function
+// 		var x = new MixedStaticsClassTest.Foo();
+// 		x.foo();
+// 		x.bar;
+// 
+// 		// static function
+// 		MixedStaticsClassTest.Foo.foo();
+// 		MixedStaticsClassTest.Foo.bar;
+// 	}
+// }
 
 [
   {
@@ -315,7 +150,7 @@
 // 	module MixedStaticsClassTest {
 // 		export class Foo {
 // 			bar: Foo;
-// 			/*FIND ALL REFS*/static [|bar|]: Foo;
+// 			/*FIND ALL REFS*/<|static [|{| contextId: 0, defId: 0, isDefinition: true |}bar|]: Foo;|>
 // 
 // 			public foo(): void {
 // 			}
@@ -332,201 +167,36 @@
 // 
 // 		// static function
 // 		MixedStaticsClassTest.Foo.foo();
-// 		MixedStaticsClassTest.Foo.[|bar|];
+// 		MixedStaticsClassTest.Foo.[|{| defId: 0 |}bar|];
 // 	}
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) MixedStaticsClassTest.Foo.bar: Foo"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "MixedStaticsClassTest",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "bar",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-    // module FindRef4 {
-    // 	module MixedStaticsClassTest {
-    // 		export class Foo {
-    // 			bar: Foo;
-    // 			static [|bar|]: Foo;
-    // 
-    // 			public foo(): void {
-    // 			}
-    // 			public static foo(): void {
-    // 			}
-    // 		}
-    // 	}
-    // 
-    // 	function test() {
-    // 		// instance function
-    // 		var x = new MixedStaticsClassTest.Foo();
-    // 		x.foo();
-    // 		x.bar;
-    // 
-    // 		// static function
-    // 		MixedStaticsClassTest.Foo.foo();
-    // 		MixedStaticsClassTest.Foo.bar;
-    // 	}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			[|static bar: Foo;|]
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static [|bar|]: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-        // module FindRef4 {
-        // 	module MixedStaticsClassTest {
-        // 		export class Foo {
-        // 			bar: Foo;
-        // 			[|static bar: Foo;|]
-        // 
-        // 			public foo(): void {
-        // 			}
-        // 			public static foo(): void {
-        // 			}
-        // 		}
-        // 	}
-        // 
-        // 	function test() {
-        // 		// instance function
-        // 		var x = new MixedStaticsClassTest.Foo();
-        // 		x.foo();
-        // 		x.bar;
-        // 
-        // 		// static function
-        // 		MixedStaticsClassTest.Foo.foo();
-        // 		MixedStaticsClassTest.Foo.bar;
-        // 	}
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.[|bar|];
-      // 	}
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
+// module FindRef4 {
+// 	module MixedStaticsClassTest {
+// 		export class Foo {
+// 			bar: Foo;
+// 			/*FIND ALL REFS*/<|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) MixedStaticsClassTest.Foo.bar: Foo", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"MixedStaticsClassTest","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"bar","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"}] |}bar|]: Foo;|>
+// 
+// 			public foo(): void {
+// 			}
+// 			public static foo(): void {
+// 			}
+// 		}
+// 	}
+// 
+// 	function test() {
+// 		// instance function
+// 		var x = new MixedStaticsClassTest.Foo();
+// 		x.foo();
+// 		x.bar;
+// 
+// 		// static function
+// 		MixedStaticsClassTest.Foo.foo();
+// 		MixedStaticsClassTest.Foo.bar;
+// 	}
+// }
 
 [
   {
@@ -627,7 +297,7 @@
 // 	module MixedStaticsClassTest {
 // 		export class Foo {
 // 			bar: Foo;
-// 			static /*FIND ALL REFS*/[|bar|]: Foo;
+// 			<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isDefinition: true |}bar|]: Foo;|>
 // 
 // 			public foo(): void {
 // 			}
@@ -644,201 +314,36 @@
 // 
 // 		// static function
 // 		MixedStaticsClassTest.Foo.foo();
-// 		MixedStaticsClassTest.Foo.[|bar|];
+// 		MixedStaticsClassTest.Foo.[|{| defId: 0 |}bar|];
 // 	}
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) MixedStaticsClassTest.Foo.bar: Foo"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "MixedStaticsClassTest",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "bar",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-    // module FindRef4 {
-    // 	module MixedStaticsClassTest {
-    // 		export class Foo {
-    // 			bar: Foo;
-    // 			static [|bar|]: Foo;
-    // 
-    // 			public foo(): void {
-    // 			}
-    // 			public static foo(): void {
-    // 			}
-    // 		}
-    // 	}
-    // 
-    // 	function test() {
-    // 		// instance function
-    // 		var x = new MixedStaticsClassTest.Foo();
-    // 		x.foo();
-    // 		x.bar;
-    // 
-    // 		// static function
-    // 		MixedStaticsClassTest.Foo.foo();
-    // 		MixedStaticsClassTest.Foo.bar;
-    // 	}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			[|static bar: Foo;|]
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static [|bar|]: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-        // module FindRef4 {
-        // 	module MixedStaticsClassTest {
-        // 		export class Foo {
-        // 			bar: Foo;
-        // 			[|static bar: Foo;|]
-        // 
-        // 			public foo(): void {
-        // 			}
-        // 			public static foo(): void {
-        // 			}
-        // 		}
-        // 	}
-        // 
-        // 	function test() {
-        // 		// instance function
-        // 		var x = new MixedStaticsClassTest.Foo();
-        // 		x.foo();
-        // 		x.bar;
-        // 
-        // 		// static function
-        // 		MixedStaticsClassTest.Foo.foo();
-        // 		MixedStaticsClassTest.Foo.bar;
-        // 	}
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.[|bar|];
-      // 	}
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
+// module FindRef4 {
+// 	module MixedStaticsClassTest {
+// 		export class Foo {
+// 			bar: Foo;
+// 			<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) MixedStaticsClassTest.Foo.bar: Foo", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"MixedStaticsClassTest","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"bar","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"}] |}bar|]: Foo;|>
+// 
+// 			public foo(): void {
+// 			}
+// 			public static foo(): void {
+// 			}
+// 		}
+// 	}
+// 
+// 	function test() {
+// 		// instance function
+// 		var x = new MixedStaticsClassTest.Foo();
+// 		x.foo();
+// 		x.bar;
+// 
+// 		// static function
+// 		MixedStaticsClassTest.Foo.foo();
+// 		MixedStaticsClassTest.Foo.bar;
+// 	}
+// }
 
 [
   {
@@ -941,8 +446,8 @@
 // 			bar: Foo;
 // 			static bar: Foo;
 // 
-// 			/*FIND ALL REFS*/public [|foo|](): void {
-// 			}
+// 			/*FIND ALL REFS*/<|public [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|](): void {
+// 			}|>
 // 			public static foo(): void {
 // 			}
 // 		}
@@ -951,7 +456,7 @@
 // 	function test() {
 // 		// instance function
 // 		var x = new MixedStaticsClassTest.Foo();
-// 		x.[|foo|]();
+// 		x.[|{| defId: 0 |}foo|]();
 // 		x.bar;
 // 
 // 		// static function
@@ -960,205 +465,32 @@
 // 	}
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) MixedStaticsClassTest.Foo.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "MixedStaticsClassTest",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-    // module FindRef4 {
-    // 	module MixedStaticsClassTest {
-    // 		export class Foo {
-    // 			bar: Foo;
-    // 			static bar: Foo;
-    // 
-    // 			public [|foo|](): void {
-    // 			}
-    // 			public static foo(): void {
-    // 			}
-    // 		}
-    // 	}
-    // 
-    // 	function test() {
-    // 		// instance function
-    // 		var x = new MixedStaticsClassTest.Foo();
-    // 		x.foo();
-    // 		x.bar;
-    // 
-    // 		// static function
-    // 		MixedStaticsClassTest.Foo.foo();
-    // 		MixedStaticsClassTest.Foo.bar;
-    // 	}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			[|public foo(): void {
-      // 			}|]
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public [|foo|](): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-        // module FindRef4 {
-        // 	module MixedStaticsClassTest {
-        // 		export class Foo {
-        // 			bar: Foo;
-        // 			static bar: Foo;
-        // 
-        // 			[|public foo(): void {
-        // 			}|]
-        // 			public static foo(): void {
-        // 			}
-        // 		}
-        // 	}
-        // 
-        // 	function test() {
-        // 		// instance function
-        // 		var x = new MixedStaticsClassTest.Foo();
-        // 		x.foo();
-        // 		x.bar;
-        // 
-        // 		// static function
-        // 		MixedStaticsClassTest.Foo.foo();
-        // 		MixedStaticsClassTest.Foo.bar;
-        // 	}
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.[|foo|]();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
+// module FindRef4 {
+// 	module MixedStaticsClassTest {
+// 		export class Foo {
+// 			bar: Foo;
+// 			static bar: Foo;
+// 
+// 			/*FIND ALL REFS*/<|public [|{| contextId: 0, defId: 0, kind: "method", name: "(method) MixedStaticsClassTest.Foo.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"MixedStaticsClassTest","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void {
+// 			}|>
+// 			public static foo(): void {
+// 			}
+// 		}
+// 	}
+// 
+// 	function test() {
+// 		// instance function
+// 		var x = new MixedStaticsClassTest.Foo();
+// 		x.foo();
+// 		x.bar;
+// 
+// 		// static function
+// 		MixedStaticsClassTest.Foo.foo();
+// 		MixedStaticsClassTest.Foo.bar;
+// 	}
+// }
 
 [
   {
@@ -1269,8 +601,8 @@
 // 			bar: Foo;
 // 			static bar: Foo;
 // 
-// 			public /*FIND ALL REFS*/[|foo|](): void {
-// 			}
+// 			<|public /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|](): void {
+// 			}|>
 // 			public static foo(): void {
 // 			}
 // 		}
@@ -1279,7 +611,7 @@
 // 	function test() {
 // 		// instance function
 // 		var x = new MixedStaticsClassTest.Foo();
-// 		x.[|foo|]();
+// 		x.[|{| defId: 0 |}foo|]();
 // 		x.bar;
 // 
 // 		// static function
@@ -1288,205 +620,32 @@
 // 	}
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) MixedStaticsClassTest.Foo.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "MixedStaticsClassTest",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-    // module FindRef4 {
-    // 	module MixedStaticsClassTest {
-    // 		export class Foo {
-    // 			bar: Foo;
-    // 			static bar: Foo;
-    // 
-    // 			public [|foo|](): void {
-    // 			}
-    // 			public static foo(): void {
-    // 			}
-    // 		}
-    // 	}
-    // 
-    // 	function test() {
-    // 		// instance function
-    // 		var x = new MixedStaticsClassTest.Foo();
-    // 		x.foo();
-    // 		x.bar;
-    // 
-    // 		// static function
-    // 		MixedStaticsClassTest.Foo.foo();
-    // 		MixedStaticsClassTest.Foo.bar;
-    // 	}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			[|public foo(): void {
-      // 			}|]
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public [|foo|](): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-        // module FindRef4 {
-        // 	module MixedStaticsClassTest {
-        // 		export class Foo {
-        // 			bar: Foo;
-        // 			static bar: Foo;
-        // 
-        // 			[|public foo(): void {
-        // 			}|]
-        // 			public static foo(): void {
-        // 			}
-        // 		}
-        // 	}
-        // 
-        // 	function test() {
-        // 		// instance function
-        // 		var x = new MixedStaticsClassTest.Foo();
-        // 		x.foo();
-        // 		x.bar;
-        // 
-        // 		// static function
-        // 		MixedStaticsClassTest.Foo.foo();
-        // 		MixedStaticsClassTest.Foo.bar;
-        // 	}
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.[|foo|]();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
+// module FindRef4 {
+// 	module MixedStaticsClassTest {
+// 		export class Foo {
+// 			bar: Foo;
+// 			static bar: Foo;
+// 
+// 			<|public /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "method", name: "(method) MixedStaticsClassTest.Foo.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"MixedStaticsClassTest","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void {
+// 			}|>
+// 			public static foo(): void {
+// 			}
+// 		}
+// 	}
+// 
+// 	function test() {
+// 		// instance function
+// 		var x = new MixedStaticsClassTest.Foo();
+// 		x.foo();
+// 		x.bar;
+// 
+// 		// static function
+// 		MixedStaticsClassTest.Foo.foo();
+// 		MixedStaticsClassTest.Foo.bar;
+// 	}
+// }
 
 [
   {
@@ -1599,8 +758,8 @@
 // 
 // 			public foo(): void {
 // 			}
-// 			/*FIND ALL REFS*/public static [|foo|](): void {
-// 			}
+// 			/*FIND ALL REFS*/<|public static [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|](): void {
+// 			}|>
 // 		}
 // 	}
 // 
@@ -1611,210 +770,37 @@
 // 		x.bar;
 // 
 // 		// static function
-// 		MixedStaticsClassTest.Foo.[|foo|]();
+// 		MixedStaticsClassTest.Foo.[|{| defId: 0 |}foo|]();
 // 		MixedStaticsClassTest.Foo.bar;
 // 	}
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) MixedStaticsClassTest.Foo.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "MixedStaticsClassTest",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-    // module FindRef4 {
-    // 	module MixedStaticsClassTest {
-    // 		export class Foo {
-    // 			bar: Foo;
-    // 			static bar: Foo;
-    // 
-    // 			public foo(): void {
-    // 			}
-    // 			public static [|foo|](): void {
-    // 			}
-    // 		}
-    // 	}
-    // 
-    // 	function test() {
-    // 		// instance function
-    // 		var x = new MixedStaticsClassTest.Foo();
-    // 		x.foo();
-    // 		x.bar;
-    // 
-    // 		// static function
-    // 		MixedStaticsClassTest.Foo.foo();
-    // 		MixedStaticsClassTest.Foo.bar;
-    // 	}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			[|public static foo(): void {
-      // 			}|]
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static [|foo|](): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-        // module FindRef4 {
-        // 	module MixedStaticsClassTest {
-        // 		export class Foo {
-        // 			bar: Foo;
-        // 			static bar: Foo;
-        // 
-        // 			public foo(): void {
-        // 			}
-        // 			[|public static foo(): void {
-        // 			}|]
-        // 		}
-        // 	}
-        // 
-        // 	function test() {
-        // 		// instance function
-        // 		var x = new MixedStaticsClassTest.Foo();
-        // 		x.foo();
-        // 		x.bar;
-        // 
-        // 		// static function
-        // 		MixedStaticsClassTest.Foo.foo();
-        // 		MixedStaticsClassTest.Foo.bar;
-        // 	}
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.[|foo|]();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
+// module FindRef4 {
+// 	module MixedStaticsClassTest {
+// 		export class Foo {
+// 			bar: Foo;
+// 			static bar: Foo;
+// 
+// 			public foo(): void {
+// 			}
+// 			/*FIND ALL REFS*/<|public static [|{| contextId: 0, defId: 0, kind: "method", name: "(method) MixedStaticsClassTest.Foo.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"MixedStaticsClassTest","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void {
+// 			}|>
+// 		}
+// 	}
+// 
+// 	function test() {
+// 		// instance function
+// 		var x = new MixedStaticsClassTest.Foo();
+// 		x.foo();
+// 		x.bar;
+// 
+// 		// static function
+// 		MixedStaticsClassTest.Foo.foo();
+// 		MixedStaticsClassTest.Foo.bar;
+// 	}
+// }
 
 [
   {
@@ -1927,8 +913,8 @@
 // 
 // 			public foo(): void {
 // 			}
-// 			public static /*FIND ALL REFS*/[|foo|](): void {
-// 			}
+// 			<|public static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|](): void {
+// 			}|>
 // 		}
 // 	}
 // 
@@ -1939,210 +925,37 @@
 // 		x.bar;
 // 
 // 		// static function
-// 		MixedStaticsClassTest.Foo.[|foo|]();
+// 		MixedStaticsClassTest.Foo.[|{| defId: 0 |}foo|]();
 // 		MixedStaticsClassTest.Foo.bar;
 // 	}
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) MixedStaticsClassTest.Foo.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "MixedStaticsClassTest",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-    // module FindRef4 {
-    // 	module MixedStaticsClassTest {
-    // 		export class Foo {
-    // 			bar: Foo;
-    // 			static bar: Foo;
-    // 
-    // 			public foo(): void {
-    // 			}
-    // 			public static [|foo|](): void {
-    // 			}
-    // 		}
-    // 	}
-    // 
-    // 	function test() {
-    // 		// instance function
-    // 		var x = new MixedStaticsClassTest.Foo();
-    // 		x.foo();
-    // 		x.bar;
-    // 
-    // 		// static function
-    // 		MixedStaticsClassTest.Foo.foo();
-    // 		MixedStaticsClassTest.Foo.bar;
-    // 	}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			[|public static foo(): void {
-      // 			}|]
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static [|foo|](): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-        // module FindRef4 {
-        // 	module MixedStaticsClassTest {
-        // 		export class Foo {
-        // 			bar: Foo;
-        // 			static bar: Foo;
-        // 
-        // 			public foo(): void {
-        // 			}
-        // 			[|public static foo(): void {
-        // 			}|]
-        // 		}
-        // 	}
-        // 
-        // 	function test() {
-        // 		// instance function
-        // 		var x = new MixedStaticsClassTest.Foo();
-        // 		x.foo();
-        // 		x.bar;
-        // 
-        // 		// static function
-        // 		MixedStaticsClassTest.Foo.foo();
-        // 		MixedStaticsClassTest.Foo.bar;
-        // 	}
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.[|foo|]();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
+// module FindRef4 {
+// 	module MixedStaticsClassTest {
+// 		export class Foo {
+// 			bar: Foo;
+// 			static bar: Foo;
+// 
+// 			public foo(): void {
+// 			}
+// 			<|public static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "method", name: "(method) MixedStaticsClassTest.Foo.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"MixedStaticsClassTest","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void {
+// 			}|>
+// 		}
+// 	}
+// 
+// 	function test() {
+// 		// instance function
+// 		var x = new MixedStaticsClassTest.Foo();
+// 		x.foo();
+// 		x.bar;
+// 
+// 		// static function
+// 		MixedStaticsClassTest.Foo.foo();
+// 		MixedStaticsClassTest.Foo.bar;
+// 	}
+// }
 
 [
   {
@@ -2253,8 +1066,8 @@
 // 			bar: Foo;
 // 			static bar: Foo;
 // 
-// 			public [|foo|](): void {
-// 			}
+// 			<|public [|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|](): void {
+// 			}|>
 // 			public static foo(): void {
 // 			}
 // 		}
@@ -2263,7 +1076,7 @@
 // 	function test() {
 // 		// instance function
 // 		var x = new MixedStaticsClassTest.Foo();
-// 		x./*FIND ALL REFS*/[|foo|]();
+// 		x./*FIND ALL REFS*/[|{| defId: 0 |}foo|]();
 // 		x.bar;
 // 
 // 		// static function
@@ -2272,203 +1085,32 @@
 // 	}
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) MixedStaticsClassTest.Foo.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "MixedStaticsClassTest",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-    // module FindRef4 {
-    // 	module MixedStaticsClassTest {
-    // 		export class Foo {
-    // 			bar: Foo;
-    // 			static bar: Foo;
-    // 
-    // 			public [|foo|](): void {
-    // 			}
-    // 			public static foo(): void {
-    // 			}
-    // 		}
-    // 	}
-    // 
-    // 	function test() {
-    // 		// instance function
-    // 		var x = new MixedStaticsClassTest.Foo();
-    // 		x.foo();
-    // 		x.bar;
-    // 
-    // 		// static function
-    // 		MixedStaticsClassTest.Foo.foo();
-    // 		MixedStaticsClassTest.Foo.bar;
-    // 	}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			[|public foo(): void {
-      // 			}|]
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public [|foo|](): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-        // module FindRef4 {
-        // 	module MixedStaticsClassTest {
-        // 		export class Foo {
-        // 			bar: Foo;
-        // 			static bar: Foo;
-        // 
-        // 			[|public foo(): void {
-        // 			}|]
-        // 			public static foo(): void {
-        // 			}
-        // 		}
-        // 	}
-        // 
-        // 	function test() {
-        // 		// instance function
-        // 		var x = new MixedStaticsClassTest.Foo();
-        // 		x.foo();
-        // 		x.bar;
-        // 
-        // 		// static function
-        // 		MixedStaticsClassTest.Foo.foo();
-        // 		MixedStaticsClassTest.Foo.bar;
-        // 	}
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.[|foo|]();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
+// module FindRef4 {
+// 	module MixedStaticsClassTest {
+// 		export class Foo {
+// 			bar: Foo;
+// 			static bar: Foo;
+// 
+// 			<|public [|{| contextId: 0, defId: 0, kind: "method", name: "(method) MixedStaticsClassTest.Foo.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"MixedStaticsClassTest","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void {
+// 			}|>
+// 			public static foo(): void {
+// 			}
+// 		}
+// 	}
+// 
+// 	function test() {
+// 		// instance function
+// 		var x = new MixedStaticsClassTest.Foo();
+// 		x./*FIND ALL REFS*/foo();
+// 		x.bar;
+// 
+// 		// static function
+// 		MixedStaticsClassTest.Foo.foo();
+// 		MixedStaticsClassTest.Foo.bar;
+// 	}
+// }
 
 [
   {
@@ -2574,7 +1216,7 @@
 // module FindRef4 {
 // 	module MixedStaticsClassTest {
 // 		export class Foo {
-// 			[|bar|]: Foo;
+// 			<|[|{| contextId: 0, defId: 0 |}bar|]: Foo;|>
 // 			static bar: Foo;
 // 
 // 			public foo(): void {
@@ -2588,7 +1230,7 @@
 // 		// instance function
 // 		var x = new MixedStaticsClassTest.Foo();
 // 		x.foo();
-// 		x./*FIND ALL REFS*/[|bar|];
+// 		x./*FIND ALL REFS*/[|{| defId: 0 |}bar|];
 // 
 // 		// static function
 // 		MixedStaticsClassTest.Foo.foo();
@@ -2596,195 +1238,32 @@
 // 	}
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) MixedStaticsClassTest.Foo.bar: Foo"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "MixedStaticsClassTest",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "bar",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-    // module FindRef4 {
-    // 	module MixedStaticsClassTest {
-    // 		export class Foo {
-    // 			[|bar|]: Foo;
-    // 			static bar: Foo;
-    // 
-    // 			public foo(): void {
-    // 			}
-    // 			public static foo(): void {
-    // 			}
-    // 		}
-    // 	}
-    // 
-    // 	function test() {
-    // 		// instance function
-    // 		var x = new MixedStaticsClassTest.Foo();
-    // 		x.foo();
-    // 		x.bar;
-    // 
-    // 		// static function
-    // 		MixedStaticsClassTest.Foo.foo();
-    // 		MixedStaticsClassTest.Foo.bar;
-    // 	}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			[|bar: Foo;|]
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			[|bar|]: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-        // module FindRef4 {
-        // 	module MixedStaticsClassTest {
-        // 		export class Foo {
-        // 			[|bar: Foo;|]
-        // 			static bar: Foo;
-        // 
-        // 			public foo(): void {
-        // 			}
-        // 			public static foo(): void {
-        // 			}
-        // 		}
-        // 	}
-        // 
-        // 	function test() {
-        // 		// instance function
-        // 		var x = new MixedStaticsClassTest.Foo();
-        // 		x.foo();
-        // 		x.bar;
-        // 
-        // 		// static function
-        // 		MixedStaticsClassTest.Foo.foo();
-        // 		MixedStaticsClassTest.Foo.bar;
-        // 	}
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.[|bar|];
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
+// module FindRef4 {
+// 	module MixedStaticsClassTest {
+// 		export class Foo {
+// 			<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) MixedStaticsClassTest.Foo.bar: Foo", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"MixedStaticsClassTest","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"bar","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"}] |}bar|]: Foo;|>
+// 			static bar: Foo;
+// 
+// 			public foo(): void {
+// 			}
+// 			public static foo(): void {
+// 			}
+// 		}
+// 	}
+// 
+// 	function test() {
+// 		// instance function
+// 		var x = new MixedStaticsClassTest.Foo();
+// 		x.foo();
+// 		x./*FIND ALL REFS*/bar;
+// 
+// 		// static function
+// 		MixedStaticsClassTest.Foo.foo();
+// 		MixedStaticsClassTest.Foo.bar;
+// 	}
+// }
 
 [
   {
@@ -2887,8 +1366,8 @@
 // 
 // 			public foo(): void {
 // 			}
-// 			public static [|foo|](): void {
-// 			}
+// 			<|public static [|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|](): void {
+// 			}|>
 // 		}
 // 	}
 // 
@@ -2899,208 +1378,37 @@
 // 		x.bar;
 // 
 // 		// static function
-// 		MixedStaticsClassTest.Foo./*FIND ALL REFS*/[|foo|]();
+// 		MixedStaticsClassTest.Foo./*FIND ALL REFS*/[|{| defId: 0 |}foo|]();
 // 		MixedStaticsClassTest.Foo.bar;
 // 	}
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) MixedStaticsClassTest.Foo.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "MixedStaticsClassTest",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-    // module FindRef4 {
-    // 	module MixedStaticsClassTest {
-    // 		export class Foo {
-    // 			bar: Foo;
-    // 			static bar: Foo;
-    // 
-    // 			public foo(): void {
-    // 			}
-    // 			public static [|foo|](): void {
-    // 			}
-    // 		}
-    // 	}
-    // 
-    // 	function test() {
-    // 		// instance function
-    // 		var x = new MixedStaticsClassTest.Foo();
-    // 		x.foo();
-    // 		x.bar;
-    // 
-    // 		// static function
-    // 		MixedStaticsClassTest.Foo.foo();
-    // 		MixedStaticsClassTest.Foo.bar;
-    // 	}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			[|public static foo(): void {
-      // 			}|]
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static [|foo|](): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-        // module FindRef4 {
-        // 	module MixedStaticsClassTest {
-        // 		export class Foo {
-        // 			bar: Foo;
-        // 			static bar: Foo;
-        // 
-        // 			public foo(): void {
-        // 			}
-        // 			[|public static foo(): void {
-        // 			}|]
-        // 		}
-        // 	}
-        // 
-        // 	function test() {
-        // 		// instance function
-        // 		var x = new MixedStaticsClassTest.Foo();
-        // 		x.foo();
-        // 		x.bar;
-        // 
-        // 		// static function
-        // 		MixedStaticsClassTest.Foo.foo();
-        // 		MixedStaticsClassTest.Foo.bar;
-        // 	}
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.[|foo|]();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
+// module FindRef4 {
+// 	module MixedStaticsClassTest {
+// 		export class Foo {
+// 			bar: Foo;
+// 			static bar: Foo;
+// 
+// 			public foo(): void {
+// 			}
+// 			<|public static [|{| contextId: 0, defId: 0, kind: "method", name: "(method) MixedStaticsClassTest.Foo.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"MixedStaticsClassTest","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void {
+// 			}|>
+// 		}
+// 	}
+// 
+// 	function test() {
+// 		// instance function
+// 		var x = new MixedStaticsClassTest.Foo();
+// 		x.foo();
+// 		x.bar;
+// 
+// 		// static function
+// 		MixedStaticsClassTest.Foo./*FIND ALL REFS*/foo();
+// 		MixedStaticsClassTest.Foo.bar;
+// 	}
+// }
 
 [
   {
@@ -3207,7 +1515,7 @@
 // 	module MixedStaticsClassTest {
 // 		export class Foo {
 // 			bar: Foo;
-// 			static [|bar|]: Foo;
+// 			<|static [|{| contextId: 0, defId: 0 |}bar|]: Foo;|>
 // 
 // 			public foo(): void {
 // 			}
@@ -3224,199 +1532,36 @@
 // 
 // 		// static function
 // 		MixedStaticsClassTest.Foo.foo();
-// 		MixedStaticsClassTest.Foo./*FIND ALL REFS*/[|bar|];
+// 		MixedStaticsClassTest.Foo./*FIND ALL REFS*/[|{| defId: 0 |}bar|];
 // 	}
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) MixedStaticsClassTest.Foo.bar: Foo"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "MixedStaticsClassTest",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "bar",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-    // module FindRef4 {
-    // 	module MixedStaticsClassTest {
-    // 		export class Foo {
-    // 			bar: Foo;
-    // 			static [|bar|]: Foo;
-    // 
-    // 			public foo(): void {
-    // 			}
-    // 			public static foo(): void {
-    // 			}
-    // 		}
-    // 	}
-    // 
-    // 	function test() {
-    // 		// instance function
-    // 		var x = new MixedStaticsClassTest.Foo();
-    // 		x.foo();
-    // 		x.bar;
-    // 
-    // 		// static function
-    // 		MixedStaticsClassTest.Foo.foo();
-    // 		MixedStaticsClassTest.Foo.bar;
-    // 	}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			[|static bar: Foo;|]
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static [|bar|]: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.bar;
-      // 	}
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-        // module FindRef4 {
-        // 	module MixedStaticsClassTest {
-        // 		export class Foo {
-        // 			bar: Foo;
-        // 			[|static bar: Foo;|]
-        // 
-        // 			public foo(): void {
-        // 			}
-        // 			public static foo(): void {
-        // 			}
-        // 		}
-        // 	}
-        // 
-        // 	function test() {
-        // 		// instance function
-        // 		var x = new MixedStaticsClassTest.Foo();
-        // 		x.foo();
-        // 		x.bar;
-        // 
-        // 		// static function
-        // 		MixedStaticsClassTest.Foo.foo();
-        // 		MixedStaticsClassTest.Foo.bar;
-        // 	}
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
-      // module FindRef4 {
-      // 	module MixedStaticsClassTest {
-      // 		export class Foo {
-      // 			bar: Foo;
-      // 			static bar: Foo;
-      // 
-      // 			public foo(): void {
-      // 			}
-      // 			public static foo(): void {
-      // 			}
-      // 		}
-      // 	}
-      // 
-      // 	function test() {
-      // 		// instance function
-      // 		var x = new MixedStaticsClassTest.Foo();
-      // 		x.foo();
-      // 		x.bar;
-      // 
-      // 		// static function
-      // 		MixedStaticsClassTest.Foo.foo();
-      // 		MixedStaticsClassTest.Foo.[|bar|];
-      // 	}
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForStaticsAndMembersWithSameNames.ts ===
+// module FindRef4 {
+// 	module MixedStaticsClassTest {
+// 		export class Foo {
+// 			bar: Foo;
+// 			<|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) MixedStaticsClassTest.Foo.bar: Foo", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"MixedStaticsClassTest","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"bar","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"}] |}bar|]: Foo;|>
+// 
+// 			public foo(): void {
+// 			}
+// 			public static foo(): void {
+// 			}
+// 		}
+// 	}
+// 
+// 	function test() {
+// 		// instance function
+// 		var x = new MixedStaticsClassTest.Foo();
+// 		x.foo();
+// 		x.bar;
+// 
+// 		// static function
+// 		MixedStaticsClassTest.Foo.foo();
+// 		MixedStaticsClassTest.Foo./*FIND ALL REFS*/bar;
+// 	}
+// }
 
 [
   {

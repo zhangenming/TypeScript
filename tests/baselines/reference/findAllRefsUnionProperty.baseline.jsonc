@@ -1,3584 +1,26 @@
 // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
 // type T =
-//     | { /*FIND ALL REFS*/[|type|]: "a", prop: number }
-//     | { [|type|]: "b", prop: string };
+//     | { /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isDefinition: true |}type|]: "a",|> prop: number }
+//     | { <|[|{| contextId: 1, defId: 1 |}type|]: "b",|> prop: string };
 // const tt: T = {
-//     [|type|]: "a",
+//     <|[|{| contextId: 2, defId: 0, isWriteAccess: true |}type|]: "a"|>,
 //     prop: 0,
 // };
 // declare const t: T;
-// if (t.[|type|] === "a") {
-//     t.[|type|];
+// if (t.[|{| defId: 2 |}type|] === "a") {
+//     t.[|{| defId: 0 |}type|];
 // } else {
-//     t.[|type|];
+//     t.[|{| defId: 1 |}type|];
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type|]: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { [|type: "a",|] prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     [|type|]: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     [|type: "a"|],
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.[|type|];
-      // } else {
-      //     t.type;
-      // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"b\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"b\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { type: "a", prop: number }
-    //     | { [|type|]: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { [|type: "b",|] prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { [|type|]: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { [|type: "b",|] prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.[|type|];
-      // }
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\" | \"b\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "|",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"b\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.[|type|] === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-
-
-[
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 17,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 17,
-          "length": 10
-        },
-        "isWriteAccess": false,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 98,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 98,
-          "length": 9
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 173,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"b\"",
-      "textSpan": {
-        "start": 51,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"b\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 51,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 51,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 51,
-          "length": 10
-        },
-        "isWriteAccess": false,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 194,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\" | \"b\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "|",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"b\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 151,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
-]
-
+// === Definitions ===
 // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
 // type T =
-//     | { [|type|]: "a", prop: number }
-//     | { /*FIND ALL REFS*/[|type|]: "b", prop: string };
-// const tt: T = {
-//     [|type|]: "a",
-//     prop: 0,
-// };
-// declare const t: T;
-// if (t.[|type|] === "a") {
-//     t.[|type|];
-// } else {
-//     t.[|type|];
-// }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type|]: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { [|type: "a",|] prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     [|type|]: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     [|type: "a"|],
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.[|type|];
-      // } else {
-      //     t.type;
-      // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"b\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"b\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { type: "a", prop: number }
-    //     | { [|type|]: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { [|type: "b",|] prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { [|type|]: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { [|type: "b",|] prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.[|type|];
-      // }
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\" | \"b\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "|",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"b\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.[|type|] === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-
-
-[
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 17,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 17,
-          "length": 10
-        },
-        "isWriteAccess": false,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 98,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 98,
-          "length": 9
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 173,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"b\"",
-      "textSpan": {
-        "start": 51,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"b\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 51,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 51,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 51,
-          "length": 10
-        },
-        "isWriteAccess": false,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 194,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\" | \"b\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "|",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"b\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 151,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
-]
-
-// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-// type T =
-//     | { [|type|]: "a", prop: number }
-//     | { [|type|]: "b", prop: string };
-// const tt: T = {
-//     [|type|]: "a",
-//     prop: 0,
-// };
-// declare const t: T;
-// if (t./*FIND ALL REFS*/[|type|] === "a") {
-//     t.[|type|];
-// } else {
-//     t.[|type|];
-// }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type|]: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { [|type: "a",|] prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     [|type|]: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     [|type: "a"|],
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.[|type|];
-      // } else {
-      //     t.type;
-      // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"b\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"b\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { type: "a", prop: number }
-    //     | { [|type|]: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { [|type: "b",|] prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { [|type|]: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { [|type: "b",|] prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.[|type|];
-      // }
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\" | \"b\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "|",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"b\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.[|type|] === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-
-
-[
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 17,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 17,
-          "length": 10
-        },
-        "isWriteAccess": false
-      },
-      {
-        "textSpan": {
-          "start": 98,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 98,
-          "length": 9
-        },
-        "isWriteAccess": true
-      },
-      {
-        "textSpan": {
-          "start": 173,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"b\"",
-      "textSpan": {
-        "start": 51,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"b\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 51,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 51,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 51,
-          "length": 10
-        },
-        "isWriteAccess": false
-      },
-      {
-        "textSpan": {
-          "start": 194,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\" | \"b\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "|",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"b\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 151,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false
-      }
-    ]
-  }
-]
-
-// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-// type T =
-//     | { [|type|]: "a", prop: number }
-//     | { [|type|]: "b", prop: string };
-// const tt: T = {
-//     [|type|]: "a",
-//     prop: 0,
-// };
-// declare const t: T;
-// if (t.[|type|] === "a") {
-//     t./*FIND ALL REFS*/[|type|];
-// } else {
-//     t.[|type|];
-// }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type|]: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { [|type: "a",|] prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     [|type|]: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     [|type: "a"|],
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.[|type|];
-      // } else {
-      //     t.type;
-      // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"b\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"b\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { type: "a", prop: number }
-    //     | { [|type|]: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { [|type: "b",|] prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { [|type|]: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { [|type: "b",|] prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.[|type|];
-      // }
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\" | \"b\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "|",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"b\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.[|type|] === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-
-
-[
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 17,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 17,
-          "length": 10
-        },
-        "isWriteAccess": false
-      },
-      {
-        "textSpan": {
-          "start": 98,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 98,
-          "length": 9
-        },
-        "isWriteAccess": true
-      },
-      {
-        "textSpan": {
-          "start": 173,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"b\"",
-      "textSpan": {
-        "start": 51,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"b\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 51,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 51,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 51,
-          "length": 10
-        },
-        "isWriteAccess": false
-      },
-      {
-        "textSpan": {
-          "start": 194,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\" | \"b\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "|",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"b\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 151,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false
-      }
-    ]
-  }
-]
-
-// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-// type T =
-//     | { [|type|]: "a", prop: number }
-//     | { [|type|]: "b", prop: string };
-// const tt: T = {
-//     [|type|]: "a",
-//     prop: 0,
-// };
-// declare const t: T;
-// if (t.[|type|] === "a") {
-//     t.[|type|];
-// } else {
-//     t./*FIND ALL REFS*/[|type|];
-// }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type|]: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { [|type: "a",|] prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     [|type|]: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     [|type: "a"|],
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.[|type|];
-      // } else {
-      //     t.type;
-      // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"b\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"b\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { type: "a", prop: number }
-    //     | { [|type|]: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { [|type: "b",|] prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { [|type|]: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { [|type: "b",|] prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.[|type|];
-      // }
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\" | \"b\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "|",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"b\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.[|type|] === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-
-
-[
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 17,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 17,
-          "length": 10
-        },
-        "isWriteAccess": false
-      },
-      {
-        "textSpan": {
-          "start": 98,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 98,
-          "length": 9
-        },
-        "isWriteAccess": true
-      },
-      {
-        "textSpan": {
-          "start": 173,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"b\"",
-      "textSpan": {
-        "start": 51,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"b\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 51,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 51,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 51,
-          "length": 10
-        },
-        "isWriteAccess": false
-      },
-      {
-        "textSpan": {
-          "start": 194,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\" | \"b\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "|",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"b\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 151,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false
-      }
-    ]
-  }
-]
-
-// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-// type T =
-//     | { [|type|]: "a", prop: number }
-//     | { type: "b", prop: string };
-// const tt: T = {
-//     /*FIND ALL REFS*/[|type|]: "a",
-//     prop: 0,
-// };
-// declare const t: T;
-// if (t.[|type|] === "a") {
-//     t.[|type|];
-// } else {
-//     t.type;
-// }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type|]: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { [|type: "a",|] prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     [|type|]: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     [|type: "a"|],
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.[|type|];
-      // } else {
-      //     t.type;
-      // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) type: \"a\" | \"b\""
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "type",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"a\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "|",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"b\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { [|type|]: "a", prop: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { [|type: "a",|] prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.[|type|] === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-
-
-[
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 17,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 17,
-          "length": 10
-        },
-        "isWriteAccess": false,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 98,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "contextSpan": {
-          "start": 98,
-          "length": 9
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 173,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-      "kind": "property",
-      "name": "(property) type: \"a\" | \"b\"",
-      "textSpan": {
-        "start": 17,
-        "length": 4
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "property",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "type",
-          "kind": "propertyName"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"a\"",
-          "kind": "stringLiteral"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "|",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "\"b\"",
-          "kind": "stringLiteral"
-        }
-      ],
-      "contextSpan": {
-        "start": 17,
-        "length": 10
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 151,
-          "length": 4
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
-]
-
-// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-// type T =
-//     | { type: "a", /*FIND ALL REFS*/[|prop|]: number }
-//     | { type: "b", [|prop|]: string };
+//     | { /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) type: \"a\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"}] |}<|[|{| contextId: 1, defId: 2, kind: "property", name: "(property) type: \"a\" | \"b\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"},{"text":" ","kind":"space"},{"text":"|","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"b\"","kind":"stringLiteral"}] |}type|]|]: "a",|>|> prop: number }
+//     | { <|[|{| contextId: 2, defId: 1, kind: "property", name: "(property) type: \"b\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"b\"","kind":"stringLiteral"}] |}type|]: "b",|> prop: string };
 // const tt: T = {
 //     type: "a",
-//     [|prop|]: 0,
+//     prop: 0,
 // };
 // declare const t: T;
 // if (t.type === "a") {
@@ -3587,243 +29,1562 @@
 //     t.type;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) prop: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "prop",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { type: "a", [|prop|]: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", [|prop: number|] }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", [|prop|]: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", [|prop: number|] }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     [|prop|]: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     [|prop: 0|],
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) prop: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "prop",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { type: "a", prop: number }
-    //     | { type: "b", [|prop|]: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", [|prop: string|] };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", [|prop|]: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { type: "b", [|prop: string|] };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
+[
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 17,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 17,
+          "length": 10
+        },
+        "isWriteAccess": false,
+        "isDefinition": true
+      },
+      {
+        "textSpan": {
+          "start": 98,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 98,
+          "length": 9
+        },
+        "isWriteAccess": true,
+        "isDefinition": false
+      },
+      {
+        "textSpan": {
+          "start": 173,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false,
+        "isDefinition": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"b\"",
+      "textSpan": {
+        "start": 51,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"b\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 51,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 51,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 51,
+          "length": 10
+        },
+        "isWriteAccess": false,
+        "isDefinition": false
+      },
+      {
+        "textSpan": {
+          "start": 194,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false,
+        "isDefinition": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\" | \"b\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "|",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"b\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 151,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false,
+        "isDefinition": false
+      }
+    ]
+  }
+]
 
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { <|[|{| contextId: 0, defId: 0 |}type|]: "a",|> prop: number }
+//     | { /*FIND ALL REFS*/<|[|{| contextId: 1, defId: 1, isDefinition: true |}type|]: "b",|> prop: string };
+// const tt: T = {
+//     <|[|{| contextId: 2, defId: 0, isWriteAccess: true |}type|]: "a"|>,
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t.[|{| defId: 2 |}type|] === "a") {
+//     t.[|{| defId: 0 |}type|];
+// } else {
+//     t.[|{| defId: 1 |}type|];
+// }
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) type: \"a\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"}] |}<|[|{| contextId: 1, defId: 2, kind: "property", name: "(property) type: \"a\" | \"b\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"},{"text":" ","kind":"space"},{"text":"|","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"b\"","kind":"stringLiteral"}] |}type|]|]: "a",|>|> prop: number }
+//     | { /*FIND ALL REFS*/<|[|{| contextId: 2, defId: 1, kind: "property", name: "(property) type: \"b\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"b\"","kind":"stringLiteral"}] |}type|]: "b",|> prop: string };
+// const tt: T = {
+//     type: "a",
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t.type === "a") {
+//     t.type;
+// } else {
+//     t.type;
+// }
+
+[
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 17,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 17,
+          "length": 10
+        },
+        "isWriteAccess": false,
+        "isDefinition": false
+      },
+      {
+        "textSpan": {
+          "start": 98,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 98,
+          "length": 9
+        },
+        "isWriteAccess": true,
+        "isDefinition": false
+      },
+      {
+        "textSpan": {
+          "start": 173,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false,
+        "isDefinition": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"b\"",
+      "textSpan": {
+        "start": 51,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"b\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 51,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 51,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 51,
+          "length": 10
+        },
+        "isWriteAccess": false,
+        "isDefinition": true
+      },
+      {
+        "textSpan": {
+          "start": 194,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false,
+        "isDefinition": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\" | \"b\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "|",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"b\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 151,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false,
+        "isDefinition": false
+      }
+    ]
+  }
+]
+
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { <|[|{| contextId: 0, defId: 0 |}type|]: "a",|> prop: number }
+//     | { <|[|{| contextId: 1, defId: 1 |}type|]: "b",|> prop: string };
+// const tt: T = {
+//     <|[|{| contextId: 2, defId: 0, isWriteAccess: true |}type|]: "a"|>,
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t./*FIND ALL REFS*/[|{| defId: 2 |}type|] === "a") {
+//     t.[|{| defId: 0 |}type|];
+// } else {
+//     t.[|{| defId: 1 |}type|];
+// }
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) type: \"a\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"}] |}<|[|{| contextId: 1, defId: 2, kind: "property", name: "(property) type: \"a\" | \"b\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"},{"text":" ","kind":"space"},{"text":"|","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"b\"","kind":"stringLiteral"}] |}type|]|]: "a",|>|> prop: number }
+//     | { <|[|{| contextId: 2, defId: 1, kind: "property", name: "(property) type: \"b\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"b\"","kind":"stringLiteral"}] |}type|]: "b",|> prop: string };
+// const tt: T = {
+//     type: "a",
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t./*FIND ALL REFS*/type === "a") {
+//     t.type;
+// } else {
+//     t.type;
+// }
+
+[
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 17,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 17,
+          "length": 10
+        },
+        "isWriteAccess": false
+      },
+      {
+        "textSpan": {
+          "start": 98,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 98,
+          "length": 9
+        },
+        "isWriteAccess": true
+      },
+      {
+        "textSpan": {
+          "start": 173,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"b\"",
+      "textSpan": {
+        "start": 51,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"b\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 51,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 51,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 51,
+          "length": 10
+        },
+        "isWriteAccess": false
+      },
+      {
+        "textSpan": {
+          "start": 194,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\" | \"b\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "|",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"b\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 151,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false
+      }
+    ]
+  }
+]
+
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { <|[|{| contextId: 0, defId: 0 |}type|]: "a",|> prop: number }
+//     | { <|[|{| contextId: 1, defId: 1 |}type|]: "b",|> prop: string };
+// const tt: T = {
+//     <|[|{| contextId: 2, defId: 0, isWriteAccess: true |}type|]: "a"|>,
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t.[|{| defId: 2 |}type|] === "a") {
+//     t./*FIND ALL REFS*/[|{| defId: 0 |}type|];
+// } else {
+//     t.[|{| defId: 1 |}type|];
+// }
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) type: \"a\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"}] |}<|[|{| contextId: 1, defId: 2, kind: "property", name: "(property) type: \"a\" | \"b\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"},{"text":" ","kind":"space"},{"text":"|","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"b\"","kind":"stringLiteral"}] |}type|]|]: "a",|>|> prop: number }
+//     | { <|[|{| contextId: 2, defId: 1, kind: "property", name: "(property) type: \"b\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"b\"","kind":"stringLiteral"}] |}type|]: "b",|> prop: string };
+// const tt: T = {
+//     type: "a",
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t.type === "a") {
+//     t./*FIND ALL REFS*/type;
+// } else {
+//     t.type;
+// }
+
+[
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 17,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 17,
+          "length": 10
+        },
+        "isWriteAccess": false
+      },
+      {
+        "textSpan": {
+          "start": 98,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 98,
+          "length": 9
+        },
+        "isWriteAccess": true
+      },
+      {
+        "textSpan": {
+          "start": 173,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"b\"",
+      "textSpan": {
+        "start": 51,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"b\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 51,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 51,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 51,
+          "length": 10
+        },
+        "isWriteAccess": false
+      },
+      {
+        "textSpan": {
+          "start": 194,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\" | \"b\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "|",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"b\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 151,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false
+      }
+    ]
+  }
+]
+
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { <|[|{| contextId: 0, defId: 0 |}type|]: "a",|> prop: number }
+//     | { <|[|{| contextId: 1, defId: 1 |}type|]: "b",|> prop: string };
+// const tt: T = {
+//     <|[|{| contextId: 2, defId: 0, isWriteAccess: true |}type|]: "a"|>,
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t.[|{| defId: 2 |}type|] === "a") {
+//     t.[|{| defId: 0 |}type|];
+// } else {
+//     t./*FIND ALL REFS*/[|{| defId: 1 |}type|];
+// }
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) type: \"a\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"}] |}<|[|{| contextId: 1, defId: 2, kind: "property", name: "(property) type: \"a\" | \"b\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"},{"text":" ","kind":"space"},{"text":"|","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"b\"","kind":"stringLiteral"}] |}type|]|]: "a",|>|> prop: number }
+//     | { <|[|{| contextId: 2, defId: 1, kind: "property", name: "(property) type: \"b\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"b\"","kind":"stringLiteral"}] |}type|]: "b",|> prop: string };
+// const tt: T = {
+//     type: "a",
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t.type === "a") {
+//     t.type;
+// } else {
+//     t./*FIND ALL REFS*/type;
+// }
+
+[
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 17,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 17,
+          "length": 10
+        },
+        "isWriteAccess": false
+      },
+      {
+        "textSpan": {
+          "start": 98,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 98,
+          "length": 9
+        },
+        "isWriteAccess": true
+      },
+      {
+        "textSpan": {
+          "start": 173,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"b\"",
+      "textSpan": {
+        "start": 51,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"b\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 51,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 51,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 51,
+          "length": 10
+        },
+        "isWriteAccess": false
+      },
+      {
+        "textSpan": {
+          "start": 194,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\" | \"b\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "|",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"b\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 151,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false
+      }
+    ]
+  }
+]
+
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { <|[|{| contextId: 0, defId: 0 |}type|]: "a",|> prop: number }
+//     | { type: "b", prop: string };
+// const tt: T = {
+//     /*FIND ALL REFS*/<|[|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}type|]: "a"|>,
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t.[|{| defId: 1 |}type|] === "a") {
+//     t.[|{| defId: 0 |}type|];
+// } else {
+//     t.type;
+// }
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) type: \"a\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"}] |}<|[|{| contextId: 1, defId: 1, kind: "property", name: "(property) type: \"a\" | \"b\"", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"type","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"a\"","kind":"stringLiteral"},{"text":" ","kind":"space"},{"text":"|","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"\"b\"","kind":"stringLiteral"}] |}type|]|]: "a",|>|> prop: number }
+//     | { type: "b", prop: string };
+// const tt: T = {
+//     /*FIND ALL REFS*/type: "a",
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t.type === "a") {
+//     t.type;
+// } else {
+//     t.type;
+// }
+
+[
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 17,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 17,
+          "length": 10
+        },
+        "isWriteAccess": false,
+        "isDefinition": false
+      },
+      {
+        "textSpan": {
+          "start": 98,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "contextSpan": {
+          "start": 98,
+          "length": 9
+        },
+        "isWriteAccess": true,
+        "isDefinition": true
+      },
+      {
+        "textSpan": {
+          "start": 173,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false,
+        "isDefinition": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+      "kind": "property",
+      "name": "(property) type: \"a\" | \"b\"",
+      "textSpan": {
+        "start": 17,
+        "length": 4
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "property",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "type",
+          "kind": "propertyName"
+        },
+        {
+          "text": ":",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"a\"",
+          "kind": "stringLiteral"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "|",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "\"b\"",
+          "kind": "stringLiteral"
+        }
+      ],
+      "contextSpan": {
+        "start": 17,
+        "length": 10
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 151,
+          "length": 4
+        },
+        "fileName": "/tests/cases/fourslash/findAllRefsUnionProperty.ts",
+        "isWriteAccess": false,
+        "isDefinition": false
+      }
+    ]
+  }
+]
+
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { type: "a", /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isDefinition: true |}prop|]: number|> }
+//     | { type: "b", <|[|{| contextId: 1, defId: 1 |}prop|]: string|> };
+// const tt: T = {
+//     type: "a",
+//     <|[|{| contextId: 2, defId: 0, isWriteAccess: true |}prop|]: 0|>,
+// };
+// declare const t: T;
+// if (t.type === "a") {
+//     t.type;
+// } else {
+//     t.type;
+// }
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { type: "a", /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) prop: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"prop","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}prop|]: number|> }
+//     | { type: "b", <|[|{| contextId: 1, defId: 1, kind: "property", name: "(property) prop: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"prop","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}prop|]: string|> };
+// const tt: T = {
+//     type: "a",
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t.type === "a") {
+//     t.type;
+// } else {
+//     t.type;
+// }
 
 [
   {
@@ -3975,11 +1736,11 @@
 
 // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
 // type T =
-//     | { type: "a", [|prop|]: number }
-//     | { type: "b", /*FIND ALL REFS*/[|prop|]: string };
+//     | { type: "a", <|[|{| contextId: 0, defId: 0 |}prop|]: number|> }
+//     | { type: "b", /*FIND ALL REFS*/<|[|{| contextId: 1, defId: 1, isDefinition: true |}prop|]: string|> };
 // const tt: T = {
 //     type: "a",
-//     [|prop|]: 0,
+//     <|[|{| contextId: 2, defId: 0, isWriteAccess: true |}prop|]: 0|>,
 // };
 // declare const t: T;
 // if (t.type === "a") {
@@ -3988,243 +1749,21 @@
 //     t.type;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) prop: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "prop",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { type: "a", [|prop|]: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", [|prop: number|] }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", [|prop|]: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", [|prop: number|] }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     [|prop|]: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     [|prop: 0|],
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) prop: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "prop",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { type: "a", prop: number }
-    //     | { type: "b", [|prop|]: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", [|prop: string|] };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", [|prop|]: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { type: "b", [|prop: string|] };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { type: "a", <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) prop: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"prop","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}prop|]: number|> }
+//     | { type: "b", /*FIND ALL REFS*/<|[|{| contextId: 1, defId: 1, kind: "property", name: "(property) prop: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"prop","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}prop|]: string|> };
+// const tt: T = {
+//     type: "a",
+//     prop: 0,
+// };
+// declare const t: T;
+// if (t.type === "a") {
+//     t.type;
+// } else {
+//     t.type;
+// }
 
 [
   {
@@ -4376,11 +1915,11 @@
 
 // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
 // type T =
-//     | { type: "a", [|prop|]: number }
+//     | { type: "a", <|[|{| contextId: 0, defId: 0 |}prop|]: number|> }
 //     | { type: "b", prop: string };
 // const tt: T = {
 //     type: "a",
-//     /*FIND ALL REFS*/[|prop|]: 0,
+//     /*FIND ALL REFS*/<|[|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}prop|]: 0|>,
 // };
 // declare const t: T;
 // if (t.type === "a") {
@@ -4389,141 +1928,21 @@
 //     t.type;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) prop: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "prop",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-    // type T =
-    //     | { type: "a", [|prop|]: number }
-    //     | { type: "b", prop: string };
-    // const tt: T = {
-    //     type: "a",
-    //     prop: 0,
-    // };
-    // declare const t: T;
-    // if (t.type === "a") {
-    //     t.type;
-    // } else {
-    //     t.type;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", [|prop: number|] }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", [|prop|]: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     prop: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", [|prop: number|] }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     prop: 0,
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-      // type T =
-      //     | { type: "a", prop: number }
-      //     | { type: "b", prop: string };
-      // const tt: T = {
-      //     type: "a",
-      //     [|prop|]: 0,
-      // };
-      // declare const t: T;
-      // if (t.type === "a") {
-      //     t.type;
-      // } else {
-      //     t.type;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
-        // type T =
-        //     | { type: "a", prop: number }
-        //     | { type: "b", prop: string };
-        // const tt: T = {
-        //     type: "a",
-        //     [|prop: 0|],
-        // };
-        // declare const t: T;
-        // if (t.type === "a") {
-        //     t.type;
-        // } else {
-        //     t.type;
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsUnionProperty.ts ===
+// type T =
+//     | { type: "a", <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) prop: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"prop","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}prop|]: number|> }
+//     | { type: "b", prop: string };
+// const tt: T = {
+//     type: "a",
+//     /*FIND ALL REFS*/prop: 0,
+// };
+// declare const t: T;
+// if (t.type === "a") {
+//     t.type;
+// } else {
+//     t.type;
+// }
 
 [
   {

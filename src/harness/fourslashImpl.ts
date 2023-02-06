@@ -105,6 +105,24 @@ function isMarker(x: Marker | Range): x is Marker {
     return (x as Marker).position !== undefined;
 }
 
+function convertDocumentSpanToString<T extends ts.DocumentSpan>(span: T, prefix?: string, ignoredProperties?: readonly string[]) {
+    let text = prefix || "";
+    for (const p in span) {
+        if (p === "textSpan" || p === "fileName" || p === "contextSpan") continue;
+        if (ts.contains(ignoredProperties, p)) continue;
+        if (ts.hasProperty(span, p) && !!span[p]) { // Serialize truthy properties
+            const propText = `${p}: ${JSON.stringify(span[p])}`;
+            if (text) text += `, ${propText}`;
+            else text = propText;
+        }
+    }
+    return text;
+}
+
+function readableJsoncBaseline(content: string) {
+    return content.split(/\r?\n/).map(l => "// " + l).join("\n");
+}
+
 export class TestCancellationToken implements ts.HostCancellationToken {
     // 0 - cancelled
     // >0 - not cancelled
@@ -739,19 +757,11 @@ export class TestState {
             markerOrRange,
             defs,
             defs => defs ? ts.isArray(defs) ? defs : defs.definitions : undefined,
-            defs => !defs ?
-                "" :
-                ts.isArray(defs) ?
-                    this.readableDocumentSpanArray(defs, "") + "\n\n" :
-                    (
-                        (defs.definitions ?
-                            "// === Definitions ===\n" +
-                            this.readableDocumentSpanArray(defs.definitions, "  ") :
-                            "") +
-                        "// === TextSpan ===\n" +
-                        this.readableDocumentSpan({ fileName: this.activeFile.fileName, textSpan: defs.textSpan }, "  ") +
-                        "\n\n"
-                    ),
+            defs => defs && !ts.isArray(defs) ? "// === TextSpan ===\n" + this.getBaselineContentForGroupedReferences(
+                refType,
+                [[{ fileName: this.activeFile.fileName, textSpan: defs.textSpan }]],
+                markerOrRange,
+            ) : "",
         );
     }
 
@@ -1092,65 +1102,6 @@ export class TestState {
         }
     }
 
-    private readableJsoncBaseline(content: string, leadingSpaces: string) {
-        return content.split(/\r?\n/).map(l => leadingSpaces + "// " + l).join("\n");
-    }
-
-    private readableSpan(fileName: string, { start, length }: ts.TextSpan, leadingSpaces: string) {
-        const content = this.tryGetFileContent(fileName);
-        if (content !== undefined) {
-            const end = start + length;
-            const newContent = `=== ${fileName} ===\n` +
-                content.slice(0, start) +
-                `[|` +
-                content.slice(start, end) +
-                `|]` +
-                content.slice(end);
-            return this.readableJsoncBaseline(newContent, leadingSpaces) + "\n";
-        }
-        else {
-            const newContent = `=== ${fileName} ===\n` +
-                `Unavailable file content:: start: ${start}, length: ${length}\n`;
-            return this.readableJsoncBaseline(newContent, leadingSpaces) + "\n";
-        }
-    }
-
-    private readableDocumentSpan<T extends ts.DocumentSpan>(span: T, leadingSpaces: string) {
-        // Add data from the span too
-        let readable = "";
-        for (const p in span) {
-            if (p === "fileName" || p === "textSpan" || p === "contextSpan") continue;
-            if (ts.hasProperty(span, p) && span[p] !== undefined) {
-                const value = JSON.stringify(span[p], undefined, " ");
-                if (value) readable += this.readableJsoncBaseline(`${p}: ${value}`, leadingSpaces) + "\n";
-            }
-        }
-        readable += this.readableSpan(span.fileName, span.textSpan, leadingSpaces);
-        if (span.contextSpan) {
-            readable += leadingSpaces +
-                "  // === ContextSpan ===\n" +
-                this.readableSpan(span.fileName, span.contextSpan, leadingSpaces + "  ");
-        }
-        return readable;
-    }
-
-    private readableDocumentSpanArray(spans: readonly ts.DocumentSpan[], leadingSpaces: string) {
-        return this.readableArray(
-            spans,
-            (span, leadingSpaces) => this.readableDocumentSpan(span, leadingSpaces),
-            leadingSpaces,
-        );
-    }
-
-    private readableArray<T>(
-        array: readonly T[],
-        toString: (ele: T, leadingSpaces: string) => string,
-        leadingSpaces: string,
-    ) {
-        return array.map((ele, index) => leadingSpaces + "// " + `=== ${index} ===\n` +
-            toString(ele, leadingSpaces + "  ")).join("");
-    }
-
     public verifyBaselineCommands(...commands: FourSlashInterface.BaselineCommand[]) {
         let baselineContent = "";
         commands.forEach((command, index) => {
@@ -1258,21 +1209,25 @@ export class TestState {
     private baselineFindAllReferencesWorker(markerOrRange: MarkerOrNameOrRange) {
         this.goToMarkerOrNameOrRange(markerOrRange);
         const references = this.findReferencesAtCaret();
+        const defIdMap = new Map<ts.ReferencedSymbolDefinitionInfo | ts.ReferencedSymbolEntry, number>();
         return this.baselineReferencesWorker(
             "/*FIND ALL REFS*/",
             markerOrRange,
             references,
-            references => ts.flatMap(references, r => r.references),
-            references => references ?
-                this.readableArray(
-                    references,
-                    (r, leadingSpaces) => leadingSpaces + "// === Definition ===\n" +
-                        this.readableDocumentSpan(r.definition, leadingSpaces + "  ") +
-                        leadingSpaces + "// === References ===\n" +
-                        this.readableDocumentSpanArray(r.references, leadingSpaces + "  "),
-                    "",
-                ) + "\n\n" :
-                "",
+            references => ts.flatMap(references, (r, def) => {
+                defIdMap.set(r.definition, def);
+                r.references.forEach(r => defIdMap.set(r, def));
+                return r.references;
+            }),
+            references => references ? "// === Definitions ===\n" + this.baselineReferencesWorker(
+                "/*FIND ALL REFS*/",
+                markerOrRange,
+                references.map(r => r.definition),
+                ts.identity,
+                /*skipJson*/ true,
+                def => `defId: ${defIdMap.get(def)}`,
+            ) : "",
+            ref => `defId: ${defIdMap.get(ref)}`,
         );
     }
 
@@ -1287,7 +1242,6 @@ export class TestState {
             /*markerName*/ undefined,
             references,
             ts.identity,
-            references => this.readableDocumentSpanArray(references, "") + "\n\n",
         );
     }
 
@@ -1296,23 +1250,41 @@ export class TestState {
         markerOrRange: MarkerOrNameOrRange | undefined,
         result: R,
         getDocumentSpanArray: (result: R) => readonly T[] | undefined,
-        getReadableResult: (result: R) => string,
+        skipJsonOrGetAdditionalBaseline?: true | ((result: R) => string),
+        documentSpanToPrefix?: (span: T) => string,
+        startMarker?: (span: T) => string,
+        endMarker?: (span: T) => string,
+        ignoredDocumentSpanProperties?: readonly string[],
     ): string {
         const spans = getDocumentSpanArray(result);
-        const spansByFile = spans
-            ? ts.group(ts.sort(spans, (a, b) => a.textSpan.start - b.textSpan.start), span => span.fileName)
-            : ts.emptyArray;
+        const spansByFile = spans ? ts.group(spans, span => span.fileName) : ts.emptyArray;
         // Write input files
-        const baselineContent = this.getBaselineContentForGroupedReferences(refType, spansByFile, markerOrRange);
-        const readableReferences = getReadableResult(result);
+        const baselineContent = this.getBaselineContentForGroupedReferences(
+            refType,
+            spansByFile,
+            markerOrRange,
+            // Skip additional marker file since its already added in prev baseline,
+            skipJsonOrGetAdditionalBaseline === true,
+            documentSpanToPrefix,
+            startMarker,
+            endMarker,
+            ignoredDocumentSpanProperties,
+        );
+        if (skipJsonOrGetAdditionalBaseline === true) return baselineContent;
+        const additionalBaseline = skipJsonOrGetAdditionalBaseline?.(result) || "";
         // Write response JSON
-        return baselineContent + readableReferences + JSON.stringify(result, undefined, 2);
+        return baselineContent + additionalBaseline + JSON.stringify(result, undefined, 2);
     }
 
     private getBaselineContentForGroupedReferences<T extends ts.DocumentSpan>(
         refType: string,
         refsByFile: readonly (readonly T[])[],
         markerOrRange: MarkerOrNameOrRange | undefined,
+        skipMarkerOnlyFile?: boolean,
+        documentSpanToPrefix?: (span: T) => string,
+        startMarker?: (span: T) => string,
+        endMarker?: (span: T) => string,
+        ignoredDocumentSpanProperties?: readonly string[],
     ) {
         const marker: Marker | undefined = markerOrRange !== undefined ?
             ts.isString(markerOrRange) ?
@@ -1321,75 +1293,126 @@ export class TestState {
                     markerOrRange :
                     { fileName: markerOrRange.fileName, position: markerOrRange.pos } :
             undefined;
-        let foundMarker = false;
         let baselineContent = "";
+        let foundMarker = false;
+        let currentContextId = 0;
+        const spanToContextId = new Map<T, number>();
         for (const group of refsByFile) {
             if (group.length) {
                 const contentOfFile = this.tryGetFileContent(group[0].fileName);
                 if (contentOfFile !== undefined) {
-                    baselineContent += this.readableJsoncBaseline(getBaselineContentForFile(group[0].fileName, contentOfFile, group), "");
+                    baselineContent += getBaselineContentForFile(
+                        group[0].fileName,
+                        contentOfFile,
+                        group
+                    ) + "\n\n";
                 }
                 else {
                     baselineContent += `// === ${group[0].fileName} ===\n// Unavailable file content:\n`;
-                    for (const { textSpan } of group ?? ts.emptyArray) {
-                        baselineContent += `// start: ${textSpan.start}, length: ${textSpan.length}\n`;
+                    for (const span of group) {
+                        baselineContent += `// textSpan: ${JSON.stringify(span.textSpan)}${span.contextSpan ? `, contextSpan: ${JSON.stringify(span.contextSpan)}` : ""}`;
+                        const text = convertDocumentSpanToString(span, documentSpanToPrefix?.(span));
+                        if (text) baselineContent += ` ${text}`;
+                        baselineContent = "\n\n";
                     }
+                    foundMarker ||= marker?.fileName === group[0].fileName;
                 }
-                baselineContent += "\n\n";
             }
         }
-        if (!foundMarker && marker?.fileName) {
+        if (!skipMarkerOnlyFile && !foundMarker && marker?.fileName) {
             const content = this.getFileContent(marker.fileName);
             const newContent = `=== ${marker.fileName} ===\n` +
                 content.slice(0, marker.position) +
                 refType +
                 content.slice(marker.position);
-            baselineContent += this.readableJsoncBaseline(newContent, "") + "\n\n";
+            baselineContent += readableJsoncBaseline(newContent) + "\n\n";
         }
         return baselineContent;
 
-        function getBaselineContentForFile(fileName: string, content: string, group: readonly T[]) {
+        function getBaselineContentForFile(
+            fileName: string,
+            content: string,
+            group: readonly T[],
+        ) {
             let newContent = `=== ${fileName} ===\n`;
+            const details: [location: number, locationMarker: string, span?: T, type?: "textStart" | "textEnd" | "contextStart" | "contextEnd"][] = [];
+            if (fileName === marker?.fileName) details.push([marker.position, refType]);
+            let canDetermineContextIdInline = true;
+            for (const span of group) {
+                if (span.contextSpan) {
+                    details.push([span.contextSpan.start, "<|", span, "contextStart"]);
+                    if (canDetermineContextIdInline && span.contextSpan.start > span.textSpan.start) {
+                        // Need to do explicit pass to determine contextId since contextId starts after textStart
+                        canDetermineContextIdInline = false;
+                    }
+                }
+                details.push(
+                    [span.textSpan.start, startMarker?.(span) || "[|", span, "textStart"],
+                    [span.textSpan.start + span.textSpan.length, endMarker?.(span) || "|]", span, "textEnd"],
+                );
+                if (span.contextSpan) details.push([span.contextSpan.start + span.contextSpan.length, "|>", span, "contextEnd"]);
+            }
             let pos = 0;
-            for (const { textSpan } of group ?? ts.emptyArray) {
-                const end = textSpan.start + textSpan.length;
-                if (fileName === marker?.fileName && pos <= marker.position && marker.position < textSpan.start) {
-                    newContent += content.slice(pos, marker.position);
-                    newContent += refType;
-                    pos = marker.position;
-                    foundMarker = true;
-                }
-                newContent += content.slice(pos, textSpan.start);
-                pos = textSpan.start;
-                // It's easier to read if the /*FIND ALL REFS*/ comment is outside the range markers, which makes
-                // this code a bit more verbose than it would be if I were less picky about the baseline format.
-                if (fileName === marker?.fileName && marker.position === textSpan.start) {
-                    newContent += refType;
-                    newContent += "[|";
-                    foundMarker = true;
-                }
-                else if (fileName === marker?.fileName && ts.textSpanContainsPosition(textSpan, marker.position)) {
-                    newContent += "[|";
-                    newContent += content.slice(pos, marker.position);
-                    newContent += refType;
-                    pos = marker.position;
-                    foundMarker = true;
-                }
-                else {
-                    newContent += "[|";
-                }
-                newContent += content.slice(pos, end);
-                newContent += "|]";
-                pos = end;
+            const sortedDetails = ts.stableSort(details, (a, b) => ts.compareValues(a[0], b[0]));
+            if (!canDetermineContextIdInline) {
+                // Assign contextIds
+                sortedDetails.forEach(([, , span, type]) => {
+                    if (type === "contextStart") {
+                        spanToContextId.set(span!, currentContextId);
+                        currentContextId++;
+                    }
+                });
             }
-            if (marker?.fileName === fileName && marker.position >= pos) {
-                newContent += content.slice(pos, marker.position);
-                newContent += refType;
-                pos = marker.position;
-                foundMarker = true;
-            }
+            // Our preferred way to write marker is
+            // /*MARKER*/[| some text |]
+            // [| some /*MARKER*/ text |]
+            // [| some text |]/*MARKER*/
+            // Stable sort should handle first two cases but with that marker will be before rangeEnd if locations match
+            // So we will defer writing marker in this case by checking and finding index of rangeEnd if same
+            let deferredMarkerIndex: number | undefined;
+            sortedDetails.forEach(([location, locationType, span, type], index) => {
+                if (!foundMarker && !span && deferredMarkerIndex === undefined) {
+                    foundMarker = true;
+                    // If this is marker position and its same as textEnd and/or contextEnd we want to write marker after those
+                    for (let matchingEndPosIndex = index + 1; matchingEndPosIndex < sortedDetails.length; matchingEndPosIndex++) {
+                        // Defer after the location if its same as rangeEnd
+                        if (sortedDetails[matchingEndPosIndex][0] === location &&
+                            sortedDetails[matchingEndPosIndex][3]!.endsWith("End")) {
+                            deferredMarkerIndex = matchingEndPosIndex;
+                        }
+                        // Dont defer further than already determined
+                        break;
+                    }
+                    // Defer writing marker position to deffered marker index
+                    if (deferredMarkerIndex !== undefined) return;
+                }
+                newContent += content.slice(pos, location) + locationType;
+                pos = location;
+                if (!span) return;
+                switch (type) {
+                    case "textStart":
+                        let text = convertDocumentSpanToString(span, documentSpanToPrefix?.(span), ignoredDocumentSpanProperties);
+                        const contextId = spanToContextId.get(span);
+                        if (contextId !== undefined) {
+                            text = `contextId: ${contextId}` + (text ? ", " : "") + text;
+                        }
+                        if (text) newContent += `{| ${text} |}`;
+                        break;
+                    case "contextStart":
+                        if (canDetermineContextIdInline) {
+                            spanToContextId.set(span, currentContextId);
+                            currentContextId++;
+                        }
+                        break;
+                }
+                if (deferredMarkerIndex === index) {
+                    // Write the marker
+                    newContent += refType;
+                    deferredMarkerIndex = undefined;
+                }
+            });
             newContent += content.slice(pos);
-            return newContent;
+            return readableJsoncBaseline(newContent);
         }
     }
 
@@ -1602,32 +1625,24 @@ export class TestState {
             this.raiseError(`baselineRename failed. Could not rename at the provided position.`);
         }
 
-        const renamesByFile = ts.group(locations, l => l.fileName);
         const renameOptions = options ?
             "// === RenameOptions ===\n" +
             (options.findInStrings !== undefined ? `// findInStrings: ${findInStrings}\n` : "") +
             (options.findInComments !== undefined ? `// findInComments: ${findInComments}\n` : "") +
             (options.providePrefixAndSuffixTextForRename !== undefined ? `// providePrefixAndSuffixTextForRename: ${providePrefixAndSuffixTextForRename}\n` : "") :
             "";
-        const baselineContent = renamesByFile.map(renames => {
-            const { fileName } = renames[0];
-            const sortedRenames = ts.sort(renames, (a, b) => b.textSpan.start - a.textSpan.start);
-            let baselineFileContent = this.getFileContent(fileName);
-            for (const { textSpan, suffixText, prefixText } of sortedRenames) {
-                const isOriginalSpan = fileName === this.activeFile.fileName && ts.textSpanIntersectsWithPosition(textSpan, position);
-                baselineFileContent =
-                    baselineFileContent.slice(0, textSpan.start) +
-                    (prefixText ? `/*START PREFIX*/${prefixText}` : "") +
-                    (isOriginalSpan ? "[|RENAME|]" : "RENAME") +
-                    (suffixText ? `${suffixText}/*END SUFFIX*/` : "") +
-                    baselineFileContent.slice(textSpan.start + textSpan.length);
-            }
-            return this.readableJsoncBaseline(`=== ${fileName} ===\n${baselineFileContent}`, "");
-        }).join("\n\n") + "\n\n";
 
-        const readableLocations = this.readableDocumentSpanArray(locations, "") + "\n\n";
-
-        return renameOptions + baselineContent + readableLocations + JSON.stringify(locations, undefined, 2);
+        return renameOptions + this.baselineReferencesWorker(
+            "/*RENAME*/",
+            markerOrRange,
+            locations,
+            ts.identity,
+            /*skipJsonOrGetAdditionalBaseline*/ undefined,
+            /*documentSpanToPrefix*/ undefined,
+            span => (span.prefixText ? `/*START PREFIX*/${span.prefixText}` : "") + "[|",
+            span => "RENAME|]" + (span.suffixText ? `${span.suffixText}/*END SUFFIX*/` : ""),
+            ["prefixText", "suffixText"],
+        );
     }
 
     public verifyQuickInfoExists(negative: boolean) {
@@ -3480,7 +3495,6 @@ export class TestState {
             markerOrRange,
             occurrences,
             ts.identity,
-            occurrences => occurrences ? this.readableDocumentSpanArray(occurrences, "") + "\n\n" : "",
         );
     }
 
@@ -3506,16 +3520,8 @@ export class TestState {
             highlights?.map(h => h.highlightSpans.map(s => s.fileName ? s as ts.DocumentSpan : { ...s, fileName: h.fileName })) || ts.emptyArray,
             markerOrRange
         );
-        const readableHighlights = highlights ?
-            (this.readableArray(
-                highlights,
-                (h, leadingSpaces) => leadingSpaces + `// === ${h.fileName} ===\n` +
-                    this.readableDocumentSpanArray(h.highlightSpans.map(span => span.fileName ? span as ts.DocumentSpan : { ...span, fileName: h.fileName }), leadingSpaces + "  "),
-                ""
-            ) + "\n\n") :
-            "";
         // Write response JSON
-        return filesToSearch + baselineContent + readableHighlights + JSON.stringify(highlights, undefined, 2);
+        return filesToSearch + baselineContent + JSON.stringify(highlights, undefined, 2);
     }
 
     public verifyBaselineDocumentHighlights(markerOrRange: ArrayOrSingle<MarkerOrNameOrRange>, options: FourSlashInterface.VerifyDocumentHighlightsOptions | undefined) {

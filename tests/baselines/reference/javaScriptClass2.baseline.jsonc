@@ -1,81 +1,13 @@
 // === /tests/cases/fourslash/Foo.js ===
 // class Foo {
 //    constructor() {
-//        this.[|RENAME|] = 'foo';
-//        this.RENAME = 100;
+//        <|this./*RENAME*/[|{| contextId: 0 |}unionRENAME|] = 'foo';|>
+//        <|this.[|{| contextId: 1 |}unionRENAME|] = 100;|>
 //    }
-//    method() { return this.RENAME; }
+//    method() { return this.[|unionRENAME|]; }
 // }
 // var x = new Foo();
-// x.RENAME;
-
-// === 0 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.[|union|] = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.union;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/Foo.js ===
-    // class Foo {
-    //    constructor() {
-    //        [|this.union = 'foo';|]
-    //        this.union = 100;
-    //    }
-    //    method() { return this.union; }
-    // }
-    // var x = new Foo();
-    // x.union;
-// === 1 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.[|union|] = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.union;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/Foo.js ===
-    // class Foo {
-    //    constructor() {
-    //        this.union = 'foo';
-    //        [|this.union = 100;|]
-    //    }
-    //    method() { return this.union; }
-    // }
-    // var x = new Foo();
-    // x.union;
-// === 2 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.[|union|]; }
-  // }
-  // var x = new Foo();
-  // x.union;
-// === 3 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.[|union|];
-
+// x.[|unionRENAME|];
 
 [
   {
@@ -119,81 +51,13 @@
 // === /tests/cases/fourslash/Foo.js ===
 // class Foo {
 //    constructor() {
-//        this.RENAME = 'foo';
-//        this.[|RENAME|] = 100;
+//        <|this.[|{| contextId: 0 |}unionRENAME|] = 'foo';|>
+//        <|this./*RENAME*/[|{| contextId: 1 |}unionRENAME|] = 100;|>
 //    }
-//    method() { return this.RENAME; }
+//    method() { return this.[|unionRENAME|]; }
 // }
 // var x = new Foo();
-// x.RENAME;
-
-// === 0 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.[|union|] = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.union;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/Foo.js ===
-    // class Foo {
-    //    constructor() {
-    //        [|this.union = 'foo';|]
-    //        this.union = 100;
-    //    }
-    //    method() { return this.union; }
-    // }
-    // var x = new Foo();
-    // x.union;
-// === 1 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.[|union|] = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.union;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/Foo.js ===
-    // class Foo {
-    //    constructor() {
-    //        this.union = 'foo';
-    //        [|this.union = 100;|]
-    //    }
-    //    method() { return this.union; }
-    // }
-    // var x = new Foo();
-    // x.union;
-// === 2 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.[|union|]; }
-  // }
-  // var x = new Foo();
-  // x.union;
-// === 3 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.[|union|];
-
+// x.[|unionRENAME|];
 
 [
   {
@@ -237,81 +101,13 @@
 // === /tests/cases/fourslash/Foo.js ===
 // class Foo {
 //    constructor() {
-//        this.RENAME = 'foo';
-//        this.RENAME = 100;
+//        <|this.[|{| contextId: 0 |}unionRENAME|] = 'foo';|>
+//        <|this.[|{| contextId: 1 |}unionRENAME|] = 100;|>
 //    }
-//    method() { return this.[|RENAME|]; }
+//    method() { return this./*RENAME*/[|unionRENAME|]; }
 // }
 // var x = new Foo();
-// x.RENAME;
-
-// === 0 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.[|union|] = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.union;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/Foo.js ===
-    // class Foo {
-    //    constructor() {
-    //        [|this.union = 'foo';|]
-    //        this.union = 100;
-    //    }
-    //    method() { return this.union; }
-    // }
-    // var x = new Foo();
-    // x.union;
-// === 1 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.[|union|] = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.union;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/Foo.js ===
-    // class Foo {
-    //    constructor() {
-    //        this.union = 'foo';
-    //        [|this.union = 100;|]
-    //    }
-    //    method() { return this.union; }
-    // }
-    // var x = new Foo();
-    // x.union;
-// === 2 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.[|union|]; }
-  // }
-  // var x = new Foo();
-  // x.union;
-// === 3 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.[|union|];
-
+// x.[|unionRENAME|];
 
 [
   {
@@ -355,81 +151,13 @@
 // === /tests/cases/fourslash/Foo.js ===
 // class Foo {
 //    constructor() {
-//        this.RENAME = 'foo';
-//        this.RENAME = 100;
+//        <|this.[|{| contextId: 0 |}unionRENAME|] = 'foo';|>
+//        <|this.[|{| contextId: 1 |}unionRENAME|] = 100;|>
 //    }
-//    method() { return this.RENAME; }
+//    method() { return this.[|unionRENAME|]; }
 // }
 // var x = new Foo();
-// x.[|RENAME|];
-
-// === 0 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.[|union|] = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.union;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/Foo.js ===
-    // class Foo {
-    //    constructor() {
-    //        [|this.union = 'foo';|]
-    //        this.union = 100;
-    //    }
-    //    method() { return this.union; }
-    // }
-    // var x = new Foo();
-    // x.union;
-// === 1 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.[|union|] = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.union;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/Foo.js ===
-    // class Foo {
-    //    constructor() {
-    //        this.union = 'foo';
-    //        [|this.union = 100;|]
-    //    }
-    //    method() { return this.union; }
-    // }
-    // var x = new Foo();
-    // x.union;
-// === 2 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.[|union|]; }
-  // }
-  // var x = new Foo();
-  // x.union;
-// === 3 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.union = 'foo';
-  //        this.union = 100;
-  //    }
-  //    method() { return this.union; }
-  // }
-  // var x = new Foo();
-  // x.[|union|];
-
+// x./*RENAME*/[|unionRENAME|];
 
 [
   {

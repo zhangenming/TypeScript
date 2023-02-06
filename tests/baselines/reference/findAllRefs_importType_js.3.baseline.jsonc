@@ -1,152 +1,17 @@
 // === /a.js ===
 // module.exports = class C {};
-// module.exports.D = class /*FIND ALL REFS*/[|D|] {};
+// module.exports.D = <|class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}D|] {}|>;
 
 // === /b.js ===
 // /** @type {import("./a")} */
 // const x = 0;
-// /** @type {import("./a").[|D|]} */
+// /** @type {import("./a").[|{| defId: 1 |}D|]} */
 // const y = 0;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "local class"
-    // name: "(local class) module.exports.D"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "local class",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "module",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "exports",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /a.js ===
-    // module.exports = class C {};
-    // module.exports.D = class [|D|] {};
-      // === ContextSpan ===
-      // === /a.js ===
-      // module.exports = class C {};
-      // module.exports.D = [|class D {}|];
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.js ===
-      // module.exports = class C {};
-      // module.exports.D = class [|D|] {};
-        // === ContextSpan ===
-        // === /a.js ===
-        // module.exports = class C {};
-        // module.exports.D = [|class D {}|];
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) (local class) D\nimport D"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "local class",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /a.js ===
-    // module.exports = class C {};
-    // module.exports.[|D|] = class D {};
-      // === ContextSpan ===
-      // === /a.js ===
-      // module.exports = class C {};
-      // [|module.exports.D|] = class D {};
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /b.js ===
-      // /** @type {import("./a")} */
-      // const x = 0;
-      // /** @type {import("./a").[|D|]} */
-      // const y = 0;
-
+// === Definitions ===
+// === /a.js ===
+// module.exports = class C {};
+// <|module.exports.[|{| contextId: 0, defId: 1, kind: "alias", name: "(alias) (local class) D\nimport D", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":"local class","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"}] |}D|]|> = <|class /*FIND ALL REFS*/[|{| contextId: 1, defId: 0, kind: "local class", name: "(local class) module.exports.D", displayParts: [{"text":"(","kind":"punctuation"},{"text":"local class","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"module","kind":"localName"},{"text":".","kind":"punctuation"},{"text":"exports","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"D","kind":"aliasName"}] |}D|] {}|>;
 
 [
   {

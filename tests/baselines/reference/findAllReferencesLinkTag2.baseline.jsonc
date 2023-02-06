@@ -4,11 +4,11 @@
 //         This = class {
 //             show() { }
 //         }
-//         [|m|]/*FIND ALL REFS*/() { }
+//         <|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}m|]/*FIND ALL REFS*/() { }|>
 //     }
 //     /**
-//      * @see {Consider.prototype.[|m|]}
-//      * {@link Consider#[|m|]}
+//      * @see {Consider.prototype.[|{| defId: 0 |}m|]}
+//      * {@link Consider#[|{| defId: 0 |}m|]}
 //      * @see {Consider#This#show}
 //      * {@link Consider.This.show}
 //      * @see {NPR.Consider#This#show}
@@ -26,245 +26,34 @@
 //  */
 // export function outerref() { }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) NPR.Consider.m(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "NPR",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Consider",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "m",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-    // namespace NPR {
-    //     export class Consider {
-    //         This = class {
-    //             show() { }
-    //         }
-    //         [|m|]() { }
-    //     }
-    //     /**
-    //      * @see {Consider.prototype.m}
-    //      * {@link Consider#m}
-    //      * @see {Consider#This#show}
-    //      * {@link Consider.This.show}
-    //      * @see {NPR.Consider#This#show}
-    //      * {@link NPR.Consider.This#show}
-    //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-    //      * @see {NPR.Consider.This.show}
-    //      */
-    //     export function ref() { }
-    // }
-    // /**
-    //  * {@link NPR.Consider#This#show hello hello}
-    //  * {@link NPR.Consider.This#show}
-    //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-    //  * @see {NPR.Consider.This.show}
-    //  */
-    // export function outerref() { }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         [|m() { }|]
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         [|m|]() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-        // namespace NPR {
-        //     export class Consider {
-        //         This = class {
-        //             show() { }
-        //         }
-        //         [|m() { }|]
-        //     }
-        //     /**
-        //      * @see {Consider.prototype.m}
-        //      * {@link Consider#m}
-        //      * @see {Consider#This#show}
-        //      * {@link Consider.This.show}
-        //      * @see {NPR.Consider#This#show}
-        //      * {@link NPR.Consider.This#show}
-        //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-        //      * @see {NPR.Consider.This.show}
-        //      */
-        //     export function ref() { }
-        // }
-        // /**
-        //  * {@link NPR.Consider#This#show hello hello}
-        //  * {@link NPR.Consider.This#show}
-        //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-        //  * @see {NPR.Consider.This.show}
-        //  */
-        // export function outerref() { }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.[|m|]}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#[|m|]}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
+// namespace NPR {
+//     export class Consider {
+//         This = class {
+//             show() { }
+//         }
+//         <|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) NPR.Consider.m(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"NPR","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Consider","kind":"className"},{"text":".","kind":"punctuation"},{"text":"m","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}m|]/*FIND ALL REFS*/() { }|>
+//     }
+//     /**
+//      * @see {Consider.prototype.m}
+//      * {@link Consider#m}
+//      * @see {Consider#This#show}
+//      * {@link Consider.This.show}
+//      * @see {NPR.Consider#This#show}
+//      * {@link NPR.Consider.This#show}
+//      * @see {NPR.Consider#This.show} # doesn't parse trailing .
+//      * @see {NPR.Consider.This.show}
+//      */
+//     export function ref() { }
+// }
+// /**
+//  * {@link NPR.Consider#This#show hello hello}
+//  * {@link NPR.Consider.This#show}
+//  * @see {NPR.Consider#This.show} # doesn't parse trailing .
+//  * @see {NPR.Consider.This.show}
+//  */
+// export function outerref() { }
 
 [
   {
@@ -381,441 +170,58 @@
 // namespace NPR {
 //     export class Consider {
 //         This = class {
-//             [|show|]/*FIND ALL REFS*/() { }
+//             <|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}show|]/*FIND ALL REFS*/() { }|>
 //         }
 //         m() { }
 //     }
 //     /**
 //      * @see {Consider.prototype.m}
 //      * {@link Consider#m}
-//      * @see {Consider#This#[|show|]}
-//      * {@link Consider.This.[|show|]}
-//      * @see {NPR.Consider#This#[|show|]}
-//      * {@link NPR.Consider.This#[|show|]}
+//      * @see {Consider#This#[|{| defId: 0 |}show|]}
+//      * {@link Consider.This.[|{| defId: 0 |}show|]}
+//      * @see {NPR.Consider#This#[|{| defId: 0 |}show|]}
+//      * {@link NPR.Consider.This#[|{| defId: 0 |}show|]}
 //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-//      * @see {NPR.Consider.This.[|show|]}
+//      * @see {NPR.Consider.This.[|{| defId: 0 |}show|]}
 //      */
 //     export function ref() { }
 // }
 // /**
-//  * {@link NPR.Consider#This#[|show|] hello hello}
-//  * {@link NPR.Consider.This#[|show|]}
+//  * {@link NPR.Consider#This#[|{| defId: 0 |}show|] hello hello}
+//  * {@link NPR.Consider.This#[|{| defId: 0 |}show|]}
 //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-//  * @see {NPR.Consider.This.[|show|]}
+//  * @see {NPR.Consider.This.[|{| defId: 0 |}show|]}
 //  */
 // export function outerref() { }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) (Anonymous class).show(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(Anonymous class)",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "show",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-    // namespace NPR {
-    //     export class Consider {
-    //         This = class {
-    //             [|show|]() { }
-    //         }
-    //         m() { }
-    //     }
-    //     /**
-    //      * @see {Consider.prototype.m}
-    //      * {@link Consider#m}
-    //      * @see {Consider#This#show}
-    //      * {@link Consider.This.show}
-    //      * @see {NPR.Consider#This#show}
-    //      * {@link NPR.Consider.This#show}
-    //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-    //      * @see {NPR.Consider.This.show}
-    //      */
-    //     export function ref() { }
-    // }
-    // /**
-    //  * {@link NPR.Consider#This#show hello hello}
-    //  * {@link NPR.Consider.This#show}
-    //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-    //  * @see {NPR.Consider.This.show}
-    //  */
-    // export function outerref() { }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             [|show() { }|]
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             [|show|]() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-        // namespace NPR {
-        //     export class Consider {
-        //         This = class {
-        //             [|show() { }|]
-        //         }
-        //         m() { }
-        //     }
-        //     /**
-        //      * @see {Consider.prototype.m}
-        //      * {@link Consider#m}
-        //      * @see {Consider#This#show}
-        //      * {@link Consider.This.show}
-        //      * @see {NPR.Consider#This#show}
-        //      * {@link NPR.Consider.This#show}
-        //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-        //      * @see {NPR.Consider.This.show}
-        //      */
-        //     export function ref() { }
-        // }
-        // /**
-        //  * {@link NPR.Consider#This#show hello hello}
-        //  * {@link NPR.Consider.This#show}
-        //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-        //  * @see {NPR.Consider.This.show}
-        //  */
-        // export function outerref() { }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#[|show|]}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.[|show|]}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#[|show|]}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#[|show|]}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.[|show|]}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#[|show|] hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#[|show|]}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 8 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.[|show|]}
-      //  */
-      // export function outerref() { }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
+// namespace NPR {
+//     export class Consider {
+//         This = class {
+//             <|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) (Anonymous class).show(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(Anonymous class)","kind":"className"},{"text":".","kind":"punctuation"},{"text":"show","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}show|]/*FIND ALL REFS*/() { }|>
+//         }
+//         m() { }
+//     }
+//     /**
+//      * @see {Consider.prototype.m}
+//      * {@link Consider#m}
+//      * @see {Consider#This#show}
+//      * {@link Consider.This.show}
+//      * @see {NPR.Consider#This#show}
+//      * {@link NPR.Consider.This#show}
+//      * @see {NPR.Consider#This.show} # doesn't parse trailing .
+//      * @see {NPR.Consider.This.show}
+//      */
+//     export function ref() { }
+// }
+// /**
+//  * {@link NPR.Consider#This#show hello hello}
+//  * {@link NPR.Consider.This#show}
+//  * @see {NPR.Consider#This.show} # doesn't parse trailing .
+//  * @see {NPR.Consider.This.show}
+//  */
+// export function outerref() { }
 
 [
   {
@@ -977,510 +383,59 @@
 // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
 // namespace NPR {
 //     export class Consider {
-//         [|This|]/*FIND ALL REFS*/ = class {
+//         <|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}This|]/*FIND ALL REFS*/ = class {
 //             show() { }
-//         }
+//         }|>
 //         m() { }
 //     }
 //     /**
 //      * @see {Consider.prototype.m}
 //      * {@link Consider#m}
-//      * @see {Consider#[|This|]#show}
-//      * {@link Consider.[|This|].show}
-//      * @see {NPR.Consider#[|This|]#show}
-//      * {@link NPR.Consider.[|This|]#show}
-//      * @see {NPR.Consider#[|This|].show} # doesn't parse trailing .
-//      * @see {NPR.Consider.[|This|].show}
+//      * @see {Consider#[|{| defId: 0 |}This|]#show}
+//      * {@link Consider.[|{| defId: 0 |}This|].show}
+//      * @see {NPR.Consider#[|{| defId: 0 |}This|]#show}
+//      * {@link NPR.Consider.[|{| defId: 0 |}This|]#show}
+//      * @see {NPR.Consider#[|{| defId: 0 |}This|].show} # doesn't parse trailing .
+//      * @see {NPR.Consider.[|{| defId: 0 |}This|].show}
 //      */
 //     export function ref() { }
 // }
 // /**
-//  * {@link NPR.Consider#[|This|]#show hello hello}
-//  * {@link NPR.Consider.[|This|]#show}
-//  * @see {NPR.Consider#[|This|].show} # doesn't parse trailing .
-//  * @see {NPR.Consider.[|This|].show}
+//  * {@link NPR.Consider#[|{| defId: 0 |}This|]#show hello hello}
+//  * {@link NPR.Consider.[|{| defId: 0 |}This|]#show}
+//  * @see {NPR.Consider#[|{| defId: 0 |}This|].show} # doesn't parse trailing .
+//  * @see {NPR.Consider.[|{| defId: 0 |}This|].show}
 //  */
 // export function outerref() { }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) NPR.Consider.This: typeof (Anonymous class)"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "NPR",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Consider",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "This",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "typeof",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(Anonymous class)",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-    // namespace NPR {
-    //     export class Consider {
-    //         [|This|] = class {
-    //             show() { }
-    //         }
-    //         m() { }
-    //     }
-    //     /**
-    //      * @see {Consider.prototype.m}
-    //      * {@link Consider#m}
-    //      * @see {Consider#This#show}
-    //      * {@link Consider.This.show}
-    //      * @see {NPR.Consider#This#show}
-    //      * {@link NPR.Consider.This#show}
-    //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-    //      * @see {NPR.Consider.This.show}
-    //      */
-    //     export function ref() { }
-    // }
-    // /**
-    //  * {@link NPR.Consider#This#show hello hello}
-    //  * {@link NPR.Consider.This#show}
-    //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-    //  * @see {NPR.Consider.This.show}
-    //  */
-    // export function outerref() { }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         [|This = class {
-      //             show() { }
-      //         }|]
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         [|This|] = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-        // namespace NPR {
-        //     export class Consider {
-        //         [|This = class {
-        //             show() { }
-        //         }|]
-        //         m() { }
-        //     }
-        //     /**
-        //      * @see {Consider.prototype.m}
-        //      * {@link Consider#m}
-        //      * @see {Consider#This#show}
-        //      * {@link Consider.This.show}
-        //      * @see {NPR.Consider#This#show}
-        //      * {@link NPR.Consider.This#show}
-        //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-        //      * @see {NPR.Consider.This.show}
-        //      */
-        //     export function ref() { }
-        // }
-        // /**
-        //  * {@link NPR.Consider#This#show hello hello}
-        //  * {@link NPR.Consider.This#show}
-        //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-        //  * @see {NPR.Consider.This.show}
-        //  */
-        // export function outerref() { }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#[|This|]#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.[|This|].show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#[|This|]#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.[|This|]#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#[|This|].show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.[|This|].show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#[|This|]#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 8 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.[|This|]#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 9 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#[|This|].show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 10 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.[|This|].show}
-      //  */
-      // export function outerref() { }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
+// namespace NPR {
+//     export class Consider {
+//         <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) NPR.Consider.This: typeof (Anonymous class)", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"NPR","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Consider","kind":"className"},{"text":".","kind":"punctuation"},{"text":"This","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"typeof","kind":"keyword"},{"text":" ","kind":"space"},{"text":"(Anonymous class)","kind":"className"}] |}This|]/*FIND ALL REFS*/ = class {
+//             show() { }
+//         }|>
+//         m() { }
+//     }
+//     /**
+//      * @see {Consider.prototype.m}
+//      * {@link Consider#m}
+//      * @see {Consider#This#show}
+//      * {@link Consider.This.show}
+//      * @see {NPR.Consider#This#show}
+//      * {@link NPR.Consider.This#show}
+//      * @see {NPR.Consider#This.show} # doesn't parse trailing .
+//      * @see {NPR.Consider.This.show}
+//      */
+//     export function ref() { }
+// }
+// /**
+//  * {@link NPR.Consider#This#show hello hello}
+//  * {@link NPR.Consider.This#show}
+//  * @see {NPR.Consider#This.show} # doesn't parse trailing .
+//  * @see {NPR.Consider.This.show}
+//  */
+// export function outerref() { }
 
 [
   {
@@ -1667,535 +622,60 @@
 
 // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
 // namespace NPR {
-//     export class [|Consider|]/*FIND ALL REFS*/ {
+//     <|export class [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Consider|]/*FIND ALL REFS*/ {
 //         This = class {
 //             show() { }
 //         }
 //         m() { }
-//     }
+//     }|>
 //     /**
-//      * @see {[|Consider|].prototype.m}
-//      * {@link [|Consider|]#m}
-//      * @see {[|Consider|]#This#show}
-//      * {@link [|Consider|].This.show}
-//      * @see {NPR.[|Consider|]#This#show}
-//      * {@link NPR.[|Consider|].This#show}
-//      * @see {NPR.[|Consider|]#This.show} # doesn't parse trailing .
-//      * @see {NPR.[|Consider|].This.show}
+//      * @see {[|{| defId: 0 |}Consider|].prototype.m}
+//      * {@link [|{| defId: 0 |}Consider|]#m}
+//      * @see {[|{| defId: 0 |}Consider|]#This#show}
+//      * {@link [|{| defId: 0 |}Consider|].This.show}
+//      * @see {NPR.[|{| defId: 0 |}Consider|]#This#show}
+//      * {@link NPR.[|{| defId: 0 |}Consider|].This#show}
+//      * @see {NPR.[|{| defId: 0 |}Consider|]#This.show} # doesn't parse trailing .
+//      * @see {NPR.[|{| defId: 0 |}Consider|].This.show}
 //      */
 //     export function ref() { }
 // }
 // /**
-//  * {@link NPR.[|Consider|]#This#show hello hello}
-//  * {@link NPR.[|Consider|].This#show}
-//  * @see {NPR.[|Consider|]#This.show} # doesn't parse trailing .
-//  * @see {NPR.[|Consider|].This.show}
+//  * {@link NPR.[|{| defId: 0 |}Consider|]#This#show hello hello}
+//  * {@link NPR.[|{| defId: 0 |}Consider|].This#show}
+//  * @see {NPR.[|{| defId: 0 |}Consider|]#This.show} # doesn't parse trailing .
+//  * @see {NPR.[|{| defId: 0 |}Consider|].This.show}
 //  */
 // export function outerref() { }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class NPR.Consider"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "NPR",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Consider",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-    // namespace NPR {
-    //     export class [|Consider|] {
-    //         This = class {
-    //             show() { }
-    //         }
-    //         m() { }
-    //     }
-    //     /**
-    //      * @see {Consider.prototype.m}
-    //      * {@link Consider#m}
-    //      * @see {Consider#This#show}
-    //      * {@link Consider.This.show}
-    //      * @see {NPR.Consider#This#show}
-    //      * {@link NPR.Consider.This#show}
-    //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-    //      * @see {NPR.Consider.This.show}
-    //      */
-    //     export function ref() { }
-    // }
-    // /**
-    //  * {@link NPR.Consider#This#show hello hello}
-    //  * {@link NPR.Consider.This#show}
-    //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-    //  * @see {NPR.Consider.This.show}
-    //  */
-    // export function outerref() { }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     [|export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }|]
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class [|Consider|] {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-        // namespace NPR {
-        //     [|export class Consider {
-        //         This = class {
-        //             show() { }
-        //         }
-        //         m() { }
-        //     }|]
-        //     /**
-        //      * @see {Consider.prototype.m}
-        //      * {@link Consider#m}
-        //      * @see {Consider#This#show}
-        //      * {@link Consider.This.show}
-        //      * @see {NPR.Consider#This#show}
-        //      * {@link NPR.Consider.This#show}
-        //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-        //      * @see {NPR.Consider.This.show}
-        //      */
-        //     export function ref() { }
-        // }
-        // /**
-        //  * {@link NPR.Consider#This#show hello hello}
-        //  * {@link NPR.Consider.This#show}
-        //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-        //  * @see {NPR.Consider.This.show}
-        //  */
-        // export function outerref() { }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {[|Consider|].prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link [|Consider|]#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {[|Consider|]#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link [|Consider|].This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.[|Consider|]#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.[|Consider|].This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.[|Consider|]#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 8 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.[|Consider|].This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 9 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.[|Consider|]#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 10 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.[|Consider|].This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 11 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.[|Consider|]#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 12 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.[|Consider|].This.show}
-      //  */
-      // export function outerref() { }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
+// namespace NPR {
+//     <|export class [|{| contextId: 0, defId: 0, kind: "class", name: "class NPR.Consider", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"NPR","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Consider","kind":"className"}] |}Consider|]/*FIND ALL REFS*/ {
+//         This = class {
+//             show() { }
+//         }
+//         m() { }
+//     }|>
+//     /**
+//      * @see {Consider.prototype.m}
+//      * {@link Consider#m}
+//      * @see {Consider#This#show}
+//      * {@link Consider.This.show}
+//      * @see {NPR.Consider#This#show}
+//      * {@link NPR.Consider.This#show}
+//      * @see {NPR.Consider#This.show} # doesn't parse trailing .
+//      * @see {NPR.Consider.This.show}
+//      */
+//     export function ref() { }
+// }
+// /**
+//  * {@link NPR.Consider#This#show hello hello}
+//  * {@link NPR.Consider.This#show}
+//  * @see {NPR.Consider#This.show} # doesn't parse trailing .
+//  * @see {NPR.Consider.This.show}
+//  */
+// export function outerref() { }
 
 [
   {
@@ -2363,7 +843,7 @@
 ]
 
 // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-// namespace [|NPR|]/*FIND ALL REFS*/ {
+// <|namespace [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}NPR|]/*FIND ALL REFS*/ {
 //     export class Consider {
 //         This = class {
 //             show() { }
@@ -2375,396 +855,49 @@
 //      * {@link Consider#m}
 //      * @see {Consider#This#show}
 //      * {@link Consider.This.show}
-//      * @see {[|NPR|].Consider#This#show}
-//      * {@link [|NPR|].Consider.This#show}
-//      * @see {[|NPR|].Consider#This.show} # doesn't parse trailing .
-//      * @see {[|NPR|].Consider.This.show}
+//      * @see {[|{| defId: 0 |}NPR|].Consider#This#show}
+//      * {@link [|{| defId: 0 |}NPR|].Consider.This#show}
+//      * @see {[|{| defId: 0 |}NPR|].Consider#This.show} # doesn't parse trailing .
+//      * @see {[|{| defId: 0 |}NPR|].Consider.This.show}
 //      */
 //     export function ref() { }
-// }
+// }|>
 // /**
-//  * {@link [|NPR|].Consider#This#show hello hello}
-//  * {@link [|NPR|].Consider.This#show}
-//  * @see {[|NPR|].Consider#This.show} # doesn't parse trailing .
-//  * @see {[|NPR|].Consider.This.show}
+//  * {@link [|{| defId: 0 |}NPR|].Consider#This#show hello hello}
+//  * {@link [|{| defId: 0 |}NPR|].Consider.This#show}
+//  * @see {[|{| defId: 0 |}NPR|].Consider#This.show} # doesn't parse trailing .
+//  * @see {[|{| defId: 0 |}NPR|].Consider.This.show}
 //  */
 // export function outerref() { }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "namespace NPR"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "NPR",
-    //   "kind": "moduleName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-    // namespace [|NPR|] {
-    //     export class Consider {
-    //         This = class {
-    //             show() { }
-    //         }
-    //         m() { }
-    //     }
-    //     /**
-    //      * @see {Consider.prototype.m}
-    //      * {@link Consider#m}
-    //      * @see {Consider#This#show}
-    //      * {@link Consider.This.show}
-    //      * @see {NPR.Consider#This#show}
-    //      * {@link NPR.Consider.This#show}
-    //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-    //      * @see {NPR.Consider.This.show}
-    //      */
-    //     export function ref() { }
-    // }
-    // /**
-    //  * {@link NPR.Consider#This#show hello hello}
-    //  * {@link NPR.Consider.This#show}
-    //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-    //  * @see {NPR.Consider.This.show}
-    //  */
-    // export function outerref() { }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // [|namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }|]
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace [|NPR|] {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-        // [|namespace NPR {
-        //     export class Consider {
-        //         This = class {
-        //             show() { }
-        //         }
-        //         m() { }
-        //     }
-        //     /**
-        //      * @see {Consider.prototype.m}
-        //      * {@link Consider#m}
-        //      * @see {Consider#This#show}
-        //      * {@link Consider.This.show}
-        //      * @see {NPR.Consider#This#show}
-        //      * {@link NPR.Consider.This#show}
-        //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-        //      * @see {NPR.Consider.This.show}
-        //      */
-        //     export function ref() { }
-        // }|]
-        // /**
-        //  * {@link NPR.Consider#This#show hello hello}
-        //  * {@link NPR.Consider.This#show}
-        //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-        //  * @see {NPR.Consider.This.show}
-        //  */
-        // export function outerref() { }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {[|NPR|].Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link [|NPR|].Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {[|NPR|].Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {[|NPR|].Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link [|NPR|].Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link [|NPR|].Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {[|NPR|].Consider#This.show} # doesn't parse trailing .
-      //  * @see {NPR.Consider.This.show}
-      //  */
-      // export function outerref() { }
-    // === 8 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
-      // namespace NPR {
-      //     export class Consider {
-      //         This = class {
-      //             show() { }
-      //         }
-      //         m() { }
-      //     }
-      //     /**
-      //      * @see {Consider.prototype.m}
-      //      * {@link Consider#m}
-      //      * @see {Consider#This#show}
-      //      * {@link Consider.This.show}
-      //      * @see {NPR.Consider#This#show}
-      //      * {@link NPR.Consider.This#show}
-      //      * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //      * @see {NPR.Consider.This.show}
-      //      */
-      //     export function ref() { }
-      // }
-      // /**
-      //  * {@link NPR.Consider#This#show hello hello}
-      //  * {@link NPR.Consider.This#show}
-      //  * @see {NPR.Consider#This.show} # doesn't parse trailing .
-      //  * @see {[|NPR|].Consider.This.show}
-      //  */
-      // export function outerref() { }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag2.ts ===
+// <|namespace [|{| contextId: 0, defId: 0, kind: "module", name: "namespace NPR", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"NPR","kind":"moduleName"}] |}NPR|]/*FIND ALL REFS*/ {
+//     export class Consider {
+//         This = class {
+//             show() { }
+//         }
+//         m() { }
+//     }
+//     /**
+//      * @see {Consider.prototype.m}
+//      * {@link Consider#m}
+//      * @see {Consider#This#show}
+//      * {@link Consider.This.show}
+//      * @see {NPR.Consider#This#show}
+//      * {@link NPR.Consider.This#show}
+//      * @see {NPR.Consider#This.show} # doesn't parse trailing .
+//      * @see {NPR.Consider.This.show}
+//      */
+//     export function ref() { }
+// }|>
+// /**
+//  * {@link NPR.Consider#This#show hello hello}
+//  * {@link NPR.Consider.This#show}
+//  * @see {NPR.Consider#This.show} # doesn't parse trailing .
+//  * @see {NPR.Consider.This.show}
+//  */
+// export function outerref() { }
 
 [
   {

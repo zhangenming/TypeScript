@@ -1,11 +1,11 @@
 // === /tests/cases/fourslash/file1.ts ===
 // class Foo {
-//     constructor(private /*FIND ALL REFS*/[|privateParam|]: number,
+//     constructor(<|private /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}privateParam|]: number|>,
 //         public publicParam: string,
 //         protected protectedParam: boolean) {
 // 
-//         let localPrivate = [|privateParam|];
-//         this.[|privateParam|] += 10;
+//         let localPrivate = [|{| defId: 1 |}privateParam|];
+//         this.[|{| defId: 0, isWriteAccess: true |}privateParam|] += 10;
 // 
 //         let localPublic = publicParam;
 //         this.publicParam += " Hello!";
@@ -15,237 +15,23 @@
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Foo.privateParam: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "privateParam",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/file1.ts ===
-    // class Foo {
-    //     constructor(private [|privateParam|]: number,
-    //         public publicParam: string,
-    //         protected protectedParam: boolean) {
-    // 
-    //         let localPrivate = privateParam;
-    //         this.privateParam += 10;
-    // 
-    //         let localPublic = publicParam;
-    //         this.publicParam += " Hello!";
-    // 
-    //         let localProtected = protectedParam;
-    //         this.protectedParam = false;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor([|private privateParam: number|],
-      //         public publicParam: string,
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private [|privateParam|]: number,
-      //         public publicParam: string,
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/file1.ts ===
-        // class Foo {
-        //     constructor([|private privateParam: number|],
-        //         public publicParam: string,
-        //         protected protectedParam: boolean) {
-        // 
-        //         let localPrivate = privateParam;
-        //         this.privateParam += 10;
-        // 
-        //         let localPublic = publicParam;
-        //         this.publicParam += " Hello!";
-        // 
-        //         let localProtected = protectedParam;
-        //         this.protectedParam = false;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         public publicParam: string,
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.[|privateParam|] += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "parameter"
-    // name: "(parameter) privateParam: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "parameter",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "privateParam",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/file1.ts ===
-    // class Foo {
-    //     constructor(private [|privateParam|]: number,
-    //         public publicParam: string,
-    //         protected protectedParam: boolean) {
-    // 
-    //         let localPrivate = privateParam;
-    //         this.privateParam += 10;
-    // 
-    //         let localPublic = publicParam;
-    //         this.publicParam += " Hello!";
-    // 
-    //         let localProtected = protectedParam;
-    //         this.protectedParam = false;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor([|private privateParam: number|],
-      //         public publicParam: string,
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         public publicParam: string,
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = [|privateParam|];
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/file1.ts ===
+// class Foo {
+//     constructor(<|<|private /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) Foo.privateParam: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"privateParam","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}[|{| contextId: 1, defId: 1, kind: "parameter", name: "(parameter) privateParam: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"parameter","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"privateParam","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}privateParam|]|]: number|>|>,
+//         public publicParam: string,
+//         protected protectedParam: boolean) {
+// 
+//         let localPrivate = privateParam;
+//         this.privateParam += 10;
+// 
+//         let localPublic = publicParam;
+//         this.publicParam += " Hello!";
+// 
+//         let localProtected = protectedParam;
+//         this.protectedParam = false;
+//     }
+// }
 
 [
   {
@@ -398,251 +184,37 @@
 // === /tests/cases/fourslash/file1.ts ===
 // class Foo {
 //     constructor(private privateParam: number,
-//         public /*FIND ALL REFS*/[|publicParam|]: string,
+//         <|public /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}publicParam|]: string|>,
 //         protected protectedParam: boolean) {
 // 
 //         let localPrivate = privateParam;
 //         this.privateParam += 10;
 // 
-//         let localPublic = [|publicParam|];
-//         this.[|publicParam|] += " Hello!";
+//         let localPublic = [|{| defId: 1 |}publicParam|];
+//         this.[|{| defId: 0, isWriteAccess: true |}publicParam|] += " Hello!";
 // 
 //         let localProtected = protectedParam;
 //         this.protectedParam = false;
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Foo.publicParam: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "publicParam",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/file1.ts ===
-    // class Foo {
-    //     constructor(private privateParam: number,
-    //         public [|publicParam|]: string,
-    //         protected protectedParam: boolean) {
-    // 
-    //         let localPrivate = privateParam;
-    //         this.privateParam += 10;
-    // 
-    //         let localPublic = publicParam;
-    //         this.publicParam += " Hello!";
-    // 
-    //         let localProtected = protectedParam;
-    //         this.protectedParam = false;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         [|public publicParam: string|],
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         public [|publicParam|]: string,
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/file1.ts ===
-        // class Foo {
-        //     constructor(private privateParam: number,
-        //         [|public publicParam: string|],
-        //         protected protectedParam: boolean) {
-        // 
-        //         let localPrivate = privateParam;
-        //         this.privateParam += 10;
-        // 
-        //         let localPublic = publicParam;
-        //         this.publicParam += " Hello!";
-        // 
-        //         let localProtected = protectedParam;
-        //         this.protectedParam = false;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         public publicParam: string,
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.[|publicParam|] += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "parameter"
-    // name: "(parameter) publicParam: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "parameter",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "publicParam",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/file1.ts ===
-    // class Foo {
-    //     constructor(private privateParam: number,
-    //         public [|publicParam|]: string,
-    //         protected protectedParam: boolean) {
-    // 
-    //         let localPrivate = privateParam;
-    //         this.privateParam += 10;
-    // 
-    //         let localPublic = publicParam;
-    //         this.publicParam += " Hello!";
-    // 
-    //         let localProtected = protectedParam;
-    //         this.protectedParam = false;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         [|public publicParam: string|],
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         public publicParam: string,
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = [|publicParam|];
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/file1.ts ===
+// class Foo {
+//     constructor(private privateParam: number,
+//         <|<|public /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) Foo.publicParam: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"publicParam","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}[|{| contextId: 1, defId: 1, kind: "parameter", name: "(parameter) publicParam: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"parameter","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"publicParam","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}publicParam|]|]: string|>|>,
+//         protected protectedParam: boolean) {
+// 
+//         let localPrivate = privateParam;
+//         this.privateParam += 10;
+// 
+//         let localPublic = publicParam;
+//         this.publicParam += " Hello!";
+// 
+//         let localProtected = protectedParam;
+//         this.protectedParam = false;
+//     }
+// }
 
 [
   {
@@ -796,7 +368,7 @@
 // class Foo {
 //     constructor(private privateParam: number,
 //         public publicParam: string,
-//         protected /*FIND ALL REFS*/[|protectedParam|]: boolean) {
+//         <|protected /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}protectedParam|]: boolean|>) {
 // 
 //         let localPrivate = privateParam;
 //         this.privateParam += 10;
@@ -804,242 +376,28 @@
 //         let localPublic = publicParam;
 //         this.publicParam += " Hello!";
 // 
-//         let localProtected = [|protectedParam|];
-//         this.[|protectedParam|] = false;
+//         let localProtected = [|{| defId: 1 |}protectedParam|];
+//         this.[|{| defId: 0, isWriteAccess: true |}protectedParam|] = false;
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Foo.protectedParam: boolean"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "protectedParam",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "boolean",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/file1.ts ===
-    // class Foo {
-    //     constructor(private privateParam: number,
-    //         public publicParam: string,
-    //         protected [|protectedParam|]: boolean) {
-    // 
-    //         let localPrivate = privateParam;
-    //         this.privateParam += 10;
-    // 
-    //         let localPublic = publicParam;
-    //         this.publicParam += " Hello!";
-    // 
-    //         let localProtected = protectedParam;
-    //         this.protectedParam = false;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         public publicParam: string,
-      //         [|protected protectedParam: boolean|]) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         public publicParam: string,
-      //         protected [|protectedParam|]: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/file1.ts ===
-        // class Foo {
-        //     constructor(private privateParam: number,
-        //         public publicParam: string,
-        //         [|protected protectedParam: boolean|]) {
-        // 
-        //         let localPrivate = privateParam;
-        //         this.privateParam += 10;
-        // 
-        //         let localPublic = publicParam;
-        //         this.publicParam += " Hello!";
-        // 
-        //         let localProtected = protectedParam;
-        //         this.protectedParam = false;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         public publicParam: string,
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.[|protectedParam|] = false;
-      //     }
-      // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "parameter"
-    // name: "(parameter) protectedParam: boolean"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "parameter",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "protectedParam",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "boolean",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/file1.ts ===
-    // class Foo {
-    //     constructor(private privateParam: number,
-    //         public publicParam: string,
-    //         protected [|protectedParam|]: boolean) {
-    // 
-    //         let localPrivate = privateParam;
-    //         this.privateParam += 10;
-    // 
-    //         let localPublic = publicParam;
-    //         this.publicParam += " Hello!";
-    // 
-    //         let localProtected = protectedParam;
-    //         this.protectedParam = false;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         public publicParam: string,
-      //         [|protected protectedParam: boolean|]) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = protectedParam;
-      //         this.protectedParam = false;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/file1.ts ===
-      // class Foo {
-      //     constructor(private privateParam: number,
-      //         public publicParam: string,
-      //         protected protectedParam: boolean) {
-      // 
-      //         let localPrivate = privateParam;
-      //         this.privateParam += 10;
-      // 
-      //         let localPublic = publicParam;
-      //         this.publicParam += " Hello!";
-      // 
-      //         let localProtected = [|protectedParam|];
-      //         this.protectedParam = false;
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/file1.ts ===
+// class Foo {
+//     constructor(private privateParam: number,
+//         public publicParam: string,
+//         <|<|protected /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) Foo.protectedParam: boolean", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"protectedParam","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"boolean","kind":"keyword"}] |}[|{| contextId: 1, defId: 1, kind: "parameter", name: "(parameter) protectedParam: boolean", displayParts: [{"text":"(","kind":"punctuation"},{"text":"parameter","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"protectedParam","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"boolean","kind":"keyword"}] |}protectedParam|]|]: boolean|>|>) {
+// 
+//         let localPrivate = privateParam;
+//         this.privateParam += 10;
+// 
+//         let localPublic = publicParam;
+//         this.publicParam += " Hello!";
+// 
+//         let localProtected = protectedParam;
+//         this.protectedParam = false;
+//     }
+// }
 
 [
   {

@@ -1,158 +1,17 @@
+// === /a.js ===
+// module.exports = <|class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}C|] {}|>;
+// module.exports.D = class D {};
+
 // === /b.js ===
-// /** @type {import("[|./a|]")} */
+// /** <|@type {import("[|{| contextId: 1, defId: 1 |}./a|]")} |>*/
 // const x = 0;
 // /** @type {import("./a").D} */
 // const y = 0;
 
+// === Definitions ===
 // === /a.js ===
-// module.exports = class /*FIND ALL REFS*/[|C|] {};
+// <|[|{| contextId: 0, defId: 1, kind: "alias", name: "(alias) (local class) export=\nimport export=", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":"local class","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"export=","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"export=","kind":"aliasName"}] |}module.exports = <|class /*FIND ALL REFS*/[|{| contextId: 1, defId: 0, kind: "local class", name: "(local class) C\nmodule C", displayParts: [{"text":"(","kind":"punctuation"},{"text":"local class","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C","kind":"className"}] |}C|] {}|>|];|>
 // module.exports.D = class D {};
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "local class"
-    // name: "(local class) C\nmodule C"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "local class",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /a.js ===
-    // module.exports = class [|C|] {};
-    // module.exports.D = class D {};
-      // === ContextSpan ===
-      // === /a.js ===
-      // module.exports = [|class C {}|];
-      // module.exports.D = class D {};
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.js ===
-      // module.exports = class [|C|] {};
-      // module.exports.D = class D {};
-        // === ContextSpan ===
-        // === /a.js ===
-        // module.exports = [|class C {}|];
-        // module.exports.D = class D {};
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) (local class) export=\nimport export="
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "local class",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "export=",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "export=",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /a.js ===
-    // [|module.exports = class C {}|];
-    // module.exports.D = class D {};
-      // === ContextSpan ===
-      // === /a.js ===
-      // [|module.exports = class C {};|]
-      // module.exports.D = class D {};
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /b.js ===
-      // /** @type {import("[|./a|]")} */
-      // const x = 0;
-      // /** @type {import("./a").D} */
-      // const y = 0;
-        // === ContextSpan ===
-        // === /b.js ===
-        // /** [|@type {import("./a")} |]*/
-        // const x = 0;
-        // /** @type {import("./a").D} */
-        // const y = 0;
-
 
 [
   {

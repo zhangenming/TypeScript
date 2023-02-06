@@ -1,5 +1,5 @@
 // === /tests/cases/fourslash/shims-pp/goToImplementationDifferentFile_Implementation.ts ===
-// class [|FooImpl|] implements Foo {}
+// <|class [|{| contextId: 0, displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"FooImpl","kind":"className"}], kind: "class" |}FooImpl|] implements Foo {}|>
 // 
 // class Bar {
 //     hello() {}
@@ -18,39 +18,6 @@
 //         this.someMethod();
 //     }
 // }
-
-// === 0 ===
-  // displayParts: [
-  //  {
-  //   "text": "class",
-  //   "kind": "keyword"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "FooImpl",
-  //   "kind": "className"
-  //  }
-  // ]
-  // kind: "class"
-  // === /tests/cases/fourslash/shims-pp/goToImplementationDifferentFile_Implementation.ts ===
-  // class [|FooImpl|] implements Foo {}
-  // 
-  // class Bar {
-  //     hello() {}
-  // }
-  // 
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/shims-pp/goToImplementationDifferentFile_Implementation.ts ===
-    // [|class FooImpl implements Foo {}|]
-    // 
-    // class Bar {
-    //     hello() {}
-    // }
-    // 
-
 
 [
   {
@@ -84,9 +51,9 @@
 // === /tests/cases/fourslash/shims-pp/goToImplementationDifferentFile_Implementation.ts ===
 // class FooImpl implements Foo {}
 // 
-// class [|Bar|] {
+// <|class [|{| contextId: 0, displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Bar","kind":"className"}], kind: "class" |}Bar|] {
 //     hello() {}
-// }
+// }|>
 // 
 
 // === /tests/cases/fourslash/shims-pp/goToImplementationDifferentFile_Consumption.ts ===
@@ -101,39 +68,6 @@
 //         this.someMethod();
 //     }
 // }
-
-// === 0 ===
-  // displayParts: [
-  //  {
-  //   "text": "class",
-  //   "kind": "keyword"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "Bar",
-  //   "kind": "className"
-  //  }
-  // ]
-  // kind: "class"
-  // === /tests/cases/fourslash/shims-pp/goToImplementationDifferentFile_Implementation.ts ===
-  // class FooImpl implements Foo {}
-  // 
-  // class [|Bar|] {
-  //     hello() {}
-  // }
-  // 
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/shims-pp/goToImplementationDifferentFile_Implementation.ts ===
-    // class FooImpl implements Foo {}
-    // 
-    // [|class Bar {
-    //     hello() {}
-    // }|]
-    // 
-
 
 [
   {
@@ -168,7 +102,7 @@
 // class FooImpl implements Foo {}
 // 
 // class Bar {
-//     [|hello|]() {}
+//     <|[|{| contextId: 0, displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Bar","kind":"className"},{"text":".","kind":"punctuation"},{"text":"hello","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}], kind: "method" |}hello|]() {}|>
 // }
 // 
 
@@ -184,75 +118,6 @@
 //         this.someMethod();
 //     }
 // }
-
-// === 0 ===
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "method",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "Bar",
-  //   "kind": "className"
-  //  },
-  //  {
-  //   "text": ".",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "hello",
-  //   "kind": "methodName"
-  //  },
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": ":",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "void",
-  //   "kind": "keyword"
-  //  }
-  // ]
-  // kind: "method"
-  // === /tests/cases/fourslash/shims-pp/goToImplementationDifferentFile_Implementation.ts ===
-  // class FooImpl implements Foo {}
-  // 
-  // class Bar {
-  //     [|hello|]() {}
-  // }
-  // 
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/shims-pp/goToImplementationDifferentFile_Implementation.ts ===
-    // class FooImpl implements Foo {}
-    // 
-    // class Bar {
-    //     [|hello() {}|]
-    // }
-    // 
-
 
 [
   {
@@ -326,54 +191,11 @@
 // 
 // x.hello();
 // 
-// class [|SomeClass|] {
+// <|class [|{| contextId: 0, displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"SomeClass","kind":"className"}], kind: "class" |}SomeClass|] {
 //     someMethod() {
 //         thi/*GOTO IMPL*/s.someMethod();
 //     }
-// }
-
-// === 0 ===
-  // displayParts: [
-  //  {
-  //   "text": "class",
-  //   "kind": "keyword"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "SomeClass",
-  //   "kind": "className"
-  //  }
-  // ]
-  // kind: "class"
-  // === /tests/cases/fourslash/shims-pp/goToImplementationDifferentFile_Consumption.ts ===
-  // interface Foo {}
-  // 
-  // var x = new Bar();
-  // 
-  // x.hello();
-  // 
-  // class [|SomeClass|] {
-  //     someMethod() {
-  //         this.someMethod();
-  //     }
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/shims-pp/goToImplementationDifferentFile_Consumption.ts ===
-    // interface Foo {}
-    // 
-    // var x = new Bar();
-    // 
-    // x.hello();
-    // 
-    // [|class SomeClass {
-    //     someMethod() {
-    //         this.someMethod();
-    //     }
-    // }|]
-
+// }|>
 
 [
   {

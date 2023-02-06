@@ -13,69 +13,26 @@
 //   }
 // }
 // 
-// var [|nn|]: {name?: string; size?: number};
+// <|var [|{| contextId: 0, kind: "var", name: "nn" |}nn|]: {name?: string; size?: number};|>
 // var x = <MyClass {...n/*GOTO DEF*/n}></MyClass>;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "var"
-    // name: "nn"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/file.tsx ===
-    // declare module JSX {
-    //     interface Element { }
-    //     interface IntrinsicElements {
-    //     }
-    //     interface ElementAttributesProperty { props }
-    // }
-    // class MyClass {
-    //   props: {
-    //     name?: string;
-    //     size?: number;
-    //   }
-    // }
-    // 
-    // var [|nn|]: {name?: string; size?: number};
-    // var x = <MyClass {...nn}></MyClass>;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/file.tsx ===
-      // declare module JSX {
-      //     interface Element { }
-      //     interface IntrinsicElements {
-      //     }
-      //     interface ElementAttributesProperty { props }
-      // }
-      // class MyClass {
-      //   props: {
-      //     name?: string;
-      //     size?: number;
-      //   }
-      // }
-      // 
-      // [|var nn: {name?: string; size?: number};|]
-      // var x = <MyClass {...nn}></MyClass>;
 // === TextSpan ===
-  // === /tests/cases/fourslash/file.tsx ===
-  // declare module JSX {
-  //     interface Element { }
-  //     interface IntrinsicElements {
-  //     }
-  //     interface ElementAttributesProperty { props }
-  // }
-  // class MyClass {
-  //   props: {
-  //     name?: string;
-  //     size?: number;
-  //   }
-  // }
-  // 
-  // var nn: {name?: string; size?: number};
-  // var x = <MyClass {...[|nn|]}></MyClass>;
-
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props }
+// }
+// class MyClass {
+//   props: {
+//     name?: string;
+//     size?: number;
+//   }
+// }
+// 
+// var nn: {name?: string; size?: number};
+// var x = <MyClass {...[|n/*GOTO DEF*/n|]}></MyClass>;
 
 {
   "definitions": [
@@ -119,61 +76,8 @@
 //   }
 // }
 // 
-// var RENAME: {name?: string; size?: number};
-// var x = <MyClass {...[|RENAME|]}></MyClass>;
-
-// === 0 ===
-  // === /tests/cases/fourslash/file.tsx ===
-  // declare module JSX {
-  //     interface Element { }
-  //     interface IntrinsicElements {
-  //     }
-  //     interface ElementAttributesProperty { props }
-  // }
-  // class MyClass {
-  //   props: {
-  //     name?: string;
-  //     size?: number;
-  //   }
-  // }
-  // 
-  // var [|nn|]: {name?: string; size?: number};
-  // var x = <MyClass {...nn}></MyClass>;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/file.tsx ===
-    // declare module JSX {
-    //     interface Element { }
-    //     interface IntrinsicElements {
-    //     }
-    //     interface ElementAttributesProperty { props }
-    // }
-    // class MyClass {
-    //   props: {
-    //     name?: string;
-    //     size?: number;
-    //   }
-    // }
-    // 
-    // [|var nn: {name?: string; size?: number};|]
-    // var x = <MyClass {...nn}></MyClass>;
-// === 1 ===
-  // === /tests/cases/fourslash/file.tsx ===
-  // declare module JSX {
-  //     interface Element { }
-  //     interface IntrinsicElements {
-  //     }
-  //     interface ElementAttributesProperty { props }
-  // }
-  // class MyClass {
-  //   props: {
-  //     name?: string;
-  //     size?: number;
-  //   }
-  // }
-  // 
-  // var nn: {name?: string; size?: number};
-  // var x = <MyClass {...[|nn|]}></MyClass>;
-
+// <|var [|{| contextId: 0 |}nnRENAME|]: {name?: string; size?: number};|>
+// var x = <MyClass {...[|n/*RENAME*/nRENAME|]}></MyClass>;
 
 [
   {
@@ -210,61 +114,8 @@
 //   }
 // }
 // 
-// var [|RENAME|]: {name?: string; size?: number};
-// var x = <MyClass {...RENAME}></MyClass>;
-
-// === 0 ===
-  // === /tests/cases/fourslash/file.tsx ===
-  // declare module JSX {
-  //     interface Element { }
-  //     interface IntrinsicElements {
-  //     }
-  //     interface ElementAttributesProperty { props }
-  // }
-  // class MyClass {
-  //   props: {
-  //     name?: string;
-  //     size?: number;
-  //   }
-  // }
-  // 
-  // var [|nn|]: {name?: string; size?: number};
-  // var x = <MyClass {...nn}></MyClass>;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/file.tsx ===
-    // declare module JSX {
-    //     interface Element { }
-    //     interface IntrinsicElements {
-    //     }
-    //     interface ElementAttributesProperty { props }
-    // }
-    // class MyClass {
-    //   props: {
-    //     name?: string;
-    //     size?: number;
-    //   }
-    // }
-    // 
-    // [|var nn: {name?: string; size?: number};|]
-    // var x = <MyClass {...nn}></MyClass>;
-// === 1 ===
-  // === /tests/cases/fourslash/file.tsx ===
-  // declare module JSX {
-  //     interface Element { }
-  //     interface IntrinsicElements {
-  //     }
-  //     interface ElementAttributesProperty { props }
-  // }
-  // class MyClass {
-  //   props: {
-  //     name?: string;
-  //     size?: number;
-  //   }
-  // }
-  // 
-  // var nn: {name?: string; size?: number};
-  // var x = <MyClass {...[|nn|]}></MyClass>;
-
+// <|var /*RENAME*/[|{| contextId: 0 |}nnRENAME|]: {name?: string; size?: number};|>
+// var x = <MyClass {...[|nnRENAME|]}></MyClass>;
 
 [
   {

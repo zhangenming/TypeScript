@@ -4,7 +4,7 @@
 // }
 // 
 // class Bar extends SuperBar {
-//     [|hello|]() {}
+//     <|[|{| contextId: 0, displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Bar","kind":"className"},{"text":".","kind":"punctuation"},{"text":"hello","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}], kind: "method" |}hello|]() {}|>
 // }
 // 
 // class SuperBar implements Foo {
@@ -17,99 +17,6 @@
 // 
 // new Bar().hel/*GOTO IMPL*/lo();
 // new Bar()["hello"]();
-
-// === 0 ===
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "method",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "Bar",
-  //   "kind": "className"
-  //  },
-  //  {
-  //   "text": ".",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "hello",
-  //   "kind": "methodName"
-  //  },
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": ":",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "void",
-  //   "kind": "keyword"
-  //  }
-  // ]
-  // kind: "method"
-  // === /tests/cases/fourslash/goToImplementationInterfaceMethod_03.ts ===
-  // interface Foo {
-  //     hello (): void;
-  // }
-  // 
-  // class Bar extends SuperBar {
-  //     [|hello|]() {}
-  // }
-  // 
-  // class SuperBar implements Foo {
-  //     hello() {} // should not show up
-  // }
-  // 
-  // class OtherBar implements Foo {
-  //     hello() {} // should not show up
-  // }
-  // 
-  // new Bar().hello();
-  // new Bar()["hello"]();
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/goToImplementationInterfaceMethod_03.ts ===
-    // interface Foo {
-    //     hello (): void;
-    // }
-    // 
-    // class Bar extends SuperBar {
-    //     [|hello() {}|]
-    // }
-    // 
-    // class SuperBar implements Foo {
-    //     hello() {} // should not show up
-    // }
-    // 
-    // class OtherBar implements Foo {
-    //     hello() {} // should not show up
-    // }
-    // 
-    // new Bar().hello();
-    // new Bar()["hello"]();
-
 
 [
   {

@@ -1,28 +1,8 @@
 // === /tests/cases/fourslash/a.js ===
 // var C = class  {
 // }
-// C.[|RENAME|] = "string";
-// console.log(C.RENAME);
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.js ===
-  // var C = class  {
-  // }
-  // C.[|staticProperty|] = "string";
-  // console.log(C.staticProperty);
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.js ===
-    // var C = class  {
-    // }
-    // [|C.staticProperty = "string";|]
-    // console.log(C.staticProperty);
-// === 1 ===
-  // === /tests/cases/fourslash/a.js ===
-  // var C = class  {
-  // }
-  // C.staticProperty = "string";
-  // console.log(C.[|staticProperty|]);
-
+// <|C./*RENAME*/[|{| contextId: 0 |}staticPropertyRENAME|] = "string";|>
+// console.log(C.[|staticPropertyRENAME|]);
 
 [
   {
@@ -48,28 +28,8 @@
 // === /tests/cases/fourslash/a.js ===
 // var C = class  {
 // }
-// C.RENAME = "string";
-// console.log(C.[|RENAME|]);
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.js ===
-  // var C = class  {
-  // }
-  // C.[|staticProperty|] = "string";
-  // console.log(C.staticProperty);
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.js ===
-    // var C = class  {
-    // }
-    // [|C.staticProperty = "string";|]
-    // console.log(C.staticProperty);
-// === 1 ===
-  // === /tests/cases/fourslash/a.js ===
-  // var C = class  {
-  // }
-  // C.staticProperty = "string";
-  // console.log(C.[|staticProperty|]);
-
+// <|C.[|{| contextId: 0 |}staticPropertyRENAME|] = "string";|>
+// console.log(C./*RENAME*/[|staticPropertyRENAME|]);
 
 [
   {

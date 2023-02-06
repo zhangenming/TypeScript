@@ -1,28 +1,10 @@
 // === /a.ts ===
 // export { default } from "./b";
-// export { default as [|RENAME|] } from "./b";
+// <|export { default as /*RENAME*/[|{| contextId: 0 |}bRENAME|] } from "./b";|>
 // export { default as bee } from "./b";
 // import { default as b } from "./b";
 // import { default as bee } from "./b";
 // import b from "./b";
-
-// === 0 ===
-  // === /a.ts ===
-  // export { default } from "./b";
-  // export { default as [|b|] } from "./b";
-  // export { default as bee } from "./b";
-  // import { default as b } from "./b";
-  // import { default as bee } from "./b";
-  // import b from "./b";
-    // === ContextSpan ===
-    // === /a.ts ===
-    // export { default } from "./b";
-    // [|export { default as b } from "./b";|]
-    // export { default as bee } from "./b";
-    // import { default as b } from "./b";
-    // import { default as bee } from "./b";
-    // import b from "./b";
-
 
 [
   {
@@ -42,27 +24,9 @@
 // export { default } from "./b";
 // export { default as b } from "./b";
 // export { default as bee } from "./b";
-// import { default as [|RENAME|] } from "./b";
+// <|import { default as /*RENAME*/[|{| contextId: 0 |}bRENAME|] } from "./b";|>
 // import { default as bee } from "./b";
 // import b from "./b";
-
-// === 0 ===
-  // === /a.ts ===
-  // export { default } from "./b";
-  // export { default as b } from "./b";
-  // export { default as bee } from "./b";
-  // import { default as [|b|] } from "./b";
-  // import { default as bee } from "./b";
-  // import b from "./b";
-    // === ContextSpan ===
-    // === /a.ts ===
-    // export { default } from "./b";
-    // export { default as b } from "./b";
-    // export { default as bee } from "./b";
-    // [|import { default as b } from "./b";|]
-    // import { default as bee } from "./b";
-    // import b from "./b";
-
 
 [
   {
@@ -84,25 +48,7 @@
 // export { default as bee } from "./b";
 // import { default as b } from "./b";
 // import { default as bee } from "./b";
-// import [|RENAME|] from "./b";
-
-// === 0 ===
-  // === /a.ts ===
-  // export { default } from "./b";
-  // export { default as b } from "./b";
-  // export { default as bee } from "./b";
-  // import { default as b } from "./b";
-  // import { default as bee } from "./b";
-  // import [|b|] from "./b";
-    // === ContextSpan ===
-    // === /a.ts ===
-    // export { default } from "./b";
-    // export { default as b } from "./b";
-    // export { default as bee } from "./b";
-    // import { default as b } from "./b";
-    // import { default as bee } from "./b";
-    // [|import b from "./b";|]
-
+// <|import /*RENAME*/[|{| contextId: 0 |}bRENAME|] from "./b";|>
 
 [
   {
@@ -119,82 +65,16 @@
 ]
 
 // === /b.ts ===
-// const RENAME = 0;
-// export default RENAME;
+// <|const /*RENAME*/[|{| contextId: 0 |}bRENAME|] = 0;|>
+// <|export default [|{| contextId: 1 |}bRENAME|];|>
 
 // === /a.ts ===
 // export { default } from "./b";
-// export { default as RENAME } from "./b";
+// <|export { default as [|{| contextId: 2 |}bRENAME|] } from "./b";|>
 // export { default as bee } from "./b";
-// import { default as RENAME } from "./b";
+// <|import { default as [|{| contextId: 3 |}bRENAME|] } from "./b";|>
 // import { default as bee } from "./b";
-// import RENAME from "./b";
-
-// === 0 ===
-  // === /b.ts ===
-  // const [|b|] = 0;
-  // export default b;
-    // === ContextSpan ===
-    // === /b.ts ===
-    // [|const b = 0;|]
-    // export default b;
-// === 1 ===
-  // === /b.ts ===
-  // const b = 0;
-  // export default [|b|];
-    // === ContextSpan ===
-    // === /b.ts ===
-    // const b = 0;
-    // [|export default b;|]
-// === 2 ===
-  // === /a.ts ===
-  // export { default } from "./b";
-  // export { default as [|b|] } from "./b";
-  // export { default as bee } from "./b";
-  // import { default as b } from "./b";
-  // import { default as bee } from "./b";
-  // import b from "./b";
-    // === ContextSpan ===
-    // === /a.ts ===
-    // export { default } from "./b";
-    // [|export { default as b } from "./b";|]
-    // export { default as bee } from "./b";
-    // import { default as b } from "./b";
-    // import { default as bee } from "./b";
-    // import b from "./b";
-// === 3 ===
-  // === /a.ts ===
-  // export { default } from "./b";
-  // export { default as b } from "./b";
-  // export { default as bee } from "./b";
-  // import { default as [|b|] } from "./b";
-  // import { default as bee } from "./b";
-  // import b from "./b";
-    // === ContextSpan ===
-    // === /a.ts ===
-    // export { default } from "./b";
-    // export { default as b } from "./b";
-    // export { default as bee } from "./b";
-    // [|import { default as b } from "./b";|]
-    // import { default as bee } from "./b";
-    // import b from "./b";
-// === 4 ===
-  // === /a.ts ===
-  // export { default } from "./b";
-  // export { default as b } from "./b";
-  // export { default as bee } from "./b";
-  // import { default as b } from "./b";
-  // import { default as bee } from "./b";
-  // import [|b|] from "./b";
-    // === ContextSpan ===
-    // === /a.ts ===
-    // export { default } from "./b";
-    // export { default as b } from "./b";
-    // export { default as bee } from "./b";
-    // import { default as b } from "./b";
-    // import { default as bee } from "./b";
-    // [|import b from "./b";|]
-
+// <|import [|{| contextId: 4 |}bRENAME|] from "./b";|>
 
 [
   {
@@ -255,82 +135,16 @@
 ]
 
 // === /b.ts ===
-// const RENAME = 0;
-// export default RENAME;
+// <|const [|{| contextId: 0 |}bRENAME|] = 0;|>
+// <|export default /*RENAME*/[|{| contextId: 1 |}bRENAME|];|>
 
 // === /a.ts ===
 // export { default } from "./b";
-// export { default as RENAME } from "./b";
+// <|export { default as [|{| contextId: 2 |}bRENAME|] } from "./b";|>
 // export { default as bee } from "./b";
-// import { default as RENAME } from "./b";
+// <|import { default as [|{| contextId: 3 |}bRENAME|] } from "./b";|>
 // import { default as bee } from "./b";
-// import RENAME from "./b";
-
-// === 0 ===
-  // === /b.ts ===
-  // const [|b|] = 0;
-  // export default b;
-    // === ContextSpan ===
-    // === /b.ts ===
-    // [|const b = 0;|]
-    // export default b;
-// === 1 ===
-  // === /b.ts ===
-  // const b = 0;
-  // export default [|b|];
-    // === ContextSpan ===
-    // === /b.ts ===
-    // const b = 0;
-    // [|export default b;|]
-// === 2 ===
-  // === /a.ts ===
-  // export { default } from "./b";
-  // export { default as [|b|] } from "./b";
-  // export { default as bee } from "./b";
-  // import { default as b } from "./b";
-  // import { default as bee } from "./b";
-  // import b from "./b";
-    // === ContextSpan ===
-    // === /a.ts ===
-    // export { default } from "./b";
-    // [|export { default as b } from "./b";|]
-    // export { default as bee } from "./b";
-    // import { default as b } from "./b";
-    // import { default as bee } from "./b";
-    // import b from "./b";
-// === 3 ===
-  // === /a.ts ===
-  // export { default } from "./b";
-  // export { default as b } from "./b";
-  // export { default as bee } from "./b";
-  // import { default as [|b|] } from "./b";
-  // import { default as bee } from "./b";
-  // import b from "./b";
-    // === ContextSpan ===
-    // === /a.ts ===
-    // export { default } from "./b";
-    // export { default as b } from "./b";
-    // export { default as bee } from "./b";
-    // [|import { default as b } from "./b";|]
-    // import { default as bee } from "./b";
-    // import b from "./b";
-// === 4 ===
-  // === /a.ts ===
-  // export { default } from "./b";
-  // export { default as b } from "./b";
-  // export { default as bee } from "./b";
-  // import { default as b } from "./b";
-  // import { default as bee } from "./b";
-  // import [|b|] from "./b";
-    // === ContextSpan ===
-    // === /a.ts ===
-    // export { default } from "./b";
-    // export { default as b } from "./b";
-    // export { default as bee } from "./b";
-    // import { default as b } from "./b";
-    // import { default as bee } from "./b";
-    // [|import b from "./b";|]
-
+// <|import [|{| contextId: 4 |}bRENAME|] from "./b";|>
 
 [
   {

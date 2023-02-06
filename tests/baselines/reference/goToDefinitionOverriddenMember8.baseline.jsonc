@@ -1,6 +1,6 @@
 // === /tests/cases/fourslash/a.ts ===
 // export class A {
-//     [|m|]() {}
+//     <|[|{| contextId: 0, kind: "method", name: "m", containerName: "A" |}m|]() {}|>
 // }
 
 // === /tests/cases/fourslash/./b.ts ===
@@ -9,30 +9,12 @@
 //     /*GOTO DEF*/override m() {}
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "method"
-    // name: "m"
-    // containerName: "A"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /tests/cases/fourslash/a.ts ===
-    // export class A {
-    //     [|m|]() {}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // export class A {
-      //     [|m() {}|]
-      // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/./b.ts ===
-  // import { A } from "./a";
-  // class B extends A {
-  //     [|override|] m() {}
-  // }
-
+// === /tests/cases/fourslash/./b.ts ===
+// import { A } from "./a";
+// class B extends A {
+//     /*GOTO DEF*/[|override|] m() {}
+// }
 
 {
   "definitions": [

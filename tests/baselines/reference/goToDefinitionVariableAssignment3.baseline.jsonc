@@ -1,32 +1,13 @@
 // === /tests/cases/fourslash/foo.ts ===
-// const Foo = module.[|exports|] = function () {}
+// const Foo = module.[|{| contextId: 0, kind: "local function", name: "exports" |}exports|] = <|function () {}|>
 // Foo.prototype.bar = function() {}
 // new Foo/*GOTO DEF*/();
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "local function"
-    // name: "exports"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/foo.ts ===
-    // const Foo = module.[|exports|] = function () {}
-    // Foo.prototype.bar = function() {}
-    // new Foo();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/foo.ts ===
-      // const Foo = module.exports = [|function () {}|]
-      // Foo.prototype.bar = function() {}
-      // new Foo();
 // === TextSpan ===
-  // === /tests/cases/fourslash/foo.ts ===
-  // const Foo = module.exports = function () {}
-  // Foo.prototype.bar = function() {}
-  // new [|Foo|]();
-
+// === /tests/cases/fourslash/foo.ts ===
+// const Foo = module.exports = function () {}
+// Foo.prototype.bar = function() {}
+// new [|Foo|]/*GOTO DEF*/();
 
 {
   "definitions": [

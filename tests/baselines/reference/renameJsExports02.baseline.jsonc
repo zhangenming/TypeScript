@@ -1,126 +1,15 @@
-// === /tests/cases/fourslash/b.js ===
-// const [|A|] = require("./a");
-
 // === /tests/cases/fourslash/a.js ===
-// module.exports = class /*FIND ALL REFS*/[|A|] {}
+// module.exports = <|class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}A|] {}|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "local class"
-    // name: "(local class) A"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "local class",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.js ===
-    // module.exports = class [|A|] {}
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.js ===
-      // module.exports = [|class A {}|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/a.js ===
-      // module.exports = class [|A|] {}
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.js ===
-        // module.exports = [|class A {}|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) (local class) A\nimport A"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "local class",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/b.js ===
-    // const [|A|] = require("./a");
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.js ===
-      // [|const A = require("./a");|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.js ===
-      // const [|A|] = require("./a");
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.js ===
-        // [|const A = require("./a");|]
+// === /tests/cases/fourslash/b.js ===
+// <|const [|{| contextId: 1, defId: 1, isWriteAccess: true |}A|] = require("./a");|>
 
+// === Definitions ===
+// === /tests/cases/fourslash/a.js ===
+// module.exports = <|class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "local class", name: "(local class) A", displayParts: [{"text":"(","kind":"punctuation"},{"text":"local class","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"A","kind":"className"}] |}A|] {}|>
+
+// === /tests/cases/fourslash/b.js ===
+// <|const [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) (local class) A\nimport A", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":"local class","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"A","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"A","kind":"aliasName"}] |}A|] = require("./a");|>
 
 [
   {
@@ -266,83 +155,11 @@
 ]
 
 // === /tests/cases/fourslash/b.js ===
-// const /*FIND ALL REFS*/[|A|] = require("./a");
+// <|const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}A|] = require("./a");|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) (local class) A\nimport A"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "local class",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/b.js ===
-    // const [|A|] = require("./a");
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.js ===
-      // [|const A = require("./a");|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/b.js ===
-      // const [|A|] = require("./a");
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.js ===
-        // [|const A = require("./a");|]
-
+// === Definitions ===
+// === /tests/cases/fourslash/b.js ===
+// <|const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) (local class) A\nimport A", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":"local class","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"A","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"A","kind":"aliasName"}] |}A|] = require("./a");|>
 
 [
   {

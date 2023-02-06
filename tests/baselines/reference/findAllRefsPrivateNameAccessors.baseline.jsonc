@@ -1,9 +1,9 @@
 // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
 // class C {
-//     /*FIND ALL REFS*/get [|#foo|](){ return 1; }
-//     set [|#foo|](value: number){  }
+//     /*FIND ALL REFS*/<|get [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](){ return 1; }|>
+//     <|set [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](value: number){  }|>
 //     constructor() {
-//         this.[|#foo|]();
+//         this.[|{| defId: 0 |}#foo|]();
 //     }
 // }
 // class D extends C {
@@ -20,215 +20,28 @@
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) C.#foo: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "#foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-    // class C {
-    //     get [|#foo|](){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-    // class D extends C {
-    //     constructor() {
-    //         super()
-    //         this.#foo = 20;
-    //     }
-    // }
-    // class E {
-    //     get #foo(){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     [|get #foo(){ return 1; }|]
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get [|#foo|](){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     [|get #foo(){ return 1; }|]
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set [|#foo|](value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     [|set #foo(value: number){  }|]
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.[|#foo|]();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
+// class C {
+//     /*FIND ALL REFS*/<|get [|{| contextId: 0, defId: 0, kind: "property", name: "(property) C.#foo: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":".","kind":"punctuation"},{"text":"#foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}#foo|](){ return 1; }|>
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
+// class D extends C {
+//     constructor() {
+//         super()
+//         this.#foo = 20;
+//     }
+// }
+// class E {
+//     get #foo(){ return 1; }
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
 
 [
   {
@@ -331,10 +144,10 @@
 
 // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
 // class C {
-//     get /*FIND ALL REFS*/[|#foo|](){ return 1; }
-//     set [|#foo|](value: number){  }
+//     <|get /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](){ return 1; }|>
+//     <|set [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](value: number){  }|>
 //     constructor() {
-//         this.[|#foo|]();
+//         this.[|{| defId: 0 |}#foo|]();
 //     }
 // }
 // class D extends C {
@@ -351,215 +164,28 @@
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) C.#foo: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "#foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-    // class C {
-    //     get [|#foo|](){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-    // class D extends C {
-    //     constructor() {
-    //         super()
-    //         this.#foo = 20;
-    //     }
-    // }
-    // class E {
-    //     get #foo(){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     [|get #foo(){ return 1; }|]
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get [|#foo|](){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     [|get #foo(){ return 1; }|]
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set [|#foo|](value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     [|set #foo(value: number){  }|]
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.[|#foo|]();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
+// class C {
+//     <|get /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) C.#foo: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":".","kind":"punctuation"},{"text":"#foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}#foo|](){ return 1; }|>
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
+// class D extends C {
+//     constructor() {
+//         super()
+//         this.#foo = 20;
+//     }
+// }
+// class E {
+//     get #foo(){ return 1; }
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
 
 [
   {
@@ -662,10 +288,10 @@
 
 // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
 // class C {
-//     get [|#foo|](){ return 1; }
-//     /*FIND ALL REFS*/set [|#foo|](value: number){  }
+//     <|get [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](){ return 1; }|>
+//     /*FIND ALL REFS*/<|set [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](value: number){  }|>
 //     constructor() {
-//         this.[|#foo|]();
+//         this.[|{| defId: 0 |}#foo|]();
 //     }
 // }
 // class D extends C {
@@ -682,215 +308,28 @@
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) C.#foo: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "#foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-    // class C {
-    //     get [|#foo|](){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-    // class D extends C {
-    //     constructor() {
-    //         super()
-    //         this.#foo = 20;
-    //     }
-    // }
-    // class E {
-    //     get #foo(){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     [|get #foo(){ return 1; }|]
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get [|#foo|](){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     [|get #foo(){ return 1; }|]
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set [|#foo|](value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     [|set #foo(value: number){  }|]
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.[|#foo|]();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
+// class C {
+//     <|get [|{| contextId: 0, defId: 0, kind: "property", name: "(property) C.#foo: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":".","kind":"punctuation"},{"text":"#foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}#foo|](){ return 1; }|>
+//     /*FIND ALL REFS*/set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
+// class D extends C {
+//     constructor() {
+//         super()
+//         this.#foo = 20;
+//     }
+// }
+// class E {
+//     get #foo(){ return 1; }
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
 
 [
   {
@@ -993,10 +432,10 @@
 
 // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
 // class C {
-//     get [|#foo|](){ return 1; }
-//     set /*FIND ALL REFS*/[|#foo|](value: number){  }
+//     <|get [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](){ return 1; }|>
+//     <|set /*FIND ALL REFS*/[|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](value: number){  }|>
 //     constructor() {
-//         this.[|#foo|]();
+//         this.[|{| defId: 0 |}#foo|]();
 //     }
 // }
 // class D extends C {
@@ -1013,215 +452,28 @@
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) C.#foo: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "#foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-    // class C {
-    //     get [|#foo|](){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-    // class D extends C {
-    //     constructor() {
-    //         super()
-    //         this.#foo = 20;
-    //     }
-    // }
-    // class E {
-    //     get #foo(){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     [|get #foo(){ return 1; }|]
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get [|#foo|](){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     [|get #foo(){ return 1; }|]
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set [|#foo|](value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     [|set #foo(value: number){  }|]
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.[|#foo|]();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
+// class C {
+//     <|get [|{| contextId: 0, defId: 0, kind: "property", name: "(property) C.#foo: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":".","kind":"punctuation"},{"text":"#foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}#foo|](){ return 1; }|>
+//     set /*FIND ALL REFS*/#foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
+// class D extends C {
+//     constructor() {
+//         super()
+//         this.#foo = 20;
+//     }
+// }
+// class E {
+//     get #foo(){ return 1; }
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
 
 [
   {
@@ -1324,10 +576,10 @@
 
 // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
 // class C {
-//     get [|#foo|](){ return 1; }
-//     set [|#foo|](value: number){  }
+//     <|get [|{| contextId: 0, defId: 0, isWriteAccess: true |}#foo|](){ return 1; }|>
+//     <|set [|{| contextId: 1, defId: 0, isWriteAccess: true |}#foo|](value: number){  }|>
 //     constructor() {
-//         this./*FIND ALL REFS*/[|#foo|]();
+//         this./*FIND ALL REFS*/[|{| defId: 0 |}#foo|]();
 //     }
 // }
 // class D extends C {
@@ -1344,212 +596,28 @@
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) C.#foo: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "#foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-    // class C {
-    //     get [|#foo|](){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-    // class D extends C {
-    //     constructor() {
-    //         super()
-    //         this.#foo = 20;
-    //     }
-    // }
-    // class E {
-    //     get #foo(){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     [|get #foo(){ return 1; }|]
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get [|#foo|](){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     [|get #foo(){ return 1; }|]
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set [|#foo|](value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     [|set #foo(value: number){  }|]
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.[|#foo|]();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
+// class C {
+//     <|get [|{| contextId: 0, defId: 0, kind: "property", name: "(property) C.#foo: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":".","kind":"punctuation"},{"text":"#foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}#foo|](){ return 1; }|>
+//     set #foo(value: number){  }
+//     constructor() {
+//         this./*FIND ALL REFS*/#foo();
+//     }
+// }
+// class D extends C {
+//     constructor() {
+//         super()
+//         this.#foo = 20;
+//     }
+// }
+// class E {
+//     get #foo(){ return 1; }
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
 
 [
   {
@@ -1662,222 +730,35 @@
 //     }
 // }
 // class E {
-//     /*FIND ALL REFS*/get [|#foo|](){ return 1; }
-//     set [|#foo|](value: number){  }
+//     /*FIND ALL REFS*/<|get [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](){ return 1; }|>
+//     <|set [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](value: number){  }|>
 //     constructor() {
-//         this.[|#foo|]();
+//         this.[|{| defId: 0 |}#foo|]();
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) E.#foo: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "E",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "#foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-    // class C {
-    //     get #foo(){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-    // class D extends C {
-    //     constructor() {
-    //         super()
-    //         this.#foo = 20;
-    //     }
-    // }
-    // class E {
-    //     get [|#foo|](){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     [|get #foo(){ return 1; }|]
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get [|#foo|](){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     [|get #foo(){ return 1; }|]
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set [|#foo|](value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     [|set #foo(value: number){  }|]
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.[|#foo|]();
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
+// class C {
+//     get #foo(){ return 1; }
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
+// class D extends C {
+//     constructor() {
+//         super()
+//         this.#foo = 20;
+//     }
+// }
+// class E {
+//     /*FIND ALL REFS*/<|get [|{| contextId: 0, defId: 0, kind: "property", name: "(property) E.#foo: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"E","kind":"className"},{"text":".","kind":"punctuation"},{"text":"#foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}#foo|](){ return 1; }|>
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
 
 [
   {
@@ -1993,222 +874,35 @@
 //     }
 // }
 // class E {
-//     get /*FIND ALL REFS*/[|#foo|](){ return 1; }
-//     set [|#foo|](value: number){  }
+//     <|get /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](){ return 1; }|>
+//     <|set [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](value: number){  }|>
 //     constructor() {
-//         this.[|#foo|]();
+//         this.[|{| defId: 0 |}#foo|]();
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) E.#foo: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "E",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "#foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-    // class C {
-    //     get #foo(){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-    // class D extends C {
-    //     constructor() {
-    //         super()
-    //         this.#foo = 20;
-    //     }
-    // }
-    // class E {
-    //     get [|#foo|](){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     [|get #foo(){ return 1; }|]
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get [|#foo|](){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     [|get #foo(){ return 1; }|]
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set [|#foo|](value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     [|set #foo(value: number){  }|]
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.[|#foo|]();
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
+// class C {
+//     get #foo(){ return 1; }
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
+// class D extends C {
+//     constructor() {
+//         super()
+//         this.#foo = 20;
+//     }
+// }
+// class E {
+//     <|get /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) E.#foo: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"E","kind":"className"},{"text":".","kind":"punctuation"},{"text":"#foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}#foo|](){ return 1; }|>
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
 
 [
   {
@@ -2324,222 +1018,35 @@
 //     }
 // }
 // class E {
-//     get [|#foo|](){ return 1; }
-//     /*FIND ALL REFS*/set [|#foo|](value: number){  }
+//     <|get [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](){ return 1; }|>
+//     /*FIND ALL REFS*/<|set [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](value: number){  }|>
 //     constructor() {
-//         this.[|#foo|]();
+//         this.[|{| defId: 0 |}#foo|]();
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) E.#foo: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "E",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "#foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-    // class C {
-    //     get #foo(){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-    // class D extends C {
-    //     constructor() {
-    //         super()
-    //         this.#foo = 20;
-    //     }
-    // }
-    // class E {
-    //     get [|#foo|](){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     [|get #foo(){ return 1; }|]
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get [|#foo|](){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     [|get #foo(){ return 1; }|]
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set [|#foo|](value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     [|set #foo(value: number){  }|]
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.[|#foo|]();
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
+// class C {
+//     get #foo(){ return 1; }
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
+// class D extends C {
+//     constructor() {
+//         super()
+//         this.#foo = 20;
+//     }
+// }
+// class E {
+//     <|get [|{| contextId: 0, defId: 0, kind: "property", name: "(property) E.#foo: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"E","kind":"className"},{"text":".","kind":"punctuation"},{"text":"#foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}#foo|](){ return 1; }|>
+//     /*FIND ALL REFS*/set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
 
 [
   {
@@ -2655,222 +1162,35 @@
 //     }
 // }
 // class E {
-//     get [|#foo|](){ return 1; }
-//     set /*FIND ALL REFS*/[|#foo|](value: number){  }
+//     <|get [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](){ return 1; }|>
+//     <|set /*FIND ALL REFS*/[|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}#foo|](value: number){  }|>
 //     constructor() {
-//         this.[|#foo|]();
+//         this.[|{| defId: 0 |}#foo|]();
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) E.#foo: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "E",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "#foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-    // class C {
-    //     get #foo(){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-    // class D extends C {
-    //     constructor() {
-    //         super()
-    //         this.#foo = 20;
-    //     }
-    // }
-    // class E {
-    //     get [|#foo|](){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     [|get #foo(){ return 1; }|]
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get [|#foo|](){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     [|get #foo(){ return 1; }|]
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set [|#foo|](value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     [|set #foo(value: number){  }|]
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.[|#foo|]();
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
+// class C {
+//     get #foo(){ return 1; }
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
+// class D extends C {
+//     constructor() {
+//         super()
+//         this.#foo = 20;
+//     }
+// }
+// class E {
+//     <|get [|{| contextId: 0, defId: 0, kind: "property", name: "(property) E.#foo: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"E","kind":"className"},{"text":".","kind":"punctuation"},{"text":"#foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}#foo|](){ return 1; }|>
+//     set /*FIND ALL REFS*/#foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
 
 [
   {
@@ -2986,219 +1306,35 @@
 //     }
 // }
 // class E {
-//     get [|#foo|](){ return 1; }
-//     set [|#foo|](value: number){  }
+//     <|get [|{| contextId: 0, defId: 0, isWriteAccess: true |}#foo|](){ return 1; }|>
+//     <|set [|{| contextId: 1, defId: 0, isWriteAccess: true |}#foo|](value: number){  }|>
 //     constructor() {
-//         this./*FIND ALL REFS*/[|#foo|]();
+//         this./*FIND ALL REFS*/[|{| defId: 0 |}#foo|]();
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) E.#foo: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "E",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "#foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-    // class C {
-    //     get #foo(){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-    // class D extends C {
-    //     constructor() {
-    //         super()
-    //         this.#foo = 20;
-    //     }
-    // }
-    // class E {
-    //     get [|#foo|](){ return 1; }
-    //     set #foo(value: number){  }
-    //     constructor() {
-    //         this.#foo();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     [|get #foo(){ return 1; }|]
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get [|#foo|](){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     [|get #foo(){ return 1; }|]
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set [|#foo|](value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-        // class C {
-        //     get #foo(){ return 1; }
-        //     set #foo(value: number){  }
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-        // class D extends C {
-        //     constructor() {
-        //         super()
-        //         this.#foo = 20;
-        //     }
-        // }
-        // class E {
-        //     get #foo(){ return 1; }
-        //     [|set #foo(value: number){  }|]
-        //     constructor() {
-        //         this.#foo();
-        //     }
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
-      // class C {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.#foo();
-      //     }
-      // }
-      // class D extends C {
-      //     constructor() {
-      //         super()
-      //         this.#foo = 20;
-      //     }
-      // }
-      // class E {
-      //     get #foo(){ return 1; }
-      //     set #foo(value: number){  }
-      //     constructor() {
-      //         this.[|#foo|]();
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsPrivateNameAccessors.ts ===
+// class C {
+//     get #foo(){ return 1; }
+//     set #foo(value: number){  }
+//     constructor() {
+//         this.#foo();
+//     }
+// }
+// class D extends C {
+//     constructor() {
+//         super()
+//         this.#foo = 20;
+//     }
+// }
+// class E {
+//     <|get [|{| contextId: 0, defId: 0, kind: "property", name: "(property) E.#foo: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"E","kind":"className"},{"text":".","kind":"punctuation"},{"text":"#foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}#foo|](){ return 1; }|>
+//     set #foo(value: number){  }
+//     constructor() {
+//         this./*FIND ALL REFS*/#foo();
+//     }
+// }
 
 [
   {

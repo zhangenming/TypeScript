@@ -5,188 +5,19 @@
 // 
 // interface Baz extends Foo {}
 // 
-// var bar: Foo = [|{ hello: helloImpl /**0*/ }|];
-// var baz: Foo[] = [|[{ hello: helloImpl /**4*/ }]|];
+// var bar: Foo = [|{| kind: "interface", displayParts: [{"text":"(","kind":"punctuation"},{"text":"object literal","kind":"text"},{"text":")","kind":"punctuation"}] |}{ hello: helloImpl /**0*/ }|];
+// var baz: Foo[] = [|{| displayParts: [] |}[{ hello: helloImpl /**4*/ }]|];
 // 
 // function helloImpl () {}
 // 
-// function whatever(x: Foo = [|{ hello() {/**1*/} }|] ) {
+// function whatever(x: Foo = [|{| kind: "interface", displayParts: [{"text":"(","kind":"punctuation"},{"text":"object literal","kind":"text"},{"text":")","kind":"punctuation"}] |}{ hello() {/**1*/} }|] ) {
 // }
 // 
 // class Bar {
-//     x: Foo = [|{ hello() {} }|]
+//     x: Foo = [|{| kind: "interface", displayParts: [{"text":"(","kind":"punctuation"},{"text":"object literal","kind":"text"},{"text":")","kind":"punctuation"}] |}{ hello() {} }|]
 // 
-//     constructor(public f: Foo = [|{ hello() {/**3*/} }|] ) {}
+//     constructor(public f: Foo = [|{| kind: "interface", displayParts: [{"text":"(","kind":"punctuation"},{"text":"object literal","kind":"text"},{"text":")","kind":"punctuation"}] |}{ hello() {/**3*/} }|] ) {}
 // }
-
-// === 0 ===
-  // kind: "interface"
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "object literal",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  }
-  // ]
-  // === /tests/cases/fourslash/goToImplementationInterface_00.ts ===
-  // interface Foo {
-  //     hello: () => void
-  // }
-  // 
-  // interface Baz extends Foo {}
-  // 
-  // var bar: Foo = [|{ hello: helloImpl /**0*/ }|];
-  // var baz: Foo[] = [{ hello: helloImpl /**4*/ }];
-  // 
-  // function helloImpl () {}
-  // 
-  // function whatever(x: Foo = { hello() {/**1*/} } ) {
-  // }
-  // 
-  // class Bar {
-  //     x: Foo = { hello() {} }
-  // 
-  //     constructor(public f: Foo = { hello() {/**3*/} } ) {}
-  // }
-// === 1 ===
-  // kind: ""
-  // displayParts: []
-  // === /tests/cases/fourslash/goToImplementationInterface_00.ts ===
-  // interface Foo {
-  //     hello: () => void
-  // }
-  // 
-  // interface Baz extends Foo {}
-  // 
-  // var bar: Foo = { hello: helloImpl /**0*/ };
-  // var baz: Foo[] = [|[{ hello: helloImpl /**4*/ }]|];
-  // 
-  // function helloImpl () {}
-  // 
-  // function whatever(x: Foo = { hello() {/**1*/} } ) {
-  // }
-  // 
-  // class Bar {
-  //     x: Foo = { hello() {} }
-  // 
-  //     constructor(public f: Foo = { hello() {/**3*/} } ) {}
-  // }
-// === 2 ===
-  // kind: "interface"
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "object literal",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  }
-  // ]
-  // === /tests/cases/fourslash/goToImplementationInterface_00.ts ===
-  // interface Foo {
-  //     hello: () => void
-  // }
-  // 
-  // interface Baz extends Foo {}
-  // 
-  // var bar: Foo = { hello: helloImpl /**0*/ };
-  // var baz: Foo[] = [{ hello: helloImpl /**4*/ }];
-  // 
-  // function helloImpl () {}
-  // 
-  // function whatever(x: Foo = [|{ hello() {/**1*/} }|] ) {
-  // }
-  // 
-  // class Bar {
-  //     x: Foo = { hello() {} }
-  // 
-  //     constructor(public f: Foo = { hello() {/**3*/} } ) {}
-  // }
-// === 3 ===
-  // kind: "interface"
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "object literal",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  }
-  // ]
-  // === /tests/cases/fourslash/goToImplementationInterface_00.ts ===
-  // interface Foo {
-  //     hello: () => void
-  // }
-  // 
-  // interface Baz extends Foo {}
-  // 
-  // var bar: Foo = { hello: helloImpl /**0*/ };
-  // var baz: Foo[] = [{ hello: helloImpl /**4*/ }];
-  // 
-  // function helloImpl () {}
-  // 
-  // function whatever(x: Foo = { hello() {/**1*/} } ) {
-  // }
-  // 
-  // class Bar {
-  //     x: Foo = [|{ hello() {} }|]
-  // 
-  //     constructor(public f: Foo = { hello() {/**3*/} } ) {}
-  // }
-// === 4 ===
-  // kind: "interface"
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "object literal",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  }
-  // ]
-  // === /tests/cases/fourslash/goToImplementationInterface_00.ts ===
-  // interface Foo {
-  //     hello: () => void
-  // }
-  // 
-  // interface Baz extends Foo {}
-  // 
-  // var bar: Foo = { hello: helloImpl /**0*/ };
-  // var baz: Foo[] = [{ hello: helloImpl /**4*/ }];
-  // 
-  // function helloImpl () {}
-  // 
-  // function whatever(x: Foo = { hello() {/**1*/} } ) {
-  // }
-  // 
-  // class Bar {
-  //     x: Foo = { hello() {} }
-  // 
-  //     constructor(public f: Foo = [|{ hello() {/**3*/} }|] ) {}
-  // }
-
 
 [
   {

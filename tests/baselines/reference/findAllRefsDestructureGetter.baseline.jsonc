@@ -1,119 +1,21 @@
 // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
 // class Test {
-//     get /*FIND ALL REFS*/[|x|]() { return 0; }
+//     <|get /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}x|]() { return 0; }|>
 // 
 //     set y(a: number) {}
 // }
-// const { [|x|], y } = new Test();
+// <|const { [|{| contextId: 1, defId: 0, isWriteAccess: true |}x|], y } = new Test();|>
 // x; y;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Test.x: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Test",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-    // class Test {
-    //     get [|x|]() { return 0; }
-    // 
-    //     set y(a: number) {}
-    // }
-    // const { x, y } = new Test();
-    // x; y;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     [|get x() { return 0; }|]
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { x, y } = new Test();
-      // x; y;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get [|x|]() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { x, y } = new Test();
-      // x; y;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-        // class Test {
-        //     [|get x() { return 0; }|]
-        // 
-        //     set y(a: number) {}
-        // }
-        // const { x, y } = new Test();
-        // x; y;
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { [|x|], y } = new Test();
-      // x; y;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-        // class Test {
-        //     get x() { return 0; }
-        // 
-        //     set y(a: number) {}
-        // }
-        // [|const { x, y } = new Test();|]
-        // x; y;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
+// class Test {
+//     <|get /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) Test.x: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Test","kind":"className"},{"text":".","kind":"punctuation"},{"text":"x","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}x|]() { return 0; }|>
+// 
+//     set y(a: number) {}
+// }
+// const { x, y } = new Test();
+// x; y;
 
 [
   {
@@ -207,181 +109,22 @@
 
 // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
 // class Test {
-//     get [|x|]() { return 0; }
+//     <|get [|{| contextId: 0, defId: 0, isWriteAccess: true |}x|]() { return 0; }|>
 // 
 //     set y(a: number) {}
 // }
-// const { /*FIND ALL REFS*/[|x|], y } = new Test();
-// [|x|]; y;
+// <|const { /*FIND ALL REFS*/[|{| contextId: 1, defId: 1, isWriteAccess: true, isDefinition: true |}x|], y } = new Test();|>
+// [|{| defId: 1 |}x|]; y;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Test.x: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Test",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-    // class Test {
-    //     get [|x|]() { return 0; }
-    // 
-    //     set y(a: number) {}
-    // }
-    // const { x, y } = new Test();
-    // x; y;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     [|get x() { return 0; }|]
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { x, y } = new Test();
-      // x; y;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get [|x|]() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { x, y } = new Test();
-      // x; y;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-        // class Test {
-        //     [|get x() { return 0; }|]
-        // 
-        //     set y(a: number) {}
-        // }
-        // const { x, y } = new Test();
-        // x; y;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const x: number"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-    // class Test {
-    //     get x() { return 0; }
-    // 
-    //     set y(a: number) {}
-    // }
-    // const { [|x|], y } = new Test();
-    // x; y;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // [|const { x, y } = new Test();|]
-      // x; y;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { [|x|], y } = new Test();
-      // x; y;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-        // class Test {
-        //     get x() { return 0; }
-        // 
-        //     set y(a: number) {}
-        // }
-        // [|const { x, y } = new Test();|]
-        // x; y;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { x, y } = new Test();
-      // [|x|]; y;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
+// class Test {
+//     <|get [|{| contextId: 0, defId: 0, kind: "property", name: "(property) Test.x: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Test","kind":"className"},{"text":".","kind":"punctuation"},{"text":"x","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}x|]() { return 0; }|>
+// 
+//     set y(a: number) {}
+// }
+// <|const { /*FIND ALL REFS*/[|{| contextId: 1, defId: 1, kind: "const", name: "const x: number", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}x|], y } = new Test();|>
+// x; y;
 
 [
   {
@@ -533,89 +276,18 @@
 // 
 //     set y(a: number) {}
 // }
-// const { [|x|], y } = new Test();
-// /*FIND ALL REFS*/[|x|]; y;
+// <|const { [|{| contextId: 0, defId: 0, isWriteAccess: true |}x|], y } = new Test();|>
+// /*FIND ALL REFS*/[|{| defId: 0 |}x|]; y;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const x: number"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-    // class Test {
-    //     get x() { return 0; }
-    // 
-    //     set y(a: number) {}
-    // }
-    // const { [|x|], y } = new Test();
-    // x; y;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // [|const { x, y } = new Test();|]
-      // x; y;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { [|x|], y } = new Test();
-      // x; y;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-        // class Test {
-        //     get x() { return 0; }
-        // 
-        //     set y(a: number) {}
-        // }
-        // [|const { x, y } = new Test();|]
-        // x; y;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { x, y } = new Test();
-      // [|x|]; y;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
+// class Test {
+//     get x() { return 0; }
+// 
+//     set y(a: number) {}
+// }
+// <|const { [|{| contextId: 0, defId: 0, kind: "const", name: "const x: number", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}x|], y } = new Test();|>
+// /*FIND ALL REFS*/x; y;
 
 [
   {
@@ -689,118 +361,20 @@
 // class Test {
 //     get x() { return 0; }
 // 
-//     set /*FIND ALL REFS*/[|y|](a: number) {}
+//     <|set /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}y|](a: number) {}|>
 // }
-// const { x, [|y|] } = new Test();
+// <|const { x, [|{| contextId: 1, defId: 0, isWriteAccess: true |}y|] } = new Test();|>
 // x; y;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Test.y: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Test",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "y",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-    // class Test {
-    //     get x() { return 0; }
-    // 
-    //     set [|y|](a: number) {}
-    // }
-    // const { x, y } = new Test();
-    // x; y;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     [|set y(a: number) {}|]
-      // }
-      // const { x, y } = new Test();
-      // x; y;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set [|y|](a: number) {}
-      // }
-      // const { x, y } = new Test();
-      // x; y;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-        // class Test {
-        //     get x() { return 0; }
-        // 
-        //     [|set y(a: number) {}|]
-        // }
-        // const { x, y } = new Test();
-        // x; y;
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { x, [|y|] } = new Test();
-      // x; y;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-        // class Test {
-        //     get x() { return 0; }
-        // 
-        //     set y(a: number) {}
-        // }
-        // [|const { x, y } = new Test();|]
-        // x; y;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
+// class Test {
+//     get x() { return 0; }
+// 
+//     <|set /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) Test.y: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Test","kind":"className"},{"text":".","kind":"punctuation"},{"text":"y","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}y|](a: number) {}|>
+// }
+// const { x, y } = new Test();
+// x; y;
 
 [
   {
@@ -896,179 +470,20 @@
 // class Test {
 //     get x() { return 0; }
 // 
-//     set [|y|](a: number) {}
+//     <|set [|{| contextId: 0, defId: 0, isWriteAccess: true |}y|](a: number) {}|>
 // }
-// const { x, /*FIND ALL REFS*/[|y|] } = new Test();
-// x; [|y|];
+// <|const { x, /*FIND ALL REFS*/[|{| contextId: 1, defId: 1, isWriteAccess: true, isDefinition: true |}y|] } = new Test();|>
+// x; [|{| defId: 1 |}y|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Test.y: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Test",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "y",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-    // class Test {
-    //     get x() { return 0; }
-    // 
-    //     set [|y|](a: number) {}
-    // }
-    // const { x, y } = new Test();
-    // x; y;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     [|set y(a: number) {}|]
-      // }
-      // const { x, y } = new Test();
-      // x; y;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set [|y|](a: number) {}
-      // }
-      // const { x, y } = new Test();
-      // x; y;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-        // class Test {
-        //     get x() { return 0; }
-        // 
-        //     [|set y(a: number) {}|]
-        // }
-        // const { x, y } = new Test();
-        // x; y;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const y: number"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "y",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-    // class Test {
-    //     get x() { return 0; }
-    // 
-    //     set y(a: number) {}
-    // }
-    // const { x, [|y|] } = new Test();
-    // x; y;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // [|const { x, y } = new Test();|]
-      // x; y;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { x, [|y|] } = new Test();
-      // x; y;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-        // class Test {
-        //     get x() { return 0; }
-        // 
-        //     set y(a: number) {}
-        // }
-        // [|const { x, y } = new Test();|]
-        // x; y;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { x, y } = new Test();
-      // x; [|y|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
+// class Test {
+//     get x() { return 0; }
+// 
+//     <|set [|{| contextId: 0, defId: 0, kind: "property", name: "(property) Test.y: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Test","kind":"className"},{"text":".","kind":"punctuation"},{"text":"y","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}y|](a: number) {}|>
+// }
+// <|const { x, /*FIND ALL REFS*/[|{| contextId: 1, defId: 1, kind: "const", name: "const y: number", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"y","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}y|] } = new Test();|>
+// x; y;
 
 [
   {
@@ -1220,89 +635,18 @@
 // 
 //     set y(a: number) {}
 // }
-// const { x, [|y|] } = new Test();
-// x; /*FIND ALL REFS*/[|y|];
+// <|const { x, [|{| contextId: 0, defId: 0, isWriteAccess: true |}y|] } = new Test();|>
+// x; /*FIND ALL REFS*/[|{| defId: 0 |}y|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const y: number"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "y",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-    // class Test {
-    //     get x() { return 0; }
-    // 
-    //     set y(a: number) {}
-    // }
-    // const { x, [|y|] } = new Test();
-    // x; y;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // [|const { x, y } = new Test();|]
-      // x; y;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { x, [|y|] } = new Test();
-      // x; y;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-        // class Test {
-        //     get x() { return 0; }
-        // 
-        //     set y(a: number) {}
-        // }
-        // [|const { x, y } = new Test();|]
-        // x; y;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
-      // class Test {
-      //     get x() { return 0; }
-      // 
-      //     set y(a: number) {}
-      // }
-      // const { x, y } = new Test();
-      // x; [|y|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsDestructureGetter.ts ===
+// class Test {
+//     get x() { return 0; }
+// 
+//     set y(a: number) {}
+// }
+// <|const { x, [|{| contextId: 0, defId: 0, kind: "const", name: "const y: number", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"y","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}y|] } = new Test();|>
+// x; /*FIND ALL REFS*/y;
 
 [
   {

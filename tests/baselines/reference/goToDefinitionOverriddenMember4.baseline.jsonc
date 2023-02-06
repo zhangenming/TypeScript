@@ -1,6 +1,6 @@
 // === /tests/cases/fourslash/goToDefinitionOverriddenMember4.ts ===
 // class Foo {
-//     [|m|]() {}
+//     <|[|{| contextId: 0, kind: "method", name: "m", containerName: "Foo" |}m|]() {}|>
 // }
 // function f () {
 //     return class extends Foo {
@@ -8,44 +8,16 @@
 //     }
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "method"
-    // name: "m"
-    // containerName: "Foo"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /tests/cases/fourslash/goToDefinitionOverriddenMember4.ts ===
-    // class Foo {
-    //     [|m|]() {}
-    // }
-    // function f () {
-    //     return class extends Foo {
-    //         override m() {}
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinitionOverriddenMember4.ts ===
-      // class Foo {
-      //     [|m() {}|]
-      // }
-      // function f () {
-      //     return class extends Foo {
-      //         override m() {}
-      //     }
-      // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionOverriddenMember4.ts ===
-  // class Foo {
-  //     m() {}
-  // }
-  // function f () {
-  //     return class extends Foo {
-  //         [|override|] m() {}
-  //     }
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionOverriddenMember4.ts ===
+// class Foo {
+//     m() {}
+// }
+// function f () {
+//     return class extends Foo {
+//         /*GOTO DEF*/[|override|] m() {}
+//     }
+// }
 
 {
   "definitions": [

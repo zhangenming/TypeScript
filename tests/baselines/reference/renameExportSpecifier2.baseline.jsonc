@@ -1,42 +1,12 @@
 // === RenameOptions ===
 // providePrefixAndSuffixTextForRename: false
 // === /tests/cases/fourslash/a.ts ===
-// const RENAME = {};
-// export { [|RENAME|] };
+// <|const [|{| contextId: 0 |}nameRENAME|] = {};|>
+// <|export { [|{| contextId: 1 |}nameRENAME|]/*RENAME*/ };|>
 
 // === /tests/cases/fourslash/b.ts ===
-// import { RENAME } from './a';
-// const x = RENAME.toString();
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // const [|name|] = {};
-  // export { name };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // [|const name = {};|]
-    // export { name };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // const name = {};
-  // export { [|name|] };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // const name = {};
-    // [|export { name };|]
-// === 2 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import { [|name|] } from './a';
-  // const x = name.toString();
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/b.ts ===
-    // [|import { name } from './a';|]
-    // const x = name.toString();
-// === 3 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import { name } from './a';
-  // const x = [|name|].toString();
-
+// <|import { [|{| contextId: 2 |}nameRENAME|] } from './a';|>
+// const x = [|nameRENAME|].toString();
 
 [
   {

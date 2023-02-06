@@ -2,49 +2,12 @@
 // //global foo definition
 // function foo() {}
 // 
-// (function [|f/*OCCURENCES*/oo|](): number {
+// (<|function [|{| contextId: 0, isWriteAccess: true |}f/*OCCURENCES*/oo|](): number {
 //     return [|foo|](); // local foo reference
-// })
+// }|>)
 // //global foo references
 // foo();
 // var f = foo;
-
-// === 0 ===
-  // isWriteAccess: true
-  // === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
-  // //global foo definition
-  // function foo() {}
-  // 
-  // (function [|foo|](): number {
-  //     return foo(); // local foo reference
-  // })
-  // //global foo references
-  // foo();
-  // var f = foo;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
-    // //global foo definition
-    // function foo() {}
-    // 
-    // ([|function foo(): number {
-    //     return foo(); // local foo reference
-    // }|])
-    // //global foo references
-    // foo();
-    // var f = foo;
-// === 1 ===
-  // isWriteAccess: false
-  // === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
-  // //global foo definition
-  // function foo() {}
-  // 
-  // (function foo(): number {
-  //     return [|foo|](); // local foo reference
-  // })
-  // //global foo references
-  // foo();
-  // var f = foo;
-
 
 [
   {
@@ -71,7 +34,7 @@
 
 // === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
 // //global foo definition
-// function [|foo|]() {}
+// <|function [|{| contextId: 0, isWriteAccess: true |}foo|]() {}|>
 // 
 // (function foo(): number {
 //     return foo(); // local foo reference
@@ -79,55 +42,6 @@
 // //global foo references
 // [|fo/*OCCURENCES*/o|]();
 // var f = [|foo|];
-
-// === 0 ===
-  // isWriteAccess: true
-  // === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
-  // //global foo definition
-  // function [|foo|]() {}
-  // 
-  // (function foo(): number {
-  //     return foo(); // local foo reference
-  // })
-  // //global foo references
-  // foo();
-  // var f = foo;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
-    // //global foo definition
-    // [|function foo() {}|]
-    // 
-    // (function foo(): number {
-    //     return foo(); // local foo reference
-    // })
-    // //global foo references
-    // foo();
-    // var f = foo;
-// === 1 ===
-  // isWriteAccess: false
-  // === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
-  // //global foo definition
-  // function foo() {}
-  // 
-  // (function foo(): number {
-  //     return foo(); // local foo reference
-  // })
-  // //global foo references
-  // [|foo|]();
-  // var f = foo;
-// === 2 ===
-  // isWriteAccess: false
-  // === /tests/cases/fourslash/getOccurrencesOfAnonymousFunction2.ts ===
-  // //global foo definition
-  // function foo() {}
-  // 
-  // (function foo(): number {
-  //     return foo(); // local foo reference
-  // })
-  // //global foo references
-  // foo();
-  // var f = [|foo|];
-
 
 [
   {

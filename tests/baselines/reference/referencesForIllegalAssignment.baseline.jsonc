@@ -14,98 +14,14 @@ undefined
 
 // === /tests/cases/fourslash/referencesForIllegalAssignment.ts ===
 // foo = foo;
-// var /*FIND ALL REFS*/[|bar|] = function () { };
-// [|bar|] = [|bar|] + 1;
+// <|var /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}bar|] = function () { };|>
+// [|{| defId: 0, isWriteAccess: true |}bar|] = [|{| defId: 0 |}bar|] + 1;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var bar: () => void"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "bar",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=>",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForIllegalAssignment.ts ===
-    // foo = foo;
-    // var [|bar|] = function () { };
-    // bar = bar + 1;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForIllegalAssignment.ts ===
-      // foo = foo;
-      // [|var bar = function () { };|]
-      // bar = bar + 1;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForIllegalAssignment.ts ===
-      // foo = foo;
-      // var [|bar|] = function () { };
-      // bar = bar + 1;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForIllegalAssignment.ts ===
-        // foo = foo;
-        // [|var bar = function () { };|]
-        // bar = bar + 1;
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForIllegalAssignment.ts ===
-      // foo = foo;
-      // var bar = function () { };
-      // [|bar|] = bar + 1;
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForIllegalAssignment.ts ===
-      // foo = foo;
-      // var bar = function () { };
-      // bar = [|bar|] + 1;
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForIllegalAssignment.ts ===
+// foo = foo;
+// <|var /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "var", name: "var bar: () => void", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"bar","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"=>","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}bar|] = function () { };|>
+// bar = bar + 1;
 
 [
   {

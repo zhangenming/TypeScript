@@ -1,23 +1,23 @@
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
-//     [`[|RENAME|]`]: number;
+//     <|[`/*RENAME*/[|{| contextId: 0 |}numRENAME|]`]: number;|>
 //     ['bool']: boolean;
 // }
 // 
 // let o: Obj = {
-//     [`RENAME`]: 0,
+//     <|[`[|{| contextId: 1 |}numRENAME|]`]: 0|>,
 //     ['bool']: true,
 // };
 // 
 // o = {
-//     ['RENAME']: 1,
+//     <|['[|{| contextId: 2 |}numRENAME|]']: 1|>,
 //     [`bool`]: false,
 // };
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|numRENAME|];
+// o['[|numRENAME|]'];
+// o["[|numRENAME|]"];
+// o[`[|numRENAME|]`];
 // 
 // o.bool;
 // o['bool'];
@@ -29,311 +29,11 @@
 // === /tests/cases/fourslash/b.js ===
 // import { o as obj } from './a';
 // 
-// obj.RENAME;
-// obj[`RENAME`];
+// obj.[|numRENAME|];
+// obj[`[|numRENAME|]`];
 // 
 // obj.bool;
 // obj[`bool`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`[|num|]`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [|[`num`]: number;|]
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`[|num|]`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [|[`num`]: 0|],
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['[|num|]']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     [|['num']: 1|],
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.[|num|];
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['[|num|]'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["[|num|]"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`[|num|]`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.[|num|];
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`[|num|]`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-
 
 [
   {
@@ -415,24 +115,24 @@
 
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
-//     [`RENAME`]: number;
+//     <|[`[|{| contextId: 0 |}numRENAME|]`]: number;|>
 //     ['bool']: boolean;
 // }
 // 
 // let o: Obj = {
-//     [`[|RENAME|]`]: 0,
+//     <|[`/*RENAME*/[|{| contextId: 1 |}numRENAME|]`]: 0|>,
 //     ['bool']: true,
 // };
 // 
 // o = {
-//     ['RENAME']: 1,
+//     <|['[|{| contextId: 2 |}numRENAME|]']: 1|>,
 //     [`bool`]: false,
 // };
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|numRENAME|];
+// o['[|numRENAME|]'];
+// o["[|numRENAME|]"];
+// o[`[|numRENAME|]`];
 // 
 // o.bool;
 // o['bool'];
@@ -444,311 +144,11 @@
 // === /tests/cases/fourslash/b.js ===
 // import { o as obj } from './a';
 // 
-// obj.RENAME;
-// obj[`RENAME`];
+// obj.[|numRENAME|];
+// obj[`[|numRENAME|]`];
 // 
 // obj.bool;
 // obj[`bool`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`[|num|]`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [|[`num`]: number;|]
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`[|num|]`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [|[`num`]: 0|],
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['[|num|]']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     [|['num']: 1|],
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.[|num|];
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['[|num|]'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["[|num|]"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`[|num|]`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.[|num|];
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`[|num|]`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-
 
 [
   {
@@ -830,24 +230,24 @@
 
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
-//     [`RENAME`]: number;
+//     <|[`[|{| contextId: 0 |}numRENAME|]`]: number;|>
 //     ['bool']: boolean;
 // }
 // 
 // let o: Obj = {
-//     [`RENAME`]: 0,
+//     <|[`[|{| contextId: 1 |}numRENAME|]`]: 0|>,
 //     ['bool']: true,
 // };
 // 
 // o = {
-//     ['[|RENAME|]']: 1,
+//     <|['/*RENAME*/[|{| contextId: 2 |}numRENAME|]']: 1|>,
 //     [`bool`]: false,
 // };
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|numRENAME|];
+// o['[|numRENAME|]'];
+// o["[|numRENAME|]"];
+// o[`[|numRENAME|]`];
 // 
 // o.bool;
 // o['bool'];
@@ -859,311 +259,11 @@
 // === /tests/cases/fourslash/b.js ===
 // import { o as obj } from './a';
 // 
-// obj.RENAME;
-// obj[`RENAME`];
+// obj.[|numRENAME|];
+// obj[`[|numRENAME|]`];
 // 
 // obj.bool;
 // obj[`bool`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`[|num|]`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [|[`num`]: number;|]
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`[|num|]`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [|[`num`]: 0|],
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['[|num|]']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     [|['num']: 1|],
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.[|num|];
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['[|num|]'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["[|num|]"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`[|num|]`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.[|num|];
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`[|num|]`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-
 
 [
   {
@@ -1245,24 +345,24 @@
 
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
-//     [`RENAME`]: number;
+//     <|[`[|{| contextId: 0 |}numRENAME|]`]: number;|>
 //     ['bool']: boolean;
 // }
 // 
 // let o: Obj = {
-//     [`RENAME`]: 0,
+//     <|[`[|{| contextId: 1 |}numRENAME|]`]: 0|>,
 //     ['bool']: true,
 // };
 // 
 // o = {
-//     ['RENAME']: 1,
+//     <|['[|{| contextId: 2 |}numRENAME|]']: 1|>,
 //     [`bool`]: false,
 // };
 // 
-// o.[|RENAME|];
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o./*RENAME*/[|numRENAME|];
+// o['[|numRENAME|]'];
+// o["[|numRENAME|]"];
+// o[`[|numRENAME|]`];
 // 
 // o.bool;
 // o['bool'];
@@ -1274,311 +374,11 @@
 // === /tests/cases/fourslash/b.js ===
 // import { o as obj } from './a';
 // 
-// obj.RENAME;
-// obj[`RENAME`];
+// obj.[|numRENAME|];
+// obj[`[|numRENAME|]`];
 // 
 // obj.bool;
 // obj[`bool`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`[|num|]`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [|[`num`]: number;|]
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`[|num|]`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [|[`num`]: 0|],
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['[|num|]']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     [|['num']: 1|],
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.[|num|];
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['[|num|]'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["[|num|]"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`[|num|]`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.[|num|];
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`[|num|]`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-
 
 [
   {
@@ -1660,24 +460,24 @@
 
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
-//     [`RENAME`]: number;
+//     <|[`[|{| contextId: 0 |}numRENAME|]`]: number;|>
 //     ['bool']: boolean;
 // }
 // 
 // let o: Obj = {
-//     [`RENAME`]: 0,
+//     <|[`[|{| contextId: 1 |}numRENAME|]`]: 0|>,
 //     ['bool']: true,
 // };
 // 
 // o = {
-//     ['RENAME']: 1,
+//     <|['[|{| contextId: 2 |}numRENAME|]']: 1|>,
 //     [`bool`]: false,
 // };
 // 
-// o.RENAME;
-// o['[|RENAME|]'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|numRENAME|];
+// o['/*RENAME*/[|numRENAME|]'];
+// o["[|numRENAME|]"];
+// o[`[|numRENAME|]`];
 // 
 // o.bool;
 // o['bool'];
@@ -1689,311 +489,11 @@
 // === /tests/cases/fourslash/b.js ===
 // import { o as obj } from './a';
 // 
-// obj.RENAME;
-// obj[`RENAME`];
+// obj.[|numRENAME|];
+// obj[`[|numRENAME|]`];
 // 
 // obj.bool;
 // obj[`bool`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`[|num|]`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [|[`num`]: number;|]
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`[|num|]`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [|[`num`]: 0|],
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['[|num|]']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     [|['num']: 1|],
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.[|num|];
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['[|num|]'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["[|num|]"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`[|num|]`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.[|num|];
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`[|num|]`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-
 
 [
   {
@@ -2075,24 +575,24 @@
 
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
-//     [`RENAME`]: number;
+//     <|[`[|{| contextId: 0 |}numRENAME|]`]: number;|>
 //     ['bool']: boolean;
 // }
 // 
 // let o: Obj = {
-//     [`RENAME`]: 0,
+//     <|[`[|{| contextId: 1 |}numRENAME|]`]: 0|>,
 //     ['bool']: true,
 // };
 // 
 // o = {
-//     ['RENAME']: 1,
+//     <|['[|{| contextId: 2 |}numRENAME|]']: 1|>,
 //     [`bool`]: false,
 // };
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["[|RENAME|]"];
-// o[`RENAME`];
+// o.[|numRENAME|];
+// o['[|numRENAME|]'];
+// o["/*RENAME*/[|numRENAME|]"];
+// o[`[|numRENAME|]`];
 // 
 // o.bool;
 // o['bool'];
@@ -2104,311 +604,11 @@
 // === /tests/cases/fourslash/b.js ===
 // import { o as obj } from './a';
 // 
-// obj.RENAME;
-// obj[`RENAME`];
+// obj.[|numRENAME|];
+// obj[`[|numRENAME|]`];
 // 
 // obj.bool;
 // obj[`bool`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`[|num|]`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [|[`num`]: number;|]
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`[|num|]`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [|[`num`]: 0|],
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['[|num|]']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     [|['num']: 1|],
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.[|num|];
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['[|num|]'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["[|num|]"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`[|num|]`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.[|num|];
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`[|num|]`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-
 
 [
   {
@@ -2490,24 +690,24 @@
 
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
-//     [`RENAME`]: number;
+//     <|[`[|{| contextId: 0 |}numRENAME|]`]: number;|>
 //     ['bool']: boolean;
 // }
 // 
 // let o: Obj = {
-//     [`RENAME`]: 0,
+//     <|[`[|{| contextId: 1 |}numRENAME|]`]: 0|>,
 //     ['bool']: true,
 // };
 // 
 // o = {
-//     ['RENAME']: 1,
+//     <|['[|{| contextId: 2 |}numRENAME|]']: 1|>,
 //     [`bool`]: false,
 // };
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`[|RENAME|]`];
+// o.[|numRENAME|];
+// o['[|numRENAME|]'];
+// o["[|numRENAME|]"];
+// o[`/*RENAME*/[|numRENAME|]`];
 // 
 // o.bool;
 // o['bool'];
@@ -2519,311 +719,11 @@
 // === /tests/cases/fourslash/b.js ===
 // import { o as obj } from './a';
 // 
-// obj.RENAME;
-// obj[`RENAME`];
+// obj.[|numRENAME|];
+// obj[`[|numRENAME|]`];
 // 
 // obj.bool;
 // obj[`bool`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`[|num|]`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [|[`num`]: number;|]
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`[|num|]`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [|[`num`]: 0|],
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['[|num|]']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     [|['num']: 1|],
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.[|num|];
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['[|num|]'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["[|num|]"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`[|num|]`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.[|num|];
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`[|num|]`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-
 
 [
   {
@@ -2905,24 +805,24 @@
 
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
-//     [`RENAME`]: number;
+//     <|[`[|{| contextId: 0 |}numRENAME|]`]: number;|>
 //     ['bool']: boolean;
 // }
 // 
 // let o: Obj = {
-//     [`RENAME`]: 0,
+//     <|[`[|{| contextId: 1 |}numRENAME|]`]: 0|>,
 //     ['bool']: true,
 // };
 // 
 // o = {
-//     ['RENAME']: 1,
+//     <|['[|{| contextId: 2 |}numRENAME|]']: 1|>,
 //     [`bool`]: false,
 // };
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|numRENAME|];
+// o['[|numRENAME|]'];
+// o["[|numRENAME|]"];
+// o[`[|numRENAME|]`];
 // 
 // o.bool;
 // o['bool'];
@@ -2934,311 +834,11 @@
 // === /tests/cases/fourslash/b.js ===
 // import { o as obj } from './a';
 // 
-// obj.RENAME;
-// obj[`RENAME`];
+// obj./*RENAME*/[|numRENAME|];
+// obj[`[|numRENAME|]`];
 // 
 // obj.bool;
 // obj[`bool`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`[|num|]`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [|[`num`]: number;|]
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`[|num|]`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [|[`num`]: 0|],
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['[|num|]']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     [|['num']: 1|],
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.[|num|];
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['[|num|]'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["[|num|]"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`[|num|]`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.[|num|];
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`[|num|]`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-
 
 [
   {
@@ -3320,24 +920,24 @@
 
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
-//     [`RENAME`]: number;
+//     <|[`[|{| contextId: 0 |}numRENAME|]`]: number;|>
 //     ['bool']: boolean;
 // }
 // 
 // let o: Obj = {
-//     [`RENAME`]: 0,
+//     <|[`[|{| contextId: 1 |}numRENAME|]`]: 0|>,
 //     ['bool']: true,
 // };
 // 
 // o = {
-//     ['RENAME']: 1,
+//     <|['[|{| contextId: 2 |}numRENAME|]']: 1|>,
 //     [`bool`]: false,
 // };
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|numRENAME|];
+// o['[|numRENAME|]'];
+// o["[|numRENAME|]"];
+// o[`[|numRENAME|]`];
 // 
 // o.bool;
 // o['bool'];
@@ -3349,311 +949,11 @@
 // === /tests/cases/fourslash/b.js ===
 // import { o as obj } from './a';
 // 
-// obj.RENAME;
-// obj[`RENAME`];
+// obj.[|numRENAME|];
+// obj[`/*RENAME*/[|numRENAME|]`];
 // 
 // obj.bool;
 // obj[`bool`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`[|num|]`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [|[`num`]: number;|]
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`[|num|]`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [|[`num`]: 0|],
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['[|num|]']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     [|['num']: 1|],
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.[|num|];
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['[|num|]'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["[|num|]"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`[|num|]`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.[|num|];
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`[|num|]`];
-  // 
-  // obj.bool;
-  // obj[`bool`];
-
 
 [
   {
@@ -3736,17 +1036,17 @@
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
 //     [`num`]: number;
-//     ['[|RENAME|]']: boolean;
+//     <|['/*RENAME*/[|{| contextId: 0 |}boolRENAME|]']: boolean;|>
 // }
 // 
 // let o: Obj = {
 //     [`num`]: 0,
-//     ['RENAME']: true,
+//     <|['[|{| contextId: 1 |}boolRENAME|]']: true|>,
 // };
 // 
 // o = {
 //     ['num']: 1,
-//     [`RENAME`]: false,
+//     <|[`[|{| contextId: 2 |}boolRENAME|]`]: false|>,
 // };
 // 
 // o.num;
@@ -3754,10 +1054,10 @@
 // o["num"];
 // o[`num`];
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|boolRENAME|];
+// o['[|boolRENAME|]'];
+// o["[|boolRENAME|]"];
+// o[`[|boolRENAME|]`];
 // 
 // export { o };
 
@@ -3767,308 +1067,8 @@
 // obj.num;
 // obj[`num`];
 // 
-// obj.RENAME;
-// obj[`RENAME`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['[|bool|]']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     [|['bool']: boolean;|]
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['[|bool|]']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     [|['bool']: true|],
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`[|bool|]`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [|[`bool`]: false|],
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.[|bool|];
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['[|bool|]'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["[|bool|]"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`[|bool|]`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.[|bool|];
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`[|bool|]`];
-
+// obj.[|boolRENAME|];
+// obj[`[|boolRENAME|]`];
 
 [
   {
@@ -4151,17 +1151,17 @@
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
 //     [`num`]: number;
-//     ['RENAME']: boolean;
+//     <|['[|{| contextId: 0 |}boolRENAME|]']: boolean;|>
 // }
 // 
 // let o: Obj = {
 //     [`num`]: 0,
-//     ['[|RENAME|]']: true,
+//     <|['/*RENAME*/[|{| contextId: 1 |}boolRENAME|]']: true|>,
 // };
 // 
 // o = {
 //     ['num']: 1,
-//     [`RENAME`]: false,
+//     <|[`[|{| contextId: 2 |}boolRENAME|]`]: false|>,
 // };
 // 
 // o.num;
@@ -4169,10 +1169,10 @@
 // o["num"];
 // o[`num`];
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|boolRENAME|];
+// o['[|boolRENAME|]'];
+// o["[|boolRENAME|]"];
+// o[`[|boolRENAME|]`];
 // 
 // export { o };
 
@@ -4182,308 +1182,8 @@
 // obj.num;
 // obj[`num`];
 // 
-// obj.RENAME;
-// obj[`RENAME`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['[|bool|]']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     [|['bool']: boolean;|]
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['[|bool|]']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     [|['bool']: true|],
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`[|bool|]`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [|[`bool`]: false|],
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.[|bool|];
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['[|bool|]'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["[|bool|]"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`[|bool|]`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.[|bool|];
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`[|bool|]`];
-
+// obj.[|boolRENAME|];
+// obj[`[|boolRENAME|]`];
 
 [
   {
@@ -4566,17 +1266,17 @@
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
 //     [`num`]: number;
-//     ['RENAME']: boolean;
+//     <|['[|{| contextId: 0 |}boolRENAME|]']: boolean;|>
 // }
 // 
 // let o: Obj = {
 //     [`num`]: 0,
-//     ['RENAME']: true,
+//     <|['[|{| contextId: 1 |}boolRENAME|]']: true|>,
 // };
 // 
 // o = {
 //     ['num']: 1,
-//     [`[|RENAME|]`]: false,
+//     <|[`/*RENAME*/[|{| contextId: 2 |}boolRENAME|]`]: false|>,
 // };
 // 
 // o.num;
@@ -4584,10 +1284,10 @@
 // o["num"];
 // o[`num`];
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|boolRENAME|];
+// o['[|boolRENAME|]'];
+// o["[|boolRENAME|]"];
+// o[`[|boolRENAME|]`];
 // 
 // export { o };
 
@@ -4597,308 +1297,8 @@
 // obj.num;
 // obj[`num`];
 // 
-// obj.RENAME;
-// obj[`RENAME`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['[|bool|]']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     [|['bool']: boolean;|]
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['[|bool|]']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     [|['bool']: true|],
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`[|bool|]`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [|[`bool`]: false|],
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.[|bool|];
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['[|bool|]'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["[|bool|]"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`[|bool|]`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.[|bool|];
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`[|bool|]`];
-
+// obj.[|boolRENAME|];
+// obj[`[|boolRENAME|]`];
 
 [
   {
@@ -4981,17 +1381,17 @@
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
 //     [`num`]: number;
-//     ['RENAME']: boolean;
+//     <|['[|{| contextId: 0 |}boolRENAME|]']: boolean;|>
 // }
 // 
 // let o: Obj = {
 //     [`num`]: 0,
-//     ['RENAME']: true,
+//     <|['[|{| contextId: 1 |}boolRENAME|]']: true|>,
 // };
 // 
 // o = {
 //     ['num']: 1,
-//     [`RENAME`]: false,
+//     <|[`[|{| contextId: 2 |}boolRENAME|]`]: false|>,
 // };
 // 
 // o.num;
@@ -4999,10 +1399,10 @@
 // o["num"];
 // o[`num`];
 // 
-// o.[|RENAME|];
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o./*RENAME*/[|boolRENAME|];
+// o['[|boolRENAME|]'];
+// o["[|boolRENAME|]"];
+// o[`[|boolRENAME|]`];
 // 
 // export { o };
 
@@ -5012,308 +1412,8 @@
 // obj.num;
 // obj[`num`];
 // 
-// obj.RENAME;
-// obj[`RENAME`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['[|bool|]']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     [|['bool']: boolean;|]
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['[|bool|]']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     [|['bool']: true|],
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`[|bool|]`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [|[`bool`]: false|],
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.[|bool|];
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['[|bool|]'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["[|bool|]"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`[|bool|]`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.[|bool|];
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`[|bool|]`];
-
+// obj.[|boolRENAME|];
+// obj[`[|boolRENAME|]`];
 
 [
   {
@@ -5396,17 +1496,17 @@
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
 //     [`num`]: number;
-//     ['RENAME']: boolean;
+//     <|['[|{| contextId: 0 |}boolRENAME|]']: boolean;|>
 // }
 // 
 // let o: Obj = {
 //     [`num`]: 0,
-//     ['RENAME']: true,
+//     <|['[|{| contextId: 1 |}boolRENAME|]']: true|>,
 // };
 // 
 // o = {
 //     ['num']: 1,
-//     [`RENAME`]: false,
+//     <|[`[|{| contextId: 2 |}boolRENAME|]`]: false|>,
 // };
 // 
 // o.num;
@@ -5414,10 +1514,10 @@
 // o["num"];
 // o[`num`];
 // 
-// o.RENAME;
-// o['[|RENAME|]'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|boolRENAME|];
+// o['/*RENAME*/[|boolRENAME|]'];
+// o["[|boolRENAME|]"];
+// o[`[|boolRENAME|]`];
 // 
 // export { o };
 
@@ -5427,308 +1527,8 @@
 // obj.num;
 // obj[`num`];
 // 
-// obj.RENAME;
-// obj[`RENAME`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['[|bool|]']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     [|['bool']: boolean;|]
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['[|bool|]']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     [|['bool']: true|],
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`[|bool|]`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [|[`bool`]: false|],
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.[|bool|];
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['[|bool|]'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["[|bool|]"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`[|bool|]`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.[|bool|];
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`[|bool|]`];
-
+// obj.[|boolRENAME|];
+// obj[`[|boolRENAME|]`];
 
 [
   {
@@ -5811,17 +1611,17 @@
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
 //     [`num`]: number;
-//     ['RENAME']: boolean;
+//     <|['[|{| contextId: 0 |}boolRENAME|]']: boolean;|>
 // }
 // 
 // let o: Obj = {
 //     [`num`]: 0,
-//     ['RENAME']: true,
+//     <|['[|{| contextId: 1 |}boolRENAME|]']: true|>,
 // };
 // 
 // o = {
 //     ['num']: 1,
-//     [`RENAME`]: false,
+//     <|[`[|{| contextId: 2 |}boolRENAME|]`]: false|>,
 // };
 // 
 // o.num;
@@ -5829,10 +1629,10 @@
 // o["num"];
 // o[`num`];
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["[|RENAME|]"];
-// o[`RENAME`];
+// o.[|boolRENAME|];
+// o['[|boolRENAME|]'];
+// o["/*RENAME*/[|boolRENAME|]"];
+// o[`[|boolRENAME|]`];
 // 
 // export { o };
 
@@ -5842,308 +1642,8 @@
 // obj.num;
 // obj[`num`];
 // 
-// obj.RENAME;
-// obj[`RENAME`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['[|bool|]']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     [|['bool']: boolean;|]
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['[|bool|]']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     [|['bool']: true|],
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`[|bool|]`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [|[`bool`]: false|],
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.[|bool|];
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['[|bool|]'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["[|bool|]"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`[|bool|]`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.[|bool|];
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`[|bool|]`];
-
+// obj.[|boolRENAME|];
+// obj[`[|boolRENAME|]`];
 
 [
   {
@@ -6226,17 +1726,17 @@
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
 //     [`num`]: number;
-//     ['RENAME']: boolean;
+//     <|['[|{| contextId: 0 |}boolRENAME|]']: boolean;|>
 // }
 // 
 // let o: Obj = {
 //     [`num`]: 0,
-//     ['RENAME']: true,
+//     <|['[|{| contextId: 1 |}boolRENAME|]']: true|>,
 // };
 // 
 // o = {
 //     ['num']: 1,
-//     [`RENAME`]: false,
+//     <|[`[|{| contextId: 2 |}boolRENAME|]`]: false|>,
 // };
 // 
 // o.num;
@@ -6244,10 +1744,10 @@
 // o["num"];
 // o[`num`];
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`[|RENAME|]`];
+// o.[|boolRENAME|];
+// o['[|boolRENAME|]'];
+// o["[|boolRENAME|]"];
+// o[`/*RENAME*/[|boolRENAME|]`];
 // 
 // export { o };
 
@@ -6257,308 +1757,8 @@
 // obj.num;
 // obj[`num`];
 // 
-// obj.RENAME;
-// obj[`RENAME`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['[|bool|]']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     [|['bool']: boolean;|]
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['[|bool|]']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     [|['bool']: true|],
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`[|bool|]`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [|[`bool`]: false|],
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.[|bool|];
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['[|bool|]'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["[|bool|]"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`[|bool|]`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.[|bool|];
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`[|bool|]`];
-
+// obj.[|boolRENAME|];
+// obj[`[|boolRENAME|]`];
 
 [
   {
@@ -6641,17 +1841,17 @@
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
 //     [`num`]: number;
-//     ['RENAME']: boolean;
+//     <|['[|{| contextId: 0 |}boolRENAME|]']: boolean;|>
 // }
 // 
 // let o: Obj = {
 //     [`num`]: 0,
-//     ['RENAME']: true,
+//     <|['[|{| contextId: 1 |}boolRENAME|]']: true|>,
 // };
 // 
 // o = {
 //     ['num']: 1,
-//     [`RENAME`]: false,
+//     <|[`[|{| contextId: 2 |}boolRENAME|]`]: false|>,
 // };
 // 
 // o.num;
@@ -6659,10 +1859,10 @@
 // o["num"];
 // o[`num`];
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|boolRENAME|];
+// o['[|boolRENAME|]'];
+// o["[|boolRENAME|]"];
+// o[`[|boolRENAME|]`];
 // 
 // export { o };
 
@@ -6672,308 +1872,8 @@
 // obj.num;
 // obj[`num`];
 // 
-// obj.RENAME;
-// obj[`RENAME`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['[|bool|]']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     [|['bool']: boolean;|]
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['[|bool|]']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     [|['bool']: true|],
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`[|bool|]`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [|[`bool`]: false|],
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.[|bool|];
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['[|bool|]'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["[|bool|]"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`[|bool|]`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.[|bool|];
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`[|bool|]`];
-
+// obj./*RENAME*/[|boolRENAME|];
+// obj[`[|boolRENAME|]`];
 
 [
   {
@@ -7056,17 +1956,17 @@
 // === /tests/cases/fourslash/a.ts ===
 // interface Obj {
 //     [`num`]: number;
-//     ['RENAME']: boolean;
+//     <|['[|{| contextId: 0 |}boolRENAME|]']: boolean;|>
 // }
 // 
 // let o: Obj = {
 //     [`num`]: 0,
-//     ['RENAME']: true,
+//     <|['[|{| contextId: 1 |}boolRENAME|]']: true|>,
 // };
 // 
 // o = {
 //     ['num']: 1,
-//     [`RENAME`]: false,
+//     <|[`[|{| contextId: 2 |}boolRENAME|]`]: false|>,
 // };
 // 
 // o.num;
@@ -7074,10 +1974,10 @@
 // o["num"];
 // o[`num`];
 // 
-// o.RENAME;
-// o['RENAME'];
-// o["RENAME"];
-// o[`RENAME`];
+// o.[|boolRENAME|];
+// o['[|boolRENAME|]'];
+// o["[|boolRENAME|]"];
+// o[`[|boolRENAME|]`];
 // 
 // export { o };
 
@@ -7087,308 +1987,8 @@
 // obj.num;
 // obj[`num`];
 // 
-// obj.RENAME;
-// obj[`RENAME`];
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['[|bool|]']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     [|['bool']: boolean;|]
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 1 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['[|bool|]']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     [|['bool']: true|],
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [`bool`]: false,
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 2 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`[|bool|]`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // interface Obj {
-    //     [`num`]: number;
-    //     ['bool']: boolean;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0,
-    //     ['bool']: true,
-    // };
-    // 
-    // o = {
-    //     ['num']: 1,
-    //     [|[`bool`]: false|],
-    // };
-    // 
-    // o.num;
-    // o['num'];
-    // o["num"];
-    // o[`num`];
-    // 
-    // o.bool;
-    // o['bool'];
-    // o["bool"];
-    // o[`bool`];
-    // 
-    // export { o };
-// === 3 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.[|bool|];
-  // o['bool'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 4 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['[|bool|]'];
-  // o["bool"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 5 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["[|bool|]"];
-  // o[`bool`];
-  // 
-  // export { o };
-// === 6 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // interface Obj {
-  //     [`num`]: number;
-  //     ['bool']: boolean;
-  // }
-  // 
-  // let o: Obj = {
-  //     [`num`]: 0,
-  //     ['bool']: true,
-  // };
-  // 
-  // o = {
-  //     ['num']: 1,
-  //     [`bool`]: false,
-  // };
-  // 
-  // o.num;
-  // o['num'];
-  // o["num"];
-  // o[`num`];
-  // 
-  // o.bool;
-  // o['bool'];
-  // o["bool"];
-  // o[`[|bool|]`];
-  // 
-  // export { o };
-// === 7 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.[|bool|];
-  // obj[`bool`];
-// === 8 ===
-  // === /tests/cases/fourslash/b.js ===
-  // import { o as obj } from './a';
-  // 
-  // obj.num;
-  // obj[`num`];
-  // 
-  // obj.bool;
-  // obj[`[|bool|]`];
-
+// obj.[|boolRENAME|];
+// obj[`/*RENAME*/[|boolRENAME|]`];
 
 [
   {

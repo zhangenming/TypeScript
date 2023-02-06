@@ -1,6 +1,6 @@
 // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
 // class X{
-// 	/*FIND ALL REFS*/[|foo|]:any
+// 	/*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isDefinition: true |}foo|]:any|>
 // }
 // 
 // class Y extends X{
@@ -9,378 +9,41 @@
 // 
 // class Z extends Y{
 // 	static foo:any
-// 	[|foo|]:any
+// 	<|[|{| contextId: 1, defId: 1 |}foo|]:any|>
 // }
 // 
 // const x = new X();
 // const y = new Y();
 // const z = new Z();
-// x.[|foo|];
-// y.[|foo|];
-// z.[|foo|];
+// x.[|{| defId: 0 |}foo|];
+// y.[|{| defId: 0 |}foo|];
+// z.[|{| defId: 1 |}foo|];
 // Y.foo;
 // Z.foo;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) X.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "X",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	[|foo|]:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	foo:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	[|foo:any|]
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	[|foo|]:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	[|foo:any|]
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	foo:any
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.[|foo|];
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.[|foo|];
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Z.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Z",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	foo:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	[|foo|]:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	[|foo:any|]
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	[|foo|]:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	foo:any
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	[|foo:any|]
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.[|foo|];
-      // Y.foo;
-      // Z.foo;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
+// class X{
+// 	/*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) X.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"X","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// class Y extends X{
+// 	static foo:any
+// }
+// 
+// class Z extends Y{
+// 	static foo:any
+// 	<|[|{| contextId: 1, defId: 1, kind: "property", name: "(property) Z.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo;
+// y.foo;
+// z.foo;
+// Y.foo;
+// Z.foo;
 
 [
   {
@@ -566,7 +229,7 @@
 // }
 // 
 // class Y extends X{
-// 	static /*FIND ALL REFS*/[|foo|]:any
+// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isDefinition: true |}foo|]:any|>
 // }
 // 
 // class Z extends Y{
@@ -580,177 +243,32 @@
 // x.foo;
 // y.foo;
 // z.foo;
-// Y.[|foo|];
+// Y.[|{| defId: 0 |}foo|];
 // Z.foo;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Y.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Y",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	foo:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static [|foo|]:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	foo:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	[|static foo:any|]
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static [|foo|]:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	foo:any
-        // }
-        // 
-        // class Y extends X{
-        // 	[|static foo:any|]
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	foo:any
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.[|foo|];
-      // Z.foo;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
+// class X{
+// 	foo:any
+// }
+// 
+// class Y extends X{
+// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) Y.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Y","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// class Z extends Y{
+// 	static foo:any
+// 	foo:any
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo;
+// y.foo;
+// z.foo;
+// Y.foo;
+// Z.foo;
 
 [
   {
@@ -848,7 +366,7 @@
 // }
 // 
 // class Z extends Y{
-// 	static /*FIND ALL REFS*/[|foo|]:any
+// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isDefinition: true |}foo|]:any|>
 // 	foo:any
 // }
 // 
@@ -859,176 +377,31 @@
 // y.foo;
 // z.foo;
 // Y.foo;
-// Z.[|foo|];
+// Z.[|{| defId: 0 |}foo|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Z.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Z",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	foo:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static [|foo|]:any
-    // 	foo:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	[|static foo:any|]
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static [|foo|]:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	foo:any
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	[|static foo:any|]
-        // 	foo:any
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.[|foo|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
+// class X{
+// 	foo:any
+// }
+// 
+// class Y extends X{
+// 	static foo:any
+// }
+// 
+// class Z extends Y{
+// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) Z.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// 	foo:any
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo;
+// y.foo;
+// z.foo;
+// Y.foo;
+// Z.foo;
 
 [
   {
@@ -1118,7 +491,7 @@
 
 // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
 // class X{
-// 	[|foo|]:any
+// 	<|[|{| contextId: 0, defId: 0 |}foo|]:any|>
 // }
 // 
 // class Y extends X{
@@ -1127,378 +500,41 @@
 // 
 // class Z extends Y{
 // 	static foo:any
-// 	/*FIND ALL REFS*/[|foo|]:any
+// 	/*FIND ALL REFS*/<|[|{| contextId: 1, defId: 1, isDefinition: true |}foo|]:any|>
 // }
 // 
 // const x = new X();
 // const y = new Y();
 // const z = new Z();
-// x.[|foo|];
-// y.[|foo|];
-// z.[|foo|];
+// x.[|{| defId: 0 |}foo|];
+// y.[|{| defId: 0 |}foo|];
+// z.[|{| defId: 1 |}foo|];
 // Y.foo;
 // Z.foo;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) X.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "X",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	[|foo|]:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	foo:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	[|foo:any|]
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	[|foo|]:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	[|foo:any|]
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	foo:any
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.[|foo|];
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.[|foo|];
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Z.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Z",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	foo:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	[|foo|]:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	[|foo:any|]
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	[|foo|]:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	foo:any
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	[|foo:any|]
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.[|foo|];
-      // Y.foo;
-      // Z.foo;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
+// class X{
+// 	<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) X.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"X","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// class Y extends X{
+// 	static foo:any
+// }
+// 
+// class Z extends Y{
+// 	static foo:any
+// 	/*FIND ALL REFS*/<|[|{| contextId: 1, defId: 1, kind: "property", name: "(property) Z.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo;
+// y.foo;
+// z.foo;
+// Y.foo;
+// Z.foo;
 
 [
   {
@@ -1680,7 +716,7 @@
 
 // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
 // class X{
-// 	[|foo|]:any
+// 	<|[|{| contextId: 0, defId: 0 |}foo|]:any|>
 // }
 // 
 // class Y extends X{
@@ -1689,373 +725,41 @@
 // 
 // class Z extends Y{
 // 	static foo:any
-// 	[|foo|]:any
+// 	<|[|{| contextId: 1, defId: 1 |}foo|]:any|>
 // }
 // 
 // const x = new X();
 // const y = new Y();
 // const z = new Z();
-// x./*FIND ALL REFS*/[|foo|];
-// y.[|foo|];
-// z.[|foo|];
+// x./*FIND ALL REFS*/[|{| defId: 0 |}foo|];
+// y.[|{| defId: 0 |}foo|];
+// z.[|{| defId: 1 |}foo|];
 // Y.foo;
 // Z.foo;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) X.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "X",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	[|foo|]:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	foo:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	[|foo:any|]
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	[|foo|]:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	[|foo:any|]
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	foo:any
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.[|foo|];
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.[|foo|];
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Z.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Z",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	foo:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	[|foo|]:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	[|foo:any|]
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	[|foo|]:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	foo:any
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	[|foo:any|]
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.[|foo|];
-      // Y.foo;
-      // Z.foo;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
+// class X{
+// 	<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) X.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"X","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// class Y extends X{
+// 	static foo:any
+// }
+// 
+// class Z extends Y{
+// 	static foo:any
+// 	<|[|{| contextId: 1, defId: 1, kind: "property", name: "(property) Z.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x./*FIND ALL REFS*/foo;
+// y.foo;
+// z.foo;
+// Y.foo;
+// Z.foo;
 
 [
   {
@@ -2232,7 +936,7 @@
 
 // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
 // class X{
-// 	[|foo|]:any
+// 	<|[|{| contextId: 0, defId: 0 |}foo|]:any|>
 // }
 // 
 // class Y extends X{
@@ -2241,373 +945,41 @@
 // 
 // class Z extends Y{
 // 	static foo:any
-// 	[|foo|]:any
+// 	<|[|{| contextId: 1, defId: 1 |}foo|]:any|>
 // }
 // 
 // const x = new X();
 // const y = new Y();
 // const z = new Z();
-// x.[|foo|];
-// y./*FIND ALL REFS*/[|foo|];
-// z.[|foo|];
+// x.[|{| defId: 0 |}foo|];
+// y./*FIND ALL REFS*/[|{| defId: 0 |}foo|];
+// z.[|{| defId: 1 |}foo|];
 // Y.foo;
 // Z.foo;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) X.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "X",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	[|foo|]:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	foo:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	[|foo:any|]
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	[|foo|]:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	[|foo:any|]
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	foo:any
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.[|foo|];
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.[|foo|];
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Z.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Z",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	foo:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	[|foo|]:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	[|foo:any|]
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	[|foo|]:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	foo:any
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	[|foo:any|]
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.[|foo|];
-      // Y.foo;
-      // Z.foo;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
+// class X{
+// 	<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) X.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"X","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// class Y extends X{
+// 	static foo:any
+// }
+// 
+// class Z extends Y{
+// 	static foo:any
+// 	<|[|{| contextId: 1, defId: 1, kind: "property", name: "(property) Z.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo;
+// y./*FIND ALL REFS*/foo;
+// z.foo;
+// Y.foo;
+// Z.foo;
 
 [
   {
@@ -2784,7 +1156,7 @@
 
 // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
 // class X{
-// 	[|foo|]:any
+// 	<|[|{| contextId: 0, defId: 0 |}foo|]:any|>
 // }
 // 
 // class Y extends X{
@@ -2793,373 +1165,41 @@
 // 
 // class Z extends Y{
 // 	static foo:any
-// 	[|foo|]:any
+// 	<|[|{| contextId: 1, defId: 1 |}foo|]:any|>
 // }
 // 
 // const x = new X();
 // const y = new Y();
 // const z = new Z();
-// x.[|foo|];
-// y.[|foo|];
-// z./*FIND ALL REFS*/[|foo|];
+// x.[|{| defId: 0 |}foo|];
+// y.[|{| defId: 0 |}foo|];
+// z./*FIND ALL REFS*/[|{| defId: 1 |}foo|];
 // Y.foo;
 // Z.foo;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) X.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "X",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	[|foo|]:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	foo:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	[|foo:any|]
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	[|foo|]:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	[|foo:any|]
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	foo:any
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.[|foo|];
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.[|foo|];
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Z.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Z",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	foo:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	[|foo|]:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	[|foo:any|]
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	[|foo|]:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	foo:any
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	[|foo:any|]
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.[|foo|];
-      // Y.foo;
-      // Z.foo;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
+// class X{
+// 	<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) X.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"X","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// class Y extends X{
+// 	static foo:any
+// }
+// 
+// class Z extends Y{
+// 	static foo:any
+// 	<|[|{| contextId: 1, defId: 1, kind: "property", name: "(property) Z.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo;
+// y.foo;
+// z./*FIND ALL REFS*/foo;
+// Y.foo;
+// Z.foo;
 
 [
   {
@@ -3340,7 +1380,7 @@
 // }
 // 
 // class Y extends X{
-// 	static [|foo|]:any
+// 	<|static [|{| contextId: 0, defId: 0 |}foo|]:any|>
 // }
 // 
 // class Z extends Y{
@@ -3354,175 +1394,32 @@
 // x.foo;
 // y.foo;
 // z.foo;
-// Y./*FIND ALL REFS*/[|foo|];
+// Y./*FIND ALL REFS*/[|{| defId: 0 |}foo|];
 // Z.foo;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Y.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Y",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	foo:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static [|foo|]:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo:any
-    // 	foo:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	[|static foo:any|]
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static [|foo|]:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	foo:any
-        // }
-        // 
-        // class Y extends X{
-        // 	[|static foo:any|]
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo:any
-        // 	foo:any
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.[|foo|];
-      // Z.foo;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
+// class X{
+// 	foo:any
+// }
+// 
+// class Y extends X{
+// 	<|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) Y.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Y","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// }
+// 
+// class Z extends Y{
+// 	static foo:any
+// 	foo:any
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo;
+// y.foo;
+// z.foo;
+// Y./*FIND ALL REFS*/foo;
+// Z.foo;
 
 [
   {
@@ -3618,7 +1515,7 @@
 // }
 // 
 // class Z extends Y{
-// 	static [|foo|]:any
+// 	<|static [|{| contextId: 0, defId: 0 |}foo|]:any|>
 // 	foo:any
 // }
 // 
@@ -3629,174 +1526,31 @@
 // y.foo;
 // z.foo;
 // Y.foo;
-// Z./*FIND ALL REFS*/[|foo|];
+// Z./*FIND ALL REFS*/[|{| defId: 0 |}foo|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Z.foo: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Z",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-    // class X{
-    // 	foo:any
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo:any
-    // }
-    // 
-    // class Z extends Y{
-    // 	static [|foo|]:any
-    // 	foo:any
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo;
-    // y.foo;
-    // z.foo;
-    // Y.foo;
-    // Z.foo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	[|static foo:any|]
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static [|foo|]:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.foo;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-        // class X{
-        // 	foo:any
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo:any
-        // }
-        // 
-        // class Z extends Y{
-        // 	[|static foo:any|]
-        // 	foo:any
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo;
-        // y.foo;
-        // z.foo;
-        // Y.foo;
-        // Z.foo;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
-      // class X{
-      // 	foo:any
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo:any
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo:any
-      // 	foo:any
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo;
-      // y.foo;
-      // z.foo;
-      // Y.foo;
-      // Z.[|foo|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstancePropertyInheritance.ts ===
+// class X{
+// 	foo:any
+// }
+// 
+// class Y extends X{
+// 	static foo:any
+// }
+// 
+// class Z extends Y{
+// 	<|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) Z.foo: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}foo|]:any|>
+// 	foo:any
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo;
+// y.foo;
+// z.foo;
+// Y.foo;
+// Z./*FIND ALL REFS*/foo;
 
 [
   {

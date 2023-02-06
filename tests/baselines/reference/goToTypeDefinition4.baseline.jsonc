@@ -7,47 +7,17 @@ undefined
 
 // === goToDefinition ===
 // === /tests/cases/fourslash/foo.ts ===
-// export type [|T|] = string;
-// export const [|T|] = "";
+// <|export type [|{| contextId: 0, kind: "const", name: "T", containerName: "\"/tests/cases/fourslash/foo\"" |}T|] = string;|>
+// <|export const [|{| contextId: 1, kind: "const", name: "T", containerName: "\"/tests/cases/fourslash/foo\"" |}T|] = "";|>
 
 // === /tests/cases/fourslash/bar.ts ===
 // import { T } from "./foo";
 // let x: /*GOTO DEF*/T;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "const"
-    // name: "T"
-    // containerName: "\"/tests/cases/fourslash/foo\""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /tests/cases/fourslash/foo.ts ===
-    // export type [|T|] = string;
-    // export const T = "";
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/foo.ts ===
-      // [|export type T = string;|]
-      // export const T = "";
-  // === 1 ===
-    // kind: "const"
-    // name: "T"
-    // containerName: "\"/tests/cases/fourslash/foo\""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /tests/cases/fourslash/foo.ts ===
-    // export type T = string;
-    // export const [|T|] = "";
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/foo.ts ===
-      // export type T = string;
-      // [|export const T = "";|]
 // === TextSpan ===
-  // === /tests/cases/fourslash/bar.ts ===
-  // import { T } from "./foo";
-  // let x: [|T|];
-
+// === /tests/cases/fourslash/bar.ts ===
+// import { T } from "./foo";
+// let x: /*GOTO DEF*/[|T|];
 
 {
   "definitions": [

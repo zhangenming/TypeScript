@@ -1,28 +1,14 @@
 // === /a.js ===
-// module.exports = function [|f|]() {}
+// module.exports = <|function [|{| contextId: 0, kind: "local function", name: "f", isLocal: true |}f|]() {}|>
 
 // === /b.js ===
 // const f = require("./a");
 // /*GOTO DEF*/f();
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "local function"
-    // name: "f"
-    // containerName: ""
-    // isLocal: true
-    // isAmbient: false
-    // unverified: false
-    // === /a.js ===
-    // module.exports = function [|f|]() {}
-      // === ContextSpan ===
-      // === /a.js ===
-      // module.exports = [|function f() {}|]
 // === TextSpan ===
-  // === /b.js ===
-  // const f = require("./a");
-  // [|f|]();
-
+// === /b.js ===
+// const f = require("./a");
+// /*GOTO DEF*/[|f|]();
 
 {
   "definitions": [
@@ -51,30 +37,16 @@
 }
 
 // === /a.js ===
-// module.exports = function [|f|]() {}
+// module.exports = <|function [|{| contextId: 0, kind: "local function", name: "f", isLocal: true |}f|]() {}|>
 
 // === /bar.ts ===
 // import f = require("./a");
 // /*GOTO DEF*/f();
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "local function"
-    // name: "f"
-    // containerName: ""
-    // isLocal: true
-    // isAmbient: false
-    // unverified: false
-    // === /a.js ===
-    // module.exports = function [|f|]() {}
-      // === ContextSpan ===
-      // === /a.js ===
-      // module.exports = [|function f() {}|]
 // === TextSpan ===
-  // === /bar.ts ===
-  // import f = require("./a");
-  // [|f|]();
-
+// === /bar.ts ===
+// import f = require("./a");
+// /*GOTO DEF*/[|f|]();
 
 {
   "definitions": [

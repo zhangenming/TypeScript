@@ -1,5 +1,5 @@
 // === /tests/cases/fourslash/goToDefinitionThis.ts ===
-// function f([|this|]: number) {
+// function f(<|[|{| contextId: 0, kind: "parameter", name: "this" |}this|]: number|>) {
 //     return /*GOTO DEF*/this;
 // }
 // class C {
@@ -7,42 +7,15 @@
 //     get self(this: number) { return this; }
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "parameter"
-    // name: "this"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionThis.ts ===
-    // function f([|this|]: number) {
-    //     return this;
-    // }
-    // class C {
-    //     constructor() { return this; }
-    //     get self(this: number) { return this; }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinitionThis.ts ===
-      // function f([|this: number|]) {
-      //     return this;
-      // }
-      // class C {
-      //     constructor() { return this; }
-      //     get self(this: number) { return this; }
-      // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionThis.ts ===
-  // function f(this: number) {
-  //     return [|this|];
-  // }
-  // class C {
-  //     constructor() { return this; }
-  //     get self(this: number) { return this; }
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionThis.ts ===
+// function f(this: number) {
+//     return /*GOTO DEF*/[|this|];
+// }
+// class C {
+//     constructor() { return this; }
+//     get self(this: number) { return this; }
+// }
 
 {
   "definitions": [
@@ -75,47 +48,20 @@
 // function f(this: number) {
 //     return this;
 // }
-// class [|C|] {
+// <|class [|{| contextId: 0, kind: "parameter", name: "C" |}C|] {
 //     constructor() { return /*GOTO DEF*/this; }
 //     get self(this: number) { return this; }
-// }
+// }|>
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "parameter"
-    // name: "C"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionThis.ts ===
-    // function f(this: number) {
-    //     return this;
-    // }
-    // class [|C|] {
-    //     constructor() { return this; }
-    //     get self(this: number) { return this; }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinitionThis.ts ===
-      // function f(this: number) {
-      //     return this;
-      // }
-      // [|class C {
-      //     constructor() { return this; }
-      //     get self(this: number) { return this; }
-      // }|]
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionThis.ts ===
-  // function f(this: number) {
-  //     return this;
-  // }
-  // class C {
-  //     constructor() { return [|this|]; }
-  //     get self(this: number) { return this; }
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionThis.ts ===
+// function f(this: number) {
+//     return this;
+// }
+// class C {
+//     constructor() { return /*GOTO DEF*/[|this|]; }
+//     get self(this: number) { return this; }
+// }
 
 {
   "definitions": [
@@ -150,45 +96,18 @@
 // }
 // class C {
 //     constructor() { return this; }
-//     get self([|this|]: number) { return /*GOTO DEF*/this; }
+//     get self(<|[|{| contextId: 0, kind: "parameter", name: "this" |}this|]: number|>) { return /*GOTO DEF*/this; }
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "parameter"
-    // name: "this"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionThis.ts ===
-    // function f(this: number) {
-    //     return this;
-    // }
-    // class C {
-    //     constructor() { return this; }
-    //     get self([|this|]: number) { return this; }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinitionThis.ts ===
-      // function f(this: number) {
-      //     return this;
-      // }
-      // class C {
-      //     constructor() { return this; }
-      //     get self([|this: number|]) { return this; }
-      // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionThis.ts ===
-  // function f(this: number) {
-  //     return this;
-  // }
-  // class C {
-  //     constructor() { return this; }
-  //     get self(this: number) { return [|this|]; }
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionThis.ts ===
+// function f(this: number) {
+//     return this;
+// }
+// class C {
+//     constructor() { return this; }
+//     get self(this: number) { return /*GOTO DEF*/[|this|]; }
+// }
 
 {
   "definitions": [

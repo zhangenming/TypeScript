@@ -1,48 +1,21 @@
 // === /b.ts ===
 // import f, { x } from "./a";
-// import * as [|a|] from "./a";
+// <|import * as [|{| contextId: 0, kind: "alias", name: "a", isLocal: true |}a|] from "./a";|>
 // import b = require("./b");
 // f;
 // x;
 // /*GOTO DEF*/a;
 // b;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "alias"
-    // name: "a"
-    // containerName: ""
-    // isLocal: true
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /b.ts ===
-    // import f, { x } from "./a";
-    // import * as [|a|] from "./a";
-    // import b = require("./b");
-    // f;
-    // x;
-    // a;
-    // b;
-      // === ContextSpan ===
-      // === /b.ts ===
-      // import f, { x } from "./a";
-      // [|import * as a from "./a";|]
-      // import b = require("./b");
-      // f;
-      // x;
-      // a;
-      // b;
 // === TextSpan ===
-  // === /b.ts ===
-  // import f, { x } from "./a";
-  // import * as a from "./a";
-  // import b = require("./b");
-  // f;
-  // x;
-  // [|a|];
-  // b;
-
+// === /b.ts ===
+// import f, { x } from "./a";
+// import * as a from "./a";
+// import b = require("./b");
+// f;
+// x;
+// /*GOTO DEF*/[|a|];
+// b;
 
 {
   "definitions": [
@@ -72,7 +45,7 @@
 }
 
 // === /a.ts ===
-// export default function [|f|]() {}
+// <|export default function [|{| contextId: 0, kind: "function", name: "f", containerName: "a" |}f|]() {}|>
 // export const x = 0;
 
 // === /b.ts ===
@@ -84,31 +57,15 @@
 // a;
 // b;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "function"
-    // name: "f"
-    // containerName: "a"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /a.ts ===
-    // export default function [|f|]() {}
-    // export const x = 0;
-      // === ContextSpan ===
-      // === /a.ts ===
-      // [|export default function f() {}|]
-      // export const x = 0;
 // === TextSpan ===
-  // === /b.ts ===
-  // import f, { x } from "./a";
-  // import * as a from "./a";
-  // import b = require("./b");
-  // [|f|];
-  // x;
-  // a;
-  // b;
-
+// === /b.ts ===
+// import f, { x } from "./a";
+// import * as a from "./a";
+// import b = require("./b");
+// /*GOTO DEF*/[|f|];
+// x;
+// a;
+// b;
 
 {
   "definitions": [
@@ -138,7 +95,7 @@
 
 // === /a.ts ===
 // export default function f() {}
-// export const [|x|] = 0;
+// <|export const [|{| contextId: 0, kind: "const", name: "x", containerName: "a" |}x|] = 0;|>
 
 // === /b.ts ===
 // import f, { x } from "./a";
@@ -149,31 +106,15 @@
 // a;
 // b;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "const"
-    // name: "x"
-    // containerName: "a"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /a.ts ===
-    // export default function f() {}
-    // export const [|x|] = 0;
-      // === ContextSpan ===
-      // === /a.ts ===
-      // export default function f() {}
-      // [|export const x = 0;|]
 // === TextSpan ===
-  // === /b.ts ===
-  // import f, { x } from "./a";
-  // import * as a from "./a";
-  // import b = require("./b");
-  // f;
-  // [|x|];
-  // a;
-  // b;
-
+// === /b.ts ===
+// import f, { x } from "./a";
+// import * as a from "./a";
+// import b = require("./b");
+// f;
+// /*GOTO DEF*/[|x|];
+// a;
+// b;
 
 {
   "definitions": [
@@ -202,7 +143,7 @@
 }
 
 // === /b.ts ===
-// [|import f, { x } from "./a";
+// [|{| kind: "module", name: "\"/b\"" |}import f, { x } from "./a";
 // import * as a from "./a";
 // import b = require("./b");
 // f;
@@ -210,32 +151,15 @@
 // a;
 // /*GOTO DEF*/b;|]
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "\"/b\""
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /b.ts ===
-    // [|import f, { x } from "./a";
-    // import * as a from "./a";
-    // import b = require("./b");
-    // f;
-    // x;
-    // a;
-    // b;|]
 // === TextSpan ===
-  // === /b.ts ===
-  // import f, { x } from "./a";
-  // import * as a from "./a";
-  // import b = require("./b");
-  // f;
-  // x;
-  // a;
-  // [|b|];
-
+// === /b.ts ===
+// import f, { x } from "./a";
+// import * as a from "./a";
+// import b = require("./b");
+// f;
+// x;
+// a;
+// /*GOTO DEF*/[|b|];
 
 {
   "definitions": [

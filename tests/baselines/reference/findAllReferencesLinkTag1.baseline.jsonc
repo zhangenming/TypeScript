@@ -1,17 +1,17 @@
 // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
 // class C {
-//     [|m|]/*FIND ALL REFS*/() { }
+//     <|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}m|]/*FIND ALL REFS*/() { }|>
 //     n = 1
 //     static s() { }
 //     /**
-//      * {@link [|m|]}
-//      * @see {[|m|]}
-//      * {@link C.[|m|]}
-//      * @see {C.[|m|]}
-//      * {@link C#[|m|]}
-//      * @see {C#[|m|]}
-//      * {@link C.prototype.[|m|]}
-//      * @see {C.prototype.[|m|]}
+//      * {@link [|{| defId: 0 |}m|]}
+//      * @see {[|{| defId: 0 |}m|]}
+//      * {@link C.[|{| defId: 0 |}m|]}
+//      * @see {C.[|{| defId: 0 |}m|]}
+//      * {@link C#[|{| defId: 0 |}m|]}
+//      * @see {C#[|{| defId: 0 |}m|]}
+//      * {@link C.prototype.[|{| defId: 0 |}m|]}
+//      * @see {C.prototype.[|{| defId: 0 |}m|]}
 //      */
 //     p() { }
 //     /**
@@ -63,861 +63,71 @@
 //     function r2() { }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) C.m(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "m",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-    // class C {
-    //     [|m|]() { }
-    //     n = 1
-    //     static s() { }
-    //     /**
-    //      * {@link m}
-    //      * @see {m}
-    //      * {@link C.m}
-    //      * @see {C.m}
-    //      * {@link C#m}
-    //      * @see {C#m}
-    //      * {@link C.prototype.m}
-    //      * @see {C.prototype.m}
-    //      */
-    //     p() { }
-    //     /**
-    //      * {@link n}
-    //      * @see {n}
-    //      * {@link C.n}
-    //      * @see {C.n}
-    //      * {@link C#n}
-    //      * @see {C#n}
-    //      * {@link C.prototype.n}
-    //      * @see {C.prototype.n}
-    //      */
-    //     q() { }
-    //     /**
-    //      * {@link s}
-    //      * @see {s}
-    //      * {@link C.s}
-    //      * @see {C.s}
-    //      */
-    //     r() { }
-    // }
-    // 
-    // interface I {
-    //     a()
-    //     b: 1
-    //     /**
-    //      * {@link a}
-    //      * @see {a}
-    //      * {@link I.a}
-    //      * @see {I.a}
-    //      * {@link I#a}
-    //      * @see {I#a}
-    //      */
-    //     c()
-    //     /**
-    //      * {@link b}
-    //      * @see {b}
-    //      * {@link I.b}
-    //      * @see {I.b}
-    //      */
-    //     d()
-    // }
-    // 
-    // function nestor() {
-    //     /** {@link r2} */
-    //     function ref() { }
-    //     /** @see {r2} */
-    //     function d3() { }
-    //     function r2() { }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     [|m() { }|]
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     [|m|]() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-        // class C {
-        //     [|m() { }|]
-        //     n = 1
-        //     static s() { }
-        //     /**
-        //      * {@link m}
-        //      * @see {m}
-        //      * {@link C.m}
-        //      * @see {C.m}
-        //      * {@link C#m}
-        //      * @see {C#m}
-        //      * {@link C.prototype.m}
-        //      * @see {C.prototype.m}
-        //      */
-        //     p() { }
-        //     /**
-        //      * {@link n}
-        //      * @see {n}
-        //      * {@link C.n}
-        //      * @see {C.n}
-        //      * {@link C#n}
-        //      * @see {C#n}
-        //      * {@link C.prototype.n}
-        //      * @see {C.prototype.n}
-        //      */
-        //     q() { }
-        //     /**
-        //      * {@link s}
-        //      * @see {s}
-        //      * {@link C.s}
-        //      * @see {C.s}
-        //      */
-        //     r() { }
-        // }
-        // 
-        // interface I {
-        //     a()
-        //     b: 1
-        //     /**
-        //      * {@link a}
-        //      * @see {a}
-        //      * {@link I.a}
-        //      * @see {I.a}
-        //      * {@link I#a}
-        //      * @see {I#a}
-        //      */
-        //     c()
-        //     /**
-        //      * {@link b}
-        //      * @see {b}
-        //      * {@link I.b}
-        //      * @see {I.b}
-        //      */
-        //     d()
-        // }
-        // 
-        // function nestor() {
-        //     /** {@link r2} */
-        //     function ref() { }
-        //     /** @see {r2} */
-        //     function d3() { }
-        //     function r2() { }
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link [|m|]}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {[|m|]}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.[|m|]}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.[|m|]}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#[|m|]}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#[|m|]}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.[|m|]}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 8 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.[|m|]}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
+// class C {
+//     <|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) C.m(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":".","kind":"punctuation"},{"text":"m","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}m|]/*FIND ALL REFS*/() { }|>
+//     n = 1
+//     static s() { }
+//     /**
+//      * {@link m}
+//      * @see {m}
+//      * {@link C.m}
+//      * @see {C.m}
+//      * {@link C#m}
+//      * @see {C#m}
+//      * {@link C.prototype.m}
+//      * @see {C.prototype.m}
+//      */
+//     p() { }
+//     /**
+//      * {@link n}
+//      * @see {n}
+//      * {@link C.n}
+//      * @see {C.n}
+//      * {@link C#n}
+//      * @see {C#n}
+//      * {@link C.prototype.n}
+//      * @see {C.prototype.n}
+//      */
+//     q() { }
+//     /**
+//      * {@link s}
+//      * @see {s}
+//      * {@link C.s}
+//      * @see {C.s}
+//      */
+//     r() { }
+// }
+// 
+// interface I {
+//     a()
+//     b: 1
+//     /**
+//      * {@link a}
+//      * @see {a}
+//      * {@link I.a}
+//      * @see {I.a}
+//      * {@link I#a}
+//      * @see {I#a}
+//      */
+//     c()
+//     /**
+//      * {@link b}
+//      * @see {b}
+//      * {@link I.b}
+//      * @see {I.b}
+//      */
+//     d()
+// }
+// 
+// function nestor() {
+//     /** {@link r2} */
+//     function ref() { }
+//     /** @see {r2} */
+//     function d3() { }
+//     function r2() { }
+// }
 
 [
   {
@@ -1079,7 +289,7 @@
 // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
 // class C {
 //     m() { }
-//     [|n|]/*FIND ALL REFS*/ = 1
+//     <|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}n|]/*FIND ALL REFS*/ = 1|>
 //     static s() { }
 //     /**
 //      * {@link m}
@@ -1093,14 +303,14 @@
 //      */
 //     p() { }
 //     /**
-//      * {@link [|n|]}
-//      * @see {[|n|]}
-//      * {@link C.[|n|]}
-//      * @see {C.[|n|]}
-//      * {@link C#[|n|]}
-//      * @see {C#[|n|]}
-//      * {@link C.prototype.[|n|]}
-//      * @see {C.prototype.[|n|]}
+//      * {@link [|{| defId: 0 |}n|]}
+//      * @see {[|{| defId: 0 |}n|]}
+//      * {@link C.[|{| defId: 0 |}n|]}
+//      * @see {C.[|{| defId: 0 |}n|]}
+//      * {@link C#[|{| defId: 0 |}n|]}
+//      * @see {C#[|{| defId: 0 |}n|]}
+//      * {@link C.prototype.[|{| defId: 0 |}n|]}
+//      * @see {C.prototype.[|{| defId: 0 |}n|]}
 //      */
 //     q() { }
 //     /**
@@ -1141,853 +351,71 @@
 //     function r2() { }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) C.n: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-    // class C {
-    //     m() { }
-    //     [|n|] = 1
-    //     static s() { }
-    //     /**
-    //      * {@link m}
-    //      * @see {m}
-    //      * {@link C.m}
-    //      * @see {C.m}
-    //      * {@link C#m}
-    //      * @see {C#m}
-    //      * {@link C.prototype.m}
-    //      * @see {C.prototype.m}
-    //      */
-    //     p() { }
-    //     /**
-    //      * {@link n}
-    //      * @see {n}
-    //      * {@link C.n}
-    //      * @see {C.n}
-    //      * {@link C#n}
-    //      * @see {C#n}
-    //      * {@link C.prototype.n}
-    //      * @see {C.prototype.n}
-    //      */
-    //     q() { }
-    //     /**
-    //      * {@link s}
-    //      * @see {s}
-    //      * {@link C.s}
-    //      * @see {C.s}
-    //      */
-    //     r() { }
-    // }
-    // 
-    // interface I {
-    //     a()
-    //     b: 1
-    //     /**
-    //      * {@link a}
-    //      * @see {a}
-    //      * {@link I.a}
-    //      * @see {I.a}
-    //      * {@link I#a}
-    //      * @see {I#a}
-    //      */
-    //     c()
-    //     /**
-    //      * {@link b}
-    //      * @see {b}
-    //      * {@link I.b}
-    //      * @see {I.b}
-    //      */
-    //     d()
-    // }
-    // 
-    // function nestor() {
-    //     /** {@link r2} */
-    //     function ref() { }
-    //     /** @see {r2} */
-    //     function d3() { }
-    //     function r2() { }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     [|n = 1|]
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     [|n|] = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-        // class C {
-        //     m() { }
-        //     [|n = 1|]
-        //     static s() { }
-        //     /**
-        //      * {@link m}
-        //      * @see {m}
-        //      * {@link C.m}
-        //      * @see {C.m}
-        //      * {@link C#m}
-        //      * @see {C#m}
-        //      * {@link C.prototype.m}
-        //      * @see {C.prototype.m}
-        //      */
-        //     p() { }
-        //     /**
-        //      * {@link n}
-        //      * @see {n}
-        //      * {@link C.n}
-        //      * @see {C.n}
-        //      * {@link C#n}
-        //      * @see {C#n}
-        //      * {@link C.prototype.n}
-        //      * @see {C.prototype.n}
-        //      */
-        //     q() { }
-        //     /**
-        //      * {@link s}
-        //      * @see {s}
-        //      * {@link C.s}
-        //      * @see {C.s}
-        //      */
-        //     r() { }
-        // }
-        // 
-        // interface I {
-        //     a()
-        //     b: 1
-        //     /**
-        //      * {@link a}
-        //      * @see {a}
-        //      * {@link I.a}
-        //      * @see {I.a}
-        //      * {@link I#a}
-        //      * @see {I#a}
-        //      */
-        //     c()
-        //     /**
-        //      * {@link b}
-        //      * @see {b}
-        //      * {@link I.b}
-        //      * @see {I.b}
-        //      */
-        //     d()
-        // }
-        // 
-        // function nestor() {
-        //     /** {@link r2} */
-        //     function ref() { }
-        //     /** @see {r2} */
-        //     function d3() { }
-        //     function r2() { }
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link [|n|]}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {[|n|]}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.[|n|]}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.[|n|]}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#[|n|]}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#[|n|]}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.[|n|]}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 8 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.[|n|]}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
+// class C {
+//     m() { }
+//     <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) C.n: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}n|]/*FIND ALL REFS*/ = 1|>
+//     static s() { }
+//     /**
+//      * {@link m}
+//      * @see {m}
+//      * {@link C.m}
+//      * @see {C.m}
+//      * {@link C#m}
+//      * @see {C#m}
+//      * {@link C.prototype.m}
+//      * @see {C.prototype.m}
+//      */
+//     p() { }
+//     /**
+//      * {@link n}
+//      * @see {n}
+//      * {@link C.n}
+//      * @see {C.n}
+//      * {@link C#n}
+//      * @see {C#n}
+//      * {@link C.prototype.n}
+//      * @see {C.prototype.n}
+//      */
+//     q() { }
+//     /**
+//      * {@link s}
+//      * @see {s}
+//      * {@link C.s}
+//      * @see {C.s}
+//      */
+//     r() { }
+// }
+// 
+// interface I {
+//     a()
+//     b: 1
+//     /**
+//      * {@link a}
+//      * @see {a}
+//      * {@link I.a}
+//      * @see {I.a}
+//      * {@link I#a}
+//      * @see {I#a}
+//      */
+//     c()
+//     /**
+//      * {@link b}
+//      * @see {b}
+//      * {@link I.b}
+//      * @see {I.b}
+//      */
+//     d()
+// }
+// 
+// function nestor() {
+//     /** {@link r2} */
+//     function ref() { }
+//     /** @see {r2} */
+//     function d3() { }
+//     function r2() { }
+// }
 
 [
   {
@@ -2142,7 +570,7 @@
 // class C {
 //     m() { }
 //     n = 1
-//     static [|s|]/*FIND ALL REFS*/() { }
+//     <|static [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}s|]/*FIND ALL REFS*/() { }|>
 //     /**
 //      * {@link m}
 //      * @see {m}
@@ -2166,10 +594,10 @@
 //      */
 //     q() { }
 //     /**
-//      * {@link [|s|]}
-//      * @see {[|s|]}
-//      * {@link C.[|s|]}
-//      * @see {C.[|s|]}
+//      * {@link [|{| defId: 0 |}s|]}
+//      * @see {[|{| defId: 0 |}s|]}
+//      * {@link C.[|{| defId: 0 |}s|]}
+//      * @see {C.[|{| defId: 0 |}s|]}
 //      */
 //     r() { }
 // }
@@ -2203,593 +631,71 @@
 //     function r2() { }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) C.s(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "s",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-    // class C {
-    //     m() { }
-    //     n = 1
-    //     static [|s|]() { }
-    //     /**
-    //      * {@link m}
-    //      * @see {m}
-    //      * {@link C.m}
-    //      * @see {C.m}
-    //      * {@link C#m}
-    //      * @see {C#m}
-    //      * {@link C.prototype.m}
-    //      * @see {C.prototype.m}
-    //      */
-    //     p() { }
-    //     /**
-    //      * {@link n}
-    //      * @see {n}
-    //      * {@link C.n}
-    //      * @see {C.n}
-    //      * {@link C#n}
-    //      * @see {C#n}
-    //      * {@link C.prototype.n}
-    //      * @see {C.prototype.n}
-    //      */
-    //     q() { }
-    //     /**
-    //      * {@link s}
-    //      * @see {s}
-    //      * {@link C.s}
-    //      * @see {C.s}
-    //      */
-    //     r() { }
-    // }
-    // 
-    // interface I {
-    //     a()
-    //     b: 1
-    //     /**
-    //      * {@link a}
-    //      * @see {a}
-    //      * {@link I.a}
-    //      * @see {I.a}
-    //      * {@link I#a}
-    //      * @see {I#a}
-    //      */
-    //     c()
-    //     /**
-    //      * {@link b}
-    //      * @see {b}
-    //      * {@link I.b}
-    //      * @see {I.b}
-    //      */
-    //     d()
-    // }
-    // 
-    // function nestor() {
-    //     /** {@link r2} */
-    //     function ref() { }
-    //     /** @see {r2} */
-    //     function d3() { }
-    //     function r2() { }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     [|static s() { }|]
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static [|s|]() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-        // class C {
-        //     m() { }
-        //     n = 1
-        //     [|static s() { }|]
-        //     /**
-        //      * {@link m}
-        //      * @see {m}
-        //      * {@link C.m}
-        //      * @see {C.m}
-        //      * {@link C#m}
-        //      * @see {C#m}
-        //      * {@link C.prototype.m}
-        //      * @see {C.prototype.m}
-        //      */
-        //     p() { }
-        //     /**
-        //      * {@link n}
-        //      * @see {n}
-        //      * {@link C.n}
-        //      * @see {C.n}
-        //      * {@link C#n}
-        //      * @see {C#n}
-        //      * {@link C.prototype.n}
-        //      * @see {C.prototype.n}
-        //      */
-        //     q() { }
-        //     /**
-        //      * {@link s}
-        //      * @see {s}
-        //      * {@link C.s}
-        //      * @see {C.s}
-        //      */
-        //     r() { }
-        // }
-        // 
-        // interface I {
-        //     a()
-        //     b: 1
-        //     /**
-        //      * {@link a}
-        //      * @see {a}
-        //      * {@link I.a}
-        //      * @see {I.a}
-        //      * {@link I#a}
-        //      * @see {I#a}
-        //      */
-        //     c()
-        //     /**
-        //      * {@link b}
-        //      * @see {b}
-        //      * {@link I.b}
-        //      * @see {I.b}
-        //      */
-        //     d()
-        // }
-        // 
-        // function nestor() {
-        //     /** {@link r2} */
-        //     function ref() { }
-        //     /** @see {r2} */
-        //     function d3() { }
-        //     function r2() { }
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link [|s|]}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {[|s|]}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.[|s|]}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.[|s|]}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
+// class C {
+//     m() { }
+//     n = 1
+//     <|static [|{| contextId: 0, defId: 0, kind: "method", name: "(method) C.s(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":".","kind":"punctuation"},{"text":"s","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}s|]/*FIND ALL REFS*/() { }|>
+//     /**
+//      * {@link m}
+//      * @see {m}
+//      * {@link C.m}
+//      * @see {C.m}
+//      * {@link C#m}
+//      * @see {C#m}
+//      * {@link C.prototype.m}
+//      * @see {C.prototype.m}
+//      */
+//     p() { }
+//     /**
+//      * {@link n}
+//      * @see {n}
+//      * {@link C.n}
+//      * @see {C.n}
+//      * {@link C#n}
+//      * @see {C#n}
+//      * {@link C.prototype.n}
+//      * @see {C.prototype.n}
+//      */
+//     q() { }
+//     /**
+//      * {@link s}
+//      * @see {s}
+//      * {@link C.s}
+//      * @see {C.s}
+//      */
+//     r() { }
+// }
+// 
+// interface I {
+//     a()
+//     b: 1
+//     /**
+//      * {@link a}
+//      * @see {a}
+//      * {@link I.a}
+//      * @see {I.a}
+//      * {@link I#a}
+//      * @see {I#a}
+//      */
+//     c()
+//     /**
+//      * {@link b}
+//      * @see {b}
+//      * {@link I.b}
+//      * @see {I.b}
+//      */
+//     d()
+// }
+// 
+// function nestor() {
+//     /** {@link r2} */
+//     function ref() { }
+//     /** @see {r2} */
+//     function d3() { }
+//     function r2() { }
+// }
 
 [
   {
@@ -2949,15 +855,15 @@
 // }
 // 
 // interface I {
-//     [|a|]/*FIND ALL REFS*/()
+//     <|[|{| contextId: 0, defId: 0, isDefinition: true |}a|]/*FIND ALL REFS*/()|>
 //     b: 1
 //     /**
-//      * {@link [|a|]}
-//      * @see {[|a|]}
-//      * {@link I.[|a|]}
-//      * @see {I.[|a|]}
-//      * {@link I#[|a|]}
-//      * @see {I#[|a|]}
+//      * {@link [|{| defId: 0 |}a|]}
+//      * @see {[|{| defId: 0 |}a|]}
+//      * {@link I.[|{| defId: 0 |}a|]}
+//      * @see {I.[|{| defId: 0 |}a|]}
+//      * {@link I#[|{| defId: 0 |}a|]}
+//      * @see {I#[|{| defId: 0 |}a|]}
 //      */
 //     c()
 //     /**
@@ -2977,727 +883,71 @@
 //     function r2() { }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) I.a(): any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "a",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-    // class C {
-    //     m() { }
-    //     n = 1
-    //     static s() { }
-    //     /**
-    //      * {@link m}
-    //      * @see {m}
-    //      * {@link C.m}
-    //      * @see {C.m}
-    //      * {@link C#m}
-    //      * @see {C#m}
-    //      * {@link C.prototype.m}
-    //      * @see {C.prototype.m}
-    //      */
-    //     p() { }
-    //     /**
-    //      * {@link n}
-    //      * @see {n}
-    //      * {@link C.n}
-    //      * @see {C.n}
-    //      * {@link C#n}
-    //      * @see {C#n}
-    //      * {@link C.prototype.n}
-    //      * @see {C.prototype.n}
-    //      */
-    //     q() { }
-    //     /**
-    //      * {@link s}
-    //      * @see {s}
-    //      * {@link C.s}
-    //      * @see {C.s}
-    //      */
-    //     r() { }
-    // }
-    // 
-    // interface I {
-    //     [|a|]()
-    //     b: 1
-    //     /**
-    //      * {@link a}
-    //      * @see {a}
-    //      * {@link I.a}
-    //      * @see {I.a}
-    //      * {@link I#a}
-    //      * @see {I#a}
-    //      */
-    //     c()
-    //     /**
-    //      * {@link b}
-    //      * @see {b}
-    //      * {@link I.b}
-    //      * @see {I.b}
-    //      */
-    //     d()
-    // }
-    // 
-    // function nestor() {
-    //     /** {@link r2} */
-    //     function ref() { }
-    //     /** @see {r2} */
-    //     function d3() { }
-    //     function r2() { }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     [|a()|]
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     [|a|]()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-        // class C {
-        //     m() { }
-        //     n = 1
-        //     static s() { }
-        //     /**
-        //      * {@link m}
-        //      * @see {m}
-        //      * {@link C.m}
-        //      * @see {C.m}
-        //      * {@link C#m}
-        //      * @see {C#m}
-        //      * {@link C.prototype.m}
-        //      * @see {C.prototype.m}
-        //      */
-        //     p() { }
-        //     /**
-        //      * {@link n}
-        //      * @see {n}
-        //      * {@link C.n}
-        //      * @see {C.n}
-        //      * {@link C#n}
-        //      * @see {C#n}
-        //      * {@link C.prototype.n}
-        //      * @see {C.prototype.n}
-        //      */
-        //     q() { }
-        //     /**
-        //      * {@link s}
-        //      * @see {s}
-        //      * {@link C.s}
-        //      * @see {C.s}
-        //      */
-        //     r() { }
-        // }
-        // 
-        // interface I {
-        //     [|a()|]
-        //     b: 1
-        //     /**
-        //      * {@link a}
-        //      * @see {a}
-        //      * {@link I.a}
-        //      * @see {I.a}
-        //      * {@link I#a}
-        //      * @see {I#a}
-        //      */
-        //     c()
-        //     /**
-        //      * {@link b}
-        //      * @see {b}
-        //      * {@link I.b}
-        //      * @see {I.b}
-        //      */
-        //     d()
-        // }
-        // 
-        // function nestor() {
-        //     /** {@link r2} */
-        //     function ref() { }
-        //     /** @see {r2} */
-        //     function d3() { }
-        //     function r2() { }
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link [|a|]}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {[|a|]}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.[|a|]}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.[|a|]}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#[|a|]}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#[|a|]}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
+// class C {
+//     m() { }
+//     n = 1
+//     static s() { }
+//     /**
+//      * {@link m}
+//      * @see {m}
+//      * {@link C.m}
+//      * @see {C.m}
+//      * {@link C#m}
+//      * @see {C#m}
+//      * {@link C.prototype.m}
+//      * @see {C.prototype.m}
+//      */
+//     p() { }
+//     /**
+//      * {@link n}
+//      * @see {n}
+//      * {@link C.n}
+//      * @see {C.n}
+//      * {@link C#n}
+//      * @see {C#n}
+//      * {@link C.prototype.n}
+//      * @see {C.prototype.n}
+//      */
+//     q() { }
+//     /**
+//      * {@link s}
+//      * @see {s}
+//      * {@link C.s}
+//      * @see {C.s}
+//      */
+//     r() { }
+// }
+// 
+// interface I {
+//     <|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) I.a(): any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"a","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}a|]/*FIND ALL REFS*/()|>
+//     b: 1
+//     /**
+//      * {@link a}
+//      * @see {a}
+//      * {@link I.a}
+//      * @see {I.a}
+//      * {@link I#a}
+//      * @see {I#a}
+//      */
+//     c()
+//     /**
+//      * {@link b}
+//      * @see {b}
+//      * {@link I.b}
+//      * @see {I.b}
+//      */
+//     d()
+// }
+// 
+// function nestor() {
+//     /** {@link r2} */
+//     function ref() { }
+//     /** @see {r2} */
+//     function d3() { }
+//     function r2() { }
+// }
 
 [
   {
@@ -3876,7 +1126,7 @@
 // 
 // interface I {
 //     a()
-//     [|b|]/*FIND ALL REFS*/: 1
+//     <|[|{| contextId: 0, defId: 0, isDefinition: true |}b|]/*FIND ALL REFS*/: 1|>
 //     /**
 //      * {@link a}
 //      * @see {a}
@@ -3887,10 +1137,10 @@
 //      */
 //     c()
 //     /**
-//      * {@link [|b|]}
-//      * @see {[|b|]}
-//      * {@link I.[|b|]}
-//      * @see {I.[|b|]}
+//      * {@link [|{| defId: 0 |}b|]}
+//      * @see {[|{| defId: 0 |}b|]}
+//      * {@link I.[|{| defId: 0 |}b|]}
+//      * @see {I.[|{| defId: 0 |}b|]}
 //      */
 //     d()
 // }
@@ -3903,585 +1153,71 @@
 //     function r2() { }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) I.b: 1"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "b",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-    // class C {
-    //     m() { }
-    //     n = 1
-    //     static s() { }
-    //     /**
-    //      * {@link m}
-    //      * @see {m}
-    //      * {@link C.m}
-    //      * @see {C.m}
-    //      * {@link C#m}
-    //      * @see {C#m}
-    //      * {@link C.prototype.m}
-    //      * @see {C.prototype.m}
-    //      */
-    //     p() { }
-    //     /**
-    //      * {@link n}
-    //      * @see {n}
-    //      * {@link C.n}
-    //      * @see {C.n}
-    //      * {@link C#n}
-    //      * @see {C#n}
-    //      * {@link C.prototype.n}
-    //      * @see {C.prototype.n}
-    //      */
-    //     q() { }
-    //     /**
-    //      * {@link s}
-    //      * @see {s}
-    //      * {@link C.s}
-    //      * @see {C.s}
-    //      */
-    //     r() { }
-    // }
-    // 
-    // interface I {
-    //     a()
-    //     [|b|]: 1
-    //     /**
-    //      * {@link a}
-    //      * @see {a}
-    //      * {@link I.a}
-    //      * @see {I.a}
-    //      * {@link I#a}
-    //      * @see {I#a}
-    //      */
-    //     c()
-    //     /**
-    //      * {@link b}
-    //      * @see {b}
-    //      * {@link I.b}
-    //      * @see {I.b}
-    //      */
-    //     d()
-    // }
-    // 
-    // function nestor() {
-    //     /** {@link r2} */
-    //     function ref() { }
-    //     /** @see {r2} */
-    //     function d3() { }
-    //     function r2() { }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     [|b: 1|]
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     [|b|]: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-        // class C {
-        //     m() { }
-        //     n = 1
-        //     static s() { }
-        //     /**
-        //      * {@link m}
-        //      * @see {m}
-        //      * {@link C.m}
-        //      * @see {C.m}
-        //      * {@link C#m}
-        //      * @see {C#m}
-        //      * {@link C.prototype.m}
-        //      * @see {C.prototype.m}
-        //      */
-        //     p() { }
-        //     /**
-        //      * {@link n}
-        //      * @see {n}
-        //      * {@link C.n}
-        //      * @see {C.n}
-        //      * {@link C#n}
-        //      * @see {C#n}
-        //      * {@link C.prototype.n}
-        //      * @see {C.prototype.n}
-        //      */
-        //     q() { }
-        //     /**
-        //      * {@link s}
-        //      * @see {s}
-        //      * {@link C.s}
-        //      * @see {C.s}
-        //      */
-        //     r() { }
-        // }
-        // 
-        // interface I {
-        //     a()
-        //     [|b: 1|]
-        //     /**
-        //      * {@link a}
-        //      * @see {a}
-        //      * {@link I.a}
-        //      * @see {I.a}
-        //      * {@link I#a}
-        //      * @see {I#a}
-        //      */
-        //     c()
-        //     /**
-        //      * {@link b}
-        //      * @see {b}
-        //      * {@link I.b}
-        //      * @see {I.b}
-        //      */
-        //     d()
-        // }
-        // 
-        // function nestor() {
-        //     /** {@link r2} */
-        //     function ref() { }
-        //     /** @see {r2} */
-        //     function d3() { }
-        //     function r2() { }
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link [|b|]}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {[|b|]}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.[|b|]}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.[|b|]}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
+// class C {
+//     m() { }
+//     n = 1
+//     static s() { }
+//     /**
+//      * {@link m}
+//      * @see {m}
+//      * {@link C.m}
+//      * @see {C.m}
+//      * {@link C#m}
+//      * @see {C#m}
+//      * {@link C.prototype.m}
+//      * @see {C.prototype.m}
+//      */
+//     p() { }
+//     /**
+//      * {@link n}
+//      * @see {n}
+//      * {@link C.n}
+//      * @see {C.n}
+//      * {@link C#n}
+//      * @see {C#n}
+//      * {@link C.prototype.n}
+//      * @see {C.prototype.n}
+//      */
+//     q() { }
+//     /**
+//      * {@link s}
+//      * @see {s}
+//      * {@link C.s}
+//      * @see {C.s}
+//      */
+//     r() { }
+// }
+// 
+// interface I {
+//     a()
+//     <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) I.b: 1", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"b","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}b|]/*FIND ALL REFS*/: 1|>
+//     /**
+//      * {@link a}
+//      * @see {a}
+//      * {@link I.a}
+//      * @see {I.a}
+//      * {@link I#a}
+//      * @see {I#a}
+//      */
+//     c()
+//     /**
+//      * {@link b}
+//      * @see {b}
+//      * {@link I.b}
+//      * @see {I.b}
+//      */
+//     d()
+// }
+// 
+// function nestor() {
+//     /** {@link r2} */
+//     function ref() { }
+//     /** @see {r2} */
+//     function d3() { }
+//     function r2() { }
+// }
 
 [
   {
@@ -4654,458 +1390,78 @@
 // }
 // 
 // function nestor() {
-//     /** {@link [|r2|]} */
+//     /** {@link [|{| defId: 0 |}r2|]} */
 //     function ref() { }
-//     /** @see {[|r2|]} */
+//     /** @see {[|{| defId: 0 |}r2|]} */
 //     function d3() { }
-//     function [|r2|]/*FIND ALL REFS*/() { }
+//     <|function [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}r2|]/*FIND ALL REFS*/() { }|>
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "local function"
-    // name: "(local function) r2(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "local function",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "r2",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-    // class C {
-    //     m() { }
-    //     n = 1
-    //     static s() { }
-    //     /**
-    //      * {@link m}
-    //      * @see {m}
-    //      * {@link C.m}
-    //      * @see {C.m}
-    //      * {@link C#m}
-    //      * @see {C#m}
-    //      * {@link C.prototype.m}
-    //      * @see {C.prototype.m}
-    //      */
-    //     p() { }
-    //     /**
-    //      * {@link n}
-    //      * @see {n}
-    //      * {@link C.n}
-    //      * @see {C.n}
-    //      * {@link C#n}
-    //      * @see {C#n}
-    //      * {@link C.prototype.n}
-    //      * @see {C.prototype.n}
-    //      */
-    //     q() { }
-    //     /**
-    //      * {@link s}
-    //      * @see {s}
-    //      * {@link C.s}
-    //      * @see {C.s}
-    //      */
-    //     r() { }
-    // }
-    // 
-    // interface I {
-    //     a()
-    //     b: 1
-    //     /**
-    //      * {@link a}
-    //      * @see {a}
-    //      * {@link I.a}
-    //      * @see {I.a}
-    //      * {@link I#a}
-    //      * @see {I#a}
-    //      */
-    //     c()
-    //     /**
-    //      * {@link b}
-    //      * @see {b}
-    //      * {@link I.b}
-    //      * @see {I.b}
-    //      */
-    //     d()
-    // }
-    // 
-    // function nestor() {
-    //     /** {@link r2} */
-    //     function ref() { }
-    //     /** @see {r2} */
-    //     function d3() { }
-    //     function [|r2|]() { }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     [|function r2() { }|]
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link [|r2|]} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {[|r2|]} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function [|r2|]() { }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-        // class C {
-        //     m() { }
-        //     n = 1
-        //     static s() { }
-        //     /**
-        //      * {@link m}
-        //      * @see {m}
-        //      * {@link C.m}
-        //      * @see {C.m}
-        //      * {@link C#m}
-        //      * @see {C#m}
-        //      * {@link C.prototype.m}
-        //      * @see {C.prototype.m}
-        //      */
-        //     p() { }
-        //     /**
-        //      * {@link n}
-        //      * @see {n}
-        //      * {@link C.n}
-        //      * @see {C.n}
-        //      * {@link C#n}
-        //      * @see {C#n}
-        //      * {@link C.prototype.n}
-        //      * @see {C.prototype.n}
-        //      */
-        //     q() { }
-        //     /**
-        //      * {@link s}
-        //      * @see {s}
-        //      * {@link C.s}
-        //      * @see {C.s}
-        //      */
-        //     r() { }
-        // }
-        // 
-        // interface I {
-        //     a()
-        //     b: 1
-        //     /**
-        //      * {@link a}
-        //      * @see {a}
-        //      * {@link I.a}
-        //      * @see {I.a}
-        //      * {@link I#a}
-        //      * @see {I#a}
-        //      */
-        //     c()
-        //     /**
-        //      * {@link b}
-        //      * @see {b}
-        //      * {@link I.b}
-        //      * @see {I.b}
-        //      */
-        //     d()
-        // }
-        // 
-        // function nestor() {
-        //     /** {@link r2} */
-        //     function ref() { }
-        //     /** @see {r2} */
-        //     function d3() { }
-        //     [|function r2() { }|]
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
+// class C {
+//     m() { }
+//     n = 1
+//     static s() { }
+//     /**
+//      * {@link m}
+//      * @see {m}
+//      * {@link C.m}
+//      * @see {C.m}
+//      * {@link C#m}
+//      * @see {C#m}
+//      * {@link C.prototype.m}
+//      * @see {C.prototype.m}
+//      */
+//     p() { }
+//     /**
+//      * {@link n}
+//      * @see {n}
+//      * {@link C.n}
+//      * @see {C.n}
+//      * {@link C#n}
+//      * @see {C#n}
+//      * {@link C.prototype.n}
+//      * @see {C.prototype.n}
+//      */
+//     q() { }
+//     /**
+//      * {@link s}
+//      * @see {s}
+//      * {@link C.s}
+//      * @see {C.s}
+//      */
+//     r() { }
+// }
+// 
+// interface I {
+//     a()
+//     b: 1
+//     /**
+//      * {@link a}
+//      * @see {a}
+//      * {@link I.a}
+//      * @see {I.a}
+//      * {@link I#a}
+//      * @see {I#a}
+//      */
+//     c()
+//     /**
+//      * {@link b}
+//      * @see {b}
+//      * {@link I.b}
+//      * @see {I.b}
+//      */
+//     d()
+// }
+// 
+// function nestor() {
+//     /** {@link r2} */
+//     function ref() { }
+//     /** @see {r2} */
+//     function d3() { }
+//     <|function [|{| contextId: 0, defId: 0, kind: "local function", name: "(local function) r2(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"local function","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"r2","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}r2|]/*FIND ALL REFS*/() { }|>
+// }
 
 [
   {
@@ -5203,40 +1559,40 @@
 ]
 
 // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-// class [|C|]/*FIND ALL REFS*/ {
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}C|]/*FIND ALL REFS*/ {
 //     m() { }
 //     n = 1
 //     static s() { }
 //     /**
 //      * {@link m}
 //      * @see {m}
-//      * {@link [|C|].m}
-//      * @see {[|C|].m}
-//      * {@link [|C|]#m}
-//      * @see {[|C|]#m}
-//      * {@link [|C|].prototype.m}
-//      * @see {[|C|].prototype.m}
+//      * {@link [|{| defId: 0 |}C|].m}
+//      * @see {[|{| defId: 0 |}C|].m}
+//      * {@link [|{| defId: 0 |}C|]#m}
+//      * @see {[|{| defId: 0 |}C|]#m}
+//      * {@link [|{| defId: 0 |}C|].prototype.m}
+//      * @see {[|{| defId: 0 |}C|].prototype.m}
 //      */
 //     p() { }
 //     /**
 //      * {@link n}
 //      * @see {n}
-//      * {@link [|C|].n}
-//      * @see {[|C|].n}
-//      * {@link [|C|]#n}
-//      * @see {[|C|]#n}
-//      * {@link [|C|].prototype.n}
-//      * @see {[|C|].prototype.n}
+//      * {@link [|{| defId: 0 |}C|].n}
+//      * @see {[|{| defId: 0 |}C|].n}
+//      * {@link [|{| defId: 0 |}C|]#n}
+//      * @see {[|{| defId: 0 |}C|]#n}
+//      * {@link [|{| defId: 0 |}C|].prototype.n}
+//      * @see {[|{| defId: 0 |}C|].prototype.n}
 //      */
 //     q() { }
 //     /**
 //      * {@link s}
 //      * @see {s}
-//      * {@link [|C|].s}
-//      * @see {[|C|].s}
+//      * {@link [|{| defId: 0 |}C|].s}
+//      * @see {[|{| defId: 0 |}C|].s}
 //      */
 //     r() { }
-// }
+// }|>
 // 
 // interface I {
 //     a()
@@ -5267,1227 +1623,71 @@
 //     function r2() { }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class C"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-    // class [|C|] {
-    //     m() { }
-    //     n = 1
-    //     static s() { }
-    //     /**
-    //      * {@link m}
-    //      * @see {m}
-    //      * {@link C.m}
-    //      * @see {C.m}
-    //      * {@link C#m}
-    //      * @see {C#m}
-    //      * {@link C.prototype.m}
-    //      * @see {C.prototype.m}
-    //      */
-    //     p() { }
-    //     /**
-    //      * {@link n}
-    //      * @see {n}
-    //      * {@link C.n}
-    //      * @see {C.n}
-    //      * {@link C#n}
-    //      * @see {C#n}
-    //      * {@link C.prototype.n}
-    //      * @see {C.prototype.n}
-    //      */
-    //     q() { }
-    //     /**
-    //      * {@link s}
-    //      * @see {s}
-    //      * {@link C.s}
-    //      * @see {C.s}
-    //      */
-    //     r() { }
-    // }
-    // 
-    // interface I {
-    //     a()
-    //     b: 1
-    //     /**
-    //      * {@link a}
-    //      * @see {a}
-    //      * {@link I.a}
-    //      * @see {I.a}
-    //      * {@link I#a}
-    //      * @see {I#a}
-    //      */
-    //     c()
-    //     /**
-    //      * {@link b}
-    //      * @see {b}
-    //      * {@link I.b}
-    //      * @see {I.b}
-    //      */
-    //     d()
-    // }
-    // 
-    // function nestor() {
-    //     /** {@link r2} */
-    //     function ref() { }
-    //     /** @see {r2} */
-    //     function d3() { }
-    //     function r2() { }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // [|class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }|]
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class [|C|] {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-        // [|class C {
-        //     m() { }
-        //     n = 1
-        //     static s() { }
-        //     /**
-        //      * {@link m}
-        //      * @see {m}
-        //      * {@link C.m}
-        //      * @see {C.m}
-        //      * {@link C#m}
-        //      * @see {C#m}
-        //      * {@link C.prototype.m}
-        //      * @see {C.prototype.m}
-        //      */
-        //     p() { }
-        //     /**
-        //      * {@link n}
-        //      * @see {n}
-        //      * {@link C.n}
-        //      * @see {C.n}
-        //      * {@link C#n}
-        //      * @see {C#n}
-        //      * {@link C.prototype.n}
-        //      * @see {C.prototype.n}
-        //      */
-        //     q() { }
-        //     /**
-        //      * {@link s}
-        //      * @see {s}
-        //      * {@link C.s}
-        //      * @see {C.s}
-        //      */
-        //     r() { }
-        // }|]
-        // 
-        // interface I {
-        //     a()
-        //     b: 1
-        //     /**
-        //      * {@link a}
-        //      * @see {a}
-        //      * {@link I.a}
-        //      * @see {I.a}
-        //      * {@link I#a}
-        //      * @see {I#a}
-        //      */
-        //     c()
-        //     /**
-        //      * {@link b}
-        //      * @see {b}
-        //      * {@link I.b}
-        //      * @see {I.b}
-        //      */
-        //     d()
-        // }
-        // 
-        // function nestor() {
-        //     /** {@link r2} */
-        //     function ref() { }
-        //     /** @see {r2} */
-        //     function d3() { }
-        //     function r2() { }
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link [|C|].m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {[|C|].m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link [|C|]#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {[|C|]#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link [|C|].prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {[|C|].prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link [|C|].n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 8 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {[|C|].n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 9 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link [|C|]#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 10 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {[|C|]#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 11 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link [|C|].prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 12 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {[|C|].prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 13 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link [|C|].s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 14 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {[|C|].s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class C", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C","kind":"className"}] |}C|]/*FIND ALL REFS*/ {
+//     m() { }
+//     n = 1
+//     static s() { }
+//     /**
+//      * {@link m}
+//      * @see {m}
+//      * {@link C.m}
+//      * @see {C.m}
+//      * {@link C#m}
+//      * @see {C#m}
+//      * {@link C.prototype.m}
+//      * @see {C.prototype.m}
+//      */
+//     p() { }
+//     /**
+//      * {@link n}
+//      * @see {n}
+//      * {@link C.n}
+//      * @see {C.n}
+//      * {@link C#n}
+//      * @see {C#n}
+//      * {@link C.prototype.n}
+//      * @see {C.prototype.n}
+//      */
+//     q() { }
+//     /**
+//      * {@link s}
+//      * @see {s}
+//      * {@link C.s}
+//      * @see {C.s}
+//      */
+//     r() { }
+// }|>
+// 
+// interface I {
+//     a()
+//     b: 1
+//     /**
+//      * {@link a}
+//      * @see {a}
+//      * {@link I.a}
+//      * @see {I.a}
+//      * {@link I#a}
+//      * @see {I#a}
+//      */
+//     c()
+//     /**
+//      * {@link b}
+//      * @see {b}
+//      * {@link I.b}
+//      * @see {I.b}
+//      */
+//     d()
+// }
+// 
+// function nestor() {
+//     /** {@link r2} */
+//     function ref() { }
+//     /** @see {r2} */
+//     function d3() { }
+//     function r2() { }
+// }
 
 [
   {
@@ -6700,26 +1900,26 @@
 //     r() { }
 // }
 // 
-// interface [|I|]/*FIND ALL REFS*/ {
+// <|interface [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}I|]/*FIND ALL REFS*/ {
 //     a()
 //     b: 1
 //     /**
 //      * {@link a}
 //      * @see {a}
-//      * {@link [|I|].a}
-//      * @see {[|I|].a}
-//      * {@link [|I|]#a}
-//      * @see {[|I|]#a}
+//      * {@link [|{| defId: 0 |}I|].a}
+//      * @see {[|{| defId: 0 |}I|].a}
+//      * {@link [|{| defId: 0 |}I|]#a}
+//      * @see {[|{| defId: 0 |}I|]#a}
 //      */
 //     c()
 //     /**
 //      * {@link b}
 //      * @see {b}
-//      * {@link [|I|].b}
-//      * @see {[|I|].b}
+//      * {@link [|{| defId: 0 |}I|].b}
+//      * @see {[|{| defId: 0 |}I|].b}
 //      */
 //     d()
-// }
+// }|>
 // 
 // function nestor() {
 //     /** {@link r2} */
@@ -6729,691 +1929,71 @@
 //     function r2() { }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "interface"
-    // name: "interface I"
-    // displayParts: [
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-    // class C {
-    //     m() { }
-    //     n = 1
-    //     static s() { }
-    //     /**
-    //      * {@link m}
-    //      * @see {m}
-    //      * {@link C.m}
-    //      * @see {C.m}
-    //      * {@link C#m}
-    //      * @see {C#m}
-    //      * {@link C.prototype.m}
-    //      * @see {C.prototype.m}
-    //      */
-    //     p() { }
-    //     /**
-    //      * {@link n}
-    //      * @see {n}
-    //      * {@link C.n}
-    //      * @see {C.n}
-    //      * {@link C#n}
-    //      * @see {C#n}
-    //      * {@link C.prototype.n}
-    //      * @see {C.prototype.n}
-    //      */
-    //     q() { }
-    //     /**
-    //      * {@link s}
-    //      * @see {s}
-    //      * {@link C.s}
-    //      * @see {C.s}
-    //      */
-    //     r() { }
-    // }
-    // 
-    // interface [|I|] {
-    //     a()
-    //     b: 1
-    //     /**
-    //      * {@link a}
-    //      * @see {a}
-    //      * {@link I.a}
-    //      * @see {I.a}
-    //      * {@link I#a}
-    //      * @see {I#a}
-    //      */
-    //     c()
-    //     /**
-    //      * {@link b}
-    //      * @see {b}
-    //      * {@link I.b}
-    //      * @see {I.b}
-    //      */
-    //     d()
-    // }
-    // 
-    // function nestor() {
-    //     /** {@link r2} */
-    //     function ref() { }
-    //     /** @see {r2} */
-    //     function d3() { }
-    //     function r2() { }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // [|interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }|]
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface [|I|] {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-        // class C {
-        //     m() { }
-        //     n = 1
-        //     static s() { }
-        //     /**
-        //      * {@link m}
-        //      * @see {m}
-        //      * {@link C.m}
-        //      * @see {C.m}
-        //      * {@link C#m}
-        //      * @see {C#m}
-        //      * {@link C.prototype.m}
-        //      * @see {C.prototype.m}
-        //      */
-        //     p() { }
-        //     /**
-        //      * {@link n}
-        //      * @see {n}
-        //      * {@link C.n}
-        //      * @see {C.n}
-        //      * {@link C#n}
-        //      * @see {C#n}
-        //      * {@link C.prototype.n}
-        //      * @see {C.prototype.n}
-        //      */
-        //     q() { }
-        //     /**
-        //      * {@link s}
-        //      * @see {s}
-        //      * {@link C.s}
-        //      * @see {C.s}
-        //      */
-        //     r() { }
-        // }
-        // 
-        // [|interface I {
-        //     a()
-        //     b: 1
-        //     /**
-        //      * {@link a}
-        //      * @see {a}
-        //      * {@link I.a}
-        //      * @see {I.a}
-        //      * {@link I#a}
-        //      * @see {I#a}
-        //      */
-        //     c()
-        //     /**
-        //      * {@link b}
-        //      * @see {b}
-        //      * {@link I.b}
-        //      * @see {I.b}
-        //      */
-        //     d()
-        // }|]
-        // 
-        // function nestor() {
-        //     /** {@link r2} */
-        //     function ref() { }
-        //     /** @see {r2} */
-        //     function d3() { }
-        //     function r2() { }
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link [|I|].a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {[|I|].a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link [|I|]#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {[|I|]#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link [|I|].b}
-      //      * @see {I.b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
-      // class C {
-      //     m() { }
-      //     n = 1
-      //     static s() { }
-      //     /**
-      //      * {@link m}
-      //      * @see {m}
-      //      * {@link C.m}
-      //      * @see {C.m}
-      //      * {@link C#m}
-      //      * @see {C#m}
-      //      * {@link C.prototype.m}
-      //      * @see {C.prototype.m}
-      //      */
-      //     p() { }
-      //     /**
-      //      * {@link n}
-      //      * @see {n}
-      //      * {@link C.n}
-      //      * @see {C.n}
-      //      * {@link C#n}
-      //      * @see {C#n}
-      //      * {@link C.prototype.n}
-      //      * @see {C.prototype.n}
-      //      */
-      //     q() { }
-      //     /**
-      //      * {@link s}
-      //      * @see {s}
-      //      * {@link C.s}
-      //      * @see {C.s}
-      //      */
-      //     r() { }
-      // }
-      // 
-      // interface I {
-      //     a()
-      //     b: 1
-      //     /**
-      //      * {@link a}
-      //      * @see {a}
-      //      * {@link I.a}
-      //      * @see {I.a}
-      //      * {@link I#a}
-      //      * @see {I#a}
-      //      */
-      //     c()
-      //     /**
-      //      * {@link b}
-      //      * @see {b}
-      //      * {@link I.b}
-      //      * @see {[|I|].b}
-      //      */
-      //     d()
-      // }
-      // 
-      // function nestor() {
-      //     /** {@link r2} */
-      //     function ref() { }
-      //     /** @see {r2} */
-      //     function d3() { }
-      //     function r2() { }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllReferencesLinkTag1.ts ===
+// class C {
+//     m() { }
+//     n = 1
+//     static s() { }
+//     /**
+//      * {@link m}
+//      * @see {m}
+//      * {@link C.m}
+//      * @see {C.m}
+//      * {@link C#m}
+//      * @see {C#m}
+//      * {@link C.prototype.m}
+//      * @see {C.prototype.m}
+//      */
+//     p() { }
+//     /**
+//      * {@link n}
+//      * @see {n}
+//      * {@link C.n}
+//      * @see {C.n}
+//      * {@link C#n}
+//      * @see {C#n}
+//      * {@link C.prototype.n}
+//      * @see {C.prototype.n}
+//      */
+//     q() { }
+//     /**
+//      * {@link s}
+//      * @see {s}
+//      * {@link C.s}
+//      * @see {C.s}
+//      */
+//     r() { }
+// }
+// 
+// <|interface [|{| contextId: 0, defId: 0, kind: "interface", name: "interface I", displayParts: [{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"}] |}I|]/*FIND ALL REFS*/ {
+//     a()
+//     b: 1
+//     /**
+//      * {@link a}
+//      * @see {a}
+//      * {@link I.a}
+//      * @see {I.a}
+//      * {@link I#a}
+//      * @see {I#a}
+//      */
+//     c()
+//     /**
+//      * {@link b}
+//      * @see {b}
+//      * {@link I.b}
+//      * @see {I.b}
+//      */
+//     d()
+// }|>
+// 
+// function nestor() {
+//     /** {@link r2} */
+//     function ref() { }
+//     /** @see {r2} */
+//     function d3() { }
+//     function r2() { }
+// }
 
 [
   {

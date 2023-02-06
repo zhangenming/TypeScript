@@ -1,38 +1,15 @@
-// === /c.js ===
-// require([|"./b"|]);
-// require("globals");
-
 // === /a.ts ===
-// /// <reference path="[|b.ts|]/*FIND ALL REFS*/" />
+// /// <reference path="[|{| defId: 0 |}b.ts|]/*FIND ALL REFS*/" />
 // /// <reference types="globals" />
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "string"
-    // name: "b.ts"
-    // displayParts: [
-    //  {
-    //   "text": "\"b.ts\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /a.ts ===
-    // /// <reference path="[|b.ts|]" />
-    // /// <reference types="globals" />
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /a.ts ===
-      // /// <reference path="[|b.ts|]" />
-      // /// <reference types="globals" />
-    // === 1 ===
-      // isWriteAccess: false
-      // === /c.js ===
-      // require([|"./b"|]);
-      // require("globals");
+// === /c.js ===
+// require([|{| defId: 0 |}"./b"|]);
+// require("globals");
 
+// === Definitions ===
+// === /a.ts ===
+// /// <reference path="[|{| defId: 0, kind: "string", name: "b.ts", displayParts: [{"text":"\"b.ts\"","kind":"stringLiteral"}] |}b.ts|]/*FIND ALL REFS*/" />
+// /// <reference types="globals" />
 
 [
   {
@@ -74,41 +51,18 @@
   }
 ]
 
-// === /c.js ===
-// require("./b");
-// require([|"globals"|]);
-
 // === /a.ts ===
 // /// <reference path="b.ts" />
-// /// <reference types="[|globals|]/*FIND ALL REFS*/" />
+// /// <reference types="[|{| defId: 0 |}globals|]/*FIND ALL REFS*/" />
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "string"
-    // name: "globals"
-    // displayParts: [
-    //  {
-    //   "text": "\"globals\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /a.ts ===
-    // /// <reference path="b.ts" />
-    // /// <reference types="[|globals|]" />
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /a.ts ===
-      // /// <reference path="b.ts" />
-      // /// <reference types="[|globals|]" />
-    // === 1 ===
-      // isWriteAccess: false
-      // === /c.js ===
-      // require("./b");
-      // require([|"globals"|]);
+// === /c.js ===
+// require("./b");
+// require([|{| defId: 0 |}"globals"|]);
 
+// === Definitions ===
+// === /a.ts ===
+// /// <reference path="b.ts" />
+// /// <reference types="[|{| defId: 0, kind: "string", name: "globals", displayParts: [{"text":"\"globals\"","kind":"stringLiteral"}] |}globals|]/*FIND ALL REFS*/" />
 
 [
   {

@@ -4,181 +4,36 @@
 // class p { }
 // 
 // class foo {
-//     constructor (/*FIND ALL REFS*/public [|p|]: any) {
+//     constructor (/*FIND ALL REFS*/<|public [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}p|]: any|>) {
 //     }
 // 
 //     public f(p) {
-//         this.[|p|] = p;
+//         this.[|{| defId: 0, isWriteAccess: true |}p|] = p;
 //     }
 // 
 // }
 // 
 // var n = new foo(undefined);
-// n.[|p|] = null;
+// n.[|{| defId: 0, isWriteAccess: true |}p|] = null;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.p: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "p",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-    // var p = 2;
-    // 
-    // class p { }
-    // 
-    // class foo {
-    //     constructor (public [|p|]: any) {
-    //     }
-    // 
-    //     public f(p) {
-    //         this.p = p;
-    //     }
-    // 
-    // }
-    // 
-    // var n = new foo(undefined);
-    // n.p = null;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor ([|public p: any|]) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public [|p|]: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-        // var p = 2;
-        // 
-        // class p { }
-        // 
-        // class foo {
-        //     constructor ([|public p: any|]) {
-        //     }
-        // 
-        //     public f(p) {
-        //         this.p = p;
-        //     }
-        // 
-        // }
-        // 
-        // var n = new foo(undefined);
-        // n.p = null;
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public p: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.[|p|] = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public p: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.[|p|] = null;
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForClassParameter.ts ===
+// var p = 2;
+// 
+// class p { }
+// 
+// class foo {
+//     constructor (/*FIND ALL REFS*/<|public [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.p: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"p","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}p|]: any|>) {
+//     }
+// 
+//     public f(p) {
+//         this.p = p;
+//     }
+// 
+// }
+// 
+// var n = new foo(undefined);
+// n.p = null;
 
 [
   {
@@ -281,181 +136,36 @@
 // class p { }
 // 
 // class foo {
-//     constructor (public /*FIND ALL REFS*/[|p|]: any) {
+//     constructor (<|public /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}p|]: any|>) {
 //     }
 // 
 //     public f(p) {
-//         this.[|p|] = p;
+//         this.[|{| defId: 0, isWriteAccess: true |}p|] = p;
 //     }
 // 
 // }
 // 
 // var n = new foo(undefined);
-// n.[|p|] = null;
+// n.[|{| defId: 0, isWriteAccess: true |}p|] = null;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.p: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "p",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-    // var p = 2;
-    // 
-    // class p { }
-    // 
-    // class foo {
-    //     constructor (public [|p|]: any) {
-    //     }
-    // 
-    //     public f(p) {
-    //         this.p = p;
-    //     }
-    // 
-    // }
-    // 
-    // var n = new foo(undefined);
-    // n.p = null;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor ([|public p: any|]) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public [|p|]: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-        // var p = 2;
-        // 
-        // class p { }
-        // 
-        // class foo {
-        //     constructor ([|public p: any|]) {
-        //     }
-        // 
-        //     public f(p) {
-        //         this.p = p;
-        //     }
-        // 
-        // }
-        // 
-        // var n = new foo(undefined);
-        // n.p = null;
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public p: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.[|p|] = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public p: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.[|p|] = null;
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForClassParameter.ts ===
+// var p = 2;
+// 
+// class p { }
+// 
+// class foo {
+//     constructor (<|public /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.p: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"p","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}p|]: any|>) {
+//     }
+// 
+//     public f(p) {
+//         this.p = p;
+//     }
+// 
+// }
+// 
+// var n = new foo(undefined);
+// n.p = null;
 
 [
   {
@@ -558,178 +268,36 @@
 // class p { }
 // 
 // class foo {
-//     constructor (public [|p|]: any) {
+//     constructor (<|public [|{| contextId: 0, defId: 0, isWriteAccess: true |}p|]: any|>) {
 //     }
 // 
 //     public f(p) {
-//         this./*FIND ALL REFS*/[|p|] = p;
+//         this./*FIND ALL REFS*/[|{| defId: 0, isWriteAccess: true |}p|] = p;
 //     }
 // 
 // }
 // 
 // var n = new foo(undefined);
-// n.[|p|] = null;
+// n.[|{| defId: 0, isWriteAccess: true |}p|] = null;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.p: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "p",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-    // var p = 2;
-    // 
-    // class p { }
-    // 
-    // class foo {
-    //     constructor (public [|p|]: any) {
-    //     }
-    // 
-    //     public f(p) {
-    //         this.p = p;
-    //     }
-    // 
-    // }
-    // 
-    // var n = new foo(undefined);
-    // n.p = null;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor ([|public p: any|]) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public [|p|]: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-        // var p = 2;
-        // 
-        // class p { }
-        // 
-        // class foo {
-        //     constructor ([|public p: any|]) {
-        //     }
-        // 
-        //     public f(p) {
-        //         this.p = p;
-        //     }
-        // 
-        // }
-        // 
-        // var n = new foo(undefined);
-        // n.p = null;
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public p: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.[|p|] = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-    // === 2 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public p: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.[|p|] = null;
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForClassParameter.ts ===
+// var p = 2;
+// 
+// class p { }
+// 
+// class foo {
+//     constructor (<|public [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.p: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"p","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}p|]: any|>) {
+//     }
+// 
+//     public f(p) {
+//         this./*FIND ALL REFS*/p = p;
+//     }
+// 
+// }
+// 
+// var n = new foo(undefined);
+// n.p = null;
 
 [
   {
@@ -829,178 +397,36 @@
 // class p { }
 // 
 // class foo {
-//     constructor (public [|p|]: any) {
+//     constructor (<|public [|{| contextId: 0, defId: 0, isWriteAccess: true |}p|]: any|>) {
 //     }
 // 
 //     public f(p) {
-//         this.[|p|] = p;
+//         this.[|{| defId: 0, isWriteAccess: true |}p|] = p;
 //     }
 // 
 // }
 // 
 // var n = new foo(undefined);
-// n./*FIND ALL REFS*/[|p|] = null;
+// n./*FIND ALL REFS*/[|{| defId: 0, isWriteAccess: true |}p|] = null;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.p: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "p",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-    // var p = 2;
-    // 
-    // class p { }
-    // 
-    // class foo {
-    //     constructor (public [|p|]: any) {
-    //     }
-    // 
-    //     public f(p) {
-    //         this.p = p;
-    //     }
-    // 
-    // }
-    // 
-    // var n = new foo(undefined);
-    // n.p = null;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor ([|public p: any|]) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public [|p|]: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-        // var p = 2;
-        // 
-        // class p { }
-        // 
-        // class foo {
-        //     constructor ([|public p: any|]) {
-        //     }
-        // 
-        //     public f(p) {
-        //         this.p = p;
-        //     }
-        // 
-        // }
-        // 
-        // var n = new foo(undefined);
-        // n.p = null;
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public p: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.[|p|] = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.p = null;
-    // === 2 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassParameter.ts ===
-      // var p = 2;
-      // 
-      // class p { }
-      // 
-      // class foo {
-      //     constructor (public p: any) {
-      //     }
-      // 
-      //     public f(p) {
-      //         this.p = p;
-      //     }
-      // 
-      // }
-      // 
-      // var n = new foo(undefined);
-      // n.[|p|] = null;
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForClassParameter.ts ===
+// var p = 2;
+// 
+// class p { }
+// 
+// class foo {
+//     constructor (<|public [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.p: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"p","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}p|]: any|>) {
+//     }
+// 
+//     public f(p) {
+//         this.p = p;
+//     }
+// 
+// }
+// 
+// var n = new foo(undefined);
+// n./*FIND ALL REFS*/p = null;
 
 [
   {

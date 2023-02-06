@@ -1,7 +1,7 @@
 // === /tests/cases/fourslash/Foo.js ===
 // class Foo {
 //    constructor() {
-//        this.[|alpha|] = 10;
+//        <|this.[|{| contextId: 0, kind: "property", name: "alpha", containerName: "Foo", isLocal: true |}alpha|] = 10;|>
 //        this.beta = 'gamma';
 //    }
 //    method() { return this.alpha; }
@@ -10,51 +10,18 @@
 // x.alpha/*GOTO DEF*/;
 // x.beta;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "property"
-    // name: "alpha"
-    // containerName: "Foo"
-    // isLocal: true
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/Foo.js ===
-    // class Foo {
-    //    constructor() {
-    //        this.[|alpha|] = 10;
-    //        this.beta = 'gamma';
-    //    }
-    //    method() { return this.alpha; }
-    // }
-    // var x = new Foo();
-    // x.alpha;
-    // x.beta;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/Foo.js ===
-      // class Foo {
-      //    constructor() {
-      //        [|this.alpha = 10;|]
-      //        this.beta = 'gamma';
-      //    }
-      //    method() { return this.alpha; }
-      // }
-      // var x = new Foo();
-      // x.alpha;
-      // x.beta;
 // === TextSpan ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.alpha = 10;
-  //        this.beta = 'gamma';
-  //    }
-  //    method() { return this.alpha; }
-  // }
-  // var x = new Foo();
-  // x.[|alpha|];
-  // x.beta;
-
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.alpha = 10;
+//        this.beta = 'gamma';
+//    }
+//    method() { return this.alpha; }
+// }
+// var x = new Foo();
+// x.[|alpha|]/*GOTO DEF*/;
+// x.beta;
 
 {
   "definitions": [
@@ -87,7 +54,7 @@
 // class Foo {
 //    constructor() {
 //        this.alpha = 10;
-//        this.[|beta|] = 'gamma';
+//        <|this.[|{| contextId: 0, kind: "property", name: "beta", containerName: "Foo", isLocal: true |}beta|] = 'gamma';|>
 //    }
 //    method() { return this.alpha; }
 // }
@@ -95,51 +62,18 @@
 // x.alpha;
 // x.beta/*GOTO DEF*/;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "property"
-    // name: "beta"
-    // containerName: "Foo"
-    // isLocal: true
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/Foo.js ===
-    // class Foo {
-    //    constructor() {
-    //        this.alpha = 10;
-    //        this.[|beta|] = 'gamma';
-    //    }
-    //    method() { return this.alpha; }
-    // }
-    // var x = new Foo();
-    // x.alpha;
-    // x.beta;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/Foo.js ===
-      // class Foo {
-      //    constructor() {
-      //        this.alpha = 10;
-      //        [|this.beta = 'gamma';|]
-      //    }
-      //    method() { return this.alpha; }
-      // }
-      // var x = new Foo();
-      // x.alpha;
-      // x.beta;
 // === TextSpan ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // class Foo {
-  //    constructor() {
-  //        this.alpha = 10;
-  //        this.beta = 'gamma';
-  //    }
-  //    method() { return this.alpha; }
-  // }
-  // var x = new Foo();
-  // x.alpha;
-  // x.[|beta|];
-
+// === /tests/cases/fourslash/Foo.js ===
+// class Foo {
+//    constructor() {
+//        this.alpha = 10;
+//        this.beta = 'gamma';
+//    }
+//    method() { return this.alpha; }
+// }
+// var x = new Foo();
+// x.alpha;
+// x.[|beta|]/*GOTO DEF*/;
 
 {
   "definitions": [

@@ -1,37 +1,17 @@
 // === /foo.jsx ===
-// const [|Foo|] = () => (
+// const [|{| contextId: 0, kind: "function", name: "Foo", isLocal: true |}Foo|] = <|() => (
 //     <div>foo</div>
-// );
+// )|>;
 // export default Foo;
 
 // === /bar.jsx ===
 // import Foo from './foo';
 // const a = </*GOTO DEF*/Foo />
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "function"
-    // name: "Foo"
-    // containerName: ""
-    // isLocal: true
-    // isAmbient: false
-    // unverified: false
-    // === /foo.jsx ===
-    // const [|Foo|] = () => (
-    //     <div>foo</div>
-    // );
-    // export default Foo;
-      // === ContextSpan ===
-      // === /foo.jsx ===
-      // const Foo = [|() => (
-      //     <div>foo</div>
-      // )|];
-      // export default Foo;
 // === TextSpan ===
-  // === /bar.jsx ===
-  // import Foo from './foo';
-  // const a = <[|Foo|] />
-
+// === /bar.jsx ===
+// import Foo from './foo';
+// const a = </*GOTO DEF*/[|Foo|] />
 
 {
   "definitions": [

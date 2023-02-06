@@ -1,27 +1,11 @@
 // === /tests/cases/fourslash/foo.ts ===
-// export function [|bar|]() { return "bar"; }
+// <|export function [|{| contextId: 0, kind: "function", name: "bar", containerName: "\"/tests/cases/fourslash/foo\"" |}bar|]() { return "bar"; }|>
 // import('./foo').then(({ ba/*GOTO DEF*/r }) => undefined);
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "function"
-    // name: "bar"
-    // containerName: "\"/tests/cases/fourslash/foo\""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /tests/cases/fourslash/foo.ts ===
-    // export function [|bar|]() { return "bar"; }
-    // import('./foo').then(({ bar }) => undefined);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/foo.ts ===
-      // [|export function bar() { return "bar"; }|]
-      // import('./foo').then(({ bar }) => undefined);
 // === TextSpan ===
-  // === /tests/cases/fourslash/foo.ts ===
-  // export function bar() { return "bar"; }
-  // import('./foo').then(({ [|bar|] }) => undefined);
-
+// === /tests/cases/fourslash/foo.ts ===
+// export function bar() { return "bar"; }
+// import('./foo').then(({ [|ba/*GOTO DEF*/r|] }) => undefined);
 
 {
   "definitions": [

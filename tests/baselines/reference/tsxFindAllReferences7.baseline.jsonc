@@ -6,215 +6,34 @@
 //     interface ElementAttributesProperty { props; }
 // }
 // interface OptionPropBag {
-//     /*FIND ALL REFS*/[|propx|]: number
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isDefinition: true |}propx|]: number|>
 //     propString: string
 //     optional?: boolean
 // }
 // declare function Opt(attributes: OptionPropBag): JSX.Element;
 // let opt = <Opt />;
-// let opt1 = <Opt [|propx|]={100} propString />;
-// let opt2 = <Opt [|propx|]={100} optional/>;
+// let opt1 = <Opt <|[|{| contextId: 1, defId: 0, isWriteAccess: true |}propx|]={100}|> propString />;
+// let opt2 = <Opt <|[|{| contextId: 2, defId: 0, isWriteAccess: true |}propx|]={100}|> optional/>;
 // let opt3 = <Opt wrong />;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) OptionPropBag.propx: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "OptionPropBag",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "propx",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/file.tsx ===
-    // declare module JSX {
-    //     interface Element { }
-    //     interface IntrinsicElements {
-    //     }
-    //     interface ElementAttributesProperty { props; }
-    // }
-    // interface OptionPropBag {
-    //     [|propx|]: number
-    //     propString: string
-    //     optional?: boolean
-    // }
-    // declare function Opt(attributes: OptionPropBag): JSX.Element;
-    // let opt = <Opt />;
-    // let opt1 = <Opt propx={100} propString />;
-    // let opt2 = <Opt propx={100} optional/>;
-    // let opt3 = <Opt wrong />;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/file.tsx ===
-      // declare module JSX {
-      //     interface Element { }
-      //     interface IntrinsicElements {
-      //     }
-      //     interface ElementAttributesProperty { props; }
-      // }
-      // interface OptionPropBag {
-      //     [|propx: number|]
-      //     propString: string
-      //     optional?: boolean
-      // }
-      // declare function Opt(attributes: OptionPropBag): JSX.Element;
-      // let opt = <Opt />;
-      // let opt1 = <Opt propx={100} propString />;
-      // let opt2 = <Opt propx={100} optional/>;
-      // let opt3 = <Opt wrong />;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/file.tsx ===
-      // declare module JSX {
-      //     interface Element { }
-      //     interface IntrinsicElements {
-      //     }
-      //     interface ElementAttributesProperty { props; }
-      // }
-      // interface OptionPropBag {
-      //     [|propx|]: number
-      //     propString: string
-      //     optional?: boolean
-      // }
-      // declare function Opt(attributes: OptionPropBag): JSX.Element;
-      // let opt = <Opt />;
-      // let opt1 = <Opt propx={100} propString />;
-      // let opt2 = <Opt propx={100} optional/>;
-      // let opt3 = <Opt wrong />;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/file.tsx ===
-        // declare module JSX {
-        //     interface Element { }
-        //     interface IntrinsicElements {
-        //     }
-        //     interface ElementAttributesProperty { props; }
-        // }
-        // interface OptionPropBag {
-        //     [|propx: number|]
-        //     propString: string
-        //     optional?: boolean
-        // }
-        // declare function Opt(attributes: OptionPropBag): JSX.Element;
-        // let opt = <Opt />;
-        // let opt1 = <Opt propx={100} propString />;
-        // let opt2 = <Opt propx={100} optional/>;
-        // let opt3 = <Opt wrong />;
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/file.tsx ===
-      // declare module JSX {
-      //     interface Element { }
-      //     interface IntrinsicElements {
-      //     }
-      //     interface ElementAttributesProperty { props; }
-      // }
-      // interface OptionPropBag {
-      //     propx: number
-      //     propString: string
-      //     optional?: boolean
-      // }
-      // declare function Opt(attributes: OptionPropBag): JSX.Element;
-      // let opt = <Opt />;
-      // let opt1 = <Opt [|propx|]={100} propString />;
-      // let opt2 = <Opt propx={100} optional/>;
-      // let opt3 = <Opt wrong />;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/file.tsx ===
-        // declare module JSX {
-        //     interface Element { }
-        //     interface IntrinsicElements {
-        //     }
-        //     interface ElementAttributesProperty { props; }
-        // }
-        // interface OptionPropBag {
-        //     propx: number
-        //     propString: string
-        //     optional?: boolean
-        // }
-        // declare function Opt(attributes: OptionPropBag): JSX.Element;
-        // let opt = <Opt />;
-        // let opt1 = <Opt [|propx={100}|] propString />;
-        // let opt2 = <Opt propx={100} optional/>;
-        // let opt3 = <Opt wrong />;
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/file.tsx ===
-      // declare module JSX {
-      //     interface Element { }
-      //     interface IntrinsicElements {
-      //     }
-      //     interface ElementAttributesProperty { props; }
-      // }
-      // interface OptionPropBag {
-      //     propx: number
-      //     propString: string
-      //     optional?: boolean
-      // }
-      // declare function Opt(attributes: OptionPropBag): JSX.Element;
-      // let opt = <Opt />;
-      // let opt1 = <Opt propx={100} propString />;
-      // let opt2 = <Opt [|propx|]={100} optional/>;
-      // let opt3 = <Opt wrong />;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/file.tsx ===
-        // declare module JSX {
-        //     interface Element { }
-        //     interface IntrinsicElements {
-        //     }
-        //     interface ElementAttributesProperty { props; }
-        // }
-        // interface OptionPropBag {
-        //     propx: number
-        //     propString: string
-        //     optional?: boolean
-        // }
-        // declare function Opt(attributes: OptionPropBag): JSX.Element;
-        // let opt = <Opt />;
-        // let opt1 = <Opt propx={100} propString />;
-        // let opt2 = <Opt [|propx={100}|] optional/>;
-        // let opt3 = <Opt wrong />;
-
+// === Definitions ===
+// === /tests/cases/fourslash/file.tsx ===
+// declare module JSX {
+//     interface Element { }
+//     interface IntrinsicElements {
+//     }
+//     interface ElementAttributesProperty { props; }
+// }
+// interface OptionPropBag {
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) OptionPropBag.propx: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"OptionPropBag","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"propx","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}propx|]: number|>
+//     propString: string
+//     optional?: boolean
+// }
+// declare function Opt(attributes: OptionPropBag): JSX.Element;
+// let opt = <Opt />;
+// let opt1 = <Opt propx={100} propString />;
+// let opt2 = <Opt propx={100} optional/>;
+// let opt3 = <Opt wrong />;
 
 [
   {

@@ -1,5 +1,5 @@
 // === /foo.js ===
-// [|function notExported() { }
+// [|{| kind: "module", name: "\"/foo\"" |}function notExported() { }
 // class Blah {
 //    abc = 123;
 // }
@@ -9,25 +9,10 @@
 // const /*GOTO DEF*/BlahModule = require("./foo.js");
 // new BlahModule.Blah()
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "\"/foo\""
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /foo.js ===
-    // [|function notExported() { }
-    // class Blah {
-    //    abc = 123;
-    // }
-    // module.exports.Blah = Blah;|]
 // === TextSpan ===
-  // === /bar.js ===
-  // const [|BlahModule|] = require("./foo.js");
-  // new BlahModule.Blah()
-
+// === /bar.js ===
+// const /*GOTO DEF*/[|BlahModule|] = require("./foo.js");
+// new BlahModule.Blah()
 
 {
   "definitions": [
@@ -52,7 +37,7 @@
 }
 
 // === /foo.js ===
-// [|function notExported() { }
+// [|{| kind: "module", name: "\"/foo\"" |}function notExported() { }
 // class Blah {
 //    abc = 123;
 // }
@@ -62,25 +47,10 @@
 // const BlahModule = require("./foo.js");
 // new /*GOTO DEF*/BlahModule.Blah()
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "\"/foo\""
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /foo.js ===
-    // [|function notExported() { }
-    // class Blah {
-    //    abc = 123;
-    // }
-    // module.exports.Blah = Blah;|]
 // === TextSpan ===
-  // === /bar.js ===
-  // const BlahModule = require("./foo.js");
-  // new [|BlahModule|].Blah()
-
+// === /bar.js ===
+// const BlahModule = require("./foo.js");
+// new /*GOTO DEF*/[|BlahModule|].Blah()
 
 {
   "definitions": [
@@ -105,7 +75,7 @@
 }
 
 // === /foo.js ===
-// [|function notExported() { }
+// [|{| kind: "module", name: "\"/foo\"" |}function notExported() { }
 // class Blah {
 //    abc = 123;
 // }
@@ -115,25 +85,10 @@
 // import /*GOTO DEF*/BlahModule = require("./foo.js");
 // new BlahModule.Blah()
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "\"/foo\""
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /foo.js ===
-    // [|function notExported() { }
-    // class Blah {
-    //    abc = 123;
-    // }
-    // module.exports.Blah = Blah;|]
 // === TextSpan ===
-  // === /barTs.ts ===
-  // import [|BlahModule|] = require("./foo.js");
-  // new BlahModule.Blah()
-
+// === /barTs.ts ===
+// import /*GOTO DEF*/[|BlahModule|] = require("./foo.js");
+// new BlahModule.Blah()
 
 {
   "definitions": [
@@ -158,7 +113,7 @@
 }
 
 // === /foo.js ===
-// [|function notExported() { }
+// [|{| kind: "module", name: "\"/foo\"" |}function notExported() { }
 // class Blah {
 //    abc = 123;
 // }
@@ -168,25 +123,10 @@
 // import BlahModule = require("./foo.js");
 // new /*GOTO DEF*/BlahModule.Blah()
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "\"/foo\""
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /foo.js ===
-    // [|function notExported() { }
-    // class Blah {
-    //    abc = 123;
-    // }
-    // module.exports.Blah = Blah;|]
 // === TextSpan ===
-  // === /barTs.ts ===
-  // import BlahModule = require("./foo.js");
-  // new [|BlahModule|].Blah()
-
+// === /barTs.ts ===
+// import BlahModule = require("./foo.js");
+// new /*GOTO DEF*/[|BlahModule|].Blah()
 
 {
   "definitions": [

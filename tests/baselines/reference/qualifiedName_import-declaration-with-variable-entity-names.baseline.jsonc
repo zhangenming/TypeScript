@@ -1,7 +1,7 @@
 // === occurences ===
 // === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
 // module Alpha {
-//     export var [|x|] = 100;
+//     <|export var [|{| contextId: 0, isWriteAccess: true |}x|] = 100;|>
 // }
 // 
 // module Beta {
@@ -9,55 +9,6 @@
 // }
 // 
 // var x = Alpha.[|x|]
-
-// === 0 ===
-  // isWriteAccess: true
-  // === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
-  // module Alpha {
-  //     export var [|x|] = 100;
-  // }
-  // 
-  // module Beta {
-  //     import p = Alpha.x;
-  // }
-  // 
-  // var x = Alpha.x
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
-    // module Alpha {
-    //     [|export var x = 100;|]
-    // }
-    // 
-    // module Beta {
-    //     import p = Alpha.x;
-    // }
-    // 
-    // var x = Alpha.x
-// === 1 ===
-  // isWriteAccess: false
-  // === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
-  // module Alpha {
-  //     export var x = 100;
-  // }
-  // 
-  // module Beta {
-  //     import p = Alpha.[|x|];
-  // }
-  // 
-  // var x = Alpha.x
-// === 2 ===
-  // isWriteAccess: false
-  // === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
-  // module Alpha {
-  //     export var x = 100;
-  // }
-  // 
-  // module Beta {
-  //     import p = Alpha.x;
-  // }
-  // 
-  // var x = Alpha.[|x|]
-
 
 [
   {
@@ -93,7 +44,7 @@
 // === getDefinitionAtPosition ===
 // === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
 // module Alpha {
-//     export var [|x|] = 100;
+//     <|export var [|{| contextId: 0, kind: "var", name: "x", containerName: "Alpha" |}x|] = 100;|>
 // }
 // 
 // module Beta {
@@ -101,37 +52,6 @@
 // }
 // 
 // var x = Alpha.x
-
-// === 0 ===
-  // kind: "var"
-  // name: "x"
-  // containerName: "Alpha"
-  // isLocal: false
-  // isAmbient: false
-  // unverified: false
-  // failedAliasResolution: false
-  // === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
-  // module Alpha {
-  //     export var [|x|] = 100;
-  // }
-  // 
-  // module Beta {
-  //     import p = Alpha.x;
-  // }
-  // 
-  // var x = Alpha.x
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/qualifiedName_import-declaration-with-variable-entity-names.ts ===
-    // module Alpha {
-    //     [|export var x = 100;|]
-    // }
-    // 
-    // module Beta {
-    //     import p = Alpha.x;
-    // }
-    // 
-    // var x = Alpha.x
-
 
 [
   {

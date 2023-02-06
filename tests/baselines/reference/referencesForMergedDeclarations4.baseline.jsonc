@@ -1,352 +1,45 @@
 // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-// /*FIND ALL REFS*/class [|testClass|] {
+// /*FIND ALL REFS*/<|class [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}testClass|] {
 //     static staticMethod() { }
 //     method() { }
-// }
+// }|>
 // 
-// module [|testClass|] {
+// <|module [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}testClass|] {
+//     export interface Bar {
+// 
+//     }
+//     export var s = 0;
+// }|>
+// 
+// var c1: [|{| defId: 0 |}testClass|];
+// var c2: [|{| defId: 0 |}testClass|].Bar;
+// [|{| defId: 0 |}testClass|].staticMethod();
+// [|{| defId: 0 |}testClass|].prototype.method();
+// [|{| defId: 0 |}testClass|].bind(this);
+// [|{| defId: 0 |}testClass|].s;
+// new [|{| defId: 0 |}testClass|]();
+
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
+// /*FIND ALL REFS*/<|class [|{| contextId: 0, defId: 0, kind: "class", name: "class testClass\nnamespace testClass", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"}] |}testClass|] {
+//     static staticMethod() { }
+//     method() { }
+// }|>
+// 
+// module testClass {
 //     export interface Bar {
 // 
 //     }
 //     export var s = 0;
 // }
 // 
-// var c1: [|testClass|];
-// var c2: [|testClass|].Bar;
-// [|testClass|].staticMethod();
-// [|testClass|].prototype.method();
-// [|testClass|].bind(this);
-// [|testClass|].s;
-// new [|testClass|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class testClass\nnamespace testClass"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-    // class [|testClass|] {
-    //     static staticMethod() { }
-    //     method() { }
-    // }
-    // 
-    // module testClass {
-    //     export interface Bar {
-    // 
-    //     }
-    //     export var s = 0;
-    // }
-    // 
-    // var c1: testClass;
-    // var c2: testClass.Bar;
-    // testClass.staticMethod();
-    // testClass.prototype.method();
-    // testClass.bind(this);
-    // testClass.s;
-    // new testClass();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // [|class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }|]
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class [|testClass|] {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // [|class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }|]
-        // 
-        // module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module [|testClass|] {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }
-        // 
-        // [|module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }|]
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: [|testClass|];
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: [|testClass|].Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // [|testClass|].staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // [|testClass|].prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // [|testClass|].bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // [|testClass|].s;
-      // new testClass();
-    // === 8 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new [|testClass|]();
-
+// var c1: testClass;
+// var c2: testClass.Bar;
+// testClass.staticMethod();
+// testClass.prototype.method();
+// testClass.bind(this);
+// testClass.s;
+// new testClass();
 
 [
   {
@@ -490,354 +183,47 @@
 ]
 
 // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-// class /*FIND ALL REFS*/[|testClass|] {
+// <|class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}testClass|] {
 //     static staticMethod() { }
 //     method() { }
-// }
+// }|>
 // 
-// module [|testClass|] {
+// <|module [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}testClass|] {
+//     export interface Bar {
+// 
+//     }
+//     export var s = 0;
+// }|>
+// 
+// var c1: [|{| defId: 0 |}testClass|];
+// var c2: [|{| defId: 0 |}testClass|].Bar;
+// [|{| defId: 0 |}testClass|].staticMethod();
+// [|{| defId: 0 |}testClass|].prototype.method();
+// [|{| defId: 0 |}testClass|].bind(this);
+// [|{| defId: 0 |}testClass|].s;
+// new [|{| defId: 0 |}testClass|]();
+
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
+// <|class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "class", name: "class testClass\nnamespace testClass", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"}] |}testClass|] {
+//     static staticMethod() { }
+//     method() { }
+// }|>
+// 
+// module testClass {
 //     export interface Bar {
 // 
 //     }
 //     export var s = 0;
 // }
 // 
-// var c1: [|testClass|];
-// var c2: [|testClass|].Bar;
-// [|testClass|].staticMethod();
-// [|testClass|].prototype.method();
-// [|testClass|].bind(this);
-// [|testClass|].s;
-// new [|testClass|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class testClass\nnamespace testClass"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-    // class [|testClass|] {
-    //     static staticMethod() { }
-    //     method() { }
-    // }
-    // 
-    // module testClass {
-    //     export interface Bar {
-    // 
-    //     }
-    //     export var s = 0;
-    // }
-    // 
-    // var c1: testClass;
-    // var c2: testClass.Bar;
-    // testClass.staticMethod();
-    // testClass.prototype.method();
-    // testClass.bind(this);
-    // testClass.s;
-    // new testClass();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // [|class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }|]
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class [|testClass|] {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // [|class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }|]
-        // 
-        // module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module [|testClass|] {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }
-        // 
-        // [|module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }|]
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: [|testClass|];
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: [|testClass|].Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // [|testClass|].staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // [|testClass|].prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // [|testClass|].bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // [|testClass|].s;
-      // new testClass();
-    // === 8 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new [|testClass|]();
-
+// var c1: testClass;
+// var c2: testClass.Bar;
+// testClass.staticMethod();
+// testClass.prototype.method();
+// testClass.bind(this);
+// testClass.s;
+// new testClass();
 
 [
   {
@@ -981,354 +367,47 @@
 ]
 
 // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-// class [|testClass|] {
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}testClass|] {
 //     static staticMethod() { }
 //     method() { }
-// }
+// }|>
 // 
-// /*FIND ALL REFS*/module [|testClass|] {
+// /*FIND ALL REFS*/<|module [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}testClass|] {
+//     export interface Bar {
+// 
+//     }
+//     export var s = 0;
+// }|>
+// 
+// var c1: [|{| defId: 0 |}testClass|];
+// var c2: [|{| defId: 0 |}testClass|].Bar;
+// [|{| defId: 0 |}testClass|].staticMethod();
+// [|{| defId: 0 |}testClass|].prototype.method();
+// [|{| defId: 0 |}testClass|].bind(this);
+// [|{| defId: 0 |}testClass|].s;
+// new [|{| defId: 0 |}testClass|]();
+
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class testClass\nnamespace testClass", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"}] |}testClass|] {
+//     static staticMethod() { }
+//     method() { }
+// }|>
+// 
+// /*FIND ALL REFS*/module testClass {
 //     export interface Bar {
 // 
 //     }
 //     export var s = 0;
 // }
 // 
-// var c1: [|testClass|];
-// var c2: [|testClass|].Bar;
-// [|testClass|].staticMethod();
-// [|testClass|].prototype.method();
-// [|testClass|].bind(this);
-// [|testClass|].s;
-// new [|testClass|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class testClass\nnamespace testClass"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-    // class [|testClass|] {
-    //     static staticMethod() { }
-    //     method() { }
-    // }
-    // 
-    // module testClass {
-    //     export interface Bar {
-    // 
-    //     }
-    //     export var s = 0;
-    // }
-    // 
-    // var c1: testClass;
-    // var c2: testClass.Bar;
-    // testClass.staticMethod();
-    // testClass.prototype.method();
-    // testClass.bind(this);
-    // testClass.s;
-    // new testClass();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // [|class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }|]
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class [|testClass|] {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // [|class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }|]
-        // 
-        // module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module [|testClass|] {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }
-        // 
-        // [|module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }|]
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: [|testClass|];
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: [|testClass|].Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // [|testClass|].staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // [|testClass|].prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // [|testClass|].bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // [|testClass|].s;
-      // new testClass();
-    // === 8 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new [|testClass|]();
-
+// var c1: testClass;
+// var c2: testClass.Bar;
+// testClass.staticMethod();
+// testClass.prototype.method();
+// testClass.bind(this);
+// testClass.s;
+// new testClass();
 
 [
   {
@@ -1472,354 +551,47 @@
 ]
 
 // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-// class [|testClass|] {
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}testClass|] {
 //     static staticMethod() { }
 //     method() { }
-// }
+// }|>
 // 
-// module /*FIND ALL REFS*/[|testClass|] {
+// <|module /*FIND ALL REFS*/[|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}testClass|] {
+//     export interface Bar {
+// 
+//     }
+//     export var s = 0;
+// }|>
+// 
+// var c1: [|{| defId: 0 |}testClass|];
+// var c2: [|{| defId: 0 |}testClass|].Bar;
+// [|{| defId: 0 |}testClass|].staticMethod();
+// [|{| defId: 0 |}testClass|].prototype.method();
+// [|{| defId: 0 |}testClass|].bind(this);
+// [|{| defId: 0 |}testClass|].s;
+// new [|{| defId: 0 |}testClass|]();
+
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class testClass\nnamespace testClass", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"}] |}testClass|] {
+//     static staticMethod() { }
+//     method() { }
+// }|>
+// 
+// module /*FIND ALL REFS*/testClass {
 //     export interface Bar {
 // 
 //     }
 //     export var s = 0;
 // }
 // 
-// var c1: [|testClass|];
-// var c2: [|testClass|].Bar;
-// [|testClass|].staticMethod();
-// [|testClass|].prototype.method();
-// [|testClass|].bind(this);
-// [|testClass|].s;
-// new [|testClass|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class testClass\nnamespace testClass"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-    // class [|testClass|] {
-    //     static staticMethod() { }
-    //     method() { }
-    // }
-    // 
-    // module testClass {
-    //     export interface Bar {
-    // 
-    //     }
-    //     export var s = 0;
-    // }
-    // 
-    // var c1: testClass;
-    // var c2: testClass.Bar;
-    // testClass.staticMethod();
-    // testClass.prototype.method();
-    // testClass.bind(this);
-    // testClass.s;
-    // new testClass();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // [|class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }|]
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class [|testClass|] {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // [|class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }|]
-        // 
-        // module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module [|testClass|] {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }
-        // 
-        // [|module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }|]
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: [|testClass|];
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: [|testClass|].Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // [|testClass|].staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // [|testClass|].prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // [|testClass|].bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // [|testClass|].s;
-      // new testClass();
-    // === 8 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new [|testClass|]();
-
+// var c1: testClass;
+// var c2: testClass.Bar;
+// testClass.staticMethod();
+// testClass.prototype.method();
+// testClass.bind(this);
+// testClass.s;
+// new testClass();
 
 [
   {
@@ -1963,345 +735,47 @@
 ]
 
 // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-// class [|testClass|] {
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}testClass|] {
 //     static staticMethod() { }
 //     method() { }
-// }
+// }|>
 // 
-// module [|testClass|] {
+// <|module [|{| contextId: 1, defId: 0, isWriteAccess: true |}testClass|] {
+//     export interface Bar {
+// 
+//     }
+//     export var s = 0;
+// }|>
+// 
+// var c1: /*FIND ALL REFS*/[|{| defId: 0 |}testClass|];
+// var c2: [|{| defId: 0 |}testClass|].Bar;
+// [|{| defId: 0 |}testClass|].staticMethod();
+// [|{| defId: 0 |}testClass|].prototype.method();
+// [|{| defId: 0 |}testClass|].bind(this);
+// [|{| defId: 0 |}testClass|].s;
+// new [|{| defId: 0 |}testClass|]();
+
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class testClass\nnamespace testClass", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"}] |}testClass|] {
+//     static staticMethod() { }
+//     method() { }
+// }|>
+// 
+// module testClass {
 //     export interface Bar {
 // 
 //     }
 //     export var s = 0;
 // }
 // 
-// var c1: /*FIND ALL REFS*/[|testClass|];
-// var c2: [|testClass|].Bar;
-// [|testClass|].staticMethod();
-// [|testClass|].prototype.method();
-// [|testClass|].bind(this);
-// [|testClass|].s;
-// new [|testClass|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class testClass\nnamespace testClass"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-    // class [|testClass|] {
-    //     static staticMethod() { }
-    //     method() { }
-    // }
-    // 
-    // module testClass {
-    //     export interface Bar {
-    // 
-    //     }
-    //     export var s = 0;
-    // }
-    // 
-    // var c1: testClass;
-    // var c2: testClass.Bar;
-    // testClass.staticMethod();
-    // testClass.prototype.method();
-    // testClass.bind(this);
-    // testClass.s;
-    // new testClass();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // [|class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }|]
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class [|testClass|] {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // [|class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }|]
-        // 
-        // module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module [|testClass|] {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }
-        // 
-        // [|module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }|]
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: [|testClass|];
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: [|testClass|].Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // [|testClass|].staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // [|testClass|].prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // [|testClass|].bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // [|testClass|].s;
-      // new testClass();
-    // === 8 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new [|testClass|]();
-
+// var c1: /*FIND ALL REFS*/testClass;
+// var c2: testClass.Bar;
+// testClass.staticMethod();
+// testClass.prototype.method();
+// testClass.bind(this);
+// testClass.s;
+// new testClass();
 
 [
   {
@@ -2436,345 +910,47 @@
 ]
 
 // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-// class [|testClass|] {
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}testClass|] {
 //     static staticMethod() { }
 //     method() { }
-// }
+// }|>
 // 
-// module [|testClass|] {
+// <|module [|{| contextId: 1, defId: 0, isWriteAccess: true |}testClass|] {
+//     export interface Bar {
+// 
+//     }
+//     export var s = 0;
+// }|>
+// 
+// var c1: [|{| defId: 0 |}testClass|];
+// var c2: /*FIND ALL REFS*/[|{| defId: 0 |}testClass|].Bar;
+// [|{| defId: 0 |}testClass|].staticMethod();
+// [|{| defId: 0 |}testClass|].prototype.method();
+// [|{| defId: 0 |}testClass|].bind(this);
+// [|{| defId: 0 |}testClass|].s;
+// new [|{| defId: 0 |}testClass|]();
+
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class testClass\nnamespace testClass", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"}] |}testClass|] {
+//     static staticMethod() { }
+//     method() { }
+// }|>
+// 
+// module testClass {
 //     export interface Bar {
 // 
 //     }
 //     export var s = 0;
 // }
 // 
-// var c1: [|testClass|];
-// var c2: /*FIND ALL REFS*/[|testClass|].Bar;
-// [|testClass|].staticMethod();
-// [|testClass|].prototype.method();
-// [|testClass|].bind(this);
-// [|testClass|].s;
-// new [|testClass|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class testClass\nnamespace testClass"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-    // class [|testClass|] {
-    //     static staticMethod() { }
-    //     method() { }
-    // }
-    // 
-    // module testClass {
-    //     export interface Bar {
-    // 
-    //     }
-    //     export var s = 0;
-    // }
-    // 
-    // var c1: testClass;
-    // var c2: testClass.Bar;
-    // testClass.staticMethod();
-    // testClass.prototype.method();
-    // testClass.bind(this);
-    // testClass.s;
-    // new testClass();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // [|class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }|]
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class [|testClass|] {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // [|class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }|]
-        // 
-        // module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module [|testClass|] {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }
-        // 
-        // [|module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }|]
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: [|testClass|];
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: [|testClass|].Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // [|testClass|].staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // [|testClass|].prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // [|testClass|].bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // [|testClass|].s;
-      // new testClass();
-    // === 8 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new [|testClass|]();
-
+// var c1: testClass;
+// var c2: /*FIND ALL REFS*/testClass.Bar;
+// testClass.staticMethod();
+// testClass.prototype.method();
+// testClass.bind(this);
+// testClass.s;
+// new testClass();
 
 [
   {
@@ -2909,345 +1085,47 @@
 ]
 
 // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-// class [|testClass|] {
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}testClass|] {
 //     static staticMethod() { }
 //     method() { }
-// }
+// }|>
 // 
-// module [|testClass|] {
+// <|module [|{| contextId: 1, defId: 0, isWriteAccess: true |}testClass|] {
+//     export interface Bar {
+// 
+//     }
+//     export var s = 0;
+// }|>
+// 
+// var c1: [|{| defId: 0 |}testClass|];
+// var c2: [|{| defId: 0 |}testClass|].Bar;
+// /*FIND ALL REFS*/[|{| defId: 0 |}testClass|].staticMethod();
+// [|{| defId: 0 |}testClass|].prototype.method();
+// [|{| defId: 0 |}testClass|].bind(this);
+// [|{| defId: 0 |}testClass|].s;
+// new [|{| defId: 0 |}testClass|]();
+
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class testClass\nnamespace testClass", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"}] |}testClass|] {
+//     static staticMethod() { }
+//     method() { }
+// }|>
+// 
+// module testClass {
 //     export interface Bar {
 // 
 //     }
 //     export var s = 0;
 // }
 // 
-// var c1: [|testClass|];
-// var c2: [|testClass|].Bar;
-// /*FIND ALL REFS*/[|testClass|].staticMethod();
-// [|testClass|].prototype.method();
-// [|testClass|].bind(this);
-// [|testClass|].s;
-// new [|testClass|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class testClass\nnamespace testClass"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-    // class [|testClass|] {
-    //     static staticMethod() { }
-    //     method() { }
-    // }
-    // 
-    // module testClass {
-    //     export interface Bar {
-    // 
-    //     }
-    //     export var s = 0;
-    // }
-    // 
-    // var c1: testClass;
-    // var c2: testClass.Bar;
-    // testClass.staticMethod();
-    // testClass.prototype.method();
-    // testClass.bind(this);
-    // testClass.s;
-    // new testClass();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // [|class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }|]
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class [|testClass|] {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // [|class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }|]
-        // 
-        // module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module [|testClass|] {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }
-        // 
-        // [|module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }|]
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: [|testClass|];
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: [|testClass|].Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // [|testClass|].staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // [|testClass|].prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // [|testClass|].bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // [|testClass|].s;
-      // new testClass();
-    // === 8 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new [|testClass|]();
-
+// var c1: testClass;
+// var c2: testClass.Bar;
+// /*FIND ALL REFS*/testClass.staticMethod();
+// testClass.prototype.method();
+// testClass.bind(this);
+// testClass.s;
+// new testClass();
 
 [
   {
@@ -3382,345 +1260,47 @@
 ]
 
 // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-// class [|testClass|] {
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}testClass|] {
 //     static staticMethod() { }
 //     method() { }
-// }
+// }|>
 // 
-// module [|testClass|] {
+// <|module [|{| contextId: 1, defId: 0, isWriteAccess: true |}testClass|] {
+//     export interface Bar {
+// 
+//     }
+//     export var s = 0;
+// }|>
+// 
+// var c1: [|{| defId: 0 |}testClass|];
+// var c2: [|{| defId: 0 |}testClass|].Bar;
+// [|{| defId: 0 |}testClass|].staticMethod();
+// /*FIND ALL REFS*/[|{| defId: 0 |}testClass|].prototype.method();
+// [|{| defId: 0 |}testClass|].bind(this);
+// [|{| defId: 0 |}testClass|].s;
+// new [|{| defId: 0 |}testClass|]();
+
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class testClass\nnamespace testClass", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"}] |}testClass|] {
+//     static staticMethod() { }
+//     method() { }
+// }|>
+// 
+// module testClass {
 //     export interface Bar {
 // 
 //     }
 //     export var s = 0;
 // }
 // 
-// var c1: [|testClass|];
-// var c2: [|testClass|].Bar;
-// [|testClass|].staticMethod();
-// /*FIND ALL REFS*/[|testClass|].prototype.method();
-// [|testClass|].bind(this);
-// [|testClass|].s;
-// new [|testClass|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class testClass\nnamespace testClass"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-    // class [|testClass|] {
-    //     static staticMethod() { }
-    //     method() { }
-    // }
-    // 
-    // module testClass {
-    //     export interface Bar {
-    // 
-    //     }
-    //     export var s = 0;
-    // }
-    // 
-    // var c1: testClass;
-    // var c2: testClass.Bar;
-    // testClass.staticMethod();
-    // testClass.prototype.method();
-    // testClass.bind(this);
-    // testClass.s;
-    // new testClass();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // [|class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }|]
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class [|testClass|] {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // [|class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }|]
-        // 
-        // module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module [|testClass|] {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }
-        // 
-        // [|module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }|]
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: [|testClass|];
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: [|testClass|].Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // [|testClass|].staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // [|testClass|].prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // [|testClass|].bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // [|testClass|].s;
-      // new testClass();
-    // === 8 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new [|testClass|]();
-
+// var c1: testClass;
+// var c2: testClass.Bar;
+// testClass.staticMethod();
+// /*FIND ALL REFS*/testClass.prototype.method();
+// testClass.bind(this);
+// testClass.s;
+// new testClass();
 
 [
   {
@@ -3855,345 +1435,47 @@
 ]
 
 // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-// class [|testClass|] {
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}testClass|] {
 //     static staticMethod() { }
 //     method() { }
-// }
+// }|>
 // 
-// module [|testClass|] {
+// <|module [|{| contextId: 1, defId: 0, isWriteAccess: true |}testClass|] {
+//     export interface Bar {
+// 
+//     }
+//     export var s = 0;
+// }|>
+// 
+// var c1: [|{| defId: 0 |}testClass|];
+// var c2: [|{| defId: 0 |}testClass|].Bar;
+// [|{| defId: 0 |}testClass|].staticMethod();
+// [|{| defId: 0 |}testClass|].prototype.method();
+// /*FIND ALL REFS*/[|{| defId: 0 |}testClass|].bind(this);
+// [|{| defId: 0 |}testClass|].s;
+// new [|{| defId: 0 |}testClass|]();
+
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class testClass\nnamespace testClass", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"}] |}testClass|] {
+//     static staticMethod() { }
+//     method() { }
+// }|>
+// 
+// module testClass {
 //     export interface Bar {
 // 
 //     }
 //     export var s = 0;
 // }
 // 
-// var c1: [|testClass|];
-// var c2: [|testClass|].Bar;
-// [|testClass|].staticMethod();
-// [|testClass|].prototype.method();
-// /*FIND ALL REFS*/[|testClass|].bind(this);
-// [|testClass|].s;
-// new [|testClass|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class testClass\nnamespace testClass"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-    // class [|testClass|] {
-    //     static staticMethod() { }
-    //     method() { }
-    // }
-    // 
-    // module testClass {
-    //     export interface Bar {
-    // 
-    //     }
-    //     export var s = 0;
-    // }
-    // 
-    // var c1: testClass;
-    // var c2: testClass.Bar;
-    // testClass.staticMethod();
-    // testClass.prototype.method();
-    // testClass.bind(this);
-    // testClass.s;
-    // new testClass();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // [|class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }|]
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class [|testClass|] {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // [|class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }|]
-        // 
-        // module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module [|testClass|] {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }
-        // 
-        // [|module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }|]
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: [|testClass|];
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: [|testClass|].Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // [|testClass|].staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // [|testClass|].prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // [|testClass|].bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // [|testClass|].s;
-      // new testClass();
-    // === 8 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new [|testClass|]();
-
+// var c1: testClass;
+// var c2: testClass.Bar;
+// testClass.staticMethod();
+// testClass.prototype.method();
+// /*FIND ALL REFS*/testClass.bind(this);
+// testClass.s;
+// new testClass();
 
 [
   {
@@ -4328,345 +1610,47 @@
 ]
 
 // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-// class [|testClass|] {
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}testClass|] {
 //     static staticMethod() { }
 //     method() { }
-// }
+// }|>
 // 
-// module [|testClass|] {
+// <|module [|{| contextId: 1, defId: 0, isWriteAccess: true |}testClass|] {
+//     export interface Bar {
+// 
+//     }
+//     export var s = 0;
+// }|>
+// 
+// var c1: [|{| defId: 0 |}testClass|];
+// var c2: [|{| defId: 0 |}testClass|].Bar;
+// [|{| defId: 0 |}testClass|].staticMethod();
+// [|{| defId: 0 |}testClass|].prototype.method();
+// [|{| defId: 0 |}testClass|].bind(this);
+// /*FIND ALL REFS*/[|{| defId: 0 |}testClass|].s;
+// new [|{| defId: 0 |}testClass|]();
+
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class testClass\nnamespace testClass", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"}] |}testClass|] {
+//     static staticMethod() { }
+//     method() { }
+// }|>
+// 
+// module testClass {
 //     export interface Bar {
 // 
 //     }
 //     export var s = 0;
 // }
 // 
-// var c1: [|testClass|];
-// var c2: [|testClass|].Bar;
-// [|testClass|].staticMethod();
-// [|testClass|].prototype.method();
-// [|testClass|].bind(this);
-// /*FIND ALL REFS*/[|testClass|].s;
-// new [|testClass|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class testClass\nnamespace testClass"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-    // class [|testClass|] {
-    //     static staticMethod() { }
-    //     method() { }
-    // }
-    // 
-    // module testClass {
-    //     export interface Bar {
-    // 
-    //     }
-    //     export var s = 0;
-    // }
-    // 
-    // var c1: testClass;
-    // var c2: testClass.Bar;
-    // testClass.staticMethod();
-    // testClass.prototype.method();
-    // testClass.bind(this);
-    // testClass.s;
-    // new testClass();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // [|class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }|]
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class [|testClass|] {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // [|class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }|]
-        // 
-        // module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module [|testClass|] {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }
-        // 
-        // [|module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }|]
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: [|testClass|];
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: [|testClass|].Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // [|testClass|].staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // [|testClass|].prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // [|testClass|].bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // [|testClass|].s;
-      // new testClass();
-    // === 8 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new [|testClass|]();
-
+// var c1: testClass;
+// var c2: testClass.Bar;
+// testClass.staticMethod();
+// testClass.prototype.method();
+// testClass.bind(this);
+// /*FIND ALL REFS*/testClass.s;
+// new testClass();
 
 [
   {
@@ -4801,345 +1785,47 @@
 ]
 
 // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-// class [|testClass|] {
+// <|class [|{| contextId: 0, defId: 0, isWriteAccess: true |}testClass|] {
 //     static staticMethod() { }
 //     method() { }
-// }
+// }|>
 // 
-// module [|testClass|] {
+// <|module [|{| contextId: 1, defId: 0, isWriteAccess: true |}testClass|] {
+//     export interface Bar {
+// 
+//     }
+//     export var s = 0;
+// }|>
+// 
+// var c1: [|{| defId: 0 |}testClass|];
+// var c2: [|{| defId: 0 |}testClass|].Bar;
+// [|{| defId: 0 |}testClass|].staticMethod();
+// [|{| defId: 0 |}testClass|].prototype.method();
+// [|{| defId: 0 |}testClass|].bind(this);
+// [|{| defId: 0 |}testClass|].s;
+// new /*FIND ALL REFS*/[|{| defId: 0 |}testClass|]();
+
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
+// <|class [|{| contextId: 0, defId: 0, kind: "class", name: "class testClass\nnamespace testClass", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"testClass","kind":"className"}] |}testClass|] {
+//     static staticMethod() { }
+//     method() { }
+// }|>
+// 
+// module testClass {
 //     export interface Bar {
 // 
 //     }
 //     export var s = 0;
 // }
 // 
-// var c1: [|testClass|];
-// var c2: [|testClass|].Bar;
-// [|testClass|].staticMethod();
-// [|testClass|].prototype.method();
-// [|testClass|].bind(this);
-// [|testClass|].s;
-// new /*FIND ALL REFS*/[|testClass|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class testClass\nnamespace testClass"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "testClass",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-    // class [|testClass|] {
-    //     static staticMethod() { }
-    //     method() { }
-    // }
-    // 
-    // module testClass {
-    //     export interface Bar {
-    // 
-    //     }
-    //     export var s = 0;
-    // }
-    // 
-    // var c1: testClass;
-    // var c2: testClass.Bar;
-    // testClass.staticMethod();
-    // testClass.prototype.method();
-    // testClass.bind(this);
-    // testClass.s;
-    // new testClass();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // [|class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }|]
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class [|testClass|] {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // [|class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }|]
-        // 
-        // module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module [|testClass|] {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-        // class testClass {
-        //     static staticMethod() { }
-        //     method() { }
-        // }
-        // 
-        // [|module testClass {
-        //     export interface Bar {
-        // 
-        //     }
-        //     export var s = 0;
-        // }|]
-        // 
-        // var c1: testClass;
-        // var c2: testClass.Bar;
-        // testClass.staticMethod();
-        // testClass.prototype.method();
-        // testClass.bind(this);
-        // testClass.s;
-        // new testClass();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: [|testClass|];
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: [|testClass|].Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // [|testClass|].staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 5 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // [|testClass|].prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // [|testClass|].bind(this);
-      // testClass.s;
-      // new testClass();
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // [|testClass|].s;
-      // new testClass();
-    // === 8 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations4.ts ===
-      // class testClass {
-      //     static staticMethod() { }
-      //     method() { }
-      // }
-      // 
-      // module testClass {
-      //     export interface Bar {
-      // 
-      //     }
-      //     export var s = 0;
-      // }
-      // 
-      // var c1: testClass;
-      // var c2: testClass.Bar;
-      // testClass.staticMethod();
-      // testClass.prototype.method();
-      // testClass.bind(this);
-      // testClass.s;
-      // new [|testClass|]();
-
+// var c1: testClass;
+// var c2: testClass.Bar;
+// testClass.staticMethod();
+// testClass.prototype.method();
+// testClass.bind(this);
+// testClass.s;
+// new /*FIND ALL REFS*/testClass();
 
 [
   {

@@ -1,47 +1,21 @@
 // === /tests/cases/fourslash/a.js ===
 // class Foo {
-//     [|m|]() {}
+//     <|[|{| contextId: 0, kind: "method", name: "m", containerName: "Foo" |}m|]() {}|>
 // }
 // class Bar extends Foo {
 //     /** @over/*GOTO DEF*/ride see {@link https://test.com} description */
 //     m() {}
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "method"
-    // name: "m"
-    // containerName: "Foo"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /tests/cases/fourslash/a.js ===
-    // class Foo {
-    //     [|m|]() {}
-    // }
-    // class Bar extends Foo {
-    //     /** @override see {@link https://test.com} description */
-    //     m() {}
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.js ===
-      // class Foo {
-      //     [|m() {}|]
-      // }
-      // class Bar extends Foo {
-      //     /** @override see {@link https://test.com} description */
-      //     m() {}
-      // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/a.js ===
-  // class Foo {
-  //     m() {}
-  // }
-  // class Bar extends Foo {
-  //     /** @[|override|] see {@link https://test.com} description */
-  //     m() {}
-  // }
-
+// === /tests/cases/fourslash/a.js ===
+// class Foo {
+//     m() {}
+// }
+// class Bar extends Foo {
+//     /** @[|over/*GOTO DEF*/ride|] see {@link https://test.com} description */
+//     m() {}
+// }
 
 {
   "definitions": [

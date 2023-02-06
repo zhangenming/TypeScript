@@ -12,7 +12,7 @@
 // }
 // 
 // // Class expression that gets used in a bar implementation
-// var x = class [|Foo|] {
+// var x = <|class [|{| contextId: 0, displayParts: [{"text":"(","kind":"punctuation"},{"text":"local class","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"}], kind: "local class" |}Foo|] {
 //     createBarInClassExpression(): Bar {
 //         return {
 //             Foo
@@ -20,13 +20,13 @@
 //     }
 // 
 //     someFunction() {}
-// };
+// }|>;
 // 
 // // Class declaration that gets used in a bar implementation. This class has multiple definitions
 // // (the class declaration and the interface above), but we only want the class returned
-// class [|Foo|] {
+// <|class [|{| contextId: 1, displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"}], kind: "class" |}Foo|] {
 // 
-// }
+// }|>
 // 
 // function createBarUsingClassDeclaration(): Bar {
 //     return {
@@ -40,234 +40,6 @@
 // };
 // 
 // createBarUsingClassDeclaration().Fo/*GOTO IMPL*/o;
-
-// === 0 ===
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "local class",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "Foo",
-  //   "kind": "className"
-  //  }
-  // ]
-  // kind: "local class"
-  // === /tests/cases/fourslash/goToImplementationShorthandPropertyAssignment_01.ts ===
-  // interface Foo {
-  //     someFunction(): void;
-  // }
-  // 
-  // interface FooConstructor {
-  //     new (): Foo
-  // }
-  // 
-  // interface Bar {
-  //     Foo: FooConstructor;
-  // }
-  // 
-  // // Class expression that gets used in a bar implementation
-  // var x = class [|Foo|] {
-  //     createBarInClassExpression(): Bar {
-  //         return {
-  //             Foo
-  //         };
-  //     }
-  // 
-  //     someFunction() {}
-  // };
-  // 
-  // // Class declaration that gets used in a bar implementation. This class has multiple definitions
-  // // (the class declaration and the interface above), but we only want the class returned
-  // class Foo {
-  // 
-  // }
-  // 
-  // function createBarUsingClassDeclaration(): Bar {
-  //     return {
-  //         Foo
-  //     };
-  // }
-  // 
-  // // Class expression that does not get used in a bar implementation
-  // var y = class Foo {
-  //     someFunction() {}
-  // };
-  // 
-  // createBarUsingClassDeclaration().Foo;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/goToImplementationShorthandPropertyAssignment_01.ts ===
-    // interface Foo {
-    //     someFunction(): void;
-    // }
-    // 
-    // interface FooConstructor {
-    //     new (): Foo
-    // }
-    // 
-    // interface Bar {
-    //     Foo: FooConstructor;
-    // }
-    // 
-    // // Class expression that gets used in a bar implementation
-    // var x = [|class Foo {
-    //     createBarInClassExpression(): Bar {
-    //         return {
-    //             Foo
-    //         };
-    //     }
-    // 
-    //     someFunction() {}
-    // }|];
-    // 
-    // // Class declaration that gets used in a bar implementation. This class has multiple definitions
-    // // (the class declaration and the interface above), but we only want the class returned
-    // class Foo {
-    // 
-    // }
-    // 
-    // function createBarUsingClassDeclaration(): Bar {
-    //     return {
-    //         Foo
-    //     };
-    // }
-    // 
-    // // Class expression that does not get used in a bar implementation
-    // var y = class Foo {
-    //     someFunction() {}
-    // };
-    // 
-    // createBarUsingClassDeclaration().Foo;
-// === 1 ===
-  // displayParts: [
-  //  {
-  //   "text": "class",
-  //   "kind": "keyword"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "Foo",
-  //   "kind": "className"
-  //  },
-  //  {
-  //   "text": "\n",
-  //   "kind": "lineBreak"
-  //  },
-  //  {
-  //   "text": "interface",
-  //   "kind": "keyword"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "Foo",
-  //   "kind": "className"
-  //  }
-  // ]
-  // kind: "class"
-  // === /tests/cases/fourslash/goToImplementationShorthandPropertyAssignment_01.ts ===
-  // interface Foo {
-  //     someFunction(): void;
-  // }
-  // 
-  // interface FooConstructor {
-  //     new (): Foo
-  // }
-  // 
-  // interface Bar {
-  //     Foo: FooConstructor;
-  // }
-  // 
-  // // Class expression that gets used in a bar implementation
-  // var x = class Foo {
-  //     createBarInClassExpression(): Bar {
-  //         return {
-  //             Foo
-  //         };
-  //     }
-  // 
-  //     someFunction() {}
-  // };
-  // 
-  // // Class declaration that gets used in a bar implementation. This class has multiple definitions
-  // // (the class declaration and the interface above), but we only want the class returned
-  // class [|Foo|] {
-  // 
-  // }
-  // 
-  // function createBarUsingClassDeclaration(): Bar {
-  //     return {
-  //         Foo
-  //     };
-  // }
-  // 
-  // // Class expression that does not get used in a bar implementation
-  // var y = class Foo {
-  //     someFunction() {}
-  // };
-  // 
-  // createBarUsingClassDeclaration().Foo;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/goToImplementationShorthandPropertyAssignment_01.ts ===
-    // interface Foo {
-    //     someFunction(): void;
-    // }
-    // 
-    // interface FooConstructor {
-    //     new (): Foo
-    // }
-    // 
-    // interface Bar {
-    //     Foo: FooConstructor;
-    // }
-    // 
-    // // Class expression that gets used in a bar implementation
-    // var x = class Foo {
-    //     createBarInClassExpression(): Bar {
-    //         return {
-    //             Foo
-    //         };
-    //     }
-    // 
-    //     someFunction() {}
-    // };
-    // 
-    // // Class declaration that gets used in a bar implementation. This class has multiple definitions
-    // // (the class declaration and the interface above), but we only want the class returned
-    // [|class Foo {
-    // 
-    // }|]
-    // 
-    // function createBarUsingClassDeclaration(): Bar {
-    //     return {
-    //         Foo
-    //     };
-    // }
-    // 
-    // // Class expression that does not get used in a bar implementation
-    // var y = class Foo {
-    //     someFunction() {}
-    // };
-    // 
-    // createBarUsingClassDeclaration().Foo;
-
 
 [
   {

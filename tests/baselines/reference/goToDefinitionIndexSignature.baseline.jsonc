@@ -1,6 +1,6 @@
 // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
 // interface I {
-//     [|[x: string]: boolean;|]
+//     [|{| kind: "index", name: "__index", containerName: "I" |}[x: string]: boolean;|]
 // }
 // interface J {
 //     [x: string]: number;
@@ -18,55 +18,26 @@
 // k.b;
 // k.ab;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "index"
-    // name: "__index"
-    // containerName: "I"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-    // interface I {
-    //     [|[x: string]: boolean;|]
-    // }
-    // interface J {
-    //     [x: string]: number;
-    // }
-    // interface K {
-    //     [x: `a${string}`]: string;
-    //     [x: `${string}b`]: string;
-    // }
-    // declare const i: I;
-    // i.foo;
-    // declare const ij: I | J;
-    // ij.foo;
-    // declare const k: K;
-    // k.a;
-    // k.b;
-    // k.ab;
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-  // interface I {
-  //     [x: string]: boolean;
-  // }
-  // interface J {
-  //     [x: string]: number;
-  // }
-  // interface K {
-  //     [x: `a${string}`]: string;
-  //     [x: `${string}b`]: string;
-  // }
-  // declare const i: I;
-  // i.[|foo|];
-  // declare const ij: I | J;
-  // ij.foo;
-  // declare const k: K;
-  // k.a;
-  // k.b;
-  // k.ab;
-
+// === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
+// interface I {
+//     [x: string]: boolean;
+// }
+// interface J {
+//     [x: string]: number;
+// }
+// interface K {
+//     [x: `a${string}`]: string;
+//     [x: `${string}b`]: string;
+// }
+// declare const i: I;
+// i./*GOTO DEF*/[|foo|];
+// declare const ij: I | J;
+// ij.foo;
+// declare const k: K;
+// k.a;
+// k.b;
+// k.ab;
 
 {
   "definitions": [
@@ -93,10 +64,10 @@
 
 // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
 // interface I {
-//     [|[x: string]: boolean;|]
+//     [|{| kind: "index", name: "__index", containerName: "I" |}[x: string]: boolean;|]
 // }
 // interface J {
-//     [|[x: string]: number;|]
+//     [|{| kind: "index", name: "__index", containerName: "J" |}[x: string]: number;|]
 // }
 // interface K {
 //     [x: `a${string}`]: string;
@@ -111,80 +82,26 @@
 // k.b;
 // k.ab;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "index"
-    // name: "__index"
-    // containerName: "I"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-    // interface I {
-    //     [|[x: string]: boolean;|]
-    // }
-    // interface J {
-    //     [x: string]: number;
-    // }
-    // interface K {
-    //     [x: `a${string}`]: string;
-    //     [x: `${string}b`]: string;
-    // }
-    // declare const i: I;
-    // i.foo;
-    // declare const ij: I | J;
-    // ij.foo;
-    // declare const k: K;
-    // k.a;
-    // k.b;
-    // k.ab;
-  // === 1 ===
-    // kind: "index"
-    // name: "__index"
-    // containerName: "J"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-    // interface I {
-    //     [x: string]: boolean;
-    // }
-    // interface J {
-    //     [|[x: string]: number;|]
-    // }
-    // interface K {
-    //     [x: `a${string}`]: string;
-    //     [x: `${string}b`]: string;
-    // }
-    // declare const i: I;
-    // i.foo;
-    // declare const ij: I | J;
-    // ij.foo;
-    // declare const k: K;
-    // k.a;
-    // k.b;
-    // k.ab;
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-  // interface I {
-  //     [x: string]: boolean;
-  // }
-  // interface J {
-  //     [x: string]: number;
-  // }
-  // interface K {
-  //     [x: `a${string}`]: string;
-  //     [x: `${string}b`]: string;
-  // }
-  // declare const i: I;
-  // i.foo;
-  // declare const ij: I | J;
-  // ij.[|foo|];
-  // declare const k: K;
-  // k.a;
-  // k.b;
-  // k.ab;
-
+// === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
+// interface I {
+//     [x: string]: boolean;
+// }
+// interface J {
+//     [x: string]: number;
+// }
+// interface K {
+//     [x: `a${string}`]: string;
+//     [x: `${string}b`]: string;
+// }
+// declare const i: I;
+// i.foo;
+// declare const ij: I | J;
+// ij./*GOTO DEF*/[|foo|];
+// declare const k: K;
+// k.a;
+// k.b;
+// k.ab;
 
 {
   "definitions": [
@@ -229,7 +146,7 @@
 //     [x: string]: number;
 // }
 // interface K {
-//     [|[x: `a${string}`]: string;|]
+//     [|{| kind: "index", name: "__index", containerName: "K" |}[x: `a${string}`]: string;|]
 //     [x: `${string}b`]: string;
 // }
 // declare const i: I;
@@ -241,55 +158,26 @@
 // k.b;
 // k.ab;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "index"
-    // name: "__index"
-    // containerName: "K"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-    // interface I {
-    //     [x: string]: boolean;
-    // }
-    // interface J {
-    //     [x: string]: number;
-    // }
-    // interface K {
-    //     [|[x: `a${string}`]: string;|]
-    //     [x: `${string}b`]: string;
-    // }
-    // declare const i: I;
-    // i.foo;
-    // declare const ij: I | J;
-    // ij.foo;
-    // declare const k: K;
-    // k.a;
-    // k.b;
-    // k.ab;
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-  // interface I {
-  //     [x: string]: boolean;
-  // }
-  // interface J {
-  //     [x: string]: number;
-  // }
-  // interface K {
-  //     [x: `a${string}`]: string;
-  //     [x: `${string}b`]: string;
-  // }
-  // declare const i: I;
-  // i.foo;
-  // declare const ij: I | J;
-  // ij.foo;
-  // declare const k: K;
-  // k.[|a|];
-  // k.b;
-  // k.ab;
-
+// === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
+// interface I {
+//     [x: string]: boolean;
+// }
+// interface J {
+//     [x: string]: number;
+// }
+// interface K {
+//     [x: `a${string}`]: string;
+//     [x: `${string}b`]: string;
+// }
+// declare const i: I;
+// i.foo;
+// declare const ij: I | J;
+// ij.foo;
+// declare const k: K;
+// k./*GOTO DEF*/[|a|];
+// k.b;
+// k.ab;
 
 {
   "definitions": [
@@ -323,7 +211,7 @@
 // }
 // interface K {
 //     [x: `a${string}`]: string;
-//     [|[x: `${string}b`]: string;|]
+//     [|{| kind: "index", name: "__index", containerName: "K" |}[x: `${string}b`]: string;|]
 // }
 // declare const i: I;
 // i.foo;
@@ -334,55 +222,26 @@
 // k./*GOTO DEF*/b;
 // k.ab;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "index"
-    // name: "__index"
-    // containerName: "K"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-    // interface I {
-    //     [x: string]: boolean;
-    // }
-    // interface J {
-    //     [x: string]: number;
-    // }
-    // interface K {
-    //     [x: `a${string}`]: string;
-    //     [|[x: `${string}b`]: string;|]
-    // }
-    // declare const i: I;
-    // i.foo;
-    // declare const ij: I | J;
-    // ij.foo;
-    // declare const k: K;
-    // k.a;
-    // k.b;
-    // k.ab;
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-  // interface I {
-  //     [x: string]: boolean;
-  // }
-  // interface J {
-  //     [x: string]: number;
-  // }
-  // interface K {
-  //     [x: `a${string}`]: string;
-  //     [x: `${string}b`]: string;
-  // }
-  // declare const i: I;
-  // i.foo;
-  // declare const ij: I | J;
-  // ij.foo;
-  // declare const k: K;
-  // k.a;
-  // k.[|b|];
-  // k.ab;
-
+// === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
+// interface I {
+//     [x: string]: boolean;
+// }
+// interface J {
+//     [x: string]: number;
+// }
+// interface K {
+//     [x: `a${string}`]: string;
+//     [x: `${string}b`]: string;
+// }
+// declare const i: I;
+// i.foo;
+// declare const ij: I | J;
+// ij.foo;
+// declare const k: K;
+// k.a;
+// k./*GOTO DEF*/[|b|];
+// k.ab;
 
 {
   "definitions": [
@@ -415,8 +274,8 @@
 //     [x: string]: number;
 // }
 // interface K {
-//     [|[x: `a${string}`]: string;|]
-//     [|[x: `${string}b`]: string;|]
+//     [|{| kind: "index", name: "__index", containerName: "K" |}[x: `a${string}`]: string;|]
+//     [|{| kind: "index", name: "__index", containerName: "K" |}[x: `${string}b`]: string;|]
 // }
 // declare const i: I;
 // i.foo;
@@ -427,82 +286,26 @@
 // k.b;
 // k./*GOTO DEF*/ab;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "index"
-    // name: "__index"
-    // containerName: "K"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-    // interface I {
-    //     [x: string]: boolean;
-    // }
-    // interface J {
-    //     [x: string]: number;
-    // }
-    // interface K {
-    //     [|[x: `a${string}`]: string;|]
-    //     [x: `${string}b`]: string;
-    // }
-    // declare const i: I;
-    // i.foo;
-    // declare const ij: I | J;
-    // ij.foo;
-    // declare const k: K;
-    // k.a;
-    // k.b;
-    // k.ab;
-  // === 1 ===
-    // kind: "index"
-    // name: "__index"
-    // containerName: "K"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-    // interface I {
-    //     [x: string]: boolean;
-    // }
-    // interface J {
-    //     [x: string]: number;
-    // }
-    // interface K {
-    //     [x: `a${string}`]: string;
-    //     [|[x: `${string}b`]: string;|]
-    // }
-    // declare const i: I;
-    // i.foo;
-    // declare const ij: I | J;
-    // ij.foo;
-    // declare const k: K;
-    // k.a;
-    // k.b;
-    // k.ab;
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
-  // interface I {
-  //     [x: string]: boolean;
-  // }
-  // interface J {
-  //     [x: string]: number;
-  // }
-  // interface K {
-  //     [x: `a${string}`]: string;
-  //     [x: `${string}b`]: string;
-  // }
-  // declare const i: I;
-  // i.foo;
-  // declare const ij: I | J;
-  // ij.foo;
-  // declare const k: K;
-  // k.a;
-  // k.b;
-  // k.[|ab|];
-
+// === /tests/cases/fourslash/goToDefinitionIndexSignature.ts ===
+// interface I {
+//     [x: string]: boolean;
+// }
+// interface J {
+//     [x: string]: number;
+// }
+// interface K {
+//     [x: `a${string}`]: string;
+//     [x: `${string}b`]: string;
+// }
+// declare const i: I;
+// i.foo;
+// declare const ij: I | J;
+// ij.foo;
+// declare const k: K;
+// k.a;
+// k.b;
+// k./*GOTO DEF*/[|ab|];
 
 {
   "definitions": [

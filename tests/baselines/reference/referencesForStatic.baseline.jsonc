@@ -1,349 +1,56 @@
-// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-// var q = foo.[|n|];
-
 // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
 // var n = 43;
 // 
 // class foo {
-//     /*FIND ALL REFS*/static [|n|] = '';
+//     /*FIND ALL REFS*/<|static [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}n|] = '';|>
 // 
 //     public bar() {
-//         foo.[|n|] = "'";
-//         if(foo.[|n|]) {
-//             var x = foo.[|n|];
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = "'";
+//         if(foo.[|{| defId: 0 |}n|]) {
+//             var x = foo.[|{| defId: 0 |}n|];
 //         }
 //     }
 // }
 // 
 // class foo2 {
-//     private x = foo.[|n|];
+//     private x = foo.[|{| defId: 0 |}n|];
 //     constructor() {
-//         foo.[|n|] = x;
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = x;
 //     }
 // 
 //     function b(n) {
-//         n = foo.[|n|];
+//         n = foo.[|{| defId: 0 |}n|];
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-    // var n = 43;
-    // 
-    // class foo {
-    //     static [|n|] = '';
-    // 
-    //     public bar() {
-    //         foo.n = "'";
-    //         if(foo.n) {
-    //             var x = foo.n;
-    //         }
-    //     }
-    // }
-    // 
-    // class foo2 {
-    //     private x = foo.n;
-    //     constructor() {
-    //         foo.n = x;
-    //     }
-    // 
-    //     function b(n) {
-    //         n = foo.n;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     [|static n = '';|]
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static [|n|] = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-        // var n = 43;
-        // 
-        // class foo {
-        //     [|static n = '';|]
-        // 
-        //     public bar() {
-        //         foo.n = "'";
-        //         if(foo.n) {
-        //             var x = foo.n;
-        //         }
-        //     }
-        // }
-        // 
-        // class foo2 {
-        //     private x = foo.n;
-        //     constructor() {
-        //         foo.n = x;
-        //     }
-        // 
-        //     function b(n) {
-        //         n = foo.n;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.[|n|] = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.[|n|]) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.[|n|];
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.[|n|];
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 5 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.[|n|] = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.[|n|];
-      //     }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-      // var q = foo.[|n|];
+// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
+// var q = foo.[|{| defId: 0 |}n|];
 
+// === Definitions ===
+// === /tests/cases/fourslash/referencesOnStatic_1.ts ===
+// var n = 43;
+// 
+// class foo {
+//     /*FIND ALL REFS*/<|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}n|] = '';|>
+// 
+//     public bar() {
+//         foo.n = "'";
+//         if(foo.n) {
+//             var x = foo.n;
+//         }
+//     }
+// }
+// 
+// class foo2 {
+//     private x = foo.n;
+//     constructor() {
+//         foo.n = x;
+//     }
+// 
+//     function b(n) {
+//         n = foo.n;
+//     }
+// }
 
 [
   {
@@ -485,352 +192,59 @@
   }
 ]
 
-// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-// var q = foo.[|n|];
-
 // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
 // var n = 43;
 // 
 // class foo {
-//     static /*FIND ALL REFS*/[|n|] = '';
+//     <|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}n|] = '';|>
 // 
 //     public bar() {
-//         foo.[|n|] = "'";
-//         if(foo.[|n|]) {
-//             var x = foo.[|n|];
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = "'";
+//         if(foo.[|{| defId: 0 |}n|]) {
+//             var x = foo.[|{| defId: 0 |}n|];
 //         }
 //     }
 // }
 // 
 // class foo2 {
-//     private x = foo.[|n|];
+//     private x = foo.[|{| defId: 0 |}n|];
 //     constructor() {
-//         foo.[|n|] = x;
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = x;
 //     }
 // 
 //     function b(n) {
-//         n = foo.[|n|];
+//         n = foo.[|{| defId: 0 |}n|];
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-    // var n = 43;
-    // 
-    // class foo {
-    //     static [|n|] = '';
-    // 
-    //     public bar() {
-    //         foo.n = "'";
-    //         if(foo.n) {
-    //             var x = foo.n;
-    //         }
-    //     }
-    // }
-    // 
-    // class foo2 {
-    //     private x = foo.n;
-    //     constructor() {
-    //         foo.n = x;
-    //     }
-    // 
-    //     function b(n) {
-    //         n = foo.n;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     [|static n = '';|]
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static [|n|] = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-        // var n = 43;
-        // 
-        // class foo {
-        //     [|static n = '';|]
-        // 
-        //     public bar() {
-        //         foo.n = "'";
-        //         if(foo.n) {
-        //             var x = foo.n;
-        //         }
-        //     }
-        // }
-        // 
-        // class foo2 {
-        //     private x = foo.n;
-        //     constructor() {
-        //         foo.n = x;
-        //     }
-        // 
-        //     function b(n) {
-        //         n = foo.n;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.[|n|] = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.[|n|]) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.[|n|];
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.[|n|];
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 5 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.[|n|] = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.[|n|];
-      //     }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-      // var q = foo.[|n|];
+// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
+// var q = foo.[|{| defId: 0 |}n|];
 
+// === Definitions ===
+// === /tests/cases/fourslash/referencesOnStatic_1.ts ===
+// var n = 43;
+// 
+// class foo {
+//     <|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}n|] = '';|>
+// 
+//     public bar() {
+//         foo.n = "'";
+//         if(foo.n) {
+//             var x = foo.n;
+//         }
+//     }
+// }
+// 
+// class foo2 {
+//     private x = foo.n;
+//     constructor() {
+//         foo.n = x;
+//     }
+// 
+//     function b(n) {
+//         n = foo.n;
+//     }
+// }
 
 [
   {
@@ -972,344 +386,59 @@
   }
 ]
 
-// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-// var q = foo.[|n|];
-
 // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
 // var n = 43;
 // 
 // class foo {
-//     static [|n|] = '';
+//     <|static [|{| contextId: 0, defId: 0, isWriteAccess: true |}n|] = '';|>
 // 
 //     public bar() {
-//         foo./*FIND ALL REFS*/[|n|] = "'";
-//         if(foo.[|n|]) {
-//             var x = foo.[|n|];
+//         foo./*FIND ALL REFS*/[|{| defId: 0, isWriteAccess: true |}n|] = "'";
+//         if(foo.[|{| defId: 0 |}n|]) {
+//             var x = foo.[|{| defId: 0 |}n|];
 //         }
 //     }
 // }
 // 
 // class foo2 {
-//     private x = foo.[|n|];
+//     private x = foo.[|{| defId: 0 |}n|];
 //     constructor() {
-//         foo.[|n|] = x;
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = x;
 //     }
 // 
 //     function b(n) {
-//         n = foo.[|n|];
+//         n = foo.[|{| defId: 0 |}n|];
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-    // var n = 43;
-    // 
-    // class foo {
-    //     static [|n|] = '';
-    // 
-    //     public bar() {
-    //         foo.n = "'";
-    //         if(foo.n) {
-    //             var x = foo.n;
-    //         }
-    //     }
-    // }
-    // 
-    // class foo2 {
-    //     private x = foo.n;
-    //     constructor() {
-    //         foo.n = x;
-    //     }
-    // 
-    //     function b(n) {
-    //         n = foo.n;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     [|static n = '';|]
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static [|n|] = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-        // var n = 43;
-        // 
-        // class foo {
-        //     [|static n = '';|]
-        // 
-        //     public bar() {
-        //         foo.n = "'";
-        //         if(foo.n) {
-        //             var x = foo.n;
-        //         }
-        //     }
-        // }
-        // 
-        // class foo2 {
-        //     private x = foo.n;
-        //     constructor() {
-        //         foo.n = x;
-        //     }
-        // 
-        //     function b(n) {
-        //         n = foo.n;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.[|n|] = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.[|n|]) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.[|n|];
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.[|n|];
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 5 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.[|n|] = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.[|n|];
-      //     }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-      // var q = foo.[|n|];
+// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
+// var q = foo.[|{| defId: 0 |}n|];
 
+// === Definitions ===
+// === /tests/cases/fourslash/referencesOnStatic_1.ts ===
+// var n = 43;
+// 
+// class foo {
+//     <|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}n|] = '';|>
+// 
+//     public bar() {
+//         foo./*FIND ALL REFS*/n = "'";
+//         if(foo.n) {
+//             var x = foo.n;
+//         }
+//     }
+// }
+// 
+// class foo2 {
+//     private x = foo.n;
+//     constructor() {
+//         foo.n = x;
+//     }
+// 
+//     function b(n) {
+//         n = foo.n;
+//     }
+// }
 
 [
   {
@@ -1443,344 +572,59 @@
   }
 ]
 
-// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-// var q = foo.[|n|];
-
 // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
 // var n = 43;
 // 
 // class foo {
-//     static [|n|] = '';
+//     <|static [|{| contextId: 0, defId: 0, isWriteAccess: true |}n|] = '';|>
 // 
 //     public bar() {
-//         foo.[|n|] = "'";
-//         if(foo./*FIND ALL REFS*/[|n|]) {
-//             var x = foo.[|n|];
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = "'";
+//         if(foo./*FIND ALL REFS*/[|{| defId: 0 |}n|]) {
+//             var x = foo.[|{| defId: 0 |}n|];
 //         }
 //     }
 // }
 // 
 // class foo2 {
-//     private x = foo.[|n|];
+//     private x = foo.[|{| defId: 0 |}n|];
 //     constructor() {
-//         foo.[|n|] = x;
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = x;
 //     }
 // 
 //     function b(n) {
-//         n = foo.[|n|];
+//         n = foo.[|{| defId: 0 |}n|];
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-    // var n = 43;
-    // 
-    // class foo {
-    //     static [|n|] = '';
-    // 
-    //     public bar() {
-    //         foo.n = "'";
-    //         if(foo.n) {
-    //             var x = foo.n;
-    //         }
-    //     }
-    // }
-    // 
-    // class foo2 {
-    //     private x = foo.n;
-    //     constructor() {
-    //         foo.n = x;
-    //     }
-    // 
-    //     function b(n) {
-    //         n = foo.n;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     [|static n = '';|]
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static [|n|] = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-        // var n = 43;
-        // 
-        // class foo {
-        //     [|static n = '';|]
-        // 
-        //     public bar() {
-        //         foo.n = "'";
-        //         if(foo.n) {
-        //             var x = foo.n;
-        //         }
-        //     }
-        // }
-        // 
-        // class foo2 {
-        //     private x = foo.n;
-        //     constructor() {
-        //         foo.n = x;
-        //     }
-        // 
-        //     function b(n) {
-        //         n = foo.n;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.[|n|] = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.[|n|]) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.[|n|];
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.[|n|];
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 5 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.[|n|] = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.[|n|];
-      //     }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-      // var q = foo.[|n|];
+// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
+// var q = foo.[|{| defId: 0 |}n|];
 
+// === Definitions ===
+// === /tests/cases/fourslash/referencesOnStatic_1.ts ===
+// var n = 43;
+// 
+// class foo {
+//     <|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}n|] = '';|>
+// 
+//     public bar() {
+//         foo.n = "'";
+//         if(foo./*FIND ALL REFS*/n) {
+//             var x = foo.n;
+//         }
+//     }
+// }
+// 
+// class foo2 {
+//     private x = foo.n;
+//     constructor() {
+//         foo.n = x;
+//     }
+// 
+//     function b(n) {
+//         n = foo.n;
+//     }
+// }
 
 [
   {
@@ -1914,344 +758,59 @@
   }
 ]
 
-// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-// var q = foo.[|n|];
-
 // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
 // var n = 43;
 // 
 // class foo {
-//     static [|n|] = '';
+//     <|static [|{| contextId: 0, defId: 0, isWriteAccess: true |}n|] = '';|>
 // 
 //     public bar() {
-//         foo.[|n|] = "'";
-//         if(foo.[|n|]) {
-//             var x = foo./*FIND ALL REFS*/[|n|];
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = "'";
+//         if(foo.[|{| defId: 0 |}n|]) {
+//             var x = foo./*FIND ALL REFS*/[|{| defId: 0 |}n|];
 //         }
 //     }
 // }
 // 
 // class foo2 {
-//     private x = foo.[|n|];
+//     private x = foo.[|{| defId: 0 |}n|];
 //     constructor() {
-//         foo.[|n|] = x;
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = x;
 //     }
 // 
 //     function b(n) {
-//         n = foo.[|n|];
+//         n = foo.[|{| defId: 0 |}n|];
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-    // var n = 43;
-    // 
-    // class foo {
-    //     static [|n|] = '';
-    // 
-    //     public bar() {
-    //         foo.n = "'";
-    //         if(foo.n) {
-    //             var x = foo.n;
-    //         }
-    //     }
-    // }
-    // 
-    // class foo2 {
-    //     private x = foo.n;
-    //     constructor() {
-    //         foo.n = x;
-    //     }
-    // 
-    //     function b(n) {
-    //         n = foo.n;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     [|static n = '';|]
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static [|n|] = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-        // var n = 43;
-        // 
-        // class foo {
-        //     [|static n = '';|]
-        // 
-        //     public bar() {
-        //         foo.n = "'";
-        //         if(foo.n) {
-        //             var x = foo.n;
-        //         }
-        //     }
-        // }
-        // 
-        // class foo2 {
-        //     private x = foo.n;
-        //     constructor() {
-        //         foo.n = x;
-        //     }
-        // 
-        //     function b(n) {
-        //         n = foo.n;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.[|n|] = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.[|n|]) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.[|n|];
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.[|n|];
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 5 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.[|n|] = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.[|n|];
-      //     }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-      // var q = foo.[|n|];
+// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
+// var q = foo.[|{| defId: 0 |}n|];
 
+// === Definitions ===
+// === /tests/cases/fourslash/referencesOnStatic_1.ts ===
+// var n = 43;
+// 
+// class foo {
+//     <|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}n|] = '';|>
+// 
+//     public bar() {
+//         foo.n = "'";
+//         if(foo.n) {
+//             var x = foo./*FIND ALL REFS*/n;
+//         }
+//     }
+// }
+// 
+// class foo2 {
+//     private x = foo.n;
+//     constructor() {
+//         foo.n = x;
+//     }
+// 
+//     function b(n) {
+//         n = foo.n;
+//     }
+// }
 
 [
   {
@@ -2385,344 +944,59 @@
   }
 ]
 
-// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-// var q = foo.[|n|];
-
 // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
 // var n = 43;
 // 
 // class foo {
-//     static [|n|] = '';
+//     <|static [|{| contextId: 0, defId: 0, isWriteAccess: true |}n|] = '';|>
 // 
 //     public bar() {
-//         foo.[|n|] = "'";
-//         if(foo.[|n|]) {
-//             var x = foo.[|n|];
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = "'";
+//         if(foo.[|{| defId: 0 |}n|]) {
+//             var x = foo.[|{| defId: 0 |}n|];
 //         }
 //     }
 // }
 // 
 // class foo2 {
-//     private x = foo./*FIND ALL REFS*/[|n|];
+//     private x = foo./*FIND ALL REFS*/[|{| defId: 0 |}n|];
 //     constructor() {
-//         foo.[|n|] = x;
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = x;
 //     }
 // 
 //     function b(n) {
-//         n = foo.[|n|];
+//         n = foo.[|{| defId: 0 |}n|];
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-    // var n = 43;
-    // 
-    // class foo {
-    //     static [|n|] = '';
-    // 
-    //     public bar() {
-    //         foo.n = "'";
-    //         if(foo.n) {
-    //             var x = foo.n;
-    //         }
-    //     }
-    // }
-    // 
-    // class foo2 {
-    //     private x = foo.n;
-    //     constructor() {
-    //         foo.n = x;
-    //     }
-    // 
-    //     function b(n) {
-    //         n = foo.n;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     [|static n = '';|]
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static [|n|] = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-        // var n = 43;
-        // 
-        // class foo {
-        //     [|static n = '';|]
-        // 
-        //     public bar() {
-        //         foo.n = "'";
-        //         if(foo.n) {
-        //             var x = foo.n;
-        //         }
-        //     }
-        // }
-        // 
-        // class foo2 {
-        //     private x = foo.n;
-        //     constructor() {
-        //         foo.n = x;
-        //     }
-        // 
-        //     function b(n) {
-        //         n = foo.n;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.[|n|] = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.[|n|]) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.[|n|];
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.[|n|];
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 5 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.[|n|] = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.[|n|];
-      //     }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-      // var q = foo.[|n|];
+// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
+// var q = foo.[|{| defId: 0 |}n|];
 
+// === Definitions ===
+// === /tests/cases/fourslash/referencesOnStatic_1.ts ===
+// var n = 43;
+// 
+// class foo {
+//     <|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}n|] = '';|>
+// 
+//     public bar() {
+//         foo.n = "'";
+//         if(foo.n) {
+//             var x = foo.n;
+//         }
+//     }
+// }
+// 
+// class foo2 {
+//     private x = foo./*FIND ALL REFS*/n;
+//     constructor() {
+//         foo.n = x;
+//     }
+// 
+//     function b(n) {
+//         n = foo.n;
+//     }
+// }
 
 [
   {
@@ -2856,344 +1130,59 @@
   }
 ]
 
-// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-// var q = foo.[|n|];
-
 // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
 // var n = 43;
 // 
 // class foo {
-//     static [|n|] = '';
+//     <|static [|{| contextId: 0, defId: 0, isWriteAccess: true |}n|] = '';|>
 // 
 //     public bar() {
-//         foo.[|n|] = "'";
-//         if(foo.[|n|]) {
-//             var x = foo.[|n|];
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = "'";
+//         if(foo.[|{| defId: 0 |}n|]) {
+//             var x = foo.[|{| defId: 0 |}n|];
 //         }
 //     }
 // }
 // 
 // class foo2 {
-//     private x = foo.[|n|];
+//     private x = foo.[|{| defId: 0 |}n|];
 //     constructor() {
-//         foo./*FIND ALL REFS*/[|n|] = x;
+//         foo./*FIND ALL REFS*/[|{| defId: 0, isWriteAccess: true |}n|] = x;
 //     }
 // 
 //     function b(n) {
-//         n = foo.[|n|];
+//         n = foo.[|{| defId: 0 |}n|];
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-    // var n = 43;
-    // 
-    // class foo {
-    //     static [|n|] = '';
-    // 
-    //     public bar() {
-    //         foo.n = "'";
-    //         if(foo.n) {
-    //             var x = foo.n;
-    //         }
-    //     }
-    // }
-    // 
-    // class foo2 {
-    //     private x = foo.n;
-    //     constructor() {
-    //         foo.n = x;
-    //     }
-    // 
-    //     function b(n) {
-    //         n = foo.n;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     [|static n = '';|]
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static [|n|] = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-        // var n = 43;
-        // 
-        // class foo {
-        //     [|static n = '';|]
-        // 
-        //     public bar() {
-        //         foo.n = "'";
-        //         if(foo.n) {
-        //             var x = foo.n;
-        //         }
-        //     }
-        // }
-        // 
-        // class foo2 {
-        //     private x = foo.n;
-        //     constructor() {
-        //         foo.n = x;
-        //     }
-        // 
-        //     function b(n) {
-        //         n = foo.n;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.[|n|] = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.[|n|]) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.[|n|];
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.[|n|];
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 5 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.[|n|] = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.[|n|];
-      //     }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-      // var q = foo.[|n|];
+// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
+// var q = foo.[|{| defId: 0 |}n|];
 
+// === Definitions ===
+// === /tests/cases/fourslash/referencesOnStatic_1.ts ===
+// var n = 43;
+// 
+// class foo {
+//     <|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}n|] = '';|>
+// 
+//     public bar() {
+//         foo.n = "'";
+//         if(foo.n) {
+//             var x = foo.n;
+//         }
+//     }
+// }
+// 
+// class foo2 {
+//     private x = foo.n;
+//     constructor() {
+//         foo./*FIND ALL REFS*/n = x;
+//     }
+// 
+//     function b(n) {
+//         n = foo.n;
+//     }
+// }
 
 [
   {
@@ -3327,344 +1316,59 @@
   }
 ]
 
-// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-// var q = foo.[|n|];
-
 // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
 // var n = 43;
 // 
 // class foo {
-//     static [|n|] = '';
+//     <|static [|{| contextId: 0, defId: 0, isWriteAccess: true |}n|] = '';|>
 // 
 //     public bar() {
-//         foo.[|n|] = "'";
-//         if(foo.[|n|]) {
-//             var x = foo.[|n|];
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = "'";
+//         if(foo.[|{| defId: 0 |}n|]) {
+//             var x = foo.[|{| defId: 0 |}n|];
 //         }
 //     }
 // }
 // 
 // class foo2 {
-//     private x = foo.[|n|];
+//     private x = foo.[|{| defId: 0 |}n|];
 //     constructor() {
-//         foo.[|n|] = x;
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = x;
 //     }
 // 
 //     function b(n) {
-//         n = foo./*FIND ALL REFS*/[|n|];
+//         n = foo./*FIND ALL REFS*/[|{| defId: 0 |}n|];
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-    // var n = 43;
-    // 
-    // class foo {
-    //     static [|n|] = '';
-    // 
-    //     public bar() {
-    //         foo.n = "'";
-    //         if(foo.n) {
-    //             var x = foo.n;
-    //         }
-    //     }
-    // }
-    // 
-    // class foo2 {
-    //     private x = foo.n;
-    //     constructor() {
-    //         foo.n = x;
-    //     }
-    // 
-    //     function b(n) {
-    //         n = foo.n;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     [|static n = '';|]
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static [|n|] = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-        // var n = 43;
-        // 
-        // class foo {
-        //     [|static n = '';|]
-        // 
-        //     public bar() {
-        //         foo.n = "'";
-        //         if(foo.n) {
-        //             var x = foo.n;
-        //         }
-        //     }
-        // }
-        // 
-        // class foo2 {
-        //     private x = foo.n;
-        //     constructor() {
-        //         foo.n = x;
-        //     }
-        // 
-        //     function b(n) {
-        //         n = foo.n;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.[|n|] = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.[|n|]) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.[|n|];
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.[|n|];
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 5 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.[|n|] = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.[|n|];
-      //     }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-      // var q = foo.[|n|];
+// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
+// var q = foo.[|{| defId: 0 |}n|];
 
+// === Definitions ===
+// === /tests/cases/fourslash/referencesOnStatic_1.ts ===
+// var n = 43;
+// 
+// class foo {
+//     <|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}n|] = '';|>
+// 
+//     public bar() {
+//         foo.n = "'";
+//         if(foo.n) {
+//             var x = foo.n;
+//         }
+//     }
+// }
+// 
+// class foo2 {
+//     private x = foo.n;
+//     constructor() {
+//         foo.n = x;
+//     }
+// 
+//     function b(n) {
+//         n = foo./*FIND ALL REFS*/n;
+//     }
+// }
 
 [
   {
@@ -3798,344 +1502,59 @@
   }
 ]
 
-// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-// var q = foo./*FIND ALL REFS*/[|n|];
-
 // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
 // var n = 43;
 // 
 // class foo {
-//     static [|n|] = '';
+//     <|static [|{| contextId: 0, defId: 0, isWriteAccess: true |}n|] = '';|>
 // 
 //     public bar() {
-//         foo.[|n|] = "'";
-//         if(foo.[|n|]) {
-//             var x = foo.[|n|];
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = "'";
+//         if(foo.[|{| defId: 0 |}n|]) {
+//             var x = foo.[|{| defId: 0 |}n|];
 //         }
 //     }
 // }
 // 
 // class foo2 {
-//     private x = foo.[|n|];
+//     private x = foo.[|{| defId: 0 |}n|];
 //     constructor() {
-//         foo.[|n|] = x;
+//         foo.[|{| defId: 0, isWriteAccess: true |}n|] = x;
 //     }
 // 
 //     function b(n) {
-//         n = foo.[|n|];
+//         n = foo.[|{| defId: 0 |}n|];
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-    // var n = 43;
-    // 
-    // class foo {
-    //     static [|n|] = '';
-    // 
-    //     public bar() {
-    //         foo.n = "'";
-    //         if(foo.n) {
-    //             var x = foo.n;
-    //         }
-    //     }
-    // }
-    // 
-    // class foo2 {
-    //     private x = foo.n;
-    //     constructor() {
-    //         foo.n = x;
-    //     }
-    // 
-    //     function b(n) {
-    //         n = foo.n;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     [|static n = '';|]
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static [|n|] = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-        // var n = 43;
-        // 
-        // class foo {
-        //     [|static n = '';|]
-        // 
-        //     public bar() {
-        //         foo.n = "'";
-        //         if(foo.n) {
-        //             var x = foo.n;
-        //         }
-        //     }
-        // }
-        // 
-        // class foo2 {
-        //     private x = foo.n;
-        //     constructor() {
-        //         foo.n = x;
-        //     }
-        // 
-        //     function b(n) {
-        //         n = foo.n;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.[|n|] = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.[|n|]) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.[|n|];
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.[|n|];
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 5 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.[|n|] = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.n;
-      //     }
-      // }
-    // === 6 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_1.ts ===
-      // var n = 43;
-      // 
-      // class foo {
-      //     static n = '';
-      // 
-      //     public bar() {
-      //         foo.n = "'";
-      //         if(foo.n) {
-      //             var x = foo.n;
-      //         }
-      //     }
-      // }
-      // 
-      // class foo2 {
-      //     private x = foo.n;
-      //     constructor() {
-      //         foo.n = x;
-      //     }
-      // 
-      //     function b(n) {
-      //         n = foo.[|n|];
-      //     }
-      // }
-    // === 7 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesOnStatic_2.ts ===
-      // var q = foo.[|n|];
+// === /tests/cases/fourslash/referencesOnStatic_2.ts ===
+// var q = foo./*FIND ALL REFS*/[|{| defId: 0 |}n|];
 
+// === Definitions ===
+// === /tests/cases/fourslash/referencesOnStatic_1.ts ===
+// var n = 43;
+// 
+// class foo {
+//     <|static [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}n|] = '';|>
+// 
+//     public bar() {
+//         foo.n = "'";
+//         if(foo.n) {
+//             var x = foo.n;
+//         }
+//     }
+// }
+// 
+// class foo2 {
+//     private x = foo.n;
+//     constructor() {
+//         foo.n = x;
+//     }
+// 
+//     function b(n) {
+//         n = foo.n;
+//     }
+// }
 
 [
   {

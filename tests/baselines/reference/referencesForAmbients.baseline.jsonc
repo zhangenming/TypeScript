@@ -1,10 +1,10 @@
 // === /tests/cases/fourslash/referencesForAmbients.ts ===
-// /*FIND ALL REFS*/declare module "[|foo|]" {
+// /*FIND ALL REFS*/<|declare module "[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|]" {
 //     var f: number;
-// }
+// }|>
 // 
 // declare module "bar" {
-//     export import foo = require("[|foo|]");
+//     <|export import foo = require("[|{| contextId: 1, defId: 0 |}foo|]");|>
 //     var f2: typeof foo.f;
 // }
 // 
@@ -13,121 +13,21 @@
 //     var f2: typeof bar.foo;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "module \"foo\""
-    // displayParts: [
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "[|foo|]" {
-    //     var f: number;
-    // }
-    // 
-    // declare module "bar" {
-    //     export import foo = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // [|declare module "foo" {
-      //     var f: number;
-      // }|]
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "[|foo|]" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // [|declare module "foo" {
-        //     var f: number;
-        // }|]
-        // 
-        // declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("[|foo|]");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // declare module "bar" {
-        //     [|export import foo = require("foo");|]
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// /*FIND ALL REFS*/<|declare module "[|{| contextId: 0, defId: 0, kind: "module", name: "module \"foo\"", displayParts: [{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"foo\"","kind":"stringLiteral"}] |}foo|]" {
+//     var f: number;
+// }|>
+// 
+// declare module "bar" {
+//     export import foo = require("foo");
+//     var f2: typeof foo.f;
+// }
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -192,12 +92,12 @@
 ]
 
 // === /tests/cases/fourslash/referencesForAmbients.ts ===
-// declare module "/*FIND ALL REFS*/[|foo|]" {
+// <|declare module "/*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|]" {
 //     var f: number;
-// }
+// }|>
 // 
 // declare module "bar" {
-//     export import foo = require("[|foo|]");
+//     <|export import foo = require("[|{| contextId: 1, defId: 0 |}foo|]");|>
 //     var f2: typeof foo.f;
 // }
 // 
@@ -206,121 +106,21 @@
 //     var f2: typeof bar.foo;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "module \"foo\""
-    // displayParts: [
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "[|foo|]" {
-    //     var f: number;
-    // }
-    // 
-    // declare module "bar" {
-    //     export import foo = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // [|declare module "foo" {
-      //     var f: number;
-      // }|]
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "[|foo|]" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // [|declare module "foo" {
-        //     var f: number;
-        // }|]
-        // 
-        // declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("[|foo|]");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // declare module "bar" {
-        //     [|export import foo = require("foo");|]
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// <|declare module "/*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "module", name: "module \"foo\"", displayParts: [{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"foo\"","kind":"stringLiteral"}] |}foo|]" {
+//     var f: number;
+// }|>
+// 
+// declare module "bar" {
+//     export import foo = require("foo");
+//     var f2: typeof foo.f;
+// }
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -386,12 +186,12 @@
 
 // === /tests/cases/fourslash/referencesForAmbients.ts ===
 // declare module "foo" {
-//     /*FIND ALL REFS*/var [|f|]: number;
+//     /*FIND ALL REFS*/<|var [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}f|]: number;|>
 // }
 // 
 // declare module "bar" {
 //     export import foo = require("foo");
-//     var f2: typeof foo.[|f|];
+//     var f2: typeof foo.[|{| defId: 0 |}f|];
 // }
 // 
 // declare module "baz" {
@@ -399,118 +199,21 @@
 //     var f2: typeof bar.foo;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var f: number"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "foo" {
-    //     var [|f|]: number;
-    // }
-    // 
-    // declare module "bar" {
-    //     export import foo = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     [|var f: number;|]
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var [|f|]: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     [|var f: number;|]
-        // }
-        // 
-        // declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.[|f|];
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// declare module "foo" {
+//     /*FIND ALL REFS*/<|var [|{| contextId: 0, defId: 0, kind: "var", name: "var f: number", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}f|]: number;|>
+// }
+// 
+// declare module "bar" {
+//     export import foo = require("foo");
+//     var f2: typeof foo.f;
+// }
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -584,12 +287,12 @@
 
 // === /tests/cases/fourslash/referencesForAmbients.ts ===
 // declare module "foo" {
-//     var /*FIND ALL REFS*/[|f|]: number;
+//     <|var /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}f|]: number;|>
 // }
 // 
 // declare module "bar" {
 //     export import foo = require("foo");
-//     var f2: typeof foo.[|f|];
+//     var f2: typeof foo.[|{| defId: 0 |}f|];
 // }
 // 
 // declare module "baz" {
@@ -597,118 +300,21 @@
 //     var f2: typeof bar.foo;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var f: number"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "foo" {
-    //     var [|f|]: number;
-    // }
-    // 
-    // declare module "bar" {
-    //     export import foo = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     [|var f: number;|]
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var [|f|]: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     [|var f: number;|]
-        // }
-        // 
-        // declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.[|f|];
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// declare module "foo" {
+//     <|var /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "var", name: "var f: number", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}f|]: number;|>
+// }
+// 
+// declare module "bar" {
+//     export import foo = require("foo");
+//     var f2: typeof foo.f;
+// }
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -785,131 +391,31 @@
 //     var f: number;
 // }
 // 
-// /*FIND ALL REFS*/declare module "[|bar|]" {
+// /*FIND ALL REFS*/<|declare module "[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}bar|]" {
 //     export import foo = require("foo");
 //     var f2: typeof foo.f;
-// }
+// }|>
 // 
 // declare module "baz" {
-//     import bar = require("[|bar|]");
+//     <|import bar = require("[|{| contextId: 1, defId: 0 |}bar|]");|>
 //     var f2: typeof bar.foo;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "module \"bar\""
-    // displayParts: [
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"bar\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "foo" {
-    //     var f: number;
-    // }
-    // 
-    // declare module "[|bar|]" {
-    //     export import foo = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // [|declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }|]
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "[|bar|]" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // [|declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }|]
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("[|bar|]");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     [|import bar = require("bar");|]
-        //     var f2: typeof bar.foo;
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// declare module "foo" {
+//     var f: number;
+// }
+// 
+// /*FIND ALL REFS*/<|declare module "[|{| contextId: 0, defId: 0, kind: "module", name: "module \"bar\"", displayParts: [{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"bar\"","kind":"stringLiteral"}] |}bar|]" {
+//     export import foo = require("foo");
+//     var f2: typeof foo.f;
+// }|>
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -978,131 +484,31 @@
 //     var f: number;
 // }
 // 
-// declare module "/*FIND ALL REFS*/[|bar|]" {
+// <|declare module "/*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}bar|]" {
 //     export import foo = require("foo");
 //     var f2: typeof foo.f;
-// }
+// }|>
 // 
 // declare module "baz" {
-//     import bar = require("[|bar|]");
+//     <|import bar = require("[|{| contextId: 1, defId: 0 |}bar|]");|>
 //     var f2: typeof bar.foo;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "module \"bar\""
-    // displayParts: [
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"bar\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "foo" {
-    //     var f: number;
-    // }
-    // 
-    // declare module "[|bar|]" {
-    //     export import foo = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // [|declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }|]
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "[|bar|]" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // [|declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }|]
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("[|bar|]");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     [|import bar = require("bar");|]
-        //     var f2: typeof bar.foo;
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// declare module "foo" {
+//     var f: number;
+// }
+// 
+// <|declare module "/*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "module", name: "module \"bar\"", displayParts: [{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"bar\"","kind":"stringLiteral"}] |}bar|]" {
+//     export import foo = require("foo");
+//     var f2: typeof foo.f;
+// }|>
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -1172,192 +578,30 @@
 // }
 // 
 // declare module "bar" {
-//     /*FIND ALL REFS*/export import [|foo|] = require("foo");
-//     var f2: typeof [|foo|].f;
+//     /*FIND ALL REFS*/<|export import [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|] = require("foo");|>
+//     var f2: typeof [|{| defId: 0 |}foo|].f;
 // }
 // 
 // declare module "baz" {
 //     import bar = require("bar");
-//     var f2: typeof bar.[|foo|];
+//     var f2: typeof bar.[|{| defId: 0 |}foo|];
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) module \"foo\"\nimport foo = require(\"foo\")"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=",
-    //   "kind": "operator"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "require",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "foo" {
-    //     var f: number;
-    // }
-    // 
-    // declare module "bar" {
-    //     export import [|foo|] = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     [|export import foo = require("foo");|]
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import [|foo|] = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // declare module "bar" {
-        //     [|export import foo = require("foo");|]
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof [|foo|].f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.[|foo|];
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// declare module "foo" {
+//     var f: number;
+// }
+// 
+// declare module "bar" {
+//     /*FIND ALL REFS*/<|export import [|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) module \"foo\"\nimport foo = require(\"foo\")", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"foo\"","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"},{"text":" ","kind":"space"},{"text":"=","kind":"operator"},{"text":" ","kind":"space"},{"text":"require","kind":"keyword"},{"text":"(","kind":"punctuation"},{"text":"\"foo\"","kind":"stringLiteral"},{"text":")","kind":"punctuation"}] |}foo|] = require("foo");|>
+//     var f2: typeof foo.f;
+// }
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -1492,192 +736,30 @@
 // }
 // 
 // declare module "bar" {
-//     export import /*FIND ALL REFS*/[|foo|] = require("foo");
-//     var f2: typeof [|foo|].f;
+//     <|export import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|] = require("foo");|>
+//     var f2: typeof [|{| defId: 0 |}foo|].f;
 // }
 // 
 // declare module "baz" {
 //     import bar = require("bar");
-//     var f2: typeof bar.[|foo|];
+//     var f2: typeof bar.[|{| defId: 0 |}foo|];
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) module \"foo\"\nimport foo = require(\"foo\")"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=",
-    //   "kind": "operator"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "require",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "foo" {
-    //     var f: number;
-    // }
-    // 
-    // declare module "bar" {
-    //     export import [|foo|] = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     [|export import foo = require("foo");|]
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import [|foo|] = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // declare module "bar" {
-        //     [|export import foo = require("foo");|]
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof [|foo|].f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.[|foo|];
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// declare module "foo" {
+//     var f: number;
+// }
+// 
+// declare module "bar" {
+//     <|export import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) module \"foo\"\nimport foo = require(\"foo\")", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"foo\"","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"},{"text":" ","kind":"space"},{"text":"=","kind":"operator"},{"text":" ","kind":"space"},{"text":"require","kind":"keyword"},{"text":"(","kind":"punctuation"},{"text":"\"foo\"","kind":"stringLiteral"},{"text":")","kind":"punctuation"}] |}foo|] = require("foo");|>
+//     var f2: typeof foo.f;
+// }
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -1807,12 +889,12 @@
 ]
 
 // === /tests/cases/fourslash/referencesForAmbients.ts ===
-// declare module "[|foo|]" {
+// <|declare module "[|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|]" {
 //     var f: number;
-// }
+// }|>
 // 
 // declare module "bar" {
-//     export import foo = require("/*FIND ALL REFS*/[|foo|]");
+//     <|export import foo = require("/*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}foo|]");|>
 //     var f2: typeof foo.f;
 // }
 // 
@@ -1821,119 +903,21 @@
 //     var f2: typeof bar.foo;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "module \"foo\""
-    // displayParts: [
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "[|foo|]" {
-    //     var f: number;
-    // }
-    // 
-    // declare module "bar" {
-    //     export import foo = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // [|declare module "foo" {
-      //     var f: number;
-      // }|]
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "[|foo|]" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // [|declare module "foo" {
-        //     var f: number;
-        // }|]
-        // 
-        // declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("[|foo|]");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // declare module "bar" {
-        //     [|export import foo = require("foo");|]
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// <|declare module "[|{| contextId: 0, defId: 0, kind: "module", name: "module \"foo\"", displayParts: [{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"foo\"","kind":"stringLiteral"}] |}foo|]" {
+//     var f: number;
+// }|>
+// 
+// declare module "bar" {
+//     export import foo = require("/*FIND ALL REFS*/foo");
+//     var f2: typeof foo.f;
+// }
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -2001,189 +985,30 @@
 // }
 // 
 // declare module "bar" {
-//     export import [|foo|] = require("foo");
-//     var f2: typeof /*FIND ALL REFS*/[|foo|].f;
+//     <|export import [|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|] = require("foo");|>
+//     var f2: typeof /*FIND ALL REFS*/[|{| defId: 0 |}foo|].f;
 // }
 // 
 // declare module "baz" {
 //     import bar = require("bar");
-//     var f2: typeof bar.[|foo|];
+//     var f2: typeof bar.[|{| defId: 0 |}foo|];
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) module \"foo\"\nimport foo = require(\"foo\")"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=",
-    //   "kind": "operator"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "require",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "foo" {
-    //     var f: number;
-    // }
-    // 
-    // declare module "bar" {
-    //     export import [|foo|] = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     [|export import foo = require("foo");|]
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import [|foo|] = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // declare module "bar" {
-        //     [|export import foo = require("foo");|]
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof [|foo|].f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.[|foo|];
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// declare module "foo" {
+//     var f: number;
+// }
+// 
+// declare module "bar" {
+//     <|export import [|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) module \"foo\"\nimport foo = require(\"foo\")", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"foo\"","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"},{"text":" ","kind":"space"},{"text":"=","kind":"operator"},{"text":" ","kind":"space"},{"text":"require","kind":"keyword"},{"text":"(","kind":"punctuation"},{"text":"\"foo\"","kind":"stringLiteral"},{"text":")","kind":"punctuation"}] |}foo|] = require("foo");|>
+//     var f2: typeof /*FIND ALL REFS*/foo.f;
+// }
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -2311,12 +1136,12 @@
 
 // === /tests/cases/fourslash/referencesForAmbients.ts ===
 // declare module "foo" {
-//     var [|f|]: number;
+//     <|var [|{| contextId: 0, defId: 0, isWriteAccess: true |}f|]: number;|>
 // }
 // 
 // declare module "bar" {
 //     export import foo = require("foo");
-//     var f2: typeof foo./*FIND ALL REFS*/[|f|];
+//     var f2: typeof foo./*FIND ALL REFS*/[|{| defId: 0 |}f|];
 // }
 // 
 // declare module "baz" {
@@ -2324,116 +1149,21 @@
 //     var f2: typeof bar.foo;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var f: number"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "foo" {
-    //     var [|f|]: number;
-    // }
-    // 
-    // declare module "bar" {
-    //     export import foo = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     [|var f: number;|]
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var [|f|]: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     [|var f: number;|]
-        // }
-        // 
-        // declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.[|f|];
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// declare module "foo" {
+//     <|var [|{| contextId: 0, defId: 0, kind: "var", name: "var f: number", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}f|]: number;|>
+// }
+// 
+// declare module "bar" {
+//     export import foo = require("foo");
+//     var f2: typeof foo./*FIND ALL REFS*/f;
+// }
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -2514,170 +1244,25 @@
 // }
 // 
 // declare module "baz" {
-//     /*FIND ALL REFS*/import [|bar|] = require("bar");
-//     var f2: typeof [|bar|].foo;
+//     /*FIND ALL REFS*/<|import [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}bar|] = require("bar");|>
+//     var f2: typeof [|{| defId: 0 |}bar|].foo;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) module \"bar\"\nimport bar = require(\"bar\")"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"bar\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "bar",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=",
-    //   "kind": "operator"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "require",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "\"bar\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "foo" {
-    //     var f: number;
-    // }
-    // 
-    // declare module "bar" {
-    //     export import foo = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import [|bar|] = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     [|import bar = require("bar");|]
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import [|bar|] = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     [|import bar = require("bar");|]
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof [|bar|].foo;
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// declare module "foo" {
+//     var f: number;
+// }
+// 
+// declare module "bar" {
+//     export import foo = require("foo");
+//     var f2: typeof foo.f;
+// }
+// 
+// declare module "baz" {
+//     /*FIND ALL REFS*/<|import [|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) module \"bar\"\nimport bar = require(\"bar\")", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"bar\"","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"bar","kind":"aliasName"},{"text":" ","kind":"space"},{"text":"=","kind":"operator"},{"text":" ","kind":"space"},{"text":"require","kind":"keyword"},{"text":"(","kind":"punctuation"},{"text":"\"bar\"","kind":"stringLiteral"},{"text":")","kind":"punctuation"}] |}bar|] = require("bar");|>
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -2802,129 +1387,31 @@
 //     var f: number;
 // }
 // 
-// declare module "[|bar|]" {
+// <|declare module "[|{| contextId: 0, defId: 0, isWriteAccess: true |}bar|]" {
 //     export import foo = require("foo");
 //     var f2: typeof foo.f;
-// }
+// }|>
 // 
 // declare module "baz" {
-//     import bar = require("/*FIND ALL REFS*/[|bar|]");
+//     <|import bar = require("/*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}bar|]");|>
 //     var f2: typeof bar.foo;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "module \"bar\""
-    // displayParts: [
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"bar\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "foo" {
-    //     var f: number;
-    // }
-    // 
-    // declare module "[|bar|]" {
-    //     export import foo = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // [|declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }|]
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "[|bar|]" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // [|declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }|]
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("[|bar|]");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // declare module "bar" {
-        //     export import foo = require("foo");
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     [|import bar = require("bar");|]
-        //     var f2: typeof bar.foo;
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// declare module "foo" {
+//     var f: number;
+// }
+// 
+// <|declare module "[|{| contextId: 0, defId: 0, kind: "module", name: "module \"bar\"", displayParts: [{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"bar\"","kind":"stringLiteral"}] |}bar|]" {
+//     export import foo = require("foo");
+//     var f2: typeof foo.f;
+// }|>
+// 
+// declare module "baz" {
+//     import bar = require("/*FIND ALL REFS*/bar");
+//     var f2: typeof bar.foo;
+// }
 
 [
   {
@@ -2992,189 +1479,30 @@
 // }
 // 
 // declare module "bar" {
-//     export import [|foo|] = require("foo");
-//     var f2: typeof [|foo|].f;
+//     <|export import [|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|] = require("foo");|>
+//     var f2: typeof [|{| defId: 0 |}foo|].f;
 // }
 // 
 // declare module "baz" {
 //     import bar = require("bar");
-//     var f2: typeof bar./*FIND ALL REFS*/[|foo|];
+//     var f2: typeof bar./*FIND ALL REFS*/[|{| defId: 0 |}foo|];
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) module \"foo\"\nimport foo = require(\"foo\")"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=",
-    //   "kind": "operator"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "require",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForAmbients.ts ===
-    // declare module "foo" {
-    //     var f: number;
-    // }
-    // 
-    // declare module "bar" {
-    //     export import [|foo|] = require("foo");
-    //     var f2: typeof foo.f;
-    // }
-    // 
-    // declare module "baz" {
-    //     import bar = require("bar");
-    //     var f2: typeof bar.foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     [|export import foo = require("foo");|]
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import [|foo|] = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForAmbients.ts ===
-        // declare module "foo" {
-        //     var f: number;
-        // }
-        // 
-        // declare module "bar" {
-        //     [|export import foo = require("foo");|]
-        //     var f2: typeof foo.f;
-        // }
-        // 
-        // declare module "baz" {
-        //     import bar = require("bar");
-        //     var f2: typeof bar.foo;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof [|foo|].f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.foo;
-      // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForAmbients.ts ===
-      // declare module "foo" {
-      //     var f: number;
-      // }
-      // 
-      // declare module "bar" {
-      //     export import foo = require("foo");
-      //     var f2: typeof foo.f;
-      // }
-      // 
-      // declare module "baz" {
-      //     import bar = require("bar");
-      //     var f2: typeof bar.[|foo|];
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForAmbients.ts ===
+// declare module "foo" {
+//     var f: number;
+// }
+// 
+// declare module "bar" {
+//     <|export import [|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) module \"foo\"\nimport foo = require(\"foo\")", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"foo\"","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"},{"text":" ","kind":"space"},{"text":"=","kind":"operator"},{"text":" ","kind":"space"},{"text":"require","kind":"keyword"},{"text":"(","kind":"punctuation"},{"text":"\"foo\"","kind":"stringLiteral"},{"text":")","kind":"punctuation"}] |}foo|] = require("foo");|>
+//     var f2: typeof foo.f;
+// }
+// 
+// declare module "baz" {
+//     import bar = require("bar");
+//     var f2: typeof bar./*FIND ALL REFS*/foo;
+// }
 
 [
   {

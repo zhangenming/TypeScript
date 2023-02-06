@@ -1,22 +1,14 @@
 // === /tests/cases/fourslash/a.ts ===
-// [||]export class Foo {}
+// [|{| kind: "script", name: "./a" |}|]export class Foo {}
 
 // === /tests/cases/fourslash/b.ts ===
 // import n = require('./a/*GOTO DEF*/');
 // var x = new n.Foo();
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "script"
-    // name: "./a"
-    // unverified: false
-    // === /tests/cases/fourslash/a.ts ===
-    // [||]export class Foo {}
 // === TextSpan ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import n = require([|'./a'|]);
-  // var x = new n.Foo();
-
+// === /tests/cases/fourslash/b.ts ===
+// import n = require([|'./a/*GOTO DEF*/'|]);
+// var x = new n.Foo();
 
 {
   "definitions": [

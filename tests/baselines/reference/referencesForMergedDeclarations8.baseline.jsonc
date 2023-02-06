@@ -2,101 +2,24 @@
 // interface Foo { }
 // module Foo {
 //     export interface Bar { }
-//     /*FIND ALL REFS*/export module [|Bar|] { export interface Baz { } }
+//     /*FIND ALL REFS*/<|export module [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Bar|] { export interface Baz { } }|>
 //     export function Bar() { }
 // }
 // 
 // // module
-// import a3 = Foo.[|Bar|].Baz;
+// import a3 = Foo.[|{| defId: 0 |}Bar|].Baz;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "namespace Foo.Bar"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Bar",
-    //   "kind": "functionName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-    // interface Foo { }
-    // module Foo {
-    //     export interface Bar { }
-    //     export module Bar { export interface Baz { } }
-    //     export function [|Bar|]() { }
-    // }
-    // 
-    // // module
-    // import a3 = Foo.Bar.Baz;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-      // interface Foo { }
-      // module Foo {
-      //     export interface Bar { }
-      //     export module Bar { export interface Baz { } }
-      //     [|export function Bar() { }|]
-      // }
-      // 
-      // // module
-      // import a3 = Foo.Bar.Baz;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-      // interface Foo { }
-      // module Foo {
-      //     export interface Bar { }
-      //     export module [|Bar|] { export interface Baz { } }
-      //     export function Bar() { }
-      // }
-      // 
-      // // module
-      // import a3 = Foo.Bar.Baz;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-        // interface Foo { }
-        // module Foo {
-        //     export interface Bar { }
-        //     [|export module Bar { export interface Baz { } }|]
-        //     export function Bar() { }
-        // }
-        // 
-        // // module
-        // import a3 = Foo.Bar.Baz;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-      // interface Foo { }
-      // module Foo {
-      //     export interface Bar { }
-      //     export module Bar { export interface Baz { } }
-      //     export function Bar() { }
-      // }
-      // 
-      // // module
-      // import a3 = Foo.[|Bar|].Baz;
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
+// interface Foo { }
+// module Foo {
+//     export interface Bar { }
+//     /*FIND ALL REFS*/export module Bar { export interface Baz { } }
+//     <|export function [|{| contextId: 0, defId: 0, kind: "function", name: "namespace Foo.Bar", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Foo","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"Bar","kind":"functionName"}] |}Bar|]() { }|>
+// }
+// 
+// // module
+// import a3 = Foo.Bar.Baz;
 
 [
   {
@@ -168,101 +91,24 @@
 // interface Foo { }
 // module Foo {
 //     export interface Bar { }
-//     export module /*FIND ALL REFS*/[|Bar|] { export interface Baz { } }
+//     <|export module /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Bar|] { export interface Baz { } }|>
 //     export function Bar() { }
 // }
 // 
 // // module
-// import a3 = Foo.[|Bar|].Baz;
+// import a3 = Foo.[|{| defId: 0 |}Bar|].Baz;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "namespace Foo.Bar"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Bar",
-    //   "kind": "functionName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-    // interface Foo { }
-    // module Foo {
-    //     export interface Bar { }
-    //     export module Bar { export interface Baz { } }
-    //     export function [|Bar|]() { }
-    // }
-    // 
-    // // module
-    // import a3 = Foo.Bar.Baz;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-      // interface Foo { }
-      // module Foo {
-      //     export interface Bar { }
-      //     export module Bar { export interface Baz { } }
-      //     [|export function Bar() { }|]
-      // }
-      // 
-      // // module
-      // import a3 = Foo.Bar.Baz;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-      // interface Foo { }
-      // module Foo {
-      //     export interface Bar { }
-      //     export module [|Bar|] { export interface Baz { } }
-      //     export function Bar() { }
-      // }
-      // 
-      // // module
-      // import a3 = Foo.Bar.Baz;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-        // interface Foo { }
-        // module Foo {
-        //     export interface Bar { }
-        //     [|export module Bar { export interface Baz { } }|]
-        //     export function Bar() { }
-        // }
-        // 
-        // // module
-        // import a3 = Foo.Bar.Baz;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-      // interface Foo { }
-      // module Foo {
-      //     export interface Bar { }
-      //     export module Bar { export interface Baz { } }
-      //     export function Bar() { }
-      // }
-      // 
-      // // module
-      // import a3 = Foo.[|Bar|].Baz;
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
+// interface Foo { }
+// module Foo {
+//     export interface Bar { }
+//     export module /*FIND ALL REFS*/Bar { export interface Baz { } }
+//     <|export function [|{| contextId: 0, defId: 0, kind: "function", name: "namespace Foo.Bar", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Foo","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"Bar","kind":"functionName"}] |}Bar|]() { }|>
+// }
+// 
+// // module
+// import a3 = Foo.Bar.Baz;
 
 [
   {
@@ -334,99 +180,24 @@
 // interface Foo { }
 // module Foo {
 //     export interface Bar { }
-//     export module [|Bar|] { export interface Baz { } }
+//     <|export module [|{| contextId: 0, defId: 0, isWriteAccess: true |}Bar|] { export interface Baz { } }|>
 //     export function Bar() { }
 // }
 // 
 // // module
-// import a3 = Foo./*FIND ALL REFS*/[|Bar|].Baz;
+// import a3 = Foo./*FIND ALL REFS*/[|{| defId: 0 |}Bar|].Baz;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "namespace Foo.Bar"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Bar",
-    //   "kind": "functionName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-    // interface Foo { }
-    // module Foo {
-    //     export interface Bar { }
-    //     export module Bar { export interface Baz { } }
-    //     export function [|Bar|]() { }
-    // }
-    // 
-    // // module
-    // import a3 = Foo.Bar.Baz;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-      // interface Foo { }
-      // module Foo {
-      //     export interface Bar { }
-      //     export module Bar { export interface Baz { } }
-      //     [|export function Bar() { }|]
-      // }
-      // 
-      // // module
-      // import a3 = Foo.Bar.Baz;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-      // interface Foo { }
-      // module Foo {
-      //     export interface Bar { }
-      //     export module [|Bar|] { export interface Baz { } }
-      //     export function Bar() { }
-      // }
-      // 
-      // // module
-      // import a3 = Foo.Bar.Baz;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-        // interface Foo { }
-        // module Foo {
-        //     export interface Bar { }
-        //     [|export module Bar { export interface Baz { } }|]
-        //     export function Bar() { }
-        // }
-        // 
-        // // module
-        // import a3 = Foo.Bar.Baz;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
-      // interface Foo { }
-      // module Foo {
-      //     export interface Bar { }
-      //     export module Bar { export interface Baz { } }
-      //     export function Bar() { }
-      // }
-      // 
-      // // module
-      // import a3 = Foo.[|Bar|].Baz;
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForMergedDeclarations8.ts ===
+// interface Foo { }
+// module Foo {
+//     export interface Bar { }
+//     export module Bar { export interface Baz { } }
+//     <|export function [|{| contextId: 0, defId: 0, kind: "function", name: "namespace Foo.Bar", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Foo","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"Bar","kind":"functionName"}] |}Bar|]() { }|>
+// }
+// 
+// // module
+// import a3 = Foo./*FIND ALL REFS*/Bar.Baz;
 
 [
   {

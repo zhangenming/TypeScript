@@ -1,77 +1,12 @@
 // === findAllReferences ===
 // === /tests/cases/fourslash/foo.ts ===
-// export function /*FIND ALL REFS*/[|bar|]() { return "bar"; }
-// import('./foo').then(({ [|bar|] }) => undefined);
+// <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}bar|]() { return "bar"; }|>
+// import('./foo').then((<|{ [|{| contextId: 1, defId: 0, isWriteAccess: true |}bar|] }|>) => undefined);
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function bar(): string"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "bar",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/foo.ts ===
-    // export function [|bar|]() { return "bar"; }
-    // import('./foo').then(({ bar }) => undefined);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/foo.ts ===
-      // [|export function bar() { return "bar"; }|]
-      // import('./foo').then(({ bar }) => undefined);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/foo.ts ===
-      // export function [|bar|]() { return "bar"; }
-      // import('./foo').then(({ bar }) => undefined);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/foo.ts ===
-        // [|export function bar() { return "bar"; }|]
-        // import('./foo').then(({ bar }) => undefined);
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/foo.ts ===
-      // export function bar() { return "bar"; }
-      // import('./foo').then(({ [|bar|] }) => undefined);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/foo.ts ===
-        // export function bar() { return "bar"; }
-        // import('./foo').then(([|{ bar }|]) => undefined);
-
+// === Definitions ===
+// === /tests/cases/fourslash/foo.ts ===
+// <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "function", name: "function bar(): string", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"bar","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}bar|]() { return "bar"; }|>
+// import('./foo').then(({ bar }) => undefined);
 
 [
   {
@@ -156,146 +91,13 @@
 ]
 
 // === /tests/cases/fourslash/foo.ts ===
-// export function [|bar|]() { return "bar"; }
-// import('./foo').then(({ /*FIND ALL REFS*/[|bar|] }) => undefined);
+// <|export function [|{| contextId: 0, defId: 0, isWriteAccess: true |}bar|]() { return "bar"; }|>
+// import('./foo').then((<|{ /*FIND ALL REFS*/[|{| contextId: 1, defId: 1, isWriteAccess: true, isDefinition: true |}bar|] }|>) => undefined);
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function bar(): string"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "bar",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/foo.ts ===
-    // export function [|bar|]() { return "bar"; }
-    // import('./foo').then(({ bar }) => undefined);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/foo.ts ===
-      // [|export function bar() { return "bar"; }|]
-      // import('./foo').then(({ bar }) => undefined);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/foo.ts ===
-      // export function [|bar|]() { return "bar"; }
-      // import('./foo').then(({ bar }) => undefined);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/foo.ts ===
-        // [|export function bar() { return "bar"; }|]
-        // import('./foo').then(({ bar }) => undefined);
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "parameter"
-    // name: "(parameter) bar: () => string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "parameter",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "bar",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=>",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/foo.ts ===
-    // export function bar() { return "bar"; }
-    // import('./foo').then(({ [|bar|] }) => undefined);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/foo.ts ===
-      // export function bar() { return "bar"; }
-      // import('./foo').then(([|{ bar }|]) => undefined);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/foo.ts ===
-      // export function bar() { return "bar"; }
-      // import('./foo').then(({ [|bar|] }) => undefined);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/foo.ts ===
-        // export function bar() { return "bar"; }
-        // import('./foo').then(([|{ bar }|]) => undefined);
-
+// === Definitions ===
+// === /tests/cases/fourslash/foo.ts ===
+// <|export function [|{| contextId: 0, defId: 0, kind: "function", name: "function bar(): string", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"bar","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}bar|]() { return "bar"; }|>
+// import('./foo').then((<|{ /*FIND ALL REFS*/[|{| contextId: 1, defId: 1, kind: "parameter", name: "(parameter) bar: () => string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"parameter","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"bar","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"=>","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}bar|] }|>) => undefined);
 
 [
   {
@@ -454,27 +256,8 @@
 
 // === findRenameLocations ===
 // === /tests/cases/fourslash/foo.ts ===
-// export function [|RENAME|]() { return "bar"; }
-// import('./foo').then(({ RENAME: bar/*END SUFFIX*/ }) => undefined);
-
-// === 0 ===
-  // === /tests/cases/fourslash/foo.ts ===
-  // export function [|bar|]() { return "bar"; }
-  // import('./foo').then(({ bar }) => undefined);
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/foo.ts ===
-    // [|export function bar() { return "bar"; }|]
-    // import('./foo').then(({ bar }) => undefined);
-// === 1 ===
-  // suffixText: ": bar"
-  // === /tests/cases/fourslash/foo.ts ===
-  // export function bar() { return "bar"; }
-  // import('./foo').then(({ [|bar|] }) => undefined);
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/foo.ts ===
-    // export function bar() { return "bar"; }
-    // import('./foo').then(([|{ bar }|]) => undefined);
-
+// <|export function /*RENAME*/[|{| contextId: 0 |}barRENAME|]() { return "bar"; }|>
+// import('./foo').then((<|{ [|{| contextId: 1 |}barRENAME|]: bar/*END SUFFIX*/ }|>) => undefined);
 
 [
   {
@@ -504,18 +287,7 @@
 
 // === /tests/cases/fourslash/foo.ts ===
 // export function bar() { return "bar"; }
-// import('./foo').then(({ /*START PREFIX*/bar: [|RENAME|] }) => undefined);
-
-// === 0 ===
-  // prefixText: "bar: "
-  // === /tests/cases/fourslash/foo.ts ===
-  // export function bar() { return "bar"; }
-  // import('./foo').then(({ [|bar|] }) => undefined);
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/foo.ts ===
-    // export function bar() { return "bar"; }
-    // import('./foo').then(([|{ bar }|]) => undefined);
-
+// import('./foo').then((<|{ /*RENAME*//*START PREFIX*/bar: [|{| contextId: 0 |}barRENAME|] }|>) => undefined);
 
 [
   {

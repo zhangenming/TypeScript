@@ -5,38 +5,9 @@
 // /**
 //  * @param /*GOTO DEF POS*/foo I pity the foo
 //  */
-// function f([|foo|]: I) {
+// function f(<|[|{| contextId: 0, kind: "parameter", name: "foo" |}foo|]: I|>) {
 //     return foo;
 // }
-
-// === 0 ===
-  // kind: "parameter"
-  // name: "foo"
-  // containerName: ""
-  // isLocal: false
-  // isAmbient: false
-  // unverified: false
-  // failedAliasResolution: false
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-  // interface I {}
-  // 
-  // /**
-  //  * @param foo I pity the foo
-  //  */
-  // function f([|foo|]: I) {
-  //     return foo;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/jsDocServices.ts ===
-    // interface I {}
-    // 
-    // /**
-    //  * @param foo I pity the foo
-    //  */
-    // function f([|foo: I|]) {
-    //     return foo;
-    // }
-
 
 [
   {
@@ -61,7 +32,7 @@
 
 // === goToType ===
 // === /tests/cases/fourslash/jsDocServices.ts ===
-// interface [|I|] {}
+// <|interface [|{| contextId: 0, kind: "interface", name: "I" |}I|] {}|>
 // 
 // /**
 //  * @param /*GOTO TYPE*/foo I pity the foo
@@ -69,35 +40,6 @@
 // function f(foo: I) {
 //     return foo;
 // }
-
-// === 0 ===
-  // kind: "interface"
-  // name: "I"
-  // containerName: ""
-  // isLocal: false
-  // isAmbient: false
-  // unverified: false
-  // failedAliasResolution: false
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-  // interface [|I|] {}
-  // 
-  // /**
-  //  * @param foo I pity the foo
-  //  */
-  // function f(foo: I) {
-  //     return foo;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/jsDocServices.ts ===
-    // [|interface I {}|]
-    // 
-    // /**
-    //  * @param foo I pity the foo
-    //  */
-    // function f(foo: I) {
-    //     return foo;
-    // }
-
 
 [
   {
@@ -125,116 +67,22 @@
 // interface I {}
 // 
 // /**
-//  * @param /*FIND ALL REFS*/[|foo|] I pity the foo
+//  * @param /*FIND ALL REFS*/[|{| defId: 0 |}foo|] I pity the foo
 //  */
-// function f([|foo|]: I) {
-//     return [|foo|];
+// function f(<|[|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|]: I|>) {
+//     return [|{| defId: 0 |}foo|];
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "parameter"
-    // name: "(parameter) foo: I"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "parameter",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/jsDocServices.ts ===
-    // interface I {}
-    // 
-    // /**
-    //  * @param foo I pity the foo
-    //  */
-    // function f([|foo|]: I) {
-    //     return foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f([|foo: I|]) {
-      //     return foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param [|foo|] I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return foo;
-      // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f([|foo|]: I) {
-      //     return foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/jsDocServices.ts ===
-        // interface I {}
-        // 
-        // /**
-        //  * @param foo I pity the foo
-        //  */
-        // function f([|foo: I|]) {
-        //     return foo;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return [|foo|];
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param /*FIND ALL REFS*/foo I pity the foo
+//  */
+// function f(<|[|{| contextId: 0, defId: 0, kind: "parameter", name: "(parameter) foo: I", displayParts: [{"text":"(","kind":"punctuation"},{"text":"parameter","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"}] |}foo|]: I|>) {
+//     return foo;
+// }
 
 [
   {
@@ -324,119 +172,22 @@
 // interface I {}
 // 
 // /**
-//  * @param [|foo|] I pity the foo
+//  * @param [|{| defId: 0 |}foo|] I pity the foo
 //  */
-// function f(/*FIND ALL REFS*/[|foo|]: I) {
-//     return [|foo|];
+// function f(/*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|]: I|>) {
+//     return [|{| defId: 0 |}foo|];
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "parameter"
-    // name: "(parameter) foo: I"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "parameter",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/jsDocServices.ts ===
-    // interface I {}
-    // 
-    // /**
-    //  * @param foo I pity the foo
-    //  */
-    // function f([|foo|]: I) {
-    //     return foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f([|foo: I|]) {
-      //     return foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param [|foo|] I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return foo;
-      // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f([|foo|]: I) {
-      //     return foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/jsDocServices.ts ===
-        // interface I {}
-        // 
-        // /**
-        //  * @param foo I pity the foo
-        //  */
-        // function f([|foo: I|]) {
-        //     return foo;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return [|foo|];
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param foo I pity the foo
+//  */
+// function f(/*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "parameter", name: "(parameter) foo: I", displayParts: [{"text":"(","kind":"punctuation"},{"text":"parameter","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"}] |}foo|]: I|>) {
+//     return foo;
+// }
 
 [
   {
@@ -529,116 +280,22 @@
 // interface I {}
 // 
 // /**
-//  * @param [|foo|] I pity the foo
+//  * @param [|{| defId: 0 |}foo|] I pity the foo
 //  */
-// function f([|foo|]: I) {
-//     return /*FIND ALL REFS*/[|foo|];
+// function f(<|[|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|]: I|>) {
+//     return /*FIND ALL REFS*/[|{| defId: 0 |}foo|];
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "parameter"
-    // name: "(parameter) foo: I"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "parameter",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/jsDocServices.ts ===
-    // interface I {}
-    // 
-    // /**
-    //  * @param foo I pity the foo
-    //  */
-    // function f([|foo|]: I) {
-    //     return foo;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f([|foo: I|]) {
-      //     return foo;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param [|foo|] I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return foo;
-      // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f([|foo|]: I) {
-      //     return foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/jsDocServices.ts ===
-        // interface I {}
-        // 
-        // /**
-        //  * @param foo I pity the foo
-        //  */
-        // function f([|foo: I|]) {
-        //     return foo;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return [|foo|];
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/jsDocServices.ts ===
+// interface I {}
+// 
+// /**
+//  * @param foo I pity the foo
+//  */
+// function f(<|[|{| contextId: 0, defId: 0, kind: "parameter", name: "(parameter) foo: I", displayParts: [{"text":"(","kind":"punctuation"},{"text":"parameter","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"}] |}foo|]: I|>) {
+//     return /*FIND ALL REFS*/foo;
+// }
 
 [
   {
@@ -729,58 +386,11 @@
 // interface I {}
 // 
 // /**
-//  * @param /*HIGHLIGHTS*/[|foo|] I pity the foo
+//  * @param /*HIGHLIGHTS*/[|{| kind: "reference" |}foo|] I pity the foo
 //  */
-// function f([|foo|]: I) {
-//     return [|foo|];
+// function f(<|[|{| contextId: 0, kind: "writtenReference" |}foo|]: I|>) {
+//     return [|{| kind: "reference" |}foo|];
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-    // === 0 ===
-      // kind: "reference"
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param [|foo|] I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return foo;
-      // }
-    // === 1 ===
-      // kind: "writtenReference"
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f([|foo|]: I) {
-      //     return foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/jsDocServices.ts ===
-        // interface I {}
-        // 
-        // /**
-        //  * @param foo I pity the foo
-        //  */
-        // function f([|foo: I|]) {
-        //     return foo;
-        // }
-    // === 2 ===
-      // kind: "reference"
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return [|foo|];
-      // }
-
 
 [
   {
@@ -819,58 +429,11 @@
 // interface I {}
 // 
 // /**
-//  * @param [|foo|] I pity the foo
+//  * @param [|{| kind: "reference" |}foo|] I pity the foo
 //  */
-// function f(/*HIGHLIGHTS*/[|foo|]: I) {
-//     return [|foo|];
+// function f(/*HIGHLIGHTS*/<|[|{| contextId: 0, kind: "writtenReference" |}foo|]: I|>) {
+//     return [|{| kind: "reference" |}foo|];
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-    // === 0 ===
-      // kind: "reference"
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param [|foo|] I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return foo;
-      // }
-    // === 1 ===
-      // kind: "writtenReference"
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f([|foo|]: I) {
-      //     return foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/jsDocServices.ts ===
-        // interface I {}
-        // 
-        // /**
-        //  * @param foo I pity the foo
-        //  */
-        // function f([|foo: I|]) {
-        //     return foo;
-        // }
-    // === 2 ===
-      // kind: "reference"
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return [|foo|];
-      // }
-
 
 [
   {
@@ -909,58 +472,11 @@
 // interface I {}
 // 
 // /**
-//  * @param [|foo|] I pity the foo
+//  * @param [|{| kind: "reference" |}foo|] I pity the foo
 //  */
-// function f([|foo|]: I) {
-//     return /*HIGHLIGHTS*/[|foo|];
+// function f(<|[|{| contextId: 0, kind: "writtenReference" |}foo|]: I|>) {
+//     return /*HIGHLIGHTS*/[|{| kind: "reference" |}foo|];
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-    // === 0 ===
-      // kind: "reference"
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param [|foo|] I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return foo;
-      // }
-    // === 1 ===
-      // kind: "writtenReference"
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f([|foo|]: I) {
-      //     return foo;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/jsDocServices.ts ===
-        // interface I {}
-        // 
-        // /**
-        //  * @param foo I pity the foo
-        //  */
-        // function f([|foo: I|]) {
-        //     return foo;
-        // }
-    // === 2 ===
-      // kind: "reference"
-      // === /tests/cases/fourslash/jsDocServices.ts ===
-      // interface I {}
-      // 
-      // /**
-      //  * @param foo I pity the foo
-      //  */
-      // function f(foo: I) {
-      //     return [|foo|];
-      // }
-
 
 [
   {
@@ -1000,53 +516,11 @@
 // interface I {}
 // 
 // /**
-//  * @param [|RENAME|] I pity the foo
+//  * @param /*RENAME*/[|fooRENAME|] I pity the foo
 //  */
-// function f(RENAME: I) {
-//     return RENAME;
+// function f(<|[|{| contextId: 0 |}fooRENAME|]: I|>) {
+//     return [|fooRENAME|];
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-  // interface I {}
-  // 
-  // /**
-  //  * @param [|foo|] I pity the foo
-  //  */
-  // function f(foo: I) {
-  //     return foo;
-  // }
-// === 1 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-  // interface I {}
-  // 
-  // /**
-  //  * @param foo I pity the foo
-  //  */
-  // function f([|foo|]: I) {
-  //     return foo;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/jsDocServices.ts ===
-    // interface I {}
-    // 
-    // /**
-    //  * @param foo I pity the foo
-    //  */
-    // function f([|foo: I|]) {
-    //     return foo;
-    // }
-// === 2 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-  // interface I {}
-  // 
-  // /**
-  //  * @param foo I pity the foo
-  //  */
-  // function f(foo: I) {
-  //     return [|foo|];
-  // }
-
 
 [
   {
@@ -1080,53 +554,11 @@
 // interface I {}
 // 
 // /**
-//  * @param RENAME I pity the foo
+//  * @param [|fooRENAME|] I pity the foo
 //  */
-// function f([|RENAME|]: I) {
-//     return RENAME;
+// function f(/*RENAME*/<|[|{| contextId: 0 |}fooRENAME|]: I|>) {
+//     return [|fooRENAME|];
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-  // interface I {}
-  // 
-  // /**
-  //  * @param [|foo|] I pity the foo
-  //  */
-  // function f(foo: I) {
-  //     return foo;
-  // }
-// === 1 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-  // interface I {}
-  // 
-  // /**
-  //  * @param foo I pity the foo
-  //  */
-  // function f([|foo|]: I) {
-  //     return foo;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/jsDocServices.ts ===
-    // interface I {}
-    // 
-    // /**
-    //  * @param foo I pity the foo
-    //  */
-    // function f([|foo: I|]) {
-    //     return foo;
-    // }
-// === 2 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-  // interface I {}
-  // 
-  // /**
-  //  * @param foo I pity the foo
-  //  */
-  // function f(foo: I) {
-  //     return [|foo|];
-  // }
-
 
 [
   {
@@ -1160,53 +592,11 @@
 // interface I {}
 // 
 // /**
-//  * @param RENAME I pity the foo
+//  * @param [|fooRENAME|] I pity the foo
 //  */
-// function f(RENAME: I) {
-//     return [|RENAME|];
+// function f(<|[|{| contextId: 0 |}fooRENAME|]: I|>) {
+//     return /*RENAME*/[|fooRENAME|];
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-  // interface I {}
-  // 
-  // /**
-  //  * @param [|foo|] I pity the foo
-  //  */
-  // function f(foo: I) {
-  //     return foo;
-  // }
-// === 1 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-  // interface I {}
-  // 
-  // /**
-  //  * @param foo I pity the foo
-  //  */
-  // function f([|foo|]: I) {
-  //     return foo;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/jsDocServices.ts ===
-    // interface I {}
-    // 
-    // /**
-    //  * @param foo I pity the foo
-    //  */
-    // function f([|foo: I|]) {
-    //     return foo;
-    // }
-// === 2 ===
-  // === /tests/cases/fourslash/jsDocServices.ts ===
-  // interface I {}
-  // 
-  // /**
-  //  * @param foo I pity the foo
-  //  */
-  // function f(foo: I) {
-  //     return [|foo|];
-  // }
-
 
 [
   {

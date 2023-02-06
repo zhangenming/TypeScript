@@ -1,65 +1,21 @@
 // === /a.js ===
 // function f() {
-//     /*FIND ALL REFS*/[|this|].x = 0;
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0 |}this|].x = 0;|>
 // }
 // f.prototype.setX = function() {
 //     this.x = 1;
 // }
 // f.prototype.useX = function() { this.x; }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "this"
-    // displayParts: [
-    //  {
-    //   "text": "this",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "this",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.js ===
-    // function f() {
-    //     [|this|].x = 0;
-    // }
-    // f.prototype.setX = function() {
-    //     this.x = 1;
-    // }
-    // f.prototype.useX = function() { this.x; }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /a.js ===
-      // function f() {
-      //     [|this|].x = 0;
-      // }
-      // f.prototype.setX = function() {
-      //     this.x = 1;
-      // }
-      // f.prototype.useX = function() { this.x; }
-        // === ContextSpan ===
-        // === /a.js ===
-        // function f() {
-        //     [|this.x = 0;|]
-        // }
-        // f.prototype.setX = function() {
-        //     this.x = 1;
-        // }
-        // f.prototype.useX = function() { this.x; }
-
+// === Definitions ===
+// === /a.js ===
+// function f() {
+//     /*FIND ALL REFS*/[|{| defId: 0, kind: "var", name: "this", displayParts: [{"text":"this","kind":"keyword"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"this","kind":"keyword"}] |}this|].x = 0;
+// }
+// f.prototype.setX = function() {
+//     this.x = 1;
+// }
+// f.prototype.useX = function() { this.x; }
 
 [
   {
@@ -111,131 +67,22 @@
 
 // === /a.js ===
 // function f() {
-//     this./*FIND ALL REFS*/[|x|] = 0;
+//     <|this./*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}x|] = 0;|>
 // }
 // f.prototype.setX = function() {
-//     this.[|x|] = 1;
+//     <|this.[|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}x|] = 1;|>
 // }
-// f.prototype.useX = function() { this.[|x|]; }
+// f.prototype.useX = function() { this.[|{| defId: 0 |}x|]; }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) f.x: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.js ===
-    // function f() {
-    //     this.[|x|] = 0;
-    // }
-    // f.prototype.setX = function() {
-    //     this.x = 1;
-    // }
-    // f.prototype.useX = function() { this.x; }
-      // === ContextSpan ===
-      // === /a.js ===
-      // function f() {
-      //     [|this.x = 0;|]
-      // }
-      // f.prototype.setX = function() {
-      //     this.x = 1;
-      // }
-      // f.prototype.useX = function() { this.x; }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.js ===
-      // function f() {
-      //     this.[|x|] = 0;
-      // }
-      // f.prototype.setX = function() {
-      //     this.x = 1;
-      // }
-      // f.prototype.useX = function() { this.x; }
-        // === ContextSpan ===
-        // === /a.js ===
-        // function f() {
-        //     [|this.x = 0;|]
-        // }
-        // f.prototype.setX = function() {
-        //     this.x = 1;
-        // }
-        // f.prototype.useX = function() { this.x; }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.js ===
-      // function f() {
-      //     this.x = 0;
-      // }
-      // f.prototype.setX = function() {
-      //     this.[|x|] = 1;
-      // }
-      // f.prototype.useX = function() { this.x; }
-        // === ContextSpan ===
-        // === /a.js ===
-        // function f() {
-        //     this.x = 0;
-        // }
-        // f.prototype.setX = function() {
-        //     [|this.x = 1;|]
-        // }
-        // f.prototype.useX = function() { this.x; }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a.js ===
-      // function f() {
-      //     this.x = 0;
-      // }
-      // f.prototype.setX = function() {
-      //     this.x = 1;
-      // }
-      // f.prototype.useX = function() { this.[|x|]; }
-
+// === Definitions ===
+// === /a.js ===
+// function f() {
+//     <|this./*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) f.x: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":".","kind":"punctuation"},{"text":"x","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}x|] = 0;|>
+// }
+// f.prototype.setX = function() {
+//     this.x = 1;
+// }
+// f.prototype.useX = function() { this.x; }
 
 [
   {
@@ -341,63 +188,19 @@
 //     this.x = 0;
 // }
 // f.prototype.setX = function() {
-//     /*FIND ALL REFS*/[|this|].x = 1;
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0 |}this|].x = 1;|>
 // }
 // f.prototype.useX = function() { this.x; }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "this"
-    // displayParts: [
-    //  {
-    //   "text": "this",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "this",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.js ===
-    // function f() {
-    //     this.x = 0;
-    // }
-    // f.prototype.setX = function() {
-    //     [|this|].x = 1;
-    // }
-    // f.prototype.useX = function() { this.x; }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /a.js ===
-      // function f() {
-      //     this.x = 0;
-      // }
-      // f.prototype.setX = function() {
-      //     [|this|].x = 1;
-      // }
-      // f.prototype.useX = function() { this.x; }
-        // === ContextSpan ===
-        // === /a.js ===
-        // function f() {
-        //     this.x = 0;
-        // }
-        // f.prototype.setX = function() {
-        //     [|this.x = 1;|]
-        // }
-        // f.prototype.useX = function() { this.x; }
-
+// === Definitions ===
+// === /a.js ===
+// function f() {
+//     this.x = 0;
+// }
+// f.prototype.setX = function() {
+//     /*FIND ALL REFS*/[|{| defId: 0, kind: "var", name: "this", displayParts: [{"text":"this","kind":"keyword"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"this","kind":"keyword"}] |}this|].x = 1;
+// }
+// f.prototype.useX = function() { this.x; }
 
 [
   {
@@ -449,131 +252,22 @@
 
 // === /a.js ===
 // function f() {
-//     this.[|x|] = 0;
+//     <|this.[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}x|] = 0;|>
 // }
 // f.prototype.setX = function() {
-//     this./*FIND ALL REFS*/[|x|] = 1;
+//     <|this./*FIND ALL REFS*/[|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}x|] = 1;|>
 // }
-// f.prototype.useX = function() { this.[|x|]; }
+// f.prototype.useX = function() { this.[|{| defId: 0 |}x|]; }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) f.x: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.js ===
-    // function f() {
-    //     this.[|x|] = 0;
-    // }
-    // f.prototype.setX = function() {
-    //     this.x = 1;
-    // }
-    // f.prototype.useX = function() { this.x; }
-      // === ContextSpan ===
-      // === /a.js ===
-      // function f() {
-      //     [|this.x = 0;|]
-      // }
-      // f.prototype.setX = function() {
-      //     this.x = 1;
-      // }
-      // f.prototype.useX = function() { this.x; }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.js ===
-      // function f() {
-      //     this.[|x|] = 0;
-      // }
-      // f.prototype.setX = function() {
-      //     this.x = 1;
-      // }
-      // f.prototype.useX = function() { this.x; }
-        // === ContextSpan ===
-        // === /a.js ===
-        // function f() {
-        //     [|this.x = 0;|]
-        // }
-        // f.prototype.setX = function() {
-        //     this.x = 1;
-        // }
-        // f.prototype.useX = function() { this.x; }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.js ===
-      // function f() {
-      //     this.x = 0;
-      // }
-      // f.prototype.setX = function() {
-      //     this.[|x|] = 1;
-      // }
-      // f.prototype.useX = function() { this.x; }
-        // === ContextSpan ===
-        // === /a.js ===
-        // function f() {
-        //     this.x = 0;
-        // }
-        // f.prototype.setX = function() {
-        //     [|this.x = 1;|]
-        // }
-        // f.prototype.useX = function() { this.x; }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a.js ===
-      // function f() {
-      //     this.x = 0;
-      // }
-      // f.prototype.setX = function() {
-      //     this.x = 1;
-      // }
-      // f.prototype.useX = function() { this.[|x|]; }
-
+// === Definitions ===
+// === /a.js ===
+// function f() {
+//     <|this.[|{| contextId: 0, defId: 0, kind: "property", name: "(property) f.x: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":".","kind":"punctuation"},{"text":"x","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}x|] = 0;|>
+// }
+// f.prototype.setX = function() {
+//     this./*FIND ALL REFS*/x = 1;
+// }
+// f.prototype.useX = function() { this.x; }
 
 [
   {
@@ -676,128 +370,22 @@
 
 // === /a.js ===
 // function f() {
-//     this.[|x|] = 0;
+//     <|this.[|{| contextId: 0, defId: 0, isWriteAccess: true |}x|] = 0;|>
 // }
 // f.prototype.setX = function() {
-//     this.[|x|] = 1;
+//     <|this.[|{| contextId: 1, defId: 0, isWriteAccess: true |}x|] = 1;|>
 // }
-// f.prototype.useX = function() { this./*FIND ALL REFS*/[|x|]; }
+// f.prototype.useX = function() { this./*FIND ALL REFS*/[|{| defId: 0 |}x|]; }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) f.x: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.js ===
-    // function f() {
-    //     this.[|x|] = 0;
-    // }
-    // f.prototype.setX = function() {
-    //     this.x = 1;
-    // }
-    // f.prototype.useX = function() { this.x; }
-      // === ContextSpan ===
-      // === /a.js ===
-      // function f() {
-      //     [|this.x = 0;|]
-      // }
-      // f.prototype.setX = function() {
-      //     this.x = 1;
-      // }
-      // f.prototype.useX = function() { this.x; }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /a.js ===
-      // function f() {
-      //     this.[|x|] = 0;
-      // }
-      // f.prototype.setX = function() {
-      //     this.x = 1;
-      // }
-      // f.prototype.useX = function() { this.x; }
-        // === ContextSpan ===
-        // === /a.js ===
-        // function f() {
-        //     [|this.x = 0;|]
-        // }
-        // f.prototype.setX = function() {
-        //     this.x = 1;
-        // }
-        // f.prototype.useX = function() { this.x; }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /a.js ===
-      // function f() {
-      //     this.x = 0;
-      // }
-      // f.prototype.setX = function() {
-      //     this.[|x|] = 1;
-      // }
-      // f.prototype.useX = function() { this.x; }
-        // === ContextSpan ===
-        // === /a.js ===
-        // function f() {
-        //     this.x = 0;
-        // }
-        // f.prototype.setX = function() {
-        //     [|this.x = 1;|]
-        // }
-        // f.prototype.useX = function() { this.x; }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /a.js ===
-      // function f() {
-      //     this.x = 0;
-      // }
-      // f.prototype.setX = function() {
-      //     this.x = 1;
-      // }
-      // f.prototype.useX = function() { this.[|x|]; }
-
+// === Definitions ===
+// === /a.js ===
+// function f() {
+//     <|this.[|{| contextId: 0, defId: 0, kind: "property", name: "(property) f.x: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":".","kind":"punctuation"},{"text":"x","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}x|] = 0;|>
+// }
+// f.prototype.setX = function() {
+//     this.x = 1;
+// }
+// f.prototype.useX = function() { this./*FIND ALL REFS*/x; }
 
 [
   {

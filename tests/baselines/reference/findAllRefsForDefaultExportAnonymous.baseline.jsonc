@@ -1,96 +1,16 @@
 // === findAllReferences ===
 // === /a.ts ===
-// export /*FIND ALL REFS*/[|default|] function() {}
+// <|export /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}default|] function() {}|>
 
 // === /b.ts ===
-// import [|f|] from "./a";
+// <|import [|{| contextId: 1, defId: 1, isWriteAccess: true |}f|] from "./a";|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function default(): void"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "default",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.ts ===
-    // [|export default function() {}|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.ts ===
-      // export [|default|] function() {}
-        // === ContextSpan ===
-        // === /a.ts ===
-        // [|export default function() {}|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "import f"
-    // displayParts: [
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /b.ts ===
-    // import [|f|] from "./a";
-      // === ContextSpan ===
-      // === /b.ts ===
-      // [|import f from "./a";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /b.ts ===
-      // import [|f|] from "./a";
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import f from "./a";|]
+// === Definitions ===
+// === /a.ts ===
+// [|{| defId: 0, kind: "function", name: "function default(): void", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"default","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}export /*FIND ALL REFS*/default function() {}|]
 
+// === /b.ts ===
+// <|import [|{| contextId: 0, defId: 1, kind: "alias", name: "import f", displayParts: [{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"aliasName"}] |}f|] from "./a";|>
 
 [
   {
@@ -204,97 +124,17 @@
 ]
 
 // === /b.ts ===
-// import /*FIND ALL REFS*/[|f|] from "./a";
+// <|import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}f|] from "./a";|>
 
 // === /a.ts ===
-// export [|default|] function() {}
+// <|export [|{| contextId: 1, defId: 1, isWriteAccess: true |}default|] function() {}|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "import f"
-    // displayParts: [
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /b.ts ===
-    // import [|f|] from "./a";
-      // === ContextSpan ===
-      // === /b.ts ===
-      // [|import f from "./a";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /b.ts ===
-      // import [|f|] from "./a";
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import f from "./a";|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function default(): void"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "default",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.ts ===
-    // [|export default function() {}|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a.ts ===
-      // export [|default|] function() {}
-        // === ContextSpan ===
-        // === /a.ts ===
-        // [|export default function() {}|]
+// === Definitions ===
+// === /b.ts ===
+// <|import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "import f", displayParts: [{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"aliasName"}] |}f|] from "./a";|>
 
+// === /a.ts ===
+// [|{| defId: 1, kind: "function", name: "function default(): void", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"default","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}export default function() {}|]
 
 [
   {
@@ -409,15 +249,7 @@
 
 // === findRenameLocations ===
 // === /b.ts ===
-// import [|RENAME|] from "./a";
-
-// === 0 ===
-  // === /b.ts ===
-  // import [|f|] from "./a";
-    // === ContextSpan ===
-    // === /b.ts ===
-    // [|import f from "./a";|]
-
+// <|import /*RENAME*/[|{| contextId: 0 |}fRENAME|] from "./a";|>
 
 [
   {

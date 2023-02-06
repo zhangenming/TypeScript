@@ -2,29 +2,11 @@
 // /a.ts
 // /b.ts
 // === /b.ts ===
-// import { [|x|] } from "foo";
+// <|import { [|{| contextId: 0, kind: "writtenReference" |}x|] } from "foo";|>
 
 // === /a.ts ===
 // import * as foo from "foo";
-// foo./*HIGHLIGHTS*/[|x|];
-
-// === 0 ===
-  // === /b.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /b.ts ===
-      // import { [|x|] } from "foo";
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x } from "foo";|]
-// === 1 ===
-  // === /a.ts ===
-    // === 0 ===
-      // kind: "reference"
-      // === /a.ts ===
-      // import * as foo from "foo";
-      // foo.[|x|];
-
+// foo./*HIGHLIGHTS*/[|{| kind: "reference" |}x|];
 
 [
   {
@@ -61,29 +43,11 @@
 // /a.ts
 // /b.ts
 // === /b.ts ===
-// import { /*HIGHLIGHTS*/[|x|] } from "foo";
+// <|import { /*HIGHLIGHTS*/[|{| contextId: 0, kind: "writtenReference" |}x|] } from "foo";|>
 
 // === /a.ts ===
 // import * as foo from "foo";
-// foo.[|x|];
-
-// === 0 ===
-  // === /b.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /b.ts ===
-      // import { [|x|] } from "foo";
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x } from "foo";|]
-// === 1 ===
-  // === /a.ts ===
-    // === 0 ===
-      // kind: "reference"
-      // === /a.ts ===
-      // import * as foo from "foo";
-      // foo.[|x|];
-
+// foo.[|{| kind: "reference" |}x|];
 
 [
   {

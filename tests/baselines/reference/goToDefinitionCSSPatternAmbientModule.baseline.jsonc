@@ -1,45 +1,18 @@
 // === /tests/cases/fourslash/index.css ===
-// [||]html { font-size: 16px; }
+// [|{| kind: "script", name: "./index.css", unverified: true |}|]html { font-size: 16px; }
 
 // === /tests/cases/fourslash/types.ts ===
-// declare module [|"*.css"|] {
+// <|declare module [|{| contextId: 0, kind: "module", name: "\"*.css\"", isAmbient: true |}"*.css"|] {
 //   const styles: any;
 //   export = styles;
-// }
+// }|>
 
 // === /tests/cases/fourslash/index.ts ===
 // import styles from /*GOTO DEF*/"./index.css";
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "script"
-    // name: "./index.css"
-    // unverified: true
-    // === /tests/cases/fourslash/index.css ===
-    // [||]html { font-size: 16px; }
-  // === 1 ===
-    // kind: "module"
-    // name: "\"*.css\""
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: true
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/types.ts ===
-    // declare module [|"*.css"|] {
-    //   const styles: any;
-    //   export = styles;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/types.ts ===
-      // [|declare module "*.css" {
-      //   const styles: any;
-      //   export = styles;
-      // }|]
 // === TextSpan ===
-  // === /tests/cases/fourslash/index.ts ===
-  // import styles from [|"./index.css"|];
-
+// === /tests/cases/fourslash/index.ts ===
+// import styles from /*GOTO DEF*/[|"./index.css"|];
 
 {
   "definitions": [

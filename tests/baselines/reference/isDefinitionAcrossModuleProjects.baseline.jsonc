@@ -4,7 +4,7 @@
 // 
 // declare module "../b" {
 //     export namespace NS {
-//         export function /*FIND ALL REFS*/[|FA|]();
+//         <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}FA|]();|>
 //     }
 // }
 // 
@@ -15,168 +15,31 @@
 // }
 // 
 // const ia: I = {
-//     FA: NS.[|FA|],
+//     FA: NS.[|{| defId: 0 |}FA|],
 //     FC() { },
 // };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function NS.FA(): any"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "NS",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "FA",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a/index.ts ===
-    // import { NS } from "../b";
-    // import { I } from "../c";
-    // 
-    // declare module "../b" {
-    //     export namespace NS {
-    //         export function [|FA|]();
-    //     }
-    // }
-    // 
-    // declare module "../c" {
-    //     export interface I {
-    //         FA();
-    //     }
-    // }
-    // 
-    // const ia: I = {
-    //     FA: NS.FA,
-    //     FC() { },
-    // };
-      // === ContextSpan ===
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         [|export function FA();|]
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function [|FA|]();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         [|export function FA();|]
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.[|FA|],
-      //     FC() { },
-      // };
-
+// === Definitions ===
+// === /a/index.ts ===
+// import { NS } from "../b";
+// import { I } from "../c";
+// 
+// declare module "../b" {
+//     export namespace NS {
+//         <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "function", name: "function NS.FA(): any", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"NS","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"FA","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}FA|]();|>
+//     }
+// }
+// 
+// declare module "../c" {
+//     export interface I {
+//         FA();
+//     }
+// }
+// 
+// const ia: I = {
+//     FA: NS.FA,
+//     FC() { },
+// };
 
 [
   {
@@ -264,9 +127,20 @@
   }
 ]
 
+// === /c/index.ts ===
+// export namespace NS {
+//     export function FC() {}
+// }
+// 
+// <|export interface [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}I|] {
+//     FC();
+// }|>
+// 
+// const ic: [|{| defId: 0 |}I|] = { FC() {} };
+
 // === /a/index.ts ===
 // import { NS } from "../b";
-// import { [|I|] } from "../c";
+// <|import { [|{| contextId: 1, defId: 1, isWriteAccess: true |}I|] } from "../c";|>
 // 
 // declare module "../b" {
 //     export namespace NS {
@@ -275,19 +149,19 @@
 // }
 // 
 // declare module "../c" {
-//     export interface /*FIND ALL REFS*/[|I|] {
+//     <|export interface /*FIND ALL REFS*/[|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}I|] {
 //         FA();
-//     }
+//     }|>
 // }
 // 
-// const ia: [|I|] = {
+// const ia: [|{| defId: 1 |}I|] = {
 //     FA: NS.FA,
 //     FC() { },
 // };
 
 // === /a2/index.ts ===
 // import { NS } from "../b";
-// import { [|I|] } from "../c";
+// <|import { [|{| contextId: 3, defId: 2, isWriteAccess: true |}I|] } from "../c";|>
 // 
 // declare module "../b" {
 //     export namespace NS {
@@ -296,517 +170,69 @@
 // }
 // 
 // declare module "../c" {
-//     export interface [|I|] {
+//     <|export interface [|{| contextId: 4, defId: 0, isWriteAccess: true, isDefinition: true |}I|] {
 //         FA();
-//     }
+//     }|>
 // }
 // 
-// const ia: [|I|] = {
+// const ia: [|{| defId: 2 |}I|] = {
 //     FA: NS.FA,
 //     FC() { },
 // };
 
+// === Definitions ===
 // === /c/index.ts ===
 // export namespace NS {
 //     export function FC() {}
 // }
 // 
-// export interface [|I|] {
+// <|export interface [|{| contextId: 0, defId: 0, kind: "interface", name: "interface I", displayParts: [{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"}] |}I|] {
 //     FC();
+// }|>
+// 
+// const ic: I = { FC() {} };
+
+// === /a/index.ts ===
+// import { NS } from "../b";
+// <|import { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) interface I\nimport I", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"}] |}I|] } from "../c";|>
+// 
+// declare module "../b" {
+//     export namespace NS {
+//         export function FA();
+//     }
 // }
 // 
-// const ic: [|I|] = { FC() {} };
+// declare module "../c" {
+//     export interface /*FIND ALL REFS*/I {
+//         FA();
+//     }
+// }
+// 
+// const ia: I = {
+//     FA: NS.FA,
+//     FC() { },
+// };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "interface"
-    // name: "interface I"
-    // displayParts: [
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /c/index.ts ===
-    // export namespace NS {
-    //     export function FC() {}
-    // }
-    // 
-    // export interface [|I|] {
-    //     FC();
-    // }
-    // 
-    // const ic: I = { FC() {} };
-      // === ContextSpan ===
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // [|export interface I {
-      //     FC();
-      // }|]
-      // 
-      // const ic: I = { FC() {} };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // export interface [|I|] {
-      //     FC();
-      // }
-      // 
-      // const ic: I = { FC() {} };
-        // === ContextSpan ===
-        // === /c/index.ts ===
-        // export namespace NS {
-        //     export function FC() {}
-        // }
-        // 
-        // [|export interface I {
-        //     FC();
-        // }|]
-        // 
-        // const ic: I = { FC() {} };
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface [|I|] {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     [|export interface I {
-        //         FA();
-        //     }|]
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // export interface I {
-      //     FC();
-      // }
-      // 
-      // const ic: [|I|] = { FC() {} };
-    // === 3 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface [|I|] {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a2/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     [|export interface I {
-        //         FA();
-        //     }|]
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) interface I\nimport I"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /a/index.ts ===
-    // import { NS } from "../b";
-    // import { [|I|] } from "../c";
-    // 
-    // declare module "../b" {
-    //     export namespace NS {
-    //         export function FA();
-    //     }
-    // }
-    // 
-    // declare module "../c" {
-    //     export interface I {
-    //         FA();
-    //     }
-    // }
-    // 
-    // const ia: I = {
-    //     FA: NS.FA,
-    //     FC() { },
-    // };
-      // === ContextSpan ===
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // [|import { I } from "../c";|]
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { [|I|] } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a/index.ts ===
-        // import { NS } from "../b";
-        // [|import { I } from "../c";|]
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: [|I|] = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) interface I\nimport I"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /a2/index.ts ===
-    // import { NS } from "../b";
-    // import { [|I|] } from "../c";
-    // 
-    // declare module "../b" {
-    //     export namespace NS {
-    //         export function FA();
-    //     }
-    // }
-    // 
-    // declare module "../c" {
-    //     export interface I {
-    //         FA();
-    //     }
-    // }
-    // 
-    // const ia: I = {
-    //     FA: NS.FA,
-    //     FC() { },
-    // };
-      // === ContextSpan ===
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // [|import { I } from "../c";|]
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { [|I|] } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a2/index.ts ===
-        // import { NS } from "../b";
-        // [|import { I } from "../c";|]
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: [|I|] = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-
+// === /a2/index.ts ===
+// import { NS } from "../b";
+// <|import { [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) interface I\nimport I", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"}] |}I|] } from "../c";|>
+// 
+// declare module "../b" {
+//     export namespace NS {
+//         export function FA();
+//     }
+// }
+// 
+// declare module "../c" {
+//     export interface I {
+//         FA();
+//     }
+// }
+// 
+// const ia: I = {
+//     FA: NS.FA,
+//     FC() { },
+// };
 
 [
   {
@@ -1078,202 +504,36 @@
 // 
 // declare module "../c" {
 //     export interface I {
-//         /*FIND ALL REFS*/[|FA|]();
+//         /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}FA|]();|>
 //     }
 // }
 // 
 // const ia: I = {
-//     [|FA|]: NS.FA,
+//     <|[|{| contextId: 1, defId: 0, isWriteAccess: true |}FA|]: NS.FA|>,
 //     FC() { },
 // };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) I.FA(): any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "FA",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a/index.ts ===
-    // import { NS } from "../b";
-    // import { I } from "../c";
-    // 
-    // declare module "../b" {
-    //     export namespace NS {
-    //         export function FA();
-    //     }
-    // }
-    // 
-    // declare module "../c" {
-    //     export interface I {
-    //         [|FA|]();
-    //     }
-    // }
-    // 
-    // const ia: I = {
-    //     FA: NS.FA,
-    //     FC() { },
-    // };
-      // === ContextSpan ===
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         [|FA();|]
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         [|FA|]();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         [|FA();|]
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     [|FA|]: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     [|FA: NS.FA|],
-        //     FC() { },
-        // };
-
+// === Definitions ===
+// === /a/index.ts ===
+// import { NS } from "../b";
+// import { I } from "../c";
+// 
+// declare module "../b" {
+//     export namespace NS {
+//         export function FA();
+//     }
+// }
+// 
+// declare module "../c" {
+//     export interface I {
+//         /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) I.FA(): any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"FA","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}FA|]();|>
+//     }
+// }
+// 
+// const ia: I = {
+//     FA: NS.FA,
+//     FC() { },
+// };
 
 [
   {
@@ -1379,7 +639,7 @@
 // 
 // declare module "../b" {
 //     export namespace NS {
-//         export function /*FIND ALL REFS*/[|FA|]();
+//         <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}FA|]();|>
 //     }
 // }
 // 
@@ -1390,168 +650,31 @@
 // }
 // 
 // const ia: I = {
-//     FA: NS.[|FA|],
+//     FA: NS.[|{| defId: 0 |}FA|],
 //     FC() { },
 // };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function NS.FA(): any"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "NS",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "FA",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a2/index.ts ===
-    // import { NS } from "../b";
-    // import { I } from "../c";
-    // 
-    // declare module "../b" {
-    //     export namespace NS {
-    //         export function [|FA|]();
-    //     }
-    // }
-    // 
-    // declare module "../c" {
-    //     export interface I {
-    //         FA();
-    //     }
-    // }
-    // 
-    // const ia: I = {
-    //     FA: NS.FA,
-    //     FC() { },
-    // };
-      // === ContextSpan ===
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         [|export function FA();|]
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function [|FA|]();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a2/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         [|export function FA();|]
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.[|FA|],
-      //     FC() { },
-      // };
-
+// === Definitions ===
+// === /a2/index.ts ===
+// import { NS } from "../b";
+// import { I } from "../c";
+// 
+// declare module "../b" {
+//     export namespace NS {
+//         <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "function", name: "function NS.FA(): any", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"NS","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"FA","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}FA|]();|>
+//     }
+// }
+// 
+// declare module "../c" {
+//     export interface I {
+//         FA();
+//     }
+// }
+// 
+// const ia: I = {
+//     FA: NS.FA,
+//     FC() { },
+// };
 
 [
   {
@@ -1639,9 +762,20 @@
   }
 ]
 
+// === /c/index.ts ===
+// export namespace NS {
+//     export function FC() {}
+// }
+// 
+// <|export interface [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}I|] {
+//     FC();
+// }|>
+// 
+// const ic: [|{| defId: 0 |}I|] = { FC() {} };
+
 // === /a2/index.ts ===
 // import { NS } from "../b";
-// import { [|I|] } from "../c";
+// <|import { [|{| contextId: 1, defId: 1, isWriteAccess: true |}I|] } from "../c";|>
 // 
 // declare module "../b" {
 //     export namespace NS {
@@ -1650,19 +784,19 @@
 // }
 // 
 // declare module "../c" {
-//     export interface /*FIND ALL REFS*/[|I|] {
+//     <|export interface /*FIND ALL REFS*/[|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}I|] {
 //         FA();
-//     }
+//     }|>
 // }
 // 
-// const ia: [|I|] = {
+// const ia: [|{| defId: 1 |}I|] = {
 //     FA: NS.FA,
 //     FC() { },
 // };
 
 // === /a/index.ts ===
 // import { NS } from "../b";
-// import { [|I|] } from "../c";
+// <|import { [|{| contextId: 3, defId: 2, isWriteAccess: true |}I|] } from "../c";|>
 // 
 // declare module "../b" {
 //     export namespace NS {
@@ -1671,517 +805,69 @@
 // }
 // 
 // declare module "../c" {
-//     export interface [|I|] {
+//     <|export interface [|{| contextId: 4, defId: 0, isWriteAccess: true, isDefinition: true |}I|] {
 //         FA();
-//     }
+//     }|>
 // }
 // 
-// const ia: [|I|] = {
+// const ia: [|{| defId: 2 |}I|] = {
 //     FA: NS.FA,
 //     FC() { },
 // };
 
+// === Definitions ===
 // === /c/index.ts ===
 // export namespace NS {
 //     export function FC() {}
 // }
 // 
-// export interface [|I|] {
+// <|export interface [|{| contextId: 0, defId: 0, kind: "interface", name: "interface I", displayParts: [{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"}] |}I|] {
 //     FC();
+// }|>
+// 
+// const ic: I = { FC() {} };
+
+// === /a2/index.ts ===
+// import { NS } from "../b";
+// <|import { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) interface I\nimport I", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"}] |}I|] } from "../c";|>
+// 
+// declare module "../b" {
+//     export namespace NS {
+//         export function FA();
+//     }
 // }
 // 
-// const ic: [|I|] = { FC() {} };
+// declare module "../c" {
+//     export interface /*FIND ALL REFS*/I {
+//         FA();
+//     }
+// }
+// 
+// const ia: I = {
+//     FA: NS.FA,
+//     FC() { },
+// };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "interface"
-    // name: "interface I"
-    // displayParts: [
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /c/index.ts ===
-    // export namespace NS {
-    //     export function FC() {}
-    // }
-    // 
-    // export interface [|I|] {
-    //     FC();
-    // }
-    // 
-    // const ic: I = { FC() {} };
-      // === ContextSpan ===
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // [|export interface I {
-      //     FC();
-      // }|]
-      // 
-      // const ic: I = { FC() {} };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // export interface [|I|] {
-      //     FC();
-      // }
-      // 
-      // const ic: I = { FC() {} };
-        // === ContextSpan ===
-        // === /c/index.ts ===
-        // export namespace NS {
-        //     export function FC() {}
-        // }
-        // 
-        // [|export interface I {
-        //     FC();
-        // }|]
-        // 
-        // const ic: I = { FC() {} };
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface [|I|] {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a2/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     [|export interface I {
-        //         FA();
-        //     }|]
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // export interface I {
-      //     FC();
-      // }
-      // 
-      // const ic: [|I|] = { FC() {} };
-    // === 3 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface [|I|] {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     [|export interface I {
-        //         FA();
-        //     }|]
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) interface I\nimport I"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /a2/index.ts ===
-    // import { NS } from "../b";
-    // import { [|I|] } from "../c";
-    // 
-    // declare module "../b" {
-    //     export namespace NS {
-    //         export function FA();
-    //     }
-    // }
-    // 
-    // declare module "../c" {
-    //     export interface I {
-    //         FA();
-    //     }
-    // }
-    // 
-    // const ia: I = {
-    //     FA: NS.FA,
-    //     FC() { },
-    // };
-      // === ContextSpan ===
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // [|import { I } from "../c";|]
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { [|I|] } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a2/index.ts ===
-        // import { NS } from "../b";
-        // [|import { I } from "../c";|]
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: [|I|] = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) interface I\nimport I"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /a/index.ts ===
-    // import { NS } from "../b";
-    // import { [|I|] } from "../c";
-    // 
-    // declare module "../b" {
-    //     export namespace NS {
-    //         export function FA();
-    //     }
-    // }
-    // 
-    // declare module "../c" {
-    //     export interface I {
-    //         FA();
-    //     }
-    // }
-    // 
-    // const ia: I = {
-    //     FA: NS.FA,
-    //     FC() { },
-    // };
-      // === ContextSpan ===
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // [|import { I } from "../c";|]
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { [|I|] } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a/index.ts ===
-        // import { NS } from "../b";
-        // [|import { I } from "../c";|]
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: [|I|] = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-
+// === /a/index.ts ===
+// import { NS } from "../b";
+// <|import { [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) interface I\nimport I", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"}] |}I|] } from "../c";|>
+// 
+// declare module "../b" {
+//     export namespace NS {
+//         export function FA();
+//     }
+// }
+// 
+// declare module "../c" {
+//     export interface I {
+//         FA();
+//     }
+// }
+// 
+// const ia: I = {
+//     FA: NS.FA,
+//     FC() { },
+// };
 
 [
   {
@@ -2453,202 +1139,36 @@
 // 
 // declare module "../c" {
 //     export interface I {
-//         /*FIND ALL REFS*/[|FA|]();
+//         /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}FA|]();|>
 //     }
 // }
 // 
 // const ia: I = {
-//     [|FA|]: NS.FA,
+//     <|[|{| contextId: 1, defId: 0, isWriteAccess: true |}FA|]: NS.FA|>,
 //     FC() { },
 // };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) I.FA(): any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "FA",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a2/index.ts ===
-    // import { NS } from "../b";
-    // import { I } from "../c";
-    // 
-    // declare module "../b" {
-    //     export namespace NS {
-    //         export function FA();
-    //     }
-    // }
-    // 
-    // declare module "../c" {
-    //     export interface I {
-    //         [|FA|]();
-    //     }
-    // }
-    // 
-    // const ia: I = {
-    //     FA: NS.FA,
-    //     FC() { },
-    // };
-      // === ContextSpan ===
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         [|FA();|]
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         [|FA|]();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a2/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         [|FA();|]
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     [|FA|]: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a2/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     [|FA: NS.FA|],
-        //     FC() { },
-        // };
-
+// === Definitions ===
+// === /a2/index.ts ===
+// import { NS } from "../b";
+// import { I } from "../c";
+// 
+// declare module "../b" {
+//     export namespace NS {
+//         export function FA();
+//     }
+// }
+// 
+// declare module "../c" {
+//     export interface I {
+//         /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) I.FA(): any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"FA","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}FA|]();|>
+//     }
+// }
+// 
+// const ia: I = {
+//     FA: NS.FA,
+//     FC() { },
+// };
 
 [
   {
@@ -2750,7 +1270,7 @@
 
 // === /b/index.ts ===
 // export namespace NS {
-//     export function /*FIND ALL REFS*/[|FB|]() {}
+//     <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}FB|]() {}|>
 // }
 // 
 // export interface I {
@@ -2759,101 +1279,17 @@
 // 
 // const ib: I = { FB() {} };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function NS.FB(): void"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "NS",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "FB",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /b/index.ts ===
-    // export namespace NS {
-    //     export function [|FB|]() {}
-    // }
-    // 
-    // export interface I {
-    //     FB();
-    // }
-    // 
-    // const ib: I = { FB() {} };
-      // === ContextSpan ===
-      // === /b/index.ts ===
-      // export namespace NS {
-      //     [|export function FB() {}|]
-      // }
-      // 
-      // export interface I {
-      //     FB();
-      // }
-      // 
-      // const ib: I = { FB() {} };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /b/index.ts ===
-      // export namespace NS {
-      //     export function [|FB|]() {}
-      // }
-      // 
-      // export interface I {
-      //     FB();
-      // }
-      // 
-      // const ib: I = { FB() {} };
-        // === ContextSpan ===
-        // === /b/index.ts ===
-        // export namespace NS {
-        //     [|export function FB() {}|]
-        // }
-        // 
-        // export interface I {
-        //     FB();
-        // }
-        // 
-        // const ib: I = { FB() {} };
-
+// === Definitions ===
+// === /b/index.ts ===
+// export namespace NS {
+//     <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "function", name: "function NS.FB(): void", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"NS","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"FB","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}FB|]() {}|>
+// }
+// 
+// export interface I {
+//     FB();
+// }
+// 
+// const ib: I = { FB() {} };
 
 [
   {
@@ -2937,92 +1373,23 @@
 //     export function FB() {}
 // }
 // 
-// export interface /*FIND ALL REFS*/[|I|] {
+// <|export interface /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}I|] {
 //     FB();
+// }|>
+// 
+// const ib: [|{| defId: 0 |}I|] = { FB() {} };
+
+// === Definitions ===
+// === /b/index.ts ===
+// export namespace NS {
+//     export function FB() {}
 // }
 // 
-// const ib: [|I|] = { FB() {} };
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "interface"
-    // name: "interface I"
-    // displayParts: [
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /b/index.ts ===
-    // export namespace NS {
-    //     export function FB() {}
-    // }
-    // 
-    // export interface [|I|] {
-    //     FB();
-    // }
-    // 
-    // const ib: I = { FB() {} };
-      // === ContextSpan ===
-      // === /b/index.ts ===
-      // export namespace NS {
-      //     export function FB() {}
-      // }
-      // 
-      // [|export interface I {
-      //     FB();
-      // }|]
-      // 
-      // const ib: I = { FB() {} };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /b/index.ts ===
-      // export namespace NS {
-      //     export function FB() {}
-      // }
-      // 
-      // export interface [|I|] {
-      //     FB();
-      // }
-      // 
-      // const ib: I = { FB() {} };
-        // === ContextSpan ===
-        // === /b/index.ts ===
-        // export namespace NS {
-        //     export function FB() {}
-        // }
-        // 
-        // [|export interface I {
-        //     FB();
-        // }|]
-        // 
-        // const ib: I = { FB() {} };
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /b/index.ts ===
-      // export namespace NS {
-      //     export function FB() {}
-      // }
-      // 
-      // export interface I {
-      //     FB();
-      // }
-      // 
-      // const ib: [|I|] = { FB() {} };
-
+// <|export interface /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "interface", name: "interface I", displayParts: [{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"}] |}I|] {
+//     FB();
+// }|>
+// 
+// const ib: I = { FB() {} };
 
 [
   {
@@ -3088,138 +1455,22 @@
 // }
 // 
 // export interface I {
-//     /*FIND ALL REFS*/[|FB|]();
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isDefinition: true |}FB|]();|>
 // }
 // 
-// const ib: I = { [|FB|]() {} };
+// const ib: I = { <|[|{| contextId: 1, defId: 0, isWriteAccess: true |}FB|]() {}|> };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) I.FB(): any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "FB",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /b/index.ts ===
-    // export namespace NS {
-    //     export function FB() {}
-    // }
-    // 
-    // export interface I {
-    //     [|FB|]();
-    // }
-    // 
-    // const ib: I = { FB() {} };
-      // === ContextSpan ===
-      // === /b/index.ts ===
-      // export namespace NS {
-      //     export function FB() {}
-      // }
-      // 
-      // export interface I {
-      //     [|FB();|]
-      // }
-      // 
-      // const ib: I = { FB() {} };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /b/index.ts ===
-      // export namespace NS {
-      //     export function FB() {}
-      // }
-      // 
-      // export interface I {
-      //     [|FB|]();
-      // }
-      // 
-      // const ib: I = { FB() {} };
-        // === ContextSpan ===
-        // === /b/index.ts ===
-        // export namespace NS {
-        //     export function FB() {}
-        // }
-        // 
-        // export interface I {
-        //     [|FB();|]
-        // }
-        // 
-        // const ib: I = { FB() {} };
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /b/index.ts ===
-      // export namespace NS {
-      //     export function FB() {}
-      // }
-      // 
-      // export interface I {
-      //     FB();
-      // }
-      // 
-      // const ib: I = { [|FB|]() {} };
-        // === ContextSpan ===
-        // === /b/index.ts ===
-        // export namespace NS {
-        //     export function FB() {}
-        // }
-        // 
-        // export interface I {
-        //     FB();
-        // }
-        // 
-        // const ib: I = { [|FB() {}|] };
-
+// === Definitions ===
+// === /b/index.ts ===
+// export namespace NS {
+//     export function FB() {}
+// }
+// 
+// export interface I {
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) I.FB(): any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"FB","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}FB|]();|>
+// }
+// 
+// const ib: I = { FB() {} };
 
 [
   {
@@ -3321,7 +1572,7 @@
 
 // === /c/index.ts ===
 // export namespace NS {
-//     export function /*FIND ALL REFS*/[|FC|]() {}
+//     <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}FC|]() {}|>
 // }
 // 
 // export interface I {
@@ -3330,101 +1581,17 @@
 // 
 // const ic: I = { FC() {} };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function NS.FC(): void"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "NS",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "FC",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /c/index.ts ===
-    // export namespace NS {
-    //     export function [|FC|]() {}
-    // }
-    // 
-    // export interface I {
-    //     FC();
-    // }
-    // 
-    // const ic: I = { FC() {} };
-      // === ContextSpan ===
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     [|export function FC() {}|]
-      // }
-      // 
-      // export interface I {
-      //     FC();
-      // }
-      // 
-      // const ic: I = { FC() {} };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function [|FC|]() {}
-      // }
-      // 
-      // export interface I {
-      //     FC();
-      // }
-      // 
-      // const ic: I = { FC() {} };
-        // === ContextSpan ===
-        // === /c/index.ts ===
-        // export namespace NS {
-        //     [|export function FC() {}|]
-        // }
-        // 
-        // export interface I {
-        //     FC();
-        // }
-        // 
-        // const ic: I = { FC() {} };
-
+// === Definitions ===
+// === /c/index.ts ===
+// export namespace NS {
+//     <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "function", name: "function NS.FC(): void", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"NS","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"FC","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}FC|]() {}|>
+// }
+// 
+// export interface I {
+//     FC();
+// }
+// 
+// const ic: I = { FC() {} };
 
 [
   {
@@ -3503,9 +1670,20 @@
   }
 ]
 
+// === /c/index.ts ===
+// export namespace NS {
+//     export function FC() {}
+// }
+// 
+// <|export interface /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}I|] {
+//     FC();
+// }|>
+// 
+// const ic: [|{| defId: 0 |}I|] = { FC() {} };
+
 // === /a/index.ts ===
 // import { NS } from "../b";
-// import { [|I|] } from "../c";
+// <|import { [|{| contextId: 1, defId: 1, isWriteAccess: true |}I|] } from "../c";|>
 // 
 // declare module "../b" {
 //     export namespace NS {
@@ -3514,19 +1692,19 @@
 // }
 // 
 // declare module "../c" {
-//     export interface [|I|] {
+//     <|export interface [|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}I|] {
 //         FA();
-//     }
+//     }|>
 // }
 // 
-// const ia: [|I|] = {
+// const ia: [|{| defId: 1 |}I|] = {
 //     FA: NS.FA,
 //     FC() { },
 // };
 
 // === /a2/index.ts ===
 // import { NS } from "../b";
-// import { [|I|] } from "../c";
+// <|import { [|{| contextId: 3, defId: 2, isWriteAccess: true |}I|] } from "../c";|>
 // 
 // declare module "../b" {
 //     export namespace NS {
@@ -3535,517 +1713,69 @@
 // }
 // 
 // declare module "../c" {
-//     export interface [|I|] {
+//     <|export interface [|{| contextId: 4, defId: 0, isWriteAccess: true, isDefinition: true |}I|] {
 //         FA();
-//     }
+//     }|>
 // }
 // 
-// const ia: [|I|] = {
+// const ia: [|{| defId: 2 |}I|] = {
 //     FA: NS.FA,
 //     FC() { },
 // };
 
+// === Definitions ===
 // === /c/index.ts ===
 // export namespace NS {
 //     export function FC() {}
 // }
 // 
-// export interface /*FIND ALL REFS*/[|I|] {
+// <|export interface /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "interface", name: "interface I", displayParts: [{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"}] |}I|] {
 //     FC();
+// }|>
+// 
+// const ic: I = { FC() {} };
+
+// === /a/index.ts ===
+// import { NS } from "../b";
+// <|import { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) interface I\nimport I", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"}] |}I|] } from "../c";|>
+// 
+// declare module "../b" {
+//     export namespace NS {
+//         export function FA();
+//     }
 // }
 // 
-// const ic: [|I|] = { FC() {} };
+// declare module "../c" {
+//     export interface I {
+//         FA();
+//     }
+// }
+// 
+// const ia: I = {
+//     FA: NS.FA,
+//     FC() { },
+// };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "interface"
-    // name: "interface I"
-    // displayParts: [
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /c/index.ts ===
-    // export namespace NS {
-    //     export function FC() {}
-    // }
-    // 
-    // export interface [|I|] {
-    //     FC();
-    // }
-    // 
-    // const ic: I = { FC() {} };
-      // === ContextSpan ===
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // [|export interface I {
-      //     FC();
-      // }|]
-      // 
-      // const ic: I = { FC() {} };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // export interface [|I|] {
-      //     FC();
-      // }
-      // 
-      // const ic: I = { FC() {} };
-        // === ContextSpan ===
-        // === /c/index.ts ===
-        // export namespace NS {
-        //     export function FC() {}
-        // }
-        // 
-        // [|export interface I {
-        //     FC();
-        // }|]
-        // 
-        // const ic: I = { FC() {} };
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // export interface I {
-      //     FC();
-      // }
-      // 
-      // const ic: [|I|] = { FC() {} };
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface [|I|] {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     [|export interface I {
-        //         FA();
-        //     }|]
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 3 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface [|I|] {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a2/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     [|export interface I {
-        //         FA();
-        //     }|]
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) interface I\nimport I"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /a/index.ts ===
-    // import { NS } from "../b";
-    // import { [|I|] } from "../c";
-    // 
-    // declare module "../b" {
-    //     export namespace NS {
-    //         export function FA();
-    //     }
-    // }
-    // 
-    // declare module "../c" {
-    //     export interface I {
-    //         FA();
-    //     }
-    // }
-    // 
-    // const ia: I = {
-    //     FA: NS.FA,
-    //     FC() { },
-    // };
-      // === ContextSpan ===
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // [|import { I } from "../c";|]
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { [|I|] } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a/index.ts ===
-        // import { NS } from "../b";
-        // [|import { I } from "../c";|]
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: [|I|] = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) interface I\nimport I"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /a2/index.ts ===
-    // import { NS } from "../b";
-    // import { [|I|] } from "../c";
-    // 
-    // declare module "../b" {
-    //     export namespace NS {
-    //         export function FA();
-    //     }
-    // }
-    // 
-    // declare module "../c" {
-    //     export interface I {
-    //         FA();
-    //     }
-    // }
-    // 
-    // const ia: I = {
-    //     FA: NS.FA,
-    //     FC() { },
-    // };
-      // === ContextSpan ===
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // [|import { I } from "../c";|]
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { [|I|] } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-        // === ContextSpan ===
-        // === /a2/index.ts ===
-        // import { NS } from "../b";
-        // [|import { I } from "../c";|]
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     FC() { },
-        // };
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: [|I|] = {
-      //     FA: NS.FA,
-      //     FC() { },
-      // };
-
+// === /a2/index.ts ===
+// import { NS } from "../b";
+// <|import { [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) interface I\nimport I", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"I","kind":"aliasName"}] |}I|] } from "../c";|>
+// 
+// declare module "../b" {
+//     export namespace NS {
+//         export function FA();
+//     }
+// }
+// 
+// declare module "../c" {
+//     export interface I {
+//         FA();
+//     }
+// }
+// 
+// const ia: I = {
+//     FA: NS.FA,
+//     FC() { },
+// };
 
 [
   {
@@ -4311,10 +2041,10 @@
 // }
 // 
 // export interface I {
-//     /*FIND ALL REFS*/[|FC|]();
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isDefinition: true |}FC|]();|>
 // }
 // 
-// const ic: I = { [|FC|]() {} };
+// const ic: I = { <|[|{| contextId: 1, defId: 0, isWriteAccess: true |}FC|]() {}|> };
 
 // === /a/index.ts ===
 // import { NS } from "../b";
@@ -4334,7 +2064,7 @@
 // 
 // const ia: I = {
 //     FA: NS.FA,
-//     [|FC|]() { },
+//     <|[|{| contextId: 2, defId: 0, isWriteAccess: true |}FC|]() { }|>,
 // };
 
 // === /a2/index.ts ===
@@ -4355,224 +2085,20 @@
 // 
 // const ia: I = {
 //     FA: NS.FA,
-//     [|FC|]() { },
+//     <|[|{| contextId: 3, defId: 0, isWriteAccess: true |}FC|]() { }|>,
 // };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) I.FC(): any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "FC",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /c/index.ts ===
-    // export namespace NS {
-    //     export function FC() {}
-    // }
-    // 
-    // export interface I {
-    //     [|FC|]();
-    // }
-    // 
-    // const ic: I = { FC() {} };
-      // === ContextSpan ===
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // export interface I {
-      //     [|FC();|]
-      // }
-      // 
-      // const ic: I = { FC() {} };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // export interface I {
-      //     [|FC|]();
-      // }
-      // 
-      // const ic: I = { FC() {} };
-        // === ContextSpan ===
-        // === /c/index.ts ===
-        // export namespace NS {
-        //     export function FC() {}
-        // }
-        // 
-        // export interface I {
-        //     [|FC();|]
-        // }
-        // 
-        // const ic: I = { FC() {} };
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /c/index.ts ===
-      // export namespace NS {
-      //     export function FC() {}
-      // }
-      // 
-      // export interface I {
-      //     FC();
-      // }
-      // 
-      // const ic: I = { [|FC|]() {} };
-        // === ContextSpan ===
-        // === /c/index.ts ===
-        // export namespace NS {
-        //     export function FC() {}
-        // }
-        // 
-        // export interface I {
-        //     FC();
-        // }
-        // 
-        // const ic: I = { [|FC() {}|] };
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     [|FC|]() { },
-      // };
-        // === ContextSpan ===
-        // === /a/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     [|FC() { }|],
-        // };
-    // === 3 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a2/index.ts ===
-      // import { NS } from "../b";
-      // import { I } from "../c";
-      // 
-      // declare module "../b" {
-      //     export namespace NS {
-      //         export function FA();
-      //     }
-      // }
-      // 
-      // declare module "../c" {
-      //     export interface I {
-      //         FA();
-      //     }
-      // }
-      // 
-      // const ia: I = {
-      //     FA: NS.FA,
-      //     [|FC|]() { },
-      // };
-        // === ContextSpan ===
-        // === /a2/index.ts ===
-        // import { NS } from "../b";
-        // import { I } from "../c";
-        // 
-        // declare module "../b" {
-        //     export namespace NS {
-        //         export function FA();
-        //     }
-        // }
-        // 
-        // declare module "../c" {
-        //     export interface I {
-        //         FA();
-        //     }
-        // }
-        // 
-        // const ia: I = {
-        //     FA: NS.FA,
-        //     [|FC() { }|],
-        // };
-
+// === Definitions ===
+// === /c/index.ts ===
+// export namespace NS {
+//     export function FC() {}
+// }
+// 
+// export interface I {
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) I.FC(): any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"FC","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}FC|]();|>
+// }
+// 
+// const ic: I = { FC() {} };
 
 [
   {

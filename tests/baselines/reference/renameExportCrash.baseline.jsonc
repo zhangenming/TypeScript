@@ -1,40 +1,8 @@
 // === RenameOptions ===
 // === /tests/cases/fourslash/Foo.js ===
-// let RENAME;
-// module.exports = [|RENAME|];
-// exports["foo"] = RENAME;
-
-// === 0 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // let [|a|];
-  // module.exports = a;
-  // exports["foo"] = a;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/Foo.js ===
-    // [|let a;|]
-    // module.exports = a;
-    // exports["foo"] = a;
-// === 1 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // let a;
-  // module.exports = [|a|];
-  // exports["foo"] = a;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/Foo.js ===
-    // let a;
-    // [|module.exports = a;|]
-    // exports["foo"] = a;
-// === 2 ===
-  // === /tests/cases/fourslash/Foo.js ===
-  // let a;
-  // module.exports = a;
-  // exports["foo"] = [|a|];
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/Foo.js ===
-    // let a;
-    // module.exports = a;
-    // [|exports["foo"] = a;|]
-
+// <|let [|{| contextId: 0 |}aRENAME|];|>
+// <|module.exports = /*RENAME*/[|{| contextId: 1 |}aRENAME|];|>
+// <|exports["foo"] = [|{| contextId: 2 |}aRENAME|];|>
 
 [
   {

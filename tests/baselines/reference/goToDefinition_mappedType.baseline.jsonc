@@ -1,32 +1,13 @@
 // === /tests/cases/fourslash/goToDefinition_mappedType.ts ===
-// interface I { [|m|](): void; };
+// interface I { <|[|{| contextId: 0, kind: "method", name: "m", containerName: "I" |}m|](): void;|> };
 // declare const i: { [K in "m"]: I[K] };
 // i./*GOTO DEF*/m();
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "method"
-    // name: "m"
-    // containerName: "I"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinition_mappedType.ts ===
-    // interface I { [|m|](): void; };
-    // declare const i: { [K in "m"]: I[K] };
-    // i.m();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinition_mappedType.ts ===
-      // interface I { [|m(): void;|] };
-      // declare const i: { [K in "m"]: I[K] };
-      // i.m();
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinition_mappedType.ts ===
-  // interface I { m(): void; };
-  // declare const i: { [K in "m"]: I[K] };
-  // i.[|m|]();
-
+// === /tests/cases/fourslash/goToDefinition_mappedType.ts ===
+// interface I { m(): void; };
+// declare const i: { [K in "m"]: I[K] };
+// i./*GOTO DEF*/[|m|]();
 
 {
   "definitions": [

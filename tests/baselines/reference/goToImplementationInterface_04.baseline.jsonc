@@ -3,90 +3,16 @@
 //     (a: number): void
 // }
 // 
-// var bar: Foo = [|(a) => {/**0*/}|];
+// var bar: Foo = [|{| kind: "function", displayParts: [] |}(a) => {/**0*/}|];
 // 
-// function whatever(x: Foo = [|(a) => {/**1*/}|] ) {
+// function whatever(x: Foo = [|{| kind: "function", displayParts: [] |}(a) => {/**1*/}|] ) {
 // }
 // 
 // class Bar {
-//     x: Foo = [|(a) => {/**2*/}|]
+//     x: Foo = [|{| kind: "function", displayParts: [] |}(a) => {/**2*/}|]
 // 
-//     constructor(public f: Foo = [|function(a) {}|] ) {}
+//     constructor(public f: Foo = [|{| kind: "function", displayParts: [] |}function(a) {}|] ) {}
 // }
-
-// === 0 ===
-  // kind: "function"
-  // displayParts: []
-  // === /tests/cases/fourslash/goToImplementationInterface_04.ts ===
-  // interface Foo {
-  //     (a: number): void
-  // }
-  // 
-  // var bar: Foo = [|(a) => {/**0*/}|];
-  // 
-  // function whatever(x: Foo = (a) => {/**1*/} ) {
-  // }
-  // 
-  // class Bar {
-  //     x: Foo = (a) => {/**2*/}
-  // 
-  //     constructor(public f: Foo = function(a) {} ) {}
-  // }
-// === 1 ===
-  // kind: "function"
-  // displayParts: []
-  // === /tests/cases/fourslash/goToImplementationInterface_04.ts ===
-  // interface Foo {
-  //     (a: number): void
-  // }
-  // 
-  // var bar: Foo = (a) => {/**0*/};
-  // 
-  // function whatever(x: Foo = [|(a) => {/**1*/}|] ) {
-  // }
-  // 
-  // class Bar {
-  //     x: Foo = (a) => {/**2*/}
-  // 
-  //     constructor(public f: Foo = function(a) {} ) {}
-  // }
-// === 2 ===
-  // kind: "function"
-  // displayParts: []
-  // === /tests/cases/fourslash/goToImplementationInterface_04.ts ===
-  // interface Foo {
-  //     (a: number): void
-  // }
-  // 
-  // var bar: Foo = (a) => {/**0*/};
-  // 
-  // function whatever(x: Foo = (a) => {/**1*/} ) {
-  // }
-  // 
-  // class Bar {
-  //     x: Foo = [|(a) => {/**2*/}|]
-  // 
-  //     constructor(public f: Foo = function(a) {} ) {}
-  // }
-// === 3 ===
-  // kind: "function"
-  // displayParts: []
-  // === /tests/cases/fourslash/goToImplementationInterface_04.ts ===
-  // interface Foo {
-  //     (a: number): void
-  // }
-  // 
-  // var bar: Foo = (a) => {/**0*/};
-  // 
-  // function whatever(x: Foo = (a) => {/**1*/} ) {
-  // }
-  // 
-  // class Bar {
-  //     x: Foo = (a) => {/**2*/}
-  // 
-  //     constructor(public f: Foo = [|function(a) {}|] ) {}
-  // }
-
 
 [
   {

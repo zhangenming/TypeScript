@@ -1,283 +1,37 @@
 // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
 // interface I {
-//     /*FIND ALL REFS*/[|property1|]: number;
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isDefinition: true |}property1|]: number;|>
 //     property2: string;
 // }
 // 
 // var elems: I[];
-// for (let { [|property1|]: p } of elems) {
+// for (<|let { [|{| contextId: 1, defId: 0 |}property1|]: p } of elems|>) {
 // }
-// for (let { [|property1|] } of elems) {
+// for (<|let { [|{| contextId: 2, defId: 0, isWriteAccess: true |}property1|] } of elems|>) {
 // }
-// for (var { [|property1|]: p1 } of elems) {
+// for (<|var { [|{| contextId: 3, defId: 0 |}property1|]: p1 } of elems|>) {
 // }
 // var p2;
-// for ({ [|property1|] : p2 } of elems) {
+// for (<|{ [|{| contextId: 4, defId: 0, isWriteAccess: true |}property1|] : p2 } of elems|>) {
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) I.property1: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property1",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-    // interface I {
-    //     [|property1|]: number;
-    //     property2: string;
-    // }
-    // 
-    // var elems: I[];
-    // for (let { property1: p } of elems) {
-    // }
-    // for (let { property1 } of elems) {
-    // }
-    // for (var { property1: p1 } of elems) {
-    // }
-    // var p2;
-    // for ({ property1 : p2 } of elems) {
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     [|property1: number;|]
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     [|property1|]: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     [|property1: number;|]
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { [|property1|]: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for ([|let { property1: p } of elems|]) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { [|property1|] } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for ([|let { property1 } of elems|]) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { [|property1|]: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for ([|var { property1: p1 } of elems|]) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 4 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ [|property1|] : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ([|{ property1 : p2 } of elems|]) {
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
+// interface I {
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) I.property1: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"property1","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}property1|]: number;|>
+//     property2: string;
+// }
+// 
+// var elems: I[];
+// for (let { property1: p } of elems) {
+// }
+// for (let { property1 } of elems) {
+// }
+// for (var { property1: p1 } of elems) {
+// }
+// var p2;
+// for ({ property1 : p2 } of elems) {
+// }
 
 [
   {
@@ -410,279 +164,38 @@
 
 // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
 // interface I {
-//     [|property1|]: number;
+//     <|[|{| contextId: 0, defId: 0 |}property1|]: number;|>
 //     property2: string;
 // }
 // 
 // var elems: I[];
-// for (let { /*FIND ALL REFS*/[|property1|]: p } of elems) {
+// for (<|let { /*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}property1|]: p } of elems|>) {
 // }
-// for (let { [|property1|] } of elems) {
+// for (<|let { [|{| contextId: 2, defId: 0, isWriteAccess: true |}property1|] } of elems|>) {
 // }
-// for (var { [|property1|]: p1 } of elems) {
+// for (<|var { [|{| contextId: 3, defId: 0 |}property1|]: p1 } of elems|>) {
 // }
 // var p2;
-// for ({ [|property1|] : p2 } of elems) {
+// for (<|{ [|{| contextId: 4, defId: 0, isWriteAccess: true |}property1|] : p2 } of elems|>) {
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) I.property1: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property1",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-    // interface I {
-    //     [|property1|]: number;
-    //     property2: string;
-    // }
-    // 
-    // var elems: I[];
-    // for (let { property1: p } of elems) {
-    // }
-    // for (let { property1 } of elems) {
-    // }
-    // for (var { property1: p1 } of elems) {
-    // }
-    // var p2;
-    // for ({ property1 : p2 } of elems) {
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     [|property1: number;|]
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     [|property1|]: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     [|property1: number;|]
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { [|property1|]: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for ([|let { property1: p } of elems|]) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 2 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { [|property1|] } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for ([|let { property1 } of elems|]) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { [|property1|]: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for ([|var { property1: p1 } of elems|]) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 4 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ [|property1|] : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ([|{ property1 : p2 } of elems|]) {
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
+// interface I {
+//     <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) I.property1: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"property1","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}property1|]: number;|>
+//     property2: string;
+// }
+// 
+// var elems: I[];
+// for (let { /*FIND ALL REFS*/property1: p } of elems) {
+// }
+// for (let { property1 } of elems) {
+// }
+// for (var { property1: p1 } of elems) {
+// }
+// var p2;
+// for ({ property1 : p2 } of elems) {
+// }
 
 [
   {
@@ -810,279 +323,38 @@
 
 // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
 // interface I {
-//     [|property1|]: number;
+//     <|[|{| contextId: 0, defId: 0 |}property1|]: number;|>
 //     property2: string;
 // }
 // 
 // var elems: I[];
-// for (let { [|property1|]: p } of elems) {
+// for (<|let { [|{| contextId: 1, defId: 0 |}property1|]: p } of elems|>) {
 // }
-// for (let { [|property1|] } of elems) {
+// for (<|let { [|{| contextId: 2, defId: 0, isWriteAccess: true |}property1|] } of elems|>) {
 // }
-// for (var { /*FIND ALL REFS*/[|property1|]: p1 } of elems) {
+// for (<|var { /*FIND ALL REFS*/[|{| contextId: 3, defId: 0 |}property1|]: p1 } of elems|>) {
 // }
 // var p2;
-// for ({ [|property1|] : p2 } of elems) {
+// for (<|{ [|{| contextId: 4, defId: 0, isWriteAccess: true |}property1|] : p2 } of elems|>) {
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) I.property1: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property1",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-    // interface I {
-    //     [|property1|]: number;
-    //     property2: string;
-    // }
-    // 
-    // var elems: I[];
-    // for (let { property1: p } of elems) {
-    // }
-    // for (let { property1 } of elems) {
-    // }
-    // for (var { property1: p1 } of elems) {
-    // }
-    // var p2;
-    // for ({ property1 : p2 } of elems) {
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     [|property1: number;|]
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     [|property1|]: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     [|property1: number;|]
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { [|property1|]: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for ([|let { property1: p } of elems|]) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 2 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { [|property1|] } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for ([|let { property1 } of elems|]) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { [|property1|]: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for ([|var { property1: p1 } of elems|]) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 4 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ [|property1|] : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ([|{ property1 : p2 } of elems|]) {
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
+// interface I {
+//     <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) I.property1: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"property1","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}property1|]: number;|>
+//     property2: string;
+// }
+// 
+// var elems: I[];
+// for (let { property1: p } of elems) {
+// }
+// for (let { property1 } of elems) {
+// }
+// for (var { /*FIND ALL REFS*/property1: p1 } of elems) {
+// }
+// var p2;
+// for ({ property1 : p2 } of elems) {
+// }
 
 [
   {
@@ -1210,284 +482,38 @@
 
 // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
 // interface I {
-//     [|property1|]: number;
+//     <|[|{| contextId: 0, defId: 0 |}property1|]: number;|>
 //     property2: string;
 // }
 // 
 // var elems: I[];
-// for (let { [|property1|]: p } of elems) {
+// for (<|let { [|{| contextId: 1, defId: 0 |}property1|]: p } of elems|>) {
 // }
-// for (let { [|property1|] } of elems) {
+// for (<|let { [|{| contextId: 2, defId: 0, isWriteAccess: true |}property1|] } of elems|>) {
 // }
-// for (var { [|property1|]: p1 } of elems) {
+// for (<|var { [|{| contextId: 3, defId: 0 |}property1|]: p1 } of elems|>) {
 // }
 // var p2;
-// for ({ /*FIND ALL REFS*/[|property1|] : p2 } of elems) {
+// for (<|{ /*FIND ALL REFS*/[|{| contextId: 4, defId: 0, isWriteAccess: true, isDefinition: true |}property1|] : p2 } of elems|>) {
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) I.property1: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property1",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-    // interface I {
-    //     [|property1|]: number;
-    //     property2: string;
-    // }
-    // 
-    // var elems: I[];
-    // for (let { property1: p } of elems) {
-    // }
-    // for (let { property1 } of elems) {
-    // }
-    // for (var { property1: p1 } of elems) {
-    // }
-    // var p2;
-    // for ({ property1 : p2 } of elems) {
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     [|property1: number;|]
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     [|property1|]: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     [|property1: number;|]
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { [|property1|]: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for ([|let { property1: p } of elems|]) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { [|property1|] } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for ([|let { property1 } of elems|]) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { [|property1|]: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for ([|var { property1: p1 } of elems|]) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 4 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ [|property1|] : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ([|{ property1 : p2 } of elems|]) {
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
+// interface I {
+//     <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) I.property1: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"property1","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}property1|]: number;|>
+//     property2: string;
+// }
+// 
+// var elems: I[];
+// for (let { property1: p } of elems) {
+// }
+// for (let { property1 } of elems) {
+// }
+// for (var { property1: p1 } of elems) {
+// }
+// var p2;
+// for ({ /*FIND ALL REFS*/property1 : p2 } of elems) {
+// }
 
 [
   {
@@ -1620,350 +646,38 @@
 
 // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
 // interface I {
-//     [|property1|]: number;
+//     <|[|{| contextId: 0, defId: 0 |}property1|]: number;|>
 //     property2: string;
 // }
 // 
 // var elems: I[];
-// for (let { [|property1|]: p } of elems) {
+// for (<|let { [|{| contextId: 1, defId: 0 |}property1|]: p } of elems|>) {
 // }
-// for (let { /*FIND ALL REFS*/[|property1|] } of elems) {
+// for (<|let { /*FIND ALL REFS*/[|{| contextId: 2, defId: 1, isWriteAccess: true, isDefinition: true |}property1|] } of elems|>) {
 // }
-// for (var { [|property1|]: p1 } of elems) {
+// for (<|var { [|{| contextId: 3, defId: 0 |}property1|]: p1 } of elems|>) {
 // }
 // var p2;
-// for ({ [|property1|] : p2 } of elems) {
+// for (<|{ [|{| contextId: 4, defId: 0, isWriteAccess: true |}property1|] : p2 } of elems|>) {
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) I.property1: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "I",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property1",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-    // interface I {
-    //     [|property1|]: number;
-    //     property2: string;
-    // }
-    // 
-    // var elems: I[];
-    // for (let { property1: p } of elems) {
-    // }
-    // for (let { property1 } of elems) {
-    // }
-    // for (var { property1: p1 } of elems) {
-    // }
-    // var p2;
-    // for ({ property1 : p2 } of elems) {
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     [|property1: number;|]
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     [|property1|]: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     [|property1: number;|]
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { [|property1|]: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for ([|let { property1: p } of elems|]) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { [|property1|]: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for ([|var { property1: p1 } of elems|]) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-    // === 3 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { property1 } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ [|property1|] : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for (let { property1 } of elems) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ([|{ property1 : p2 } of elems|]) {
-        // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "let"
-    // name: "let property1: number"
-    // displayParts: [
-    //  {
-    //   "text": "let",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "property1",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-    // interface I {
-    //     property1: number;
-    //     property2: string;
-    // }
-    // 
-    // var elems: I[];
-    // for (let { property1: p } of elems) {
-    // }
-    // for (let { [|property1|] } of elems) {
-    // }
-    // for (var { property1: p1 } of elems) {
-    // }
-    // var p2;
-    // for ({ property1 : p2 } of elems) {
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for ([|let { property1 } of elems|]) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-      // interface I {
-      //     property1: number;
-      //     property2: string;
-      // }
-      // 
-      // var elems: I[];
-      // for (let { property1: p } of elems) {
-      // }
-      // for (let { [|property1|] } of elems) {
-      // }
-      // for (var { property1: p1 } of elems) {
-      // }
-      // var p2;
-      // for ({ property1 : p2 } of elems) {
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
-        // interface I {
-        //     property1: number;
-        //     property2: string;
-        // }
-        // 
-        // var elems: I[];
-        // for (let { property1: p } of elems) {
-        // }
-        // for ([|let { property1 } of elems|]) {
-        // }
-        // for (var { property1: p1 } of elems) {
-        // }
-        // var p2;
-        // for ({ property1 : p2 } of elems) {
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsObjectBindingElementPropertyName06.ts ===
+// interface I {
+//     <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) I.property1: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"I","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"property1","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}property1|]: number;|>
+//     property2: string;
+// }
+// 
+// var elems: I[];
+// for (let { property1: p } of elems) {
+// }
+// for (<|let { /*FIND ALL REFS*/[|{| contextId: 1, defId: 1, kind: "let", name: "let property1: number", displayParts: [{"text":"let","kind":"keyword"},{"text":" ","kind":"space"},{"text":"property1","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}property1|] } of elems|>) {
+// }
+// for (var { property1: p1 } of elems) {
+// }
+// var p2;
+// for ({ property1 : p2 } of elems) {
+// }
 
 [
   {

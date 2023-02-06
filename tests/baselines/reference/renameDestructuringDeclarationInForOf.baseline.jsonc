@@ -1,96 +1,15 @@
 // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
 // interface I {
-//     [|RENAME|]: number;
+//     /*RENAME*/<|[|{| contextId: 0 |}property1RENAME|]: number;|>
 //     property2: string;
 // }
 // var elems: I[];
 // 
-// for (let { RENAME: property1/*END SUFFIX*/ } of elems) {
+// for (<|let { [|{| contextId: 1 |}property1RENAME|]: property1/*END SUFFIX*/ } of elems|>) {
 //     property1++;
 // }
-// for (let { RENAME: p2 } of elems) {
+// for (<|let { [|{| contextId: 2 |}property1RENAME|]: p2 } of elems|>) {
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-  // interface I {
-  //     [|property1|]: number;
-  //     property2: string;
-  // }
-  // var elems: I[];
-  // 
-  // for (let { property1 } of elems) {
-  //     property1++;
-  // }
-  // for (let { property1: p2 } of elems) {
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-    // interface I {
-    //     [|property1: number;|]
-    //     property2: string;
-    // }
-    // var elems: I[];
-    // 
-    // for (let { property1 } of elems) {
-    //     property1++;
-    // }
-    // for (let { property1: p2 } of elems) {
-    // }
-// === 1 ===
-  // suffixText: ": property1"
-  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-  // interface I {
-  //     property1: number;
-  //     property2: string;
-  // }
-  // var elems: I[];
-  // 
-  // for (let { [|property1|] } of elems) {
-  //     property1++;
-  // }
-  // for (let { property1: p2 } of elems) {
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-    // interface I {
-    //     property1: number;
-    //     property2: string;
-    // }
-    // var elems: I[];
-    // 
-    // for ([|let { property1 } of elems|]) {
-    //     property1++;
-    // }
-    // for (let { property1: p2 } of elems) {
-    // }
-// === 2 ===
-  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-  // interface I {
-  //     property1: number;
-  //     property2: string;
-  // }
-  // var elems: I[];
-  // 
-  // for (let { property1 } of elems) {
-  //     property1++;
-  // }
-  // for (let { [|property1|]: p2 } of elems) {
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-    // interface I {
-    //     property1: number;
-    //     property2: string;
-    // }
-    // var elems: I[];
-    // 
-    // for (let { property1 } of elems) {
-    //     property1++;
-    // }
-    // for ([|let { property1: p2 } of elems|]) {
-    // }
-
 
 [
   {
@@ -131,97 +50,16 @@
 
 // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
 // interface I {
-//     RENAME: number;
+//     <|[|{| contextId: 0 |}property1RENAME|]: number;|>
 //     property2: string;
 // }
 // var elems: I[];
 // 
-// for (let { RENAME: property1/*END SUFFIX*/ } of elems) {
+// for (<|let { [|{| contextId: 1 |}property1RENAME|]: property1/*END SUFFIX*/ } of elems|>) {
 //     property1++;
 // }
-// for (let { [|RENAME|]: p2 } of elems) {
+// for (<|let { /*RENAME*/[|{| contextId: 2 |}property1RENAME|]: p2 } of elems|>) {
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-  // interface I {
-  //     [|property1|]: number;
-  //     property2: string;
-  // }
-  // var elems: I[];
-  // 
-  // for (let { property1 } of elems) {
-  //     property1++;
-  // }
-  // for (let { property1: p2 } of elems) {
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-    // interface I {
-    //     [|property1: number;|]
-    //     property2: string;
-    // }
-    // var elems: I[];
-    // 
-    // for (let { property1 } of elems) {
-    //     property1++;
-    // }
-    // for (let { property1: p2 } of elems) {
-    // }
-// === 1 ===
-  // suffixText: ": property1"
-  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-  // interface I {
-  //     property1: number;
-  //     property2: string;
-  // }
-  // var elems: I[];
-  // 
-  // for (let { [|property1|] } of elems) {
-  //     property1++;
-  // }
-  // for (let { property1: p2 } of elems) {
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-    // interface I {
-    //     property1: number;
-    //     property2: string;
-    // }
-    // var elems: I[];
-    // 
-    // for ([|let { property1 } of elems|]) {
-    //     property1++;
-    // }
-    // for (let { property1: p2 } of elems) {
-    // }
-// === 2 ===
-  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-  // interface I {
-  //     property1: number;
-  //     property2: string;
-  // }
-  // var elems: I[];
-  // 
-  // for (let { property1 } of elems) {
-  //     property1++;
-  // }
-  // for (let { [|property1|]: p2 } of elems) {
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-    // interface I {
-    //     property1: number;
-    //     property2: string;
-    // }
-    // var elems: I[];
-    // 
-    // for (let { property1 } of elems) {
-    //     property1++;
-    // }
-    // for ([|let { property1: p2 } of elems|]) {
-    // }
-
 
 [
   {
@@ -267,53 +105,11 @@
 // }
 // var elems: I[];
 // 
-// for (let { /*START PREFIX*/property1: [|RENAME|] } of elems) {
-//     RENAME++;
+// for (<|let { /*RENAME*//*START PREFIX*/property1: [|{| contextId: 0 |}property1RENAME|] } of elems|>) {
+//     [|property1RENAME|]++;
 // }
 // for (let { property1: p2 } of elems) {
 // }
-
-// === 0 ===
-  // prefixText: "property1: "
-  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-  // interface I {
-  //     property1: number;
-  //     property2: string;
-  // }
-  // var elems: I[];
-  // 
-  // for (let { [|property1|] } of elems) {
-  //     property1++;
-  // }
-  // for (let { property1: p2 } of elems) {
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-    // interface I {
-    //     property1: number;
-    //     property2: string;
-    // }
-    // var elems: I[];
-    // 
-    // for ([|let { property1 } of elems|]) {
-    //     property1++;
-    // }
-    // for (let { property1: p2 } of elems) {
-    // }
-// === 1 ===
-  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-  // interface I {
-  //     property1: number;
-  //     property2: string;
-  // }
-  // var elems: I[];
-  // 
-  // for (let { property1 } of elems) {
-  //     [|property1|]++;
-  // }
-  // for (let { property1: p2 } of elems) {
-  // }
-
 
 [
   {
@@ -344,53 +140,11 @@
 // }
 // var elems: I[];
 // 
-// for (let { /*START PREFIX*/property1: RENAME } of elems) {
-//     [|RENAME|]++;
+// for (<|let { /*START PREFIX*/property1: [|{| contextId: 0 |}property1RENAME|] } of elems|>) {
+//     /*RENAME*/[|property1RENAME|]++;
 // }
 // for (let { property1: p2 } of elems) {
 // }
-
-// === 0 ===
-  // prefixText: "property1: "
-  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-  // interface I {
-  //     property1: number;
-  //     property2: string;
-  // }
-  // var elems: I[];
-  // 
-  // for (let { [|property1|] } of elems) {
-  //     property1++;
-  // }
-  // for (let { property1: p2 } of elems) {
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-    // interface I {
-    //     property1: number;
-    //     property2: string;
-    // }
-    // var elems: I[];
-    // 
-    // for ([|let { property1 } of elems|]) {
-    //     property1++;
-    // }
-    // for (let { property1: p2 } of elems) {
-    // }
-// === 1 ===
-  // === /tests/cases/fourslash/renameDestructuringDeclarationInForOf.ts ===
-  // interface I {
-  //     property1: number;
-  //     property2: string;
-  // }
-  // var elems: I[];
-  // 
-  // for (let { property1 } of elems) {
-  //     [|property1|]++;
-  // }
-  // for (let { property1: p2 } of elems) {
-  // }
-
 
 [
   {

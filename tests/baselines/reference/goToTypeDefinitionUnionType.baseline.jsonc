@@ -1,158 +1,21 @@
 // === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
-// class [|C|] {
+// <|class [|{| contextId: 0, kind: "class", name: "C" |}C|] {
 //     p;
-// }
+// }|>
 // 
-// interface [|I|] {
+// <|interface [|{| contextId: 1, kind: "interface", name: "I" |}I|] {
 //     x;
-// }
+// }|>
 // 
 // module M {
-//     export interface [|I|] {
+//     <|export interface [|{| contextId: 2, kind: "interface", name: "I", containerName: "M" |}I|] {
 //         y;
-//     }
+//     }|>
 // }
 // 
 // var x: C | I | M.I;
 // 
 // /*GOTO TYPE*/x;
-
-// === 0 ===
-  // kind: "class"
-  // name: "C"
-  // containerName: ""
-  // isLocal: false
-  // isAmbient: false
-  // unverified: false
-  // failedAliasResolution: false
-  // === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
-  // class [|C|] {
-  //     p;
-  // }
-  // 
-  // interface I {
-  //     x;
-  // }
-  // 
-  // module M {
-  //     export interface I {
-  //         y;
-  //     }
-  // }
-  // 
-  // var x: C | I | M.I;
-  // 
-  // x;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
-    // [|class C {
-    //     p;
-    // }|]
-    // 
-    // interface I {
-    //     x;
-    // }
-    // 
-    // module M {
-    //     export interface I {
-    //         y;
-    //     }
-    // }
-    // 
-    // var x: C | I | M.I;
-    // 
-    // x;
-// === 1 ===
-  // kind: "interface"
-  // name: "I"
-  // containerName: ""
-  // isLocal: false
-  // isAmbient: false
-  // unverified: false
-  // failedAliasResolution: false
-  // === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
-  // class C {
-  //     p;
-  // }
-  // 
-  // interface [|I|] {
-  //     x;
-  // }
-  // 
-  // module M {
-  //     export interface I {
-  //         y;
-  //     }
-  // }
-  // 
-  // var x: C | I | M.I;
-  // 
-  // x;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
-    // class C {
-    //     p;
-    // }
-    // 
-    // [|interface I {
-    //     x;
-    // }|]
-    // 
-    // module M {
-    //     export interface I {
-    //         y;
-    //     }
-    // }
-    // 
-    // var x: C | I | M.I;
-    // 
-    // x;
-// === 2 ===
-  // kind: "interface"
-  // name: "I"
-  // containerName: "M"
-  // isLocal: false
-  // isAmbient: false
-  // unverified: false
-  // failedAliasResolution: false
-  // === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
-  // class C {
-  //     p;
-  // }
-  // 
-  // interface I {
-  //     x;
-  // }
-  // 
-  // module M {
-  //     export interface [|I|] {
-  //         y;
-  //     }
-  // }
-  // 
-  // var x: C | I | M.I;
-  // 
-  // x;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/goToTypeDefinitionUnionType.ts ===
-    // class C {
-    //     p;
-    // }
-    // 
-    // interface I {
-    //     x;
-    // }
-    // 
-    // module M {
-    //     [|export interface I {
-    //         y;
-    //     }|]
-    // }
-    // 
-    // var x: C | I | M.I;
-    // 
-    // x;
-
 
 [
   {

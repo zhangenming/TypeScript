@@ -1,60 +1,11 @@
 // === /b.ts ===
-// /// <reference types="[|foo|]" />
-// import { x } from "/*FIND ALL REFS*/[|foo|]";
-// declare module "[|foo|]" {}
+// /// <reference types="[|{| defId: 0 |}foo|]" />
+// <|import { x } from "/*FIND ALL REFS*/[|{| contextId: 0, defId: 0 |}foo|]";|>
+// <|declare module "[|{| contextId: 1, defId: 0, isWriteAccess: true |}foo|]" {}|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "module \"/node_modules/foo/index\""
-    // displayParts: [
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"/node_modules/foo/index\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /node_modules/foo/index.d.ts ===
-    // [|export const x = 0;|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /b.ts ===
-      // /// <reference types="[|foo|]" />
-      // import { x } from "foo";
-      // declare module "foo" {}
-    // === 1 ===
-      // isWriteAccess: false
-      // === /b.ts ===
-      // /// <reference types="foo" />
-      // import { x } from "[|foo|]";
-      // declare module "foo" {}
-        // === ContextSpan ===
-        // === /b.ts ===
-        // /// <reference types="foo" />
-        // [|import { x } from "foo";|]
-        // declare module "foo" {}
-    // === 2 ===
-      // isWriteAccess: true
-      // === /b.ts ===
-      // /// <reference types="foo" />
-      // import { x } from "foo";
-      // declare module "[|foo|]" {}
-        // === ContextSpan ===
-        // === /b.ts ===
-        // /// <reference types="foo" />
-        // import { x } from "foo";
-        // [|declare module "foo" {}|]
-
+// === Definitions ===
+// === /node_modules/foo/index.d.ts ===
+// [|{| defId: 0, kind: "module", name: "module \"/node_modules/foo/index\"", displayParts: [{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"/node_modules/foo/index\"","kind":"stringLiteral"}] |}export const x = 0;|]
 
 [
   {

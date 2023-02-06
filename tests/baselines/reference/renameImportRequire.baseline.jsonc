@@ -1,48 +1,8 @@
 // === /a.ts ===
-// import [|RENAME|] = require("mod4");
-// RENAME;
-// a = { /*START PREFIX*/e: RENAME };
-// export { RENAME as e/*END SUFFIX*/ };
-
-// === 0 ===
-  // === /a.ts ===
-  // import [|e|] = require("mod4");
-  // e;
-  // a = { e };
-  // export { e };
-    // === ContextSpan ===
-    // === /a.ts ===
-    // [|import e = require("mod4");|]
-    // e;
-    // a = { e };
-    // export { e };
-// === 1 ===
-  // === /a.ts ===
-  // import e = require("mod4");
-  // [|e|];
-  // a = { e };
-  // export { e };
-// === 2 ===
-  // prefixText: "e: "
-  // === /a.ts ===
-  // import e = require("mod4");
-  // e;
-  // a = { [|e|] };
-  // export { e };
-// === 3 ===
-  // suffixText: " as e"
-  // === /a.ts ===
-  // import e = require("mod4");
-  // e;
-  // a = { e };
-  // export { [|e|] };
-    // === ContextSpan ===
-    // === /a.ts ===
-    // import e = require("mod4");
-    // e;
-    // a = { e };
-    // [|export { e };|]
-
+// <|import /*RENAME*/[|{| contextId: 0 |}eRENAME|] = require("mod4");|>
+// [|eRENAME|];
+// a = { /*START PREFIX*/e: [|eRENAME|] };
+// <|export { [|{| contextId: 1 |}eRENAME|] as e/*END SUFFIX*/ };|>
 
 [
   {
@@ -86,50 +46,10 @@
 ]
 
 // === /a.ts ===
-// import RENAME = require("mod4");
-// [|RENAME|];
-// a = { /*START PREFIX*/e: RENAME };
-// export { RENAME as e/*END SUFFIX*/ };
-
-// === 0 ===
-  // === /a.ts ===
-  // import [|e|] = require("mod4");
-  // e;
-  // a = { e };
-  // export { e };
-    // === ContextSpan ===
-    // === /a.ts ===
-    // [|import e = require("mod4");|]
-    // e;
-    // a = { e };
-    // export { e };
-// === 1 ===
-  // === /a.ts ===
-  // import e = require("mod4");
-  // [|e|];
-  // a = { e };
-  // export { e };
-// === 2 ===
-  // prefixText: "e: "
-  // === /a.ts ===
-  // import e = require("mod4");
-  // e;
-  // a = { [|e|] };
-  // export { e };
-// === 3 ===
-  // suffixText: " as e"
-  // === /a.ts ===
-  // import e = require("mod4");
-  // e;
-  // a = { e };
-  // export { [|e|] };
-    // === ContextSpan ===
-    // === /a.ts ===
-    // import e = require("mod4");
-    // e;
-    // a = { e };
-    // [|export { e };|]
-
+// <|import [|{| contextId: 0 |}eRENAME|] = require("mod4");|>
+// /*RENAME*/[|eRENAME|];
+// a = { /*START PREFIX*/e: [|eRENAME|] };
+// <|export { [|{| contextId: 1 |}eRENAME|] as e/*END SUFFIX*/ };|>
 
 [
   {
@@ -173,50 +93,10 @@
 ]
 
 // === /a.ts ===
-// import RENAME = require("mod4");
-// RENAME;
-// a = { /*START PREFIX*/e: [|RENAME|] };
-// export { RENAME as e/*END SUFFIX*/ };
-
-// === 0 ===
-  // === /a.ts ===
-  // import [|e|] = require("mod4");
-  // e;
-  // a = { e };
-  // export { e };
-    // === ContextSpan ===
-    // === /a.ts ===
-    // [|import e = require("mod4");|]
-    // e;
-    // a = { e };
-    // export { e };
-// === 1 ===
-  // === /a.ts ===
-  // import e = require("mod4");
-  // [|e|];
-  // a = { e };
-  // export { e };
-// === 2 ===
-  // prefixText: "e: "
-  // === /a.ts ===
-  // import e = require("mod4");
-  // e;
-  // a = { [|e|] };
-  // export { e };
-// === 3 ===
-  // suffixText: " as e"
-  // === /a.ts ===
-  // import e = require("mod4");
-  // e;
-  // a = { e };
-  // export { [|e|] };
-    // === ContextSpan ===
-    // === /a.ts ===
-    // import e = require("mod4");
-    // e;
-    // a = { e };
-    // [|export { e };|]
-
+// <|import [|{| contextId: 0 |}eRENAME|] = require("mod4");|>
+// [|eRENAME|];
+// a = { /*RENAME*//*START PREFIX*/e: [|eRENAME|] };
+// <|export { [|{| contextId: 1 |}eRENAME|] as e/*END SUFFIX*/ };|>
 
 [
   {
@@ -263,43 +143,11 @@
 // import e = require("mod4");
 // e;
 // a = { e };
-// export { /*START PREFIX*/e as [|RENAME|] };
+// <|export { /*RENAME*//*START PREFIX*/e as [|{| contextId: 0 |}eRENAME|] };|>
 
 // === /b.ts ===
-// import { RENAME } from "./a";
-// export { RENAME as e/*END SUFFIX*/ };
-
-// === 0 ===
-  // prefixText: "e as "
-  // === /a.ts ===
-  // import e = require("mod4");
-  // e;
-  // a = { e };
-  // export { [|e|] };
-    // === ContextSpan ===
-    // === /a.ts ===
-    // import e = require("mod4");
-    // e;
-    // a = { e };
-    // [|export { e };|]
-// === 1 ===
-  // === /b.ts ===
-  // import { [|e|] } from "./a";
-  // export { e };
-    // === ContextSpan ===
-    // === /b.ts ===
-    // [|import { e } from "./a";|]
-    // export { e };
-// === 2 ===
-  // suffixText: " as e"
-  // === /b.ts ===
-  // import { e } from "./a";
-  // export { [|e|] };
-    // === ContextSpan ===
-    // === /b.ts ===
-    // import { e } from "./a";
-    // [|export { e };|]
-
+// <|import { [|{| contextId: 1 |}eRENAME|] } from "./a";|>
+// <|export { [|{| contextId: 2 |}eRENAME|] as e/*END SUFFIX*/ };|>
 
 [
   {
@@ -340,28 +188,8 @@
 ]
 
 // === /b.ts ===
-// import { /*START PREFIX*/e as RENAME } from "./a";
-// export { RENAME as e/*END SUFFIX*/ };
-
-// === 0 ===
-  // prefixText: "e as "
-  // === /b.ts ===
-  // import { [|e|] } from "./a";
-  // export { e };
-    // === ContextSpan ===
-    // === /b.ts ===
-    // [|import { e } from "./a";|]
-    // export { e };
-// === 1 ===
-  // suffixText: " as e"
-  // === /b.ts ===
-  // import { e } from "./a";
-  // export { [|e|] };
-    // === ContextSpan ===
-    // === /b.ts ===
-    // import { e } from "./a";
-    // [|export { e };|]
-
+// <|import { /*RENAME*//*START PREFIX*/e as [|{| contextId: 0 |}eRENAME|] } from "./a";|>
+// <|export { [|{| contextId: 1 |}eRENAME|] as e/*END SUFFIX*/ };|>
 
 [
   {
@@ -392,18 +220,7 @@
 
 // === /b.ts ===
 // import { e } from "./a";
-// export { /*START PREFIX*/e as RENAME };
-
-// === 0 ===
-  // prefixText: "e as "
-  // === /b.ts ===
-  // import { e } from "./a";
-  // export { [|e|] };
-    // === ContextSpan ===
-    // === /b.ts ===
-    // import { e } from "./a";
-    // [|export { e };|]
-
+// <|export { /*RENAME*//*START PREFIX*/e as [|{| contextId: 0 |}eRENAME|] };|>
 
 [
   {

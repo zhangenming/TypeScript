@@ -1,64 +1,11 @@
 // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-// const /*FIND ALL REFS*/[|x|] = 1;
-// const y: { x: number } = { [|x|] };
+// <|const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}x|] = 1;|>
+// const y: { x: number } = { [|{| defId: 0, isWriteAccess: true |}x|] };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const x: 1"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-    // const [|x|] = 1;
-    // const y: { x: number } = { x };
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-      // [|const x = 1;|]
-      // const y: { x: number } = { x };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-      // const [|x|] = 1;
-      // const y: { x: number } = { x };
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-        // [|const x = 1;|]
-        // const y: { x: number } = { x };
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-      // const x = 1;
-      // const y: { x: number } = { [|x|] };
-
+// === Definitions ===
+// === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
+// <|const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "const", name: "const x: 1", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}x|] = 1;|>
+// const y: { x: number } = { x };
 
 [
   {
@@ -132,73 +79,12 @@
 
 // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
 // const x = 1;
-// const y: { /*FIND ALL REFS*/[|x|]: number } = { [|x|] };
+// const y: { /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isDefinition: true |}x|]: number|> } = { [|{| defId: 0, isWriteAccess: true |}x|] };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) x: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-    // const x = 1;
-    // const y: { [|x|]: number } = { x };
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-      // const x = 1;
-      // const y: { [|x: number|] } = { x };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-      // const x = 1;
-      // const y: { [|x|]: number } = { x };
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-        // const x = 1;
-        // const y: { [|x: number|] } = { x };
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-      // const x = 1;
-      // const y: { x: number } = { [|x|] };
-
+// === Definitions ===
+// === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
+// const x = 1;
+// const y: { /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) x: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"x","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}x|]: number|> } = { x };
 
 [
   {
@@ -279,124 +165,13 @@
 ]
 
 // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-// const [|x|] = 1;
-// const y: { [|x|]: number } = { /*FIND ALL REFS*/[|x|] };
+// <|const [|{| contextId: 0, defId: 0, isWriteAccess: true |}x|] = 1;|>
+// const y: { <|[|{| contextId: 1, defId: 1 |}x|]: number|> } = { /*FIND ALL REFS*/[|{| defId: 1, isWriteAccess: true, isDefinition: true |}x|] };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const x: 1"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-    // const [|x|] = 1;
-    // const y: { x: number } = { x };
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-      // [|const x = 1;|]
-      // const y: { x: number } = { x };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-      // const [|x|] = 1;
-      // const y: { x: number } = { x };
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-        // [|const x = 1;|]
-        // const y: { x: number } = { x };
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) x: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-    // const x = 1;
-    // const y: { [|x|]: number } = { x };
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-      // const x = 1;
-      // const y: { [|x: number|] } = { x };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-      // const x = 1;
-      // const y: { [|x|]: number } = { x };
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-        // const x = 1;
-        // const y: { [|x: number|] } = { x };
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
-      // const x = 1;
-      // const y: { x: number } = { [|x|] };
-
+// === Definitions ===
+// === /tests/cases/fourslash/isDefinitionShorthandProperty.ts ===
+// <|const [|{| contextId: 0, defId: 0, kind: "const", name: "const x: 1", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}x|] = 1;|>
+// const y: { <|[|{| contextId: 1, defId: 1, kind: "property", name: "(property) x: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"x","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}x|]: number|> } = { /*FIND ALL REFS*/x };
 
 [
   {

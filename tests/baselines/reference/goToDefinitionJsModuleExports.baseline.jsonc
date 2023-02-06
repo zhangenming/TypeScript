@@ -1,36 +1,15 @@
 // === /tests/cases/fourslash/foo.js ===
-// x.[|test|] = () => { }
+// x.[|{| contextId: 0, kind: "function", name: "test", isLocal: true |}test|] = <|() => { }|>
 // x./*GOTO DEF*/test();
 // x.test3 = function () { }
 // x.test3();
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "function"
-    // name: "test"
-    // containerName: ""
-    // isLocal: true
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/foo.js ===
-    // x.[|test|] = () => { }
-    // x.test();
-    // x.test3 = function () { }
-    // x.test3();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/foo.js ===
-      // x.test = [|() => { }|]
-      // x.test();
-      // x.test3 = function () { }
-      // x.test3();
 // === TextSpan ===
-  // === /tests/cases/fourslash/foo.js ===
-  // x.test = () => { }
-  // x.[|test|]();
-  // x.test3 = function () { }
-  // x.test3();
-
+// === /tests/cases/fourslash/foo.js ===
+// x.test = () => { }
+// x./*GOTO DEF*/[|test|]();
+// x.test3 = function () { }
+// x.test3();
 
 {
   "definitions": [
@@ -62,36 +41,15 @@
 // === /tests/cases/fourslash/foo.js ===
 // x.test = () => { }
 // x.test();
-// x.[|test3|] = function () { }
+// x.[|{| contextId: 0, kind: "local function", name: "test3", isLocal: true |}test3|] = <|function () { }|>
 // x./*GOTO DEF*/test3();
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "local function"
-    // name: "test3"
-    // containerName: ""
-    // isLocal: true
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/foo.js ===
-    // x.test = () => { }
-    // x.test();
-    // x.[|test3|] = function () { }
-    // x.test3();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/foo.js ===
-      // x.test = () => { }
-      // x.test();
-      // x.test3 = [|function () { }|]
-      // x.test3();
 // === TextSpan ===
-  // === /tests/cases/fourslash/foo.js ===
-  // x.test = () => { }
-  // x.test();
-  // x.test3 = function () { }
-  // x.[|test3|]();
-
+// === /tests/cases/fourslash/foo.js ===
+// x.test = () => { }
+// x.test();
+// x.test3 = function () { }
+// x./*GOTO DEF*/[|test3|]();
 
 {
   "definitions": [

@@ -1,34 +1,12 @@
 // === /tests/cases/fourslash/fileA.ts ===
-// export function [|RENAME|]() {
-// }
+// <|export function /*RENAME*/[|{| contextId: 0 |}__fooRENAME|]() {
+// }|>
 // 
 
 // === /tests/cases/fourslash/fileB.ts ===
-// import { RENAME as bar } from "./fileA";
+// <|import { [|{| contextId: 1 |}__fooRENAME|] as bar } from "./fileA";|>
 // 
 // bar();
-
-// === 0 ===
-  // === /tests/cases/fourslash/fileA.ts ===
-  // export function [|__foo|]() {
-  // }
-  // 
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/fileA.ts ===
-    // [|export function __foo() {
-    // }|]
-    // 
-// === 1 ===
-  // === /tests/cases/fourslash/fileB.ts ===
-  // import { [|__foo|] as bar } from "./fileA";
-  // 
-  // bar();
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/fileB.ts ===
-    // [|import { __foo as bar } from "./fileA";|]
-    // 
-    // bar();
-
 
 [
   {
@@ -56,36 +34,14 @@
 ]
 
 // === /tests/cases/fourslash/fileA.ts ===
-// export function RENAME() {
-// }
+// <|export function [|{| contextId: 0 |}__fooRENAME|]() {
+// }|>
 // 
 
 // === /tests/cases/fourslash/fileB.ts ===
-// import { RENAME as bar } from "./fileA";
+// <|import { /*RENAME*/[|{| contextId: 1 |}__fooRENAME|] as bar } from "./fileA";|>
 // 
 // bar();
-
-// === 0 ===
-  // === /tests/cases/fourslash/fileA.ts ===
-  // export function [|__foo|]() {
-  // }
-  // 
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/fileA.ts ===
-    // [|export function __foo() {
-    // }|]
-    // 
-// === 1 ===
-  // === /tests/cases/fourslash/fileB.ts ===
-  // import { [|__foo|] as bar } from "./fileA";
-  // 
-  // bar();
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/fileB.ts ===
-    // [|import { __foo as bar } from "./fileA";|]
-    // 
-    // bar();
-
 
 [
   {

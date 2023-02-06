@@ -1,107 +1,30 @@
 // === /tests/cases/fourslash/a.ts ===
-// interface [|IFoo|] {
+// <|interface [|{| contextId: 0, kind: "interface", name: "IFoo" |}IFoo|] {
 //     instance1: number;
-// }
+// }|>
 
 // === /tests/cases/fourslash/b.ts ===
-// interface [|IFoo|] {
+// <|interface [|{| contextId: 1, kind: "interface", name: "IFoo" |}IFoo|] {
 //     instance2: number;
-// }
+// }|>
 // 
-// interface [|IFoo|] {
+// <|interface [|{| contextId: 2, kind: "interface", name: "IFoo" |}IFoo|] {
 //     instance3: number;
-// }
+// }|>
 // 
 // var ifoo: IFo/*GOTO DEF*/o;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "interface"
-    // name: "IFoo"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/a.ts ===
-    // interface [|IFoo|] {
-    //     instance1: number;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|interface IFoo {
-      //     instance1: number;
-      // }|]
-  // === 1 ===
-    // kind: "interface"
-    // name: "IFoo"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/b.ts ===
-    // interface [|IFoo|] {
-    //     instance2: number;
-    // }
-    // 
-    // interface IFoo {
-    //     instance3: number;
-    // }
-    // 
-    // var ifoo: IFoo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.ts ===
-      // [|interface IFoo {
-      //     instance2: number;
-      // }|]
-      // 
-      // interface IFoo {
-      //     instance3: number;
-      // }
-      // 
-      // var ifoo: IFoo;
-  // === 2 ===
-    // kind: "interface"
-    // name: "IFoo"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/b.ts ===
-    // interface IFoo {
-    //     instance2: number;
-    // }
-    // 
-    // interface [|IFoo|] {
-    //     instance3: number;
-    // }
-    // 
-    // var ifoo: IFoo;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.ts ===
-      // interface IFoo {
-      //     instance2: number;
-      // }
-      // 
-      // [|interface IFoo {
-      //     instance3: number;
-      // }|]
-      // 
-      // var ifoo: IFoo;
 // === TextSpan ===
-  // === /tests/cases/fourslash/b.ts ===
-  // interface IFoo {
-  //     instance2: number;
-  // }
-  // 
-  // interface IFoo {
-  //     instance3: number;
-  // }
-  // 
-  // var ifoo: [|IFoo|];
-
+// === /tests/cases/fourslash/b.ts ===
+// interface IFoo {
+//     instance2: number;
+// }
+// 
+// interface IFoo {
+//     instance3: number;
+// }
+// 
+// var ifoo: [|IFo/*GOTO DEF*/o|];
 
 {
   "definitions": [
@@ -167,57 +90,21 @@
 }
 
 // === /tests/cases/fourslash/c.ts ===
-// module [|Module|] {
+// <|module [|{| contextId: 0, kind: "module", name: "Module" |}Module|] {
 //     export class c1 { }
-// }
+// }|>
 
 // === /tests/cases/fourslash/d.ts ===
-// module [|Module|] {
+// <|module [|{| contextId: 1, kind: "module", name: "Module" |}Module|] {
 //     export class c2 { }
-// }
+// }|>
 
 // === /tests/cases/fourslash/e.ts ===
 // Modul/*GOTO DEF*/e;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "Module"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/c.ts ===
-    // module [|Module|] {
-    //     export class c1 { }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/c.ts ===
-      // [|module Module {
-      //     export class c1 { }
-      // }|]
-  // === 1 ===
-    // kind: "module"
-    // name: "Module"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/d.ts ===
-    // module [|Module|] {
-    //     export class c2 { }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/d.ts ===
-      // [|module Module {
-      //     export class c2 { }
-      // }|]
 // === TextSpan ===
-  // === /tests/cases/fourslash/e.ts ===
-  // [|Module|];
-
+// === /tests/cases/fourslash/e.ts ===
+// [|Modul/*GOTO DEF*/e|];
 
 {
   "definitions": [

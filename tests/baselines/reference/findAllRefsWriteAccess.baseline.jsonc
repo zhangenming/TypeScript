@@ -1,317 +1,41 @@
 // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
 // interface Obj {
-//     [`/*FIND ALL REFS*/[|num|]`]: number;
+//     <|[`/*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isDefinition: true |}num|]`]: number;|>
 // }
 // 
 // let o: Obj = {
-//     [`[|num|]`]: 0
+//     <|[`[|{| contextId: 1, defId: 0, isWriteAccess: true |}num|]`]: 0|>
 // };
 // 
 // o = {
-//     ['[|num|]']: 1
+//     <|['[|{| contextId: 2, defId: 0, isWriteAccess: true |}num|]']: 1|>
 // };
 // 
-// o['[|num|]'] = 2;
-// o[`[|num|]`] = 3;
+// o['[|{| defId: 0 |}num|]'] = 2;
+// o[`[|{| defId: 0 |}num|]`] = 3;
 // 
-// o['[|num|]'];
-// o[`[|num|]`];
+// o['[|{| defId: 0 |}num|]'];
+// o[`[|{| defId: 0 |}num|]`];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) Obj[`num`]: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Obj",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": "[",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "`num`",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": "]",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-    // interface Obj {
-    //     [`[|num|]`]: number;
-    // }
-    // 
-    // let o: Obj = {
-    //     [`num`]: 0
-    // };
-    // 
-    // o = {
-    //     ['num']: 1
-    // };
-    // 
-    // o['num'] = 2;
-    // o[`num`] = 3;
-    // 
-    // o['num'];
-    // o[`num`];
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-      // interface Obj {
-      //     [|[`num`]: number;|]
-      // }
-      // 
-      // let o: Obj = {
-      //     [`num`]: 0
-      // };
-      // 
-      // o = {
-      //     ['num']: 1
-      // };
-      // 
-      // o['num'] = 2;
-      // o[`num`] = 3;
-      // 
-      // o['num'];
-      // o[`num`];
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-      // interface Obj {
-      //     [`[|num|]`]: number;
-      // }
-      // 
-      // let o: Obj = {
-      //     [`num`]: 0
-      // };
-      // 
-      // o = {
-      //     ['num']: 1
-      // };
-      // 
-      // o['num'] = 2;
-      // o[`num`] = 3;
-      // 
-      // o['num'];
-      // o[`num`];
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-        // interface Obj {
-        //     [|[`num`]: number;|]
-        // }
-        // 
-        // let o: Obj = {
-        //     [`num`]: 0
-        // };
-        // 
-        // o = {
-        //     ['num']: 1
-        // };
-        // 
-        // o['num'] = 2;
-        // o[`num`] = 3;
-        // 
-        // o['num'];
-        // o[`num`];
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-      // interface Obj {
-      //     [`num`]: number;
-      // }
-      // 
-      // let o: Obj = {
-      //     [`[|num|]`]: 0
-      // };
-      // 
-      // o = {
-      //     ['num']: 1
-      // };
-      // 
-      // o['num'] = 2;
-      // o[`num`] = 3;
-      // 
-      // o['num'];
-      // o[`num`];
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-        // interface Obj {
-        //     [`num`]: number;
-        // }
-        // 
-        // let o: Obj = {
-        //     [|[`num`]: 0|]
-        // };
-        // 
-        // o = {
-        //     ['num']: 1
-        // };
-        // 
-        // o['num'] = 2;
-        // o[`num`] = 3;
-        // 
-        // o['num'];
-        // o[`num`];
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-      // interface Obj {
-      //     [`num`]: number;
-      // }
-      // 
-      // let o: Obj = {
-      //     [`num`]: 0
-      // };
-      // 
-      // o = {
-      //     ['[|num|]']: 1
-      // };
-      // 
-      // o['num'] = 2;
-      // o[`num`] = 3;
-      // 
-      // o['num'];
-      // o[`num`];
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-        // interface Obj {
-        //     [`num`]: number;
-        // }
-        // 
-        // let o: Obj = {
-        //     [`num`]: 0
-        // };
-        // 
-        // o = {
-        //     [|['num']: 1|]
-        // };
-        // 
-        // o['num'] = 2;
-        // o[`num`] = 3;
-        // 
-        // o['num'];
-        // o[`num`];
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-      // interface Obj {
-      //     [`num`]: number;
-      // }
-      // 
-      // let o: Obj = {
-      //     [`num`]: 0
-      // };
-      // 
-      // o = {
-      //     ['num']: 1
-      // };
-      // 
-      // o['[|num|]'] = 2;
-      // o[`num`] = 3;
-      // 
-      // o['num'];
-      // o[`num`];
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-      // interface Obj {
-      //     [`num`]: number;
-      // }
-      // 
-      // let o: Obj = {
-      //     [`num`]: 0
-      // };
-      // 
-      // o = {
-      //     ['num']: 1
-      // };
-      // 
-      // o['num'] = 2;
-      // o[`[|num|]`] = 3;
-      // 
-      // o['num'];
-      // o[`num`];
-    // === 5 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-      // interface Obj {
-      //     [`num`]: number;
-      // }
-      // 
-      // let o: Obj = {
-      //     [`num`]: 0
-      // };
-      // 
-      // o = {
-      //     ['num']: 1
-      // };
-      // 
-      // o['num'] = 2;
-      // o[`num`] = 3;
-      // 
-      // o['[|num|]'];
-      // o[`num`];
-    // === 6 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
-      // interface Obj {
-      //     [`num`]: number;
-      // }
-      // 
-      // let o: Obj = {
-      //     [`num`]: 0
-      // };
-      // 
-      // o = {
-      //     ['num']: 1
-      // };
-      // 
-      // o['num'] = 2;
-      // o[`num`] = 3;
-      // 
-      // o['num'];
-      // o[`[|num|]`];
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsWriteAccess.ts ===
+// interface Obj {
+//     <|[`/*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) Obj[`num`]: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Obj","kind":"interfaceName"},{"text":"[","kind":"punctuation"},{"text":"`num`","kind":"propertyName"},{"text":"]","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}num|]`]: number;|>
+// }
+// 
+// let o: Obj = {
+//     [`num`]: 0
+// };
+// 
+// o = {
+//     ['num']: 1
+// };
+// 
+// o['num'] = 2;
+// o[`num`] = 3;
+// 
+// o['num'];
+// o[`num`];
 
 [
   {

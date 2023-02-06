@@ -1,88 +1,18 @@
-// === /tests/cases/fourslash/redeclaration.ts ===
-// container = { "[|searchProp|]" : 18 };
-
 // === /tests/cases/fourslash/declaration.ts ===
-// var container = { /*FIND ALL REFS*/[|searchProp|] : 1 };
-
-// === /tests/cases/fourslash/stringIndexer.ts ===
-// function blah2() { container["[|searchProp|]"] };
+// var container = { /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}searchProp|] : 1|> };
 
 // === /tests/cases/fourslash/expression.ts ===
-// function blah() { return (1 + 2 + container.[|searchProp|]()) === 2;  };
+// function blah() { return (1 + 2 + container.[|{| defId: 0 |}searchProp|]()) === 2;  };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) searchProp: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "searchProp",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/declaration.ts ===
-    // var container = { [|searchProp|] : 1 };
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/declaration.ts ===
-      // var container = { [|searchProp : 1|] };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/declaration.ts ===
-      // var container = { [|searchProp|] : 1 };
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/declaration.ts ===
-        // var container = { [|searchProp : 1|] };
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/expression.ts ===
-      // function blah() { return (1 + 2 + container.[|searchProp|]()) === 2;  };
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/stringIndexer.ts ===
-      // function blah2() { container["[|searchProp|]"] };
-    // === 3 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/redeclaration.ts ===
-      // container = { "[|searchProp|]" : 18 };
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/redeclaration.ts ===
-        // container = { [|"searchProp" : 18|] };
+// === /tests/cases/fourslash/stringIndexer.ts ===
+// function blah2() { container["[|{| defId: 0 |}searchProp|]"] };
 
+// === /tests/cases/fourslash/redeclaration.ts ===
+// container = { <|"[|{| contextId: 1, defId: 0, isWriteAccess: true |}searchProp|]" : 18|> };
+
+// === Definitions ===
+// === /tests/cases/fourslash/declaration.ts ===
+// var container = { /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) searchProp: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"searchProp","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}searchProp|] : 1|> };
 
 [
   {

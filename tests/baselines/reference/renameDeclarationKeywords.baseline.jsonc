@@ -1,10 +1,10 @@
 // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
 // class Base {}
 // interface Implemented1 {}
-// class RENAME extends Base implements Implemented1 {
+// /*RENAME*/<|class [|{| contextId: 0 |}C1RENAME|] extends Base implements Implemented1 {
 //     get e() { return 1; }
 //     set e(v) {}
-// }
+// }|>
 // interface I1 extends Base { }
 // type T = { }
 // enum E { }
@@ -14,42 +14,6 @@
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class [|C1|] extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // [|class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }|]
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-
 
 [
   {
@@ -66,13 +30,13 @@
 ]
 
 // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-// class RENAME {}
+// <|class [|{| contextId: 0 |}BaseRENAME|] {}|>
 // interface Implemented1 {}
-// class C1 extends RENAME implements Implemented1 {
+// class C1 /*RENAME*/extends [|BaseRENAME|] implements Implemented1 {
 //     get e() { return 1; }
 //     set e(v) {}
 // }
-// interface I1 extends RENAME { }
+// interface I1 extends [|BaseRENAME|] { }
 // type T = { }
 // enum E { }
 // namespace N { }
@@ -81,76 +45,6 @@
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class [|Base|] {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // [|class Base {}|]
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-// === 1 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends [|Base|] implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-// === 2 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends [|Base|] { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-
 
 [
   {
@@ -182,8 +76,8 @@
 
 // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
 // class Base {}
-// interface RENAME {}
-// class C1 extends Base implements RENAME {
+// <|interface [|{| contextId: 0 |}Implemented1RENAME|] {}|>
+// class C1 extends Base /*RENAME*/implements [|Implemented1RENAME|] {
 //     get e() { return 1; }
 //     set e(v) {}
 // }
@@ -196,59 +90,6 @@
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface [|Implemented1|] {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // [|interface Implemented1 {}|]
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-// === 1 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements [|Implemented1|] {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-
 
 [
   {
@@ -275,8 +116,8 @@
 // class Base {}
 // interface Implemented1 {}
 // class C1 extends Base implements Implemented1 {
-//     get RENAME() { return 1; }
-//     set RENAME(v) {}
+//     /*RENAME*/<|get [|{| contextId: 0 |}eRENAME|]() { return 1; }|>
+//     <|set [|{| contextId: 1 |}eRENAME|](v) {}|>
 // }
 // interface I1 extends Base { }
 // type T = { }
@@ -287,76 +128,6 @@
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get [|e|]() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     [|get e() { return 1; }|]
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-// === 1 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set [|e|](v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     [|set e(v) {}|]
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-
 
 [
   {
@@ -387,8 +158,8 @@
 // class Base {}
 // interface Implemented1 {}
 // class C1 extends Base implements Implemented1 {
-//     get RENAME() { return 1; }
-//     set RENAME(v) {}
+//     <|get [|{| contextId: 0 |}eRENAME|]() { return 1; }|>
+//     /*RENAME*/<|set [|{| contextId: 1 |}eRENAME|](v) {}|>
 // }
 // interface I1 extends Base { }
 // type T = { }
@@ -399,76 +170,6 @@
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get [|e|]() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     [|get e() { return 1; }|]
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-// === 1 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set [|e|](v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     [|set e(v) {}|]
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-
 
 [
   {
@@ -502,7 +203,7 @@
 //     get e() { return 1; }
 //     set e(v) {}
 // }
-// interface RENAME extends Base { }
+// /*RENAME*/<|interface [|{| contextId: 0 |}I1RENAME|] extends Base { }|>
 // type T = { }
 // enum E { }
 // namespace N { }
@@ -511,42 +212,6 @@
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface [|I1|] extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // [|interface I1 extends Base { }|]
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-
 
 [
   {
@@ -563,13 +228,13 @@
 ]
 
 // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-// class RENAME {}
+// <|class [|{| contextId: 0 |}BaseRENAME|] {}|>
 // interface Implemented1 {}
-// class C1 extends RENAME implements Implemented1 {
+// class C1 extends [|BaseRENAME|] implements Implemented1 {
 //     get e() { return 1; }
 //     set e(v) {}
 // }
-// interface I1 extends RENAME { }
+// interface I1 /*RENAME*/extends [|BaseRENAME|] { }
 // type T = { }
 // enum E { }
 // namespace N { }
@@ -578,76 +243,6 @@
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class [|Base|] {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // [|class Base {}|]
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-// === 1 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends [|Base|] implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-// === 2 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends [|Base|] { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-
 
 [
   {
@@ -685,7 +280,7 @@
 //     set e(v) {}
 // }
 // interface I1 extends Base { }
-// type RENAME = { }
+// /*RENAME*/<|type [|{| contextId: 0 |}TRENAME|] = { }|>
 // enum E { }
 // namespace N { }
 // module M { }
@@ -693,42 +288,6 @@
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type [|T|] = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // [|type T = { }|]
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-
 
 [
   {
@@ -753,49 +312,13 @@
 // }
 // interface I1 extends Base { }
 // type T = { }
-// enum RENAME { }
+// /*RENAME*/<|enum [|{| contextId: 0 |}ERENAME|] { }|>
 // namespace N { }
 // module M { }
 // function fn() {}
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum [|E|] { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // [|enum E { }|]
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-
 
 [
   {
@@ -821,48 +344,12 @@
 // interface I1 extends Base { }
 // type T = { }
 // enum E { }
-// namespace RENAME { }
+// /*RENAME*/<|namespace [|{| contextId: 0 |}NRENAME|] { }|>
 // module M { }
 // function fn() {}
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace [|N|] { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // [|namespace N { }|]
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-
 
 [
   {
@@ -889,47 +376,11 @@
 // type T = { }
 // enum E { }
 // namespace N { }
-// module RENAME { }
+// /*RENAME*/<|module [|{| contextId: 0 |}MRENAME|] { }|>
 // function fn() {}
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module [|M|] { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // [|module M { }|]
-    // function fn() {}
-    // var x;
-    // let y;
-    // const z = 1;
-
 
 [
   {
@@ -957,46 +408,10 @@
 // enum E { }
 // namespace N { }
 // module M { }
-// function RENAME() {}
+// /*RENAME*/<|function [|{| contextId: 0 |}fnRENAME|]() {}|>
 // var x;
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function [|fn|]() {}
-  // var x;
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // [|function fn() {}|]
-    // var x;
-    // let y;
-    // const z = 1;
-
 
 [
   {
@@ -1025,45 +440,9 @@
 // namespace N { }
 // module M { }
 // function fn() {}
-// var RENAME;
+// /*RENAME*/<|var [|{| contextId: 0 |}xRENAME|];|>
 // let y;
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var [|x|];
-  // let y;
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // [|var x;|]
-    // let y;
-    // const z = 1;
-
 
 [
   {
@@ -1093,44 +472,8 @@
 // module M { }
 // function fn() {}
 // var x;
-// let RENAME;
+// /*RENAME*/<|let [|{| contextId: 0 |}yRENAME|];|>
 // const z = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let [|y|];
-  // const z = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // [|let y;|]
-    // const z = 1;
-
 
 [
   {
@@ -1161,43 +504,7 @@
 // function fn() {}
 // var x;
 // let y;
-// const RENAME = 1;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-  // class Base {}
-  // interface Implemented1 {}
-  // class C1 extends Base implements Implemented1 {
-  //     get e() { return 1; }
-  //     set e(v) {}
-  // }
-  // interface I1 extends Base { }
-  // type T = { }
-  // enum E { }
-  // namespace N { }
-  // module M { }
-  // function fn() {}
-  // var x;
-  // let y;
-  // const [|z|] = 1;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDeclarationKeywords.ts ===
-    // class Base {}
-    // interface Implemented1 {}
-    // class C1 extends Base implements Implemented1 {
-    //     get e() { return 1; }
-    //     set e(v) {}
-    // }
-    // interface I1 extends Base { }
-    // type T = { }
-    // enum E { }
-    // namespace N { }
-    // module M { }
-    // function fn() {}
-    // var x;
-    // let y;
-    // [|const z = 1;|]
-
+// /*RENAME*/<|const [|{| contextId: 0 |}zRENAME|] = 1;|>
 
 [
   {

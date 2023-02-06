@@ -1,7 +1,7 @@
 // === /tests/cases/fourslash/a.ts ===
-// function [|decorator|](target) {
+// <|function [|{| contextId: 0, kind: "function", name: "decorator" |}decorator|](target) {
 //     return target;
-// }
+// }|>
 // function decoratorFactory(...args) {
 //     return target => target;
 // }
@@ -13,38 +13,13 @@
 //     method() {}
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "function"
-    // name: "decorator"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/a.ts ===
-    // function [|decorator|](target) {
-    //     return target;
-    // }
-    // function decoratorFactory(...args) {
-    //     return target => target;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|function decorator(target) {
-      //     return target;
-      // }|]
-      // function decoratorFactory(...args) {
-      //     return target => target;
-      // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/b.ts ===
-  // @[|decorator|]
-  // class C {
-  //     @decoratorFactory(a, "22", true)
-  //     method() {}
-  // }
-
+// === /tests/cases/fourslash/b.ts ===
+// @/*GOTO DEF*/[|decorator|]
+// class C {
+//     @decoratorFactory(a, "22", true)
+//     method() {}
+// }
 
 {
   "definitions": [
@@ -77,9 +52,9 @@
 // function decorator(target) {
 //     return target;
 // }
-// function [|decoratorFactory|](...args) {
+// <|function [|{| contextId: 0, kind: "function", name: "decoratorFactory" |}decoratorFactory|](...args) {
 //     return target => target;
-// }
+// }|>
 
 // === /tests/cases/fourslash/b.ts ===
 // @decorator
@@ -88,38 +63,13 @@
 //     method() {}
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "function"
-    // name: "decoratorFactory"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/a.ts ===
-    // function decorator(target) {
-    //     return target;
-    // }
-    // function [|decoratorFactory|](...args) {
-    //     return target => target;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // function decorator(target) {
-      //     return target;
-      // }
-      // [|function decoratorFactory(...args) {
-      //     return target => target;
-      // }|]
 // === TextSpan ===
-  // === /tests/cases/fourslash/b.ts ===
-  // @decorator
-  // class C {
-  //     @[|decoratorFactory|](a, "22", true)
-  //     method() {}
-  // }
-
+// === /tests/cases/fourslash/b.ts ===
+// @decorator
+// class C {
+//     @[|decora/*GOTO DEF*/torFactory|](a, "22", true)
+//     method() {}
+// }
 
 {
   "definitions": [

@@ -1,5 +1,5 @@
 // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-// var /*FIND ALL REFS*/[|dx|] = "Foo";
+// <|var /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}dx|] = "Foo";|>
 // 
 // module M { export var dx; }
 // module M {
@@ -8,81 +8,16 @@
 // }
 // M.y.dx;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var dx: string"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "dx",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-    // var [|dx|] = "Foo";
-    // 
-    // module M { export var dx; }
-    // module M {
-    //    var z = 100;
-    //    export var y = { dx, z };
-    // }
-    // M.y.dx;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-      // [|var dx = "Foo";|]
-      // 
-      // module M { export var dx; }
-      // module M {
-      //    var z = 100;
-      //    export var y = { dx, z };
-      // }
-      // M.y.dx;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-      // var [|dx|] = "Foo";
-      // 
-      // module M { export var dx; }
-      // module M {
-      //    var z = 100;
-      //    export var y = { dx, z };
-      // }
-      // M.y.dx;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-        // [|var dx = "Foo";|]
-        // 
-        // module M { export var dx; }
-        // module M {
-        //    var z = 100;
-        //    export var y = { dx, z };
-        // }
-        // M.y.dx;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
+// <|var /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "var", name: "var dx: string", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"dx","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}dx|] = "Foo";|>
+// 
+// module M { export var dx; }
+// module M {
+//    var z = 100;
+//    export var y = { dx, z };
+// }
+// M.y.dx;
 
 [
   {
@@ -148,108 +83,23 @@
 // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
 // var dx = "Foo";
 // 
-// module M { export var /*FIND ALL REFS*/[|dx|]; }
+// module M { <|export var /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isDefinition: true |}dx|];|> }
 // module M {
 //    var z = 100;
-//    export var y = { [|dx|], z };
+//    export var y = { [|{| defId: 0, isWriteAccess: true |}dx|], z };
 // }
 // M.y.dx;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var M.dx: any"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "M",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "dx",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-    // var dx = "Foo";
-    // 
-    // module M { export var [|dx|]; }
-    // module M {
-    //    var z = 100;
-    //    export var y = { dx, z };
-    // }
-    // M.y.dx;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-      // var dx = "Foo";
-      // 
-      // module M { [|export var dx;|] }
-      // module M {
-      //    var z = 100;
-      //    export var y = { dx, z };
-      // }
-      // M.y.dx;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-      // var dx = "Foo";
-      // 
-      // module M { export var [|dx|]; }
-      // module M {
-      //    var z = 100;
-      //    export var y = { dx, z };
-      // }
-      // M.y.dx;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-        // var dx = "Foo";
-        // 
-        // module M { [|export var dx;|] }
-        // module M {
-        //    var z = 100;
-        //    export var y = { dx, z };
-        // }
-        // M.y.dx;
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-      // var dx = "Foo";
-      // 
-      // module M { export var dx; }
-      // module M {
-      //    var z = 100;
-      //    export var y = { [|dx|], z };
-      // }
-      // M.y.dx;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
+// var dx = "Foo";
+// 
+// module M { <|export var /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "var", name: "var M.dx: any", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"M","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"dx","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}dx|];|> }
+// module M {
+//    var z = 100;
+//    export var y = { dx, z };
+// }
+// M.y.dx;
 
 [
   {
@@ -332,170 +182,23 @@
 // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
 // var dx = "Foo";
 // 
-// module M { export var [|dx|]; }
+// module M { <|export var [|{| contextId: 0, defId: 0 |}dx|];|> }
 // module M {
 //    var z = 100;
-//    export var y = { /*FIND ALL REFS*/[|dx|], z };
+//    export var y = { /*FIND ALL REFS*/[|{| defId: 0, isWriteAccess: true, isDefinition: true |}dx|], z };
 // }
-// M.y.[|dx|];
+// M.y.[|{| defId: 1 |}dx|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var M.dx: any"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "M",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "dx",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-    // var dx = "Foo";
-    // 
-    // module M { export var [|dx|]; }
-    // module M {
-    //    var z = 100;
-    //    export var y = { dx, z };
-    // }
-    // M.y.dx;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-      // var dx = "Foo";
-      // 
-      // module M { [|export var dx;|] }
-      // module M {
-      //    var z = 100;
-      //    export var y = { dx, z };
-      // }
-      // M.y.dx;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-      // var dx = "Foo";
-      // 
-      // module M { export var [|dx|]; }
-      // module M {
-      //    var z = 100;
-      //    export var y = { dx, z };
-      // }
-      // M.y.dx;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-        // var dx = "Foo";
-        // 
-        // module M { [|export var dx;|] }
-        // module M {
-        //    var z = 100;
-        //    export var y = { dx, z };
-        // }
-        // M.y.dx;
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-      // var dx = "Foo";
-      // 
-      // module M { export var dx; }
-      // module M {
-      //    var z = 100;
-      //    export var y = { [|dx|], z };
-      // }
-      // M.y.dx;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) dx: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "dx",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-    // var dx = "Foo";
-    // 
-    // module M { export var dx; }
-    // module M {
-    //    var z = 100;
-    //    export var y = { [|dx|], z };
-    // }
-    // M.y.dx;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-      // var dx = "Foo";
-      // 
-      // module M { export var dx; }
-      // module M {
-      //    var z = 100;
-      //    export var y = { dx, z };
-      // }
-      // M.y.[|dx|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
+// var dx = "Foo";
+// 
+// module M { <|export var [|{| contextId: 0, defId: 0, kind: "var", name: "var M.dx: any", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"M","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"dx","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}dx|];|> }
+// module M {
+//    var z = 100;
+//    export var y = { /*FIND ALL REFS*/[|{| defId: 1, kind: "property", name: "(property) dx: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"dx","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}dx|], z };
+// }
+// M.y.dx;
 
 [
   {
@@ -639,83 +342,20 @@
 // module M { export var dx; }
 // module M {
 //    var z = 100;
-//    export var y = { [|dx|], z };
+//    export var y = { [|{| defId: 0, isWriteAccess: true |}dx|], z };
 // }
-// M.y./*FIND ALL REFS*/[|dx|];
+// M.y./*FIND ALL REFS*/[|{| defId: 0 |}dx|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) dx: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "dx",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-    // var dx = "Foo";
-    // 
-    // module M { export var dx; }
-    // module M {
-    //    var z = 100;
-    //    export var y = { [|dx|], z };
-    // }
-    // M.y.dx;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-      // var dx = "Foo";
-      // 
-      // module M { export var dx; }
-      // module M {
-      //    var z = 100;
-      //    export var y = { [|dx|], z };
-      // }
-      // M.y.dx;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
-      // var dx = "Foo";
-      // 
-      // module M { export var dx; }
-      // module M {
-      //    var z = 100;
-      //    export var y = { dx, z };
-      // }
-      // M.y.[|dx|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsWithShorthandPropertyAssignment2.ts ===
+// var dx = "Foo";
+// 
+// module M { export var dx; }
+// module M {
+//    var z = 100;
+//    export var y = { [|{| defId: 0, kind: "property", name: "(property) dx: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"dx","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}dx|], z };
+// }
+// M.y./*FIND ALL REFS*/dx;
 
 [
   {

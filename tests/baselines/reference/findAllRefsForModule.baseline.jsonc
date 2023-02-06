@@ -1,55 +1,16 @@
 // === findAllReferences ===
 // === /b.ts ===
-// import { x } from "/*FIND ALL REFS*/[|./a|]";
+// <|import { x } from "/*FIND ALL REFS*/[|{| contextId: 0, defId: 0 |}./a|]";|>
 
 // === /c/sub.js ===
-// const a = require("[|../a|]");
+// <|const a = require("[|{| contextId: 1, defId: 0 |}../a|]");|>
 
 // === /d.ts ===
-// /// <reference path="[|./a.ts|]" />
+// /// <reference path="[|{| defId: 0 |}./a.ts|]" />
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "module \"/a\""
-    // displayParts: [
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"/a\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /a.ts ===
-    // [|export const x = 0;|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /b.ts ===
-      // import { x } from "[|./a|]";
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x } from "./a";|]
-    // === 1 ===
-      // isWriteAccess: false
-      // === /c/sub.js ===
-      // const a = require("[|../a|]");
-        // === ContextSpan ===
-        // === /c/sub.js ===
-        // [|const a = require("../a");|]
-    // === 2 ===
-      // isWriteAccess: false
-      // === /d.ts ===
-      // /// <reference path="[|./a.ts|]" />
-
+// === Definitions ===
+// === /a.ts ===
+// [|{| defId: 0, kind: "module", name: "module \"/a\"", displayParts: [{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"/a\"","kind":"stringLiteral"}] |}export const x = 0;|]
 
 [
   {
@@ -116,56 +77,17 @@
 ]
 
 // === /b.ts ===
-// import { x } from "[|./a|]";
+// <|import { x } from "[|{| contextId: 0, defId: 0 |}./a|]";|>
 
 // === /c/sub.js ===
-// const a = require("/*FIND ALL REFS*/[|../a|]");
+// <|const a = require("/*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}../a|]");|>
 
 // === /d.ts ===
-// /// <reference path="[|./a.ts|]" />
+// /// <reference path="[|{| defId: 0 |}./a.ts|]" />
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "module \"/a\""
-    // displayParts: [
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"/a\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /a.ts ===
-    // [|export const x = 0;|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /b.ts ===
-      // import { x } from "[|./a|]";
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x } from "./a";|]
-    // === 1 ===
-      // isWriteAccess: false
-      // === /c/sub.js ===
-      // const a = require("[|../a|]");
-        // === ContextSpan ===
-        // === /c/sub.js ===
-        // [|const a = require("../a");|]
-    // === 2 ===
-      // isWriteAccess: false
-      // === /d.ts ===
-      // /// <reference path="[|./a.ts|]" />
-
+// === Definitions ===
+// === /a.ts ===
+// [|{| defId: 0, kind: "module", name: "module \"/a\"", displayParts: [{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"/a\"","kind":"stringLiteral"}] |}export const x = 0;|]
 
 [
   {
@@ -232,56 +154,17 @@
 ]
 
 // === /b.ts ===
-// import { x } from "[|./a|]";
+// <|import { x } from "[|{| contextId: 0, defId: 0 |}./a|]";|>
 
 // === /c/sub.js ===
-// const a = require("[|../a|]");
+// <|const a = require("[|{| contextId: 1, defId: 0 |}../a|]");|>
 
 // === /d.ts ===
-// /// <reference path="/*FIND ALL REFS*/[|./a.ts|]" />
+// /// <reference path="/*FIND ALL REFS*/[|{| defId: 0 |}./a.ts|]" />
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "module \"/a\""
-    // displayParts: [
-    //  {
-    //   "text": "module",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "\"/a\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /a.ts ===
-    // [|export const x = 0;|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /b.ts ===
-      // import { x } from "[|./a|]";
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x } from "./a";|]
-    // === 1 ===
-      // isWriteAccess: false
-      // === /c/sub.js ===
-      // const a = require("[|../a|]");
-        // === ContextSpan ===
-        // === /c/sub.js ===
-        // [|const a = require("../a");|]
-    // === 2 ===
-      // isWriteAccess: false
-      // === /d.ts ===
-      // /// <reference path="[|./a.ts|]" />
-
+// === Definitions ===
+// === /a.ts ===
+// [|{| defId: 0, kind: "module", name: "module \"/a\"", displayParts: [{"text":"module","kind":"keyword"},{"text":" ","kind":"space"},{"text":"\"/a\"","kind":"stringLiteral"}] |}export const x = 0;|]
 
 [
   {
@@ -349,18 +232,7 @@
 
 // === documentHighlights ===
 // === /b.ts ===
-// import { x } from "/*HIGHLIGHTS*/[|./a|]";
-
-// === 0 ===
-  // === /b.ts ===
-    // === 0 ===
-      // kind: "reference"
-      // === /b.ts ===
-      // import { x } from "[|./a|]";
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x } from "./a";|]
-
+// <|import { x } from "/*HIGHLIGHTS*/[|{| contextId: 0, kind: "reference" |}./a|]";|>
 
 [
   {
@@ -382,18 +254,7 @@
 ]
 
 // === /c/sub.js ===
-// const a = require("/*HIGHLIGHTS*/[|../a|]");
-
-// === 0 ===
-  // === /c/sub.js ===
-    // === 0 ===
-      // kind: "reference"
-      // === /c/sub.js ===
-      // const a = require("[|../a|]");
-        // === ContextSpan ===
-        // === /c/sub.js ===
-        // [|const a = require("../a");|]
-
+// <|const a = require("/*HIGHLIGHTS*/[|{| contextId: 0, kind: "reference" |}../a|]");|>
 
 [
   {
@@ -415,15 +276,7 @@
 ]
 
 // === /d.ts ===
-// /// <reference path="/*HIGHLIGHTS*/[|./a.ts|]" />
-
-// === 0 ===
-  // === /d.ts ===
-    // === 0 ===
-      // kind: "reference"
-      // === /d.ts ===
-      // /// <reference path="[|./a.ts|]" />
-
+// /// <reference path="/*HIGHLIGHTS*/[|{| kind: "reference" |}./a.ts|]" />
 
 [
   {

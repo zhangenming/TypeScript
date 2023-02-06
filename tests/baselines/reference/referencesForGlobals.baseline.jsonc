@@ -1,5 +1,5 @@
 // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-// /*FIND ALL REFS*/var [|global|] = 2;
+// /*FIND ALL REFS*/<|var [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}global|] = 2;|>
 // 
 // class foo {
 //     constructor (public global) { }
@@ -9,182 +9,38 @@
 // 
 // class bar {
 //     constructor () {
-//         var n = [|global|];
+//         var n = [|{| defId: 0 |}global|];
 // 
 //         var f = new foo('');
 //         f.global = '';
 //     }
 // }
 // 
-// var k = [|global|];
+// var k = [|{| defId: 0 |}global|];
 
 // === /tests/cases/fourslash/referencesForGlobals_2.ts ===
-// var m = [|global|];
+// var m = [|{| defId: 0 |}global|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var global: number"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "global",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-    // var [|global|] = 2;
-    // 
-    // class foo {
-    //     constructor (public global) { }
-    //     public f(global) { }
-    //     public f2(global) { }
-    // }
-    // 
-    // class bar {
-    //     constructor () {
-    //         var n = global;
-    // 
-    //         var f = new foo('');
-    //         f.global = '';
-    //     }
-    // }
-    // 
-    // var k = global;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // [|var global = 2;|]
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var [|global|] = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-        // [|var global = 2;|]
-        // 
-        // class foo {
-        //     constructor (public global) { }
-        //     public f(global) { }
-        //     public f2(global) { }
-        // }
-        // 
-        // class bar {
-        //     constructor () {
-        //         var n = global;
-        // 
-        //         var f = new foo('');
-        //         f.global = '';
-        //     }
-        // }
-        // 
-        // var k = global;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var global = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = [|global|];
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var global = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = [|global|];
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForGlobals_2.ts ===
-      // var m = [|global|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForGlobals_1.ts ===
+// /*FIND ALL REFS*/<|var [|{| contextId: 0, defId: 0, kind: "var", name: "var global: number", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"global","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}global|] = 2;|>
+// 
+// class foo {
+//     constructor (public global) { }
+//     public f(global) { }
+//     public f2(global) { }
+// }
+// 
+// class bar {
+//     constructor () {
+//         var n = global;
+// 
+//         var f = new foo('');
+//         f.global = '';
+//     }
+// }
+// 
+// var k = global;
 
 [
   {
@@ -275,7 +131,7 @@
 ]
 
 // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-// var /*FIND ALL REFS*/[|global|] = 2;
+// <|var /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}global|] = 2;|>
 // 
 // class foo {
 //     constructor (public global) { }
@@ -285,182 +141,38 @@
 // 
 // class bar {
 //     constructor () {
-//         var n = [|global|];
+//         var n = [|{| defId: 0 |}global|];
 // 
 //         var f = new foo('');
 //         f.global = '';
 //     }
 // }
 // 
-// var k = [|global|];
+// var k = [|{| defId: 0 |}global|];
 
 // === /tests/cases/fourslash/referencesForGlobals_2.ts ===
-// var m = [|global|];
+// var m = [|{| defId: 0 |}global|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var global: number"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "global",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-    // var [|global|] = 2;
-    // 
-    // class foo {
-    //     constructor (public global) { }
-    //     public f(global) { }
-    //     public f2(global) { }
-    // }
-    // 
-    // class bar {
-    //     constructor () {
-    //         var n = global;
-    // 
-    //         var f = new foo('');
-    //         f.global = '';
-    //     }
-    // }
-    // 
-    // var k = global;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // [|var global = 2;|]
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var [|global|] = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-        // [|var global = 2;|]
-        // 
-        // class foo {
-        //     constructor (public global) { }
-        //     public f(global) { }
-        //     public f2(global) { }
-        // }
-        // 
-        // class bar {
-        //     constructor () {
-        //         var n = global;
-        // 
-        //         var f = new foo('');
-        //         f.global = '';
-        //     }
-        // }
-        // 
-        // var k = global;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var global = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = [|global|];
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var global = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = [|global|];
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForGlobals_2.ts ===
-      // var m = [|global|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForGlobals_1.ts ===
+// <|var /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "var", name: "var global: number", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"global","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}global|] = 2;|>
+// 
+// class foo {
+//     constructor (public global) { }
+//     public f(global) { }
+//     public f2(global) { }
+// }
+// 
+// class bar {
+//     constructor () {
+//         var n = global;
+// 
+//         var f = new foo('');
+//         f.global = '';
+//     }
+// }
+// 
+// var k = global;
 
 [
   {
@@ -551,7 +263,7 @@
 ]
 
 // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-// var [|global|] = 2;
+// <|var [|{| contextId: 0, defId: 0, isWriteAccess: true |}global|] = 2;|>
 // 
 // class foo {
 //     constructor (public global) { }
@@ -561,178 +273,38 @@
 // 
 // class bar {
 //     constructor () {
-//         var n = /*FIND ALL REFS*/[|global|];
+//         var n = /*FIND ALL REFS*/[|{| defId: 0 |}global|];
 // 
 //         var f = new foo('');
 //         f.global = '';
 //     }
 // }
 // 
-// var k = [|global|];
+// var k = [|{| defId: 0 |}global|];
 
 // === /tests/cases/fourslash/referencesForGlobals_2.ts ===
-// var m = [|global|];
+// var m = [|{| defId: 0 |}global|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var global: number"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "global",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-    // var [|global|] = 2;
-    // 
-    // class foo {
-    //     constructor (public global) { }
-    //     public f(global) { }
-    //     public f2(global) { }
-    // }
-    // 
-    // class bar {
-    //     constructor () {
-    //         var n = global;
-    // 
-    //         var f = new foo('');
-    //         f.global = '';
-    //     }
-    // }
-    // 
-    // var k = global;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // [|var global = 2;|]
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var [|global|] = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-        // [|var global = 2;|]
-        // 
-        // class foo {
-        //     constructor (public global) { }
-        //     public f(global) { }
-        //     public f2(global) { }
-        // }
-        // 
-        // class bar {
-        //     constructor () {
-        //         var n = global;
-        // 
-        //         var f = new foo('');
-        //         f.global = '';
-        //     }
-        // }
-        // 
-        // var k = global;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var global = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = [|global|];
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var global = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = [|global|];
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForGlobals_2.ts ===
-      // var m = [|global|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForGlobals_1.ts ===
+// <|var [|{| contextId: 0, defId: 0, kind: "var", name: "var global: number", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"global","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}global|] = 2;|>
+// 
+// class foo {
+//     constructor (public global) { }
+//     public f(global) { }
+//     public f2(global) { }
+// }
+// 
+// class bar {
+//     constructor () {
+//         var n = /*FIND ALL REFS*/global;
+// 
+//         var f = new foo('');
+//         f.global = '';
+//     }
+// }
+// 
+// var k = global;
 
 [
   {
@@ -819,7 +391,7 @@
 ]
 
 // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-// var [|global|] = 2;
+// <|var [|{| contextId: 0, defId: 0, isWriteAccess: true |}global|] = 2;|>
 // 
 // class foo {
 //     constructor (public global) { }
@@ -829,178 +401,38 @@
 // 
 // class bar {
 //     constructor () {
-//         var n = [|global|];
+//         var n = [|{| defId: 0 |}global|];
 // 
 //         var f = new foo('');
 //         f.global = '';
 //     }
 // }
 // 
-// var k = /*FIND ALL REFS*/[|global|];
+// var k = /*FIND ALL REFS*/[|{| defId: 0 |}global|];
 
 // === /tests/cases/fourslash/referencesForGlobals_2.ts ===
-// var m = [|global|];
+// var m = [|{| defId: 0 |}global|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var global: number"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "global",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-    // var [|global|] = 2;
-    // 
-    // class foo {
-    //     constructor (public global) { }
-    //     public f(global) { }
-    //     public f2(global) { }
-    // }
-    // 
-    // class bar {
-    //     constructor () {
-    //         var n = global;
-    // 
-    //         var f = new foo('');
-    //         f.global = '';
-    //     }
-    // }
-    // 
-    // var k = global;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // [|var global = 2;|]
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var [|global|] = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-        // [|var global = 2;|]
-        // 
-        // class foo {
-        //     constructor (public global) { }
-        //     public f(global) { }
-        //     public f2(global) { }
-        // }
-        // 
-        // class bar {
-        //     constructor () {
-        //         var n = global;
-        // 
-        //         var f = new foo('');
-        //         f.global = '';
-        //     }
-        // }
-        // 
-        // var k = global;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var global = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = [|global|];
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var global = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = [|global|];
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForGlobals_2.ts ===
-      // var m = [|global|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForGlobals_1.ts ===
+// <|var [|{| contextId: 0, defId: 0, kind: "var", name: "var global: number", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"global","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}global|] = 2;|>
+// 
+// class foo {
+//     constructor (public global) { }
+//     public f(global) { }
+//     public f2(global) { }
+// }
+// 
+// class bar {
+//     constructor () {
+//         var n = global;
+// 
+//         var f = new foo('');
+//         f.global = '';
+//     }
+// }
+// 
+// var k = /*FIND ALL REFS*/global;
 
 [
   {
@@ -1087,7 +519,7 @@
 ]
 
 // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-// var [|global|] = 2;
+// <|var [|{| contextId: 0, defId: 0, isWriteAccess: true |}global|] = 2;|>
 // 
 // class foo {
 //     constructor (public global) { }
@@ -1097,178 +529,38 @@
 // 
 // class bar {
 //     constructor () {
-//         var n = [|global|];
+//         var n = [|{| defId: 0 |}global|];
 // 
 //         var f = new foo('');
 //         f.global = '';
 //     }
 // }
 // 
-// var k = [|global|];
+// var k = [|{| defId: 0 |}global|];
 
 // === /tests/cases/fourslash/referencesForGlobals_2.ts ===
-// var m = /*FIND ALL REFS*/[|global|];
+// var m = /*FIND ALL REFS*/[|{| defId: 0 |}global|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "var global: number"
-    // displayParts: [
-    //  {
-    //   "text": "var",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "global",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-    // var [|global|] = 2;
-    // 
-    // class foo {
-    //     constructor (public global) { }
-    //     public f(global) { }
-    //     public f2(global) { }
-    // }
-    // 
-    // class bar {
-    //     constructor () {
-    //         var n = global;
-    // 
-    //         var f = new foo('');
-    //         f.global = '';
-    //     }
-    // }
-    // 
-    // var k = global;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // [|var global = 2;|]
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var [|global|] = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-        // [|var global = 2;|]
-        // 
-        // class foo {
-        //     constructor (public global) { }
-        //     public f(global) { }
-        //     public f2(global) { }
-        // }
-        // 
-        // class bar {
-        //     constructor () {
-        //         var n = global;
-        // 
-        //         var f = new foo('');
-        //         f.global = '';
-        //     }
-        // }
-        // 
-        // var k = global;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var global = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = [|global|];
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = global;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForGlobals_1.ts ===
-      // var global = 2;
-      // 
-      // class foo {
-      //     constructor (public global) { }
-      //     public f(global) { }
-      //     public f2(global) { }
-      // }
-      // 
-      // class bar {
-      //     constructor () {
-      //         var n = global;
-      // 
-      //         var f = new foo('');
-      //         f.global = '';
-      //     }
-      // }
-      // 
-      // var k = [|global|];
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/referencesForGlobals_2.ts ===
-      // var m = [|global|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForGlobals_1.ts ===
+// <|var [|{| contextId: 0, defId: 0, kind: "var", name: "var global: number", displayParts: [{"text":"var","kind":"keyword"},{"text":" ","kind":"space"},{"text":"global","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}global|] = 2;|>
+// 
+// class foo {
+//     constructor (public global) { }
+//     public f(global) { }
+//     public f2(global) { }
+// }
+// 
+// class bar {
+//     constructor () {
+//         var n = global;
+// 
+//         var f = new foo('');
+//         f.global = '';
+//     }
+// }
+// 
+// var k = global;
 
 [
   {

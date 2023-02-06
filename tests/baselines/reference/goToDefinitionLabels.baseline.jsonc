@@ -1,5 +1,5 @@
 // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
-// [|label1|]: while (true) {
+// [|{| kind: "label", name: "label1", isLocal: true |}label1|]: while (true) {
 //     label2: while (true) {
 //         break /*GOTO DEF*/label1;
 //         continue label2;
@@ -8,32 +8,16 @@
 //     }
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "label"
-    // name: "label1"
-    // isLocal: true
-    // isAmbient: false
-    // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
-    // [|label1|]: while (true) {
-    //     label2: while (true) {
-    //         break label1;
-    //         continue label2;
-    //         () => { break label1; }
-    //         continue unknownLabel;
-    //     }
-    // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
-  // label1: while (true) {
-  //     label2: while (true) {
-  //         break [|label1|];
-  //         continue label2;
-  //         () => { break label1; }
-  //         continue unknownLabel;
-  //     }
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+// label1: while (true) {
+//     label2: while (true) {
+//         break /*GOTO DEF*/[|label1|];
+//         continue label2;
+//         () => { break label1; }
+//         continue unknownLabel;
+//     }
+// }
 
 {
   "definitions": [
@@ -57,7 +41,7 @@
 
 // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
 // label1: while (true) {
-//     [|label2|]: while (true) {
+//     [|{| kind: "label", name: "label2", isLocal: true |}label2|]: while (true) {
 //         break label1;
 //         continue /*GOTO DEF*/label2;
 //         () => { break label1; }
@@ -65,32 +49,16 @@
 //     }
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "label"
-    // name: "label2"
-    // isLocal: true
-    // isAmbient: false
-    // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
-    // label1: while (true) {
-    //     [|label2|]: while (true) {
-    //         break label1;
-    //         continue label2;
-    //         () => { break label1; }
-    //         continue unknownLabel;
-    //     }
-    // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
-  // label1: while (true) {
-  //     label2: while (true) {
-  //         break label1;
-  //         continue [|label2|];
-  //         () => { break label1; }
-  //         continue unknownLabel;
-  //     }
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+// label1: while (true) {
+//     label2: while (true) {
+//         break label1;
+//         continue /*GOTO DEF*/[|label2|];
+//         () => { break label1; }
+//         continue unknownLabel;
+//     }
+// }
 
 {
   "definitions": [
@@ -113,7 +81,7 @@
 }
 
 // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
-// [|label1|]: while (true) {
+// [|{| kind: "label", name: "label1", isLocal: true |}label1|]: while (true) {
 //     label2: while (true) {
 //         break label1;
 //         continue label2;
@@ -122,32 +90,16 @@
 //     }
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "label"
-    // name: "label1"
-    // isLocal: true
-    // isAmbient: false
-    // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
-    // [|label1|]: while (true) {
-    //     label2: while (true) {
-    //         break label1;
-    //         continue label2;
-    //         () => { break label1; }
-    //         continue unknownLabel;
-    //     }
-    // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionLabels.ts ===
-  // label1: while (true) {
-  //     label2: while (true) {
-  //         break label1;
-  //         continue label2;
-  //         () => { break [|label1|]; }
-  //         continue unknownLabel;
-  //     }
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionLabels.ts ===
+// label1: while (true) {
+//     label2: while (true) {
+//         break label1;
+//         continue label2;
+//         () => { break /*GOTO DEF*/[|label1|]; }
+//         continue unknownLabel;
+//     }
+// }
 
 {
   "definitions": [

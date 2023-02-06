@@ -2,116 +2,17 @@
 // interface MultiRobot {
 //     name: string;
 //     skills: {
-//         [|RENAME|]: string;
+//         /*RENAME*/<|[|{| contextId: 0 |}primaryRENAME|]: string;|>
 //         secondary: string;
 //     };
 // }
 // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-// for ({ skills: { RENAME: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
+// for (<|{ skills: { [|{| contextId: 1 |}primaryRENAME|]: primaryA, secondary: secondaryA } } = multiRobot|>, i = 0; i < 1; i++) {
 //     primaryA;
 // }
-// for ({ skills: { RENAME: primary/*END SUFFIX*/, secondary } } = multiRobot, i = 0; i < 1; i++) {
+// for (<|{ skills: { [|{| contextId: 2 |}primaryRENAME|]: primary/*END SUFFIX*/, secondary } } = multiRobot|>, i = 0; i < 1; i++) {
 //     primary;
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         [|primary|]: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         [|primary: string;|]
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-    //     primary;
-    // }
-// === 1 ===
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { [|primary|]: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         primary: string;
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ([|{ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot|], i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-    //     primary;
-    // }
-// === 2 ===
-  // suffixText: ": primary"
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { [|primary|], secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         primary: string;
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ([|{ skills: { primary, secondary } } = multiRobot|], i = 0; i < 1; i++) {
-    //     primary;
-    // }
-
 
 [
   {
@@ -154,116 +55,17 @@
 // interface MultiRobot {
 //     name: string;
 //     skills: {
-//         RENAME: string;
+//         <|[|{| contextId: 0 |}primaryRENAME|]: string;|>
 //         secondary: string;
 //     };
 // }
 // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-// for ({ skills: { [|RENAME|]: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
+// for (<|{ skills: { /*RENAME*/[|{| contextId: 1 |}primaryRENAME|]: primaryA, secondary: secondaryA } } = multiRobot|>, i = 0; i < 1; i++) {
 //     primaryA;
 // }
-// for ({ skills: { RENAME: primary/*END SUFFIX*/, secondary } } = multiRobot, i = 0; i < 1; i++) {
+// for (<|{ skills: { [|{| contextId: 2 |}primaryRENAME|]: primary/*END SUFFIX*/, secondary } } = multiRobot|>, i = 0; i < 1; i++) {
 //     primary;
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         [|primary|]: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         [|primary: string;|]
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-    //     primary;
-    // }
-// === 1 ===
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { [|primary|]: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         primary: string;
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ([|{ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot|], i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-    //     primary;
-    // }
-// === 2 ===
-  // suffixText: ": primary"
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { [|primary|], secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         primary: string;
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ([|{ skills: { primary, secondary } } = multiRobot|], i = 0; i < 1; i++) {
-    //     primary;
-    // }
-
 
 [
   {
@@ -310,96 +112,13 @@
 //         secondary: string;
 //     };
 // }
-// let multiRobot: MultiRobot, [|RENAME|]: string, secondary: string, primaryA: string, secondaryA: string, i: number;
+// let multiRobot: MultiRobot, /*RENAME*/<|[|{| contextId: 0 |}primaryRENAME|]: string|>, secondary: string, primaryA: string, secondaryA: string, i: number;
 // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
 //     primaryA;
 // }
-// for ({ skills: { /*START PREFIX*/primary: RENAME, secondary } } = multiRobot, i = 0; i < 1; i++) {
-//     RENAME;
+// for (<|{ skills: { /*START PREFIX*/primary: [|{| contextId: 1 |}primaryRENAME|], secondary } } = multiRobot|>, i = 0; i < 1; i++) {
+//     [|primaryRENAME|];
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, [|primary|]: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         primary: string;
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, [|primary: string|], secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-    //     primary;
-    // }
-// === 1 ===
-  // prefixText: "primary: "
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { [|primary|], secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         primary: string;
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ([|{ skills: { primary, secondary } } = multiRobot|], i = 0; i < 1; i++) {
-    //     primary;
-    // }
-// === 2 ===
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     [|primary|];
-  // }
-
 
 [
   {
@@ -442,96 +161,13 @@
 //         secondary: string;
 //     };
 // }
-// let multiRobot: MultiRobot, RENAME: string, secondary: string, primaryA: string, secondaryA: string, i: number;
+// let multiRobot: MultiRobot, <|[|{| contextId: 0 |}primaryRENAME|]: string|>, secondary: string, primaryA: string, secondaryA: string, i: number;
 // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
 //     primaryA;
 // }
-// for ({ skills: { /*START PREFIX*/primary: [|RENAME|], secondary } } = multiRobot, i = 0; i < 1; i++) {
-//     RENAME;
+// for (<|{ skills: { /*RENAME*//*START PREFIX*/primary: [|{| contextId: 1 |}primaryRENAME|], secondary } } = multiRobot|>, i = 0; i < 1; i++) {
+//     [|primaryRENAME|];
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, [|primary|]: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         primary: string;
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, [|primary: string|], secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-    //     primary;
-    // }
-// === 1 ===
-  // prefixText: "primary: "
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { [|primary|], secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         primary: string;
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ([|{ skills: { primary, secondary } } = multiRobot|], i = 0; i < 1; i++) {
-    //     primary;
-    // }
-// === 2 ===
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     [|primary|];
-  // }
-
 
 [
   {
@@ -574,96 +210,13 @@
 //         secondary: string;
 //     };
 // }
-// let multiRobot: MultiRobot, RENAME: string, secondary: string, primaryA: string, secondaryA: string, i: number;
+// let multiRobot: MultiRobot, <|[|{| contextId: 0 |}primaryRENAME|]: string|>, secondary: string, primaryA: string, secondaryA: string, i: number;
 // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
 //     primaryA;
 // }
-// for ({ skills: { /*START PREFIX*/primary: RENAME, secondary } } = multiRobot, i = 0; i < 1; i++) {
-//     [|RENAME|];
+// for (<|{ skills: { /*START PREFIX*/primary: [|{| contextId: 1 |}primaryRENAME|], secondary } } = multiRobot|>, i = 0; i < 1; i++) {
+//     /*RENAME*/[|primaryRENAME|];
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, [|primary|]: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         primary: string;
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, [|primary: string|], secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-    //     primary;
-    // }
-// === 1 ===
-  // prefixText: "primary: "
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { [|primary|], secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     primary;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-    // interface MultiRobot {
-    //     name: string;
-    //     skills: {
-    //         primary: string;
-    //         secondary: string;
-    //     };
-    // }
-    // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-    // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-    //     primaryA;
-    // }
-    // for ([|{ skills: { primary, secondary } } = multiRobot|], i = 0; i < 1; i++) {
-    //     primary;
-    // }
-// === 2 ===
-  // === /tests/cases/fourslash/renameDestructuringAssignmentNestedInFor2.ts ===
-  // interface MultiRobot {
-  //     name: string;
-  //     skills: {
-  //         primary: string;
-  //         secondary: string;
-  //     };
-  // }
-  // let multiRobot: MultiRobot, primary: string, secondary: string, primaryA: string, secondaryA: string, i: number;
-  // for ({ skills: { primary: primaryA, secondary: secondaryA } } = multiRobot, i = 0; i < 1; i++) {
-  //     primaryA;
-  // }
-  // for ({ skills: { primary, secondary } } = multiRobot, i = 0; i < 1; i++) {
-  //     [|primary|];
-  // }
-
 
 [
   {

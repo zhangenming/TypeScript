@@ -1,20 +1,10 @@
 // === getDefinitionAtPosition ===
 // === /tests/cases/fourslash/node_modules/foo/index.js ===
-// [||]{}
+// [|{| name: "foo", kind: "script" |}|]{}
 
 // === /tests/cases/fourslash/a.ts ===
 // import foo from /*GOTO DEF POS*/"foo";
 // foo();
-
-// === 0 ===
-  // name: "foo"
-  // kind: "script"
-  // failedAliasResolution: false
-  // isAmbient: false
-  // unverified: false
-  // === /tests/cases/fourslash/node_modules/foo/index.js ===
-  // [||]{}
-
 
 [
   {
@@ -32,25 +22,8 @@
 ]
 
 // === /tests/cases/fourslash/a.ts ===
-// import /*GOTO DEF POS*/[|foo|] from "foo";
+// <|import /*GOTO DEF POS*/[|{| contextId: 0, kind: "alias", name: "foo", isLocal: true, failedAliasResolution: true |}foo|] from "foo";|>
 // foo();
-
-// === 0 ===
-  // kind: "alias"
-  // name: "foo"
-  // containerName: ""
-  // isLocal: true
-  // isAmbient: false
-  // unverified: false
-  // failedAliasResolution: true
-  // === /tests/cases/fourslash/a.ts ===
-  // import [|foo|] from "foo";
-  // foo();
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // [|import foo from "foo";|]
-    // foo();
-
 
 [
   {
@@ -75,54 +48,13 @@
 
 // === findAllReferences ===
 // === /tests/cases/fourslash/a.ts ===
-// import /*FIND ALL REFS*/[|foo|] from "foo";
-// [|foo|]();
+// <|import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|] from "foo";|>
+// [|{| defId: 0 |}foo|]();
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "import foo"
-    // displayParts: [
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // import [|foo|] from "foo";
-    // foo();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|import foo from "foo";|]
-      // foo();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/a.ts ===
-      // import [|foo|] from "foo";
-      // foo();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|import foo from "foo";|]
-        // foo();
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/a.ts ===
-      // import foo from "foo";
-      // [|foo|]();
-
+// === Definitions ===
+// === /tests/cases/fourslash/a.ts ===
+// <|import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "import foo", displayParts: [{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"}] |}foo|] from "foo";|>
+// foo();
 
 [
   {
@@ -183,36 +115,13 @@
 ]
 
 // === /tests/cases/fourslash/a.ts ===
-// import foo from /*FIND ALL REFS*/"[|foo|]";
+// <|import foo from /*FIND ALL REFS*/"[|{| contextId: 0, defId: 0, isInString: true |}foo|]";|>
 // foo();
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "var"
-    // name: "foo"
-    // displayParts: [
-    //  {
-    //   "text": "\"foo\"",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // import foo from "[|foo|]";
-    // foo();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isInString: true
-      // === /tests/cases/fourslash/a.ts ===
-      // import foo from "[|foo|]";
-      // foo();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|import foo from "foo";|]
-        // foo();
-
+// === Definitions ===
+// === /tests/cases/fourslash/a.ts ===
+// import foo from /*FIND ALL REFS*/"[|{| defId: 0, kind: "var", name: "foo", displayParts: [{"text":"\"foo\"","kind":"stringLiteral"}] |}foo|]";
+// foo();
 
 [
   {
@@ -252,52 +161,13 @@
 ]
 
 // === /tests/cases/fourslash/a.ts ===
-// import [|foo|] from "foo";
-// /*FIND ALL REFS*/[|foo|]();
+// <|import [|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|] from "foo";|>
+// /*FIND ALL REFS*/[|{| defId: 0 |}foo|]();
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "import foo"
-    // displayParts: [
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // import [|foo|] from "foo";
-    // foo();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|import foo from "foo";|]
-      // foo();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/a.ts ===
-      // import [|foo|] from "foo";
-      // foo();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|import foo from "foo";|]
-        // foo();
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/a.ts ===
-      // import foo from "foo";
-      // [|foo|]();
-
+// === Definitions ===
+// === /tests/cases/fourslash/a.ts ===
+// <|import [|{| contextId: 0, defId: 0, kind: "alias", name: "import foo", displayParts: [{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"}] |}foo|] from "foo";|>
+// /*FIND ALL REFS*/foo();
 
 [
   {

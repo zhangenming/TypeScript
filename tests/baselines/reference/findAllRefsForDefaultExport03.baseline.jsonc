@@ -1,235 +1,33 @@
 // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-// /*FIND ALL REFS*/function [|f|]() {
+// /*FIND ALL REFS*/<|function [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}f|]() {
 //     return 100;
-// }
+// }|>
 // 
-// export default [|f|];
+// <|export default [|{| contextId: 1, defId: 0 |}f|];|>
 // 
-// var x: typeof [|f|];
+// var x: typeof [|{| defId: 0 |}f|];
 // 
-// var y = [|f|]();
+// var y = [|{| defId: 0 |}f|]();
 // 
-// namespace [|f|] {
+// <|namespace [|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}f|] {
+//     var local = 100;
+// }|>
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
+// /*FIND ALL REFS*/<|function [|{| contextId: 0, defId: 0, kind: "function", name: "namespace f\nfunction f(): number", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"\n","kind":"lineBreak"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}f|]() {
+//     return 100;
+// }|>
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// namespace f {
 //     var local = 100;
 // }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "namespace f\nfunction f(): number"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-    // function [|f|]() {
-    //     return 100;
-    // }
-    // 
-    // export default f;
-    // 
-    // var x: typeof f;
-    // 
-    // var y = f();
-    // 
-    // namespace f {
-    //     var local = 100;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // [|function f() {
-      //     return 100;
-      // }|]
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function [|f|]() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // [|function f() {
-        //     return 100;
-        // }|]
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default [|f|];
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // [|export default f;|]
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof [|f|];
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = [|f|]();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 4 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace [|f|] {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // [|namespace f {
-        //     var local = 100;
-        // }|]
-
 
 [
   {
@@ -361,237 +159,35 @@
 ]
 
 // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-// function /*FIND ALL REFS*/[|f|]() {
+// <|function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}f|]() {
 //     return 100;
-// }
+// }|>
 // 
-// export default [|f|];
+// <|export default [|{| contextId: 1, defId: 0 |}f|];|>
 // 
-// var x: typeof [|f|];
+// var x: typeof [|{| defId: 0 |}f|];
 // 
-// var y = [|f|]();
+// var y = [|{| defId: 0 |}f|]();
 // 
-// namespace [|f|] {
+// <|namespace [|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}f|] {
+//     var local = 100;
+// }|>
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
+// <|function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "function", name: "namespace f\nfunction f(): number", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"\n","kind":"lineBreak"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}f|]() {
+//     return 100;
+// }|>
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// namespace f {
 //     var local = 100;
 // }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "namespace f\nfunction f(): number"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-    // function [|f|]() {
-    //     return 100;
-    // }
-    // 
-    // export default f;
-    // 
-    // var x: typeof f;
-    // 
-    // var y = f();
-    // 
-    // namespace f {
-    //     var local = 100;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // [|function f() {
-      //     return 100;
-      // }|]
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function [|f|]() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // [|function f() {
-        //     return 100;
-        // }|]
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default [|f|];
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // [|export default f;|]
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof [|f|];
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = [|f|]();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 4 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace [|f|] {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // [|namespace f {
-        //     var local = 100;
-        // }|]
-
 
 [
   {
@@ -723,232 +319,35 @@
 ]
 
 // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-// function [|f|]() {
+// <|function [|{| contextId: 0, defId: 0, isWriteAccess: true |}f|]() {
 //     return 100;
-// }
+// }|>
 // 
-// /*FIND ALL REFS*/export default [|f|];
+// /*FIND ALL REFS*/<|export default [|{| contextId: 1, defId: 0 |}f|];|>
 // 
-// var x: typeof [|f|];
+// var x: typeof [|{| defId: 0 |}f|];
 // 
-// var y = [|f|]();
+// var y = [|{| defId: 0 |}f|]();
 // 
-// namespace [|f|] {
+// <|namespace [|{| contextId: 2, defId: 0, isWriteAccess: true |}f|] {
+//     var local = 100;
+// }|>
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
+// <|function [|{| contextId: 0, defId: 0, kind: "function", name: "namespace f\nfunction f(): number", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"\n","kind":"lineBreak"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}f|]() {
+//     return 100;
+// }|>
+// 
+// /*FIND ALL REFS*/export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// namespace f {
 //     var local = 100;
 // }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "namespace f\nfunction f(): number"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-    // function [|f|]() {
-    //     return 100;
-    // }
-    // 
-    // export default f;
-    // 
-    // var x: typeof f;
-    // 
-    // var y = f();
-    // 
-    // namespace f {
-    //     var local = 100;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // [|function f() {
-      //     return 100;
-      // }|]
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function [|f|]() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // [|function f() {
-        //     return 100;
-        // }|]
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default [|f|];
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // [|export default f;|]
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof [|f|];
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = [|f|]();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 4 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace [|f|] {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // [|namespace f {
-        //     var local = 100;
-        // }|]
-
 
 [
   {
@@ -1075,232 +474,35 @@
 ]
 
 // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-// function [|f|]() {
+// <|function [|{| contextId: 0, defId: 0, isWriteAccess: true |}f|]() {
 //     return 100;
-// }
+// }|>
 // 
-// export default /*FIND ALL REFS*/[|f|];
+// <|export default /*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}f|];|>
 // 
-// var x: typeof [|f|];
+// var x: typeof [|{| defId: 0 |}f|];
 // 
-// var y = [|f|]();
+// var y = [|{| defId: 0 |}f|]();
 // 
-// namespace [|f|] {
+// <|namespace [|{| contextId: 2, defId: 0, isWriteAccess: true |}f|] {
+//     var local = 100;
+// }|>
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
+// <|function [|{| contextId: 0, defId: 0, kind: "function", name: "namespace f\nfunction f(): number", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"\n","kind":"lineBreak"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}f|]() {
+//     return 100;
+// }|>
+// 
+// export default /*FIND ALL REFS*/f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// namespace f {
 //     var local = 100;
 // }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "namespace f\nfunction f(): number"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-    // function [|f|]() {
-    //     return 100;
-    // }
-    // 
-    // export default f;
-    // 
-    // var x: typeof f;
-    // 
-    // var y = f();
-    // 
-    // namespace f {
-    //     var local = 100;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // [|function f() {
-      //     return 100;
-      // }|]
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function [|f|]() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // [|function f() {
-        //     return 100;
-        // }|]
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default [|f|];
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // [|export default f;|]
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof [|f|];
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = [|f|]();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 4 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace [|f|] {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // [|namespace f {
-        //     var local = 100;
-        // }|]
-
 
 [
   {
@@ -1427,232 +629,35 @@
 ]
 
 // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-// function [|f|]() {
+// <|function [|{| contextId: 0, defId: 0, isWriteAccess: true |}f|]() {
 //     return 100;
-// }
+// }|>
 // 
-// export default [|f|];
+// <|export default [|{| contextId: 1, defId: 0 |}f|];|>
 // 
-// var x: typeof /*FIND ALL REFS*/[|f|];
+// var x: typeof /*FIND ALL REFS*/[|{| defId: 0 |}f|];
 // 
-// var y = [|f|]();
+// var y = [|{| defId: 0 |}f|]();
 // 
-// namespace [|f|] {
+// <|namespace [|{| contextId: 2, defId: 0, isWriteAccess: true |}f|] {
+//     var local = 100;
+// }|>
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
+// <|function [|{| contextId: 0, defId: 0, kind: "function", name: "namespace f\nfunction f(): number", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"\n","kind":"lineBreak"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}f|]() {
+//     return 100;
+// }|>
+// 
+// export default f;
+// 
+// var x: typeof /*FIND ALL REFS*/f;
+// 
+// var y = f();
+// 
+// namespace f {
 //     var local = 100;
 // }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "namespace f\nfunction f(): number"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-    // function [|f|]() {
-    //     return 100;
-    // }
-    // 
-    // export default f;
-    // 
-    // var x: typeof f;
-    // 
-    // var y = f();
-    // 
-    // namespace f {
-    //     var local = 100;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // [|function f() {
-      //     return 100;
-      // }|]
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function [|f|]() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // [|function f() {
-        //     return 100;
-        // }|]
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default [|f|];
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // [|export default f;|]
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof [|f|];
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = [|f|]();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 4 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace [|f|] {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // [|namespace f {
-        //     var local = 100;
-        // }|]
-
 
 [
   {
@@ -1779,232 +784,35 @@
 ]
 
 // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-// function [|f|]() {
+// <|function [|{| contextId: 0, defId: 0, isWriteAccess: true |}f|]() {
 //     return 100;
-// }
+// }|>
 // 
-// export default [|f|];
+// <|export default [|{| contextId: 1, defId: 0 |}f|];|>
 // 
-// var x: typeof [|f|];
+// var x: typeof [|{| defId: 0 |}f|];
 // 
-// var y = /*FIND ALL REFS*/[|f|]();
+// var y = /*FIND ALL REFS*/[|{| defId: 0 |}f|]();
 // 
-// namespace [|f|] {
+// <|namespace [|{| contextId: 2, defId: 0, isWriteAccess: true |}f|] {
+//     var local = 100;
+// }|>
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
+// <|function [|{| contextId: 0, defId: 0, kind: "function", name: "namespace f\nfunction f(): number", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"\n","kind":"lineBreak"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}f|]() {
+//     return 100;
+// }|>
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = /*FIND ALL REFS*/f();
+// 
+// namespace f {
 //     var local = 100;
 // }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "namespace f\nfunction f(): number"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-    // function [|f|]() {
-    //     return 100;
-    // }
-    // 
-    // export default f;
-    // 
-    // var x: typeof f;
-    // 
-    // var y = f();
-    // 
-    // namespace f {
-    //     var local = 100;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // [|function f() {
-      //     return 100;
-      // }|]
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function [|f|]() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // [|function f() {
-        //     return 100;
-        // }|]
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default [|f|];
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // [|export default f;|]
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof [|f|];
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = [|f|]();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 4 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace [|f|] {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // [|namespace f {
-        //     var local = 100;
-        // }|]
-
 
 [
   {
@@ -2131,237 +939,35 @@
 ]
 
 // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-// function [|f|]() {
+// <|function [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}f|]() {
 //     return 100;
-// }
+// }|>
 // 
-// export default [|f|];
+// <|export default [|{| contextId: 1, defId: 0 |}f|];|>
 // 
-// var x: typeof [|f|];
+// var x: typeof [|{| defId: 0 |}f|];
 // 
-// var y = [|f|]();
+// var y = [|{| defId: 0 |}f|]();
 // 
-// /*FIND ALL REFS*/namespace [|f|] {
+// /*FIND ALL REFS*/<|namespace [|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}f|] {
+//     var local = 100;
+// }|>
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
+// <|function [|{| contextId: 0, defId: 0, kind: "function", name: "namespace f\nfunction f(): number", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"\n","kind":"lineBreak"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}f|]() {
+//     return 100;
+// }|>
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// /*FIND ALL REFS*/namespace f {
 //     var local = 100;
 // }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "namespace f\nfunction f(): number"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-    // function [|f|]() {
-    //     return 100;
-    // }
-    // 
-    // export default f;
-    // 
-    // var x: typeof f;
-    // 
-    // var y = f();
-    // 
-    // namespace f {
-    //     var local = 100;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // [|function f() {
-      //     return 100;
-      // }|]
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function [|f|]() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // [|function f() {
-        //     return 100;
-        // }|]
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default [|f|];
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // [|export default f;|]
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof [|f|];
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = [|f|]();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 4 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace [|f|] {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // [|namespace f {
-        //     var local = 100;
-        // }|]
-
 
 [
   {
@@ -2493,237 +1099,35 @@
 ]
 
 // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-// function [|f|]() {
+// <|function [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}f|]() {
 //     return 100;
-// }
+// }|>
 // 
-// export default [|f|];
+// <|export default [|{| contextId: 1, defId: 0 |}f|];|>
 // 
-// var x: typeof [|f|];
+// var x: typeof [|{| defId: 0 |}f|];
 // 
-// var y = [|f|]();
+// var y = [|{| defId: 0 |}f|]();
 // 
-// namespace /*FIND ALL REFS*/[|f|] {
+// <|namespace /*FIND ALL REFS*/[|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}f|] {
+//     var local = 100;
+// }|>
+
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
+// <|function [|{| contextId: 0, defId: 0, kind: "function", name: "namespace f\nfunction f(): number", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"\n","kind":"lineBreak"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}f|]() {
+//     return 100;
+// }|>
+// 
+// export default f;
+// 
+// var x: typeof f;
+// 
+// var y = f();
+// 
+// namespace /*FIND ALL REFS*/f {
 //     var local = 100;
 // }
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "namespace f\nfunction f(): number"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "f",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-    // function [|f|]() {
-    //     return 100;
-    // }
-    // 
-    // export default f;
-    // 
-    // var x: typeof f;
-    // 
-    // var y = f();
-    // 
-    // namespace f {
-    //     var local = 100;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // [|function f() {
-      //     return 100;
-      // }|]
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function [|f|]() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // [|function f() {
-        //     return 100;
-        // }|]
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default [|f|];
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // [|export default f;|]
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // namespace f {
-        //     var local = 100;
-        // }
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof [|f|];
-      // 
-      // var y = f();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = [|f|]();
-      // 
-      // namespace f {
-      //     var local = 100;
-      // }
-    // === 4 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-      // function f() {
-      //     return 100;
-      // }
-      // 
-      // export default f;
-      // 
-      // var x: typeof f;
-      // 
-      // var y = f();
-      // 
-      // namespace [|f|] {
-      //     var local = 100;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForDefaultExport03.ts ===
-        // function f() {
-        //     return 100;
-        // }
-        // 
-        // export default f;
-        // 
-        // var x: typeof f;
-        // 
-        // var y = f();
-        // 
-        // [|namespace f {
-        //     var local = 100;
-        // }|]
-
 
 [
   {

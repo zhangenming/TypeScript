@@ -5,128 +5,22 @@
 // 
 // function createFoo(): Foo {
 //     if (x === 2) {
-//         return [|{
+//         return [|{| kind: "interface", displayParts: [{"text":"(","kind":"punctuation"},{"text":"object literal","kind":"text"},{"text":")","kind":"punctuation"}] |}{
 //             hello() {}
 //         }|];
 //     }
-//     return [|{
+//     return [|{| kind: "interface", displayParts: [{"text":"(","kind":"punctuation"},{"text":"object literal","kind":"text"},{"text":")","kind":"punctuation"}] |}{
 //         hello() {}
 //     }|];
 // }
 // 
-// let createFoo2 = (): Foo => [|({hello() {}})|];
+// let createFoo2 = (): Foo => [|{| displayParts: [] |}({hello() {}})|];
 // 
 // function createFooLike() {
 //     return {
 //         hello() {}
 //     };
 // }
-
-// === 0 ===
-  // kind: "interface"
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "object literal",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  }
-  // ]
-  // === /tests/cases/fourslash/goToImplementationInterface_02.ts ===
-  // interface Foo { hello: () => void }
-  // 
-  // let x: number = 9;
-  // 
-  // function createFoo(): Foo {
-  //     if (x === 2) {
-  //         return [|{
-  //             hello() {}
-  //         }|];
-  //     }
-  //     return {
-  //         hello() {}
-  //     };
-  // }
-  // 
-  // let createFoo2 = (): Foo => ({hello() {}});
-  // 
-  // function createFooLike() {
-  //     return {
-  //         hello() {}
-  //     };
-  // }
-// === 1 ===
-  // kind: "interface"
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "object literal",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  }
-  // ]
-  // === /tests/cases/fourslash/goToImplementationInterface_02.ts ===
-  // interface Foo { hello: () => void }
-  // 
-  // let x: number = 9;
-  // 
-  // function createFoo(): Foo {
-  //     if (x === 2) {
-  //         return {
-  //             hello() {}
-  //         };
-  //     }
-  //     return [|{
-  //         hello() {}
-  //     }|];
-  // }
-  // 
-  // let createFoo2 = (): Foo => ({hello() {}});
-  // 
-  // function createFooLike() {
-  //     return {
-  //         hello() {}
-  //     };
-  // }
-// === 2 ===
-  // kind: ""
-  // displayParts: []
-  // === /tests/cases/fourslash/goToImplementationInterface_02.ts ===
-  // interface Foo { hello: () => void }
-  // 
-  // let x: number = 9;
-  // 
-  // function createFoo(): Foo {
-  //     if (x === 2) {
-  //         return {
-  //             hello() {}
-  //         };
-  //     }
-  //     return {
-  //         hello() {}
-  //     };
-  // }
-  // 
-  // let createFoo2 = (): Foo => [|({hello() {}})|];
-  // 
-  // function createFooLike() {
-  //     return {
-  //         hello() {}
-  //     };
-  // }
-
 
 [
   {

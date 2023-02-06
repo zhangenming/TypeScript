@@ -1,8 +1,8 @@
 // === findAllReferences ===
 // === /file1.ts ===
 // declare function log(s: string | number): void;
-// const /*FIND ALL REFS*/[|q|] = 1;
-// export { [|q|] };
+// <|const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}q|] = 1;|>
+// <|export { [|{| contextId: 1, defId: 0, isWriteAccess: true |}q|] };|>
 // const x = {
 //     z: 'value'
 // }
@@ -11,199 +11,24 @@
 
 // === /file2.ts ===
 // declare function log(s: string | number): void;
-// import { [|q|] } from "./file1";
-// log([|q|] + 1);
+// <|import { [|{| contextId: 2, defId: 1, isWriteAccess: true |}q|] } from "./file1";|>
+// log([|{| defId: 1 |}q|] + 1);
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const q: 1"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const [|q|] = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-      // === ContextSpan ===
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // [|const q = 1;|]
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const [|q|] = 1;
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // [|const q = 1;|]
-        // export { q };
-        // const x = {
-        //     z: 'value'
-        // }
-        // const { z } = x;
-        // log(z);
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { [|q|] };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // const q = 1;
-        // [|export { q };|]
-        // const x = {
-        //     z: 'value'
-        // }
-        // const { z } = x;
-        // log(z);
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const q: 1\nimport q"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /file2.ts ===
-    // declare function log(s: string | number): void;
-    // import { [|q|] } from "./file1";
-    // log(q + 1);
-      // === ContextSpan ===
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // [|import { q } from "./file1";|]
-      // log(q + 1);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // import { [|q|] } from "./file1";
-      // log(q + 1);
-        // === ContextSpan ===
-        // === /file2.ts ===
-        // declare function log(s: string | number): void;
-        // [|import { q } from "./file1";|]
-        // log(q + 1);
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // import { q } from "./file1";
-      // log([|q|] + 1);
+// === Definitions ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// <|const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "const", name: "const q: 1", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}q|] = 1;|>
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
 
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// <|import { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) const q: 1\nimport q", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"aliasName"}] |}q|] } from "./file1";|>
+// log(q + 1);
 
 [
   {
@@ -380,8 +205,8 @@
 
 // === /file1.ts ===
 // declare function log(s: string | number): void;
-// const [|q|] = 1;
-// export { /*FIND ALL REFS*/[|q|] };
+// <|const [|{| contextId: 0, defId: 0, isWriteAccess: true |}q|] = 1;|>
+// <|export { /*FIND ALL REFS*/[|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}q|] };|>
 // const x = {
 //     z: 'value'
 // }
@@ -390,199 +215,24 @@
 
 // === /file2.ts ===
 // declare function log(s: string | number): void;
-// import { [|q|] } from "./file1";
-// log([|q|] + 1);
+// <|import { [|{| contextId: 2, defId: 1, isWriteAccess: true |}q|] } from "./file1";|>
+// log([|{| defId: 1 |}q|] + 1);
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const q: 1"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const [|q|] = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-      // === ContextSpan ===
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // [|const q = 1;|]
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const [|q|] = 1;
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // [|const q = 1;|]
-        // export { q };
-        // const x = {
-        //     z: 'value'
-        // }
-        // const { z } = x;
-        // log(z);
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { [|q|] };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // const q = 1;
-        // [|export { q };|]
-        // const x = {
-        //     z: 'value'
-        // }
-        // const { z } = x;
-        // log(z);
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const q: 1\nimport q"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /file2.ts ===
-    // declare function log(s: string | number): void;
-    // import { [|q|] } from "./file1";
-    // log(q + 1);
-      // === ContextSpan ===
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // [|import { q } from "./file1";|]
-      // log(q + 1);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // import { [|q|] } from "./file1";
-      // log(q + 1);
-        // === ContextSpan ===
-        // === /file2.ts ===
-        // declare function log(s: string | number): void;
-        // [|import { q } from "./file1";|]
-        // log(q + 1);
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // import { q } from "./file1";
-      // log([|q|] + 1);
+// === Definitions ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// <|const [|{| contextId: 0, defId: 0, kind: "const", name: "const q: 1", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}q|] = 1;|>
+// export { /*FIND ALL REFS*/q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
 
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// <|import { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) const q: 1\nimport q", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"aliasName"}] |}q|] } from "./file1";|>
+// log(q + 1);
 
 [
   {
@@ -757,211 +407,36 @@
   }
 ]
 
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// <|import { /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}q|] } from "./file1";|>
+// log([|{| defId: 0 |}q|] + 1);
+
 // === /file1.ts ===
 // declare function log(s: string | number): void;
-// const [|q|] = 1;
-// export { [|q|] };
+// <|const [|{| contextId: 1, defId: 1, isWriteAccess: true |}q|] = 1;|>
+// <|export { [|{| contextId: 2, defId: 1, isWriteAccess: true |}q|] };|>
 // const x = {
 //     z: 'value'
 // }
 // const { z } = x;
 // log(z);
 
+// === Definitions ===
 // === /file2.ts ===
 // declare function log(s: string | number): void;
-// import { /*FIND ALL REFS*/[|q|] } from "./file1";
-// log([|q|] + 1);
+// <|import { /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) const q: 1\nimport q", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"aliasName"}] |}q|] } from "./file1";|>
+// log(q + 1);
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const q: 1\nimport q"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /file2.ts ===
-    // declare function log(s: string | number): void;
-    // import { [|q|] } from "./file1";
-    // log(q + 1);
-      // === ContextSpan ===
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // [|import { q } from "./file1";|]
-      // log(q + 1);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // import { [|q|] } from "./file1";
-      // log(q + 1);
-        // === ContextSpan ===
-        // === /file2.ts ===
-        // declare function log(s: string | number): void;
-        // [|import { q } from "./file1";|]
-        // log(q + 1);
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // import { q } from "./file1";
-      // log([|q|] + 1);
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const q: 1"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const [|q|] = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-      // === ContextSpan ===
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // [|const q = 1;|]
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const [|q|] = 1;
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // [|const q = 1;|]
-        // export { q };
-        // const x = {
-        //     z: 'value'
-        // }
-        // const { z } = x;
-        // log(z);
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { [|q|] };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // const q = 1;
-        // [|export { q };|]
-        // const x = {
-        //     z: 'value'
-        // }
-        // const { z } = x;
-        // log(z);
-
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// <|const [|{| contextId: 1, defId: 1, kind: "const", name: "const q: 1", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}q|] = 1;|>
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
 
 [
   {
@@ -1136,207 +611,36 @@
   }
 ]
 
+// === /file2.ts ===
+// declare function log(s: string | number): void;
+// <|import { [|{| contextId: 0, defId: 0, isWriteAccess: true |}q|] } from "./file1";|>
+// log(/*FIND ALL REFS*/[|{| defId: 0 |}q|] + 1);
+
 // === /file1.ts ===
 // declare function log(s: string | number): void;
-// const [|q|] = 1;
-// export { [|q|] };
+// <|const [|{| contextId: 1, defId: 1, isWriteAccess: true |}q|] = 1;|>
+// <|export { [|{| contextId: 2, defId: 1, isWriteAccess: true |}q|] };|>
 // const x = {
 //     z: 'value'
 // }
 // const { z } = x;
 // log(z);
 
+// === Definitions ===
 // === /file2.ts ===
 // declare function log(s: string | number): void;
-// import { [|q|] } from "./file1";
-// log(/*FIND ALL REFS*/[|q|] + 1);
+// <|import { [|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) const q: 1\nimport q", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"aliasName"}] |}q|] } from "./file1";|>
+// log(/*FIND ALL REFS*/q + 1);
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const q: 1\nimport q"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /file2.ts ===
-    // declare function log(s: string | number): void;
-    // import { [|q|] } from "./file1";
-    // log(q + 1);
-      // === ContextSpan ===
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // [|import { q } from "./file1";|]
-      // log(q + 1);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // import { [|q|] } from "./file1";
-      // log(q + 1);
-        // === ContextSpan ===
-        // === /file2.ts ===
-        // declare function log(s: string | number): void;
-        // [|import { q } from "./file1";|]
-        // log(q + 1);
-    // === 1 ===
-      // isWriteAccess: false
-      // === /file2.ts ===
-      // declare function log(s: string | number): void;
-      // import { q } from "./file1";
-      // log([|q|] + 1);
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const q: 1"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "q",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const [|q|] = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-      // === ContextSpan ===
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // [|const q = 1;|]
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const [|q|] = 1;
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // [|const q = 1;|]
-        // export { q };
-        // const x = {
-        //     z: 'value'
-        // }
-        // const { z } = x;
-        // log(z);
-    // === 1 ===
-      // isWriteAccess: true
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { [|q|] };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // const q = 1;
-        // [|export { q };|]
-        // const x = {
-        //     z: 'value'
-        // }
-        // const { z } = x;
-        // log(z);
-
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// <|const [|{| contextId: 1, defId: 1, kind: "const", name: "const q: 1", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"q","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}q|] = 1;|>
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// const { z } = x;
+// log(z);
 
 [
   {
@@ -1512,116 +816,21 @@
 // const q = 1;
 // export { q };
 // const x = {
-//     /*FIND ALL REFS*/[|z|]: 'value'
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}z|]: 'value'|>
 // }
-// const { [|z|] } = x;
+// <|const { [|{| contextId: 1, defId: 0, isWriteAccess: true |}z|] } = x;|>
 // log(z);
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) z: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "z",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     [|z|]: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-      // === ContextSpan ===
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { q };
-      // const x = {
-      //     [|z: 'value'|]
-      // }
-      // const { z } = x;
-      // log(z);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { q };
-      // const x = {
-      //     [|z|]: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // const q = 1;
-        // export { q };
-        // const x = {
-        //     [|z: 'value'|]
-        // }
-        // const { z } = x;
-        // log(z);
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { [|z|] } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // const q = 1;
-        // export { q };
-        // const x = {
-        //     z: 'value'
-        // }
-        // [|const { z } = x;|]
-        // log(z);
-
+// === Definitions ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) z: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"z","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}z|]: 'value'|>
+// }
+// const { z } = x;
+// log(z);
 
 [
   {
@@ -1710,180 +919,21 @@
 // const q = 1;
 // export { q };
 // const x = {
-//     [|z|]: 'value'
+//     <|[|{| contextId: 0, defId: 0, isWriteAccess: true |}z|]: 'value'|>
 // }
-// const { /*FIND ALL REFS*/[|z|] } = x;
-// log([|z|]);
+// <|const { /*FIND ALL REFS*/[|{| contextId: 1, defId: 1, isWriteAccess: true, isDefinition: true |}z|] } = x;|>
+// log([|{| defId: 1 |}z|]);
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) z: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "z",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     [|z|]: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-      // === ContextSpan ===
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { q };
-      // const x = {
-      //     [|z: 'value'|]
-      // }
-      // const { z } = x;
-      // log(z);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { q };
-      // const x = {
-      //     [|z|]: 'value'
-      // }
-      // const { z } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // const q = 1;
-        // export { q };
-        // const x = {
-        //     [|z: 'value'|]
-        // }
-        // const { z } = x;
-        // log(z);
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const z: string"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "z",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { [|z|] } = x;
-    // log(z);
-      // === ContextSpan ===
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // [|const { z } = x;|]
-      // log(z);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { [|z|] } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // const q = 1;
-        // export { q };
-        // const x = {
-        //     z: 'value'
-        // }
-        // [|const { z } = x;|]
-        // log(z);
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log([|z|]);
-
+// === Definitions ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) z: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"z","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}z|]: 'value'|>
+// }
+// <|const { /*FIND ALL REFS*/[|{| contextId: 1, defId: 1, kind: "const", name: "const z: string", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"z","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}z|] } = x;|>
+// log(z);
 
 [
   {
@@ -2028,94 +1078,19 @@
 // const x = {
 //     z: 'value'
 // }
-// const { [|z|] } = x;
-// log(/*FIND ALL REFS*/[|z|]);
+// <|const { [|{| contextId: 0, defId: 0, isWriteAccess: true |}z|] } = x;|>
+// log(/*FIND ALL REFS*/[|{| defId: 0 |}z|]);
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const z: string"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "z",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { [|z|] } = x;
-    // log(z);
-      // === ContextSpan ===
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // [|const { z } = x;|]
-      // log(z);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { [|z|] } = x;
-      // log(z);
-        // === ContextSpan ===
-        // === /file1.ts ===
-        // declare function log(s: string | number): void;
-        // const q = 1;
-        // export { q };
-        // const x = {
-        //     z: 'value'
-        // }
-        // [|const { z } = x;|]
-        // log(z);
-    // === 1 ===
-      // isWriteAccess: false
-      // === /file1.ts ===
-      // declare function log(s: string | number): void;
-      // const q = 1;
-      // export { q };
-      // const x = {
-      //     z: 'value'
-      // }
-      // const { z } = x;
-      // log([|z|]);
-
+// === Definitions ===
+// === /file1.ts ===
+// declare function log(s: string | number): void;
+// const q = 1;
+// export { q };
+// const x = {
+//     z: 'value'
+// }
+// <|const { [|{| contextId: 0, defId: 0, kind: "const", name: "const z: string", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"z","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}z|] } = x;|>
+// log(/*FIND ALL REFS*/z);
 
 [
   {
@@ -2193,53 +1168,10 @@
 // const q = 1;
 // export { q };
 // const x = {
-//     [|RENAME|]: 'value'
+//     /*RENAME*/<|[|{| contextId: 0 |}zRENAME|]: 'value'|>
 // }
-// const { RENAME: z/*END SUFFIX*/ } = x;
+// <|const { [|{| contextId: 1 |}zRENAME|]: z/*END SUFFIX*/ } = x;|>
 // log(z);
-
-// === 0 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     [|z|]: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     [|z: 'value'|]
-    // }
-    // const { z } = x;
-    // log(z);
-// === 1 ===
-  // suffixText: ": z"
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { [|z|] } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // [|const { z } = x;|]
-    // log(z);
-
 
 [
   {
@@ -2276,41 +1208,8 @@
 // const x = {
 //     z: 'value'
 // }
-// const { /*START PREFIX*/z: [|RENAME|] } = x;
-// log(RENAME);
-
-// === 0 ===
-  // prefixText: "z: "
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { [|z|] } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // [|const { z } = x;|]
-    // log(z);
-// === 1 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log([|z|]);
-
+// <|const { /*RENAME*//*START PREFIX*/z: [|{| contextId: 0 |}zRENAME|] } = x;|>
+// log([|zRENAME|]);
 
 [
   {
@@ -2343,41 +1242,8 @@
 // const x = {
 //     z: 'value'
 // }
-// const { /*START PREFIX*/z: RENAME } = x;
-// log([|RENAME|]);
-
-// === 0 ===
-  // prefixText: "z: "
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { [|z|] } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // [|const { z } = x;|]
-    // log(z);
-// === 1 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log([|z|]);
-
+// <|const { /*START PREFIX*/z: [|{| contextId: 0 |}zRENAME|] } = x;|>
+// log(/*RENAME*/[|zRENAME|]);
 
 [
   {
@@ -2405,56 +1271,13 @@
 // providePrefixAndSuffixTextForRename: true
 // === /file1.ts ===
 // declare function log(s: string | number): void;
-// const [|RENAME|] = 1;
-// export { RENAME as q/*END SUFFIX*/ };
+// <|const /*RENAME*/[|{| contextId: 0 |}qRENAME|] = 1;|>
+// <|export { [|{| contextId: 1 |}qRENAME|] as q/*END SUFFIX*/ };|>
 // const x = {
 //     z: 'value'
 // }
 // const { z } = x;
 // log(z);
-
-// === 0 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const [|q|] = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // [|const q = 1;|]
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-// === 1 ===
-  // suffixText: " as q"
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { [|q|] };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // [|export { q };|]
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-
 
 [
   {
@@ -2487,7 +1310,7 @@
 // === /file1.ts ===
 // declare function log(s: string | number): void;
 // const q = 1;
-// export { /*START PREFIX*/q as [|RENAME|] };
+// <|export { /*RENAME*//*START PREFIX*/q as [|{| contextId: 0 |}qRENAME|] };|>
 // const x = {
 //     z: 'value'
 // }
@@ -2496,46 +1319,8 @@
 
 // === /file2.ts ===
 // declare function log(s: string | number): void;
-// import { RENAME } from "./file1";
-// log(RENAME + 1);
-
-// === 0 ===
-  // prefixText: "q as "
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { [|q|] };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // [|export { q };|]
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-// === 1 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { [|q|] } from "./file1";
-  // log(q + 1);
-    // === ContextSpan ===
-    // === /file2.ts ===
-    // declare function log(s: string | number): void;
-    // [|import { q } from "./file1";|]
-    // log(q + 1);
-// === 2 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { q } from "./file1";
-  // log([|q|] + 1);
-
+// <|import { [|{| contextId: 1 |}qRENAME|] } from "./file1";|>
+// log([|qRENAME|] + 1);
 
 [
   {
@@ -2574,26 +1359,8 @@
 // providePrefixAndSuffixTextForRename: true
 // === /file2.ts ===
 // declare function log(s: string | number): void;
-// import { /*START PREFIX*/q as RENAME } from "./file1";
-// log(RENAME + 1);
-
-// === 0 ===
-  // prefixText: "q as "
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { [|q|] } from "./file1";
-  // log(q + 1);
-    // === ContextSpan ===
-    // === /file2.ts ===
-    // declare function log(s: string | number): void;
-    // [|import { q } from "./file1";|]
-    // log(q + 1);
-// === 1 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { q } from "./file1";
-  // log([|q|] + 1);
-
+// <|import { /*RENAME*//*START PREFIX*/q as [|{| contextId: 0 |}qRENAME|] } from "./file1";|>
+// log([|qRENAME|] + 1);
 
 [
   {
@@ -2621,26 +1388,8 @@
 // providePrefixAndSuffixTextForRename: true
 // === /file2.ts ===
 // declare function log(s: string | number): void;
-// import { /*START PREFIX*/q as RENAME } from "./file1";
-// log(RENAME + 1);
-
-// === 0 ===
-  // prefixText: "q as "
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { [|q|] } from "./file1";
-  // log(q + 1);
-    // === ContextSpan ===
-    // === /file2.ts ===
-    // declare function log(s: string | number): void;
-    // [|import { q } from "./file1";|]
-    // log(q + 1);
-// === 1 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { q } from "./file1";
-  // log([|q|] + 1);
-
+// <|import { /*START PREFIX*/q as [|{| contextId: 0 |}qRENAME|] } from "./file1";|>
+// log(/*RENAME*/[|qRENAME|] + 1);
 
 [
   {
@@ -2672,62 +1421,10 @@
 // const q = 1;
 // export { q };
 // const x = {
-//     [|RENAME|]: 'value'
+//     /*RENAME*/<|[|{| contextId: 0 |}zRENAME|]: 'value'|>
 // }
-// const { RENAME } = x;
-// log(RENAME);
-
-// === 0 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     [|z|]: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     [|z: 'value'|]
-    // }
-    // const { z } = x;
-    // log(z);
-// === 1 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { [|z|] } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // [|const { z } = x;|]
-    // log(z);
-// === 2 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log([|z|]);
-
+// <|const { [|{| contextId: 1 |}zRENAME|] } = x;|>
+// log([|zRENAME|]);
 
 [
   {
@@ -2768,62 +1465,10 @@
 // const q = 1;
 // export { q };
 // const x = {
-//     RENAME: 'value'
+//     <|[|{| contextId: 0 |}zRENAME|]: 'value'|>
 // }
-// const { [|RENAME|] } = x;
-// log(RENAME);
-
-// === 0 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     [|z|]: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     [|z: 'value'|]
-    // }
-    // const { z } = x;
-    // log(z);
-// === 1 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { [|z|] } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // [|const { z } = x;|]
-    // log(z);
-// === 2 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log([|z|]);
-
+// <|const { /*RENAME*/[|{| contextId: 1 |}zRENAME|] } = x;|>
+// log([|zRENAME|]);
 
 [
   {
@@ -2864,62 +1509,10 @@
 // const q = 1;
 // export { q };
 // const x = {
-//     RENAME: 'value'
+//     <|[|{| contextId: 0 |}zRENAME|]: 'value'|>
 // }
-// const { RENAME } = x;
-// log([|RENAME|]);
-
-// === 0 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     [|z|]: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     [|z: 'value'|]
-    // }
-    // const { z } = x;
-    // log(z);
-// === 1 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { [|z|] } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // [|const { z } = x;|]
-    // log(z);
-// === 2 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log([|z|]);
-
+// <|const { [|{| contextId: 1 |}zRENAME|] } = x;|>
+// log(/*RENAME*/[|zRENAME|]);
 
 [
   {
@@ -2957,8 +1550,8 @@
 // providePrefixAndSuffixTextForRename: false
 // === /file1.ts ===
 // declare function log(s: string | number): void;
-// const [|RENAME|] = 1;
-// export { RENAME };
+// <|const /*RENAME*/[|{| contextId: 0 |}qRENAME|] = 1;|>
+// <|export { [|{| contextId: 1 |}qRENAME|] };|>
 // const x = {
 //     z: 'value'
 // }
@@ -2967,65 +1560,8 @@
 
 // === /file2.ts ===
 // declare function log(s: string | number): void;
-// import { RENAME } from "./file1";
-// log(RENAME + 1);
-
-// === 0 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const [|q|] = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // [|const q = 1;|]
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-// === 1 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { [|q|] };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // [|export { q };|]
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-// === 2 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { [|q|] } from "./file1";
-  // log(q + 1);
-    // === ContextSpan ===
-    // === /file2.ts ===
-    // declare function log(s: string | number): void;
-    // [|import { q } from "./file1";|]
-    // log(q + 1);
-// === 3 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { q } from "./file1";
-  // log([|q|] + 1);
-
+// <|import { [|{| contextId: 2 |}qRENAME|] } from "./file1";|>
+// log([|qRENAME|] + 1);
 
 [
   {
@@ -3074,8 +1610,8 @@
 // providePrefixAndSuffixTextForRename: false
 // === /file1.ts ===
 // declare function log(s: string | number): void;
-// const RENAME = 1;
-// export { [|RENAME|] };
+// <|const [|{| contextId: 0 |}qRENAME|] = 1;|>
+// <|export { /*RENAME*/[|{| contextId: 1 |}qRENAME|] };|>
 // const x = {
 //     z: 'value'
 // }
@@ -3084,65 +1620,8 @@
 
 // === /file2.ts ===
 // declare function log(s: string | number): void;
-// import { RENAME } from "./file1";
-// log(RENAME + 1);
-
-// === 0 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const [|q|] = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // [|const q = 1;|]
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-// === 1 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { [|q|] };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // [|export { q };|]
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-// === 2 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { [|q|] } from "./file1";
-  // log(q + 1);
-    // === ContextSpan ===
-    // === /file2.ts ===
-    // declare function log(s: string | number): void;
-    // [|import { q } from "./file1";|]
-    // log(q + 1);
-// === 3 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { q } from "./file1";
-  // log([|q|] + 1);
-
+// <|import { [|{| contextId: 2 |}qRENAME|] } from "./file1";|>
+// log([|qRENAME|] + 1);
 
 [
   {
@@ -3191,75 +1670,18 @@
 // providePrefixAndSuffixTextForRename: false
 // === /file2.ts ===
 // declare function log(s: string | number): void;
-// import { RENAME } from "./file1";
-// log(RENAME + 1);
+// <|import { /*RENAME*/[|{| contextId: 0 |}qRENAME|] } from "./file1";|>
+// log([|qRENAME|] + 1);
 
 // === /file1.ts ===
 // declare function log(s: string | number): void;
-// const RENAME = 1;
-// export { RENAME };
+// <|const [|{| contextId: 1 |}qRENAME|] = 1;|>
+// <|export { [|{| contextId: 2 |}qRENAME|] };|>
 // const x = {
 //     z: 'value'
 // }
 // const { z } = x;
 // log(z);
-
-// === 0 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { [|q|] } from "./file1";
-  // log(q + 1);
-    // === ContextSpan ===
-    // === /file2.ts ===
-    // declare function log(s: string | number): void;
-    // [|import { q } from "./file1";|]
-    // log(q + 1);
-// === 1 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { q } from "./file1";
-  // log([|q|] + 1);
-// === 2 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const [|q|] = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // [|const q = 1;|]
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-// === 3 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { [|q|] };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // [|export { q };|]
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-
 
 [
   {
@@ -3308,75 +1730,18 @@
 // providePrefixAndSuffixTextForRename: false
 // === /file2.ts ===
 // declare function log(s: string | number): void;
-// import { RENAME } from "./file1";
-// log(RENAME + 1);
+// <|import { [|{| contextId: 0 |}qRENAME|] } from "./file1";|>
+// log(/*RENAME*/[|qRENAME|] + 1);
 
 // === /file1.ts ===
 // declare function log(s: string | number): void;
-// const RENAME = 1;
-// export { RENAME };
+// <|const [|{| contextId: 1 |}qRENAME|] = 1;|>
+// <|export { [|{| contextId: 2 |}qRENAME|] };|>
 // const x = {
 //     z: 'value'
 // }
 // const { z } = x;
 // log(z);
-
-// === 0 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { [|q|] } from "./file1";
-  // log(q + 1);
-    // === ContextSpan ===
-    // === /file2.ts ===
-    // declare function log(s: string | number): void;
-    // [|import { q } from "./file1";|]
-    // log(q + 1);
-// === 1 ===
-  // === /file2.ts ===
-  // declare function log(s: string | number): void;
-  // import { q } from "./file1";
-  // log([|q|] + 1);
-// === 2 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const [|q|] = 1;
-  // export { q };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // [|const q = 1;|]
-    // export { q };
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-// === 3 ===
-  // === /file1.ts ===
-  // declare function log(s: string | number): void;
-  // const q = 1;
-  // export { [|q|] };
-  // const x = {
-  //     z: 'value'
-  // }
-  // const { z } = x;
-  // log(z);
-    // === ContextSpan ===
-    // === /file1.ts ===
-    // declare function log(s: string | number): void;
-    // const q = 1;
-    // [|export { q };|]
-    // const x = {
-    //     z: 'value'
-    // }
-    // const { z } = x;
-    // log(z);
-
 
 [
   {

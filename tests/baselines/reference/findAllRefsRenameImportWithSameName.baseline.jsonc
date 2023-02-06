@@ -1,156 +1,18 @@
 // === findAllReferences ===
-// === /b.ts ===
-// import { [|x|] as [|x|] } from "./a";
-// [|x|];
-
 // === /a.ts ===
-// export const /*FIND ALL REFS*/[|x|] = 0;
+// <|export const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}x|] = 0;|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const x: 0"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "0",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /a.ts ===
-    // export const [|x|] = 0;
-      // === ContextSpan ===
-      // === /a.ts ===
-      // [|export const x = 0;|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.ts ===
-      // export const [|x|] = 0;
-        // === ContextSpan ===
-        // === /a.ts ===
-        // [|export const x = 0;|]
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /b.ts ===
-      // import { [|x|] as x } from "./a";
-      // x;
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x as x } from "./a";|]
-        // x;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const x: 0\nimport x"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "0",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /b.ts ===
-    // import { x as [|x|] } from "./a";
-    // x;
-      // === ContextSpan ===
-      // === /b.ts ===
-      // [|import { x as x } from "./a";|]
-      // x;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /b.ts ===
-      // import { x as [|x|] } from "./a";
-      // x;
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x as x } from "./a";|]
-        // x;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /b.ts ===
-      // import { x as x } from "./a";
-      // [|x|];
+// === /b.ts ===
+// <|<|import { [|{| contextId: 1, defId: 0 |}x|] as [|{| contextId: 2, defId: 1, isWriteAccess: true |}x|] } from "./a";|>|>
+// [|{| defId: 1 |}x|];
 
+// === Definitions ===
+// === /a.ts ===
+// <|export const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "const", name: "const x: 0", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"0","kind":"stringLiteral"}] |}x|] = 0;|>
+
+// === /b.ts ===
+// <|import { x as [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) const x: 0\nimport x", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"0","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"aliasName"}] |}x|] } from "./a";|>
+// x;
 
 [
   {
@@ -325,154 +187,20 @@
   }
 ]
 
-// === /b.ts ===
-// import { /*FIND ALL REFS*/[|x|] as [|x|] } from "./a";
-// [|x|];
-
 // === /a.ts ===
-// export const [|x|] = 0;
+// <|export const [|{| contextId: 0, defId: 0, isWriteAccess: true |}x|] = 0;|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const x: 0"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "0",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /a.ts ===
-    // export const [|x|] = 0;
-      // === ContextSpan ===
-      // === /a.ts ===
-      // [|export const x = 0;|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /a.ts ===
-      // export const [|x|] = 0;
-        // === ContextSpan ===
-        // === /a.ts ===
-        // [|export const x = 0;|]
-    // === 1 ===
-      // isWriteAccess: false
-      // === /b.ts ===
-      // import { [|x|] as x } from "./a";
-      // x;
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x as x } from "./a";|]
-        // x;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const x: 0\nimport x"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "0",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /b.ts ===
-    // import { x as [|x|] } from "./a";
-    // x;
-      // === ContextSpan ===
-      // === /b.ts ===
-      // [|import { x as x } from "./a";|]
-      // x;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /b.ts ===
-      // import { x as [|x|] } from "./a";
-      // x;
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x as x } from "./a";|]
-        // x;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /b.ts ===
-      // import { x as x } from "./a";
-      // [|x|];
+// === /b.ts ===
+// <|<|import { /*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}x|] as [|{| contextId: 2, defId: 1, isWriteAccess: true |}x|] } from "./a";|>|>
+// [|{| defId: 1 |}x|];
 
+// === Definitions ===
+// === /a.ts ===
+// <|export const [|{| contextId: 0, defId: 0, kind: "const", name: "const x: 0", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"0","kind":"stringLiteral"}] |}x|] = 0;|>
+
+// === /b.ts ===
+// <|import { /*FIND ALL REFS*/x as [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) const x: 0\nimport x", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"0","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"aliasName"}] |}x|] } from "./a";|>
+// x;
 
 [
   {
@@ -644,98 +372,13 @@
 ]
 
 // === /b.ts ===
-// import { x as /*FIND ALL REFS*/[|x|] } from "./a";
-// [|x|];
+// <|import { x as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}x|] } from "./a";|>
+// [|{| defId: 0 |}x|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const x: 0\nimport x"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "0",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /b.ts ===
-    // import { x as [|x|] } from "./a";
-    // x;
-      // === ContextSpan ===
-      // === /b.ts ===
-      // [|import { x as x } from "./a";|]
-      // x;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /b.ts ===
-      // import { x as [|x|] } from "./a";
-      // x;
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x as x } from "./a";|]
-        // x;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /b.ts ===
-      // import { x as x } from "./a";
-      // [|x|];
-
+// === Definitions ===
+// === /b.ts ===
+// <|import { x as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) const x: 0\nimport x", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"0","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"aliasName"}] |}x|] } from "./a";|>
+// x;
 
 [
   {
@@ -840,96 +483,13 @@
 ]
 
 // === /b.ts ===
-// import { x as [|x|] } from "./a";
-// /*FIND ALL REFS*/[|x|];
+// <|import { x as [|{| contextId: 0, defId: 0, isWriteAccess: true |}x|] } from "./a";|>
+// /*FIND ALL REFS*/[|{| defId: 0 |}x|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const x: 0\nimport x"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "0",
-    //   "kind": "stringLiteral"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "x",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /b.ts ===
-    // import { x as [|x|] } from "./a";
-    // x;
-      // === ContextSpan ===
-      // === /b.ts ===
-      // [|import { x as x } from "./a";|]
-      // x;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /b.ts ===
-      // import { x as [|x|] } from "./a";
-      // x;
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { x as x } from "./a";|]
-        // x;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /b.ts ===
-      // import { x as x } from "./a";
-      // [|x|];
-
+// === Definitions ===
+// === /b.ts ===
+// <|import { x as [|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) const x: 0\nimport x", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"0","kind":"stringLiteral"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"x","kind":"aliasName"}] |}x|] } from "./a";|>
+// /*FIND ALL REFS*/x;
 
 [
   {
@@ -1033,39 +593,11 @@
 
 // === findRenameLocations ===
 // === /a.ts ===
-// export const RENAME = 0;
+// <|export const /*RENAME*/[|{| contextId: 0 |}xRENAME|] = 0;|>
 
 // === /b.ts ===
-// import { RENAME as RENAME } from "./a";
-// RENAME;
-
-// === 0 ===
-  // === /a.ts ===
-  // export const [|x|] = 0;
-    // === ContextSpan ===
-    // === /a.ts ===
-    // [|export const x = 0;|]
-// === 1 ===
-  // === /b.ts ===
-  // import { [|x|] as x } from "./a";
-  // x;
-    // === ContextSpan ===
-    // === /b.ts ===
-    // [|import { x as x } from "./a";|]
-    // x;
-// === 2 ===
-  // === /b.ts ===
-  // import { x as [|x|] } from "./a";
-  // x;
-    // === ContextSpan ===
-    // === /b.ts ===
-    // [|import { x as x } from "./a";|]
-    // x;
-// === 3 ===
-  // === /b.ts ===
-  // import { x as x } from "./a";
-  // [|x|];
-
+// <|<|import { [|{| contextId: 1 |}xRENAME|] as [|{| contextId: 2 |}xRENAME|] } from "./a";|>|>
+// [|xRENAME|];
 
 [
   {
@@ -1111,39 +643,11 @@
 ]
 
 // === /a.ts ===
-// export const RENAME = 0;
+// <|export const [|{| contextId: 0 |}xRENAME|] = 0;|>
 
 // === /b.ts ===
-// import { [|RENAME|] as RENAME } from "./a";
-// RENAME;
-
-// === 0 ===
-  // === /a.ts ===
-  // export const [|x|] = 0;
-    // === ContextSpan ===
-    // === /a.ts ===
-    // [|export const x = 0;|]
-// === 1 ===
-  // === /b.ts ===
-  // import { [|x|] as x } from "./a";
-  // x;
-    // === ContextSpan ===
-    // === /b.ts ===
-    // [|import { x as x } from "./a";|]
-    // x;
-// === 2 ===
-  // === /b.ts ===
-  // import { x as [|x|] } from "./a";
-  // x;
-    // === ContextSpan ===
-    // === /b.ts ===
-    // [|import { x as x } from "./a";|]
-    // x;
-// === 3 ===
-  // === /b.ts ===
-  // import { x as x } from "./a";
-  // [|x|];
-
+// <|<|import { /*RENAME*/[|{| contextId: 1 |}xRENAME|] as [|{| contextId: 2 |}xRENAME|] } from "./a";|>|>
+// [|xRENAME|];
 
 [
   {
@@ -1189,22 +693,8 @@
 ]
 
 // === /b.ts ===
-// import { x as [|RENAME|] } from "./a";
-// RENAME;
-
-// === 0 ===
-  // === /b.ts ===
-  // import { x as [|x|] } from "./a";
-  // x;
-    // === ContextSpan ===
-    // === /b.ts ===
-    // [|import { x as x } from "./a";|]
-    // x;
-// === 1 ===
-  // === /b.ts ===
-  // import { x as x } from "./a";
-  // [|x|];
-
+// <|import { x as /*RENAME*/[|{| contextId: 0 |}xRENAME|] } from "./a";|>
+// [|xRENAME|];
 
 [
   {
@@ -1228,22 +718,8 @@
 ]
 
 // === /b.ts ===
-// import { x as RENAME } from "./a";
-// [|RENAME|];
-
-// === 0 ===
-  // === /b.ts ===
-  // import { x as [|x|] } from "./a";
-  // x;
-    // === ContextSpan ===
-    // === /b.ts ===
-    // [|import { x as x } from "./a";|]
-    // x;
-// === 1 ===
-  // === /b.ts ===
-  // import { x as x } from "./a";
-  // [|x|];
-
+// <|import { x as [|{| contextId: 0 |}xRENAME|] } from "./a";|>
+// /*RENAME*/[|xRENAME|];
 
 [
   {

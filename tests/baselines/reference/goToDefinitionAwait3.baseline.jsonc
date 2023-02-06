@@ -17,52 +17,22 @@ undefined
 //       await Promise.resolve(0);
 //     }
 // 
-//     async [|foo|]() {
+//     <|async [|{| contextId: 0, kind: "method", name: "foo", containerName: "C" |}foo|]() {
 //       /*GOTO DEF*/await Promise.resolve(0);
-//     }
+//     }|>
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "method"
-    // name: "foo"
-    // containerName: "C"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // === /tests/cases/fourslash/goToDefinitionAwait3.ts ===
-    // class C {
-    //     notAsync() {
-    //       await Promise.resolve(0);
-    //     }
-    // 
-    //     async [|foo|]() {
-    //       await Promise.resolve(0);
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinitionAwait3.ts ===
-      // class C {
-      //     notAsync() {
-      //       await Promise.resolve(0);
-      //     }
-      // 
-      //     [|async foo() {
-      //       await Promise.resolve(0);
-      //     }|]
-      // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionAwait3.ts ===
-  // class C {
-  //     notAsync() {
-  //       await Promise.resolve(0);
-  //     }
-  // 
-  //     async foo() {
-  //       [|await|] Promise.resolve(0);
-  //     }
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionAwait3.ts ===
+// class C {
+//     notAsync() {
+//       await Promise.resolve(0);
+//     }
+// 
+//     async foo() {
+//       /*GOTO DEF*/[|await|] Promise.resolve(0);
+//     }
+// }
 
 {
   "definitions": [

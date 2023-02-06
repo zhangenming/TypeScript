@@ -1,106 +1,14 @@
 // === findAllReferences ===
 // === /tests/cases/fourslash/a.js ===
-// exports.[|area|] = function (r) { return r * r; }
+// <|exports.[|{| contextId: 0, defId: 0, isWriteAccess: true |}area|] = function (r) { return r * r; }|>
 
 // === /tests/cases/fourslash/b.js ===
 // var mod = require('./a');
-// var t = mod./*FIND ALL REFS*/[|area|](10);
+// var t = mod./*FIND ALL REFS*/[|{| defId: 0 |}area|](10);
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) area: (r: any) => number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "area",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "r",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=>",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.js ===
-    // exports.[|area|] = function (r) { return r * r; }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.js ===
-      // [|exports.area|] = function (r) { return r * r; }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/a.js ===
-      // exports.[|area|] = function (r) { return r * r; }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.js ===
-        // [|exports.area = function (r) { return r * r; }|]
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.js ===
-      // var mod = require('./a');
-      // var t = mod.[|area|](10);
-
+// === Definitions ===
+// === /tests/cases/fourslash/a.js ===
+// <|exports.[|{| contextId: 0, defId: 0, kind: "property", name: "(property) area: (r: any) => number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"area","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":"r","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"=>","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}area|]|> = function (r) { return r * r; }
 
 [
   {
@@ -216,23 +124,11 @@
 
 // === findRenameLocations ===
 // === /tests/cases/fourslash/a.js ===
-// exports.RENAME = function (r) { return r * r; }
+// <|exports./*RENAME*/[|{| contextId: 0 |}areaRENAME|] = function (r) { return r * r; }|>
 
 // === /tests/cases/fourslash/b.js ===
 // var mod = require('./a');
-// var t = mod.RENAME(10);
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.js ===
-  // exports.[|area|] = function (r) { return r * r; }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.js ===
-    // [|exports.area = function (r) { return r * r; }|]
-// === 1 ===
-  // === /tests/cases/fourslash/b.js ===
-  // var mod = require('./a');
-  // var t = mod.[|area|](10);
-
+// var t = mod.[|areaRENAME|](10);
 
 [
   {
@@ -256,23 +152,11 @@
 ]
 
 // === /tests/cases/fourslash/a.js ===
-// exports.RENAME = function (r) { return r * r; }
+// <|exports.[|{| contextId: 0 |}areaRENAME|] = function (r) { return r * r; }|>
 
 // === /tests/cases/fourslash/b.js ===
 // var mod = require('./a');
-// var t = mod.[|RENAME|](10);
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.js ===
-  // exports.[|area|] = function (r) { return r * r; }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.js ===
-    // [|exports.area = function (r) { return r * r; }|]
-// === 1 ===
-  // === /tests/cases/fourslash/b.js ===
-  // var mod = require('./a');
-  // var t = mod.[|area|](10);
-
+// var t = mod./*RENAME*/[|areaRENAME|](10);
 
 [
   {

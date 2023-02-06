@@ -1,28 +1,8 @@
 // === /tests/cases/fourslash/a.js ===
 // function bar() {
 // }
-// bar.[|RENAME|] = "foo";
-// console.log(bar.RENAME);
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.js ===
-  // function bar() {
-  // }
-  // bar.[|foo|] = "foo";
-  // console.log(bar.foo);
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.js ===
-    // function bar() {
-    // }
-    // [|bar.foo = "foo";|]
-    // console.log(bar.foo);
-// === 1 ===
-  // === /tests/cases/fourslash/a.js ===
-  // function bar() {
-  // }
-  // bar.foo = "foo";
-  // console.log(bar.[|foo|]);
-
+// <|bar./*RENAME*/[|{| contextId: 0 |}fooRENAME|] = "foo";|>
+// console.log(bar.[|fooRENAME|]);
 
 [
   {
@@ -48,28 +28,8 @@
 // === /tests/cases/fourslash/a.js ===
 // function bar() {
 // }
-// bar.RENAME = "foo";
-// console.log(bar.[|RENAME|]);
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.js ===
-  // function bar() {
-  // }
-  // bar.[|foo|] = "foo";
-  // console.log(bar.foo);
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.js ===
-    // function bar() {
-    // }
-    // [|bar.foo = "foo";|]
-    // console.log(bar.foo);
-// === 1 ===
-  // === /tests/cases/fourslash/a.js ===
-  // function bar() {
-  // }
-  // bar.foo = "foo";
-  // console.log(bar.[|foo|]);
-
+// <|bar.[|{| contextId: 0 |}fooRENAME|] = "foo";|>
+// console.log(bar./*RENAME*/[|fooRENAME|]);
 
 [
   {

@@ -1,36 +1,10 @@
 // === /tests/cases/fourslash/renamePrivateMethod.ts ===
 // class Foo {
-//    [|RENAME|]() { }
+//    /*RENAME*/<|[|{| contextId: 0 |}#fooRENAME|]() { }|>
 //    callFoo() {
-//        return this.RENAME();
+//        return this.[|#fooRENAME|]();
 //    }
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renamePrivateMethod.ts ===
-  // class Foo {
-  //    [|#foo|]() { }
-  //    callFoo() {
-  //        return this.#foo();
-  //    }
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renamePrivateMethod.ts ===
-    // class Foo {
-    //    [|#foo() { }|]
-    //    callFoo() {
-    //        return this.#foo();
-    //    }
-    // }
-// === 1 ===
-  // === /tests/cases/fourslash/renamePrivateMethod.ts ===
-  // class Foo {
-  //    #foo() { }
-  //    callFoo() {
-  //        return this.[|#foo|]();
-  //    }
-  // }
-
 
 [
   {
@@ -55,37 +29,11 @@
 
 // === /tests/cases/fourslash/renamePrivateMethod.ts ===
 // class Foo {
-//    RENAME() { }
+//    <|[|{| contextId: 0 |}#fooRENAME|]() { }|>
 //    callFoo() {
-//        return this.[|RENAME|]();
+//        return this./*RENAME*/[|#fooRENAME|]();
 //    }
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renamePrivateMethod.ts ===
-  // class Foo {
-  //    [|#foo|]() { }
-  //    callFoo() {
-  //        return this.#foo();
-  //    }
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renamePrivateMethod.ts ===
-    // class Foo {
-    //    [|#foo() { }|]
-    //    callFoo() {
-    //        return this.#foo();
-    //    }
-    // }
-// === 1 ===
-  // === /tests/cases/fourslash/renamePrivateMethod.ts ===
-  // class Foo {
-  //    #foo() { }
-  //    callFoo() {
-  //        return this.[|#foo|]();
-  //    }
-  // }
-
 
 [
   {

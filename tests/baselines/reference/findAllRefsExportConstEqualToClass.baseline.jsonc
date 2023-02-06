@@ -1,155 +1,17 @@
-// === /b.ts ===
-// import { [|D|] } from "./a";
-
 // === /a.ts ===
 // class C {}
-// export const /*FIND ALL REFS*/[|D|] = C;
+// <|export const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}D|] = C;|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const D: typeof C"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "typeof",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /a.ts ===
-    // class C {}
-    // export const [|D|] = C;
-      // === ContextSpan ===
-      // === /a.ts ===
-      // class C {}
-      // [|export const D = C;|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.ts ===
-      // class C {}
-      // export const [|D|] = C;
-        // === ContextSpan ===
-        // === /a.ts ===
-        // class C {}
-        // [|export const D = C;|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const D: typeof C\nimport D"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "typeof",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /b.ts ===
-    // import { [|D|] } from "./a";
-      // === ContextSpan ===
-      // === /b.ts ===
-      // [|import { D } from "./a";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /b.ts ===
-      // import { [|D|] } from "./a";
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { D } from "./a";|]
+// === /b.ts ===
+// <|import { [|{| contextId: 1, defId: 1, isWriteAccess: true |}D|] } from "./a";|>
 
+// === Definitions ===
+// === /a.ts ===
+// class C {}
+// <|export const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "const", name: "const D: typeof C", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"typeof","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C","kind":"className"}] |}D|] = C;|>
+
+// === /b.ts ===
+// <|import { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) const D: typeof C\nimport D", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"typeof","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"}] |}D|] } from "./a";|>
 
 [
   {
@@ -319,157 +181,19 @@
 ]
 
 // === /b.ts ===
-// import { /*FIND ALL REFS*/[|D|] } from "./a";
+// <|import { /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}D|] } from "./a";|>
 
 // === /a.ts ===
 // class C {}
-// export const [|D|] = C;
+// <|export const [|{| contextId: 1, defId: 1, isWriteAccess: true |}D|] = C;|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) const D: typeof C\nimport D"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "typeof",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /b.ts ===
-    // import { [|D|] } from "./a";
-      // === ContextSpan ===
-      // === /b.ts ===
-      // [|import { D } from "./a";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /b.ts ===
-      // import { [|D|] } from "./a";
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import { D } from "./a";|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const D: typeof C"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "typeof",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /a.ts ===
-    // class C {}
-    // export const [|D|] = C;
-      // === ContextSpan ===
-      // === /a.ts ===
-      // class C {}
-      // [|export const D = C;|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /a.ts ===
-      // class C {}
-      // export const [|D|] = C;
-        // === ContextSpan ===
-        // === /a.ts ===
-        // class C {}
-        // [|export const D = C;|]
+// === Definitions ===
+// === /b.ts ===
+// <|import { /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) const D: typeof C\nimport D", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"typeof","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"}] |}D|] } from "./a";|>
 
+// === /a.ts ===
+// class C {}
+// <|export const [|{| contextId: 1, defId: 1, kind: "const", name: "const D: typeof C", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"typeof","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C","kind":"className"}] |}D|] = C;|>
 
 [
   {

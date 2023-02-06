@@ -1,27 +1,11 @@
 // === /tests/cases/fourslash/0.d.ts ===
 // export function doThing(): string;
 // export function doTheOtherThing(): void;
-// export as namespace [|RENAME|];
+// <|export as namespace /*RENAME*/[|{| contextId: 0 |}myLibRENAME|];|>
 
 // === /tests/cases/fourslash/1.ts ===
 // /// <reference path="0.d.ts" />
-// RENAME.doThing();
-
-// === 0 ===
-  // === /tests/cases/fourslash/0.d.ts ===
-  // export function doThing(): string;
-  // export function doTheOtherThing(): void;
-  // export as namespace [|myLib|];
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/0.d.ts ===
-    // export function doThing(): string;
-    // export function doTheOtherThing(): void;
-    // [|export as namespace myLib;|]
-// === 1 ===
-  // === /tests/cases/fourslash/1.ts ===
-  // /// <reference path="0.d.ts" />
-  // [|myLib|].doThing();
-
+// [|myLibRENAME|].doThing();
 
 [
   {
@@ -47,27 +31,11 @@
 // === /tests/cases/fourslash/0.d.ts ===
 // export function doThing(): string;
 // export function doTheOtherThing(): void;
-// export as namespace RENAME;
+// <|export as namespace [|{| contextId: 0 |}myLibRENAME|];|>
 
 // === /tests/cases/fourslash/1.ts ===
 // /// <reference path="0.d.ts" />
-// RENAME.doThing();
-
-// === 0 ===
-  // === /tests/cases/fourslash/0.d.ts ===
-  // export function doThing(): string;
-  // export function doTheOtherThing(): void;
-  // export as namespace [|myLib|];
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/0.d.ts ===
-    // export function doThing(): string;
-    // export function doTheOtherThing(): void;
-    // [|export as namespace myLib;|]
-// === 1 ===
-  // === /tests/cases/fourslash/1.ts ===
-  // /// <reference path="0.d.ts" />
-  // [|myLib|].doThing();
-
+// /*RENAME*/[|myLibRENAME|].doThing();
 
 [
   {

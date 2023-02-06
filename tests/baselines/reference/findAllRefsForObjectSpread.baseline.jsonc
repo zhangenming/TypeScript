@@ -1,121 +1,21 @@
 // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-// interface A1 { readonly /*FIND ALL REFS*/[|a|]: string };
+// interface A1 { <|readonly /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isDefinition: true |}a|]: string|> };
 // interface A2 { a?: number };
 // let a1: A1;
 // let a2: A2;
 // let a12 = { ...a1, ...a2 };
-// a12.[|a|];
-// a1.[|a|];
+// a12.[|{| defId: 0 |}a|];
+// a1.[|{| defId: 0 |}a|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) A1.a: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A1",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "a",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-    // interface A1 { readonly [|a|]: string };
-    // interface A2 { a?: number };
-    // let a1: A1;
-    // let a2: A2;
-    // let a12 = { ...a1, ...a2 };
-    // a12.a;
-    // a1.a;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { [|readonly a: string|] };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.a;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly [|a|]: string };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.a;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-        // interface A1 { [|readonly a: string|] };
-        // interface A2 { a?: number };
-        // let a1: A1;
-        // let a2: A2;
-        // let a12 = { ...a1, ...a2 };
-        // a12.a;
-        // a1.a;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly a: string };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.[|a|];
-      // a1.a;
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly a: string };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.[|a|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
+// interface A1 { <|readonly /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) A1.a: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"A1","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"a","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}a|]: string|> };
+// interface A2 { a?: number };
+// let a1: A1;
+// let a2: A2;
+// let a12 = { ...a1, ...a2 };
+// a12.a;
+// a1.a;
 
 [
   {
@@ -214,115 +114,22 @@
 
 // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
 // interface A1 { readonly a: string };
-// interface A2 { /*FIND ALL REFS*/[|a|]?: number };
+// interface A2 { /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isDefinition: true |}a|]?: number|> };
 // let a1: A1;
 // let a2: A2;
 // let a12 = { ...a1, ...a2 };
-// a12.[|a|];
+// a12.[|{| defId: 0 |}a|];
 // a1.a;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) A2.a?: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A2",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "a",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": "?",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-    // interface A1 { readonly a: string };
-    // interface A2 { [|a|]?: number };
-    // let a1: A1;
-    // let a2: A2;
-    // let a12 = { ...a1, ...a2 };
-    // a12.a;
-    // a1.a;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly a: string };
-      // interface A2 { [|a?: number|] };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.a;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly a: string };
-      // interface A2 { [|a|]?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.a;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-        // interface A1 { readonly a: string };
-        // interface A2 { [|a?: number|] };
-        // let a1: A1;
-        // let a2: A2;
-        // let a12 = { ...a1, ...a2 };
-        // a12.a;
-        // a1.a;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly a: string };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.[|a|];
-      // a1.a;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
+// interface A1 { readonly a: string };
+// interface A2 { /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) A2.a?: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"A2","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"a","kind":"propertyName"},{"text":"?","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}a|]?: number|> };
+// let a1: A1;
+// let a2: A2;
+// let a12 = { ...a1, ...a2 };
+// a12.a;
+// a1.a;
 
 [
   {
@@ -415,209 +222,23 @@
 ]
 
 // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-// interface A1 { readonly [|a|]: string };
-// interface A2 { [|a|]?: number };
+// interface A1 { <|readonly [|{| contextId: 0, defId: 0 |}a|]: string|> };
+// interface A2 { <|[|{| contextId: 1, defId: 1 |}a|]?: number|> };
 // let a1: A1;
 // let a2: A2;
 // let a12 = { ...a1, ...a2 };
-// a12./*FIND ALL REFS*/[|a|];
-// a1.[|a|];
+// a12./*FIND ALL REFS*/[|{| defId: 0 |}a|];
+// a1.[|{| defId: 0 |}a|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) A1.a: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A1",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "a",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-    // interface A1 { readonly [|a|]: string };
-    // interface A2 { a?: number };
-    // let a1: A1;
-    // let a2: A2;
-    // let a12 = { ...a1, ...a2 };
-    // a12.a;
-    // a1.a;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { [|readonly a: string|] };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.a;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly [|a|]: string };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.a;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-        // interface A1 { [|readonly a: string|] };
-        // interface A2 { a?: number };
-        // let a1: A1;
-        // let a2: A2;
-        // let a12 = { ...a1, ...a2 };
-        // a12.a;
-        // a1.a;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly a: string };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.[|a|];
-      // a1.a;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly a: string };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.[|a|];
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) A2.a?: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A2",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "a",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": "?",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-    // interface A1 { readonly a: string };
-    // interface A2 { [|a|]?: number };
-    // let a1: A1;
-    // let a2: A2;
-    // let a12 = { ...a1, ...a2 };
-    // a12.a;
-    // a1.a;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly a: string };
-      // interface A2 { [|a?: number|] };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.a;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly a: string };
-      // interface A2 { [|a|]?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.a;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-        // interface A1 { readonly a: string };
-        // interface A2 { [|a?: number|] };
-        // let a1: A1;
-        // let a2: A2;
-        // let a12 = { ...a1, ...a2 };
-        // a12.a;
-        // a1.a;
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
+// interface A1 { <|readonly [|{| contextId: 0, defId: 0, kind: "property", name: "(property) A1.a: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"A1","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"a","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}a|]: string|> };
+// interface A2 { <|[|{| contextId: 1, defId: 1, kind: "property", name: "(property) A2.a?: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"A2","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"a","kind":"propertyName"},{"text":"?","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}a|]?: number|> };
+// let a1: A1;
+// let a2: A2;
+// let a12 = { ...a1, ...a2 };
+// a12./*FIND ALL REFS*/a;
+// a1.a;
 
 [
   {
@@ -789,120 +410,23 @@
 ]
 
 // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-// interface A1 { readonly [|a|]: string };
+// interface A1 { <|readonly [|{| contextId: 0, defId: 0 |}a|]: string|> };
 // interface A2 { a?: number };
 // let a1: A1;
 // let a2: A2;
 // let a12 = { ...a1, ...a2 };
-// a12.[|a|];
-// a1./*FIND ALL REFS*/[|a|];
+// a12.[|{| defId: 0 |}a|];
+// a1./*FIND ALL REFS*/[|{| defId: 0 |}a|];
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) A1.a: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A1",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "a",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-    // interface A1 { readonly [|a|]: string };
-    // interface A2 { a?: number };
-    // let a1: A1;
-    // let a2: A2;
-    // let a12 = { ...a1, ...a2 };
-    // a12.a;
-    // a1.a;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { [|readonly a: string|] };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.a;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly [|a|]: string };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.a;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-        // interface A1 { [|readonly a: string|] };
-        // interface A2 { a?: number };
-        // let a1: A1;
-        // let a2: A2;
-        // let a12 = { ...a1, ...a2 };
-        // a12.a;
-        // a1.a;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly a: string };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.[|a|];
-      // a1.a;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
-      // interface A1 { readonly a: string };
-      // interface A2 { a?: number };
-      // let a1: A1;
-      // let a2: A2;
-      // let a12 = { ...a1, ...a2 };
-      // a12.a;
-      // a1.[|a|];
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForObjectSpread.ts ===
+// interface A1 { <|readonly [|{| contextId: 0, defId: 0, kind: "property", name: "(property) A1.a: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"A1","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"a","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}a|]: string|> };
+// interface A2 { a?: number };
+// let a1: A1;
+// let a2: A2;
+// let a12 = { ...a1, ...a2 };
+// a12.a;
+// a1./*FIND ALL REFS*/a;
 
 [
   {

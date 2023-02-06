@@ -1,6 +1,6 @@
 // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
 // class X{
-// 	/*FIND ALL REFS*/[|foo|](): void{}
+// 	/*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|](): void{}|>
 // }
 // 
 // class Y extends X{
@@ -9,394 +9,41 @@
 // 
 // class Z extends Y{
 // 	static foo(): void{}
-// 	[|foo|](): void{}
+// 	<|[|{| contextId: 1, defId: 1, isWriteAccess: true |}foo|](): void{}|>
 // }
 // 
 // const x = new X();
 // const y = new Y();
 // const z = new Z();
-// x.[|foo|]();
-// y.[|foo|]();
-// z.[|foo|]();
+// x.[|{| defId: 0 |}foo|]();
+// y.[|{| defId: 0 |}foo|]();
+// z.[|{| defId: 1 |}foo|]();
 // Y.foo();
 // Z.foo();
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) X.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "X",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-    // class X{
-    // 	[|foo|](): void{}
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo(): void{}
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo(): void{}
-    // 	foo(): void{}
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo();
-    // y.foo();
-    // z.foo();
-    // Y.foo();
-    // Z.foo();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	[|foo(): void{}|]
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	[|foo|](): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-        // class X{
-        // 	[|foo(): void{}|]
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo(): void{}
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo(): void{}
-        // 	foo(): void{}
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo();
-        // y.foo();
-        // z.foo();
-        // Y.foo();
-        // Z.foo();
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.[|foo|]();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.[|foo|]();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) Z.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Z",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-    // class X{
-    // 	foo(): void{}
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo(): void{}
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo(): void{}
-    // 	[|foo|](): void{}
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo();
-    // y.foo();
-    // z.foo();
-    // Y.foo();
-    // Z.foo();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	[|foo(): void{}|]
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	[|foo|](): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-        // class X{
-        // 	foo(): void{}
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo(): void{}
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo(): void{}
-        // 	[|foo(): void{}|]
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo();
-        // y.foo();
-        // z.foo();
-        // Y.foo();
-        // Z.foo();
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.[|foo|]();
-      // Y.foo();
-      // Z.foo();
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
+// class X{
+// 	/*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) X.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"X","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// }
+// 
+// class Y extends X{
+// 	static foo(): void{}
+// }
+// 
+// class Z extends Y{
+// 	static foo(): void{}
+// 	<|[|{| contextId: 1, defId: 1, kind: "method", name: "(method) Z.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo();
+// y.foo();
+// z.foo();
+// Y.foo();
+// Z.foo();
 
 [
   {
@@ -598,7 +245,7 @@
 // }
 // 
 // class Y extends X{
-// 	static /*FIND ALL REFS*/[|foo|](): void{}
+// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|](): void{}|>
 // }
 // 
 // class Z extends Y{
@@ -612,185 +259,32 @@
 // x.foo();
 // y.foo();
 // z.foo();
-// Y.[|foo|]();
+// Y.[|{| defId: 0 |}foo|]();
 // Z.foo();
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) Y.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Y",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-    // class X{
-    // 	foo(): void{}
-    // }
-    // 
-    // class Y extends X{
-    // 	static [|foo|](): void{}
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo(): void{}
-    // 	foo(): void{}
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo();
-    // y.foo();
-    // z.foo();
-    // Y.foo();
-    // Z.foo();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	[|static foo(): void{}|]
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static [|foo|](): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-        // class X{
-        // 	foo(): void{}
-        // }
-        // 
-        // class Y extends X{
-        // 	[|static foo(): void{}|]
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo(): void{}
-        // 	foo(): void{}
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo();
-        // y.foo();
-        // z.foo();
-        // Y.foo();
-        // Z.foo();
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.[|foo|]();
-      // Z.foo();
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
+// class X{
+// 	foo(): void{}
+// }
+// 
+// class Y extends X{
+// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "method", name: "(method) Y.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Y","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// }
+// 
+// class Z extends Y{
+// 	static foo(): void{}
+// 	foo(): void{}
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo();
+// y.foo();
+// z.foo();
+// Y.foo();
+// Z.foo();
 
 [
   {
@@ -896,7 +390,7 @@
 // }
 // 
 // class Z extends Y{
-// 	static /*FIND ALL REFS*/[|foo|](): void{}
+// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}foo|](): void{}|>
 // 	foo(): void{}
 // }
 // 
@@ -907,184 +401,31 @@
 // y.foo();
 // z.foo();
 // Y.foo();
-// Z.[|foo|]();
+// Z.[|{| defId: 0 |}foo|]();
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) Z.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Z",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-    // class X{
-    // 	foo(): void{}
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo(): void{}
-    // }
-    // 
-    // class Z extends Y{
-    // 	static [|foo|](): void{}
-    // 	foo(): void{}
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo();
-    // y.foo();
-    // z.foo();
-    // Y.foo();
-    // Z.foo();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	[|static foo(): void{}|]
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static [|foo|](): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-        // class X{
-        // 	foo(): void{}
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo(): void{}
-        // }
-        // 
-        // class Z extends Y{
-        // 	[|static foo(): void{}|]
-        // 	foo(): void{}
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo();
-        // y.foo();
-        // z.foo();
-        // Y.foo();
-        // Z.foo();
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.[|foo|]();
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
+// class X{
+// 	foo(): void{}
+// }
+// 
+// class Y extends X{
+// 	static foo(): void{}
+// }
+// 
+// class Z extends Y{
+// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "method", name: "(method) Z.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// 	foo(): void{}
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo();
+// y.foo();
+// z.foo();
+// Y.foo();
+// Z.foo();
 
 [
   {
@@ -1182,7 +523,7 @@
 
 // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
 // class X{
-// 	[|foo|](): void{}
+// 	<|[|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|](): void{}|>
 // }
 // 
 // class Y extends X{
@@ -1191,394 +532,41 @@
 // 
 // class Z extends Y{
 // 	static foo(): void{}
-// 	/*FIND ALL REFS*/[|foo|](): void{}
+// 	/*FIND ALL REFS*/<|[|{| contextId: 1, defId: 1, isWriteAccess: true, isDefinition: true |}foo|](): void{}|>
 // }
 // 
 // const x = new X();
 // const y = new Y();
 // const z = new Z();
-// x.[|foo|]();
-// y.[|foo|]();
-// z.[|foo|]();
+// x.[|{| defId: 0 |}foo|]();
+// y.[|{| defId: 0 |}foo|]();
+// z.[|{| defId: 1 |}foo|]();
 // Y.foo();
 // Z.foo();
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) X.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "X",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-    // class X{
-    // 	[|foo|](): void{}
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo(): void{}
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo(): void{}
-    // 	foo(): void{}
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo();
-    // y.foo();
-    // z.foo();
-    // Y.foo();
-    // Z.foo();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	[|foo(): void{}|]
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	[|foo|](): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-        // class X{
-        // 	[|foo(): void{}|]
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo(): void{}
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo(): void{}
-        // 	foo(): void{}
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo();
-        // y.foo();
-        // z.foo();
-        // Y.foo();
-        // Z.foo();
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.[|foo|]();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.[|foo|]();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "method"
-    // name: "(method) Z.foo(): void"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "method",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Z",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "methodName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "void",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-    // class X{
-    // 	foo(): void{}
-    // }
-    // 
-    // class Y extends X{
-    // 	static foo(): void{}
-    // }
-    // 
-    // class Z extends Y{
-    // 	static foo(): void{}
-    // 	[|foo|](): void{}
-    // }
-    // 
-    // const x = new X();
-    // const y = new Y();
-    // const z = new Z();
-    // x.foo();
-    // y.foo();
-    // z.foo();
-    // Y.foo();
-    // Z.foo();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	[|foo(): void{}|]
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	[|foo|](): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.foo();
-      // Y.foo();
-      // Z.foo();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-        // class X{
-        // 	foo(): void{}
-        // }
-        // 
-        // class Y extends X{
-        // 	static foo(): void{}
-        // }
-        // 
-        // class Z extends Y{
-        // 	static foo(): void{}
-        // 	[|foo(): void{}|]
-        // }
-        // 
-        // const x = new X();
-        // const y = new Y();
-        // const z = new Z();
-        // x.foo();
-        // y.foo();
-        // z.foo();
-        // Y.foo();
-        // Z.foo();
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
-      // class X{
-      // 	foo(): void{}
-      // }
-      // 
-      // class Y extends X{
-      // 	static foo(): void{}
-      // }
-      // 
-      // class Z extends Y{
-      // 	static foo(): void{}
-      // 	foo(): void{}
-      // }
-      // 
-      // const x = new X();
-      // const y = new Y();
-      // const z = new Z();
-      // x.foo();
-      // y.foo();
-      // z.[|foo|]();
-      // Y.foo();
-      // Z.foo();
-
+// === Definitions ===
+// === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
+// class X{
+// 	<|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) X.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"X","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// }
+// 
+// class Y extends X{
+// 	static foo(): void{}
+// }
+// 
+// class Z extends Y{
+// 	static foo(): void{}
+// 	/*FIND ALL REFS*/<|[|{| contextId: 1, defId: 1, kind: "method", name: "(method) Z.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// }
+// 
+// const x = new X();
+// const y = new Y();
+// const z = new Z();
+// x.foo();
+// y.foo();
+// z.foo();
+// Y.foo();
+// Z.foo();
 
 [
   {

@@ -1,74 +1,19 @@
 // === /tests/cases/fourslash/constructorFindAllReferences1.ts ===
 // export class C {
-//     /*FIND ALL REFS*/public [|constructor|]() { }
+//     /*FIND ALL REFS*/<|public [|{| contextId: 0, defId: 0 |}constructor|]() { }|>
 //     public foo() { }
 // }
 // 
-// new [|C|]().foo();
+// new [|{| defId: 0 |}C|]().foo();
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class C"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/constructorFindAllReferences1.ts ===
-    // export class [|C|] {
-    //     public constructor() { }
-    //     public foo() { }
-    // }
-    // 
-    // new C().foo();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/constructorFindAllReferences1.ts ===
-      // [|export class C {
-      //     public constructor() { }
-      //     public foo() { }
-      // }|]
-      // 
-      // new C().foo();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/constructorFindAllReferences1.ts ===
-      // export class C {
-      //     public [|constructor|]() { }
-      //     public foo() { }
-      // }
-      // 
-      // new C().foo();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/constructorFindAllReferences1.ts ===
-        // export class C {
-        //     [|public constructor() { }|]
-        //     public foo() { }
-        // }
-        // 
-        // new C().foo();
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/constructorFindAllReferences1.ts ===
-      // export class C {
-      //     public constructor() { }
-      //     public foo() { }
-      // }
-      // 
-      // new [|C|]().foo();
-
+// === Definitions ===
+// === /tests/cases/fourslash/constructorFindAllReferences1.ts ===
+// <|export class [|{| contextId: 0, defId: 0, kind: "class", name: "class C", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C","kind":"className"}] |}C|] {
+//     /*FIND ALL REFS*/public constructor() { }
+//     public foo() { }
+// }|>
+// 
+// new C().foo();
 
 [
   {

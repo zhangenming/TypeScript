@@ -1,95 +1,15 @@
 // === /a.ts ===
-// export /*FIND ALL REFS*/[|default|] 1;
+// <|export /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}default|] 1;|>
 
 // === /b.ts ===
-// import [|a|] from "./a";
+// <|import [|{| contextId: 1, defId: 1, isWriteAccess: true |}a|] from "./a";|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) default: 1"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "default",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "1",
-    //   "kind": "stringLiteral"
-    //  }
-    // ]
-    // === /a.ts ===
-    // [|export default 1;|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.ts ===
-      // export [|default|] 1;
-        // === ContextSpan ===
-        // === /a.ts ===
-        // [|export default 1;|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "import a"
-    // displayParts: [
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "a",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /b.ts ===
-    // import [|a|] from "./a";
-      // === ContextSpan ===
-      // === /b.ts ===
-      // [|import a from "./a";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /b.ts ===
-      // import [|a|] from "./a";
-        // === ContextSpan ===
-        // === /b.ts ===
-        // [|import a from "./a";|]
+// === Definitions ===
+// === /a.ts ===
+// [|{| defId: 0, kind: "property", name: "(property) default: 1", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"default","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"1","kind":"stringLiteral"}] |}export /*FIND ALL REFS*/default 1;|]
 
+// === /b.ts ===
+// <|import [|{| contextId: 0, defId: 1, kind: "alias", name: "import a", displayParts: [{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"a","kind":"aliasName"}] |}a|] from "./a";|>
 
 [
   {

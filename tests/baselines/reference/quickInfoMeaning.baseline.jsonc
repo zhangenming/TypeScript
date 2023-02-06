@@ -1,5 +1,5 @@
 // === /tests/cases/fourslash/foo.d.ts ===
-// declare const [|foo|]: number;
+// <|declare const [|{| contextId: 0, kind: "const", name: "foo", isAmbient: true |}foo|]: number;|>
 // declare module "foo_module" {
 //     interface I { x: number; y: number }
 //     export = I;
@@ -10,29 +10,6 @@
 // import foo = require("foo_module");
 // const x = foo/*GOTO DEF POS*/;
 // const i: foo = { x: 1, y: 2 };
-
-// === 0 ===
-  // kind: "const"
-  // name: "foo"
-  // containerName: ""
-  // isLocal: false
-  // isAmbient: true
-  // unverified: false
-  // failedAliasResolution: false
-  // === /tests/cases/fourslash/foo.d.ts ===
-  // declare const [|foo|]: number;
-  // declare module "foo_module" {
-  //     interface I { x: number; y: number }
-  //     export = I;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/foo.d.ts ===
-    // [|declare const foo: number;|]
-    // declare module "foo_module" {
-    //     interface I { x: number; y: number }
-    //     export = I;
-    // }
-
 
 [
   {
@@ -58,7 +35,7 @@
 // === /tests/cases/fourslash/foo.d.ts ===
 // declare const foo: number;
 // declare module "foo_module" {
-//     interface [|I|] { x: number; y: number }
+//     <|interface [|{| contextId: 0, kind: "interface", name: "I", isAmbient: true |}I|] { x: number; y: number }|>
 //     export = I;
 // }
 
@@ -67,28 +44,6 @@
 // import foo = require("foo_module");
 // const x = foo;
 // const i: foo/*GOTO DEF POS*/ = { x: 1, y: 2 };
-
-// === 0 ===
-  // kind: "interface"
-  // name: "I"
-  // containerName: ""
-  // isLocal: false
-  // isAmbient: true
-  // unverified: false
-  // === /tests/cases/fourslash/foo.d.ts ===
-  // declare const foo: number;
-  // declare module "foo_module" {
-  //     interface [|I|] { x: number; y: number }
-  //     export = I;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/foo.d.ts ===
-    // declare const foo: number;
-    // declare module "foo_module" {
-    //     [|interface I { x: number; y: number }|]
-    //     export = I;
-    // }
-
 
 [
   {
@@ -113,7 +68,7 @@
 // === /tests/cases/fourslash/bar.d.ts ===
 // declare interface bar { x: number; y: number }
 // declare module "bar_module" {
-//     const [|x|]: number;
+//     <|const [|{| contextId: 0, kind: "const", name: "x", isAmbient: true |}x|]: number;|>
 //     export = x;
 // }
 
@@ -122,28 +77,6 @@
 // import bar = require("bar_module");
 // const x = bar/*GOTO DEF POS*/;
 // const i: bar = { x: 1, y: 2 };
-
-// === 0 ===
-  // kind: "const"
-  // name: "x"
-  // containerName: ""
-  // isLocal: false
-  // isAmbient: true
-  // unverified: false
-  // === /tests/cases/fourslash/bar.d.ts ===
-  // declare interface bar { x: number; y: number }
-  // declare module "bar_module" {
-  //     const [|x|]: number;
-  //     export = x;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/bar.d.ts ===
-    // declare interface bar { x: number; y: number }
-    // declare module "bar_module" {
-    //     [|const x: number;|]
-    //     export = x;
-    // }
-
 
 [
   {
@@ -166,7 +99,7 @@
 ]
 
 // === /tests/cases/fourslash/bar.d.ts ===
-// declare interface [|bar|] { x: number; y: number }
+// <|declare interface [|{| contextId: 0, kind: "interface", name: "bar", isAmbient: true |}bar|] { x: number; y: number }|>
 // declare module "bar_module" {
 //     const x: number;
 //     export = x;
@@ -177,29 +110,6 @@
 // import bar = require("bar_module");
 // const x = bar;
 // const i: bar/*GOTO DEF POS*/ = { x: 1, y: 2 };
-
-// === 0 ===
-  // kind: "interface"
-  // name: "bar"
-  // containerName: ""
-  // isLocal: false
-  // isAmbient: true
-  // unverified: false
-  // failedAliasResolution: false
-  // === /tests/cases/fourslash/bar.d.ts ===
-  // declare interface [|bar|] { x: number; y: number }
-  // declare module "bar_module" {
-  //     const x: number;
-  //     export = x;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/bar.d.ts ===
-    // [|declare interface bar { x: number; y: number }|]
-    // declare module "bar_module" {
-    //     const x: number;
-    //     export = x;
-    // }
-
 
 [
   {

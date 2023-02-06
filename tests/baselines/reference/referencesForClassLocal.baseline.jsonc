@@ -2,14 +2,14 @@
 // var n = 14;
 // 
 // class foo {
-//     /*FIND ALL REFS*/private [|n|] = 0;
+//     /*FIND ALL REFS*/<|private [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}n|] = 0;|>
 // 
 //     public bar() {
-//         this.[|n|] = 9;
+//         this.[|{| defId: 0, isWriteAccess: true |}n|] = 9;
 //     }
 // 
 //     constructor() {
-//         this.[|n|] = 4;
+//         this.[|{| defId: 0, isWriteAccess: true |}n|] = 4;
 //     }
 // 
 //     public bar2() {
@@ -17,175 +17,25 @@
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-    // var n = 14;
-    // 
-    // class foo {
-    //     private [|n|] = 0;
-    // 
-    //     public bar() {
-    //         this.n = 9;
-    //     }
-    // 
-    //     constructor() {
-    //         this.n = 4;
-    //     }
-    // 
-    //     public bar2() {
-    //         var n = 12;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     [|private n = 0;|]
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private [|n|] = 0;
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-        // var n = 14;
-        // 
-        // class foo {
-        //     [|private n = 0;|]
-        // 
-        //     public bar() {
-        //         this.n = 9;
-        //     }
-        // 
-        //     constructor() {
-        //         this.n = 4;
-        //     }
-        // 
-        //     public bar2() {
-        //         var n = 12;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private n = 0;
-      // 
-      //     public bar() {
-      //         this.[|n|] = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private n = 0;
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.[|n|] = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForClassLocal.ts ===
+// var n = 14;
+// 
+// class foo {
+//     /*FIND ALL REFS*/<|private [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}n|] = 0;|>
+// 
+//     public bar() {
+//         this.n = 9;
+//     }
+// 
+//     constructor() {
+//         this.n = 4;
+//     }
+// 
+//     public bar2() {
+//         var n = 12;
+//     }
+// }
 
 [
   {
@@ -286,14 +136,14 @@
 // var n = 14;
 // 
 // class foo {
-//     private /*FIND ALL REFS*/[|n|] = 0;
+//     <|private /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}n|] = 0;|>
 // 
 //     public bar() {
-//         this.[|n|] = 9;
+//         this.[|{| defId: 0, isWriteAccess: true |}n|] = 9;
 //     }
 // 
 //     constructor() {
-//         this.[|n|] = 4;
+//         this.[|{| defId: 0, isWriteAccess: true |}n|] = 4;
 //     }
 // 
 //     public bar2() {
@@ -301,175 +151,25 @@
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-    // var n = 14;
-    // 
-    // class foo {
-    //     private [|n|] = 0;
-    // 
-    //     public bar() {
-    //         this.n = 9;
-    //     }
-    // 
-    //     constructor() {
-    //         this.n = 4;
-    //     }
-    // 
-    //     public bar2() {
-    //         var n = 12;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     [|private n = 0;|]
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private [|n|] = 0;
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-        // var n = 14;
-        // 
-        // class foo {
-        //     [|private n = 0;|]
-        // 
-        //     public bar() {
-        //         this.n = 9;
-        //     }
-        // 
-        //     constructor() {
-        //         this.n = 4;
-        //     }
-        // 
-        //     public bar2() {
-        //         var n = 12;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private n = 0;
-      // 
-      //     public bar() {
-      //         this.[|n|] = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private n = 0;
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.[|n|] = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForClassLocal.ts ===
+// var n = 14;
+// 
+// class foo {
+//     <|private /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}n|] = 0;|>
+// 
+//     public bar() {
+//         this.n = 9;
+//     }
+// 
+//     constructor() {
+//         this.n = 4;
+//     }
+// 
+//     public bar2() {
+//         var n = 12;
+//     }
+// }
 
 [
   {
@@ -570,14 +270,14 @@
 // var n = 14;
 // 
 // class foo {
-//     private [|n|] = 0;
+//     <|private [|{| contextId: 0, defId: 0, isWriteAccess: true |}n|] = 0;|>
 // 
 //     public bar() {
-//         this./*FIND ALL REFS*/[|n|] = 9;
+//         this./*FIND ALL REFS*/[|{| defId: 0, isWriteAccess: true |}n|] = 9;
 //     }
 // 
 //     constructor() {
-//         this.[|n|] = 4;
+//         this.[|{| defId: 0, isWriteAccess: true |}n|] = 4;
 //     }
 // 
 //     public bar2() {
@@ -585,172 +285,25 @@
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-    // var n = 14;
-    // 
-    // class foo {
-    //     private [|n|] = 0;
-    // 
-    //     public bar() {
-    //         this.n = 9;
-    //     }
-    // 
-    //     constructor() {
-    //         this.n = 4;
-    //     }
-    // 
-    //     public bar2() {
-    //         var n = 12;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     [|private n = 0;|]
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private [|n|] = 0;
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-        // var n = 14;
-        // 
-        // class foo {
-        //     [|private n = 0;|]
-        // 
-        //     public bar() {
-        //         this.n = 9;
-        //     }
-        // 
-        //     constructor() {
-        //         this.n = 4;
-        //     }
-        // 
-        //     public bar2() {
-        //         var n = 12;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private n = 0;
-      // 
-      //     public bar() {
-      //         this.[|n|] = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private n = 0;
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.[|n|] = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForClassLocal.ts ===
+// var n = 14;
+// 
+// class foo {
+//     <|private [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}n|] = 0;|>
+// 
+//     public bar() {
+//         this./*FIND ALL REFS*/n = 9;
+//     }
+// 
+//     constructor() {
+//         this.n = 4;
+//     }
+// 
+//     public bar2() {
+//         var n = 12;
+//     }
+// }
 
 [
   {
@@ -848,14 +401,14 @@
 // var n = 14;
 // 
 // class foo {
-//     private [|n|] = 0;
+//     <|private [|{| contextId: 0, defId: 0, isWriteAccess: true |}n|] = 0;|>
 // 
 //     public bar() {
-//         this.[|n|] = 9;
+//         this.[|{| defId: 0, isWriteAccess: true |}n|] = 9;
 //     }
 // 
 //     constructor() {
-//         this./*FIND ALL REFS*/[|n|] = 4;
+//         this./*FIND ALL REFS*/[|{| defId: 0, isWriteAccess: true |}n|] = 4;
 //     }
 // 
 //     public bar2() {
@@ -863,172 +416,25 @@
 //     }
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo.n: number"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "n",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "number",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-    // var n = 14;
-    // 
-    // class foo {
-    //     private [|n|] = 0;
-    // 
-    //     public bar() {
-    //         this.n = 9;
-    //     }
-    // 
-    //     constructor() {
-    //         this.n = 4;
-    //     }
-    // 
-    //     public bar2() {
-    //         var n = 12;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     [|private n = 0;|]
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private [|n|] = 0;
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-        // var n = 14;
-        // 
-        // class foo {
-        //     [|private n = 0;|]
-        // 
-        //     public bar() {
-        //         this.n = 9;
-        //     }
-        // 
-        //     constructor() {
-        //         this.n = 4;
-        //     }
-        // 
-        //     public bar2() {
-        //         var n = 12;
-        //     }
-        // }
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private n = 0;
-      // 
-      //     public bar() {
-      //         this.[|n|] = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.n = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-    // === 2 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/referencesForClassLocal.ts ===
-      // var n = 14;
-      // 
-      // class foo {
-      //     private n = 0;
-      // 
-      //     public bar() {
-      //         this.n = 9;
-      //     }
-      // 
-      //     constructor() {
-      //         this.[|n|] = 4;
-      //     }
-      // 
-      //     public bar2() {
-      //         var n = 12;
-      //     }
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/referencesForClassLocal.ts ===
+// var n = 14;
+// 
+// class foo {
+//     <|private [|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo.n: number", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"className"},{"text":".","kind":"punctuation"},{"text":"n","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"number","kind":"keyword"}] |}n|] = 0;|>
+// 
+//     public bar() {
+//         this.n = 9;
+//     }
+// 
+//     constructor() {
+//         this./*FIND ALL REFS*/n = 4;
+//     }
+// 
+//     public bar2() {
+//         var n = 12;
+//     }
+// }
 
 [
   {

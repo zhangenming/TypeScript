@@ -1,22 +1,14 @@
 // === /tests/cases/fourslash/scriptThing.ts ===
-// [||]console.log("woooo side effects")
+// [|{| kind: "script", name: "./scriptThing" |}|]console.log("woooo side effects")
 
 // === /tests/cases/fourslash/moduleThing.ts ===
 // import /*GOTO DEF*/"./scriptThing";
 // import "./stylez.css";
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "script"
-    // name: "./scriptThing"
-    // unverified: false
-    // === /tests/cases/fourslash/scriptThing.ts ===
-    // [||]console.log("woooo side effects")
 // === TextSpan ===
-  // === /tests/cases/fourslash/moduleThing.ts ===
-  // import [|"./scriptThing"|];
-  // import "./stylez.css";
-
+// === /tests/cases/fourslash/moduleThing.ts ===
+// import /*GOTO DEF*/[|"./scriptThing"|];
+// import "./stylez.css";
 
 {
   "definitions": [
@@ -38,7 +30,7 @@
 }
 
 // === /tests/cases/fourslash/stylez.css ===
-// [||]div {
+// [|{| kind: "script", name: "./stylez.css", unverified: true |}|]div {
 //   color: magenta;
 // }
 
@@ -46,20 +38,10 @@
 // import "./scriptThing";
 // import /*GOTO DEF*/"./stylez.css";
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "script"
-    // name: "./stylez.css"
-    // unverified: true
-    // === /tests/cases/fourslash/stylez.css ===
-    // [||]div {
-    //   color: magenta;
-    // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/moduleThing.ts ===
-  // import "./scriptThing";
-  // import [|"./stylez.css"|];
-
+// === /tests/cases/fourslash/moduleThing.ts ===
+// import "./scriptThing";
+// import /*GOTO DEF*/[|"./stylez.css"|];
 
 {
   "definitions": [

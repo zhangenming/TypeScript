@@ -3,303 +3,38 @@
 // namespace JSX {
 //     export interface Element { }
 //     export interface IntrinsicElements {
-//         /*FIND ALL REFS*/[|div|]: any;
+//         /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, isDefinition: true |}div|]: any;|>
 //     }
 // }
 // 
 // const Comp = () =>
-//     <[|div|]>
+//     <|<|<[|{| contextId: 1, defId: 0 |}div|]>
 //         Some content
-//         <[|div|]>More content</[|div|]>
-//     </[|div|]>;
+//         <|<|<[|{| contextId: 3, defId: 0 |}div|]>More content</[|{| contextId: 4, defId: 0 |}div|]>|>|>
+//     </[|{| contextId: 2, defId: 0 |}div|]>|>|>;
 // 
 // const x = <Comp>
 //     Content
 // </Comp>;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) JSX.IntrinsicElements.div: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "JSX",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "IntrinsicElements",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "div",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.tsx ===
-    // namespace JSX {
-    //     export interface Element { }
-    //     export interface IntrinsicElements {
-    //         [|div|]: any;
-    //     }
-    // }
-    // 
-    // const Comp = () =>
-    //     <div>
-    //         Some content
-    //         <div>More content</div>
-    //     </div>;
-    // 
-    // const x = <Comp>
-    //     Content
-    // </Comp>;
-      // === ContextSpan ===
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         [|div: any;|]
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // isDefinition: true
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         [|div|]: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         [|div: any;|]
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <[|div|]>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <[|div|]>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</[|div|]>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </[|div|]>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-
+// === Definitions ===
+// === /a.tsx ===
+// namespace JSX {
+//     export interface Element { }
+//     export interface IntrinsicElements {
+//         /*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) JSX.IntrinsicElements.div: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"JSX","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"IntrinsicElements","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"div","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}div|]: any;|>
+//     }
+// }
+// 
+// const Comp = () =>
+//     <div>
+//         Some content
+//         <div>More content</div>
+//     </div>;
+// 
+// const x = <Comp>
+//     Content
+// </Comp>;
 
 [
   {
@@ -442,298 +177,38 @@
 // namespace JSX {
 //     export interface Element { }
 //     export interface IntrinsicElements {
-//         [|div|]: any;
+//         <|[|{| contextId: 0, defId: 0 |}div|]: any;|>
 //     }
 // }
 // 
 // const Comp = () =>
-//     </*FIND ALL REFS*/[|div|]>
+//     <|<|</*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}div|]>
 //         Some content
-//         <[|div|]>More content</[|div|]>
-//     </[|div|]>;
+//         <|<|<[|{| contextId: 3, defId: 0 |}div|]>More content</[|{| contextId: 4, defId: 0 |}div|]>|>|>
+//     </[|{| contextId: 2, defId: 0 |}div|]>|>|>;
 // 
 // const x = <Comp>
 //     Content
 // </Comp>;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) JSX.IntrinsicElements.div: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "JSX",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "IntrinsicElements",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "div",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.tsx ===
-    // namespace JSX {
-    //     export interface Element { }
-    //     export interface IntrinsicElements {
-    //         [|div|]: any;
-    //     }
-    // }
-    // 
-    // const Comp = () =>
-    //     <div>
-    //         Some content
-    //         <div>More content</div>
-    //     </div>;
-    // 
-    // const x = <Comp>
-    //     Content
-    // </Comp>;
-      // === ContextSpan ===
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         [|div: any;|]
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         [|div|]: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         [|div: any;|]
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <[|div|]>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <[|div|]>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 3 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</[|div|]>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 4 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </[|div|]>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-
+// === Definitions ===
+// === /a.tsx ===
+// namespace JSX {
+//     export interface Element { }
+//     export interface IntrinsicElements {
+//         <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) JSX.IntrinsicElements.div: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"JSX","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"IntrinsicElements","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"div","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}div|]: any;|>
+//     }
+// }
+// 
+// const Comp = () =>
+//     </*FIND ALL REFS*/div>
+//         Some content
+//         <div>More content</div>
+//     </div>;
+// 
+// const x = <Comp>
+//     Content
+// </Comp>;
 
 [
   {
@@ -871,298 +346,38 @@
 // namespace JSX {
 //     export interface Element { }
 //     export interface IntrinsicElements {
-//         [|div|]: any;
+//         <|[|{| contextId: 0, defId: 0 |}div|]: any;|>
 //     }
 // }
 // 
 // const Comp = () =>
-//     <[|div|]>
+//     <|<|<[|{| contextId: 1, defId: 0 |}div|]>
 //         Some content
-//         </*FIND ALL REFS*/[|div|]>More content</[|div|]>
-//     </[|div|]>;
+//         <|<|</*FIND ALL REFS*/[|{| contextId: 3, defId: 0 |}div|]>More content</[|{| contextId: 4, defId: 0 |}div|]>|>|>
+//     </[|{| contextId: 2, defId: 0 |}div|]>|>|>;
 // 
 // const x = <Comp>
 //     Content
 // </Comp>;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) JSX.IntrinsicElements.div: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "JSX",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "IntrinsicElements",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "div",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.tsx ===
-    // namespace JSX {
-    //     export interface Element { }
-    //     export interface IntrinsicElements {
-    //         [|div|]: any;
-    //     }
-    // }
-    // 
-    // const Comp = () =>
-    //     <div>
-    //         Some content
-    //         <div>More content</div>
-    //     </div>;
-    // 
-    // const x = <Comp>
-    //     Content
-    // </Comp>;
-      // === ContextSpan ===
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         [|div: any;|]
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         [|div|]: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         [|div: any;|]
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <[|div|]>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <[|div|]>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 3 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</[|div|]>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 4 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </[|div|]>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-
+// === Definitions ===
+// === /a.tsx ===
+// namespace JSX {
+//     export interface Element { }
+//     export interface IntrinsicElements {
+//         <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) JSX.IntrinsicElements.div: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"JSX","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"IntrinsicElements","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"div","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}div|]: any;|>
+//     }
+// }
+// 
+// const Comp = () =>
+//     <div>
+//         Some content
+//         </*FIND ALL REFS*/div>More content</div>
+//     </div>;
+// 
+// const x = <Comp>
+//     Content
+// </Comp>;
 
 [
   {
@@ -1300,298 +515,38 @@
 // namespace JSX {
 //     export interface Element { }
 //     export interface IntrinsicElements {
-//         [|div|]: any;
+//         <|[|{| contextId: 0, defId: 0 |}div|]: any;|>
 //     }
 // }
 // 
 // const Comp = () =>
-//     <[|div|]>
+//     <|<|<[|{| contextId: 1, defId: 0 |}div|]>
 //         Some content
-//         <[|div|]>More content<//*FIND ALL REFS*/[|div|]>
-//     </[|div|]>;
+//         <|<|<[|{| contextId: 3, defId: 0 |}div|]>More content<//*FIND ALL REFS*/[|{| contextId: 4, defId: 0 |}div|]>|>|>
+//     </[|{| contextId: 2, defId: 0 |}div|]>|>|>;
 // 
 // const x = <Comp>
 //     Content
 // </Comp>;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) JSX.IntrinsicElements.div: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "JSX",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "IntrinsicElements",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "div",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.tsx ===
-    // namespace JSX {
-    //     export interface Element { }
-    //     export interface IntrinsicElements {
-    //         [|div|]: any;
-    //     }
-    // }
-    // 
-    // const Comp = () =>
-    //     <div>
-    //         Some content
-    //         <div>More content</div>
-    //     </div>;
-    // 
-    // const x = <Comp>
-    //     Content
-    // </Comp>;
-      // === ContextSpan ===
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         [|div: any;|]
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         [|div|]: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         [|div: any;|]
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <[|div|]>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <[|div|]>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 3 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</[|div|]>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 4 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </[|div|]>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-
+// === Definitions ===
+// === /a.tsx ===
+// namespace JSX {
+//     export interface Element { }
+//     export interface IntrinsicElements {
+//         <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) JSX.IntrinsicElements.div: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"JSX","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"IntrinsicElements","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"div","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}div|]: any;|>
+//     }
+// }
+// 
+// const Comp = () =>
+//     <div>
+//         Some content
+//         <div>More content<//*FIND ALL REFS*/div>
+//     </div>;
+// 
+// const x = <Comp>
+//     Content
+// </Comp>;
 
 [
   {
@@ -1729,298 +684,38 @@
 // namespace JSX {
 //     export interface Element { }
 //     export interface IntrinsicElements {
-//         [|div|]: any;
+//         <|[|{| contextId: 0, defId: 0 |}div|]: any;|>
 //     }
 // }
 // 
 // const Comp = () =>
-//     <[|div|]>
+//     <|<|<[|{| contextId: 1, defId: 0 |}div|]>
 //         Some content
-//         <[|div|]>More content</[|div|]>
-//     <//*FIND ALL REFS*/[|div|]>;
+//         <|<|<[|{| contextId: 3, defId: 0 |}div|]>More content</[|{| contextId: 4, defId: 0 |}div|]>|>|>
+//     <//*FIND ALL REFS*/[|{| contextId: 2, defId: 0 |}div|]>|>|>;
 // 
 // const x = <Comp>
 //     Content
 // </Comp>;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) JSX.IntrinsicElements.div: any"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "JSX",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "IntrinsicElements",
-    //   "kind": "interfaceName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "div",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /a.tsx ===
-    // namespace JSX {
-    //     export interface Element { }
-    //     export interface IntrinsicElements {
-    //         [|div|]: any;
-    //     }
-    // }
-    // 
-    // const Comp = () =>
-    //     <div>
-    //         Some content
-    //         <div>More content</div>
-    //     </div>;
-    // 
-    // const x = <Comp>
-    //     Content
-    // </Comp>;
-      // === ContextSpan ===
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         [|div: any;|]
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         [|div|]: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         [|div: any;|]
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <[|div|]>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 2 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <[|div|]>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 3 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</[|div|]>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 4 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </[|div|]>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-
+// === Definitions ===
+// === /a.tsx ===
+// namespace JSX {
+//     export interface Element { }
+//     export interface IntrinsicElements {
+//         <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) JSX.IntrinsicElements.div: any", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"JSX","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"IntrinsicElements","kind":"interfaceName"},{"text":".","kind":"punctuation"},{"text":"div","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}div|]: any;|>
+//     }
+// }
+// 
+// const Comp = () =>
+//     <div>
+//         Some content
+//         <div>More content</div>
+//     <//*FIND ALL REFS*/div>;
+// 
+// const x = <Comp>
+//     Content
+// </Comp>;
 
 [
   {
@@ -2162,227 +857,34 @@
 //     }
 // }
 // 
-// const /*FIND ALL REFS*/[|Comp|] = () =>
+// <|const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Comp|] = () =>
 //     <div>
 //         Some content
 //         <div>More content</div>
-//     </div>;
+//     </div>;|>
 // 
-// const x = <[|Comp|]>
+// const x = <|<|<[|{| contextId: 1, defId: 0 |}Comp|]>
 //     Content
-// </[|Comp|]>;
+// </[|{| contextId: 2, defId: 0 |}Comp|]>|>|>;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const Comp: () => JSX.Element"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Comp",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=>",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "JSX",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Element",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /a.tsx ===
-    // namespace JSX {
-    //     export interface Element { }
-    //     export interface IntrinsicElements {
-    //         div: any;
-    //     }
-    // }
-    // 
-    // const [|Comp|] = () =>
-    //     <div>
-    //         Some content
-    //         <div>More content</div>
-    //     </div>;
-    // 
-    // const x = <Comp>
-    //     Content
-    // </Comp>;
-      // === ContextSpan ===
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // [|const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;|]
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const [|Comp|] = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // [|const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;|]
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <[|Comp|]>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = [|<Comp>
-        //     Content
-        // </Comp>|];
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </[|Comp|]>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = [|<Comp>
-        //     Content
-        // </Comp>|];
-
+// === Definitions ===
+// === /a.tsx ===
+// namespace JSX {
+//     export interface Element { }
+//     export interface IntrinsicElements {
+//         div: any;
+//     }
+// }
+// 
+// <|const /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "const", name: "const Comp: () => JSX.Element", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Comp","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"=>","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"JSX","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Element","kind":"interfaceName"}] |}Comp|] = () =>
+//     <div>
+//         Some content
+//         <div>More content</div>
+//     </div>;|>
+// 
+// const x = <Comp>
+//     Content
+// </Comp>;
 
 [
   {
@@ -2507,224 +1009,34 @@
 //     }
 // }
 // 
-// const [|Comp|] = () =>
+// <|const [|{| contextId: 0, defId: 0, isWriteAccess: true |}Comp|] = () =>
 //     <div>
 //         Some content
 //         <div>More content</div>
-//     </div>;
+//     </div>;|>
 // 
-// const x = </*FIND ALL REFS*/[|Comp|]>
+// const x = <|<|</*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}Comp|]>
 //     Content
-// </[|Comp|]>;
+// </[|{| contextId: 2, defId: 0 |}Comp|]>|>|>;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const Comp: () => JSX.Element"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Comp",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=>",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "JSX",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Element",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /a.tsx ===
-    // namespace JSX {
-    //     export interface Element { }
-    //     export interface IntrinsicElements {
-    //         div: any;
-    //     }
-    // }
-    // 
-    // const [|Comp|] = () =>
-    //     <div>
-    //         Some content
-    //         <div>More content</div>
-    //     </div>;
-    // 
-    // const x = <Comp>
-    //     Content
-    // </Comp>;
-      // === ContextSpan ===
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // [|const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;|]
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const [|Comp|] = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // [|const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;|]
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <[|Comp|]>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = [|<Comp>
-        //     Content
-        // </Comp>|];
-    // === 2 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </[|Comp|]>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = [|<Comp>
-        //     Content
-        // </Comp>|];
-
+// === Definitions ===
+// === /a.tsx ===
+// namespace JSX {
+//     export interface Element { }
+//     export interface IntrinsicElements {
+//         div: any;
+//     }
+// }
+// 
+// <|const [|{| contextId: 0, defId: 0, kind: "const", name: "const Comp: () => JSX.Element", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Comp","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"=>","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"JSX","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Element","kind":"interfaceName"}] |}Comp|] = () =>
+//     <div>
+//         Some content
+//         <div>More content</div>
+//     </div>;|>
+// 
+// const x = </*FIND ALL REFS*/Comp>
+//     Content
+// </Comp>;
 
 [
   {
@@ -2846,224 +1158,34 @@
 //     }
 // }
 // 
-// const [|Comp|] = () =>
+// <|const [|{| contextId: 0, defId: 0, isWriteAccess: true |}Comp|] = () =>
 //     <div>
 //         Some content
 //         <div>More content</div>
-//     </div>;
+//     </div>;|>
 // 
-// const x = <[|Comp|]>
+// const x = <|<|<[|{| contextId: 1, defId: 0 |}Comp|]>
 //     Content
-// <//*FIND ALL REFS*/[|Comp|]>;
+// <//*FIND ALL REFS*/[|{| contextId: 2, defId: 0 |}Comp|]>|>|>;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "const"
-    // name: "const Comp: () => JSX.Element"
-    // displayParts: [
-    //  {
-    //   "text": "const",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Comp",
-    //   "kind": "localName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=>",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "JSX",
-    //   "kind": "moduleName"
-    //  },
-    //  {
-    //   "text": ".",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "Element",
-    //   "kind": "interfaceName"
-    //  }
-    // ]
-    // === /a.tsx ===
-    // namespace JSX {
-    //     export interface Element { }
-    //     export interface IntrinsicElements {
-    //         div: any;
-    //     }
-    // }
-    // 
-    // const [|Comp|] = () =>
-    //     <div>
-    //         Some content
-    //         <div>More content</div>
-    //     </div>;
-    // 
-    // const x = <Comp>
-    //     Content
-    // </Comp>;
-      // === ContextSpan ===
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // [|const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;|]
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const [|Comp|] = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // [|const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;|]
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 1 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <[|Comp|]>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = [|<Comp>
-        //     Content
-        // </Comp>|];
-    // === 2 ===
-      // isWriteAccess: false
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </[|Comp|]>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = [|<Comp>
-        //     Content
-        // </Comp>|];
-
+// === Definitions ===
+// === /a.tsx ===
+// namespace JSX {
+//     export interface Element { }
+//     export interface IntrinsicElements {
+//         div: any;
+//     }
+// }
+// 
+// <|const [|{| contextId: 0, defId: 0, kind: "const", name: "const Comp: () => JSX.Element", displayParts: [{"text":"const","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Comp","kind":"localName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"=>","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"JSX","kind":"moduleName"},{"text":".","kind":"punctuation"},{"text":"Element","kind":"interfaceName"}] |}Comp|] = () =>
+//     <div>
+//         Some content
+//         <div>More content</div>
+//     </div>;|>
+// 
+// const x = <Comp>
+//     Content
+// <//*FIND ALL REFS*/Comp>;
 
 [
   {
@@ -3182,208 +1304,19 @@
 // namespace JSX {
 //     export interface Element { }
 //     export interface IntrinsicElements {
-//         /*HIGHLIGHTS*/[|div|]: any;
+//         /*HIGHLIGHTS*/<|[|{| contextId: 0, kind: "reference" |}div|]: any;|>
 //     }
 // }
 // 
 // const Comp = () =>
-//     <[|div|]>
+//     <|<|<[|{| contextId: 1, kind: "reference" |}div|]>
 //         Some content
-//         <[|div|]>More content</[|div|]>
-//     </[|div|]>;
+//         <|<|<[|{| contextId: 3, kind: "reference" |}div|]>More content</[|{| contextId: 4, kind: "reference" |}div|]>|>|>
+//     </[|{| contextId: 2, kind: "reference" |}div|]>|>|>;
 // 
 // const x = <Comp>
 //     Content
 // </Comp>;
-
-// === 0 ===
-  // === /a.tsx ===
-    // === 0 ===
-      // kind: "reference"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         [|div|]: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         [|div: any;|]
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 1 ===
-      // kind: "reference"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <[|div|]>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 2 ===
-      // kind: "reference"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <[|div|]>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 3 ===
-      // kind: "reference"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</[|div|]>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         [|<div>More content</div>|]
-        //     </div>;
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 4 ===
-      // kind: "reference"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </[|div|]>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     [|<div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>|];
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-
 
 [
   {
@@ -3457,56 +1390,14 @@
 // }
 // 
 // const Comp = () =>
-//     </*HIGHLIGHTS*/[|div|]>
+//     </*HIGHLIGHTS*/[|{| kind: "none" |}div|]>
 //         Some content
 //         <div>More content</div>
-//     </[|div|]>;
+//     </[|{| kind: "none" |}div|]>;
 // 
 // const x = <Comp>
 //     Content
 // </Comp>;
-
-// === 0 ===
-  // === /a.tsx ===
-    // === 0 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <[|div|]>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-    // === 1 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </[|div|]>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-
 
 [
   {
@@ -3543,54 +1434,12 @@
 // const Comp = () =>
 //     <div>
 //         Some content
-//         </*HIGHLIGHTS*/[|div|]>More content</[|div|]>
+//         </*HIGHLIGHTS*/[|{| kind: "none" |}div|]>More content</[|{| kind: "none" |}div|]>
 //     </div>;
 // 
 // const x = <Comp>
 //     Content
 // </Comp>;
-
-// === 0 ===
-  // === /a.tsx ===
-    // === 0 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <[|div|]>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-    // === 1 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</[|div|]>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-
 
 [
   {
@@ -3627,54 +1476,12 @@
 // const Comp = () =>
 //     <div>
 //         Some content
-//         <[|div|]>More content<//*HIGHLIGHTS*/[|div|]>
+//         <[|{| kind: "none" |}div|]>More content<//*HIGHLIGHTS*/[|{| kind: "none" |}div|]>
 //     </div>;
 // 
 // const x = <Comp>
 //     Content
 // </Comp>;
-
-// === 0 ===
-  // === /a.tsx ===
-    // === 0 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <[|div|]>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-    // === 1 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</[|div|]>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-
 
 [
   {
@@ -3709,56 +1516,14 @@
 // }
 // 
 // const Comp = () =>
-//     <[|div|]>
+//     <[|{| kind: "none" |}div|]>
 //         Some content
 //         <div>More content</div>
-//     <//*HIGHLIGHTS*/[|div|]>;
+//     <//*HIGHLIGHTS*/[|{| kind: "none" |}div|]>;
 // 
 // const x = <Comp>
 //     Content
 // </Comp>;
-
-// === 0 ===
-  // === /a.tsx ===
-    // === 0 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <[|div|]>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-    // === 1 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </[|div|]>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-
 
 [
   {
@@ -3792,130 +1557,15 @@
 //     }
 // }
 // 
-// const /*HIGHLIGHTS*/[|Comp|] = () =>
+// <|const /*HIGHLIGHTS*/[|{| contextId: 0, kind: "writtenReference" |}Comp|] = () =>
 //     <div>
 //         Some content
 //         <div>More content</div>
-//     </div>;
+//     </div>;|>
 // 
-// const x = <[|Comp|]>
+// const x = <|<|<[|{| contextId: 1, kind: "reference" |}Comp|]>
 //     Content
-// </[|Comp|]>;
-
-// === 0 ===
-  // === /a.tsx ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const [|Comp|] = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // [|const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;|]
-        // 
-        // const x = <Comp>
-        //     Content
-        // </Comp>;
-    // === 1 ===
-      // kind: "reference"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <[|Comp|]>
-      //     Content
-      // </Comp>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = [|<Comp>
-        //     Content
-        // </Comp>|];
-    // === 2 ===
-      // kind: "reference"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </[|Comp|]>;
-        // === ContextSpan ===
-        // === /a.tsx ===
-        // namespace JSX {
-        //     export interface Element { }
-        //     export interface IntrinsicElements {
-        //         div: any;
-        //     }
-        // }
-        // 
-        // const Comp = () =>
-        //     <div>
-        //         Some content
-        //         <div>More content</div>
-        //     </div>;
-        // 
-        // const x = [|<Comp>
-        //     Content
-        // </Comp>|];
-
+// </[|{| contextId: 2, kind: "reference" |}Comp|]>|>|>;
 
 [
   {
@@ -3972,51 +1622,9 @@
 //         <div>More content</div>
 //     </div>;
 // 
-// const x = </*HIGHLIGHTS*/[|Comp|]>
+// const x = </*HIGHLIGHTS*/[|{| kind: "none" |}Comp|]>
 //     Content
-// </[|Comp|]>;
-
-// === 0 ===
-  // === /a.tsx ===
-    // === 0 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <[|Comp|]>
-      //     Content
-      // </Comp>;
-    // === 1 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </[|Comp|]>;
-
+// </[|{| kind: "none" |}Comp|]>;
 
 [
   {
@@ -4056,51 +1664,9 @@
 //         <div>More content</div>
 //     </div>;
 // 
-// const x = <[|Comp|]>
+// const x = <[|{| kind: "none" |}Comp|]>
 //     Content
-// <//*HIGHLIGHTS*/[|Comp|]>;
-
-// === 0 ===
-  // === /a.tsx ===
-    // === 0 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <[|Comp|]>
-      //     Content
-      // </Comp>;
-    // === 1 ===
-      // kind: "none"
-      // === /a.tsx ===
-      // namespace JSX {
-      //     export interface Element { }
-      //     export interface IntrinsicElements {
-      //         div: any;
-      //     }
-      // }
-      // 
-      // const Comp = () =>
-      //     <div>
-      //         Some content
-      //         <div>More content</div>
-      //     </div>;
-      // 
-      // const x = <Comp>
-      //     Content
-      // </[|Comp|]>;
-
+// <//*HIGHLIGHTS*/[|{| kind: "none" |}Comp|]>;
 
 [
   {

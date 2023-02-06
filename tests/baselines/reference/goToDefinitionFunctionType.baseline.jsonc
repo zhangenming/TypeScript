@@ -1,5 +1,5 @@
 // === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
-// const [|c|]: () => void;
+// <|const [|{| contextId: 0, kind: "const", name: "c" |}c|]: () => void;|>
 // /*GOTO DEF*/c();
 // function test(cb: () => void) {
 //     cb();
@@ -11,54 +11,19 @@
 //     }
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "const"
-    // name: "c"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
-    // const [|c|]: () => void;
-    // c();
-    // function test(cb: () => void) {
-    //     cb();
-    // }
-    // class C {
-    //     prop: () => void;
-    //     m() {
-    //         this.prop();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
-      // [|const c: () => void;|]
-      // c();
-      // function test(cb: () => void) {
-      //     cb();
-      // }
-      // class C {
-      //     prop: () => void;
-      //     m() {
-      //         this.prop();
-      //     }
-      // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
-  // const c: () => void;
-  // [|c|]();
-  // function test(cb: () => void) {
-  //     cb();
-  // }
-  // class C {
-  //     prop: () => void;
-  //     m() {
-  //         this.prop();
-  //     }
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
+// const c: () => void;
+// /*GOTO DEF*/[|c|]();
+// function test(cb: () => void) {
+//     cb();
+// }
+// class C {
+//     prop: () => void;
+//     m() {
+//         this.prop();
+//     }
+// }
 
 {
   "definitions": [
@@ -90,7 +55,7 @@
 // === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
 // const c: () => void;
 // c();
-// function test([|cb|]: () => void) {
+// function test(<|[|{| contextId: 0, kind: "parameter", name: "cb" |}cb|]: () => void|>) {
 //     /*GOTO DEF*/cb();
 // }
 // class C {
@@ -100,54 +65,19 @@
 //     }
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "parameter"
-    // name: "cb"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
-    // const c: () => void;
-    // c();
-    // function test([|cb|]: () => void) {
-    //     cb();
-    // }
-    // class C {
-    //     prop: () => void;
-    //     m() {
-    //         this.prop();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
-      // const c: () => void;
-      // c();
-      // function test([|cb: () => void|]) {
-      //     cb();
-      // }
-      // class C {
-      //     prop: () => void;
-      //     m() {
-      //         this.prop();
-      //     }
-      // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
-  // const c: () => void;
-  // c();
-  // function test(cb: () => void) {
-  //     [|cb|]();
-  // }
-  // class C {
-  //     prop: () => void;
-  //     m() {
-  //         this.prop();
-  //     }
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
+// const c: () => void;
+// c();
+// function test(cb: () => void) {
+//     /*GOTO DEF*/[|cb|]();
+// }
+// class C {
+//     prop: () => void;
+//     m() {
+//         this.prop();
+//     }
+// }
 
 {
   "definitions": [
@@ -183,60 +113,25 @@
 //     cb();
 // }
 // class C {
-//     [|prop|]: () => void;
+//     <|[|{| contextId: 0, kind: "property", name: "prop", containerName: "C" |}prop|]: () => void;|>
 //     m() {
 //         this./*GOTO DEF*/prop();
 //     }
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "property"
-    // name: "prop"
-    // containerName: "C"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
-    // const c: () => void;
-    // c();
-    // function test(cb: () => void) {
-    //     cb();
-    // }
-    // class C {
-    //     [|prop|]: () => void;
-    //     m() {
-    //         this.prop();
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
-      // const c: () => void;
-      // c();
-      // function test(cb: () => void) {
-      //     cb();
-      // }
-      // class C {
-      //     [|prop: () => void;|]
-      //     m() {
-      //         this.prop();
-      //     }
-      // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
-  // const c: () => void;
-  // c();
-  // function test(cb: () => void) {
-  //     cb();
-  // }
-  // class C {
-  //     prop: () => void;
-  //     m() {
-  //         this.[|prop|]();
-  //     }
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionFunctionType.ts ===
+// const c: () => void;
+// c();
+// function test(cb: () => void) {
+//     cb();
+// }
+// class C {
+//     prop: () => void;
+//     m() {
+//         this./*GOTO DEF*/[|prop|]();
+//     }
+// }
 
 {
   "definitions": [

@@ -1,76 +1,28 @@
 // === /tests/cases/fourslash/goToDefinitionPartialImplementation_1.ts ===
 // module A {
-//     export interface [|IA|] {
+//     <|export interface [|{| contextId: 0, kind: "interface", name: "IA", containerName: "A" |}IA|] {
 //         y: string;
-//     }
+//     }|>
 // }
 
 // === /tests/cases/fourslash/goToDefinitionPartialImplementation_2.ts ===
 // module A {
-//     export interface [|IA|] {
+//     <|export interface [|{| contextId: 1, kind: "interface", name: "IA", containerName: "A" |}IA|] {
 //         x: number;
-//     }
+//     }|>
 // 
 //     var x: /*GOTO DEF*/IA;
 // }
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "interface"
-    // name: "IA"
-    // containerName: "A"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionPartialImplementation_1.ts ===
-    // module A {
-    //     export interface [|IA|] {
-    //         y: string;
-    //     }
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinitionPartialImplementation_1.ts ===
-      // module A {
-      //     [|export interface IA {
-      //         y: string;
-      //     }|]
-      // }
-  // === 1 ===
-    // kind: "interface"
-    // name: "IA"
-    // containerName: "A"
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/goToDefinitionPartialImplementation_2.ts ===
-    // module A {
-    //     export interface [|IA|] {
-    //         x: number;
-    //     }
-    // 
-    //     var x: IA;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/goToDefinitionPartialImplementation_2.ts ===
-      // module A {
-      //     [|export interface IA {
-      //         x: number;
-      //     }|]
-      // 
-      //     var x: IA;
-      // }
 // === TextSpan ===
-  // === /tests/cases/fourslash/goToDefinitionPartialImplementation_2.ts ===
-  // module A {
-  //     export interface IA {
-  //         x: number;
-  //     }
-  // 
-  //     var x: [|IA|];
-  // }
-
+// === /tests/cases/fourslash/goToDefinitionPartialImplementation_2.ts ===
+// module A {
+//     export interface IA {
+//         x: number;
+//     }
+// 
+//     var x: /*GOTO DEF*/[|IA|];
+// }
 
 {
   "definitions": [

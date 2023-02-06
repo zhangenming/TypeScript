@@ -4,222 +4,22 @@
 //         hello(): void;
 //     }
 // 
-//     class [|BarImpl|] implements Bar {
+//     <|class [|{| contextId: 0, displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"BarImpl","kind":"className"}], kind: "class" |}BarImpl|] implements Bar {
 //         hello() {}
-//     }
+//     }|>
 // }
 // 
-// class [|Baz|] implements Foo.Bar {
+// <|class [|{| contextId: 1, displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Baz","kind":"className"}], kind: "class" |}Baz|] implements Foo.Bar {
 //     hello() {}
-// }
+// }|>
 // 
-// var someVar1 : Foo.Bar = [|{ hello: () => {/**1*/} }|];
+// var someVar1 : Foo.Bar = [|{| kind: "interface", displayParts: [{"text":"(","kind":"punctuation"},{"text":"object literal","kind":"text"},{"text":")","kind":"punctuation"}] |}{ hello: () => {/**1*/} }|];
 // 
-// var someVar2 = <Foo.Bar> [|{ hello: () => {/**2*/} }|];
+// var someVar2 = <Foo.Bar> [|{| kind: "interface", displayParts: [{"text":"(","kind":"punctuation"},{"text":"object literal","kind":"text"},{"text":")","kind":"punctuation"}] |}{ hello: () => {/**2*/} }|];
 // 
 // function whatever(x: Foo.Ba/*GOTO IMPL*/r) {
 // 
 // }
-
-// === 0 ===
-  // displayParts: [
-  //  {
-  //   "text": "class",
-  //   "kind": "keyword"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "BarImpl",
-  //   "kind": "className"
-  //  }
-  // ]
-  // kind: "class"
-  // === /tests/cases/fourslash/goToImplementationNamespace_04.ts ===
-  // module Foo {
-  //     export interface Bar {
-  //         hello(): void;
-  //     }
-  // 
-  //     class [|BarImpl|] implements Bar {
-  //         hello() {}
-  //     }
-  // }
-  // 
-  // class Baz implements Foo.Bar {
-  //     hello() {}
-  // }
-  // 
-  // var someVar1 : Foo.Bar = { hello: () => {/**1*/} };
-  // 
-  // var someVar2 = <Foo.Bar> { hello: () => {/**2*/} };
-  // 
-  // function whatever(x: Foo.Bar) {
-  // 
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/goToImplementationNamespace_04.ts ===
-    // module Foo {
-    //     export interface Bar {
-    //         hello(): void;
-    //     }
-    // 
-    //     [|class BarImpl implements Bar {
-    //         hello() {}
-    //     }|]
-    // }
-    // 
-    // class Baz implements Foo.Bar {
-    //     hello() {}
-    // }
-    // 
-    // var someVar1 : Foo.Bar = { hello: () => {/**1*/} };
-    // 
-    // var someVar2 = <Foo.Bar> { hello: () => {/**2*/} };
-    // 
-    // function whatever(x: Foo.Bar) {
-    // 
-    // }
-// === 1 ===
-  // displayParts: [
-  //  {
-  //   "text": "class",
-  //   "kind": "keyword"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "Baz",
-  //   "kind": "className"
-  //  }
-  // ]
-  // kind: "class"
-  // === /tests/cases/fourslash/goToImplementationNamespace_04.ts ===
-  // module Foo {
-  //     export interface Bar {
-  //         hello(): void;
-  //     }
-  // 
-  //     class BarImpl implements Bar {
-  //         hello() {}
-  //     }
-  // }
-  // 
-  // class [|Baz|] implements Foo.Bar {
-  //     hello() {}
-  // }
-  // 
-  // var someVar1 : Foo.Bar = { hello: () => {/**1*/} };
-  // 
-  // var someVar2 = <Foo.Bar> { hello: () => {/**2*/} };
-  // 
-  // function whatever(x: Foo.Bar) {
-  // 
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/goToImplementationNamespace_04.ts ===
-    // module Foo {
-    //     export interface Bar {
-    //         hello(): void;
-    //     }
-    // 
-    //     class BarImpl implements Bar {
-    //         hello() {}
-    //     }
-    // }
-    // 
-    // [|class Baz implements Foo.Bar {
-    //     hello() {}
-    // }|]
-    // 
-    // var someVar1 : Foo.Bar = { hello: () => {/**1*/} };
-    // 
-    // var someVar2 = <Foo.Bar> { hello: () => {/**2*/} };
-    // 
-    // function whatever(x: Foo.Bar) {
-    // 
-    // }
-// === 2 ===
-  // kind: "interface"
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "object literal",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  }
-  // ]
-  // === /tests/cases/fourslash/goToImplementationNamespace_04.ts ===
-  // module Foo {
-  //     export interface Bar {
-  //         hello(): void;
-  //     }
-  // 
-  //     class BarImpl implements Bar {
-  //         hello() {}
-  //     }
-  // }
-  // 
-  // class Baz implements Foo.Bar {
-  //     hello() {}
-  // }
-  // 
-  // var someVar1 : Foo.Bar = [|{ hello: () => {/**1*/} }|];
-  // 
-  // var someVar2 = <Foo.Bar> { hello: () => {/**2*/} };
-  // 
-  // function whatever(x: Foo.Bar) {
-  // 
-  // }
-// === 3 ===
-  // kind: "interface"
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "object literal",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  }
-  // ]
-  // === /tests/cases/fourslash/goToImplementationNamespace_04.ts ===
-  // module Foo {
-  //     export interface Bar {
-  //         hello(): void;
-  //     }
-  // 
-  //     class BarImpl implements Bar {
-  //         hello() {}
-  //     }
-  // }
-  // 
-  // class Baz implements Foo.Bar {
-  //     hello() {}
-  // }
-  // 
-  // var someVar1 : Foo.Bar = { hello: () => {/**1*/} };
-  // 
-  // var someVar2 = <Foo.Bar> [|{ hello: () => {/**2*/} }|];
-  // 
-  // function whatever(x: Foo.Bar) {
-  // 
-  // }
-
 
 [
   {

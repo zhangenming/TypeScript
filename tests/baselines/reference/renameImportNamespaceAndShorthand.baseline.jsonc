@@ -1,21 +1,6 @@
 // === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
-// import * as [|RENAME|] from 'bar';
-// const bar = { /*START PREFIX*/foo: RENAME };
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
-  // import * as [|foo|] from 'bar';
-  // const bar = { foo };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
-    // [|import * as foo from 'bar';|]
-    // const bar = { foo };
-// === 1 ===
-  // prefixText: "foo: "
-  // === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
-  // import * as foo from 'bar';
-  // const bar = { [|foo|] };
-
+// <|import * as /*RENAME*/[|{| contextId: 0 |}fooRENAME|] from 'bar';|>
+// const bar = { /*START PREFIX*/foo: [|fooRENAME|] };
 
 [
   {
@@ -40,23 +25,8 @@
 ]
 
 // === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
-// import * as RENAME from 'bar';
-// const bar = { /*START PREFIX*/foo: [|RENAME|] };
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
-  // import * as [|foo|] from 'bar';
-  // const bar = { foo };
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
-    // [|import * as foo from 'bar';|]
-    // const bar = { foo };
-// === 1 ===
-  // prefixText: "foo: "
-  // === /tests/cases/fourslash/renameImportNamespaceAndShorthand.ts ===
-  // import * as foo from 'bar';
-  // const bar = { [|foo|] };
-
+// <|import * as [|{| contextId: 0 |}fooRENAME|] from 'bar';|>
+// const bar = { /*RENAME*//*START PREFIX*/foo: [|fooRENAME|] };
 
 [
   {

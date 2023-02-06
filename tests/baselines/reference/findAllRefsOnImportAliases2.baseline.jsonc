@@ -1,209 +1,24 @@
 // === findAllReferences ===
+// === /tests/cases/fourslash/a.ts ===
+// <|export class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Class|] {}|>
+
 // === /tests/cases/fourslash/b.ts ===
-// import { [|Class|] as [|C2|] } from "./a";
-// var c = new [|C2|]();
+// <|<|import { [|{| contextId: 1, defId: 0 |}Class|] as [|{| contextId: 2, defId: 1, isWriteAccess: true |}C2|] } from "./a";|>|>
+// var c = new [|{| defId: 1 |}C2|]();
 
 // === /tests/cases/fourslash/c.ts ===
-// export { [|Class|] as [|C3|] } from "./a";
+// <|<|export { [|{| contextId: 3, defId: 0 |}Class|] as [|{| contextId: 4, defId: 2, isWriteAccess: true |}C3|] } from "./a";|>|>
 
+// === Definitions ===
 // === /tests/cases/fourslash/a.ts ===
-// export class /*FIND ALL REFS*/[|Class|] {}
+// <|export class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "class", name: "class Class", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Class","kind":"className"}] |}Class|] {}|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class Class"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Class",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // export class [|Class|] {}
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|export class Class {}|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/a.ts ===
-      // export class [|Class|] {}
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|export class Class {}|]
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // import { [|Class|] as C2 } from "./a";
-      // var c = new C2();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import { Class as C2 } from "./a";|]
-        // var c = new C2();
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/c.ts ===
-      // export { [|Class|] as C3 } from "./a";
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|export { Class as C3 } from "./a";|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class C2\nimport C2"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C2",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C2",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/b.ts ===
-    // import { Class as [|C2|] } from "./a";
-    // var c = new C2();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.ts ===
-      // [|import { Class as C2 } from "./a";|]
-      // var c = new C2();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // import { Class as [|C2|] } from "./a";
-      // var c = new C2();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import { Class as C2 } from "./a";|]
-        // var c = new C2();
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // import { Class as C2 } from "./a";
-      // var c = new [|C2|]();
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class C3\nexport C3"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C3",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C3",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/c.ts ===
-    // export { Class as [|C3|] } from "./a";
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/c.ts ===
-      // [|export { Class as C3 } from "./a";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/c.ts ===
-      // export { Class as [|C3|] } from "./a";
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|export { Class as C3 } from "./a";|]
+// === /tests/cases/fourslash/b.ts ===
+// <|import { Class as [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) class C2\nimport C2", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C2","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C2","kind":"aliasName"}] |}C2|] } from "./a";|>
+// var c = new C2();
 
+// === /tests/cases/fourslash/c.ts ===
+// <|export { Class as [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) class C3\nexport C3", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C3","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C3","kind":"aliasName"}] |}C3|] } from "./a";|>
 
 [
   {
@@ -445,205 +260,281 @@
   }
 ]
 
+// === /tests/cases/fourslash/a.ts ===
+// <|export class [|{| contextId: 0, defId: 0, isWriteAccess: true |}Class|] {}|>
+
 // === /tests/cases/fourslash/b.ts ===
-// import { /*FIND ALL REFS*/[|Class|] as [|C2|] } from "./a";
-// var c = new [|C2|]();
+// <|<|import { /*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}Class|] as [|{| contextId: 2, defId: 1, isWriteAccess: true |}C2|] } from "./a";|>|>
+// var c = new [|{| defId: 1 |}C2|]();
 
 // === /tests/cases/fourslash/c.ts ===
-// export { [|Class|] as [|C3|] } from "./a";
+// <|<|export { [|{| contextId: 3, defId: 0 |}Class|] as [|{| contextId: 4, defId: 2, isWriteAccess: true |}C3|] } from "./a";|>|>
+
+// === Definitions ===
+// === /tests/cases/fourslash/a.ts ===
+// <|export class [|{| contextId: 0, defId: 0, kind: "class", name: "class Class", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Class","kind":"className"}] |}Class|] {}|>
+
+// === /tests/cases/fourslash/b.ts ===
+// <|import { /*FIND ALL REFS*/Class as [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) class C2\nimport C2", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C2","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C2","kind":"aliasName"}] |}C2|] } from "./a";|>
+// var c = new C2();
+
+// === /tests/cases/fourslash/c.ts ===
+// <|export { Class as [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) class C3\nexport C3", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C3","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C3","kind":"aliasName"}] |}C3|] } from "./a";|>
+
+[
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/a.ts",
+      "kind": "class",
+      "name": "class Class",
+      "textSpan": {
+        "start": 13,
+        "length": 5
+      },
+      "displayParts": [
+        {
+          "text": "class",
+          "kind": "keyword"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "Class",
+          "kind": "className"
+        }
+      ],
+      "contextSpan": {
+        "start": 0,
+        "length": 21
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 13,
+          "length": 5
+        },
+        "fileName": "/tests/cases/fourslash/a.ts",
+        "contextSpan": {
+          "start": 0,
+          "length": 21
+        },
+        "isWriteAccess": true
+      },
+      {
+        "textSpan": {
+          "start": 9,
+          "length": 5
+        },
+        "fileName": "/tests/cases/fourslash/b.ts",
+        "contextSpan": {
+          "start": 0,
+          "length": 34
+        },
+        "isWriteAccess": false
+      },
+      {
+        "textSpan": {
+          "start": 9,
+          "length": 5
+        },
+        "fileName": "/tests/cases/fourslash/c.ts",
+        "contextSpan": {
+          "start": 0,
+          "length": 34
+        },
+        "isWriteAccess": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/b.ts",
+      "kind": "alias",
+      "name": "(alias) class C2\nimport C2",
+      "textSpan": {
+        "start": 18,
+        "length": 2
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "alias",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "class",
+          "kind": "keyword"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "C2",
+          "kind": "aliasName"
+        },
+        {
+          "text": "\n",
+          "kind": "lineBreak"
+        },
+        {
+          "text": "import",
+          "kind": "keyword"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "C2",
+          "kind": "aliasName"
+        }
+      ],
+      "contextSpan": {
+        "start": 0,
+        "length": 34
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 18,
+          "length": 2
+        },
+        "fileName": "/tests/cases/fourslash/b.ts",
+        "contextSpan": {
+          "start": 0,
+          "length": 34
+        },
+        "isWriteAccess": true
+      },
+      {
+        "textSpan": {
+          "start": 47,
+          "length": 2
+        },
+        "fileName": "/tests/cases/fourslash/b.ts",
+        "isWriteAccess": false
+      }
+    ]
+  },
+  {
+    "definition": {
+      "containerKind": "",
+      "containerName": "",
+      "fileName": "/tests/cases/fourslash/c.ts",
+      "kind": "alias",
+      "name": "(alias) class C3\nexport C3",
+      "textSpan": {
+        "start": 18,
+        "length": 2
+      },
+      "displayParts": [
+        {
+          "text": "(",
+          "kind": "punctuation"
+        },
+        {
+          "text": "alias",
+          "kind": "text"
+        },
+        {
+          "text": ")",
+          "kind": "punctuation"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "class",
+          "kind": "keyword"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "C3",
+          "kind": "aliasName"
+        },
+        {
+          "text": "\n",
+          "kind": "lineBreak"
+        },
+        {
+          "text": "export",
+          "kind": "keyword"
+        },
+        {
+          "text": " ",
+          "kind": "space"
+        },
+        {
+          "text": "C3",
+          "kind": "aliasName"
+        }
+      ],
+      "contextSpan": {
+        "start": 0,
+        "length": 34
+      }
+    },
+    "references": [
+      {
+        "textSpan": {
+          "start": 18,
+          "length": 2
+        },
+        "fileName": "/tests/cases/fourslash/c.ts",
+        "contextSpan": {
+          "start": 0,
+          "length": 34
+        },
+        "isWriteAccess": true
+      }
+    ]
+  }
+]
 
 // === /tests/cases/fourslash/a.ts ===
-// export class [|Class|] {}
+// <|export class [|{| contextId: 0, defId: 0, isWriteAccess: true |}Class|] {}|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class Class"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Class",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // export class [|Class|] {}
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|export class Class {}|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/a.ts ===
-      // export class [|Class|] {}
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|export class Class {}|]
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // import { [|Class|] as C2 } from "./a";
-      // var c = new C2();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import { Class as C2 } from "./a";|]
-        // var c = new C2();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/c.ts ===
-      // export { [|Class|] as C3 } from "./a";
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|export { Class as C3 } from "./a";|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class C2\nimport C2"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C2",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C2",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/b.ts ===
-    // import { Class as [|C2|] } from "./a";
-    // var c = new C2();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.ts ===
-      // [|import { Class as C2 } from "./a";|]
-      // var c = new C2();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/b.ts ===
-      // import { Class as [|C2|] } from "./a";
-      // var c = new C2();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import { Class as C2 } from "./a";|]
-        // var c = new C2();
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // import { Class as C2 } from "./a";
-      // var c = new [|C2|]();
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class C3\nexport C3"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C3",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C3",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/c.ts ===
-    // export { Class as [|C3|] } from "./a";
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/c.ts ===
-      // [|export { Class as C3 } from "./a";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/c.ts ===
-      // export { Class as [|C3|] } from "./a";
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|export { Class as C3 } from "./a";|]
+// === /tests/cases/fourslash/b.ts ===
+// <|<|import { [|{| contextId: 1, defId: 0 |}Class|] as [|{| contextId: 2, defId: 1, isWriteAccess: true |}C2|] } from "./a";|>|>
+// var c = new [|{| defId: 1 |}C2|]();
 
+// === /tests/cases/fourslash/c.ts ===
+// <|<|export { /*FIND ALL REFS*/[|{| contextId: 3, defId: 0 |}Class|] as [|{| contextId: 4, defId: 2, isWriteAccess: true |}C3|] } from "./a";|>|>
+
+// === Definitions ===
+// === /tests/cases/fourslash/a.ts ===
+// <|export class [|{| contextId: 0, defId: 0, kind: "class", name: "class Class", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Class","kind":"className"}] |}Class|] {}|>
+
+// === /tests/cases/fourslash/b.ts ===
+// <|import { Class as [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) class C2\nimport C2", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C2","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C2","kind":"aliasName"}] |}C2|] } from "./a";|>
+// var c = new C2();
+
+// === /tests/cases/fourslash/c.ts ===
+// <|export { /*FIND ALL REFS*/Class as [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) class C3\nexport C3", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C3","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C3","kind":"aliasName"}] |}C3|] } from "./a";|>
 
 [
   {
@@ -880,520 +771,13 @@
 ]
 
 // === /tests/cases/fourslash/b.ts ===
-// import { [|Class|] as [|C2|] } from "./a";
-// var c = new [|C2|]();
+// <|import { Class as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}C2|] } from "./a";|>
+// var c = new [|{| defId: 0 |}C2|]();
 
-// === /tests/cases/fourslash/c.ts ===
-// export { /*FIND ALL REFS*/[|Class|] as [|C3|] } from "./a";
-
-// === /tests/cases/fourslash/a.ts ===
-// export class [|Class|] {}
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class Class"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Class",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // export class [|Class|] {}
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|export class Class {}|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/a.ts ===
-      // export class [|Class|] {}
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|export class Class {}|]
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // import { [|Class|] as C2 } from "./a";
-      // var c = new C2();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import { Class as C2 } from "./a";|]
-        // var c = new C2();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/c.ts ===
-      // export { [|Class|] as C3 } from "./a";
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|export { Class as C3 } from "./a";|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class C2\nimport C2"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C2",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C2",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/b.ts ===
-    // import { Class as [|C2|] } from "./a";
-    // var c = new C2();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.ts ===
-      // [|import { Class as C2 } from "./a";|]
-      // var c = new C2();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/b.ts ===
-      // import { Class as [|C2|] } from "./a";
-      // var c = new C2();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import { Class as C2 } from "./a";|]
-        // var c = new C2();
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // import { Class as C2 } from "./a";
-      // var c = new [|C2|]();
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class C3\nexport C3"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C3",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C3",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/c.ts ===
-    // export { Class as [|C3|] } from "./a";
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/c.ts ===
-      // [|export { Class as C3 } from "./a";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/c.ts ===
-      // export { Class as [|C3|] } from "./a";
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|export { Class as C3 } from "./a";|]
-
-
-[
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/a.ts",
-      "kind": "class",
-      "name": "class Class",
-      "textSpan": {
-        "start": 13,
-        "length": 5
-      },
-      "displayParts": [
-        {
-          "text": "class",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Class",
-          "kind": "className"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 21
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 13,
-          "length": 5
-        },
-        "fileName": "/tests/cases/fourslash/a.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 21
-        },
-        "isWriteAccess": true
-      },
-      {
-        "textSpan": {
-          "start": 9,
-          "length": 5
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 34
-        },
-        "isWriteAccess": false
-      },
-      {
-        "textSpan": {
-          "start": 9,
-          "length": 5
-        },
-        "fileName": "/tests/cases/fourslash/c.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 34
-        },
-        "isWriteAccess": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/b.ts",
-      "kind": "alias",
-      "name": "(alias) class C2\nimport C2",
-      "textSpan": {
-        "start": 18,
-        "length": 2
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "class",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "C2",
-          "kind": "aliasName"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "C2",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 34
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 18,
-          "length": 2
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 34
-        },
-        "isWriteAccess": true
-      },
-      {
-        "textSpan": {
-          "start": 47,
-          "length": 2
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "isWriteAccess": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/c.ts",
-      "kind": "alias",
-      "name": "(alias) class C3\nexport C3",
-      "textSpan": {
-        "start": 18,
-        "length": 2
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "class",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "C3",
-          "kind": "aliasName"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "export",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "C3",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 34
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 18,
-          "length": 2
-        },
-        "fileName": "/tests/cases/fourslash/c.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 34
-        },
-        "isWriteAccess": true
-      }
-    ]
-  }
-]
-
+// === Definitions ===
 // === /tests/cases/fourslash/b.ts ===
-// import { Class as /*FIND ALL REFS*/[|C2|] } from "./a";
-// var c = new [|C2|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class C2\nimport C2"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C2",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C2",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/b.ts ===
-    // import { Class as [|C2|] } from "./a";
-    // var c = new C2();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.ts ===
-      // [|import { Class as C2 } from "./a";|]
-      // var c = new C2();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/b.ts ===
-      // import { Class as [|C2|] } from "./a";
-      // var c = new C2();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import { Class as C2 } from "./a";|]
-        // var c = new C2();
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // import { Class as C2 } from "./a";
-      // var c = new [|C2|]();
-
+// <|import { Class as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) class C2\nimport C2", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C2","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C2","kind":"aliasName"}] |}C2|] } from "./a";|>
+// var c = new C2();
 
 [
   {
@@ -1486,84 +870,13 @@
 ]
 
 // === /tests/cases/fourslash/b.ts ===
-// import { Class as [|C2|] } from "./a";
-// var c = new /*FIND ALL REFS*/[|C2|]();
+// <|import { Class as [|{| contextId: 0, defId: 0, isWriteAccess: true |}C2|] } from "./a";|>
+// var c = new /*FIND ALL REFS*/[|{| defId: 0 |}C2|]();
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class C2\nimport C2"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C2",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C2",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/b.ts ===
-    // import { Class as [|C2|] } from "./a";
-    // var c = new C2();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.ts ===
-      // [|import { Class as C2 } from "./a";|]
-      // var c = new C2();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/b.ts ===
-      // import { Class as [|C2|] } from "./a";
-      // var c = new C2();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|import { Class as C2 } from "./a";|]
-        // var c = new C2();
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // import { Class as C2 } from "./a";
-      // var c = new [|C2|]();
-
+// === Definitions ===
+// === /tests/cases/fourslash/b.ts ===
+// <|import { Class as [|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) class C2\nimport C2", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C2","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C2","kind":"aliasName"}] |}C2|] } from "./a";|>
+// var c = new /*FIND ALL REFS*/C2();
 
 [
   {
@@ -1654,75 +967,11 @@
 ]
 
 // === /tests/cases/fourslash/c.ts ===
-// export { Class as /*FIND ALL REFS*/[|C3|] } from "./a";
+// <|export { Class as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}C3|] } from "./a";|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class C3\nexport C3"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C3",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C3",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/c.ts ===
-    // export { Class as [|C3|] } from "./a";
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/c.ts ===
-      // [|export { Class as C3 } from "./a";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/c.ts ===
-      // export { Class as [|C3|] } from "./a";
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|export { Class as C3 } from "./a";|]
-
+// === Definitions ===
+// === /tests/cases/fourslash/c.ts ===
+// <|export { Class as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) class C3\nexport C3", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C3","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C3","kind":"aliasName"}] |}C3|] } from "./a";|>
 
 [
   {
@@ -1807,36 +1056,14 @@
 
 // === findRenameLocations ===
 // === /tests/cases/fourslash/a.ts ===
-// export class RENAME {}
+// <|export class /*RENAME*/[|{| contextId: 0 |}ClassRENAME|] {}|>
 
 // === /tests/cases/fourslash/b.ts ===
-// import { RENAME as C2 } from "./a";
+// <|import { [|{| contextId: 1 |}ClassRENAME|] as C2 } from "./a";|>
 // var c = new C2();
 
 // === /tests/cases/fourslash/c.ts ===
-// export { [|RENAME|] as C3 } from "./a";
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // export class [|Class|] {}
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // [|export class Class {}|]
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import { [|Class|] as C2 } from "./a";
-  // var c = new C2();
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/b.ts ===
-    // [|import { Class as C2 } from "./a";|]
-    // var c = new C2();
-// === 2 ===
-  // === /tests/cases/fourslash/c.ts ===
-  // export { [|Class|] as C3 } from "./a";
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/c.ts ===
-    // [|export { Class as C3 } from "./a";|]
-
+// <|export { [|{| contextId: 2 |}ClassRENAME|] as C3 } from "./a";|>
 
 [
   {
@@ -1875,36 +1102,14 @@
 ]
 
 // === /tests/cases/fourslash/a.ts ===
-// export class RENAME {}
+// <|export class [|{| contextId: 0 |}ClassRENAME|] {}|>
 
 // === /tests/cases/fourslash/b.ts ===
-// import { RENAME as C2 } from "./a";
+// <|import { /*RENAME*/[|{| contextId: 1 |}ClassRENAME|] as C2 } from "./a";|>
 // var c = new C2();
 
 // === /tests/cases/fourslash/c.ts ===
-// export { [|RENAME|] as C3 } from "./a";
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // export class [|Class|] {}
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // [|export class Class {}|]
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import { [|Class|] as C2 } from "./a";
-  // var c = new C2();
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/b.ts ===
-    // [|import { Class as C2 } from "./a";|]
-    // var c = new C2();
-// === 2 ===
-  // === /tests/cases/fourslash/c.ts ===
-  // export { [|Class|] as C3 } from "./a";
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/c.ts ===
-    // [|export { Class as C3 } from "./a";|]
-
+// <|export { [|{| contextId: 2 |}ClassRENAME|] as C3 } from "./a";|>
 
 [
   {
@@ -1943,36 +1148,14 @@
 ]
 
 // === /tests/cases/fourslash/a.ts ===
-// export class RENAME {}
+// <|export class [|{| contextId: 0 |}ClassRENAME|] {}|>
 
 // === /tests/cases/fourslash/b.ts ===
-// import { RENAME as C2 } from "./a";
+// <|import { [|{| contextId: 1 |}ClassRENAME|] as C2 } from "./a";|>
 // var c = new C2();
 
 // === /tests/cases/fourslash/c.ts ===
-// export { [|RENAME|] as C3 } from "./a";
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // export class [|Class|] {}
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // [|export class Class {}|]
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import { [|Class|] as C2 } from "./a";
-  // var c = new C2();
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/b.ts ===
-    // [|import { Class as C2 } from "./a";|]
-    // var c = new C2();
-// === 2 ===
-  // === /tests/cases/fourslash/c.ts ===
-  // export { [|Class|] as C3 } from "./a";
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/c.ts ===
-    // [|export { Class as C3 } from "./a";|]
-
+// <|export { /*RENAME*/[|{| contextId: 2 |}ClassRENAME|] as C3 } from "./a";|>
 
 [
   {
@@ -2012,22 +1195,8 @@
 
 // === findRenameLocations ===
 // === /tests/cases/fourslash/b.ts ===
-// import { Class as RENAME } from "./a";
-// var c = new RENAME();
-
-// === 0 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import { Class as [|C2|] } from "./a";
-  // var c = new C2();
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/b.ts ===
-    // [|import { Class as C2 } from "./a";|]
-    // var c = new C2();
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import { Class as C2 } from "./a";
-  // var c = new [|C2|]();
-
+// <|import { Class as /*RENAME*/[|{| contextId: 0 |}C2RENAME|] } from "./a";|>
+// var c = new [|C2RENAME|]();
 
 [
   {
@@ -2051,22 +1220,8 @@
 ]
 
 // === /tests/cases/fourslash/b.ts ===
-// import { Class as RENAME } from "./a";
-// var c = new RENAME();
-
-// === 0 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import { Class as [|C2|] } from "./a";
-  // var c = new C2();
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/b.ts ===
-    // [|import { Class as C2 } from "./a";|]
-    // var c = new C2();
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // import { Class as C2 } from "./a";
-  // var c = new [|C2|]();
-
+// <|import { Class as [|{| contextId: 0 |}C2RENAME|] } from "./a";|>
+// var c = new /*RENAME*/[|C2RENAME|]();
 
 [
   {
@@ -2091,15 +1246,7 @@
 
 // === findRenameLocations ===
 // === /tests/cases/fourslash/c.ts ===
-// export { Class as [|RENAME|] } from "./a";
-
-// === 0 ===
-  // === /tests/cases/fourslash/c.ts ===
-  // export { Class as [|C3|] } from "./a";
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/c.ts ===
-    // [|export { Class as C3 } from "./a";|]
-
+// <|export { Class as /*RENAME*/[|{| contextId: 0 |}C3RENAME|] } from "./a";|>
 
 [
   {

@@ -11,7 +11,7 @@
 //     Foo: FooConstructor;
 // }
 // 
-// var x = class [|Foo|] {
+// var x = <|class [|{| contextId: 0, displayParts: [{"text":"(","kind":"punctuation"},{"text":"local class","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"}], kind: "local class" |}Foo|] {
 //     createBarInClassExpression(): Bar {
 //         return {
 //             Fo/*GOTO IMPL*/o
@@ -19,7 +19,7 @@
 //     }
 // 
 //     someFunction() {}
-// }
+// }|>
 // 
 // class Foo {
 // 
@@ -30,97 +30,6 @@
 //         Foo
 //     };
 // }
-
-// === 0 ===
-  // displayParts: [
-  //  {
-  //   "text": "(",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": "local class",
-  //   "kind": "text"
-  //  },
-  //  {
-  //   "text": ")",
-  //   "kind": "punctuation"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "Foo",
-  //   "kind": "className"
-  //  }
-  // ]
-  // kind: "local class"
-  // === /tests/cases/fourslash/goToImplementationShorthandPropertyAssignment_00.ts ===
-  // interface Foo {
-  //     someFunction(): void;
-  // }
-  // 
-  // interface FooConstructor {
-  //     new (): Foo
-  // }
-  // 
-  // interface Bar {
-  //     Foo: FooConstructor;
-  // }
-  // 
-  // var x = class [|Foo|] {
-  //     createBarInClassExpression(): Bar {
-  //         return {
-  //             Foo
-  //         };
-  //     }
-  // 
-  //     someFunction() {}
-  // }
-  // 
-  // class Foo {
-  // 
-  // }
-  // 
-  // function createBarUsingClassDeclaration(): Bar {
-  //     return {
-  //         Foo
-  //     };
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/goToImplementationShorthandPropertyAssignment_00.ts ===
-    // interface Foo {
-    //     someFunction(): void;
-    // }
-    // 
-    // interface FooConstructor {
-    //     new (): Foo
-    // }
-    // 
-    // interface Bar {
-    //     Foo: FooConstructor;
-    // }
-    // 
-    // var x = [|class Foo {
-    //     createBarInClassExpression(): Bar {
-    //         return {
-    //             Foo
-    //         };
-    //     }
-    // 
-    //     someFunction() {}
-    // }|]
-    // 
-    // class Foo {
-    // 
-    // }
-    // 
-    // function createBarUsingClassDeclaration(): Bar {
-    //     return {
-    //         Foo
-    //     };
-    // }
-
 
 [
   {
@@ -182,114 +91,15 @@
 //     someFunction() {}
 // }
 // 
-// class [|Foo|] {
+// <|class [|{| contextId: 0, displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Foo","kind":"className"}], kind: "class" |}Foo|] {
 // 
-// }
+// }|>
 // 
 // function createBarUsingClassDeclaration(): Bar {
 //     return {
 //         Fo/*GOTO IMPL*/o
 //     };
 // }
-
-// === 0 ===
-  // displayParts: [
-  //  {
-  //   "text": "class",
-  //   "kind": "keyword"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "Foo",
-  //   "kind": "className"
-  //  },
-  //  {
-  //   "text": "\n",
-  //   "kind": "lineBreak"
-  //  },
-  //  {
-  //   "text": "interface",
-  //   "kind": "keyword"
-  //  },
-  //  {
-  //   "text": " ",
-  //   "kind": "space"
-  //  },
-  //  {
-  //   "text": "Foo",
-  //   "kind": "className"
-  //  }
-  // ]
-  // kind: "class"
-  // === /tests/cases/fourslash/goToImplementationShorthandPropertyAssignment_00.ts ===
-  // interface Foo {
-  //     someFunction(): void;
-  // }
-  // 
-  // interface FooConstructor {
-  //     new (): Foo
-  // }
-  // 
-  // interface Bar {
-  //     Foo: FooConstructor;
-  // }
-  // 
-  // var x = class Foo {
-  //     createBarInClassExpression(): Bar {
-  //         return {
-  //             Foo
-  //         };
-  //     }
-  // 
-  //     someFunction() {}
-  // }
-  // 
-  // class [|Foo|] {
-  // 
-  // }
-  // 
-  // function createBarUsingClassDeclaration(): Bar {
-  //     return {
-  //         Foo
-  //     };
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/goToImplementationShorthandPropertyAssignment_00.ts ===
-    // interface Foo {
-    //     someFunction(): void;
-    // }
-    // 
-    // interface FooConstructor {
-    //     new (): Foo
-    // }
-    // 
-    // interface Bar {
-    //     Foo: FooConstructor;
-    // }
-    // 
-    // var x = class Foo {
-    //     createBarInClassExpression(): Bar {
-    //         return {
-    //             Foo
-    //         };
-    //     }
-    // 
-    //     someFunction() {}
-    // }
-    // 
-    // [|class Foo {
-    // 
-    // }|]
-    // 
-    // function createBarUsingClassDeclaration(): Bar {
-    //     return {
-    //         Foo
-    //     };
-    // }
-
 
 [
   {

@@ -3,67 +3,13 @@
 //     interface Element { }
 //     interface IntrinsicElements {
 //         div: {
-//             [|RENAME|]?: string;
+//             /*RENAME*/<|[|{| contextId: 0 |}nameRENAME|]?: string;|>
 //             isOpen?: boolean;
 //         };
 //         span: { n: string; };
 //     }
 // }
-// var x = <div RENAME="hello" />;
-
-// === 0 ===
-  // === /tests/cases/fourslash/file.tsx ===
-  // declare module JSX {
-  //     interface Element { }
-  //     interface IntrinsicElements {
-  //         div: {
-  //             [|name|]?: string;
-  //             isOpen?: boolean;
-  //         };
-  //         span: { n: string; };
-  //     }
-  // }
-  // var x = <div name="hello" />;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/file.tsx ===
-    // declare module JSX {
-    //     interface Element { }
-    //     interface IntrinsicElements {
-    //         div: {
-    //             [|name?: string;|]
-    //             isOpen?: boolean;
-    //         };
-    //         span: { n: string; };
-    //     }
-    // }
-    // var x = <div name="hello" />;
-// === 1 ===
-  // === /tests/cases/fourslash/file.tsx ===
-  // declare module JSX {
-  //     interface Element { }
-  //     interface IntrinsicElements {
-  //         div: {
-  //             name?: string;
-  //             isOpen?: boolean;
-  //         };
-  //         span: { n: string; };
-  //     }
-  // }
-  // var x = <div [|name|]="hello" />;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/file.tsx ===
-    // declare module JSX {
-    //     interface Element { }
-    //     interface IntrinsicElements {
-    //         div: {
-    //             name?: string;
-    //             isOpen?: boolean;
-    //         };
-    //         span: { n: string; };
-    //     }
-    // }
-    // var x = <div [|name="hello"|] />;
-
+// var x = <div <|[|{| contextId: 1 |}nameRENAME|]="hello"|> />;
 
 [
   {
@@ -95,67 +41,13 @@
 //     interface Element { }
 //     interface IntrinsicElements {
 //         div: {
-//             RENAME?: string;
+//             <|[|{| contextId: 0 |}nameRENAME|]?: string;|>
 //             isOpen?: boolean;
 //         };
 //         span: { n: string; };
 //     }
 // }
-// var x = <div [|RENAME|]="hello" />;
-
-// === 0 ===
-  // === /tests/cases/fourslash/file.tsx ===
-  // declare module JSX {
-  //     interface Element { }
-  //     interface IntrinsicElements {
-  //         div: {
-  //             [|name|]?: string;
-  //             isOpen?: boolean;
-  //         };
-  //         span: { n: string; };
-  //     }
-  // }
-  // var x = <div name="hello" />;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/file.tsx ===
-    // declare module JSX {
-    //     interface Element { }
-    //     interface IntrinsicElements {
-    //         div: {
-    //             [|name?: string;|]
-    //             isOpen?: boolean;
-    //         };
-    //         span: { n: string; };
-    //     }
-    // }
-    // var x = <div name="hello" />;
-// === 1 ===
-  // === /tests/cases/fourslash/file.tsx ===
-  // declare module JSX {
-  //     interface Element { }
-  //     interface IntrinsicElements {
-  //         div: {
-  //             name?: string;
-  //             isOpen?: boolean;
-  //         };
-  //         span: { n: string; };
-  //     }
-  // }
-  // var x = <div [|name|]="hello" />;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/file.tsx ===
-    // declare module JSX {
-    //     interface Element { }
-    //     interface IntrinsicElements {
-    //         div: {
-    //             name?: string;
-    //             isOpen?: boolean;
-    //         };
-    //         span: { n: string; };
-    //     }
-    // }
-    // var x = <div [|name="hello"|] />;
-
+// var x = <div /*RENAME*/<|[|{| contextId: 1 |}nameRENAME|]="hello"|> />;
 
 [
   {

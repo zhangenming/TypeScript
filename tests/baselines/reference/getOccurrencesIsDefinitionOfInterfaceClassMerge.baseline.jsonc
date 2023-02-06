@@ -1,215 +1,33 @@
 // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-// /*FIND ALL REFS*/interface [|Numbers|] {
+// /*FIND ALL REFS*/<|interface [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
 //     p: number;
-// }
-// interface [|Numbers|] {
+// }|>
+// <|interface [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     m: number;
+// }|>
+// <|class [|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     f(n: number) {
+//         return this.p + this.m + n;
+//     }
+// }|>
+// let i: [|{| defId: 0 |}Numbers|] = new [|{| defId: 0 |}Numbers|]();
+// let x = i.f(i.p + i.m);
+
+// === Definitions ===
+// === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
+// /*FIND ALL REFS*/<|interface [|{| contextId: 0, defId: 0, kind: "class", name: "class Numbers\ninterface Numbers", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"}] |}Numbers|] {
+//     p: number;
+// }|>
+// interface Numbers {
 //     m: number;
 // }
-// class [|Numbers|] {
+// class Numbers {
 //     f(n: number) {
 //         return this.p + this.m + n;
 //     }
 // }
-// let i: [|Numbers|] = new [|Numbers|]();
+// let i: Numbers = new Numbers();
 // let x = i.f(i.p + i.m);
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class Numbers\ninterface Numbers"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-    // interface [|Numbers|] {
-    //     p: number;
-    // }
-    // interface Numbers {
-    //     m: number;
-    // }
-    // class Numbers {
-    //     f(n: number) {
-    //         return this.p + this.m + n;
-    //     }
-    // }
-    // let i: Numbers = new Numbers();
-    // let x = i.f(i.p + i.m);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // [|interface Numbers {
-      //     p: number;
-      // }|]
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface [|Numbers|] {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // [|interface Numbers {
-        //     p: number;
-        // }|]
-        // interface Numbers {
-        //     m: number;
-        // }
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface [|Numbers|] {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // [|interface Numbers {
-        //     m: number;
-        // }|]
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class [|Numbers|] {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // interface Numbers {
-        //     m: number;
-        // }
-        // [|class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }|]
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: [|Numbers|] = new Numbers();
-      // let x = i.f(i.p + i.m);
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new [|Numbers|]();
-      // let x = i.f(i.p + i.m);
-
 
 [
   {
@@ -321,217 +139,35 @@
 ]
 
 // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-// interface /*FIND ALL REFS*/[|Numbers|] {
+// <|interface /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
 //     p: number;
-// }
-// interface [|Numbers|] {
+// }|>
+// <|interface [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     m: number;
+// }|>
+// <|class [|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     f(n: number) {
+//         return this.p + this.m + n;
+//     }
+// }|>
+// let i: [|{| defId: 0 |}Numbers|] = new [|{| defId: 0 |}Numbers|]();
+// let x = i.f(i.p + i.m);
+
+// === Definitions ===
+// === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
+// <|interface /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "class", name: "class Numbers\ninterface Numbers", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"}] |}Numbers|] {
+//     p: number;
+// }|>
+// interface Numbers {
 //     m: number;
 // }
-// class [|Numbers|] {
+// class Numbers {
 //     f(n: number) {
 //         return this.p + this.m + n;
 //     }
 // }
-// let i: [|Numbers|] = new [|Numbers|]();
+// let i: Numbers = new Numbers();
 // let x = i.f(i.p + i.m);
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class Numbers\ninterface Numbers"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-    // interface [|Numbers|] {
-    //     p: number;
-    // }
-    // interface Numbers {
-    //     m: number;
-    // }
-    // class Numbers {
-    //     f(n: number) {
-    //         return this.p + this.m + n;
-    //     }
-    // }
-    // let i: Numbers = new Numbers();
-    // let x = i.f(i.p + i.m);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // [|interface Numbers {
-      //     p: number;
-      // }|]
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface [|Numbers|] {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // [|interface Numbers {
-        //     p: number;
-        // }|]
-        // interface Numbers {
-        //     m: number;
-        // }
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface [|Numbers|] {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // [|interface Numbers {
-        //     m: number;
-        // }|]
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class [|Numbers|] {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // interface Numbers {
-        //     m: number;
-        // }
-        // [|class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }|]
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: [|Numbers|] = new Numbers();
-      // let x = i.f(i.p + i.m);
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new [|Numbers|]();
-      // let x = i.f(i.p + i.m);
-
 
 [
   {
@@ -643,217 +279,35 @@
 ]
 
 // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-// interface [|Numbers|] {
+// <|interface [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
 //     p: number;
-// }
-// /*FIND ALL REFS*/interface [|Numbers|] {
+// }|>
+// /*FIND ALL REFS*/<|interface [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     m: number;
+// }|>
+// <|class [|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     f(n: number) {
+//         return this.p + this.m + n;
+//     }
+// }|>
+// let i: [|{| defId: 0 |}Numbers|] = new [|{| defId: 0 |}Numbers|]();
+// let x = i.f(i.p + i.m);
+
+// === Definitions ===
+// === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
+// <|interface [|{| contextId: 0, defId: 0, kind: "class", name: "class Numbers\ninterface Numbers", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"}] |}Numbers|] {
+//     p: number;
+// }|>
+// /*FIND ALL REFS*/interface Numbers {
 //     m: number;
 // }
-// class [|Numbers|] {
+// class Numbers {
 //     f(n: number) {
 //         return this.p + this.m + n;
 //     }
 // }
-// let i: [|Numbers|] = new [|Numbers|]();
+// let i: Numbers = new Numbers();
 // let x = i.f(i.p + i.m);
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class Numbers\ninterface Numbers"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-    // interface [|Numbers|] {
-    //     p: number;
-    // }
-    // interface Numbers {
-    //     m: number;
-    // }
-    // class Numbers {
-    //     f(n: number) {
-    //         return this.p + this.m + n;
-    //     }
-    // }
-    // let i: Numbers = new Numbers();
-    // let x = i.f(i.p + i.m);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // [|interface Numbers {
-      //     p: number;
-      // }|]
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface [|Numbers|] {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // [|interface Numbers {
-        //     p: number;
-        // }|]
-        // interface Numbers {
-        //     m: number;
-        // }
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface [|Numbers|] {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // [|interface Numbers {
-        //     m: number;
-        // }|]
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class [|Numbers|] {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // interface Numbers {
-        //     m: number;
-        // }
-        // [|class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }|]
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: [|Numbers|] = new Numbers();
-      // let x = i.f(i.p + i.m);
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new [|Numbers|]();
-      // let x = i.f(i.p + i.m);
-
 
 [
   {
@@ -965,217 +419,35 @@
 ]
 
 // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-// interface [|Numbers|] {
+// <|interface [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
 //     p: number;
-// }
-// interface /*FIND ALL REFS*/[|Numbers|] {
+// }|>
+// <|interface /*FIND ALL REFS*/[|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     m: number;
+// }|>
+// <|class [|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     f(n: number) {
+//         return this.p + this.m + n;
+//     }
+// }|>
+// let i: [|{| defId: 0 |}Numbers|] = new [|{| defId: 0 |}Numbers|]();
+// let x = i.f(i.p + i.m);
+
+// === Definitions ===
+// === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
+// <|interface [|{| contextId: 0, defId: 0, kind: "class", name: "class Numbers\ninterface Numbers", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"}] |}Numbers|] {
+//     p: number;
+// }|>
+// interface /*FIND ALL REFS*/Numbers {
 //     m: number;
 // }
-// class [|Numbers|] {
+// class Numbers {
 //     f(n: number) {
 //         return this.p + this.m + n;
 //     }
 // }
-// let i: [|Numbers|] = new [|Numbers|]();
+// let i: Numbers = new Numbers();
 // let x = i.f(i.p + i.m);
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class Numbers\ninterface Numbers"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-    // interface [|Numbers|] {
-    //     p: number;
-    // }
-    // interface Numbers {
-    //     m: number;
-    // }
-    // class Numbers {
-    //     f(n: number) {
-    //         return this.p + this.m + n;
-    //     }
-    // }
-    // let i: Numbers = new Numbers();
-    // let x = i.f(i.p + i.m);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // [|interface Numbers {
-      //     p: number;
-      // }|]
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface [|Numbers|] {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // [|interface Numbers {
-        //     p: number;
-        // }|]
-        // interface Numbers {
-        //     m: number;
-        // }
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface [|Numbers|] {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // [|interface Numbers {
-        //     m: number;
-        // }|]
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class [|Numbers|] {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // interface Numbers {
-        //     m: number;
-        // }
-        // [|class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }|]
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: [|Numbers|] = new Numbers();
-      // let x = i.f(i.p + i.m);
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new [|Numbers|]();
-      // let x = i.f(i.p + i.m);
-
 
 [
   {
@@ -1287,217 +559,35 @@
 ]
 
 // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-// interface [|Numbers|] {
+// <|interface [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
 //     p: number;
-// }
-// interface [|Numbers|] {
+// }|>
+// <|interface [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     m: number;
+// }|>
+// /*FIND ALL REFS*/<|class [|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     f(n: number) {
+//         return this.p + this.m + n;
+//     }
+// }|>
+// let i: [|{| defId: 0 |}Numbers|] = new [|{| defId: 0 |}Numbers|]();
+// let x = i.f(i.p + i.m);
+
+// === Definitions ===
+// === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
+// <|interface [|{| contextId: 0, defId: 0, kind: "class", name: "class Numbers\ninterface Numbers", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"}] |}Numbers|] {
+//     p: number;
+// }|>
+// interface Numbers {
 //     m: number;
 // }
-// /*FIND ALL REFS*/class [|Numbers|] {
+// /*FIND ALL REFS*/class Numbers {
 //     f(n: number) {
 //         return this.p + this.m + n;
 //     }
 // }
-// let i: [|Numbers|] = new [|Numbers|]();
+// let i: Numbers = new Numbers();
 // let x = i.f(i.p + i.m);
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class Numbers\ninterface Numbers"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-    // interface [|Numbers|] {
-    //     p: number;
-    // }
-    // interface Numbers {
-    //     m: number;
-    // }
-    // class Numbers {
-    //     f(n: number) {
-    //         return this.p + this.m + n;
-    //     }
-    // }
-    // let i: Numbers = new Numbers();
-    // let x = i.f(i.p + i.m);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // [|interface Numbers {
-      //     p: number;
-      // }|]
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface [|Numbers|] {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // [|interface Numbers {
-        //     p: number;
-        // }|]
-        // interface Numbers {
-        //     m: number;
-        // }
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface [|Numbers|] {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // [|interface Numbers {
-        //     m: number;
-        // }|]
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class [|Numbers|] {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // interface Numbers {
-        //     m: number;
-        // }
-        // [|class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }|]
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: [|Numbers|] = new Numbers();
-      // let x = i.f(i.p + i.m);
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new [|Numbers|]();
-      // let x = i.f(i.p + i.m);
-
 
 [
   {
@@ -1609,217 +699,35 @@
 ]
 
 // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-// interface [|Numbers|] {
+// <|interface [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
 //     p: number;
-// }
-// interface [|Numbers|] {
+// }|>
+// <|interface [|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     m: number;
+// }|>
+// <|class /*FIND ALL REFS*/[|{| contextId: 2, defId: 0, isWriteAccess: true, isDefinition: true |}Numbers|] {
+//     f(n: number) {
+//         return this.p + this.m + n;
+//     }
+// }|>
+// let i: [|{| defId: 0 |}Numbers|] = new [|{| defId: 0 |}Numbers|]();
+// let x = i.f(i.p + i.m);
+
+// === Definitions ===
+// === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
+// <|interface [|{| contextId: 0, defId: 0, kind: "class", name: "class Numbers\ninterface Numbers", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"}] |}Numbers|] {
+//     p: number;
+// }|>
+// interface Numbers {
 //     m: number;
 // }
-// class /*FIND ALL REFS*/[|Numbers|] {
+// class /*FIND ALL REFS*/Numbers {
 //     f(n: number) {
 //         return this.p + this.m + n;
 //     }
 // }
-// let i: [|Numbers|] = new [|Numbers|]();
+// let i: Numbers = new Numbers();
 // let x = i.f(i.p + i.m);
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class Numbers\ninterface Numbers"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-    // interface [|Numbers|] {
-    //     p: number;
-    // }
-    // interface Numbers {
-    //     m: number;
-    // }
-    // class Numbers {
-    //     f(n: number) {
-    //         return this.p + this.m + n;
-    //     }
-    // }
-    // let i: Numbers = new Numbers();
-    // let x = i.f(i.p + i.m);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // [|interface Numbers {
-      //     p: number;
-      // }|]
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface [|Numbers|] {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // [|interface Numbers {
-        //     p: number;
-        // }|]
-        // interface Numbers {
-        //     m: number;
-        // }
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 1 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface [|Numbers|] {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // [|interface Numbers {
-        //     m: number;
-        // }|]
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 2 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class [|Numbers|] {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // interface Numbers {
-        //     m: number;
-        // }
-        // [|class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }|]
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: [|Numbers|] = new Numbers();
-      // let x = i.f(i.p + i.m);
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new [|Numbers|]();
-      // let x = i.f(i.p + i.m);
-
 
 [
   {
@@ -1931,212 +839,35 @@
 ]
 
 // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-// interface [|Numbers|] {
+// <|interface [|{| contextId: 0, defId: 0, isWriteAccess: true |}Numbers|] {
 //     p: number;
-// }
-// interface [|Numbers|] {
+// }|>
+// <|interface [|{| contextId: 1, defId: 0, isWriteAccess: true |}Numbers|] {
+//     m: number;
+// }|>
+// <|class [|{| contextId: 2, defId: 0, isWriteAccess: true |}Numbers|] {
+//     f(n: number) {
+//         return this.p + this.m + n;
+//     }
+// }|>
+// let i: /*FIND ALL REFS*/[|{| defId: 0 |}Numbers|] = new [|{| defId: 0 |}Numbers|]();
+// let x = i.f(i.p + i.m);
+
+// === Definitions ===
+// === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
+// <|interface [|{| contextId: 0, defId: 0, kind: "class", name: "class Numbers\ninterface Numbers", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"}] |}Numbers|] {
+//     p: number;
+// }|>
+// interface Numbers {
 //     m: number;
 // }
-// class [|Numbers|] {
+// class Numbers {
 //     f(n: number) {
 //         return this.p + this.m + n;
 //     }
 // }
-// let i: /*FIND ALL REFS*/[|Numbers|] = new [|Numbers|]();
+// let i: /*FIND ALL REFS*/Numbers = new Numbers();
 // let x = i.f(i.p + i.m);
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class Numbers\ninterface Numbers"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-    // interface [|Numbers|] {
-    //     p: number;
-    // }
-    // interface Numbers {
-    //     m: number;
-    // }
-    // class Numbers {
-    //     f(n: number) {
-    //         return this.p + this.m + n;
-    //     }
-    // }
-    // let i: Numbers = new Numbers();
-    // let x = i.f(i.p + i.m);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // [|interface Numbers {
-      //     p: number;
-      // }|]
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface [|Numbers|] {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // [|interface Numbers {
-        //     p: number;
-        // }|]
-        // interface Numbers {
-        //     m: number;
-        // }
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface [|Numbers|] {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // [|interface Numbers {
-        //     m: number;
-        // }|]
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 2 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class [|Numbers|] {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // interface Numbers {
-        //     m: number;
-        // }
-        // [|class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }|]
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: [|Numbers|] = new Numbers();
-      // let x = i.f(i.p + i.m);
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new [|Numbers|]();
-      // let x = i.f(i.p + i.m);
-
 
 [
   {
@@ -2243,212 +974,35 @@
 ]
 
 // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-// interface [|Numbers|] {
+// <|interface [|{| contextId: 0, defId: 0, isWriteAccess: true |}Numbers|] {
 //     p: number;
-// }
-// interface [|Numbers|] {
+// }|>
+// <|interface [|{| contextId: 1, defId: 0, isWriteAccess: true |}Numbers|] {
+//     m: number;
+// }|>
+// <|class [|{| contextId: 2, defId: 0, isWriteAccess: true |}Numbers|] {
+//     f(n: number) {
+//         return this.p + this.m + n;
+//     }
+// }|>
+// let i: [|{| defId: 0 |}Numbers|] = new /*FIND ALL REFS*/[|{| defId: 0 |}Numbers|]();
+// let x = i.f(i.p + i.m);
+
+// === Definitions ===
+// === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
+// <|interface [|{| contextId: 0, defId: 0, kind: "class", name: "class Numbers\ninterface Numbers", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"},{"text":"\n","kind":"lineBreak"},{"text":"interface","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Numbers","kind":"className"}] |}Numbers|] {
+//     p: number;
+// }|>
+// interface Numbers {
 //     m: number;
 // }
-// class [|Numbers|] {
+// class Numbers {
 //     f(n: number) {
 //         return this.p + this.m + n;
 //     }
 // }
-// let i: [|Numbers|] = new /*FIND ALL REFS*/[|Numbers|]();
+// let i: Numbers = new /*FIND ALL REFS*/Numbers();
 // let x = i.f(i.p + i.m);
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class Numbers\ninterface Numbers"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "interface",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Numbers",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-    // interface [|Numbers|] {
-    //     p: number;
-    // }
-    // interface Numbers {
-    //     m: number;
-    // }
-    // class Numbers {
-    //     f(n: number) {
-    //         return this.p + this.m + n;
-    //     }
-    // }
-    // let i: Numbers = new Numbers();
-    // let x = i.f(i.p + i.m);
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // [|interface Numbers {
-      //     p: number;
-      // }|]
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface [|Numbers|] {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // [|interface Numbers {
-        //     p: number;
-        // }|]
-        // interface Numbers {
-        //     m: number;
-        // }
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 1 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface [|Numbers|] {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // [|interface Numbers {
-        //     m: number;
-        // }|]
-        // class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 2 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class [|Numbers|] {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new Numbers();
-      // let x = i.f(i.p + i.m);
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-        // interface Numbers {
-        //     p: number;
-        // }
-        // interface Numbers {
-        //     m: number;
-        // }
-        // [|class Numbers {
-        //     f(n: number) {
-        //         return this.p + this.m + n;
-        //     }
-        // }|]
-        // let i: Numbers = new Numbers();
-        // let x = i.f(i.p + i.m);
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: [|Numbers|] = new Numbers();
-      // let x = i.f(i.p + i.m);
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/getOccurrencesIsDefinitionOfInterfaceClassMerge.ts ===
-      // interface Numbers {
-      //     p: number;
-      // }
-      // interface Numbers {
-      //     m: number;
-      // }
-      // class Numbers {
-      //     f(n: number) {
-      //         return this.p + this.m + n;
-      //     }
-      // }
-      // let i: Numbers = new [|Numbers|]();
-      // let x = i.f(i.p + i.m);
-
 
 [
   {

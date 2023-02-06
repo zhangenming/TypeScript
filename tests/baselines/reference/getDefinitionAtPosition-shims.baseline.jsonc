@@ -1,5 +1,5 @@
 // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
-// var [|remoteVariable|];
+// <|var [|{| contextId: 0, kind: "var", name: "remoteVariable" |}remoteVariable|];|>
 // function remoteFunction() { }
 // class remoteClass { }
 // interface remoteInterface{ }
@@ -12,36 +12,13 @@
 // class fooCls implements remoteInterface { }
 // var fooVar = remoteModule.foo;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "var"
-    // name: "remoteVariable"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
-    // var [|remoteVariable|];
-    // function remoteFunction() { }
-    // class remoteClass { }
-    // interface remoteInterface{ }
-    // module remoteModule{ export var foo = 1;}
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
-      // [|var remoteVariable;|]
-      // function remoteFunction() { }
-      // class remoteClass { }
-      // interface remoteInterface{ }
-      // module remoteModule{ export var foo = 1;}
 // === TextSpan ===
-  // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
-  // [|remoteVariable|] = 1;
-  // remoteFunction();
-  // var foo = new remoteClass();
-  // class fooCls implements remoteInterface { }
-  // var fooVar = remoteModule.foo;
-
+// === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
+// /*GOTO DEF*/[|remoteVariable|] = 1;
+// remoteFunction();
+// var foo = new remoteClass();
+// class fooCls implements remoteInterface { }
+// var fooVar = remoteModule.foo;
 
 {
   "definitions": [
@@ -72,7 +49,7 @@
 
 // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
 // var remoteVariable;
-// function [|remoteFunction|]() { }
+// <|function [|{| contextId: 0, kind: "function", name: "remoteFunction" |}remoteFunction|]() { }|>
 // class remoteClass { }
 // interface remoteInterface{ }
 // module remoteModule{ export var foo = 1;}
@@ -84,36 +61,13 @@
 // class fooCls implements remoteInterface { }
 // var fooVar = remoteModule.foo;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "function"
-    // name: "remoteFunction"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
-    // var remoteVariable;
-    // function [|remoteFunction|]() { }
-    // class remoteClass { }
-    // interface remoteInterface{ }
-    // module remoteModule{ export var foo = 1;}
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
-      // var remoteVariable;
-      // [|function remoteFunction() { }|]
-      // class remoteClass { }
-      // interface remoteInterface{ }
-      // module remoteModule{ export var foo = 1;}
 // === TextSpan ===
-  // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
-  // remoteVariable = 1;
-  // [|remoteFunction|]();
-  // var foo = new remoteClass();
-  // class fooCls implements remoteInterface { }
-  // var fooVar = remoteModule.foo;
-
+// === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
+// remoteVariable = 1;
+// /*GOTO DEF*/[|remoteFunction|]();
+// var foo = new remoteClass();
+// class fooCls implements remoteInterface { }
+// var fooVar = remoteModule.foo;
 
 {
   "definitions": [
@@ -145,7 +99,7 @@
 // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
 // var remoteVariable;
 // function remoteFunction() { }
-// class [|remoteClass|] { }
+// <|class [|{| contextId: 0, kind: "class", name: "remoteClass" |}remoteClass|] { }|>
 // interface remoteInterface{ }
 // module remoteModule{ export var foo = 1;}
 
@@ -156,36 +110,13 @@
 // class fooCls implements remoteInterface { }
 // var fooVar = remoteModule.foo;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "class"
-    // name: "remoteClass"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
-    // var remoteVariable;
-    // function remoteFunction() { }
-    // class [|remoteClass|] { }
-    // interface remoteInterface{ }
-    // module remoteModule{ export var foo = 1;}
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
-      // var remoteVariable;
-      // function remoteFunction() { }
-      // [|class remoteClass { }|]
-      // interface remoteInterface{ }
-      // module remoteModule{ export var foo = 1;}
 // === TextSpan ===
-  // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
-  // remoteVariable = 1;
-  // remoteFunction();
-  // var foo = new [|remoteClass|]();
-  // class fooCls implements remoteInterface { }
-  // var fooVar = remoteModule.foo;
-
+// === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
+// remoteVariable = 1;
+// remoteFunction();
+// var foo = new /*GOTO DEF*/[|remoteClass|]();
+// class fooCls implements remoteInterface { }
+// var fooVar = remoteModule.foo;
 
 {
   "definitions": [
@@ -218,7 +149,7 @@
 // var remoteVariable;
 // function remoteFunction() { }
 // class remoteClass { }
-// interface [|remoteInterface|]{ }
+// <|interface [|{| contextId: 0, kind: "interface", name: "remoteInterface" |}remoteInterface|]{ }|>
 // module remoteModule{ export var foo = 1;}
 
 // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
@@ -228,36 +159,13 @@
 // class fooCls implements /*GOTO DEF*/remoteInterface { }
 // var fooVar = remoteModule.foo;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "interface"
-    // name: "remoteInterface"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
-    // var remoteVariable;
-    // function remoteFunction() { }
-    // class remoteClass { }
-    // interface [|remoteInterface|]{ }
-    // module remoteModule{ export var foo = 1;}
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
-      // var remoteVariable;
-      // function remoteFunction() { }
-      // class remoteClass { }
-      // [|interface remoteInterface{ }|]
-      // module remoteModule{ export var foo = 1;}
 // === TextSpan ===
-  // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
-  // remoteVariable = 1;
-  // remoteFunction();
-  // var foo = new remoteClass();
-  // class fooCls implements [|remoteInterface|] { }
-  // var fooVar = remoteModule.foo;
-
+// === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
+// remoteVariable = 1;
+// remoteFunction();
+// var foo = new remoteClass();
+// class fooCls implements /*GOTO DEF*/[|remoteInterface|] { }
+// var fooVar = remoteModule.foo;
 
 {
   "definitions": [
@@ -291,7 +199,7 @@
 // function remoteFunction() { }
 // class remoteClass { }
 // interface remoteInterface{ }
-// module [|remoteModule|]{ export var foo = 1;}
+// <|module [|{| contextId: 0, kind: "module", name: "remoteModule" |}remoteModule|]{ export var foo = 1;}|>
 
 // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
 // remoteVariable = 1;
@@ -300,36 +208,13 @@
 // class fooCls implements remoteInterface { }
 // var fooVar = /*GOTO DEF*/remoteModule.foo;
 
-// === Definitions ===
-  // === 0 ===
-    // kind: "module"
-    // name: "remoteModule"
-    // containerName: ""
-    // isLocal: false
-    // isAmbient: false
-    // unverified: false
-    // failedAliasResolution: false
-    // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
-    // var remoteVariable;
-    // function remoteFunction() { }
-    // class remoteClass { }
-    // interface remoteInterface{ }
-    // module [|remoteModule|]{ export var foo = 1;}
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Definition.ts ===
-      // var remoteVariable;
-      // function remoteFunction() { }
-      // class remoteClass { }
-      // interface remoteInterface{ }
-      // [|module remoteModule{ export var foo = 1;}|]
 // === TextSpan ===
-  // === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
-  // remoteVariable = 1;
-  // remoteFunction();
-  // var foo = new remoteClass();
-  // class fooCls implements remoteInterface { }
-  // var fooVar = [|remoteModule|].foo;
-
+// === /tests/cases/fourslash/shims/goToDefinitionDifferentFile_Consumption.ts ===
+// remoteVariable = 1;
+// remoteFunction();
+// var foo = new remoteClass();
+// class fooCls implements remoteInterface { }
+// var fooVar = /*GOTO DEF*/[|remoteModule|].foo;
 
 {
   "definitions": [

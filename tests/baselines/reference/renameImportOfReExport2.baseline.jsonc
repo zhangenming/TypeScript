@@ -1,331 +1,28 @@
 // === findAllReferences ===
 // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
 // declare module "a" {
-//     export class /*FIND ALL REFS*/[|C|] {}
+//     <|export class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}C|] {}|>
 // }
 // declare module "b" {
-//     export { [|C|] as [|D|] } from "a";
+//     <|<|export { [|{| contextId: 1, defId: 0 |}C|] as [|{| contextId: 2, defId: 1, isWriteAccess: true |}D|] } from "a";|>|>
 // }
 // declare module "c" {
-//     import { [|D|] } from "b";
-//     export function f(c: [|D|]): void;
+//     <|import { [|{| contextId: 3, defId: 2, isWriteAccess: true |}D|] } from "b";|>
+//     export function f(c: [|{| defId: 2 |}D|]): void;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "class"
-    // name: "class C"
-    // displayParts: [
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "C",
-    //   "kind": "className"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class [|C|] {}
-    // }
-    // declare module "b" {
-    //     export { C as D } from "a";
-    // }
-    // declare module "c" {
-    //     import { D } from "b";
-    //     export function f(c: D): void;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     [|export class C {}|]
-      // }
-      // declare module "b" {
-      //     export { C as D } from "a";
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: D): void;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class [|C|] {}
-      // }
-      // declare module "b" {
-      //     export { C as D } from "a";
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: D): void;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-        // declare module "a" {
-        //     [|export class C {}|]
-        // }
-        // declare module "b" {
-        //     export { C as D } from "a";
-        // }
-        // declare module "c" {
-        //     import { D } from "b";
-        //     export function f(c: D): void;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { [|C|] as D } from "a";
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: D): void;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     [|export { C as D } from "a";|]
-        // }
-        // declare module "c" {
-        //     import { D } from "b";
-        //     export function f(c: D): void;
-        // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class D\nexport D"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     export { C as [|D|] } from "a";
-    // }
-    // declare module "c" {
-    //     import { D } from "b";
-    //     export function f(c: D): void;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     [|export { C as D } from "a";|]
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: D): void;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as [|D|] } from "a";
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: D): void;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     [|export { C as D } from "a";|]
-        // }
-        // declare module "c" {
-        //     import { D } from "b";
-        //     export function f(c: D): void;
-        // }
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class D\nimport D"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     export { C as D } from "a";
-    // }
-    // declare module "c" {
-    //     import { [|D|] } from "b";
-    //     export function f(c: D): void;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as D } from "a";
-      // }
-      // declare module "c" {
-      //     [|import { D } from "b";|]
-      //     export function f(c: D): void;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as D } from "a";
-      // }
-      // declare module "c" {
-      //     import { [|D|] } from "b";
-      //     export function f(c: D): void;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     export { C as D } from "a";
-        // }
-        // declare module "c" {
-        //     [|import { D } from "b";|]
-        //     export function f(c: D): void;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as D } from "a";
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: [|D|]): void;
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/renameImportOfReExport2.ts ===
+// declare module "a" {
+//     <|export class /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "class", name: "class C", displayParts: [{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"C","kind":"className"}] |}C|] {}|>
+// }
+// declare module "b" {
+//     <|export { C as [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) class D\nexport D", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"}] |}D|] } from "a";|>
+// }
+// declare module "c" {
+//     <|import { [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) class D\nimport D", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"}] |}D|] } from "b";|>
+//     export function f(c: D): void;
+// }
 
 [
   {
@@ -559,232 +256,25 @@
 //     export class C {}
 // }
 // declare module "b" {
-//     export { C as /*FIND ALL REFS*/[|D|] } from "a";
+//     <|export { C as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}D|] } from "a";|>
 // }
 // declare module "c" {
-//     import { [|D|] } from "b";
-//     export function f(c: [|D|]): void;
+//     <|import { [|{| contextId: 1, defId: 1, isWriteAccess: true |}D|] } from "b";|>
+//     export function f(c: [|{| defId: 1 |}D|]): void;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class D\nexport D"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     export { C as [|D|] } from "a";
-    // }
-    // declare module "c" {
-    //     import { D } from "b";
-    //     export function f(c: D): void;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     [|export { C as D } from "a";|]
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: D): void;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as [|D|] } from "a";
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: D): void;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     [|export { C as D } from "a";|]
-        // }
-        // declare module "c" {
-        //     import { D } from "b";
-        //     export function f(c: D): void;
-        // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class D\nimport D"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     export { C as D } from "a";
-    // }
-    // declare module "c" {
-    //     import { [|D|] } from "b";
-    //     export function f(c: D): void;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as D } from "a";
-      // }
-      // declare module "c" {
-      //     [|import { D } from "b";|]
-      //     export function f(c: D): void;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as D } from "a";
-      // }
-      // declare module "c" {
-      //     import { [|D|] } from "b";
-      //     export function f(c: D): void;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     export { C as D } from "a";
-        // }
-        // declare module "c" {
-        //     [|import { D } from "b";|]
-        //     export function f(c: D): void;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as D } from "a";
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: [|D|]): void;
-      // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/renameImportOfReExport2.ts ===
+// declare module "a" {
+//     export class C {}
+// }
+// declare module "b" {
+//     <|export { C as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) class D\nexport D", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"}] |}D|] } from "a";|>
+// }
+// declare module "c" {
+//     <|import { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) class D\nimport D", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"}] |}D|] } from "b";|>
+//     export function f(c: D): void;
+// }
 
 [
   {
@@ -959,232 +449,25 @@
 //     export class C {}
 // }
 // declare module "b" {
-//     export { C as [|D|] } from "a";
+//     <|export { C as [|{| contextId: 0, defId: 1, isWriteAccess: true |}D|] } from "a";|>
 // }
 // declare module "c" {
-//     import { /*FIND ALL REFS*/[|D|] } from "b";
-//     export function f(c: [|D|]): void;
+//     <|import { /*FIND ALL REFS*/[|{| contextId: 1, defId: 0, isWriteAccess: true, isDefinition: true |}D|] } from "b";|>
+//     export function f(c: [|{| defId: 0 |}D|]): void;
 // }
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class D\nimport D"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     export { C as D } from "a";
-    // }
-    // declare module "c" {
-    //     import { [|D|] } from "b";
-    //     export function f(c: D): void;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as D } from "a";
-      // }
-      // declare module "c" {
-      //     [|import { D } from "b";|]
-      //     export function f(c: D): void;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as D } from "a";
-      // }
-      // declare module "c" {
-      //     import { [|D|] } from "b";
-      //     export function f(c: D): void;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     export { C as D } from "a";
-        // }
-        // declare module "c" {
-        //     [|import { D } from "b";|]
-        //     export function f(c: D): void;
-        // }
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as D } from "a";
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: [|D|]): void;
-      // }
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) class D\nexport D"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "class",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "D",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     export { C as [|D|] } from "a";
-    // }
-    // declare module "c" {
-    //     import { D } from "b";
-    //     export function f(c: D): void;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     [|export { C as D } from "a";|]
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: D): void;
-      // }
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-      // declare module "a" {
-      //     export class C {}
-      // }
-      // declare module "b" {
-      //     export { C as [|D|] } from "a";
-      // }
-      // declare module "c" {
-      //     import { D } from "b";
-      //     export function f(c: D): void;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-        // declare module "a" {
-        //     export class C {}
-        // }
-        // declare module "b" {
-        //     [|export { C as D } from "a";|]
-        // }
-        // declare module "c" {
-        //     import { D } from "b";
-        //     export function f(c: D): void;
-        // }
-
+// === Definitions ===
+// === /tests/cases/fourslash/renameImportOfReExport2.ts ===
+// declare module "a" {
+//     export class C {}
+// }
+// declare module "b" {
+//     <|export { C as [|{| contextId: 0, defId: 1, kind: "alias", name: "(alias) class D\nexport D", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"}] |}D|] } from "a";|>
+// }
+// declare module "c" {
+//     <|import { /*FIND ALL REFS*/[|{| contextId: 1, defId: 0, kind: "alias", name: "(alias) class D\nimport D", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"class","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"D","kind":"aliasName"}] |}D|] } from "b";|>
+//     export function f(c: D): void;
+// }
 
 [
   {
@@ -1357,65 +640,15 @@
 // === findRenameLocations ===
 // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
 // declare module "a" {
-//     export class [|RENAME|] {}
+//     <|export class /*RENAME*/[|{| contextId: 0 |}CRENAME|] {}|>
 // }
 // declare module "b" {
-//     export { RENAME as D } from "a";
+//     <|export { [|{| contextId: 1 |}CRENAME|] as D } from "a";|>
 // }
 // declare module "c" {
 //     import { D } from "b";
 //     export function f(c: D): void;
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-  // declare module "a" {
-  //     export class [|C|] {}
-  // }
-  // declare module "b" {
-  //     export { C as D } from "a";
-  // }
-  // declare module "c" {
-  //     import { D } from "b";
-  //     export function f(c: D): void;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     [|export class C {}|]
-    // }
-    // declare module "b" {
-    //     export { C as D } from "a";
-    // }
-    // declare module "c" {
-    //     import { D } from "b";
-    //     export function f(c: D): void;
-    // }
-// === 1 ===
-  // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-  // declare module "a" {
-  //     export class C {}
-  // }
-  // declare module "b" {
-  //     export { [|C|] as D } from "a";
-  // }
-  // declare module "c" {
-  //     import { D } from "b";
-  //     export function f(c: D): void;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     [|export { C as D } from "a";|]
-    // }
-    // declare module "c" {
-    //     import { D } from "b";
-    //     export function f(c: D): void;
-    // }
-
 
 [
   {
@@ -1444,65 +677,15 @@
 
 // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
 // declare module "a" {
-//     export class RENAME {}
+//     <|export class [|{| contextId: 0 |}CRENAME|] {}|>
 // }
 // declare module "b" {
-//     export { [|RENAME|] as D } from "a";
+//     <|export { /*RENAME*/[|{| contextId: 1 |}CRENAME|] as D } from "a";|>
 // }
 // declare module "c" {
 //     import { D } from "b";
 //     export function f(c: D): void;
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-  // declare module "a" {
-  //     export class [|C|] {}
-  // }
-  // declare module "b" {
-  //     export { C as D } from "a";
-  // }
-  // declare module "c" {
-  //     import { D } from "b";
-  //     export function f(c: D): void;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     [|export class C {}|]
-    // }
-    // declare module "b" {
-    //     export { C as D } from "a";
-    // }
-    // declare module "c" {
-    //     import { D } from "b";
-    //     export function f(c: D): void;
-    // }
-// === 1 ===
-  // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-  // declare module "a" {
-  //     export class C {}
-  // }
-  // declare module "b" {
-  //     export { [|C|] as D } from "a";
-  // }
-  // declare module "c" {
-  //     import { D } from "b";
-  //     export function f(c: D): void;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     [|export { C as D } from "a";|]
-    // }
-    // declare module "c" {
-    //     import { D } from "b";
-    //     export function f(c: D): void;
-    // }
-
 
 [
   {
@@ -1534,74 +717,12 @@
 //     export class C {}
 // }
 // declare module "b" {
-//     export { C as [|RENAME|] } from "a";
+//     <|export { C as /*RENAME*/[|{| contextId: 0 |}DRENAME|] } from "a";|>
 // }
 // declare module "c" {
-//     import { RENAME } from "b";
-//     export function f(c: RENAME): void;
+//     <|import { [|{| contextId: 1 |}DRENAME|] } from "b";|>
+//     export function f(c: [|DRENAME|]): void;
 // }
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-  // declare module "a" {
-  //     export class C {}
-  // }
-  // declare module "b" {
-  //     export { C as [|D|] } from "a";
-  // }
-  // declare module "c" {
-  //     import { D } from "b";
-  //     export function f(c: D): void;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     [|export { C as D } from "a";|]
-    // }
-    // declare module "c" {
-    //     import { D } from "b";
-    //     export function f(c: D): void;
-    // }
-// === 1 ===
-  // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-  // declare module "a" {
-  //     export class C {}
-  // }
-  // declare module "b" {
-  //     export { C as D } from "a";
-  // }
-  // declare module "c" {
-  //     import { [|D|] } from "b";
-  //     export function f(c: D): void;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     export { C as D } from "a";
-    // }
-    // declare module "c" {
-    //     [|import { D } from "b";|]
-    //     export function f(c: D): void;
-    // }
-// === 2 ===
-  // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-  // declare module "a" {
-  //     export class C {}
-  // }
-  // declare module "b" {
-  //     export { C as D } from "a";
-  // }
-  // declare module "c" {
-  //     import { D } from "b";
-  //     export function f(c: [|D|]): void;
-  // }
-
 
 [
   {
@@ -1643,48 +764,9 @@
 //     export { C as D } from "a";
 // }
 // declare module "c" {
-//     import { /*START PREFIX*/D as [|RENAME|] } from "b";
-//     export function f(c: RENAME): void;
+//     <|import { /*RENAME*//*START PREFIX*/D as [|{| contextId: 0 |}DRENAME|] } from "b";|>
+//     export function f(c: [|DRENAME|]): void;
 // }
-
-// === 0 ===
-  // prefixText: "D as "
-  // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-  // declare module "a" {
-  //     export class C {}
-  // }
-  // declare module "b" {
-  //     export { C as D } from "a";
-  // }
-  // declare module "c" {
-  //     import { [|D|] } from "b";
-  //     export function f(c: D): void;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     export { C as D } from "a";
-    // }
-    // declare module "c" {
-    //     [|import { D } from "b";|]
-    //     export function f(c: D): void;
-    // }
-// === 1 ===
-  // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-  // declare module "a" {
-  //     export class C {}
-  // }
-  // declare module "b" {
-  //     export { C as D } from "a";
-  // }
-  // declare module "c" {
-  //     import { D } from "b";
-  //     export function f(c: [|D|]): void;
-  // }
-
 
 [
   {
@@ -1716,48 +798,9 @@
 //     export { C as D } from "a";
 // }
 // declare module "c" {
-//     import { /*START PREFIX*/D as RENAME } from "b";
-//     export function f(c: [|RENAME|]): void;
+//     <|import { /*START PREFIX*/D as [|{| contextId: 0 |}DRENAME|] } from "b";|>
+//     export function f(c: /*RENAME*/[|DRENAME|]): void;
 // }
-
-// === 0 ===
-  // prefixText: "D as "
-  // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-  // declare module "a" {
-  //     export class C {}
-  // }
-  // declare module "b" {
-  //     export { C as D } from "a";
-  // }
-  // declare module "c" {
-  //     import { [|D|] } from "b";
-  //     export function f(c: D): void;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-    // declare module "a" {
-    //     export class C {}
-    // }
-    // declare module "b" {
-    //     export { C as D } from "a";
-    // }
-    // declare module "c" {
-    //     [|import { D } from "b";|]
-    //     export function f(c: D): void;
-    // }
-// === 1 ===
-  // === /tests/cases/fourslash/renameImportOfReExport2.ts ===
-  // declare module "a" {
-  //     export class C {}
-  // }
-  // declare module "b" {
-  //     export { C as D } from "a";
-  // }
-  // declare module "c" {
-  //     import { D } from "b";
-  //     export function f(c: [|D|]): void;
-  // }
-
 
 [
   {

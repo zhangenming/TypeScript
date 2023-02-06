@@ -1,78 +1,15 @@
 // === /bar.ts ===
-// import { [|Foo|]/*FIND ALL REFS*/ } from "./foo";
+// <|import { [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}Foo|]/*FIND ALL REFS*/ } from "./foo";|>
 
 // === /foo.ts ===
-// export { [|Foo|] }
+// <|export { [|{| contextId: 1, defId: 1, isWriteAccess: true |}Foo|] }|>
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "import Foo"
-    // displayParts: [
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /bar.ts ===
-    // import { [|Foo|] } from "./foo";
-      // === ContextSpan ===
-      // === /bar.ts ===
-      // [|import { Foo } from "./foo";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /bar.ts ===
-      // import { [|Foo|] } from "./foo";
-        // === ContextSpan ===
-        // === /bar.ts ===
-        // [|import { Foo } from "./foo";|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "export Foo"
-    // displayParts: [
-    //  {
-    //   "text": "export",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "Foo",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /foo.ts ===
-    // export { [|Foo|] }
-      // === ContextSpan ===
-      // === /foo.ts ===
-      // [|export { Foo }|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /foo.ts ===
-      // export { [|Foo|] }
-        // === ContextSpan ===
-        // === /foo.ts ===
-        // [|export { Foo }|]
+// === Definitions ===
+// === /bar.ts ===
+// <|import { [|{| contextId: 0, defId: 0, kind: "alias", name: "import Foo", displayParts: [{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Foo","kind":"aliasName"}] |}Foo|]/*FIND ALL REFS*/ } from "./foo";|>
 
+// === /foo.ts ===
+// <|export { [|{| contextId: 1, defId: 1, kind: "alias", name: "export Foo", displayParts: [{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Foo","kind":"aliasName"}] |}Foo|] }|>
 
 [
   {

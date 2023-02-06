@@ -1,24 +1,7 @@
 // === /tests/cases/fourslash/renameAlias.ts ===
 // module SomeModule { export class SomeClass { } }
-// import [|RENAME|] = SomeModule;
-// import C = RENAME.SomeClass;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameAlias.ts ===
-  // module SomeModule { export class SomeClass { } }
-  // import [|M|] = SomeModule;
-  // import C = M.SomeClass;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameAlias.ts ===
-    // module SomeModule { export class SomeClass { } }
-    // [|import M = SomeModule;|]
-    // import C = M.SomeClass;
-// === 1 ===
-  // === /tests/cases/fourslash/renameAlias.ts ===
-  // module SomeModule { export class SomeClass { } }
-  // import M = SomeModule;
-  // import C = [|M|].SomeClass;
-
+// <|import /*RENAME*/[|{| contextId: 0 |}MRENAME|] = SomeModule;|>
+// import C = [|MRENAME|].SomeClass;
 
 [
   {
@@ -43,25 +26,8 @@
 
 // === /tests/cases/fourslash/renameAlias.ts ===
 // module SomeModule { export class SomeClass { } }
-// import RENAME = SomeModule;
-// import C = [|RENAME|].SomeClass;
-
-// === 0 ===
-  // === /tests/cases/fourslash/renameAlias.ts ===
-  // module SomeModule { export class SomeClass { } }
-  // import [|M|] = SomeModule;
-  // import C = M.SomeClass;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/renameAlias.ts ===
-    // module SomeModule { export class SomeClass { } }
-    // [|import M = SomeModule;|]
-    // import C = M.SomeClass;
-// === 1 ===
-  // === /tests/cases/fourslash/renameAlias.ts ===
-  // module SomeModule { export class SomeClass { } }
-  // import M = SomeModule;
-  // import C = [|M|].SomeClass;
-
+// <|import [|{| contextId: 0 |}MRENAME|] = SomeModule;|>
+// import C = /*RENAME*/[|MRENAME|].SomeClass;
 
 [
   {

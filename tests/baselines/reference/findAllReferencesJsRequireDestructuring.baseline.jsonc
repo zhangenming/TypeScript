@@ -1,80 +1,16 @@
-// === /tests/cases/fourslash/bar.js ===
-// const { /*FIND ALL REFS*/[|foo|]: bar } = require('./foo');
-
 // === /tests/cases/fourslash/foo.js ===
 // module.exports = {
-//     [|foo|]: '1'
+//     <|[|{| contextId: 0, defId: 0, isWriteAccess: true |}foo|]: '1'|>
 // };
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "property"
-    // name: "(property) foo: string"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "property",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "foo",
-    //   "kind": "propertyName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "string",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/foo.js ===
-    // module.exports = {
-    //     [|foo|]: '1'
-    // };
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/foo.js ===
-      // module.exports = {
-      //     [|foo: '1'|]
-      // };
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/foo.js ===
-      // module.exports = {
-      //     [|foo|]: '1'
-      // };
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/foo.js ===
-        // module.exports = {
-        //     [|foo: '1'|]
-        // };
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/bar.js ===
-      // const { [|foo|]: bar } = require('./foo');
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/bar.js ===
-        // [|const { foo: bar } = require('./foo');|]
+// === /tests/cases/fourslash/bar.js ===
+// <|const { /*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}foo|]: bar } = require('./foo');|>
 
+// === Definitions ===
+// === /tests/cases/fourslash/foo.js ===
+// module.exports = {
+//     <|[|{| contextId: 0, defId: 0, kind: "property", name: "(property) foo: string", displayParts: [{"text":"(","kind":"punctuation"},{"text":"property","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"foo","kind":"propertyName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"string","kind":"keyword"}] |}foo|]: '1'|>
+// };
 
 [
   {

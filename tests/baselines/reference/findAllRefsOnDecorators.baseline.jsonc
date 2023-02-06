@@ -1,134 +1,22 @@
+// === /tests/cases/fourslash/a.ts ===
+// /*FIND ALL REFS*/<|function [|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}decorator|](target) {
+//     return target;
+// }|>
+// [|{| defId: 0 |}decorator|]();
+
 // === /tests/cases/fourslash/b.ts ===
-// @[|decorator|] @[|decorator|]("again")
+// @[|{| defId: 0 |}decorator|] @[|{| defId: 0 |}decorator|]("again")
 // class C {
-//     @[|decorator|]
+//     @[|{| defId: 0 |}decorator|]
 //     method() {}
 // }
 
+// === Definitions ===
 // === /tests/cases/fourslash/a.ts ===
-// /*FIND ALL REFS*/function [|decorator|](target) {
+// /*FIND ALL REFS*/<|function [|{| contextId: 0, defId: 0, kind: "function", name: "function decorator(target: any): any", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"decorator","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":"target","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}decorator|](target) {
 //     return target;
-// }
-// [|decorator|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function decorator(target: any): any"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "decorator",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "target",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // function [|decorator|](target) {
-    //     return target;
-    // }
-    // decorator();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|function decorator(target) {
-      //     return target;
-      // }|]
-      // decorator();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/a.ts ===
-      // function [|decorator|](target) {
-      //     return target;
-      // }
-      // decorator();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|function decorator(target) {
-        //     return target;
-        // }|]
-        // decorator();
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/a.ts ===
-      // function decorator(target) {
-      //     return target;
-      // }
-      // [|decorator|]();
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @[|decorator|] @decorator("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @[|decorator|]("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @decorator("again")
-      // class C {
-      //     @[|decorator|]
-      //     method() {}
-      // }
-
+// }|>
+// decorator();
 
 [
   {
@@ -251,137 +139,25 @@
   }
 ]
 
+// === /tests/cases/fourslash/a.ts ===
+// <|function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}decorator|](target) {
+//     return target;
+// }|>
+// [|{| defId: 0 |}decorator|]();
+
 // === /tests/cases/fourslash/b.ts ===
-// @[|decorator|] @[|decorator|]("again")
+// @[|{| defId: 0 |}decorator|] @[|{| defId: 0 |}decorator|]("again")
 // class C {
-//     @[|decorator|]
+//     @[|{| defId: 0 |}decorator|]
 //     method() {}
 // }
 
+// === Definitions ===
 // === /tests/cases/fourslash/a.ts ===
-// function /*FIND ALL REFS*/[|decorator|](target) {
+// <|function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "function", name: "function decorator(target: any): any", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"decorator","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":"target","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}decorator|](target) {
 //     return target;
-// }
-// [|decorator|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function decorator(target: any): any"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "decorator",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "target",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // function [|decorator|](target) {
-    //     return target;
-    // }
-    // decorator();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|function decorator(target) {
-      //     return target;
-      // }|]
-      // decorator();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/a.ts ===
-      // function [|decorator|](target) {
-      //     return target;
-      // }
-      // decorator();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|function decorator(target) {
-        //     return target;
-        // }|]
-        // decorator();
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/a.ts ===
-      // function decorator(target) {
-      //     return target;
-      // }
-      // [|decorator|]();
-    // === 2 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @[|decorator|] @decorator("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @[|decorator|]("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @decorator("again")
-      // class C {
-      //     @[|decorator|]
-      //     method() {}
-      // }
-
+// }|>
+// decorator();
 
 [
   {
@@ -504,132 +280,25 @@
   }
 ]
 
+// === /tests/cases/fourslash/a.ts ===
+// <|function [|{| contextId: 0, defId: 0, isWriteAccess: true |}decorator|](target) {
+//     return target;
+// }|>
+// /*FIND ALL REFS*/[|{| defId: 0 |}decorator|]();
+
 // === /tests/cases/fourslash/b.ts ===
-// @[|decorator|] @[|decorator|]("again")
+// @[|{| defId: 0 |}decorator|] @[|{| defId: 0 |}decorator|]("again")
 // class C {
-//     @[|decorator|]
+//     @[|{| defId: 0 |}decorator|]
 //     method() {}
 // }
 
+// === Definitions ===
 // === /tests/cases/fourslash/a.ts ===
-// function [|decorator|](target) {
+// <|function [|{| contextId: 0, defId: 0, kind: "function", name: "function decorator(target: any): any", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"decorator","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":"target","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}decorator|](target) {
 //     return target;
-// }
-// /*FIND ALL REFS*/[|decorator|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function decorator(target: any): any"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "decorator",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "target",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // function [|decorator|](target) {
-    //     return target;
-    // }
-    // decorator();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|function decorator(target) {
-      //     return target;
-      // }|]
-      // decorator();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/a.ts ===
-      // function [|decorator|](target) {
-      //     return target;
-      // }
-      // decorator();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|function decorator(target) {
-        //     return target;
-        // }|]
-        // decorator();
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/a.ts ===
-      // function decorator(target) {
-      //     return target;
-      // }
-      // [|decorator|]();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @[|decorator|] @decorator("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @[|decorator|]("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @decorator("again")
-      // class C {
-      //     @[|decorator|]
-      //     method() {}
-      // }
-
+// }|>
+// /*FIND ALL REFS*/decorator();
 
 [
   {
@@ -747,132 +416,25 @@
   }
 ]
 
+// === /tests/cases/fourslash/a.ts ===
+// <|function [|{| contextId: 0, defId: 0, isWriteAccess: true |}decorator|](target) {
+//     return target;
+// }|>
+// [|{| defId: 0 |}decorator|]();
+
 // === /tests/cases/fourslash/b.ts ===
-// @/*FIND ALL REFS*/[|decorator|] @[|decorator|]("again")
+// @/*FIND ALL REFS*/[|{| defId: 0 |}decorator|] @[|{| defId: 0 |}decorator|]("again")
 // class C {
-//     @[|decorator|]
+//     @[|{| defId: 0 |}decorator|]
 //     method() {}
 // }
 
+// === Definitions ===
 // === /tests/cases/fourslash/a.ts ===
-// function [|decorator|](target) {
+// <|function [|{| contextId: 0, defId: 0, kind: "function", name: "function decorator(target: any): any", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"decorator","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":"target","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}decorator|](target) {
 //     return target;
-// }
-// [|decorator|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function decorator(target: any): any"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "decorator",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "target",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // function [|decorator|](target) {
-    //     return target;
-    // }
-    // decorator();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|function decorator(target) {
-      //     return target;
-      // }|]
-      // decorator();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/a.ts ===
-      // function [|decorator|](target) {
-      //     return target;
-      // }
-      // decorator();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|function decorator(target) {
-        //     return target;
-        // }|]
-        // decorator();
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/a.ts ===
-      // function decorator(target) {
-      //     return target;
-      // }
-      // [|decorator|]();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @[|decorator|] @decorator("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @[|decorator|]("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @decorator("again")
-      // class C {
-      //     @[|decorator|]
-      //     method() {}
-      // }
-
+// }|>
+// decorator();
 
 [
   {
@@ -990,132 +552,25 @@
   }
 ]
 
+// === /tests/cases/fourslash/a.ts ===
+// <|function [|{| contextId: 0, defId: 0, isWriteAccess: true |}decorator|](target) {
+//     return target;
+// }|>
+// [|{| defId: 0 |}decorator|]();
+
 // === /tests/cases/fourslash/b.ts ===
-// @[|decorator|] @/*FIND ALL REFS*/[|decorator|]("again")
+// @[|{| defId: 0 |}decorator|] @/*FIND ALL REFS*/[|{| defId: 0 |}decorator|]("again")
 // class C {
-//     @[|decorator|]
+//     @[|{| defId: 0 |}decorator|]
 //     method() {}
 // }
 
+// === Definitions ===
 // === /tests/cases/fourslash/a.ts ===
-// function [|decorator|](target) {
+// <|function [|{| contextId: 0, defId: 0, kind: "function", name: "function decorator(target: any): any", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"decorator","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":"target","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}decorator|](target) {
 //     return target;
-// }
-// [|decorator|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function decorator(target: any): any"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "decorator",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "target",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // function [|decorator|](target) {
-    //     return target;
-    // }
-    // decorator();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|function decorator(target) {
-      //     return target;
-      // }|]
-      // decorator();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/a.ts ===
-      // function [|decorator|](target) {
-      //     return target;
-      // }
-      // decorator();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|function decorator(target) {
-        //     return target;
-        // }|]
-        // decorator();
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/a.ts ===
-      // function decorator(target) {
-      //     return target;
-      // }
-      // [|decorator|]();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @[|decorator|] @decorator("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @[|decorator|]("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @decorator("again")
-      // class C {
-      //     @[|decorator|]
-      //     method() {}
-      // }
-
+// }|>
+// decorator();
 
 [
   {
@@ -1233,132 +688,25 @@
   }
 ]
 
+// === /tests/cases/fourslash/a.ts ===
+// <|function [|{| contextId: 0, defId: 0, isWriteAccess: true |}decorator|](target) {
+//     return target;
+// }|>
+// [|{| defId: 0 |}decorator|]();
+
 // === /tests/cases/fourslash/b.ts ===
-// @[|decorator|] @[|decorator|]("again")
+// @[|{| defId: 0 |}decorator|] @[|{| defId: 0 |}decorator|]("again")
 // class C {
-//     @/*FIND ALL REFS*/[|decorator|]
+//     @/*FIND ALL REFS*/[|{| defId: 0 |}decorator|]
 //     method() {}
 // }
 
+// === Definitions ===
 // === /tests/cases/fourslash/a.ts ===
-// function [|decorator|](target) {
+// <|function [|{| contextId: 0, defId: 0, kind: "function", name: "function decorator(target: any): any", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"decorator","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":"target","kind":"parameterName"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"any","kind":"keyword"}] |}decorator|](target) {
 //     return target;
-// }
-// [|decorator|]();
-
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "function"
-    // name: "function decorator(target: any): any"
-    // displayParts: [
-    //  {
-    //   "text": "function",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "decorator",
-    //   "kind": "functionName"
-    //  },
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "target",
-    //   "kind": "parameterName"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": ":",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "any",
-    //   "kind": "keyword"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // function [|decorator|](target) {
-    //     return target;
-    // }
-    // decorator();
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|function decorator(target) {
-      //     return target;
-      // }|]
-      // decorator();
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // === /tests/cases/fourslash/a.ts ===
-      // function [|decorator|](target) {
-      //     return target;
-      // }
-      // decorator();
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|function decorator(target) {
-        //     return target;
-        // }|]
-        // decorator();
-    // === 1 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/a.ts ===
-      // function decorator(target) {
-      //     return target;
-      // }
-      // [|decorator|]();
-    // === 2 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @[|decorator|] @decorator("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 3 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @[|decorator|]("again")
-      // class C {
-      //     @decorator
-      //     method() {}
-      // }
-    // === 4 ===
-      // isWriteAccess: false
-      // === /tests/cases/fourslash/b.ts ===
-      // @decorator @decorator("again")
-      // class C {
-      //     @[|decorator|]
-      //     method() {}
-      // }
-
+// }|>
+// decorator();
 
 [
   {

@@ -1,37 +1,6 @@
 // === /1.ts ===
-// type /*HIGHLIGHTS*/[|A|] = 1;
-// export { [|A|] as [|B|] };
-
-// === 0 ===
-  // === /1.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /1.ts ===
-      // type [|A|] = 1;
-      // export { A as B };
-        // === ContextSpan ===
-        // === /1.ts ===
-        // [|type A = 1;|]
-        // export { A as B };
-    // === 1 ===
-      // kind: "reference"
-      // === /1.ts ===
-      // type A = 1;
-      // export { [|A|] as B };
-        // === ContextSpan ===
-        // === /1.ts ===
-        // type A = 1;
-        // [|export { A as B };|]
-    // === 2 ===
-      // kind: "writtenReference"
-      // === /1.ts ===
-      // type A = 1;
-      // export { A as [|B|] };
-        // === ContextSpan ===
-        // === /1.ts ===
-        // type A = 1;
-        // [|export { A as B };|]
-
+// <|type /*HIGHLIGHTS*/[|{| contextId: 0, kind: "writtenReference" |}A|] = 1;|>
+// <|<|export { [|{| contextId: 1, kind: "reference" |}A|] as [|{| contextId: 2, kind: "writtenReference" |}B|] };|>|>
 
 [
   {
@@ -75,39 +44,8 @@
 ]
 
 // === /1.ts ===
-// type [|A|] = 1;
-// export { /*HIGHLIGHTS*/[|A|] as [|B|] };
-
-// === 0 ===
-  // === /1.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /1.ts ===
-      // type [|A|] = 1;
-      // export { A as B };
-        // === ContextSpan ===
-        // === /1.ts ===
-        // [|type A = 1;|]
-        // export { A as B };
-    // === 1 ===
-      // kind: "reference"
-      // === /1.ts ===
-      // type A = 1;
-      // export { [|A|] as B };
-        // === ContextSpan ===
-        // === /1.ts ===
-        // type A = 1;
-        // [|export { A as B };|]
-    // === 2 ===
-      // kind: "writtenReference"
-      // === /1.ts ===
-      // type A = 1;
-      // export { A as [|B|] };
-        // === ContextSpan ===
-        // === /1.ts ===
-        // type A = 1;
-        // [|export { A as B };|]
-
+// <|type [|{| contextId: 0, kind: "writtenReference" |}A|] = 1;|>
+// <|<|export { /*HIGHLIGHTS*/[|{| contextId: 1, kind: "reference" |}A|] as [|{| contextId: 2, kind: "writtenReference" |}B|] };|>|>
 
 [
   {
@@ -152,20 +90,7 @@
 
 // === /1.ts ===
 // type A = 1;
-// export { A as /*HIGHLIGHTS*/[|B|] };
-
-// === 0 ===
-  // === /1.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /1.ts ===
-      // type A = 1;
-      // export { A as [|B|] };
-        // === ContextSpan ===
-        // === /1.ts ===
-        // type A = 1;
-        // [|export { A as B };|]
-
+// <|export { A as /*HIGHLIGHTS*/[|{| contextId: 0, kind: "writtenReference" |}B|] };|>
 
 [
   {
@@ -187,52 +112,9 @@
 ]
 
 // === /2.ts ===
-// type /*HIGHLIGHTS*/[|A|] = 1;
-// let A: [|A|] = 1;
-// export { [|A|] as [|B|] };
-
-// === 0 ===
-  // === /2.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /2.ts ===
-      // type [|A|] = 1;
-      // let A: A = 1;
-      // export { A as B };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // [|type A = 1;|]
-        // let A: A = 1;
-        // export { A as B };
-    // === 1 ===
-      // kind: "reference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: [|A|] = 1;
-      // export { A as B };
-    // === 2 ===
-      // kind: "reference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export { [|A|] as B };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export { A as B };|]
-    // === 3 ===
-      // kind: "writtenReference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export { A as [|B|] };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export { A as B };|]
-
+// <|type /*HIGHLIGHTS*/[|{| contextId: 0, kind: "writtenReference" |}A|] = 1;|>
+// let A: [|{| kind: "reference" |}A|] = 1;
+// <|<|export { [|{| contextId: 1, kind: "reference" |}A|] as [|{| contextId: 2, kind: "writtenReference" |}B|] };|>|>
 
 [
   {
@@ -284,45 +166,8 @@
 
 // === /2.ts ===
 // type A = 1;
-// let /*HIGHLIGHTS*/[|A|]: A = 1;
-// export { [|A|] as [|B|] };
-
-// === 0 ===
-  // === /2.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /2.ts ===
-      // type A = 1;
-      // let [|A|]: A = 1;
-      // export { A as B };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // type A = 1;
-        // [|let A: A = 1;|]
-        // export { A as B };
-    // === 1 ===
-      // kind: "reference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export { [|A|] as B };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export { A as B };|]
-    // === 2 ===
-      // kind: "writtenReference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export { A as [|B|] };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export { A as B };|]
-
+// <|let /*HIGHLIGHTS*/[|{| contextId: 0, kind: "writtenReference" |}A|]: A = 1;|>
+// <|<|export { [|{| contextId: 1, kind: "reference" |}A|] as [|{| contextId: 2, kind: "writtenReference" |}B|] };|>|>
 
 [
   {
@@ -366,52 +211,9 @@
 ]
 
 // === /2.ts ===
-// type [|A|] = 1;
-// let A: /*HIGHLIGHTS*/[|A|] = 1;
-// export { [|A|] as [|B|] };
-
-// === 0 ===
-  // === /2.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /2.ts ===
-      // type [|A|] = 1;
-      // let A: A = 1;
-      // export { A as B };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // [|type A = 1;|]
-        // let A: A = 1;
-        // export { A as B };
-    // === 1 ===
-      // kind: "reference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: [|A|] = 1;
-      // export { A as B };
-    // === 2 ===
-      // kind: "reference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export { [|A|] as B };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export { A as B };|]
-    // === 3 ===
-      // kind: "writtenReference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export { A as [|B|] };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export { A as B };|]
-
+// <|type [|{| contextId: 0, kind: "writtenReference" |}A|] = 1;|>
+// let A: /*HIGHLIGHTS*/[|{| kind: "reference" |}A|] = 1;
+// <|<|export { [|{| contextId: 1, kind: "reference" |}A|] as [|{| contextId: 2, kind: "writtenReference" |}B|] };|>|>
 
 [
   {
@@ -462,63 +264,9 @@
 ]
 
 // === /2.ts ===
-// type [|A|] = 1;
-// let [|A|]: [|A|] = 1;
-// export { /*HIGHLIGHTS*/[|A|] as [|B|] };
-
-// === 0 ===
-  // === /2.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /2.ts ===
-      // type [|A|] = 1;
-      // let A: A = 1;
-      // export { A as B };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // [|type A = 1;|]
-        // let A: A = 1;
-        // export { A as B };
-    // === 1 ===
-      // kind: "writtenReference"
-      // === /2.ts ===
-      // type A = 1;
-      // let [|A|]: A = 1;
-      // export { A as B };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // type A = 1;
-        // [|let A: A = 1;|]
-        // export { A as B };
-    // === 2 ===
-      // kind: "reference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: [|A|] = 1;
-      // export { A as B };
-    // === 3 ===
-      // kind: "reference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export { [|A|] as B };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export { A as B };|]
-    // === 4 ===
-      // kind: "writtenReference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export { A as [|B|] };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export { A as B };|]
-
+// <|type [|{| contextId: 0, kind: "writtenReference" |}A|] = 1;|>
+// <|let [|{| contextId: 1, kind: "writtenReference" |}A|]: [|{| kind: "reference" |}A|] = 1;|>
+// <|<|export { /*HIGHLIGHTS*/[|{| contextId: 2, kind: "reference" |}A|] as [|{| contextId: 3, kind: "writtenReference" |}B|] };|>|>
 
 [
   {
@@ -582,22 +330,7 @@
 // === /2.ts ===
 // type A = 1;
 // let A: A = 1;
-// export { A as /*HIGHLIGHTS*/[|B|] };
-
-// === 0 ===
-  // === /2.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /2.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export { A as [|B|] };
-        // === ContextSpan ===
-        // === /2.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export { A as B };|]
-
+// <|export { A as /*HIGHLIGHTS*/[|{| contextId: 0, kind: "writtenReference" |}B|] };|>
 
 [
   {
@@ -619,52 +352,9 @@
 ]
 
 // === /3.ts ===
-// type /*HIGHLIGHTS*/[|A|] = 1;
-// let A: [|A|] = 1;
-// export type { [|A|] as [|B|] };
-
-// === 0 ===
-  // === /3.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /3.ts ===
-      // type [|A|] = 1;
-      // let A: A = 1;
-      // export type { A as B };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // [|type A = 1;|]
-        // let A: A = 1;
-        // export type { A as B };
-    // === 1 ===
-      // kind: "reference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: [|A|] = 1;
-      // export type { A as B };
-    // === 2 ===
-      // kind: "reference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export type { [|A|] as B };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export type { A as B };|]
-    // === 3 ===
-      // kind: "writtenReference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export type { A as [|B|] };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export type { A as B };|]
-
+// <|type /*HIGHLIGHTS*/[|{| contextId: 0, kind: "writtenReference" |}A|] = 1;|>
+// let A: [|{| kind: "reference" |}A|] = 1;
+// <|<|export type { [|{| contextId: 1, kind: "reference" |}A|] as [|{| contextId: 2, kind: "writtenReference" |}B|] };|>|>
 
 [
   {
@@ -716,45 +406,8 @@
 
 // === /3.ts ===
 // type A = 1;
-// let /*HIGHLIGHTS*/[|A|]: A = 1;
-// export type { [|A|] as [|B|] };
-
-// === 0 ===
-  // === /3.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /3.ts ===
-      // type A = 1;
-      // let [|A|]: A = 1;
-      // export type { A as B };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // type A = 1;
-        // [|let A: A = 1;|]
-        // export type { A as B };
-    // === 1 ===
-      // kind: "reference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export type { [|A|] as B };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export type { A as B };|]
-    // === 2 ===
-      // kind: "writtenReference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export type { A as [|B|] };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export type { A as B };|]
-
+// <|let /*HIGHLIGHTS*/[|{| contextId: 0, kind: "writtenReference" |}A|]: A = 1;|>
+// <|<|export type { [|{| contextId: 1, kind: "reference" |}A|] as [|{| contextId: 2, kind: "writtenReference" |}B|] };|>|>
 
 [
   {
@@ -798,52 +451,9 @@
 ]
 
 // === /3.ts ===
-// type [|A|] = 1;
-// let A: /*HIGHLIGHTS*/[|A|] = 1;
-// export type { [|A|] as [|B|] };
-
-// === 0 ===
-  // === /3.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /3.ts ===
-      // type [|A|] = 1;
-      // let A: A = 1;
-      // export type { A as B };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // [|type A = 1;|]
-        // let A: A = 1;
-        // export type { A as B };
-    // === 1 ===
-      // kind: "reference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: [|A|] = 1;
-      // export type { A as B };
-    // === 2 ===
-      // kind: "reference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export type { [|A|] as B };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export type { A as B };|]
-    // === 3 ===
-      // kind: "writtenReference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export type { A as [|B|] };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export type { A as B };|]
-
+// <|type [|{| contextId: 0, kind: "writtenReference" |}A|] = 1;|>
+// let A: /*HIGHLIGHTS*/[|{| kind: "reference" |}A|] = 1;
+// <|<|export type { [|{| contextId: 1, kind: "reference" |}A|] as [|{| contextId: 2, kind: "writtenReference" |}B|] };|>|>
 
 [
   {
@@ -894,63 +504,9 @@
 ]
 
 // === /3.ts ===
-// type [|A|] = 1;
-// let [|A|]: [|A|] = 1;
-// export type { /*HIGHLIGHTS*/[|A|] as [|B|] };
-
-// === 0 ===
-  // === /3.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /3.ts ===
-      // type [|A|] = 1;
-      // let A: A = 1;
-      // export type { A as B };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // [|type A = 1;|]
-        // let A: A = 1;
-        // export type { A as B };
-    // === 1 ===
-      // kind: "writtenReference"
-      // === /3.ts ===
-      // type A = 1;
-      // let [|A|]: A = 1;
-      // export type { A as B };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // type A = 1;
-        // [|let A: A = 1;|]
-        // export type { A as B };
-    // === 2 ===
-      // kind: "reference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: [|A|] = 1;
-      // export type { A as B };
-    // === 3 ===
-      // kind: "reference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export type { [|A|] as B };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export type { A as B };|]
-    // === 4 ===
-      // kind: "writtenReference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export type { A as [|B|] };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export type { A as B };|]
-
+// <|type [|{| contextId: 0, kind: "writtenReference" |}A|] = 1;|>
+// <|let [|{| contextId: 1, kind: "writtenReference" |}A|]: [|{| kind: "reference" |}A|] = 1;|>
+// <|<|export type { /*HIGHLIGHTS*/[|{| contextId: 2, kind: "reference" |}A|] as [|{| contextId: 3, kind: "writtenReference" |}B|] };|>|>
 
 [
   {
@@ -1014,22 +570,7 @@
 // === /3.ts ===
 // type A = 1;
 // let A: A = 1;
-// export type { A as /*HIGHLIGHTS*/[|B|] };
-
-// === 0 ===
-  // === /3.ts ===
-    // === 0 ===
-      // kind: "writtenReference"
-      // === /3.ts ===
-      // type A = 1;
-      // let A: A = 1;
-      // export type { A as [|B|] };
-        // === ContextSpan ===
-        // === /3.ts ===
-        // type A = 1;
-        // let A: A = 1;
-        // [|export type { A as B };|]
-
+// <|export type { A as /*HIGHLIGHTS*/[|{| contextId: 0, kind: "writtenReference" |}B|] };|>
 
 [
   {

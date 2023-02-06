@@ -1,223 +1,28 @@
 // === findAllReferences ===
-// === /tests/cases/fourslash/c.ts ===
-// import { [|B|] } from "./b";
-
 // === /tests/cases/fourslash/a.ts ===
-// namespace /*FIND ALL REFS*/[|A|] {
+// <|namespace /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}A|] {
 //     export const x = 0;
-// }
+// }|>
 
 // === /tests/cases/fourslash/b.ts ===
-// export import [|B|] = [|A|];
-// [|B|].x;
+// <|export import [|{| contextId: 1, defId: 1, isWriteAccess: true |}B|] = [|{| defId: 0 |}A|];|>
+// [|{| defId: 1 |}B|].x;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "module"
-    // name: "namespace A"
-    // displayParts: [
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A",
-    //   "kind": "moduleName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/a.ts ===
-    // namespace [|A|] {
-    //     export const x = 0;
-    // }
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/a.ts ===
-      // [|namespace A {
-      //     export const x = 0;
-      // }|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/a.ts ===
-      // namespace [|A|] {
-      //     export const x = 0;
-      // }
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/a.ts ===
-        // [|namespace A {
-        //     export const x = 0;
-        // }|]
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // export import B = [|A|];
-      // B.x;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) namespace B\nimport B = A"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=",
-    //   "kind": "operator"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A",
-    //   "kind": "moduleName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/b.ts ===
-    // export import [|B|] = A;
-    // B.x;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.ts ===
-      // [|export import B = A;|]
-      // B.x;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // export import [|B|] = A;
-      // B.x;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|export import B = A;|]
-        // B.x;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // export import B = A;
-      // [|B|].x;
-// === 2 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) namespace B\nimport B"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/c.ts ===
-    // import { [|B|] } from "./b";
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/c.ts ===
-      // [|import { B } from "./b";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/c.ts ===
-      // import { [|B|] } from "./b";
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|import { B } from "./b";|]
+// === /tests/cases/fourslash/c.ts ===
+// <|import { [|{| contextId: 2, defId: 2, isWriteAccess: true |}B|] } from "./b";|>
 
+// === Definitions ===
+// === /tests/cases/fourslash/a.ts ===
+// <|namespace /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "module", name: "namespace A", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"A","kind":"moduleName"}] |}A|] {
+//     export const x = 0;
+// }|>
+
+// === /tests/cases/fourslash/b.ts ===
+// <|export import [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) namespace B\nimport B = A", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"},{"text":" ","kind":"space"},{"text":"=","kind":"operator"},{"text":" ","kind":"space"},{"text":"A","kind":"moduleName"}] |}B|] = A;|>
+// B.x;
+
+// === /tests/cases/fourslash/c.ts ===
+// <|import { [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) namespace B\nimport B", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"}] |}B|] } from "./b";|>
 
 [
   {
@@ -458,172 +263,20 @@
   }
 ]
 
-// === /tests/cases/fourslash/c.ts ===
-// import { [|B|] } from "./b";
-
 // === /tests/cases/fourslash/b.ts ===
-// export import /*FIND ALL REFS*/[|B|] = A;
-// [|B|].x;
+// <|export import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}B|] = A;|>
+// [|{| defId: 0 |}B|].x;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) namespace B\nimport B = A"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=",
-    //   "kind": "operator"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A",
-    //   "kind": "moduleName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/b.ts ===
-    // export import [|B|] = A;
-    // B.x;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.ts ===
-      // [|export import B = A;|]
-      // B.x;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/b.ts ===
-      // export import [|B|] = A;
-      // B.x;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|export import B = A;|]
-        // B.x;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // export import B = A;
-      // [|B|].x;
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) namespace B\nimport B"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/c.ts ===
-    // import { [|B|] } from "./b";
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/c.ts ===
-      // [|import { B } from "./b";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/c.ts ===
-      // import { [|B|] } from "./b";
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|import { B } from "./b";|]
+// === /tests/cases/fourslash/c.ts ===
+// <|import { [|{| contextId: 1, defId: 1, isWriteAccess: true |}B|] } from "./b";|>
 
+// === Definitions ===
+// === /tests/cases/fourslash/b.ts ===
+// <|export import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) namespace B\nimport B = A", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"},{"text":" ","kind":"space"},{"text":"=","kind":"operator"},{"text":" ","kind":"space"},{"text":"A","kind":"moduleName"}] |}B|] = A;|>
+// B.x;
+
+// === /tests/cases/fourslash/c.ts ===
+// <|import { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) namespace B\nimport B", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"}] |}B|] } from "./b";|>
 
 [
   {
@@ -810,171 +463,19 @@
 ]
 
 // === /tests/cases/fourslash/c.ts ===
-// import { /*FIND ALL REFS*/[|B|] } from "./b";
+// <|import { /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, isWriteAccess: true, isDefinition: true |}B|] } from "./b";|>
 
 // === /tests/cases/fourslash/b.ts ===
-// export import [|B|] = A;
-// [|B|].x;
+// <|export import [|{| contextId: 1, defId: 1, isWriteAccess: true |}B|] = A;|>
+// [|{| defId: 1 |}B|].x;
 
-// === 0 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) namespace B\nimport B"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/c.ts ===
-    // import { [|B|] } from "./b";
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/c.ts ===
-      // [|import { B } from "./b";|]
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: true
-      // === /tests/cases/fourslash/c.ts ===
-      // import { [|B|] } from "./b";
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/c.ts ===
-        // [|import { B } from "./b";|]
-// === 1 ===
-  // === Definition ===
-    // containerKind: ""
-    // containerName: ""
-    // kind: "alias"
-    // name: "(alias) namespace B\nimport B = A"
-    // displayParts: [
-    //  {
-    //   "text": "(",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": "alias",
-    //   "kind": "text"
-    //  },
-    //  {
-    //   "text": ")",
-    //   "kind": "punctuation"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "namespace",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": "\n",
-    //   "kind": "lineBreak"
-    //  },
-    //  {
-    //   "text": "import",
-    //   "kind": "keyword"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "B",
-    //   "kind": "aliasName"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "=",
-    //   "kind": "operator"
-    //  },
-    //  {
-    //   "text": " ",
-    //   "kind": "space"
-    //  },
-    //  {
-    //   "text": "A",
-    //   "kind": "moduleName"
-    //  }
-    // ]
-    // === /tests/cases/fourslash/b.ts ===
-    // export import [|B|] = A;
-    // B.x;
-      // === ContextSpan ===
-      // === /tests/cases/fourslash/b.ts ===
-      // [|export import B = A;|]
-      // B.x;
-  // === References ===
-    // === 0 ===
-      // isWriteAccess: true
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // export import [|B|] = A;
-      // B.x;
-        // === ContextSpan ===
-        // === /tests/cases/fourslash/b.ts ===
-        // [|export import B = A;|]
-        // B.x;
-    // === 1 ===
-      // isWriteAccess: false
-      // isDefinition: false
-      // === /tests/cases/fourslash/b.ts ===
-      // export import B = A;
-      // [|B|].x;
+// === Definitions ===
+// === /tests/cases/fourslash/c.ts ===
+// <|import { /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) namespace B\nimport B", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"}] |}B|] } from "./b";|>
 
+// === /tests/cases/fourslash/b.ts ===
+// <|export import [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) namespace B\nimport B = A", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"B","kind":"aliasName"},{"text":" ","kind":"space"},{"text":"=","kind":"operator"},{"text":" ","kind":"space"},{"text":"A","kind":"moduleName"}] |}B|] = A;|>
+// B.x;
 
 [
   {
@@ -1162,29 +663,13 @@
 
 // === findRenameLocations ===
 // === /tests/cases/fourslash/a.ts ===
-// namespace RENAME {
+// <|namespace /*RENAME*/[|{| contextId: 0 |}ARENAME|] {
 //     export const x = 0;
-// }
+// }|>
 
 // === /tests/cases/fourslash/b.ts ===
-// export import B = RENAME;
+// export import B = [|ARENAME|];
 // B.x;
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // namespace [|A|] {
-  //     export const x = 0;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // [|namespace A {
-    //     export const x = 0;
-    // }|]
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // export import B = [|A|];
-  // B.x;
-
 
 [
   {
@@ -1208,29 +693,13 @@
 ]
 
 // === /tests/cases/fourslash/a.ts ===
-// namespace RENAME {
+// <|namespace [|{| contextId: 0 |}ARENAME|] {
 //     export const x = 0;
-// }
+// }|>
 
 // === /tests/cases/fourslash/b.ts ===
-// export import B = RENAME;
+// export import B = /*RENAME*/[|ARENAME|];
 // B.x;
-
-// === 0 ===
-  // === /tests/cases/fourslash/a.ts ===
-  // namespace [|A|] {
-  //     export const x = 0;
-  // }
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/a.ts ===
-    // [|namespace A {
-    //     export const x = 0;
-    // }|]
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // export import B = [|A|];
-  // B.x;
-
 
 [
   {
@@ -1254,31 +723,11 @@
 ]
 
 // === /tests/cases/fourslash/b.ts ===
-// export import RENAME = A;
-// RENAME.x;
+// <|export import /*RENAME*/[|{| contextId: 0 |}BRENAME|] = A;|>
+// [|BRENAME|].x;
 
 // === /tests/cases/fourslash/c.ts ===
-// import { RENAME } from "./b";
-
-// === 0 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // export import [|B|] = A;
-  // B.x;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/b.ts ===
-    // [|export import B = A;|]
-    // B.x;
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // export import B = A;
-  // [|B|].x;
-// === 2 ===
-  // === /tests/cases/fourslash/c.ts ===
-  // import { [|B|] } from "./b";
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/c.ts ===
-    // [|import { B } from "./b";|]
-
+// <|import { [|{| contextId: 1 |}BRENAME|] } from "./b";|>
 
 [
   {
@@ -1313,31 +762,11 @@
 ]
 
 // === /tests/cases/fourslash/b.ts ===
-// export import RENAME = A;
-// RENAME.x;
+// <|export import [|{| contextId: 0 |}BRENAME|] = A;|>
+// /*RENAME*/[|BRENAME|].x;
 
 // === /tests/cases/fourslash/c.ts ===
-// import { RENAME } from "./b";
-
-// === 0 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // export import [|B|] = A;
-  // B.x;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/b.ts ===
-    // [|export import B = A;|]
-    // B.x;
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // export import B = A;
-  // [|B|].x;
-// === 2 ===
-  // === /tests/cases/fourslash/c.ts ===
-  // import { [|B|] } from "./b";
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/c.ts ===
-    // [|import { B } from "./b";|]
-
+// <|import { [|{| contextId: 1 |}BRENAME|] } from "./b";|>
 
 [
   {
@@ -1372,31 +801,11 @@
 ]
 
 // === /tests/cases/fourslash/b.ts ===
-// export import RENAME = A;
-// RENAME.x;
+// <|export import [|{| contextId: 0 |}BRENAME|] = A;|>
+// /*RENAME*/[|BRENAME|].x;
 
 // === /tests/cases/fourslash/c.ts ===
-// import { RENAME } from "./b";
-
-// === 0 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // export import [|B|] = A;
-  // B.x;
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/b.ts ===
-    // [|export import B = A;|]
-    // B.x;
-// === 1 ===
-  // === /tests/cases/fourslash/b.ts ===
-  // export import B = A;
-  // [|B|].x;
-// === 2 ===
-  // === /tests/cases/fourslash/c.ts ===
-  // import { [|B|] } from "./b";
-    // === ContextSpan ===
-    // === /tests/cases/fourslash/c.ts ===
-    // [|import { B } from "./b";|]
-
+// <|import { [|{| contextId: 1 |}BRENAME|] } from "./b";|>
 
 [
   {
