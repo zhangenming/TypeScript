@@ -1062,8 +1062,8 @@ import {
     WithStatement,
     YieldExpression,
 } from "./_namespaces/ts";
-import * as performance from "./_namespaces/ts.performance";
 import * as moduleSpecifiers from "./_namespaces/ts.moduleSpecifiers";
+import * as performance from "./_namespaces/ts.performance";
 
 const ambientModuleSymbolRegex = /^".+"$/;
 const anon = "(anonymous)" as __String & string;
@@ -1727,6 +1727,7 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
         isArrayType,
         isTupleType,
         isArrayLikeType,
+        isEmptyAnonymousObjectType,
         isTypeInvalidDueToUnionDiscriminant,
         getExactOptionalProperties,
         getAllPossiblePropertiesOfTypes,
@@ -4961,14 +4962,10 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
                 error(errorNode, resolutionDiagnostic, moduleReference, resolvedModule.resolvedFileName);
             }
             else {
-                const tsExtension = tryExtractTSExtension(moduleReference);
                 const isExtensionlessRelativePathImport = pathIsRelative(moduleReference) && !hasExtension(moduleReference);
                 const resolutionIsNode16OrNext = moduleResolutionKind === ModuleResolutionKind.Node16 ||
                     moduleResolutionKind === ModuleResolutionKind.NodeNext;
-                if (tsExtension) {
-                    errorOnTSExtensionImport(tsExtension);
-                }
-                else if (!getResolveJsonModule(compilerOptions) &&
+                if (!getResolveJsonModule(compilerOptions) &&
                     fileExtensionIs(moduleReference, Extension.Json) &&
                     moduleResolutionKind !== ModuleResolutionKind.Classic &&
                     hasJsonModuleEmitEnabled(compilerOptions)) {
@@ -4992,11 +4989,6 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
             }
         }
         return undefined;
-
-        function errorOnTSExtensionImport(tsExtension: string) {
-            const diag = Diagnostics.An_import_path_cannot_end_with_a_0_extension_Consider_importing_1_instead;
-            error(errorNode, diag, tsExtension, getSuggestedImportSource(tsExtension));
-        }
 
         function getSuggestedImportSource(tsExtension: string) {
             const importSourceWithoutExtension = removeExtension(moduleReference, tsExtension);
@@ -7315,7 +7307,7 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
             if (signature.thisParameter) {
                 return symbolToParameterDeclaration(signature.thisParameter, context);
             }
-            if (signature.declaration) {
+            if (signature.declaration && isInJSFile(signature.declaration)) {
                 const thisTag = getJSDocThisTag(signature.declaration);
                 if (thisTag && thisTag.typeExpression) {
                     return factory.createParameterDeclaration(
@@ -14458,7 +14450,7 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
                         for (const tag of node.tags) {
                             if (isJSDocOverloadTag(tag)) {
                                 const jsDocSignature = tag.typeExpression;
-                                if (jsDocSignature.type === undefined) {
+                                if (jsDocSignature.type === undefined && !isConstructorDeclaration(decl)) {
                                     reportImplicitAny(jsDocSignature, anyType);
                                 }
                                 result.push(getSignatureFromDeclaration(jsDocSignature));
@@ -14583,6 +14575,12 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
     function getReturnTypeFromAnnotation(declaration: SignatureDeclaration | JSDocSignature) {
         if (declaration.kind === SyntaxKind.Constructor) {
             return getDeclaredTypeOfClassOrInterface(getMergedSymbol((declaration.parent as ClassDeclaration).symbol));
+        }
+        if (isJSDocSignature(declaration)) {
+            const root = getJSDocRoot(declaration);
+            if (root && isConstructorDeclaration(root.parent)) {
+                return getDeclaredTypeOfClassOrInterface(getMergedSymbol((root.parent.parent as ClassDeclaration).symbol));
+            }
         }
         if (isJSDocConstructSignature(declaration)) {
             return getTypeFromTypeNode((declaration.parameters[0] as ParameterDeclaration).type!); // TODO: GH#18217
@@ -15221,7 +15219,7 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
     }
 
     function getSubstitutionType(baseType: Type, constraint: Type) {
-        if (constraint.flags & TypeFlags.AnyOrUnknown || constraint === baseType) {
+        if (constraint.flags & TypeFlags.AnyOrUnknown || constraint === baseType || baseType.flags & TypeFlags.Any) {
             return baseType;
         }
         const id = `${getTypeId(baseType)}>${getTypeId(constraint)}`;
@@ -17062,8 +17060,8 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
                     }
                 }
                 const propType = getTypeOfSymbol(prop);
-                return accessExpression && getAssignmentTargetKind(accessExpression) !== AssignmentKind.Definite ?
-                    getFlowTypeOfReference(accessExpression, propType) :
+                return accessExpression && getAssignmentTargetKind(accessExpression) !== AssignmentKind.Definite ? getFlowTypeOfReference(accessExpression, propType) :
+                    accessNode && isIndexedAccessTypeNode(accessNode) && containsMissingType(propType) ? getUnionType([propType, undefinedType]) :
                     propType;
             }
             if (everyType(objectType, isTupleType) && isNumericLiteralName(propName)) {
@@ -33773,6 +33771,7 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
                 declaration.kind !== SyntaxKind.Constructor &&
                 declaration.kind !== SyntaxKind.ConstructSignature &&
                 declaration.kind !== SyntaxKind.ConstructorType &&
+                !(isJSDocSignature(declaration) && getJSDocRoot(declaration)?.parent?.kind === SyntaxKind.Constructor) &&
                 !isJSDocConstructSignature(declaration) &&
                 !isJSConstructor(declaration)) {
 
@@ -43337,7 +43336,10 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
                         getNodeLinks(node).flags |= NodeCheckFlags.LexicalModuleMergesWithClass;
                     }
                 }
-                if (compilerOptions.verbatimModuleSyntax && node.parent.kind === SyntaxKind.SourceFile) {
+                if (compilerOptions.verbatimModuleSyntax &&
+                    node.parent.kind === SyntaxKind.SourceFile &&
+                    (moduleKind === ModuleKind.CommonJS || node.parent.impliedNodeFormat === ModuleKind.CommonJS)
+                ) {
                     const exportModifier = node.modifiers?.find(m => m.kind === SyntaxKind.ExportKeyword);
                     if (exportModifier) {
                         error(exportModifier, Diagnostics.A_top_level_export_modifier_cannot_be_used_on_value_declarations_in_a_CommonJS_module_when_verbatimModuleSyntax_is_enabled);
