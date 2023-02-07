@@ -24,7 +24,7 @@
 // === Definitions ===
 // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
 // class X{
-// 	/*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) X.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"X","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// 	/*FIND ALL REFS*/<|[|{| contextId: 0, defId: 0 |}foo|](): void{}|>
 // }
 // 
 // class Y extends X{
@@ -33,7 +33,7 @@
 // 
 // class Z extends Y{
 // 	static foo(): void{}
-// 	<|[|{| contextId: 1, defId: 1, kind: "method", name: "(method) Z.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// 	<|[|{| contextId: 1, defId: 1 |}foo|](): void{}|>
 // }
 // 
 // const x = new X();
@@ -45,198 +45,122 @@
 // Y.foo();
 // Z.foo();
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-      "kind": "method",
-      "name": "(method) X.foo(): void",
-      "textSpan": {
-        "start": 10,
-        "length": 3
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "method",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "X",
-          "kind": "className"
-        },
-        {
-          "text": ".",
-          "kind": "punctuation"
-        },
-        {
-          "text": "foo",
-          "kind": "methodName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        }
-      ],
-      "contextSpan": {
-        "start": 10,
-        "length": 13
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 10,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "contextSpan": {
-          "start": 10,
-          "length": 13
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 189,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 198,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-      "kind": "method",
-      "name": "(method) Z.foo(): void",
-      "textSpan": {
-        "start": 113,
-        "length": 3
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "method",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Z",
-          "kind": "className"
-        },
-        {
-          "text": ".",
-          "kind": "punctuation"
-        },
-        {
-          "text": "foo",
-          "kind": "methodName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        }
-      ],
-      "contextSpan": {
-        "start": 113,
-        "length": 13
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 113,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "contextSpan": {
-          "start": 113,
-          "length": 13
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 207,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "method",
+  "name": "(method) X.foo(): void",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "method",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "X",
+    "kind": "className"
+   },
+   {
+    "text": ".",
+    "kind": "punctuation"
+   },
+   {
+    "text": "foo",
+    "kind": "methodName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   }
+  ]
+ },
+ {
+  "defId": 1,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "method",
+  "name": "(method) Z.foo(): void",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "method",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Z",
+    "kind": "className"
+   },
+   {
+    "text": ".",
+    "kind": "punctuation"
+   },
+   {
+    "text": "foo",
+    "kind": "methodName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   }
+  ]
+ }
 ]
 
 // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
@@ -269,7 +193,7 @@
 // }
 // 
 // class Y extends X{
-// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "method", name: "(method) Y.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Y","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0 |}foo|](): void{}|>
 // }
 // 
 // class Z extends Y{
@@ -286,98 +210,65 @@
 // Y.foo();
 // Z.foo();
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-      "kind": "method",
-      "name": "(method) Y.foo(): void",
-      "textSpan": {
-        "start": 54,
-        "length": 3
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "method",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Y",
-          "kind": "className"
-        },
-        {
-          "text": ".",
-          "kind": "punctuation"
-        },
-        {
-          "text": "foo",
-          "kind": "methodName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        }
-      ],
-      "contextSpan": {
-        "start": 47,
-        "length": 20
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 54,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "contextSpan": {
-          "start": 47,
-          "length": 20
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 216,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "method",
+  "name": "(method) Y.foo(): void",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "method",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Y",
+    "kind": "className"
+   },
+   {
+    "text": ".",
+    "kind": "punctuation"
+   },
+   {
+    "text": "foo",
+    "kind": "methodName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   }
+  ]
+ }
 ]
 
 // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
@@ -414,7 +305,7 @@
 // }
 // 
 // class Z extends Y{
-// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "method", name: "(method) Z.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// 	<|static /*FIND ALL REFS*/[|{| contextId: 0, defId: 0 |}foo|](): void{}|>
 // 	foo(): void{}
 // }
 // 
@@ -427,98 +318,65 @@
 // Y.foo();
 // Z.foo();
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-      "kind": "method",
-      "name": "(method) Z.foo(): void",
-      "textSpan": {
-        "start": 98,
-        "length": 3
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "method",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Z",
-          "kind": "className"
-        },
-        {
-          "text": ".",
-          "kind": "punctuation"
-        },
-        {
-          "text": "foo",
-          "kind": "methodName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        }
-      ],
-      "contextSpan": {
-        "start": 91,
-        "length": 20
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 98,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "contextSpan": {
-          "start": 91,
-          "length": 20
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 225,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "method",
+  "name": "(method) Z.foo(): void",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "method",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Z",
+    "kind": "className"
+   },
+   {
+    "text": ".",
+    "kind": "punctuation"
+   },
+   {
+    "text": "foo",
+    "kind": "methodName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   }
+  ]
+ }
 ]
 
 // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
@@ -547,7 +405,7 @@
 // === Definitions ===
 // === /tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts ===
 // class X{
-// 	<|[|{| contextId: 0, defId: 0, kind: "method", name: "(method) X.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"X","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// 	<|[|{| contextId: 0, defId: 0 |}foo|](): void{}|>
 // }
 // 
 // class Y extends X{
@@ -556,7 +414,7 @@
 // 
 // class Z extends Y{
 // 	static foo(): void{}
-// 	/*FIND ALL REFS*/<|[|{| contextId: 1, defId: 1, kind: "method", name: "(method) Z.foo(): void", displayParts: [{"text":"(","kind":"punctuation"},{"text":"method","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"Z","kind":"className"},{"text":".","kind":"punctuation"},{"text":"foo","kind":"methodName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}foo|](): void{}|>
+// 	/*FIND ALL REFS*/<|[|{| contextId: 1, defId: 1 |}foo|](): void{}|>
 // }
 // 
 // const x = new X();
@@ -568,196 +426,120 @@
 // Y.foo();
 // Z.foo();
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-      "kind": "method",
-      "name": "(method) X.foo(): void",
-      "textSpan": {
-        "start": 10,
-        "length": 3
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "method",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "X",
-          "kind": "className"
-        },
-        {
-          "text": ".",
-          "kind": "punctuation"
-        },
-        {
-          "text": "foo",
-          "kind": "methodName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        }
-      ],
-      "contextSpan": {
-        "start": 10,
-        "length": 13
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 10,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "contextSpan": {
-          "start": 10,
-          "length": 13
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 189,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 198,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-      "kind": "method",
-      "name": "(method) Z.foo(): void",
-      "textSpan": {
-        "start": 113,
-        "length": 3
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "method",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Z",
-          "kind": "className"
-        },
-        {
-          "text": ".",
-          "kind": "punctuation"
-        },
-        {
-          "text": "foo",
-          "kind": "methodName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        }
-      ],
-      "contextSpan": {
-        "start": 113,
-        "length": 13
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 113,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "contextSpan": {
-          "start": 113,
-          "length": 13
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 207,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/findAllRefsForStaticInstanceMethodInheritance.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "method",
+  "name": "(method) X.foo(): void",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "method",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "X",
+    "kind": "className"
+   },
+   {
+    "text": ".",
+    "kind": "punctuation"
+   },
+   {
+    "text": "foo",
+    "kind": "methodName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   }
+  ]
+ },
+ {
+  "defId": 1,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "method",
+  "name": "(method) Z.foo(): void",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "method",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Z",
+    "kind": "className"
+   },
+   {
+    "text": ".",
+    "kind": "punctuation"
+   },
+   {
+    "text": "foo",
+    "kind": "methodName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   }
+  ]
+ }
 ]

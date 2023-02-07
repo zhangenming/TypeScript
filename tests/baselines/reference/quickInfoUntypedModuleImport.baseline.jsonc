@@ -6,45 +6,13 @@
 // import foo from /*GOTO DEF POS*/"foo";
 // foo();
 
-[
-  {
-    "name": "foo",
-    "fileName": "/tests/cases/fourslash/node_modules/foo/index.js",
-    "kind": "script",
-    "textSpan": {
-      "start": 0,
-      "length": 0
-    },
-    "failedAliasResolution": false,
-    "isAmbient": false,
-    "unverified": false
-  }
-]
+
 
 // === /tests/cases/fourslash/a.ts ===
 // <|import /*GOTO DEF POS*/[|{| contextId: 0, kind: "alias", name: "foo", isLocal: true, failedAliasResolution: true |}foo|] from "foo";|>
 // foo();
 
-[
-  {
-    "fileName": "/tests/cases/fourslash/a.ts",
-    "textSpan": {
-      "start": 7,
-      "length": 3
-    },
-    "kind": "alias",
-    "name": "foo",
-    "containerName": "",
-    "contextSpan": {
-      "start": 0,
-      "length": 22
-    },
-    "isLocal": true,
-    "isAmbient": false,
-    "unverified": false,
-    "failedAliasResolution": true
-  }
-]
+
 
 // === findAllReferences ===
 // === /tests/cases/fourslash/a.ts ===
@@ -53,65 +21,32 @@
 
 // === Definitions ===
 // === /tests/cases/fourslash/a.ts ===
-// <|import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "import foo", displayParts: [{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"}] |}foo|] from "foo";|>
+// <|import /*FIND ALL REFS*/[|{| contextId: 0, defId: 0 |}foo|] from "foo";|>
 // foo();
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/a.ts",
-      "kind": "alias",
-      "name": "import foo",
-      "textSpan": {
-        "start": 7,
-        "length": 3
-      },
-      "displayParts": [
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "foo",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 22
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 7,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/a.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 22
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 23,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/a.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "import foo",
+  "displayParts": [
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "foo",
+    "kind": "aliasName"
+   }
+  ]
+ }
 ]
 
 // === /tests/cases/fourslash/a.ts ===
@@ -120,44 +55,24 @@
 
 // === Definitions ===
 // === /tests/cases/fourslash/a.ts ===
-// import foo from /*FIND ALL REFS*/"[|{| defId: 0, kind: "var", name: "foo", displayParts: [{"text":"\"foo\"","kind":"stringLiteral"}] |}foo|]";
+// import foo from /*FIND ALL REFS*/"[|{| defId: 0 |}foo|]";
 // foo();
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/a.ts",
-      "kind": "var",
-      "name": "foo",
-      "textSpan": {
-        "start": 17,
-        "length": 3
-      },
-      "displayParts": [
-        {
-          "text": "\"foo\"",
-          "kind": "stringLiteral"
-        }
-      ]
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 17,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/a.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 22
-        },
-        "isWriteAccess": false,
-        "isInString": true
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "var",
+  "name": "foo",
+  "displayParts": [
+   {
+    "text": "\"foo\"",
+    "kind": "stringLiteral"
+   }
+  ]
+ }
 ]
 
 // === /tests/cases/fourslash/a.ts ===
@@ -166,61 +81,30 @@
 
 // === Definitions ===
 // === /tests/cases/fourslash/a.ts ===
-// <|import [|{| contextId: 0, defId: 0, kind: "alias", name: "import foo", displayParts: [{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"foo","kind":"aliasName"}] |}foo|] from "foo";|>
+// <|import [|{| contextId: 0, defId: 0 |}foo|] from "foo";|>
 // /*FIND ALL REFS*/foo();
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/a.ts",
-      "kind": "alias",
-      "name": "import foo",
-      "textSpan": {
-        "start": 7,
-        "length": 3
-      },
-      "displayParts": [
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "foo",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 22
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 7,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/a.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 22
-        },
-        "isWriteAccess": true
-      },
-      {
-        "textSpan": {
-          "start": 23,
-          "length": 3
-        },
-        "fileName": "/tests/cases/fourslash/a.ts",
-        "isWriteAccess": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "import foo",
+  "displayParts": [
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "foo",
+    "kind": "aliasName"
+   }
+  ]
+ }
 ]

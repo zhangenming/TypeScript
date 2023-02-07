@@ -752,12 +752,11 @@ export class TestState {
     ) {
         this.goToMarkerOrNameOrRange(markerOrRange);
         const defs = getDefs();
-        return this.baselineReferencesWorker<ReturnType<typeof getDefs>, ts.DefinitionInfo | ts.ImplementationLocation>(
+        return this.baselineReferencesWorker<ts.DefinitionInfo | ts.ImplementationLocation>(
             refType,
             markerOrRange,
-            defs,
-            defs => defs ? ts.isArray(defs) ? defs : defs.definitions : undefined,
-            defs => defs && !ts.isArray(defs) ? "// === TextSpan ===\n" + this.getBaselineContentForGroupedReferences(
+            defs ? ts.isArray(defs) ? defs : defs.definitions : undefined,
+            defs && !ts.isArray(defs) ? "// === TextSpan ===\n" + this.getBaselineContentForGroupedReferences(
                 refType,
                 [[{ fileName: this.activeFile.fileName, textSpan: defs.textSpan }]],
                 markerOrRange,
@@ -1213,20 +1212,28 @@ export class TestState {
         return this.baselineReferencesWorker(
             "/*FIND ALL REFS*/",
             markerOrRange,
-            references,
-            references => ts.flatMap(references, (r, def) => {
+            ts.flatMap(references, (r, def) => {
                 defIdMap.set(r.definition, def);
                 r.references.forEach(r => defIdMap.set(r, def));
                 return r.references;
             }),
-            references => references ? "// === Definitions ===\n" + this.baselineReferencesWorker(
-                "/*FIND ALL REFS*/",
-                markerOrRange,
-                references.map(r => r.definition),
-                ts.identity,
-                /*skipJson*/ true,
-                def => `defId: ${defIdMap.get(def)}`,
-            ) : "",
+            references ? "// === Definitions ===\n" +
+                this.baselineReferencesWorker(
+                    "/*FIND ALL REFS*/",
+                    markerOrRange,
+                    references.map(r => r.definition),
+                    /*additionalBaseline*/ undefined,
+                    def => `defId: ${defIdMap.get(def)}`,
+                    /*skipExtraInfo*/ true,
+                ) +
+                "// === Definitions Details ===\n" +
+                JSON.stringify(references.map(r => ({
+                    defId: defIdMap.get(r.definition),
+                    ...r.definition,
+                    fileName: undefined,
+                    textSpan: undefined,
+                    contextSpan: undefined,
+                })), undefined, " ") : "",
             ref => `defId: ${defIdMap.get(ref)}`,
         );
     }
@@ -1241,49 +1248,46 @@ export class TestState {
             "/*FIND ALL REFS*/",
             /*markerName*/ undefined,
             references,
-            ts.identity,
         );
     }
 
-    private baselineReferencesWorker<R, T extends ts.DocumentSpan>(
+    private baselineReferencesWorker<T extends ts.DocumentSpan>(
         refType: string,
         markerOrRange: MarkerOrNameOrRange | undefined,
-        result: R,
-        getDocumentSpanArray: (result: R) => readonly T[] | undefined,
-        skipJsonOrGetAdditionalBaseline?: true | ((result: R) => string),
-        documentSpanToPrefix?: (span: T) => string,
+        spans: readonly T[] | undefined,
+        additionalBaseline?: string,
+        documentSpanId?: (span: T) => string,
+        skipExtraInfo?: boolean,
         endMarker?: string,
         startMarkerPrefix?: (span: T) => string | undefined,
         endMarkerSuffix?: (span: T) => string | undefined,
         ignoredDocumentSpanProperties?: readonly string[],
     ): string {
-        const spans = getDocumentSpanArray(result);
         const spansByFile = spans ? ts.group(spans, span => span.fileName) : ts.emptyArray;
         // Write input files
         const baselineContent = this.getBaselineContentForGroupedReferences(
             refType,
             spansByFile,
             markerOrRange,
-            // Skip additional marker file since its already added in prev baseline,
-            skipJsonOrGetAdditionalBaseline === true,
-            documentSpanToPrefix,
+            documentSpanId,
+            skipExtraInfo,
             endMarker,
             startMarkerPrefix,
             endMarkerSuffix,
             ignoredDocumentSpanProperties,
         );
-        if (skipJsonOrGetAdditionalBaseline === true) return baselineContent;
-        const additionalBaseline = skipJsonOrGetAdditionalBaseline?.(result) || "";
         // Write response JSON
-        return baselineContent + additionalBaseline + JSON.stringify(result, undefined, 2);
+        return baselineContent +
+            (additionalBaseline || "") +
+            (!spans?.length ? JSON.stringify(spans, undefined, 2) : "");
     }
 
     private getBaselineContentForGroupedReferences<T extends ts.DocumentSpan>(
         refType: string,
         refsByFile: readonly (readonly T[])[],
         markerOrRange: MarkerOrNameOrRange | undefined,
-        skipMarkerOnlyFile?: boolean,
-        documentSpanToPrefix?: (span: T) => string,
+        documentSpanId?: (span: T) => string,
+        skipExtraInfo?: boolean,
         endMarker?: string,
         startMarkerPrefix?: (span: T) => string | undefined,
         endMarkerSuffix?: (span: T) => string | undefined,
@@ -1314,7 +1318,9 @@ export class TestState {
                     baselineContent += `// === ${group[0].fileName} ===\n// Unavailable file content:\n`;
                     for (const span of group) {
                         baselineContent += `// textSpan: ${JSON.stringify(span.textSpan)}${span.contextSpan ? `, contextSpan: ${JSON.stringify(span.contextSpan)}` : ""}`;
-                        const text = convertDocumentSpanToString(span, documentSpanToPrefix?.(span));
+                        const text = !skipExtraInfo ?
+                            convertDocumentSpanToString(span, documentSpanId?.(span)) :
+                            documentSpanId?.(span);
                         if (text) baselineContent += ` ${text}`;
                         baselineContent = "\n\n";
                     }
@@ -1322,7 +1328,7 @@ export class TestState {
                 }
             }
         }
-        if (!skipMarkerOnlyFile && !foundMarker && marker?.fileName) {
+        if (!skipExtraInfo && !foundMarker && marker?.fileName) {
             const content = this.getFileContent(marker.fileName);
             const newContent = `=== ${marker.fileName} ===\n` +
                 content.slice(0, marker.position) +
@@ -1441,7 +1447,9 @@ export class TestState {
                 if (span) {
                     switch (type) {
                         case "textStart":
-                            let text = convertDocumentSpanToString(span, documentSpanToPrefix?.(span), ignoredDocumentSpanProperties);
+                            let text = !skipExtraInfo ?
+                                convertDocumentSpanToString(span, documentSpanId?.(span), ignoredDocumentSpanProperties) :
+                                documentSpanId?.(span);
                             const contextId = spanToContextId.get(span);
                             if (contextId !== undefined) {
                                 text = `contextId: ${contextId}` + (text ? ", " : "") + text;
@@ -1690,9 +1698,9 @@ export class TestState {
             "/*RENAME*/",
             markerOrRange,
             locations,
-            ts.identity,
-            /*skipJsonOrGetAdditionalBaseline*/ undefined,
-            /*documentSpanToPrefix*/ undefined,
+            /*additionalBaseline*/ undefined,
+            /*documentSpanId*/ undefined,
+            /*skipExtraInfo*/ undefined,
             "RENAME|]",
             span => span.prefixText ? `/*START PREFIX*/${span.prefixText}` : "",
             span => span.suffixText ? `${span.suffixText}/*END SUFFIX*/` : "",
@@ -3549,7 +3557,6 @@ export class TestState {
             "/*OCCURENCES*/",
             markerOrRange,
             occurrences,
-            ts.identity,
         );
     }
 
@@ -3576,7 +3583,7 @@ export class TestState {
             markerOrRange
         );
         // Write response JSON
-        return filesToSearch + baselineContent + JSON.stringify(highlights, undefined, 2);
+        return filesToSearch + baselineContent + (!highlights?.length ? JSON.stringify(highlights, undefined, 2) : "");
     }
 
     public verifyBaselineDocumentHighlights(markerOrRange: ArrayOrSingle<MarkerOrNameOrRange>, options: FourSlashInterface.VerifyDocumentHighlightsOptions | undefined) {

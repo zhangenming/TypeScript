@@ -9,387 +9,275 @@
 
 // === Definitions ===
 // === /tests/cases/fourslash/a.ts ===
-// <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "function", name: "function f(): void", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}f|]() {}|>
+// <|export function /*FIND ALL REFS*/[|{| contextId: 0, defId: 0 |}f|]() {}|>
 
 // === /tests/cases/fourslash/b.ts ===
-// <|export { f as [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) function g(): void\nexport g", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"}] |}g|] } from "./a";|>
-// <|import { [|{| contextId: 2, defId: 3, kind: "alias", name: "(alias) function f(): void\nimport f", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"aliasName"}] |}f|] } from "./a";|>
-// <|import { [|{| contextId: 3, defId: 2, kind: "alias", name: "(alias) function g(): void\nimport g", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"}] |}g|] } from "./b";|>
+// <|export { f as [|{| contextId: 1, defId: 1 |}g|] } from "./a";|>
+// <|import { [|{| contextId: 2, defId: 3 |}f|] } from "./a";|>
+// <|import { [|{| contextId: 3, defId: 2 |}g|] } from "./b";|>
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/a.ts",
-      "kind": "function",
-      "name": "function f(): void",
-      "textSpan": {
-        "start": 16,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "f",
-          "kind": "functionName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 22
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 16,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/a.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 22
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 9,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 29
-        },
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/b.ts",
-      "kind": "alias",
-      "name": "(alias) function g(): void\nexport g",
-      "textSpan": {
-        "start": 14,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "export",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 29
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 14,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 29
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/b.ts",
-      "kind": "alias",
-      "name": "(alias) function g(): void\nimport g",
-      "textSpan": {
-        "start": 64,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 55,
-        "length": 24
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 64,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 55,
-          "length": 24
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/b.ts",
-      "kind": "alias",
-      "name": "(alias) function f(): void\nimport f",
-      "textSpan": {
-        "start": 39,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "f",
-          "kind": "aliasName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "f",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 30,
-        "length": 24
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 39,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 30,
-          "length": 24
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "function",
+  "name": "function f(): void",
+  "displayParts": [
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "f",
+    "kind": "functionName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   }
+  ]
+ },
+ {
+  "defId": 1,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) function g(): void\nexport g",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "export",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   }
+  ]
+ },
+ {
+  "defId": 2,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) function g(): void\nimport g",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   }
+  ]
+ },
+ {
+  "defId": 3,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) function f(): void\nimport f",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "f",
+    "kind": "aliasName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "f",
+    "kind": "aliasName"
+   }
+  ]
+ }
 ]
 
 // === /tests/cases/fourslash/b.ts ===
@@ -399,207 +287,158 @@
 
 // === Definitions ===
 // === /tests/cases/fourslash/b.ts ===
-// <|export { f as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) function g(): void\nexport g", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"}] |}g|] } from "./a";|>
+// <|export { f as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0 |}g|] } from "./a";|>
 // import { f } from "./a";
-// <|import { [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) function g(): void\nimport g", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"}] |}g|] } from "./b";|>
+// <|import { [|{| contextId: 1, defId: 1 |}g|] } from "./b";|>
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/b.ts",
-      "kind": "alias",
-      "name": "(alias) function g(): void\nexport g",
-      "textSpan": {
-        "start": 14,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "export",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 29
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 14,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 29
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/b.ts",
-      "kind": "alias",
-      "name": "(alias) function g(): void\nimport g",
-      "textSpan": {
-        "start": 64,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 55,
-        "length": 24
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 64,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 55,
-          "length": 24
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) function g(): void\nexport g",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "export",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   }
+  ]
+ },
+ {
+  "defId": 1,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) function g(): void\nimport g",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   }
+  ]
+ }
 ]
 
 // === /tests/cases/fourslash/b.ts ===
@@ -609,207 +448,158 @@
 
 // === Definitions ===
 // === /tests/cases/fourslash/b.ts ===
-// <|export { f as [|{| contextId: 0, defId: 1, kind: "alias", name: "(alias) function g(): void\nexport g", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"}] |}g|] } from "./a";|>
+// <|export { f as [|{| contextId: 0, defId: 1 |}g|] } from "./a";|>
 // import { f } from "./a";
-// <|import { /*FIND ALL REFS*/[|{| contextId: 1, defId: 0, kind: "alias", name: "(alias) function g(): void\nimport g", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"}] |}g|] } from "./b";|>
+// <|import { /*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}g|] } from "./b";|>
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/b.ts",
-      "kind": "alias",
-      "name": "(alias) function g(): void\nimport g",
-      "textSpan": {
-        "start": 64,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 55,
-        "length": 24
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 64,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 55,
-          "length": 24
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/b.ts",
-      "kind": "alias",
-      "name": "(alias) function g(): void\nexport g",
-      "textSpan": {
-        "start": 14,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "export",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 29
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 14,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 29
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) function g(): void\nimport g",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   }
+  ]
+ },
+ {
+  "defId": 1,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) function g(): void\nexport g",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "export",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   }
+  ]
+ }
 ]
 
 // === /tests/cases/fourslash/b.ts ===
@@ -822,387 +612,275 @@
 
 // === Definitions ===
 // === /tests/cases/fourslash/b.ts ===
-// <|export { f as [|{| contextId: 0, defId: 2, kind: "alias", name: "(alias) function g(): void\nexport g", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"}] |}g|] } from "./a";|>
-// <|import { /*FIND ALL REFS*/[|{| contextId: 1, defId: 0, kind: "alias", name: "(alias) function f(): void\nimport f", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"aliasName"}] |}f|] } from "./a";|>
-// <|import { [|{| contextId: 2, defId: 3, kind: "alias", name: "(alias) function g(): void\nimport g", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"g","kind":"aliasName"}] |}g|] } from "./b";|>
+// <|export { f as [|{| contextId: 0, defId: 2 |}g|] } from "./a";|>
+// <|import { /*FIND ALL REFS*/[|{| contextId: 1, defId: 0 |}f|] } from "./a";|>
+// <|import { [|{| contextId: 2, defId: 3 |}g|] } from "./b";|>
 
 // === /tests/cases/fourslash/a.ts ===
-// <|export function [|{| contextId: 3, defId: 1, kind: "function", name: "function f(): void", displayParts: [{"text":"function","kind":"keyword"},{"text":" ","kind":"space"},{"text":"f","kind":"functionName"},{"text":"(","kind":"punctuation"},{"text":")","kind":"punctuation"},{"text":":","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"void","kind":"keyword"}] |}f|]() {}|>
+// <|export function [|{| contextId: 3, defId: 1 |}f|]() {}|>
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/b.ts",
-      "kind": "alias",
-      "name": "(alias) function f(): void\nimport f",
-      "textSpan": {
-        "start": 39,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "f",
-          "kind": "aliasName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "f",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 30,
-        "length": 24
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 39,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 30,
-          "length": 24
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/a.ts",
-      "kind": "function",
-      "name": "function f(): void",
-      "textSpan": {
-        "start": 16,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "f",
-          "kind": "functionName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 22
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 16,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/a.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 22
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 9,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 29
-        },
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/b.ts",
-      "kind": "alias",
-      "name": "(alias) function g(): void\nexport g",
-      "textSpan": {
-        "start": 14,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "export",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 29
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 14,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 29
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/b.ts",
-      "kind": "alias",
-      "name": "(alias) function g(): void\nimport g",
-      "textSpan": {
-        "start": 64,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "function",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        },
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": ":",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "void",
-          "kind": "keyword"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "g",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 55,
-        "length": 24
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 64,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/b.ts",
-        "contextSpan": {
-          "start": 55,
-          "length": 24
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) function f(): void\nimport f",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "f",
+    "kind": "aliasName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "f",
+    "kind": "aliasName"
+   }
+  ]
+ },
+ {
+  "defId": 1,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "function",
+  "name": "function f(): void",
+  "displayParts": [
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "f",
+    "kind": "functionName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   }
+  ]
+ },
+ {
+  "defId": 2,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) function g(): void\nexport g",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "export",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   }
+  ]
+ },
+ {
+  "defId": 3,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) function g(): void\nimport g",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "function",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   },
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": ":",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "void",
+    "kind": "keyword"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "g",
+    "kind": "aliasName"
+   }
+  ]
+ }
 ]
 
 // === findRenameLocations ===
@@ -1214,41 +892,7 @@
 // <|import { [|{| contextId: 2 |}fRENAME|] } from "./a";|>
 // import { g } from "./b";
 
-[
-  {
-    "textSpan": {
-      "start": 16,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/a.ts",
-    "contextSpan": {
-      "start": 0,
-      "length": 22
-    }
-  },
-  {
-    "textSpan": {
-      "start": 9,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/b.ts",
-    "contextSpan": {
-      "start": 0,
-      "length": 29
-    }
-  },
-  {
-    "textSpan": {
-      "start": 39,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/b.ts",
-    "contextSpan": {
-      "start": 30,
-      "length": 24
-    }
-  }
-]
+
 
 // === /tests/cases/fourslash/a.ts ===
 // <|export function [|{| contextId: 0 |}fRENAME|]() {}|>
@@ -1258,108 +902,24 @@
 // <|import { [|{| contextId: 2 |}fRENAME|] } from "./a";|>
 // import { g } from "./b";
 
-[
-  {
-    "textSpan": {
-      "start": 16,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/a.ts",
-    "contextSpan": {
-      "start": 0,
-      "length": 22
-    }
-  },
-  {
-    "textSpan": {
-      "start": 9,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/b.ts",
-    "contextSpan": {
-      "start": 0,
-      "length": 29
-    }
-  },
-  {
-    "textSpan": {
-      "start": 39,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/b.ts",
-    "contextSpan": {
-      "start": 30,
-      "length": 24
-    }
-  }
-]
+
 
 // === /tests/cases/fourslash/b.ts ===
 // export { f as g } from "./a";
 // <|import { /*START PREFIX*/f as /*RENAME*/[|{| contextId: 0 |}fRENAME|] } from "./a";|>
 // import { g } from "./b";
 
-[
-  {
-    "textSpan": {
-      "start": 39,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/b.ts",
-    "contextSpan": {
-      "start": 30,
-      "length": 24
-    },
-    "prefixText": "f as "
-  }
-]
+
 
 // === /tests/cases/fourslash/b.ts ===
 // <|export { f as /*RENAME*/[|{| contextId: 0 |}gRENAME|] } from "./a";|>
 // import { f } from "./a";
 // <|import { [|{| contextId: 1 |}gRENAME|] } from "./b";|>
 
-[
-  {
-    "textSpan": {
-      "start": 14,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/b.ts",
-    "contextSpan": {
-      "start": 0,
-      "length": 29
-    }
-  },
-  {
-    "textSpan": {
-      "start": 64,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/b.ts",
-    "contextSpan": {
-      "start": 55,
-      "length": 24
-    }
-  }
-]
+
 
 // === /tests/cases/fourslash/b.ts ===
 // export { f as g } from "./a";
 // import { f } from "./a";
 // <|import { /*START PREFIX*/g as /*RENAME*/[|{| contextId: 0 |}gRENAME|] } from "./b";|>
 
-[
-  {
-    "textSpan": {
-      "start": 64,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/b.ts",
-    "contextSpan": {
-      "start": 55,
-      "length": 24
-    },
-    "prefixText": "g as "
-  }
-]

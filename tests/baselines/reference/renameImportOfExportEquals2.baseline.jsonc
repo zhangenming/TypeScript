@@ -17,350 +17,203 @@
 
 // === Definitions ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
-// <|declare namespace /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "module", name: "namespace N", displayParts: [{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"N","kind":"moduleName"}] |}N|] {
+// <|declare namespace /*FIND ALL REFS*/[|{| contextId: 0, defId: 0 |}N|] {
 //     export var x: number;
 // }|>
 // declare module "mod" {
 //     export = N;
 // }
 // declare module "a" {
-//     <|import * as [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) namespace O\nimport O", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"O","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"O","kind":"aliasName"}] |}O|] from "mod";|>
-//     <|export { O as [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) namespace P\nexport P", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"P","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"P","kind":"aliasName"}] |}P|] };|> // Renaming N here would rename
+//     <|import * as [|{| contextId: 1, defId: 1 |}O|] from "mod";|>
+//     <|export { O as [|{| contextId: 2, defId: 2 |}P|] };|> // Renaming N here would rename
 // }
 // declare module "b" {
-//     <|import { P as [|{| contextId: 3, defId: 3, kind: "alias", name: "(alias) namespace Q\nimport Q", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Q","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Q","kind":"aliasName"}] |}Q|] } from "a";|>
+//     <|import { P as [|{| contextId: 3, defId: 3 |}Q|] } from "a";|>
 //     export const y: typeof Q.x;
 // }
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-      "kind": "module",
-      "name": "namespace N",
-      "textSpan": {
-        "start": 18,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "namespace",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "N",
-          "kind": "moduleName"
-        }
-      ],
-      "contextSpan": {
-        "start": 0,
-        "length": 49
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 18,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 0,
-          "length": 49
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 86,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 77,
-          "length": 11
-        },
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-      "kind": "alias",
-      "name": "(alias) namespace O\nimport O",
-      "textSpan": {
-        "start": 128,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "namespace",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "O",
-          "kind": "aliasName"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "O",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 116,
-        "length": 25
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 128,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 116,
-          "length": 25
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 155,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 146,
-          "length": 18
-        },
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-      "kind": "alias",
-      "name": "(alias) namespace P\nexport P",
-      "textSpan": {
-        "start": 160,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "namespace",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "P",
-          "kind": "aliasName"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "export",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "P",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 146,
-        "length": 18
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 160,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 146,
-          "length": 18
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 233,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 224,
-          "length": 27
-        },
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-      "kind": "alias",
-      "name": "(alias) namespace Q\nimport Q",
-      "textSpan": {
-        "start": 238,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "namespace",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Q",
-          "kind": "aliasName"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Q",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 224,
-        "length": 27
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 238,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 224,
-          "length": 27
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 279,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "module",
+  "name": "namespace N",
+  "displayParts": [
+   {
+    "text": "namespace",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "N",
+    "kind": "moduleName"
+   }
+  ]
+ },
+ {
+  "defId": 1,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) namespace O\nimport O",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "namespace",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "O",
+    "kind": "aliasName"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "O",
+    "kind": "aliasName"
+   }
+  ]
+ },
+ {
+  "defId": 2,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) namespace P\nexport P",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "namespace",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "P",
+    "kind": "aliasName"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "export",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "P",
+    "kind": "aliasName"
+   }
+  ]
+ },
+ {
+  "defId": 3,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) namespace Q\nimport Q",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "namespace",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Q",
+    "kind": "aliasName"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Q",
+    "kind": "aliasName"
+   }
+  ]
+ }
 ]
 
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
@@ -388,284 +241,175 @@
 //     export = N;
 // }
 // declare module "a" {
-//     <|import * as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) namespace O\nimport O", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"O","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"O","kind":"aliasName"}] |}O|] from "mod";|>
-//     <|export { O as [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) namespace P\nexport P", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"P","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"P","kind":"aliasName"}] |}P|] };|> // Renaming N here would rename
+//     <|import * as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0 |}O|] from "mod";|>
+//     <|export { O as [|{| contextId: 1, defId: 1 |}P|] };|> // Renaming N here would rename
 // }
 // declare module "b" {
-//     <|import { P as [|{| contextId: 2, defId: 2, kind: "alias", name: "(alias) namespace Q\nimport Q", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Q","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Q","kind":"aliasName"}] |}Q|] } from "a";|>
+//     <|import { P as [|{| contextId: 2, defId: 2 |}Q|] } from "a";|>
 //     export const y: typeof Q.x;
 // }
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-      "kind": "alias",
-      "name": "(alias) namespace O\nimport O",
-      "textSpan": {
-        "start": 128,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "namespace",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "O",
-          "kind": "aliasName"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "O",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 116,
-        "length": 25
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 128,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 116,
-          "length": 25
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 155,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 146,
-          "length": 18
-        },
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-      "kind": "alias",
-      "name": "(alias) namespace P\nexport P",
-      "textSpan": {
-        "start": 160,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "namespace",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "P",
-          "kind": "aliasName"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "export",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "P",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 146,
-        "length": 18
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 160,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 146,
-          "length": 18
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 233,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 224,
-          "length": 27
-        },
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-      "kind": "alias",
-      "name": "(alias) namespace Q\nimport Q",
-      "textSpan": {
-        "start": 238,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "namespace",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Q",
-          "kind": "aliasName"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Q",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 224,
-        "length": 27
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 238,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 224,
-          "length": 27
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 279,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) namespace O\nimport O",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "namespace",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "O",
+    "kind": "aliasName"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "O",
+    "kind": "aliasName"
+   }
+  ]
+ },
+ {
+  "defId": 1,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) namespace P\nexport P",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "namespace",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "P",
+    "kind": "aliasName"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "export",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "P",
+    "kind": "aliasName"
+   }
+  ]
+ },
+ {
+  "defId": 2,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) namespace Q\nimport Q",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "namespace",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Q",
+    "kind": "aliasName"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Q",
+    "kind": "aliasName"
+   }
+  ]
+ }
 ]
 
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
@@ -694,192 +438,121 @@
 // }
 // declare module "a" {
 //     import * as O from "mod";
-//     <|export { O as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) namespace P\nexport P", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"P","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"export","kind":"keyword"},{"text":" ","kind":"space"},{"text":"P","kind":"aliasName"}] |}P|] };|> // Renaming N here would rename
+//     <|export { O as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0 |}P|] };|> // Renaming N here would rename
 // }
 // declare module "b" {
-//     <|import { P as [|{| contextId: 1, defId: 1, kind: "alias", name: "(alias) namespace Q\nimport Q", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Q","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Q","kind":"aliasName"}] |}Q|] } from "a";|>
+//     <|import { P as [|{| contextId: 1, defId: 1 |}Q|] } from "a";|>
 //     export const y: typeof Q.x;
 // }
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-      "kind": "alias",
-      "name": "(alias) namespace P\nexport P",
-      "textSpan": {
-        "start": 160,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "namespace",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "P",
-          "kind": "aliasName"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "export",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "P",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 146,
-        "length": 18
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 160,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 146,
-          "length": 18
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 233,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 224,
-          "length": 27
-        },
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  },
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-      "kind": "alias",
-      "name": "(alias) namespace Q\nimport Q",
-      "textSpan": {
-        "start": 238,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "namespace",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Q",
-          "kind": "aliasName"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Q",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 224,
-        "length": 27
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 238,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 224,
-          "length": 27
-        },
-        "isWriteAccess": true,
-        "isDefinition": false
-      },
-      {
-        "textSpan": {
-          "start": 279,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) namespace P\nexport P",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "namespace",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "P",
+    "kind": "aliasName"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "export",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "P",
+    "kind": "aliasName"
+   }
+  ]
+ },
+ {
+  "defId": 1,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) namespace Q\nimport Q",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "namespace",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Q",
+    "kind": "aliasName"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Q",
+    "kind": "aliasName"
+   }
+  ]
+ }
 ]
 
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
@@ -911,98 +584,65 @@
 //     export { O as P }; // Renaming N here would rename
 // }
 // declare module "b" {
-//     <|import { P as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0, kind: "alias", name: "(alias) namespace Q\nimport Q", displayParts: [{"text":"(","kind":"punctuation"},{"text":"alias","kind":"text"},{"text":")","kind":"punctuation"},{"text":" ","kind":"space"},{"text":"namespace","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Q","kind":"aliasName"},{"text":"\n","kind":"lineBreak"},{"text":"import","kind":"keyword"},{"text":" ","kind":"space"},{"text":"Q","kind":"aliasName"}] |}Q|] } from "a";|>
+//     <|import { P as /*FIND ALL REFS*/[|{| contextId: 0, defId: 0 |}Q|] } from "a";|>
 //     export const y: typeof Q.x;
 // }
 
+// === Definitions Details ===
 [
-  {
-    "definition": {
-      "containerKind": "",
-      "containerName": "",
-      "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-      "kind": "alias",
-      "name": "(alias) namespace Q\nimport Q",
-      "textSpan": {
-        "start": 238,
-        "length": 1
-      },
-      "displayParts": [
-        {
-          "text": "(",
-          "kind": "punctuation"
-        },
-        {
-          "text": "alias",
-          "kind": "text"
-        },
-        {
-          "text": ")",
-          "kind": "punctuation"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "namespace",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Q",
-          "kind": "aliasName"
-        },
-        {
-          "text": "\n",
-          "kind": "lineBreak"
-        },
-        {
-          "text": "import",
-          "kind": "keyword"
-        },
-        {
-          "text": " ",
-          "kind": "space"
-        },
-        {
-          "text": "Q",
-          "kind": "aliasName"
-        }
-      ],
-      "contextSpan": {
-        "start": 224,
-        "length": 27
-      }
-    },
-    "references": [
-      {
-        "textSpan": {
-          "start": 238,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "contextSpan": {
-          "start": 224,
-          "length": 27
-        },
-        "isWriteAccess": true,
-        "isDefinition": true
-      },
-      {
-        "textSpan": {
-          "start": 279,
-          "length": 1
-        },
-        "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-        "isWriteAccess": false,
-        "isDefinition": false
-      }
-    ]
-  }
+ {
+  "defId": 0,
+  "containerKind": "",
+  "containerName": "",
+  "kind": "alias",
+  "name": "(alias) namespace Q\nimport Q",
+  "displayParts": [
+   {
+    "text": "(",
+    "kind": "punctuation"
+   },
+   {
+    "text": "alias",
+    "kind": "text"
+   },
+   {
+    "text": ")",
+    "kind": "punctuation"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "namespace",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Q",
+    "kind": "aliasName"
+   },
+   {
+    "text": "\n",
+    "kind": "lineBreak"
+   },
+   {
+    "text": "import",
+    "kind": "keyword"
+   },
+   {
+    "text": " ",
+    "kind": "space"
+   },
+   {
+    "text": "Q",
+    "kind": "aliasName"
+   }
+  ]
+ }
 ]
 
 // === findRenameLocations ===
@@ -1022,30 +662,7 @@
 //     export const y: typeof Q.x;
 // }
 
-[
-  {
-    "textSpan": {
-      "start": 18,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 0,
-      "length": 49
-    }
-  },
-  {
-    "textSpan": {
-      "start": 86,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 77,
-      "length": 11
-    }
-  }
-]
+
 
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
 // <|declare namespace [|{| contextId: 0 |}NRENAME|] {
@@ -1063,30 +680,7 @@
 //     export const y: typeof Q.x;
 // }
 
-[
-  {
-    "textSpan": {
-      "start": 18,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 0,
-      "length": 49
-    }
-  },
-  {
-    "textSpan": {
-      "start": 86,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 77,
-      "length": 11
-    }
-  }
-]
+
 
 // === findRenameLocations ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
@@ -1105,30 +699,7 @@
 //     export const y: typeof Q.x;
 // }
 
-[
-  {
-    "textSpan": {
-      "start": 128,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 116,
-      "length": 25
-    }
-  },
-  {
-    "textSpan": {
-      "start": 155,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 146,
-      "length": 18
-    }
-  }
-]
+
 
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
 // declare namespace N {
@@ -1146,30 +717,7 @@
 //     export const y: typeof Q.x;
 // }
 
-[
-  {
-    "textSpan": {
-      "start": 128,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 116,
-      "length": 25
-    }
-  },
-  {
-    "textSpan": {
-      "start": 155,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 146,
-      "length": 18
-    }
-  }
-]
+
 
 // === findRenameLocations ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
@@ -1188,30 +736,7 @@
 //     export const y: typeof Q.x;
 // }
 
-[
-  {
-    "textSpan": {
-      "start": 160,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 146,
-      "length": 18
-    }
-  },
-  {
-    "textSpan": {
-      "start": 233,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 224,
-      "length": 27
-    }
-  }
-]
+
 
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
 // declare namespace N {
@@ -1229,30 +754,7 @@
 //     export const y: typeof Q.x;
 // }
 
-[
-  {
-    "textSpan": {
-      "start": 160,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 146,
-      "length": 18
-    }
-  },
-  {
-    "textSpan": {
-      "start": 233,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 224,
-      "length": 27
-    }
-  }
-]
+
 
 // === findRenameLocations ===
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
@@ -1271,26 +773,7 @@
 //     export const y: typeof [|QRENAME|].x;
 // }
 
-[
-  {
-    "textSpan": {
-      "start": 238,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 224,
-      "length": 27
-    }
-  },
-  {
-    "textSpan": {
-      "start": 279,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts"
-  }
-]
+
 
 // === /tests/cases/fourslash/renameImportOfExportEquals2.ts ===
 // declare namespace N {
@@ -1308,23 +791,3 @@
 //     export const y: typeof /*RENAME*/[|QRENAME|].x;
 // }
 
-[
-  {
-    "textSpan": {
-      "start": 238,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts",
-    "contextSpan": {
-      "start": 224,
-      "length": 27
-    }
-  },
-  {
-    "textSpan": {
-      "start": 279,
-      "length": 1
-    },
-    "fileName": "/tests/cases/fourslash/renameImportOfExportEquals2.ts"
-  }
-]
