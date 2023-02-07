@@ -10519,7 +10519,7 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
         // function/class/{} initializers are themselves containers, so they won't merge in the same way as other initializers
         const container = getAssignedExpandoInitializer(symbol.valueDeclaration);
         if (container) {
-            const tag = getJSDocTypeTag(container);
+            const tag = isInJSFile(container) ? getJSDocTypeTag(container) : undefined;
             if (tag && tag.typeExpression) {
                 return getTypeFromTypeNode(tag.typeExpression);
             }
@@ -22927,7 +22927,18 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
             return propType;
         }
         if (everyType(type, isTupleType)) {
-            return mapType(type, t => getRestTypeOfTupleType(t as TupleTypeReference) || undefinedType);
+            return mapType(type, t => {
+                const tupleType = t as TupleTypeReference;
+                const restType = getRestTypeOfTupleType(tupleType);
+                if (!restType) {
+                    return undefinedType;
+                }
+                if (compilerOptions.noUncheckedIndexedAccess &&
+                    index >= tupleType.target.fixedLength + getEndElementCount(tupleType.target, ElementFlags.Fixed)) {
+                    return getUnionType([restType, undefinedType]);
+                }
+                return restType;
+            });
         }
         return undefined;
     }
@@ -26273,7 +26284,11 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
                 return declaredType;
             }
             // for (const _ in ref) acts as a nonnull on ref
-            if (isVariableDeclaration(node) && node.parent.parent.kind === SyntaxKind.ForInStatement && isMatchingReference(reference, node.parent.parent.expression)) {
+            if (
+                isVariableDeclaration(node) &&
+                node.parent.parent.kind === SyntaxKind.ForInStatement &&
+                (isMatchingReference(reference, node.parent.parent.expression) || optionalChainContainsReference(node.parent.parent.expression, reference))
+            ) {
                 return getNonNullableTypeIfNeeded(finalizeEvolvingArrayType(getTypeFromFlowType(getTypeAtFlowNode(flow.antecedent))));
             }
             // Assignment doesn't affect reference
